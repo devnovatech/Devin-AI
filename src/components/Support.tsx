@@ -34,12 +34,12 @@ export default function Support() {
   }
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-16 relative bg-light-accent">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection>
-          <div className="relative rounded-3xl border border-white/5 overflow-hidden">
+          <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
             {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-dark-surface to-neon-purple/10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-deep-blue via-deep-blue to-neon-purple/30" />
             <div className="absolute inset-0 grid-bg opacity-50" />
 
             <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20">

@@ -40,21 +40,21 @@ const industries = [
 
 export default function Industries() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden bg-light-accent">
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Heading + CTA */}
           <AnimatedSection direction="left">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
+            <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
               Industries
             </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue leading-tight">
               Powering Progress Across{" "}
-              <span className="gradient-text">Multiple Industries</span>
+              <span className="gradient-text-dark">Multiple Industries</span>
             </h2>
-            <p className="mt-4 text-gray-400 max-w-md text-lg">
+            <p className="mt-4 text-deep-blue/60 max-w-md text-lg">
               We bring deep domain expertise to every project, delivering solutions tailored to your industry&apos;s unique challenges.
             </p>
             <div className="mt-8">
@@ -92,17 +92,17 @@ export default function Industries() {
                   {/* Gradient background */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${industry.color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
 
-                  <div className="relative h-full p-6 rounded-2xl border border-white/5 bg-white/[0.02] group-hover:border-neon-blue/20 transition-all duration-300 flex flex-col">
+                  <div className="relative h-full p-6 rounded-2xl border border-deep-blue/5 bg-white/60 group-hover:bg-white group-hover:shadow-lg group-hover:shadow-deep-blue/5 transition-all duration-300 flex flex-col backdrop-blur-sm">
                     {/* Icon */}
                     <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${industry.color} flex items-center justify-center text-white shadow-lg mb-4`}>
                       {industry.icon}
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-lg font-bold text-white mb-2">
+                    <h3 className="text-lg font-bold text-deep-blue mb-2">
                       {industry.name}
                     </h3>
-                    <p className="text-sm text-gray-400 leading-relaxed flex-1">
+                    <p className="text-sm text-deep-blue/60 leading-relaxed flex-1">
                       {industry.description}
                     </p>
 

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #050816;
-  --foreground: #e4e4e7;
+  --background: #020842;
+  --foreground: #e3f0ff;
 }
 
 body {
@@ -22,11 +22,11 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050816;
+  background: #020842;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1f4e;
+  background: #0a1155;
   border-radius: 4px;
 }
 
@@ -50,10 +50,32 @@ html {
   background-clip: text;
 }
 
-/* Grid background */
+/* Dark gradient text for light sections */
+.gradient-text-dark {
+  background: linear-gradient(135deg, #020842, #7b2ff7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Grid background - dark */
 .grid-bg {
   background-image:
     linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* Grid background - light */
+.grid-bg-light {
+  background-image:
+    linear-gradient(rgba(2, 8, 66, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 8, 66, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Light section base */
+.section-light {
+  background-color: #e3f0ff;
+  color: #020842;
 }

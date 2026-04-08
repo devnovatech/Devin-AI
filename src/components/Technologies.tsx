@@ -78,18 +78,18 @@ export default function Technologies() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section id="technologies" className="py-24 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-blue/5 rounded-full blur-[120px]" />
+    <section id="technologies" className="py-16 relative overflow-hidden bg-light-accent">
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <AnimatedSection className="text-center mb-12">
-          <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
+          <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
             Tech Stack
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-            We Use <span className="gradient-text">Technologies</span>
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
+            We Use <span className="gradient-text-dark">Technologies</span>
           </h2>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-deep-blue/60 max-w-2xl mx-auto">
             We leverage the best tools and frameworks to build reliable,
             scalable solutions.
           </p>
@@ -97,7 +97,7 @@ export default function Technologies() {
 
         {/* Tabs */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex flex-wrap justify-center gap-1 p-1.5 rounded-2xl bg-white/[0.03] border border-white/5">
+          <div className="inline-flex flex-wrap justify-center gap-1 p-1.5 rounded-2xl bg-white/70 border border-deep-blue/10 shadow-sm">
             {categories.map((cat, i) => (
               <button
                 key={cat.label}
@@ -105,13 +105,13 @@ export default function Technologies() {
                 className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                   activeTab === i
                     ? "text-white"
-                    : "text-gray-400 hover:text-gray-200"
+                    : "text-deep-blue/50 hover:text-deep-blue"
                 }`}
               >
                 {activeTab === i && (
                   <motion.div
                     layoutId="tech-tab"
-                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 border border-neon-blue/30"
+                    className="absolute inset-0 rounded-xl bg-deep-blue shadow-md"
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   />
                 )}
@@ -143,13 +143,13 @@ export default function Technologies() {
                 {/* Hexagon-style icon container */}
                 <div className="relative w-20 h-20 flex items-center justify-center">
                   {/* Background shape */}
-                  <div className="absolute inset-0 rounded-2xl bg-white/[0.04] border border-white/[0.06] group-hover:border-white/[0.12] group-hover:bg-white/[0.08] transition-all duration-300 rotate-1 group-hover:rotate-0" />
+                  <div className="absolute inset-0 rounded-2xl bg-white/70 border border-deep-blue/5 group-hover:border-deep-blue/15 group-hover:bg-white group-hover:shadow-md transition-all duration-300 rotate-1 group-hover:rotate-0" />
                   {/* Icon */}
                   <div
                     className="relative z-10 w-10 h-10 rounded-lg flex items-center justify-center text-lg font-bold transition-transform duration-300 group-hover:scale-110"
                     style={{
                       backgroundColor: `${tech.color}18`,
-                      color: tech.color === "#000000" || tech.color === "#092E20" ? "#aaa" : tech.color,
+                      color: tech.color === "#000000" || tech.color === "#092E20" ? "#334155" : tech.color,
                     }}
                   >
                     {tech.abbr}
@@ -157,7 +157,7 @@ export default function Technologies() {
                 </div>
 
                 {/* Name */}
-                <p className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors duration-300">
+                <p className="text-sm font-medium text-deep-blue/50 group-hover:text-deep-blue transition-colors duration-300">
                   {tech.name}
                 </p>
               </motion.div>

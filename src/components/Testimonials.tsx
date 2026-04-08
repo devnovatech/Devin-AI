@@ -50,15 +50,15 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden bg-light-accent">
       <div className="absolute top-0 left-1/2 w-[600px] h-[600px] bg-neon-purple/5 rounded-full blur-[120px] -translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
+          <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
             Client Stories
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
             What Our Clients Say
           </h2>
         </AnimatedSection>
@@ -69,14 +69,14 @@ export default function Testimonials() {
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="h-full p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-neon-blue/30 hover:bg-white/[0.05] transition-all duration-300 flex flex-col"
+                className="h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 flex flex-col backdrop-blur-sm"
               >
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => (
                     <svg
                       key={j}
-                      className="w-4 h-4 text-yellow-400"
+                      className="w-4 h-4 text-amber-400"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -86,23 +86,23 @@ export default function Testimonials() {
                 </div>
 
                 {/* Quote */}
-                <p className="text-gray-300 leading-relaxed flex-1">
+                <p className="text-deep-blue/70 leading-relaxed flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </p>
 
                 {/* Author */}
                 <div className="mt-6 flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-deep-blue to-neon-purple flex items-center justify-center text-white font-bold text-sm">
                     {t.name
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
                   </div>
                   <div>
-                    <p className="text-white font-semibold text-sm">
+                    <p className="text-deep-blue font-semibold text-sm">
                       {t.name}
                     </p>
-                    <p className="text-gray-500 text-xs">
+                    <p className="text-deep-blue/50 text-xs">
                       {t.role}, {t.company}
                     </p>
                   </div>

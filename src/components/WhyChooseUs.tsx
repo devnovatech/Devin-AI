@@ -48,17 +48,17 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden bg-light-accent">
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <AnimatedSection className="text-center mb-16">
-          <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
+          <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
             Why Us
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
             Why Businesses Choose{" "}
-            <span className="gradient-text">Dev Inception</span>
+            <span className="gradient-text-dark">Dev Inception</span>
           </h2>
         </AnimatedSection>
 
@@ -68,15 +68,15 @@ export default function WhyChooseUs() {
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="group h-full p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-neon-blue/30 hover:bg-white/[0.05] transition-all duration-300"
+                className="group h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 flex items-center justify-center text-neon-blue group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-deep-blue to-neon-purple flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                   {reason.icon}
                 </div>
-                <h3 className="mt-6 text-xl font-bold text-white">
+                <h3 className="mt-6 text-xl font-bold text-deep-blue">
                   {reason.title}
                 </h3>
-                <p className="mt-3 text-gray-400 leading-relaxed">
+                <p className="mt-3 text-deep-blue/60 leading-relaxed">
                   {reason.description}
                 </p>
               </motion.div>
@@ -87,7 +87,7 @@ export default function WhyChooseUs() {
         <AnimatedSection className="mt-12 text-center">
           <a
             href="#about"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-neon-blue/30 rounded-full text-neon-blue font-semibold text-sm hover:bg-neon-blue/10 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white transition-all duration-300"
           >
             Learn more about Dev Inception
             <svg

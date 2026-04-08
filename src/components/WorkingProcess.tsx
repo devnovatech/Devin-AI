@@ -77,18 +77,18 @@ function DesktopProcess() {
 
   return (
     <div ref={sectionRef} className="hidden md:block relative h-[300vh]">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden bg-light-accent">
         {/* Header */}
         <div className="px-6 pt-8 pb-6 max-w-7xl mx-auto w-full">
           <AnimatedSection className="text-center">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
+            <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
               Our Approach
             </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
               Full-Cycle Development Services,{" "}
-              <span className="gradient-text">All Under One Roof</span>
+              <span className="gradient-text-dark">All Under One Roof</span>
             </h2>
-            <p className="mt-3 text-gray-400 max-w-2xl mx-auto text-sm">
+            <p className="mt-3 text-deep-blue/60 max-w-2xl mx-auto text-sm">
               We cover the complete software lifecycle &ndash; from planning &
               design to deployment & support.
             </p>
@@ -99,7 +99,7 @@ function DesktopProcess() {
         <div className="flex-1 flex flex-col justify-center px-6 relative">
           {/* Progress bar at top */}
           <div className="max-w-4xl mx-auto w-full mb-8">
-            <div className="h-1 rounded-full bg-white/5 overflow-hidden">
+            <div className="h-1 rounded-full bg-deep-blue/10 overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-neon-blue to-neon-purple"
                 style={{ width: progressWidth }}
@@ -120,7 +120,7 @@ function DesktopProcess() {
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-neon-blue/30 hover:bg-white/[0.05] transition-all duration-300">
+                  <div className="p-6 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm">
                     {/* Number + Icon row */}
                     <div className="flex items-center gap-4 mb-4">
                       <div
@@ -128,15 +128,15 @@ function DesktopProcess() {
                       >
                         {step.number}
                       </div>
-                      <div className="w-12 h-12 rounded-xl bg-white/[0.05] flex items-center justify-center text-neon-blue">
+                      <div className="w-12 h-12 rounded-xl bg-deep-blue/5 flex items-center justify-center text-deep-blue">
                         {step.icon}
                       </div>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-2">
+                    <h3 className="text-xl font-bold text-deep-blue mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-gray-400 leading-relaxed">
+                    <p className="text-sm text-deep-blue/60 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -175,14 +175,14 @@ function DesktopProcess() {
                   />
                 </svg>
               </div>
-              <p className="text-sm font-semibold text-neon-blue whitespace-nowrap">
+              <p className="text-sm font-semibold text-deep-blue whitespace-nowrap">
                 Project Live!
               </p>
             </div>
           </motion.div>
 
           {/* Scroll hint */}
-          <div className="mt-8 flex items-center justify-center gap-2 text-gray-500 text-xs">
+          <div className="mt-8 flex items-center justify-center gap-2 text-deep-blue/40 text-xs">
             <motion.div
               animate={{ x: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
@@ -211,16 +211,16 @@ function DesktopProcess() {
 
 function MobileProcess() {
   return (
-    <div className="md:hidden py-24 px-6">
+    <div className="md:hidden py-16 px-6 bg-light-accent">
       <AnimatedSection className="text-center mb-16">
-        <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
+        <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
           Our Approach
         </p>
-        <h2 className="mt-3 text-3xl font-bold text-white">
+        <h2 className="mt-3 text-3xl font-bold text-deep-blue">
           Full-Cycle Development,{" "}
-          <span className="gradient-text">All Under One Roof</span>
+          <span className="gradient-text-dark">All Under One Roof</span>
         </h2>
-        <p className="mt-3 text-gray-400 text-sm">
+        <p className="mt-3 text-deep-blue/60 text-sm">
           We cover the complete software lifecycle.
         </p>
       </AnimatedSection>
@@ -247,7 +247,7 @@ function MobileProcess() {
                     whileInView={{ scale: [0, 1.15, 1] }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.12 }}
-                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg ring-4 ring-[#050816]`}
+                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg ring-4 ring-light-accent`}
                   >
                     <span className="text-white font-bold text-lg">
                       {step.number}
@@ -255,14 +255,14 @@ function MobileProcess() {
                   </motion.div>
                 </div>
 
-                <div className="flex-1 p-5 rounded-2xl border border-white/5 bg-white/[0.02]">
+                <div className="flex-1 p-5 rounded-2xl border border-deep-blue/5 bg-white/60 backdrop-blur-sm">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="text-neon-blue">{step.icon}</div>
-                    <h3 className="text-lg font-bold text-white">
+                    <div className="text-deep-blue">{step.icon}</div>
+                    <h3 className="text-lg font-bold text-deep-blue">
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-sm text-gray-400 leading-relaxed">
+                  <p className="text-sm text-deep-blue/60 leading-relaxed">
                     {step.description}
                   </p>
                 </div>

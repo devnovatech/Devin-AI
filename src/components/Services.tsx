@@ -397,16 +397,16 @@ export default function Services() {
   const visibleServices = showAll ? services : services.slice(0, INITIAL_COUNT);
 
   return (
-    <section id="services" className="py-24 relative">
+    <section id="services" className="py-16 relative bg-light-accent">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection className="text-center mb-6">
-          <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
+          <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
             What We Offer
           </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
             Turning Ideas into Reality
           </h2>
-          <p className="mt-4 text-gray-400 max-w-3xl mx-auto text-lg">
+          <p className="mt-4 text-deep-blue/60 max-w-3xl mx-auto text-lg">
             Dev Inception is your end-to-end digital partner. Whether you&apos;ve
             an idea or launching a product, rebranding a business, or scaling
             growth &ndash; We combine design, development, strategy, & marketing
@@ -434,7 +434,7 @@ export default function Services() {
               onClick={() => setShowAll(!showAll)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-8 py-4 border border-neon-blue/30 rounded-full text-neon-blue font-semibold text-sm hover:bg-neon-blue/10 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white transition-all duration-300"
             >
               {showAll ? "Show Less" : `View More`}
               <motion.svg

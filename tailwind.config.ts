@@ -11,11 +11,12 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "deep-blue": "#0a0e27",
+        "deep-blue": "#020842",
         "neon-blue": "#00d4ff",
         "neon-purple": "#7b2ff7",
-        "dark-card": "#111633",
-        "dark-surface": "#0d1230",
+        "dark-card": "#0a1155",
+        "dark-surface": "#061050",
+        "light-accent": "#e3f0ff",
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "var(--font-inter)", "system-ui", "sans-serif"],
