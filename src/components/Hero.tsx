@@ -33,9 +33,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-white"
           >
-            From Ideas to Infrastructure
-            <br />
-            <span className="gradient-text">We Build What Matters.</span>
+            From Strategy to Systems —{" "}
+            <span className="gradient-text">We Build Smart IT Solutions</span>
           </motion.h1>
 
           <motion.p
@@ -44,37 +43,35 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-6 text-lg text-gray-400 max-w-xl mx-auto lg:mx-0"
           >
-            Whether you&apos;re launching a startup or scaling an enterprise, we
-            design and engineer custom software that powers real-world impact.
+            We build robust, scalable digital solutions tailored to your unique
+            business goals. From mobile & web apps to machine learning systems
+            &ndash; Bringing together engineering precision & business strategy.
           </motion.p>
-
-          <motion.ul
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="mt-6 space-y-3 text-gray-300"
-          >
-            <li className="flex items-center gap-3 justify-center lg:justify-start">
-              <span className="w-2 h-2 rounded-full bg-neon-blue" />
-              Expert development with cutting-edge technologies
-            </li>
-            <li className="flex items-center gap-3 justify-center lg:justify-start">
-              <span className="w-2 h-2 rounded-full bg-neon-blue" />
-              Custom solutions tailored to your business needs
-            </li>
-          </motion.ul>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.45 }}
             className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
             <a
               href="#contact"
-              className="group px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold tracking-wider text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+              className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold tracking-wider text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
             >
-              LET&apos;S BUILD TOGETHER!
+              Unlock Expert Solutions Today
+              <svg
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
             </a>
             <a
               href="#services"
@@ -96,14 +93,19 @@ export default function Hero() {
             {/* Outer ring */}
             <div className="absolute inset-0 rounded-full border border-neon-blue/20 animate-spin-slow" />
             {/* Middle ring */}
-            <div className="absolute inset-6 rounded-full border border-neon-purple/20 animate-spin-slow" style={{ animationDirection: "reverse" }} />
+            <div
+              className="absolute inset-6 rounded-full border border-neon-purple/20 animate-spin-slow"
+              style={{ animationDirection: "reverse" }}
+            />
             {/* Inner ring */}
             <div className="absolute inset-12 rounded-full border border-neon-blue/30" />
 
             {/* Glow center */}
             <div className="absolute inset-16 rounded-full bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 animate-pulse-glow" />
             <div className="absolute inset-20 rounded-full bg-gradient-to-br from-neon-blue/10 to-neon-purple/10 backdrop-blur-sm flex items-center justify-center">
-              <span className="text-2xl sm:text-3xl font-bold gradient-text">DI</span>
+              <span className="text-2xl sm:text-3xl font-bold gradient-text">
+                DI
+              </span>
             </div>
 
             {/* Orbiting dots */}

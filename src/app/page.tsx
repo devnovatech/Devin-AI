@@ -1,10 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import LogoMarquee from "@/components/LogoMarquee";
 import Services from "@/components/Services";
-import About from "@/components/About";
 import WorkingProcess from "@/components/WorkingProcess";
-import Technologies from "@/components/Technologies";
+import About from "@/components/About";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import Industries from "@/components/Industries";
+import FAQ from "@/components/FAQ";
 import Support from "@/components/Support";
 import Footer from "@/components/Footer";
 
@@ -13,11 +14,12 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <LogoMarquee />
       <Services />
-      <About />
       <WorkingProcess />
-      <Technologies />
+      <About />
+      <WhyChooseUs />
+      <Industries />
+      <FAQ />
       <Support />
       <Footer />
     </main>

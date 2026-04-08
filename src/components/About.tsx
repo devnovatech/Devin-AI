@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "30+", label: "Engineers" },
-  { value: "15+", label: "Years Combined Experience" },
-  { value: "99%", label: "Client Satisfaction" },
+  { value: "250+", label: "Projects Done" },
+  { value: "100%", label: "Results Guaranteed" },
 ];
 
 export default function About() {
@@ -23,11 +21,8 @@ export default function About() {
             <div className="relative">
               <div className="w-full aspect-square max-w-md mx-auto rounded-3xl bg-gradient-to-br from-dark-card to-dark-surface border border-white/5 p-8 flex items-center justify-center">
                 <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                  {/* Animated grid */}
                   <div className="absolute inset-0 grid-bg" />
                   <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/90 to-transparent" />
-
-                  {/* Center content */}
                   <div className="relative z-10 flex flex-col items-center justify-center h-full">
                     <motion.div
                       className="text-6xl font-bold gradient-text"
@@ -42,8 +37,6 @@ export default function About() {
                   </div>
                 </div>
               </div>
-
-              {/* Floating accent */}
               <div className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple opacity-20 blur-xl" />
             </div>
           </AnimatedSection>
@@ -52,21 +45,21 @@ export default function About() {
           <div>
             <AnimatedSection direction="right">
               <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
-                About Us
+                Together, We Build
               </p>
               <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
                 Dev Inception
               </h2>
               <p className="mt-6 text-gray-400 leading-relaxed text-lg">
-                Dev Inception delivers innovative technology solutions that bring
-                ideas to life. Our mission is to empower businesses through
-                digital transformation and engineering excellence.
+                From fast-growing startups to established Fortune 500 companies,
+                we&apos;ve partnered with brands that dare to innovate. Our
+                collaborations are built on trust, strategy & results &mdash;
+                delivering design solutions that don&apos;t just look good, but
+                move the needle.
               </p>
               <p className="mt-4 text-gray-400 leading-relaxed">
-                We are a team of passionate engineers, designers, and strategists
-                who believe in building software that matters. From startups to
-                Fortune 500 companies, we partner with ambitious teams to turn
-                complex challenges into elegant, scalable solutions.
+                With each project, we don&apos;t just build visuals &mdash; we
+                build impact, together.
               </p>
             </AnimatedSection>
 
@@ -74,11 +67,11 @@ export default function About() {
             <div className="mt-10 grid grid-cols-2 gap-6">
               {stats.map((stat, i) => (
                 <AnimatedSection key={stat.label} delay={0.1 * i}>
-                  <div className="p-4 rounded-xl border border-white/5 bg-white/[0.02]">
-                    <div className="text-2xl font-bold gradient-text">
+                  <div className="p-6 rounded-xl border border-white/5 bg-white/[0.02]">
+                    <div className="text-3xl font-bold gradient-text">
                       {stat.value}
                     </div>
-                    <div className="mt-1 text-sm text-gray-400">
+                    <div className="mt-2 text-sm text-gray-400">
                       {stat.label}
                     </div>
                   </div>
