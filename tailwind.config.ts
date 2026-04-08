@@ -26,6 +26,7 @@ const config: Config = {
         "marquee-reverse": "marquee-reverse 30s linear infinite",
         "spin-slow": "spin 20s linear infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 3s linear infinite",
       },
       keyframes: {
         marquee: {
@@ -39,6 +40,10 @@ const config: Config = {
         "pulse-glow": {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "1" },
+        },
+        "gradient-shift": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "200% 50%" },
         },
       },
     },
