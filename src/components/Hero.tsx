@@ -1,8 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const taglines = [
+  "We Build Smart Solutions",
+  "We Engineer Products",
+  "We Scale Your Team",
+  "We Power Growth",
+];
 
 export default function Hero() {
+  const [taglineIndex, setTaglineIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTaglineIndex((prev) => (prev + 1) % taglines.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="home"
@@ -14,7 +31,7 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 pt-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start gap-12 pt-20 lg:pt-32">
         {/* Left: Text */}
         <div className="flex-1 text-center lg:text-left">
           <motion.div
@@ -33,8 +50,19 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-white"
           >
-            From Strategy to Systems —{" "}
-            <span className="gradient-text">We Build Smart IT Solutions</span>
+            From Strategy to Systems &mdash;{" "}
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={taglineIndex}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="gradient-text"
+              >
+                {taglines[taglineIndex]}
+              </motion.span>
+            </AnimatePresence>
           </motion.h1>
 
           <motion.p
@@ -87,20 +115,15 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="flex-1 flex items-center justify-center"
+          className="flex-1 flex items-center justify-center lg:sticky lg:top-1/3"
         >
           <div className="relative w-72 h-72 sm:w-96 sm:h-96">
-            {/* Outer ring */}
             <div className="absolute inset-0 rounded-full border border-neon-blue/20 animate-spin-slow" />
-            {/* Middle ring */}
             <div
               className="absolute inset-6 rounded-full border border-neon-purple/20 animate-spin-slow"
               style={{ animationDirection: "reverse" }}
             />
-            {/* Inner ring */}
             <div className="absolute inset-12 rounded-full border border-neon-blue/30" />
-
-            {/* Glow center */}
             <div className="absolute inset-16 rounded-full bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 animate-pulse-glow" />
             <div className="absolute inset-20 rounded-full bg-gradient-to-br from-neon-blue/10 to-neon-purple/10 backdrop-blur-sm flex items-center justify-center">
               <span className="text-2xl sm:text-3xl font-bold gradient-text">
@@ -108,7 +131,6 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* Orbiting dots */}
             {[0, 60, 120, 180, 240, 300].map((deg, i) => (
               <motion.div
                 key={deg}

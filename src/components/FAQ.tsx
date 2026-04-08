@@ -84,52 +84,64 @@ export default function FAQ() {
           </h2>
         </AnimatedSection>
 
-        <div className="space-y-4">
-          {faqs.map((faq, i) => (
-            <AnimatedSection key={i} delay={i * 0.03}>
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden">
-                <button
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full flex items-center justify-between p-6 text-left hover:bg-white/[0.02] transition-colors"
+        <div className="space-y-4" role="list">
+          {faqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <AnimatedSection key={i} delay={i * 0.03}>
+                <div
+                  className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden"
+                  role="listitem"
                 >
-                  <span className="text-white font-semibold pr-4">
-                    {faq.question}
-                  </span>
-                  <motion.svg
-                    animate={{ rotate: openIndex === i ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-5 h-5 text-neon-blue flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    className="w-full flex items-center justify-between p-6 text-left hover:bg-white/[0.02] transition-colors"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${i}`}
+                    id={`faq-question-${i}`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </motion.svg>
-                </button>
-
-                <AnimatePresence>
-                  {openIndex === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                    <span className="text-white font-semibold pr-4">
+                      {faq.question}
+                    </span>
+                    <motion.svg
+                      animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
+                      className="w-5 h-5 text-neon-blue flex-shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <p className="px-6 pb-6 text-gray-400 leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </AnimatedSection>
-          ))}
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </motion.svg>
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq-answer-${i}`}
+                        role="region"
+                        aria-labelledby={`faq-question-${i}`}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-6 pb-6 text-gray-400 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </AnimatedSection>
+            );
+          })}
         </div>
       </div>
     </section>

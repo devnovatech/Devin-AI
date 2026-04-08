@@ -15,7 +15,7 @@ const logos = [
 function LogoItem({ name }: { name: string }) {
   return (
     <div className="flex-shrink-0 mx-8 px-8 py-4 border border-white/5 rounded-xl bg-white/[0.02] hover:border-neon-blue/30 hover:bg-white/[0.05] transition-all duration-300 group">
-      <span className="text-lg font-semibold text-gray-500 group-hover:text-neon-blue transition-colors duration-300">
+      <span className="text-lg font-semibold text-gray-500 grayscale group-hover:grayscale-0 group-hover:text-neon-blue transition-all duration-500">
         {name}
       </span>
     </div>
@@ -34,9 +34,7 @@ export default function LogoMarquee() {
         </h2>
       </AnimatedSection>
 
-      {/* Marquee */}
       <div className="relative">
-        {/* Fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050816] to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050816] to-transparent z-10" />
 

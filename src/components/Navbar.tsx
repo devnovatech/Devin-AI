@@ -16,11 +16,34 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${id}`);
+          }
+        },
+        { rootMargin: "-40% 0px -50% 0px" }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
@@ -37,7 +60,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2">
-          <Image src="/logo.svg" alt="Dev Inception Logo" width={32} height={32} priority />
+          <Image
+            src="/logo.svg"
+            alt="Dev Inception Logo"
+            width={32}
+            height={32}
+            priority
+          />
           <span className="text-xl font-bold text-white">
             Dev <span className="gradient-text">Inception</span>
           </span>
@@ -49,9 +78,20 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-gray-400 hover:text-neon-blue transition-colors duration-200"
+              className={`relative text-sm transition-colors duration-200 ${
+                activeSection === link.href
+                  ? "text-neon-blue"
+                  : "text-gray-400 hover:text-neon-blue"
+              }`}
             >
               {link.label}
+              {activeSection === link.href && (
+                <motion.span
+                  layoutId="nav-indicator"
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neon-blue rounded-full"
+                  transition={{ duration: 0.3 }}
+                />
+              )}
             </a>
           ))}
           <a
@@ -67,6 +107,7 @@ export default function Navbar() {
           className="md:hidden text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           <svg
             className="w-6 h-6"
@@ -108,7 +149,11 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-gray-400 hover:text-neon-blue transition-colors"
+                  className={`transition-colors ${
+                    activeSection === link.href
+                      ? "text-neon-blue"
+                      : "text-gray-400 hover:text-neon-blue"
+                  }`}
                 >
                   {link.label}
                 </a>

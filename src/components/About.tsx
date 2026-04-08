@@ -1,17 +1,49 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
+function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [isInView, target]);
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
 const stats = [
-  { value: "250+", label: "Projects Done" },
-  { value: "100%", label: "Results Guaranteed" },
+  { value: 250, suffix: "+", label: "Projects Done" },
+  { value: 50, suffix: "+", label: "Engineers" },
+  { value: 15, suffix: "+", label: "Countries Served" },
+  { value: 100, suffix: "%", label: "Results Guaranteed" },
 ];
 
 export default function About() {
   return (
     <section id="about" className="py-24 relative overflow-hidden">
-      {/* Background accent */}
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] -translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -67,9 +99,9 @@ export default function About() {
             <div className="mt-10 grid grid-cols-2 gap-6">
               {stats.map((stat, i) => (
                 <AnimatedSection key={stat.label} delay={0.1 * i}>
-                  <div className="p-6 rounded-xl border border-white/5 bg-white/[0.02]">
+                  <div className="p-5 rounded-xl border border-white/5 bg-white/[0.02]">
                     <div className="text-3xl font-bold gradient-text">
-                      {stat.value}
+                      <CountUp target={stat.value} suffix={stat.suffix} />
                     </div>
                     <div className="mt-2 text-sm text-gray-400">
                       {stat.label}

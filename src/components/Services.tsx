@@ -1,14 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
 const services = [
   {
     title: "Mobile App Development",
+    bg: "bg-gradient-to-br from-violet-500 to-purple-700",
+    tags: ["iOS", "Android", "Cross-Platform"],
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <rect x="22" y="8" width="36" height="64" rx="6" />
+        <line x1="22" y1="18" x2="58" y2="18" />
+        <line x1="22" y1="58" x2="58" y2="58" />
+        <circle cx="40" cy="65" r="3" />
+        <rect x="30" y="26" width="20" height="12" rx="2" fill="white" fillOpacity="0.2" />
+        <rect x="30" y="42" width="12" height="4" rx="1" fill="white" fillOpacity="0.2" />
+        <rect x="46" y="42" width="4" height="4" rx="1" fill="white" fillOpacity="0.2" />
+      </svg>
     ),
     items: [
       "Native App Development",
@@ -22,8 +32,20 @@ const services = [
   },
   {
     title: "Web Development",
+    bg: "bg-gradient-to-br from-amber-400 to-orange-500",
+    tags: ["Landing Page", "Full-Stack"],
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <rect x="8" y="12" width="64" height="48" rx="4" />
+        <line x1="8" y1="24" x2="72" y2="24" />
+        <circle cx="16" cy="18" r="2" fill="white" fillOpacity="0.4" />
+        <circle cx="22" cy="18" r="2" fill="white" fillOpacity="0.4" />
+        <circle cx="28" cy="18" r="2" fill="white" fillOpacity="0.4" />
+        <path d="M30 38l-8 8 8 8" strokeWidth={2} />
+        <path d="M50 38l8 8-8 8" strokeWidth={2} />
+        <line x1="44" y1="34" x2="36" y2="52" strokeWidth={2} />
+        <rect x="24" y="64" width="32" height="4" rx="2" fill="white" fillOpacity="0.2" />
+      </svg>
     ),
     items: [
       "Frontend Development",
@@ -36,39 +58,20 @@ const services = [
     ],
   },
   {
-    title: "Staff Augmentation",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-    ),
-    items: [
-      "Cross-Functional Experts",
-      "Seamless Team Integration",
-      "Flexible Team Scaling",
-      "Faster Product Delivery",
-      "Time-Zone Aligned Teams",
-      "Communication-Skilled Teams",
-      "Cost effective",
-    ],
-  },
-  {
-    title: "ML & AI Solutions",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-    ),
-    items: [
-      "Predictive Analytics",
-      "Natural Language Processing",
-      "Computer Vision",
-      "Recommendation Systems",
-      "Model Deployment",
-      "AI Chatbots",
-      "Custom Algorithms",
-    ],
-  },
-  {
     title: "UI/UX Design Services",
+    bg: "bg-gradient-to-br from-blue-900 to-slate-900",
+    tags: ["Website", "Mobile App"],
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <rect x="16" y="8" width="32" height="56" rx="4" />
+        <circle cx="32" cy="30" r="8" fill="white" fillOpacity="0.15" />
+        <rect x="22" y="42" width="20" height="3" rx="1.5" fill="white" fillOpacity="0.2" />
+        <rect x="26" y="48" width="12" height="3" rx="1.5" fill="white" fillOpacity="0.15" />
+        <path d="M54 20l8-4v48l-8-4" strokeWidth={1.5} />
+        <circle cx="62" cy="16" r="3" fill="white" fillOpacity="0.3" />
+        <path d="M58 38h10" strokeWidth={1.5} />
+        <circle cx="56" cy="52" r="4" fill="white" fillOpacity="0.2" stroke="white" />
+      </svg>
     ),
     items: [
       "User Research",
@@ -81,9 +84,65 @@ const services = [
     ],
   },
   {
-    title: "Digital Marketing",
+    title: "ML & AI Solutions",
+    bg: "bg-gradient-to-br from-rose-400 to-pink-600",
+    tags: ["Consultation", "Solutions"],
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" /></svg>
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <circle cx="40" cy="36" r="16" />
+        <circle cx="40" cy="36" r="6" fill="white" fillOpacity="0.2" />
+        <path d="M40 20v-8M56 36h8M40 52v8M24 36h-8" />
+        <path d="M52 24l4-4M52 48l4 4M28 48l-4 4M28 24l-4-4" />
+        <path d="M28 64c0-4 5-8 12-8s12 4 12 8" strokeWidth={1.5} fill="white" fillOpacity="0.1" />
+      </svg>
+    ),
+    items: [
+      "Predictive Analytics",
+      "Natural Language Processing",
+      "Computer Vision",
+      "Recommendation Systems",
+      "Model Deployment",
+      "AI Chatbots",
+      "Custom Algorithms",
+    ],
+  },
+  {
+    title: "Staff Augmentation",
+    bg: "bg-gradient-to-br from-emerald-400 to-teal-600",
+    tags: ["Flexible", "Cost Effective"],
+    icon: (
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <circle cx="30" cy="24" r="8" />
+        <circle cx="52" cy="24" r="8" />
+        <path d="M16 52c0-8 6-14 14-14h2" fill="white" fillOpacity="0.1" />
+        <path d="M64 52c0-8-6-14-14-14h-2" fill="white" fillOpacity="0.1" />
+        <path d="M16 52c0-8 6-14 14-14h20c8 0 14 6 14 14" />
+        <circle cx="40" cy="56" r="6" fill="white" fillOpacity="0.2" />
+        <path d="M38 56l2 2 4-4" strokeWidth={2} />
+      </svg>
+    ),
+    items: [
+      "Cross-Functional Experts",
+      "Seamless Team Integration",
+      "Flexible Team Scaling",
+      "Faster Product Delivery",
+      "Time-Zone Aligned Teams",
+      "Communication-Skilled Teams",
+      "Cost effective",
+    ],
+  },
+  {
+    title: "Digital Marketing",
+    bg: "bg-gradient-to-br from-cyan-400 to-blue-600",
+    tags: ["SEO", "Social Media"],
+    icon: (
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <path d="M12 56V32l20-12 16 8 20-12v48l-20 12-16-8-20 12V56z" fill="white" fillOpacity="0.1" />
+        <path d="M32 20v48M48 28v48" />
+        <circle cx="32" cy="36" r="4" fill="white" fillOpacity="0.3" />
+        <path d="M52 44l8-8 8 4" strokeWidth={2} />
+        <circle cx="20" cy="48" r="3" fill="white" fillOpacity="0.2" />
+      </svg>
     ),
     items: [
       "Search Engine Optimization",
@@ -97,8 +156,16 @@ const services = [
   },
   {
     title: "E-commerce Development",
+    bg: "bg-gradient-to-br from-yellow-400 to-amber-600",
+    tags: ["Platform", "Payments"],
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" /></svg>
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <path d="M16 20h8l8 32h28l6-20H30" strokeWidth={2} />
+        <circle cx="38" cy="60" r="4" />
+        <circle cx="56" cy="60" r="4" />
+        <rect x="34" y="30" width="20" height="14" rx="2" fill="white" fillOpacity="0.15" />
+        <path d="M40 34v6M44 34v6M48 34v6" strokeWidth={1} />
+      </svg>
     ),
     items: [
       "Platform Development",
@@ -111,9 +178,15 @@ const services = [
     ],
   },
   {
-    title: "Quality Assurance (QA)",
+    title: "Quality Assurance",
+    bg: "bg-gradient-to-br from-red-400 to-rose-600",
+    tags: ["Manual", "Automated"],
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <path d="M40 8l24 12v20c0 16-10 26-24 32-14-6-24-16-24-32V20L40 8z" fill="white" fillOpacity="0.1" />
+        <path d="M40 8l24 12v20c0 16-10 26-24 32-14-6-24-16-24-32V20L40 8z" />
+        <path d="M30 40l6 6 14-14" strokeWidth={2.5} />
+      </svg>
     ),
     items: [
       "Manual Testing",
@@ -127,8 +200,19 @@ const services = [
   },
   {
     title: "Project Management",
+    bg: "bg-gradient-to-br from-indigo-500 to-violet-700",
+    tags: ["Agile", "Scrum"],
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
+        <rect x="12" y="12" width="56" height="56" rx="6" />
+        <line x1="12" y1="28" x2="68" y2="28" />
+        <line x1="32" y1="28" x2="32" y2="68" />
+        <rect x="38" y="34" width="12" height="6" rx="1" fill="white" fillOpacity="0.3" />
+        <rect x="38" y="46" width="20" height="6" rx="1" fill="white" fillOpacity="0.2" />
+        <rect x="38" y="58" width="8" height="6" rx="1" fill="white" fillOpacity="0.15" />
+        <circle cx="22" cy="20" r="2" fill="white" fillOpacity="0.4" />
+        <circle cx="28" cy="20" r="2" fill="white" fillOpacity="0.4" />
+      </svg>
     ),
     items: [
       "Agile & Scrum",
@@ -142,13 +226,179 @@ const services = [
   },
 ];
 
+function ServiceCard({
+  service,
+  isFlipped,
+  onFlip,
+}: {
+  service: (typeof services)[0];
+  isFlipped: boolean;
+  onFlip: () => void;
+}) {
+  return (
+    <div
+      className="h-[400px] cursor-pointer [perspective:1200px]"
+      onMouseEnter={() => { if (!isFlipped) onFlip(); }}
+      onMouseLeave={() => { if (isFlipped) onFlip(); }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onFlip();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-expanded={isFlipped}
+    >
+      <motion.div
+        className="relative w-full h-full [transform-style:preserve-3d]"
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      >
+        {/* ===== FRONT FACE ===== */}
+        <div
+          className={`absolute inset-0 rounded-3xl ${service.bg} overflow-hidden [backface-visibility:hidden] shadow-lg flex flex-col`}
+        >
+          {/* Icon area */}
+          <div className="relative flex justify-center items-center flex-1 overflow-hidden">
+            <div className="absolute inset-0 bg-white/5" />
+            <div className="relative z-10 opacity-90 scale-150">
+              {service.icon}
+            </div>
+            <div className="absolute top-4 right-4 w-20 h-20 rounded-full border border-white/10" />
+            <div className="absolute bottom-4 left-6 w-10 h-10 rounded-full bg-white/5" />
+            <div className="absolute top-6 left-4 w-6 h-6 rounded-full bg-white/5" />
+          </div>
+
+          {/* Content pinned to bottom */}
+          <div className="px-6 pb-5 pt-4">
+            <h3 className="text-xl font-bold text-white leading-tight">
+              {service.title}
+            </h3>
+
+            <div className="mt-3 flex items-center justify-between">
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
+                <svg
+                  className="w-4 h-4 text-gray-900"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M7 17L17 7M17 7H7M17 7v10"
+                  />
+                </svg>
+              </div>
+              <div className="flex gap-2">
+                {service.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 text-xs font-medium rounded-full border border-white/30 text-white/90"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ===== BACK FACE ===== */}
+        <div
+          className={`absolute inset-0 rounded-3xl ${service.bg} overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-lg`}
+        >
+          <div className="absolute inset-0 bg-black/20" />
+
+          <div className="relative z-10 h-full flex flex-col p-6">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-white">{service.title}</h3>
+              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                <svg
+                  className="w-4 h-4 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            {/* Service items */}
+            <ul className="flex-1 space-y-2">
+              {service.items.map((item, j) => (
+                <motion.li
+                  key={item}
+                  initial={false}
+                  animate={
+                    isFlipped
+                      ? { opacity: 1, x: 0 }
+                      : { opacity: 0, x: -20 }
+                  }
+                  transition={{
+                    duration: 0.3,
+                    delay: isFlipped ? 0.3 + j * 0.06 : 0,
+                  }}
+                  className="flex items-center gap-3 text-white/90"
+                >
+                  <span className="w-5 h-5 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-2.5 h-2.5 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-medium">{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+
+            {/* Bottom tags */}
+            <div className="mt-3 pt-3 border-t border-white/15 flex gap-2 flex-wrap">
+              {service.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-xs font-medium rounded-full bg-white/15 text-white"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+const INITIAL_COUNT = 5;
+
 export default function Services() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleServices = showAll ? services : services.slice(0, INITIAL_COUNT);
 
   return (
     <section id="services" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Intro */}
         <AnimatedSection className="text-center mb-6">
           <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
             What We Offer
@@ -164,72 +414,47 @@ export default function Services() {
           </p>
         </AnimatedSection>
 
-        {/* Service Cards */}
         <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <AnimatedSection key={service.title} delay={i * 0.05}>
-              <motion.div
-                layout
-                className="group h-full p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-neon-blue/30 hover:bg-white/[0.05] transition-all duration-300 cursor-pointer"
-                onClick={() =>
-                  setExpandedIndex(expandedIndex === i ? null : i)
+          {visibleServices.map((service, i) => (
+            <AnimatedSection key={service.title} delay={i < INITIAL_COUNT ? i * 0.05 : 0}>
+              <ServiceCard
+                service={service}
+                isFlipped={flippedIndex === i}
+                onFlip={() =>
+                  setFlippedIndex(flippedIndex === i ? null : i)
                 }
-              >
-                <div className="flex items-start justify-between">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-blue/20 to-neon-purple/20 flex items-center justify-center text-neon-blue group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
-                  </div>
-                  <motion.svg
-                    animate={{ rotate: expandedIndex === i ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-5 h-5 text-gray-500 mt-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </motion.svg>
-                </div>
-                <h3 className="mt-6 text-xl font-bold text-white">
-                  {service.title}
-                </h3>
-
-                <AnimatePresence>
-                  {expandedIndex === i && (
-                    <motion.ul
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="mt-4 space-y-2 overflow-hidden"
-                    >
-                      {service.items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-center gap-3 text-gray-400"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-neon-blue flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
-
-                {expandedIndex !== i && (
-                  <p className="mt-3 text-sm text-gray-500">
-                    {service.items.length} services &middot; Click to expand
-                  </p>
-                )}
-              </motion.div>
+              />
             </AnimatedSection>
           ))}
         </div>
+
+        {services.length > INITIAL_COUNT && (
+          <div className="mt-12 text-center">
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 px-8 py-4 border border-neon-blue/30 rounded-full text-neon-blue font-semibold text-sm hover:bg-neon-blue/10 transition-all duration-300"
+            >
+              {showAll ? "Show Less" : `View More`}
+              <motion.svg
+                animate={{ rotate: showAll ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
+              </motion.svg>
+            </motion.button>
+          </div>
+        )}
       </div>
     </section>
   );
