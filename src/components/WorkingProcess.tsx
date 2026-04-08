@@ -79,7 +79,7 @@ function DesktopProcess() {
     <div ref={sectionRef} className="hidden md:block relative h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden bg-light-accent">
         {/* Header */}
-        <div className="px-6 pt-8 pb-6 max-w-7xl mx-auto w-full">
+        <div className="px-6 pt-8 max-w-7xl mx-auto w-full">
           <AnimatedSection className="text-center">
             <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
               Our Approach
@@ -96,9 +96,9 @@ function DesktopProcess() {
         </div>
 
         {/* Horizontal scrolling area */}
-        <div className="flex-1 flex flex-col justify-center px-6 relative">
+        <div className="flex flex-col justify-center px-6 relative">
           {/* Progress bar at top */}
-          <div className="max-w-4xl mx-auto w-full mb-8">
+          <div className="max-w-4xl mx-auto w-full mb-8 mt-10">
             <div className="h-1 rounded-full bg-deep-blue/10 overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-neon-blue to-neon-purple"

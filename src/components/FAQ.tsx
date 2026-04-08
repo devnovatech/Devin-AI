@@ -67,8 +67,13 @@ const faqs = [
   },
 ];
 
+const INITIAL_FAQ_COUNT = 5;
+
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, INITIAL_FAQ_COUNT);
 
   return (
     <section id="faq" className="py-16 relative bg-light-accent">
@@ -85,10 +90,10 @@ export default function FAQ() {
         </AnimatedSection>
 
         <div className="space-y-4" role="list">
-          {faqs.map((faq, i) => {
+          {visibleFaqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <AnimatedSection key={i} delay={i * 0.03}>
+              <AnimatedSection key={i} delay={i < INITIAL_FAQ_COUNT ? i * 0.03 : 0}>
                 <div
                   className="rounded-2xl border border-deep-blue/5 bg-white/60 overflow-hidden backdrop-blur-sm"
                   role="listitem"
@@ -143,6 +148,34 @@ export default function FAQ() {
             );
           })}
         </div>
+
+        {faqs.length > INITIAL_FAQ_COUNT && (
+          <div className="mt-8 text-center">
+            <motion.button
+              onClick={() => setShowAll(!showAll)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 px-8 py-4 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white transition-all duration-300"
+            >
+              {showAll ? "Show Less" : `View More`}
+              <motion.svg
+                animate={{ rotate: showAll ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
+              </motion.svg>
+            </motion.button>
+          </div>
+        )}
       </div>
     </section>
   );

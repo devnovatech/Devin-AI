@@ -31,7 +31,7 @@ export default function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start gap-12 pt-20 lg:pt-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start gap-12 pt-8 lg:pt-0">
         {/* Left: Text */}
         <div className="flex-1 text-center lg:text-left">
           <motion.div

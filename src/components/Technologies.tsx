@@ -62,7 +62,7 @@ const categories = [
   {
     label: "Other Frameworks",
     techs: [
-      { name: "Next.js", abbr: "Nx", color: "#ffffff" },
+      { name: "Next.js", abbr: "Nx", color: "#000000" },
       { name: "Nuxt.js", abbr: "Nu", color: "#00DC82" },
       { name: "GraphQL", abbr: "GQ", color: "#E535AB" },
       { name: "TailwindCSS", abbr: "Tw", color: "#06B6D4" },

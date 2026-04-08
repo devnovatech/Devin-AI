@@ -397,7 +397,7 @@ export default function Services() {
   const visibleServices = showAll ? services : services.slice(0, INITIAL_COUNT);
 
   return (
-    <section id="services" className="py-16 relative bg-light-accent">
+    <section id="services" className="pt-16 pb-0 relative bg-light-accent">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection className="text-center mb-6">
           <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
