@@ -21,47 +21,109 @@ const techIcons = [
 
 const trustedLogos = ["Nokia", "Ericsson", "Strava", "SolarWinds", "Syntronic"];
 
-// Floating particles
+// Network particles — canvas-based connected dots
 function Particles() {
-  const particles = useRef(
-    Array.from({ length: 40 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      duration: Math.random() * 20 + 15,
-      delay: Math.random() * 10,
-      opacity: Math.random() * 0.4 + 0.1,
-    }))
-  ).current;
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvasEl = canvasRef.current;
+    if (!canvasEl) return;
+    const ctxRaw = canvasEl.getContext("2d");
+    if (!ctxRaw) return;
+    const canvas: HTMLCanvasElement = canvasEl;
+    const ctx: CanvasRenderingContext2D = ctxRaw;
+
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let rafId = 0;
+
+    type Dot = { x: number; y: number; vx: number; vy: number; r: number };
+    let dots: Dot[] = [];
+
+    const LINK_DISTANCE = 140;
+    const DOT_COLOR = "rgba(187, 225, 250, 0.9)"; // #BBE1FA
+    const LINE_COLOR = "50, 130, 184";            // #3282B8
+
+    function resize() {
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      const rect = parent.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const area = width * height;
+      const count = Math.max(40, Math.min(90, Math.floor(area / 16000)));
+      dots = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.6 + 0.8,
+      }));
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (const d of dots) {
+        d.x += d.vx;
+        d.y += d.vy;
+        if (d.x < 0 || d.x > width) d.vx *= -1;
+        if (d.y < 0 || d.y > height) d.vy *= -1;
+      }
+
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const a = dots[i];
+          const b = dots[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < LINK_DISTANCE) {
+            const alpha = (1 - dist / LINK_DISTANCE) * 0.35;
+            ctx.strokeStyle = `rgba(${LINE_COLOR}, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (const d of dots) {
+        ctx.fillStyle = DOT_COLOR;
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      rafId = requestAnimationFrame(tick);
+    }
+
+    resize();
+    tick();
+    window.addEventListener("resize", resize);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          className="absolute rounded-full bg-neon-blue"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            opacity: p.opacity,
-          }}
-          animate={{
-            y: [-20, -60, -20],
-            x: [-10, 10, -10],
-            opacity: [p.opacity, p.opacity * 2, p.opacity],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      aria-hidden="true"
+    />
   );
 }
 

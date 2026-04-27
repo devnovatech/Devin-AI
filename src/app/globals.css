@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Previous palette (Deep Twilight):
+   --background: #03045E; --foreground: #CAF0F8;
+*/
+/* Previous palette (Ocean Depths — dark-only):
+   --background: #012A4A; --foreground: #2A6F97;
+*/
+/* Previous palette (Coastal Combined):
+   --background: #012A4A; --foreground: #DBE9EE;
+*/
 :root {
-  --background: #020842;
-  --foreground: #e3f0ff;
+  --background: #03045e;
+  --foreground: #caf0f8;
+  /* --background: #1B262C;
+  --foreground: #BBE1FA; */
 }
 
 body {
@@ -21,38 +32,46 @@ html {
   width: 8px;
 }
 
+/* Previous tracks: #03045E → #012A4A → #012A4A */
 ::-webkit-scrollbar-track {
-  background: #020842;
+  background: #1b262c;
 }
 
+/* Previous thumbs: #0077B6 → #01497C → #166088 */
 ::-webkit-scrollbar-thumb {
-  background: #0a1155;
+  background: #0f4c75;
   border-radius: 4px;
 }
 
+/* Previous hover: #00B4D8 → #2A6F97 → #4A6FA5 */
 ::-webkit-scrollbar-thumb:hover {
-  background: #00d4ff;
+  background: #3282b8;
 }
 
 /* Glow effects */
+/* Previous glows used cyan/ocean rgba; now blue-cyan */
 .glow-blue {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1);
+  box-shadow:
+    0 0 20px rgba(50, 130, 184, 0.4),
+    0 0 60px rgba(15, 76, 117, 0.2);
 }
 
 .glow-text {
-  text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+  text-shadow: 0 0 40px rgba(50, 130, 184, 0.5);
 }
 
+/* Previous: (135deg, #00B4D8, #90E0EF) → (135deg, #2A6F97, #014F86) → (135deg, #4A6FA5, #C0D6DF) */
 .gradient-text {
-  background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+  background: linear-gradient(135deg, #3282b8, #bbe1fa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 /* Dark gradient text for light sections */
+/* Previous: (135deg, #03045E, #0077B6) → (135deg, #012A4A, #2A6F97) → (135deg, #012A4A, #166088) */
 .gradient-text-dark {
-  background: linear-gradient(135deg, #020842, #7b2ff7);
+  background: linear-gradient(135deg, #1b262c, #3282b8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -61,21 +80,22 @@ html {
 /* Grid background - dark */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(187, 225, 250, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(187, 225, 250, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 /* Grid background - light */
 .grid-bg-light {
   background-image:
-    linear-gradient(rgba(2, 8, 66, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(2, 8, 66, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(27, 38, 44, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 38, 44, 0.07) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 /* Light section base */
+/* Previous: bg #CAF0F8/#2A6F97/#DBE9EE; color #03045E/#012A4A */
 .section-light {
-  background-color: #e3f0ff;
-  color: #020842;
+  background-color: #bbe1fa;
+  color: #1b262c;
 }
