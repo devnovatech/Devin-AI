@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #050816;
-  --foreground: #e4e4e7;
+  --background: #0a1628;
+  --foreground: #e3f2fd;
 }
 
 body {
@@ -22,38 +22,60 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050816;
+  background: #0a1628;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1f4e;
+  background: #1e88e5;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00d4ff;
+  background: #4fc3f7;
 }
 
-/* Glow effects */
+/* Solid glow effects (subtle, no gradients) */
 .glow-blue {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1);
+  box-shadow:
+    0 0 20px rgba(30, 136, 229, 0.4),
+    0 0 60px rgba(30, 136, 229, 0.2);
 }
 
 .glow-text {
-  text-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+  text-shadow: 0 0 40px rgba(79, 195, 247, 0.5);
 }
 
+/* Brand text classes — kept names for backward compatibility, now solid colors */
 .gradient-text {
-  background: linear-gradient(135deg, #00d4ff, #7b2ff7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #4fc3f7;
+  background: none;
+  -webkit-text-fill-color: currentColor;
 }
 
-/* Grid background */
+.gradient-text-dark {
+  color: #1565c0;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Grid background - dark */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(144, 202, 249, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(144, 202, 249, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* Grid background - light */
+.grid-bg-light {
+  background-image:
+    linear-gradient(rgba(10, 22, 40, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 22, 40, 0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Light section base */
+.section-light {
+  background-color: #e3f2fd;
+  color: #0a1628;
 }

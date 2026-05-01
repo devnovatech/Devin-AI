@@ -34,12 +34,12 @@ export default function Support() {
   }
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-16 relative bg-light-accent">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection>
-          <div className="relative rounded-3xl border border-white/5 overflow-hidden">
+          <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
             {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/10 via-dark-surface to-neon-purple/10" />
+            <div className="absolute inset-0 bg-deep-blue" />
             <div className="absolute inset-0 grid-bg opacity-50" />
 
             <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20">
@@ -49,7 +49,7 @@ export default function Support() {
                   animate={{ scale: 1, opacity: 1 }}
                   className="text-center py-12"
                 >
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center">
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-neon-blue flex items-center justify-center">
                     <svg
                       className="w-10 h-10 text-white"
                       fill="none"
@@ -95,7 +95,7 @@ export default function Support() {
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5 }}
-                      className="w-16 h-16 mx-auto lg:mx-0 mb-6 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center"
+                      className="w-16 h-16 mx-auto lg:mx-0 mb-6 rounded-2xl bg-neon-blue flex items-center justify-center"
                     >
                       <svg
                         className="w-8 h-8 text-white"
@@ -217,7 +217,7 @@ export default function Support() {
                       type="submit"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-xl text-white font-bold tracking-wider text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300"
+                      className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-xl text-white font-bold tracking-wider text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300"
                     >
                       Send Message
                       <svg

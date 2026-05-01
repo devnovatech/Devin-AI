@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const footerLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "About", href: "#about" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Our Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const socialLinks = [
@@ -47,28 +47,28 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo.svg"
+              src="/site_logo.png"
               alt="Dev Inception Logo"
-              width={32}
-              height={32}
+              width={100}
+              height={100}
             />
-            <span className="text-xl font-bold text-white">
+            {/* <span className="text-xl font-bold text-white">
               Dev <span className="gradient-text">Inception</span>
-            </span>
-          </div>
+            </span> */}
+          </Link>
 
           {/* Links */}
           <div className="flex flex-wrap justify-center gap-6">
             {footerLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-sm text-gray-400 hover:text-neon-blue transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 

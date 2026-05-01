@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
+import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
 
 function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -43,7 +44,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-16 relative overflow-hidden">
       <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] -translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -51,25 +52,23 @@ export default function About() {
           {/* Left: Visual */}
           <AnimatedSection direction="left">
             <div className="relative">
-              <div className="w-full aspect-square max-w-md mx-auto rounded-3xl bg-gradient-to-br from-dark-card to-dark-surface border border-white/5 p-8 flex items-center justify-center">
-                <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                  <div className="absolute inset-0 grid-bg" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/90 to-transparent" />
-                  <div className="relative z-10 flex flex-col items-center justify-center h-full">
-                    <motion.div
-                      className="text-6xl font-bold gradient-text"
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                    >
-                      DI
-                    </motion.div>
-                    <p className="mt-4 text-sm text-gray-400 tracking-widest uppercase">
-                      Dev Inception
-                    </p>
-                  </div>
-                </div>
+              {/* Offset accent block — adds depth without decoration */}
+              <div
+                className="absolute inset-0 rounded-2xl bg-neon-blue/20 translate-x-3 translate-y-3"
+                aria-hidden="true"
+              />
+              {/* Main image */}
+              <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-black/40">
+                <Image
+                  src="/companies-porfolio.png"
+                  alt="Companies we've partnered with"
+                  width={1338}
+                  height={1176}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="w-full h-auto block"
+                  priority
+                />
               </div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple opacity-20 blur-xl" />
             </div>
           </AnimatedSection>
 

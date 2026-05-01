@@ -11,11 +11,24 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "deep-blue": "#0a0e27",
-        "neon-blue": "#00d4ff",
-        "neon-purple": "#7b2ff7",
-        "dark-card": "#111633",
-        "dark-surface": "#0d1230",
+        // DevInception Logo Palette (solid colors, no gradients)
+        "deep-blue": "#0A1628",      // dark navy - main BG
+        "dark-surface": "#0F1E33",    // slightly lighter surface
+        "dark-card": "#162A47",       // card BG on dark sections
+        "neon-blue": "#1E88E5",       // primary brand blue (logo mid-tone)
+        "neon-purple": "#4FC3F7",     // accent - light cyan (logo top)
+        "frosted-blue": "#90CAF9",    // medium light blue
+        "light-accent": "#E3F2FD",    // light section BG (icy blue)
+        // Variant blues used for service / industry tiles to keep visual variety within logo family
+        "brand-1": "#1E88E5",
+        "brand-2": "#0277BD",
+        "brand-3": "#01579B",
+        "brand-4": "#0288D1",
+        "brand-5": "#039BE5",
+        "brand-6": "#00ACC1",
+        "brand-7": "#0097A7",
+        "brand-8": "#006064",
+        "brand-9": "#1565C0",
       },
       fontFamily: {
         sans: ["var(--font-poppins)", "var(--font-inter)", "system-ui", "sans-serif"],
