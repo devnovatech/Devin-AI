@@ -223,7 +223,7 @@ export default function IndustryPage() {
           <p className="mt-4 text-gray-400">The industry page you&apos;re looking for doesn&apos;t exist.</p>
           <Link
             href="/industries"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-semibold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-neon-blue rounded-full text-white font-semibold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
           >
             Back to Industries
           </Link>
@@ -348,7 +348,7 @@ export default function IndustryPage() {
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
             <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-deep-blue via-deep-blue to-neon-purple/30" />
+              <div className="absolute inset-0 bg-deep-blue" />
               <div className="absolute inset-0 grid-bg opacity-50" />
 
               <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
@@ -358,7 +358,7 @@ export default function IndustryPage() {
                 <div className="mt-10">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
                   >
                     {industry.ctaButton}
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

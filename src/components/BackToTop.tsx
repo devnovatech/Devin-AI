@@ -22,7 +22,7 @@ export default function BackToTop() {
           transition={{ duration: 0.2 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center text-white shadow-lg shadow-neon-blue/20 hover:shadow-neon-blue/40 hover:scale-110 transition-all duration-300"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-neon-blue flex items-center justify-center text-white shadow-lg shadow-neon-blue/30 hover:bg-neon-purple hover:shadow-neon-blue/50 hover:scale-110 transition-all duration-300"
         >
           <svg
             className="w-5 h-5"

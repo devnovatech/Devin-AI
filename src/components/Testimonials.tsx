@@ -92,7 +92,7 @@ export default function Testimonials() {
 
                 {/* Author */}
                 <div className="mt-6 flex items-center gap-4">
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-deep-blue to-neon-purple flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-11 h-11 rounded-full bg-neon-blue flex items-center justify-center text-white font-bold text-sm">
                     {t.name
                       .split(" ")
                       .map((n) => n[0])

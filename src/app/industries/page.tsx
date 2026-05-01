@@ -9,7 +9,7 @@ const industries = [
     name: "Healthcare & HealthTech",
     slug: "healthcare",
     description: "Streamlining patient engagement, compliance, and operational efficiency.",
-    color: "from-emerald-400 to-teal-600",
+    color: "bg-brand-4",
     icon: (
       <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
     ),
@@ -18,7 +18,7 @@ const industries = [
     name: "FinTech",
     slug: "fintech",
     description: "Securing and scaling financial platforms while simplifying regulatory complexity.",
-    color: "from-blue-500 to-indigo-600",
+    color: "bg-brand-9",
     icon: (
       <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
     ),
@@ -27,7 +27,7 @@ const industries = [
     name: "Ecommerce & Retail",
     slug: "ecommerce-retail",
     description: "Optimizing digital commerce, improving conversions, and unifying operations.",
-    color: "from-amber-400 to-orange-500",
+    color: "bg-brand-3",
     icon: (
       <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" /></svg>
     ),
@@ -36,7 +36,7 @@ const industries = [
     name: "Logistics & Transportation",
     slug: "logistics",
     description: "Driving efficiency with real-time tracking and integrated workflows.",
-    color: "from-sky-400 to-blue-500",
+    color: "bg-brand-6",
     icon: (
       <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
     ),
@@ -45,7 +45,7 @@ const industries = [
     name: "Education & EdTech",
     slug: "education",
     description: "Enhancing learning platforms with better engagement, accessibility, and analytics.",
-    color: "from-cyan-400 to-blue-600",
+    color: "bg-brand-1",
     icon: (
       <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
     ),
@@ -54,7 +54,7 @@ const industries = [
     name: "Travel & Hospitality",
     slug: "travel-hospitality",
     description: "Simplifying bookings, operations, and personalized guest experiences.",
-    color: "from-rose-400 to-pink-500",
+    color: "bg-brand-5",
     icon: (
       <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
     ),
@@ -63,7 +63,7 @@ const industries = [
     name: "SaaS & Tech Startups",
     slug: "saas-startups",
     description: "Building scalable, high-performance platforms to accelerate growth.",
-    color: "from-violet-500 to-purple-700",
+    color: "bg-brand-2",
     icon: (
       <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
     ),
@@ -122,9 +122,9 @@ export default function IndustriesPage() {
                     transition={{ duration: 0.3 }}
                     className="group relative h-full rounded-2xl overflow-hidden cursor-pointer"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${industry.color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
+                    <div className={`absolute inset-0 ${industry.color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
                     <div className="relative h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 group-hover:bg-white group-hover:shadow-lg group-hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm flex flex-col">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${industry.color} flex items-center justify-center text-white shadow-lg mb-5`}>
+                      <div className={`w-16 h-16 rounded-2xl ${industry.color} flex items-center justify-center text-white shadow-lg mb-5`}>
                         {industry.icon}
                       </div>
                       <h3 className="text-xl font-bold text-deep-blue mb-3">{industry.name}</h3>
@@ -162,7 +162,7 @@ export default function IndustriesPage() {
             <div className="mt-10">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
               >
                 Discover Your Solution
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

@@ -49,14 +49,14 @@ export default function Footer() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo.svg"
+              src="/site_logo.png"
               alt="Dev Inception Logo"
-              width={32}
-              height={32}
+              width={100}
+              height={100}
             />
-            <span className="text-xl font-bold text-white">
+            {/* <span className="text-xl font-bold text-white">
               Dev <span className="gradient-text">Inception</span>
-            </span>
+            </span> */}
           </Link>
 
           {/* Links */}

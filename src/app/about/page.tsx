@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 
@@ -108,7 +109,7 @@ export default function AboutPage() {
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
                 >
                   Work with Us
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -120,28 +121,23 @@ export default function AboutPage() {
 
             <AnimatedSection direction="right">
               <div className="relative">
-                <div className="w-full aspect-square max-w-md mx-auto rounded-3xl bg-gradient-to-br from-dark-card to-dark-surface border border-white/5 p-8 flex items-center justify-center">
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                    <div className="absolute inset-0 grid-bg" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-deep-blue/90 to-transparent" />
-                    <div className="relative z-10 flex flex-col items-center justify-center h-full">
-                      <motion.div
-                        className="text-7xl font-bold gradient-text"
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                      >
-                        DI
-                      </motion.div>
-                      <p className="mt-4 text-sm text-gray-400 tracking-widest uppercase">
-                        Dev Inception
-                      </p>
-                      <p className="mt-2 text-xs text-gray-500">
-                        From Strategy to Systems
-                      </p>
-                    </div>
-                  </div>
+                {/* Offset accent block — adds depth without decoration */}
+                <div
+                  className="absolute inset-0 rounded-2xl bg-neon-blue/20 translate-x-3 translate-y-3"
+                  aria-hidden="true"
+                />
+                {/* Main image */}
+                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-black/40">
+                  <Image
+                    src="/devinception-together-build.png"
+                    alt="Dev Inception — together we build"
+                    width={1379}
+                    height={1141}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="w-full h-auto block"
+                    priority
+                  />
                 </div>
-                <div className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl bg-gradient-to-br from-neon-blue to-neon-purple opacity-20 blur-xl" />
               </div>
             </AnimatedSection>
           </div>
@@ -217,7 +213,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.3 }}
                   className="group h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-deep-blue to-neon-purple flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-neon-blue flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                     {value.icon}
                   </div>
                   <h3 className="mt-6 text-xl font-bold text-deep-blue">
@@ -239,7 +235,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <AnimatedSection>
             <div className="relative rounded-3xl border border-white/10 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-deep-blue via-deep-blue to-neon-purple/30" />
+              <div className="absolute inset-0 bg-deep-blue" />
               <div className="absolute inset-0 grid-bg opacity-50" />
 
               <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
@@ -254,7 +250,7 @@ export default function AboutPage() {
                 <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
                   >
                     Get in Touch
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

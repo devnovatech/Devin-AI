@@ -18,10 +18,10 @@ export default function Home() {
       <WorkingProcess />
       <About />
       <WhyChooseUs />
-      <Technologies />
+      {/* <Technologies /> */}
       <Industries />
-      <FAQ />
-      <Support />
+      {/* <FAQ />
+      <Support /> */}
     </>
   );
 }

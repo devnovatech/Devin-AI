@@ -70,7 +70,7 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.3 }}
                 className="group h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-deep-blue to-neon-purple flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-xl bg-neon-blue flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                   {reason.icon}
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-deep-blue">
@@ -86,7 +86,7 @@ export default function WhyChooseUs() {
 
         <AnimatedSection className="mt-12 text-center">
           <a
-            href="#about"
+            href="/about"
             className="inline-flex items-center gap-2 px-8 py-4 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white transition-all duration-300"
           >
             Learn more about Dev Inception

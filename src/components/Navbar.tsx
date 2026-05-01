@@ -7,7 +7,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { label: "Home", href: "/" },
   { label: "Our Services", href: "/services" },
   { label: "Industries", href: "/industries" },
   { label: "About Us", href: "/about" },
@@ -36,7 +35,7 @@ export default function Navbar() {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-deep-blue/80 backdrop-blur-xl border-b border-white/5"
+          ? "bg-deep-blue backdrop-blur-xl border-b border-white/5"
           : "bg-transparent"
       }`}
     >
@@ -44,15 +43,15 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo.svg"
+            src="/site_logo.png"
             alt="Dev Inception Logo"
-            width={32}
-            height={32}
+            width={70}
+            height={70}
             priority
           />
-          <span className="text-xl font-bold text-white">
+          {/* <span className="text-xl font-bold text-white">
             Dev <span className="gradient-text">Inception</span>
-          </span>
+          </span> */}
         </Link>
 
         {/* Desktop Links */}
@@ -79,7 +78,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="px-5 py-2 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-sm font-semibold text-white hover:shadow-lg hover:shadow-neon-blue/25 transition-all duration-300"
+            className="px-5 py-2 bg-neon-blue rounded-full text-sm font-semibold text-white hover:shadow-lg hover:shadow-neon-blue/25 transition-all duration-300"
           >
             Get in Touch
           </Link>
@@ -144,7 +143,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="px-5 py-2 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-sm font-semibold text-white text-center"
+                className="px-5 py-2 bg-neon-blue rounded-full text-sm font-semibold text-white text-center"
               >
                 Get in Touch
               </Link>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
@@ -10,7 +10,7 @@ const steps = [
     title: "Discovery & Planning",
     description:
       "Understanding your vision, goals, and requirements through deep discovery sessions.",
-    color: "from-neon-blue to-cyan-400",
+    color: "bg-brand-1",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
     ),
@@ -20,7 +20,7 @@ const steps = [
     title: "Research & Design",
     description:
       "Crafting wireframes, prototypes, and technical blueprints that align with your goals.",
-    color: "from-violet-500 to-purple-500",
+    color: "bg-brand-2",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
     ),
@@ -30,7 +30,7 @@ const steps = [
     title: "Development",
     description:
       "Bringing designs to life with clean, tested, and scalable code.",
-    color: "from-emerald-400 to-teal-500",
+    color: "bg-brand-4",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
     ),
@@ -40,7 +40,7 @@ const steps = [
     title: "Testing & QA",
     description:
       "Rigorous quality assurance ensures reliability, security, and performance.",
-    color: "from-amber-400 to-orange-500",
+    color: "bg-brand-6",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
     ),
@@ -50,7 +50,7 @@ const steps = [
     title: "Deployment & Support",
     description:
       "Launch your product with ongoing support, monitoring, and iteration.",
-    color: "from-rose-400 to-pink-600",
+    color: "bg-brand-3",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
     ),
@@ -59,15 +59,28 @@ const steps = [
 
 function DesktopProcess() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const stripRef = useRef<HTMLDivElement>(null);
+  const [endX, setEndX] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  // How far the horizontal strip slides: 0% -> -(totalWidth - viewport)
-  // With 5 cards at ~360px each + gaps, roughly 2200px total, minus ~100vw
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
+  useEffect(() => {
+    const measure = () => {
+      if (!viewportRef.current || !stripRef.current) return;
+      const stripWidth = stripRef.current.scrollWidth;
+      const viewportWidth = viewportRef.current.clientWidth;
+      setEndX(Math.min(0, viewportWidth - stripWidth));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  const x = useTransform(scrollYProgress, (v) => `${v * endX}px`);
 
   // Progress bar width
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
@@ -96,12 +109,12 @@ function DesktopProcess() {
         </div>
 
         {/* Horizontal scrolling area */}
-        <div className="flex flex-col justify-center px-6 relative">
+        <div ref={viewportRef} className="flex flex-col justify-center px-6 relative">
           {/* Progress bar at top */}
           <div className="max-w-4xl mx-auto w-full mb-8 mt-10">
             <div className="h-1 rounded-full bg-deep-blue/10 overflow-hidden">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-neon-blue to-neon-purple"
+                className="h-full rounded-full bg-neon-blue"
                 style={{ width: progressWidth }}
               />
             </div>
@@ -109,7 +122,8 @@ function DesktopProcess() {
 
           {/* Cards strip */}
           <motion.div
-            className="flex items-center gap-8 pl-[10vw]"
+            ref={stripRef}
+            className="flex items-center gap-8 pl-[10vw] pr-[10vw]"
             style={{ x }}
           >
             {steps.map((step, i) => (
@@ -124,7 +138,7 @@ function DesktopProcess() {
                     {/* Number + Icon row */}
                     <div className="flex items-center gap-4 mb-4">
                       <div
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white font-bold text-lg shadow-lg`}
+                        className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center text-white font-bold text-lg shadow-lg`}
                       >
                         {step.number}
                       </div>
@@ -147,7 +161,7 @@ function DesktopProcess() {
                   <div className="flex items-center flex-shrink-0 w-8">
                     <div className="relative w-full flex items-center">
                       <motion.div
-                        className="h-px w-full bg-gradient-to-r from-neon-blue/40 to-neon-purple/40"
+                        className="h-px w-full bg-neon-blue/40"
                         style={{ scaleX: trunkWidth, transformOrigin: "left" }}
                       />
                       <div className="absolute right-0 w-2 h-2 rounded-full bg-neon-blue/40" />
@@ -158,9 +172,9 @@ function DesktopProcess() {
             ))}
 
             {/* End marker */}
-            <div className="flex-shrink-0 flex items-center gap-4 pr-[20vw]">
+            <div className="flex-shrink-0 flex items-center gap-4">
               <div className="w-px h-8 bg-neon-blue/20" />
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center shadow-lg shadow-neon-blue/30">
+              <div className="w-14 h-14 rounded-full bg-neon-blue flex items-center justify-center shadow-lg shadow-neon-blue/30">
                 <svg
                   className="w-6 h-6 text-white"
                   fill="none"
@@ -175,9 +189,9 @@ function DesktopProcess() {
                   />
                 </svg>
               </div>
-              <p className="text-sm font-semibold text-deep-blue whitespace-nowrap">
-                Project Live!
-              </p>
+              {/* <p className="text-sm font-semibold text-deep-blue whitespace-nowrap">
+                Live!
+              </p> */}
             </div>
           </motion.div>
 
@@ -229,7 +243,7 @@ function MobileProcess() {
         {/* Vertical trunk */}
         <div className="absolute left-8 top-0 bottom-0 w-px">
           <motion.div
-            className="w-full h-full bg-gradient-to-b from-neon-blue via-neon-purple to-neon-blue"
+            className="w-full h-full bg-neon-blue"
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true }}
@@ -247,7 +261,7 @@ function MobileProcess() {
                     whileInView={{ scale: [0, 1.15, 1] }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.12 }}
-                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg ring-4 ring-light-accent`}
+                    className={`w-16 h-16 rounded-full ${step.color} flex items-center justify-center shadow-lg ring-4 ring-light-accent`}
                   >
                     <span className="text-white font-bold text-lg">
                       {step.number}

@@ -693,7 +693,7 @@ export default function ServicePage() {
           <p className="mt-4 text-gray-400">The service you&apos;re looking for doesn&apos;t exist.</p>
           <Link
             href="/services"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-semibold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-neon-blue rounded-full text-white font-semibold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
           >
             Back to Services
           </Link>
@@ -735,7 +735,7 @@ export default function ServicePage() {
             <div className="mt-8">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
               >
                 Get Your Smart Solution
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -765,7 +765,7 @@ export default function ServicePage() {
                   transition={{ duration: 0.3 }}
                   className="group h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-deep-blue to-neon-purple flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-neon-blue flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
@@ -817,7 +817,7 @@ export default function ServicePage() {
           <AnimatedSection className="mt-12 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
             >
               Get Your Smart Solution
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -847,7 +847,7 @@ export default function ServicePage() {
                   transition={{ duration: 0.3 }}
                   className="group h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-deep-blue to-neon-purple flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 rounded-xl bg-neon-blue flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
@@ -906,7 +906,7 @@ export default function ServicePage() {
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection>
             <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-deep-blue via-deep-blue to-neon-purple/30" />
+              <div className="absolute inset-0 bg-deep-blue" />
               <div className="absolute inset-0 grid-bg opacity-50" />
 
               <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
@@ -919,7 +919,7 @@ export default function ServicePage() {
                 <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
                   >
                     {service.ctaButton}
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

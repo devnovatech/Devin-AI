@@ -1,30 +1,38 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
 
 const logos = [
-  "Nokia",
-  "SolarWinds",
-  "Strava",
-  "Syntronic",
-  "DeerCast",
-  "Ericsson",
-  "American Airlines",
+  { name: "Nokia", src: "/clients/Nokia.png" },
+  { name: "SolarWinds", src: "/clients/SolarWinds.png" },
+  { name: "Strava", src: "/clients/strave-company.png" },
+  { name: "Syntronic", src: "/clients/Syntronic.png" },
+  { name: "DeerCast", src: "/clients/DearCast.png" },
+  { name: "Ericsson", src: "/clients/ericssion.png" },
+  { name: "American Airlines", src: "/clients/american.png" },
+  { name: "Adbox", src: "/clients/Adbox.png" },
+  { name: "MaxHub", src: "/clients/maxhub.png" },
+  { name: "Radiant", src: "/clients/radiant.png" },
 ];
 
-function LogoItem({ name }: { name: string }) {
+function LogoItem({ name, src }: { name: string; src: string }) {
   return (
-    <div className="flex-shrink-0 mx-8 px-8 py-4 border border-deep-blue/10 rounded-xl bg-white/50 hover:border-deep-blue/30 hover:bg-white/80 transition-all duration-300 group shadow-sm">
-      <span className="text-lg font-semibold text-deep-blue/40 group-hover:text-deep-blue transition-all duration-500">
-        {name}
-      </span>
+    <div className="flex-shrink-0 mx-4 px-2 border border-deep-blue/10 rounded-lg bg-white/50 hover:border-deep-blue/30 hover:bg-white/80 transition-all duration-300 group shadow-sm flex items-center justify-center h-20 w-36 overflow-hidden">
+      <Image
+        src={src}
+        alt={`${name} logo`}
+        width={160}
+        height={80}
+        className="h-full w-full object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+      />
     </div>
   );
 }
 
 export default function LogoMarquee() {
   return (
-    <section className="py-12 relative overflow-hidden bg-light-accent">
+    <section className="pt-12 relative overflow-hidden bg-light-accent">
       <AnimatedSection className="text-center mb-12">
         <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
           Trusted by Industry Leaders
@@ -34,13 +42,13 @@ export default function LogoMarquee() {
         </h2>
       </AnimatedSection>
 
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-light-accent to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-light-accent to-transparent z-10" />
+      <div className="group relative overflow-hidden">
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-light-accent to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-light-accent to-transparent z-10" />
 
-        <div className="flex animate-marquee">
+        <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] will-change-transform">
           {[...logos, ...logos].map((logo, i) => (
-            <LogoItem key={`${logo}-${i}`} name={logo} />
+            <LogoItem key={`${logo.name}-${i}`} src={logo.src} name={logo.name} />
           ))}
         </div>
       </div>

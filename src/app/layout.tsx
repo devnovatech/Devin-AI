@@ -53,7 +53,7 @@ const jsonLd = {
       "@type": "Organization",
       name: "Dev Inception",
       url: "https://devinception.com",
-      logo: "https://devinception.com/logo.svg",
+      logo: "https://devinception.com/site_logo.png",
       contactPoint: {
         "@type": "ContactPoint",
         email: "hello@devinception.com",
