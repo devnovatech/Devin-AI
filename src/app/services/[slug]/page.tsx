@@ -1,9 +1,17 @@
 "use client";
 
+import { useState, ReactNode } from "react";
 import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
+import SectionDivider from "@/components/ui/SectionDivider";
+import CTABanner from "@/components/CTABanner";
+
+const DEEP = "#0a1628";
+const LIGHT = "#e3f2fd";
+
+const ACCENTS = ["#1E88E5", "#0277BD", "#0288D1", "#039BE5", "#00ACC1", "#1565C0"];
 
 interface ServiceOffering {
   category: string;
@@ -680,258 +688,1060 @@ const servicesData: Record<string, ServiceData> = {
   },
 };
 
+/* ───────── Meta map (timeline / team / deliverables / ideal-for) ───────── */
+
+interface ServiceMeta {
+  category: string;
+  timeline: string;
+  teamSize: string;
+  deliverables: string[];
+  idealFor: string[];
+  accent: string;
+  icon: ReactNode;
+}
+
+const serviceMeta: Record<string, ServiceMeta> = {
+  "mobile-application": {
+    category: "Build",
+    timeline: "8–14 weeks",
+    teamSize: "1 PM · 2–3 Engineers · 1 Designer",
+    deliverables: [
+      "iOS & Android apps",
+      "Backend & APIs",
+      "App Store launch + ASO",
+      "Analytics & monitoring",
+    ],
+    idealFor: ["Funded startups", "Scaling SaaS", "Enterprise pilots"],
+    accent: "#1E88E5",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <rect x="7" y="3" width="10" height="18" rx="2" />
+        <line x1="11" y1="18" x2="13" y2="18" strokeWidth={2.2} />
+      </svg>
+    ),
+  },
+  "web-development": {
+    category: "Build",
+    timeline: "6–12 weeks",
+    teamSize: "1 PM · 2 Engineers · 1 Designer",
+    deliverables: [
+      "Frontend (React / Next)",
+      "Backend & APIs",
+      "Performance & SEO",
+      "CI/CD + deployment",
+    ],
+    idealFor: ["Growth-stage SaaS", "Marketing teams", "B2B platforms"],
+    accent: "#0277BD",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <rect x="2" y="4" width="20" height="14" rx="2" />
+        <line x1="2" y1="9" x2="22" y2="9" />
+      </svg>
+    ),
+  },
+  ecommerce: {
+    category: "Build",
+    timeline: "8–14 weeks",
+    teamSize: "1 PM · 2 Engineers · 1 Designer",
+    deliverables: [
+      "Custom storefront / Shopify",
+      "PCI-DSS-compliant checkout",
+      "Inventory & ERP integrations",
+      "A/B testing infrastructure",
+    ],
+    idealFor: ["DTC brands", "Multi-region stores", "B2B catalogs"],
+    accent: "#0288D1",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+      </svg>
+    ),
+  },
+  "ui-ux-design": {
+    category: "Design",
+    timeline: "3–6 weeks",
+    teamSize: "1 Lead Designer · 1 Researcher",
+    deliverables: [
+      "User research + personas",
+      "Wireframes & prototypes",
+      "Visual design system",
+      "Usability testing",
+    ],
+    idealFor: ["Pre-build planning", "Existing-product redesign", "Conversion lift"],
+    accent: "#039BE5",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      </svg>
+    ),
+  },
+  "machine-learning-ai": {
+    category: "Scale",
+    timeline: "6–16 weeks",
+    teamSize: "1 ML Lead · 1–2 Engineers · 1 Data Engineer",
+    deliverables: [
+      "Custom model / pipeline",
+      "Production deployment",
+      "MLOps & monitoring",
+      "Retrain + evaluation cadence",
+    ],
+    idealFor: ["Data-rich SaaS", "Operations automation", "AI features"],
+    accent: "#00ACC1",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <circle cx="12" cy="12" r="3" />
+        <path strokeLinecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
+      </svg>
+    ),
+  },
+  "digital-marketing": {
+    category: "Scale",
+    timeline: "Ongoing (3-month commits)",
+    teamSize: "1 Strategist · 1 Specialist · 1 Designer",
+    deliverables: [
+      "SEO + content strategy",
+      "Paid acquisition setup",
+      "Analytics + attribution",
+      "Monthly reporting",
+    ],
+    idealFor: ["Funded SaaS", "B2B services", "DTC brands"],
+    accent: "#1565C0",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+      </svg>
+    ),
+  },
+  "staff-augmentation": {
+    category: "Operate",
+    timeline: "Flexible (1+ month)",
+    teamSize: "1–10+ people",
+    deliverables: [
+      "Vetted senior engineers",
+      "Sprint-ready integration",
+      "Time-zone aligned",
+      "Scale up / down monthly",
+    ],
+    idealFor: ["Scaling teams", "Hiring constraints", "Specific expertise gaps"],
+    accent: "#01579B",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
+  },
+  "quality-assurance": {
+    category: "Operate",
+    timeline: "Per-release or ongoing",
+    teamSize: "1 QA Lead · 1–2 QA Engineers",
+    deliverables: [
+      "Test plan + automation",
+      "Performance & load tests",
+      "Security audits",
+      "Cross-platform validation",
+    ],
+    idealFor: ["Pre-launch products", "Regulated industries", "High-traffic apps"],
+    accent: "#006064",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  "project-management": {
+    category: "Operate",
+    timeline: "Ongoing (3-month commits)",
+    teamSize: "1 PM · 0.5 Scrum Master",
+    deliverables: [
+      "Roadmap + backlog ownership",
+      "Sprint ceremonies",
+      "Stakeholder communication",
+      "Risk & change management",
+    ],
+    idealFor: ["Cross-functional initiatives", "Distributed teams", "Recovery projects"],
+    accent: "#0097A7",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+      </svg>
+    ),
+  },
+};
+
+const allServiceTitles: Record<string, { title: string; tagline: string }> = {
+  "mobile-application": {
+    title: "Mobile App Development",
+    tagline: "Native & cross-platform apps people love using.",
+  },
+  "web-development": {
+    title: "Web Development",
+    tagline: "Fast, accessible, SEO-ready platforms.",
+  },
+  ecommerce: {
+    title: "E-commerce Development",
+    tagline: "Storefronts that convert and scale.",
+  },
+  "ui-ux-design": {
+    title: "UI/UX Design",
+    tagline: "Research-led design that converts.",
+  },
+  "machine-learning-ai": {
+    title: "ML & AI Solutions",
+    tagline: "Custom models, embedded into your stack.",
+  },
+  "digital-marketing": {
+    title: "Digital Marketing",
+    tagline: "Strategy and content built on data.",
+  },
+  "staff-augmentation": {
+    title: "Staff Augmentation",
+    tagline: "Senior engineers, embedded with your team.",
+  },
+  "quality-assurance": {
+    title: "Quality Assurance",
+    tagline: "Ship with confidence, not surprises.",
+  },
+  "project-management": {
+    title: "Project Management",
+    tagline: "Agile delivery without the chaos.",
+  },
+};
+
+const relatedMap: Record<string, string[]> = {
+  "mobile-application": ["web-development", "ui-ux-design", "machine-learning-ai"],
+  "web-development": ["mobile-application", "ui-ux-design", "ecommerce"],
+  ecommerce: ["web-development", "ui-ux-design", "digital-marketing"],
+  "ui-ux-design": ["web-development", "mobile-application", "ecommerce"],
+  "machine-learning-ai": ["web-development", "mobile-application", "digital-marketing"],
+  "digital-marketing": ["ui-ux-design", "ecommerce", "web-development"],
+  "staff-augmentation": ["project-management", "quality-assurance", "web-development"],
+  "quality-assurance": ["web-development", "mobile-application", "project-management"],
+  "project-management": ["staff-augmentation", "quality-assurance", "web-development"],
+};
+
+/* Generic 4-step process (shared across all services) */
+const processSteps = [
+  {
+    number: "01",
+    title: "Discovery",
+    duration: "Week 1–2",
+    description:
+      "We map goals, constraints, and the why. You leave with a scoped roadmap and a fixed quote.",
+  },
+  {
+    number: "02",
+    title: "Design",
+    duration: "Week 2–5",
+    description:
+      "Wireframes, prototypes, and a visual system. We pressure-test ideas with real users before code.",
+  },
+  {
+    number: "03",
+    title: "Build",
+    duration: "Week 5–14",
+    description:
+      "2-week sprints with weekly demos. Behind a feature flag from day one — no surprises at launch.",
+  },
+  {
+    number: "04",
+    title: "Launch",
+    duration: "Final week",
+    description:
+      "Production deploy, monitoring wired in, and a 30-day stabilization window. Optional retainer after.",
+  },
+];
+
+/* ───────── Component ───────── */
+
 export default function ServicePage() {
   const params = useParams();
   const slug = params.slug as string;
   const service = servicesData[slug];
+  const meta = serviceMeta[slug];
+  const related = (relatedMap[slug] ?? []).slice(0, 3);
+
+  const [activeOffering, setActiveOffering] = useState(0);
 
   if (!service) {
     return (
-      <div className="pt-32 pb-16 text-center min-h-[60vh] flex flex-col items-center justify-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-4xl font-bold text-white">Service Not Found</h1>
-          <p className="mt-4 text-gray-400">The service you&apos;re looking for doesn&apos;t exist.</p>
-          <Link
-            href="/services"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-neon-blue rounded-full text-white font-semibold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
-          >
-            Back to Services
-          </Link>
+      <div className="pt-32 pb-16 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 grid-bg" />
+        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
+        <div className="relative max-w-xl mx-auto px-6 text-center">
+          <div className="text-7xl font-bold gradient-text">404</div>
+          <h1 className="mt-4 h-section text-white">Service Not Found</h1>
+          <p className="mt-4 body-lead text-gray-400">
+            The service you&apos;re looking for doesn&apos;t exist — but tell us
+            what you need and we&apos;ll figure it out.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-neon-blue rounded-full text-white font-semibold text-sm hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+            >
+              Back to Services
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 transition-all duration-300"
+            >
+              Talk to Us
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 
+  const accent = meta?.accent ?? "#1E88E5";
+  const category = meta?.category ?? "Service";
+
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
+      {/* ───────── Hero (split layout with spec card) ───────── */}
+      <section className="pt-32 pb-16 lg:pb-20 relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
+        <div
+          className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full blur-[120px]"
+          style={{ backgroundColor: `${accent}1A` }}
+        />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+        <div className="noise-overlay" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           {/* Breadcrumb */}
           <AnimatedSection>
             <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-              <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
-              <span>/</span>
-              <Link href="/services" className="hover:text-neon-blue transition-colors">Our Services</Link>
-              <span>/</span>
-              <span className="text-neon-blue">{service.title}</span>
+              <Link href="/" className="hover:text-neon-blue transition-colors">
+                Home
+              </Link>
+              <span className="text-gray-600">/</span>
+              <Link href="/services" className="hover:text-neon-blue transition-colors">
+                Services
+              </Link>
+              <span className="text-gray-600">/</span>
+              <span style={{ color: accent }}>{service.title}</span>
             </nav>
           </AnimatedSection>
 
-          <AnimatedSection className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              {service.title}
-            </h1>
-            <p className="mt-4 text-xl sm:text-2xl gradient-text font-semibold">
-              {service.subtitle}
-            </p>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed">
-              {service.description}
-            </p>
-            <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
-              >
-                Get Your Smart Solution
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* What We Offer */}
-      <section className="py-16 bg-light-accent">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection className="text-center mb-16">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">What We Offer</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
-              Our <span className="gradient-text-dark">Capabilities</span>
-            </h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {service.offerings.map((offering, i) => (
-              <AnimatedSection key={offering.category} delay={i * 0.05}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.3 }}
-                  className="group h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-neon-blue flex items-center justify-center text-white mb-5 group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-bold text-deep-blue mb-4">{offering.category}</h3>
-                  <ul className="space-y-2">
-                    {offering.items.map((item, j) => (
-                      <li key={j} className="flex gap-2 text-sm text-deep-blue/60">
-                        <svg className="w-4 h-4 mt-0.5 flex-shrink-0 text-neon-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pain Points */}
-      <section className="py-16 relative">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-              {service.painIntro}
-            </h2>
-            <p className="mt-4 text-gray-400 text-lg">If any of these sound familiar, you&apos;re not alone.</p>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {service.painPoints.map((point, i) => (
-              <AnimatedSection key={i} delay={i * 0.05}>
-                <div className="h-full p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-neon-purple/20 flex items-center justify-center text-neon-purple mb-4">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed">{point}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          <AnimatedSection className="mt-12 text-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
-            >
-              Get Your Smart Solution
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Why Choose */}
-      <section className="py-16 bg-light-accent relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center mb-16">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">Why Us</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-deep-blue">
-              {service.whyTitle}
-            </h2>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {service.whyChoose.map((item, i) => (
-              <AnimatedSection key={item.title} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.3 }}
-                  className="group h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-neon-blue flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="mt-6 text-xl font-bold text-deep-blue">{item.title}</h3>
-                  <p className="mt-3 text-deep-blue/60 leading-relaxed">{item.description}</p>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Industries */}
-      <section className="py-16 relative">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center mb-12">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">Industries</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white">
-              Industries We Help <span className="gradient-text">Thrive</span>
-            </h2>
-          </AnimatedSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {service.industries.map((industry, i) => (
-              <AnimatedSection key={industry.name} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.3 }}
-                  className="h-full p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-neon-blue/20 transition-all duration-300"
-                >
-                  <h3 className="text-lg font-bold text-white mb-2">{industry.name}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{industry.description}</p>
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
-
-          <AnimatedSection className="mt-10 text-center">
-            <Link
-              href="/industries"
-              className="inline-flex items-center gap-2 text-neon-blue font-semibold text-sm hover:gap-3 transition-all duration-300"
-            >
-              Discover Your Industry&apos;s Challenges
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section className="py-16 bg-light-accent">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection>
-            <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-deep-blue" />
-              <div className="absolute inset-0 grid-bg opacity-50" />
-
-              <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white max-w-3xl mx-auto leading-tight">
-                  {service.ctaHeading}
-                </h2>
-                <p className="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
-                  {service.ctaDescription}
-                </p>
-                <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* LEFT — content */}
+            <div className="lg:col-span-7">
+              <AnimatedSection>
+                {/* Category + icon row */}
+                <div className="flex items-center gap-3">
+                  {meta && (
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center text-white"
+                      style={{
+                        backgroundColor: accent,
+                        boxShadow: `0 12px 28px -10px ${accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                      }}
+                    >
+                      {meta.icon}
+                    </div>
+                  )}
+                  <span
+                    className="text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full border"
+                    style={{
+                      color: accent,
+                      borderColor: `${accent}40`,
+                      backgroundColor: `${accent}0A`,
+                    }}
                   >
-                    {service.ctaButton}
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    {category} · Service
+                  </span>
+                </div>
+
+                <h1 className="mt-6 h-display text-white">{service.title}</h1>
+                <p
+                  className="mt-4 text-xl sm:text-2xl font-semibold"
+                  style={{ color: accent }}
+                >
+                  {service.subtitle}
+                </p>
+                <p className="mt-6 body-lead text-gray-400">
+                  {service.description}
+                </p>
+
+                <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                  <motion.span
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex"
+                  >
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold tracking-wide text-sm transition-all duration-300"
+                      style={{
+                        backgroundColor: accent,
+                        boxShadow: `0 12px 28px -10px ${accent}80`,
+                      }}
+                    >
+                      Book a discovery call
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
+                  </motion.span>
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+                  >
+                    All services
                   </Link>
                 </div>
+              </AnimatedSection>
+            </div>
+
+            {/* RIGHT — spec card */}
+            {meta && (
+              <AnimatedSection direction="right" className="lg:col-span-5">
+                <div
+                  className="relative rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
+                  style={
+                    {
+                      boxShadow: `0 30px 60px -20px ${accent}30`,
+                    } as React.CSSProperties
+                  }
+                >
+                  {/* Soft accent glow */}
+                  <div
+                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
+                    style={{ backgroundColor: accent }}
+                  />
+
+                  <div className="relative">
+                    <p
+                      className="eyebrow"
+                      style={{ color: accent }}
+                    >
+                      At a glance
+                    </p>
+
+                    {/* Timeline */}
+                    <div className="mt-6 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke={accent}
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                          Timeline
+                        </p>
+                        <p className="mt-1 text-white text-base font-semibold">
+                          {meta.timeline}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Team */}
+                    <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke={accent}
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                          Team
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.teamSize}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Deliverables */}
+                    <div className="mt-5 pb-5 border-b border-white/[0.08]">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                        Key Deliverables
+                      </p>
+                      <ul className="mt-3 space-y-2">
+                        {meta.deliverables.map((d) => (
+                          <li
+                            key={d}
+                            className="flex gap-2 text-sm text-gray-300 leading-snug"
+                          >
+                            <svg
+                              className="w-3.5 h-3.5 mt-1 shrink-0"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke={accent}
+                              strokeWidth={2.4}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                            <span>{d}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Ideal for */}
+                    <div className="mt-5">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                        Ideal for
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {meta.idealFor.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* dark → light */}
+      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
+
+      {/* ───────── Pain points (cleaner, empathetic) ───────── */}
+      <section className="py-20 bg-light-accent relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+            <AnimatedSection className="lg:col-span-7">
+              <p className="eyebrow text-rose-500/80">Sound familiar?</p>
+              <h2 className="mt-3 h-section text-deep-blue">
+                {service.painIntro}
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+                If any of these are slowing you down, you&apos;re not alone —
+                most teams we talk to are stuck on at least one.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {service.painPoints.map((point, i) => (
+              <AnimatedSection key={i} delay={i * 0.05}>
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.35 }}
+                  className="group relative h-full p-6 rounded-2xl bg-white border border-deep-blue/[0.07] hover:shadow-[0_20px_40px_-16px_rgba(244,63,94,0.25)] transition-all duration-500 overflow-hidden"
+                >
+                  <div className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full bg-rose-400/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-105">
+                      <svg
+                        className="w-5 h-5 text-rose-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-sm text-deep-blue/75 leading-relaxed pt-1">
+                      {point}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── What's included (interactive offerings) ───────── */}
+      <section className="py-20 bg-light-accent relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+            <AnimatedSection className="lg:col-span-7">
+              <p
+                className="eyebrow"
+                style={{ color: accent }}
+              >
+                What&apos;s included
+              </p>
+              <h2 className="mt-3 h-section text-deep-blue">
+                Capabilities, in{" "}
+                <span style={{ color: accent }}>plain English.</span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+                Click a capability to see what we actually deliver. Nothing
+                hidden, nothing fluffed.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          {/* Interactive accordion-style category list */}
+          <div className="grid lg:grid-cols-12 gap-6">
+            {/* Category list (left) */}
+            <div className="lg:col-span-5 flex flex-col gap-2">
+              {service.offerings.map((offering, i) => {
+                const isActive = activeOffering === i;
+                return (
+                  <button
+                    key={offering.category}
+                    onClick={() => setActiveOffering(i)}
+                    className="group relative w-full text-left flex items-center gap-3 px-5 py-4 rounded-xl transition-all duration-300"
+                    style={{
+                      backgroundColor: isActive ? "white" : "rgba(255,255,255,0.5)",
+                      boxShadow: isActive
+                        ? `0 18px 36px -16px ${accent}55`
+                        : "none",
+                    }}
+                  >
+                    <span
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-full transition-all duration-500"
+                      style={{
+                        height: isActive ? "55%" : "0%",
+                        backgroundColor: accent,
+                      }}
+                    />
+
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center text-[12px] font-bold tabular-nums shrink-0"
+                      style={{
+                        backgroundColor: isActive ? accent : `${accent}15`,
+                        color: isActive ? "white" : accent,
+                      }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+
+                    <span className="flex-1 font-semibold text-deep-blue text-sm">
+                      {offering.category}
+                    </span>
+
+                    <svg
+                      className={`w-4 h-4 shrink-0 transition-all duration-300 ${
+                        isActive
+                          ? "opacity-100 translate-x-0"
+                          : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
+                      }`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke={accent}
+                      strokeWidth={2.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Detail panel (right) */}
+            <div className="lg:col-span-7">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeOffering}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                  className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 shadow-xl shadow-deep-blue/5 overflow-hidden"
+                >
+                  <div
+                    className="pointer-events-none absolute -top-20 -right-20 w-72 h-72 rounded-full blur-3xl opacity-[0.15]"
+                    style={{ backgroundColor: accent }}
+                  />
+
+                  <div className="relative">
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="text-[10px] font-semibold uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
+                        style={{
+                          color: accent,
+                          backgroundColor: `${accent}10`,
+                        }}
+                      >
+                        {String(activeOffering + 1).padStart(2, "0")} ·{" "}
+                        {service.offerings.length} total
+                      </span>
+                    </div>
+
+                    <h3 className="mt-5 text-xl lg:text-2xl font-bold text-deep-blue tracking-tight">
+                      {service.offerings[activeOffering].category}
+                    </h3>
+
+                    <ul className="mt-6 grid sm:grid-cols-2 gap-3">
+                      {service.offerings[activeOffering].items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-2.5 text-sm text-deep-blue/70 leading-relaxed"
+                        >
+                          <svg
+                            className="w-4 h-4 mt-0.5 shrink-0"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke={accent}
+                            strokeWidth={2.4}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* light → dark */}
+      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
+
+      {/* ───────── How we work (4-step) ───────── */}
+      <section className="py-20 lg:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 grid-bg" />
+        <div
+          className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
+          style={{ backgroundColor: `${accent}0F` }}
+        />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+            <AnimatedSection className="lg:col-span-7">
+              <p className="eyebrow text-neon-blue">How we work</p>
+              <h2 className="mt-3 h-section text-white">
+                From kickoff to launch in{" "}
+                <span style={{ color: accent }}>four clear steps.</span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                Transparent timelines, weekly demos, fixed quotes after
+                discovery. No surprises, no scope creep.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          <div className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px border-t border-dashed border-white/15" />
+
+            {processSteps.map((step, i) => (
+              <AnimatedSection key={step.number} delay={i * 0.08}>
+                <div className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div
+                      className="relative w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 z-10"
+                      style={{
+                        backgroundColor: accent,
+                        boxShadow: `0 12px 28px -10px ${accent}80`,
+                      }}
+                    >
+                      {step.number}
+                    </div>
+                    <span
+                      className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
+                      style={{
+                        color: accent,
+                        backgroundColor: `${accent}15`,
+                      }}
+                    >
+                      {step.duration}
+                    </span>
+                  </div>
+                  <h3 className="h-card text-white mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* dark → light */}
+      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
+
+      {/* ───────── Why us for THIS service ───────── */}
+      <section className="py-20 bg-light-accent relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
+            <p
+              className="eyebrow"
+              style={{ color: accent }}
+            >
+              Why teams pick us
+            </p>
+            <h2 className="mt-3 h-section text-deep-blue">{service.whyTitle}</h2>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {service.whyChoose.slice(0, 6).map((item, i) => {
+              const itemAccent = ACCENTS[i % ACCENTS.length];
+              return (
+                <AnimatedSection key={item.title} delay={i * 0.06}>
+                  <motion.div
+                    whileHover={{ y: -6 }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    className="group relative h-full rounded-2xl overflow-hidden"
+                    style={
+                      {
+                        "--card-glow": `${itemAccent}55`,
+                      } as React.CSSProperties
+                    }
+                  >
+                    <div
+                      className="pointer-events-none absolute -top-8 -right-8 w-28 h-28 rounded-full blur-2xl opacity-[0.16] group-hover:opacity-[0.32] transition-opacity duration-500"
+                      style={{ backgroundColor: itemAccent }}
+                    />
+                    <div className="relative h-full p-7 rounded-2xl border border-deep-blue/[0.07] bg-white group-hover:shadow-[0_20px_40px_-16px_var(--card-glow)] transition-all duration-500">
+                      <div
+                        className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{ borderColor: `${itemAccent}33` }}
+                      />
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-transform duration-500 group-hover:scale-105"
+                        style={{
+                          backgroundColor: itemAccent,
+                          boxShadow: `0 12px 28px -10px ${itemAccent}80`,
+                        }}
+                      >
+                        <svg
+                          className="w-6 h-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={1.8}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                      <h3 className="mt-5 h-card text-deep-blue">{item.title}</h3>
+                      <p className="mt-2.5 text-sm text-deep-blue/65 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ───────── Industries we serve (compact) ───────── */}
+      <section className="pb-20 bg-light-accent relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-6">
+          <AnimatedSection className="rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 overflow-hidden relative">
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+              <div className="lg:col-span-4">
+                <p
+                  className="eyebrow"
+                  style={{ color: accent }}
+                >
+                  Industries
+                </p>
+                <h3 className="mt-3 text-2xl lg:text-3xl font-bold text-deep-blue tracking-tight leading-tight">
+                  We&apos;ve shipped{" "}
+                  <span style={{ color: accent }}>this service</span> for teams
+                  across:
+                </h3>
+              </div>
+
+              <div className="lg:col-span-8 grid sm:grid-cols-2 gap-3">
+                {service.industries.map((industry, i) => (
+                  <AnimatedSection
+                    key={industry.name}
+                    delay={i * 0.05}
+                  >
+                    <div
+                      className="group flex items-start gap-3 p-4 rounded-xl bg-light-accent/50 hover:bg-white border border-transparent hover:border-deep-blue/[0.08] transition-all duration-300"
+                    >
+                      <div
+                        className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-125"
+                        style={{ backgroundColor: accent }}
+                      />
+                      <div>
+                        <p className="font-semibold text-deep-blue text-sm">
+                          {industry.name}
+                        </p>
+                        <p className="text-xs text-deep-blue/55 mt-0.5 leading-snug">
+                          {industry.description}
+                        </p>
+                      </div>
+                    </div>
+                  </AnimatedSection>
+                ))}
               </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
+
+      {/* light → dark */}
+      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
+
+      {/* ───────── Related services (NEW) ───────── */}
+      {related.length > 0 && (
+        <section className="py-20 lg:py-24 relative overflow-hidden">
+          <div className="absolute inset-0 grid-bg" />
+
+          <div className="relative max-w-7xl mx-auto px-6">
+            <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
+              <p className="eyebrow text-neon-blue">Pair it with</p>
+              <h2 className="mt-3 h-section text-white">
+                Often combined{" "}
+                <span className="gradient-text">with this service.</span>
+              </h2>
+              <p className="mt-5 body-base text-gray-400">
+                Most engagements weave 2–3 capabilities together. Here&apos;s
+                what teams typically pair with {service.title.toLowerCase()}.
+              </p>
+            </AnimatedSection>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              {related.map((relSlug, i) => {
+                const relMeta = serviceMeta[relSlug];
+                const relInfo = allServiceTitles[relSlug];
+                if (!relMeta || !relInfo) return null;
+                return (
+                  <AnimatedSection key={relSlug} delay={i * 0.08}>
+                    <Link
+                      href={`/services/${relSlug}`}
+                      className="group relative block h-full rounded-2xl overflow-hidden bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-500 p-6"
+                      style={
+                        {
+                          "--card-glow": `${relMeta.accent}55`,
+                        } as React.CSSProperties
+                      }
+                    >
+                      <div
+                        className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-[0.18] group-hover:opacity-[0.4] transition-opacity duration-500"
+                        style={{ backgroundColor: relMeta.accent }}
+                      />
+
+                      <div className="relative">
+                        <div className="flex items-center justify-between mb-5">
+                          <div
+                            className="w-11 h-11 rounded-xl flex items-center justify-center text-white"
+                            style={{
+                              backgroundColor: relMeta.accent,
+                              boxShadow: `0 12px 28px -10px ${relMeta.accent}80`,
+                            }}
+                          >
+                            {relMeta.icon}
+                          </div>
+                          <span
+                            className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
+                            style={{
+                              color: relMeta.accent,
+                              backgroundColor: `${relMeta.accent}15`,
+                            }}
+                          >
+                            {relMeta.category}
+                          </span>
+                        </div>
+                        <h3 className="h-card text-white">{relInfo.title}</h3>
+                        <p className="mt-2 text-sm text-gray-400 leading-snug">
+                          {relInfo.tagline}
+                        </p>
+                        <div
+                          className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between text-sm font-semibold"
+                          style={{ color: relMeta.accent }}
+                        >
+                          <span>Explore service</span>
+                          <span className="group-hover:translate-x-1 transition-transform">
+                            →
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </AnimatedSection>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── Final CTA ───────── */}
+      <CTABanner
+        eyebrow="Let's get started"
+        heading={<>{service.ctaHeading}</>}
+        description={service.ctaDescription}
+        primaryLabel={service.ctaButton}
+        primaryHref="/contact"
+        secondaryLabel="View all services"
+        secondaryHref="/services"
+      />
     </>
   );
 }

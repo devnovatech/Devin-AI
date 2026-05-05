@@ -5,68 +5,105 @@
 :root {
   --background: #0a1628;
   --foreground: #e3f2fd;
+  --section-pad-y: 6rem;
+  --section-pad-y-sm: 4rem;
+  --radius-card: 1.25rem;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
+  font-feature-settings: "ss01", "cv11";
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Type scale — locked so headings stay rhythmic across pages */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.h-display {
+  font-size: clamp(2.25rem, 4vw + 1rem, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+.h-section {
+  font-size: clamp(1.875rem, 2.4vw + 1rem, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+.h-card {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  font-weight: 700;
+}
+.body-lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+.body-base {
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
 ::-webkit-scrollbar-track {
   background: #0a1628;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #1e88e5;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #1e88e5, #0277bd);
+  border-radius: 6px;
+  border: 2px solid #0a1628;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #4fc3f7;
 }
 
-/* Solid glow effects (subtle, no gradients) */
+/* Glow utilities */
 .glow-blue {
   box-shadow:
     0 0 20px rgba(30, 136, 229, 0.4),
     0 0 60px rgba(30, 136, 229, 0.2);
 }
-
 .glow-text {
   text-shadow: 0 0 40px rgba(79, 195, 247, 0.5);
 }
 
-/* Brand text classes — kept names for backward compatibility, now solid colors */
+/* Brand text accent — kept names for backward compatibility */
 .gradient-text {
   color: #4fc3f7;
   background: none;
   -webkit-text-fill-color: currentColor;
 }
-
 .gradient-text-dark {
   color: #1565c0;
   background: none;
   -webkit-text-fill-color: currentColor;
 }
 
-/* Grid background - dark */
+/* Grid backgrounds */
 .grid-bg {
   background-image:
     linear-gradient(rgba(144, 202, 249, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(144, 202, 249, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
 }
-
-/* Grid background - light */
 .grid-bg-light {
   background-image:
     linear-gradient(rgba(10, 22, 40, 0.07) 1px, transparent 1px),
@@ -74,8 +111,53 @@ html {
   background-size: 60px 60px;
 }
 
+/* Noise overlay — kills banding on blurred orbs */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
 /* Light section base */
 .section-light {
   background-color: #e3f2fd;
   color: #0a1628;
+}
+
+/* Glassy chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(30, 136, 229, 0.25);
+  color: #4fc3f7;
+  background: rgba(30, 136, 229, 0.08);
+}
+
+/* Focus ring for accessibility */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid #4fc3f7;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Reduced motion safety */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

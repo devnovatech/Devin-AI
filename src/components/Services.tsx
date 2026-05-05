@@ -263,7 +263,7 @@ const services = [
   },
 ];
 
-function ServiceCard({
+function ServiceRow({
   service,
   index,
 }: {
@@ -275,71 +275,47 @@ function ServiceCard({
   const href = service.slug ? `/services/${service.slug}` : "/services";
 
   return (
-    <Link href={href} className="block h-full group">
-      <motion.div
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-      className="relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden flex flex-col transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow),_0_8px_16px_-12px_var(--card-glow-soft)] cursor-pointer"
-      style={
-        {
-          "--card-glow": `${accent}55`,
-          "--card-glow-soft": `${accent}30`,
-        } as React.CSSProperties
-      }
+    <Link
+      href={href}
+      className="group relative block"
+      style={{ "--accent": accent } as React.CSSProperties}
     >
-      {/* Soft colored corner glow */}
-      <div
-        className="pointer-events-none absolute -top-10 -right-10 w-36 h-36 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
+      {/* Left accent bar — grows on hover */}
+      <span
+        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-0 group-hover:h-[60%] rounded-full transition-all duration-500"
         style={{ backgroundColor: accent }}
       />
 
-      {/* Subtle hairline that intensifies on hover */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ borderColor: `${accent}33` }}
+      {/* Soft accent tint sweeping in from the left on hover */}
+      <span
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: `linear-gradient(90deg, ${accent}0F 0%, transparent 60%)`,
+        }}
       />
 
-      <div className="relative p-7 flex-1 flex flex-col">
-        {/* Top row: icon + numeric label */}
-        <div className="flex items-start justify-between mb-6">
-          <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-white transition-transform duration-500 group-hover:scale-105"
-            style={{
-              backgroundColor: accent,
-              boxShadow: `0 12px 28px -10px ${accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
-            }}
-          >
-            <div className="w-9 h-9 [&_svg]:w-full [&_svg]:h-full">
-              {service.icon}
-            </div>
-          </div>
-          <span
-            className="font-black tabular-nums leading-none tracking-tight transition-colors duration-500"
-            style={{
-              fontSize: "2.25rem",
-              color: `${accent}1F`,
-            }}
-          >
-            {numberLabel}
-          </span>
+      <div className="relative flex items-center gap-4 sm:gap-6 lg:gap-8 py-7 sm:py-8 lg:py-10 pl-5 sm:pl-7 lg:pl-9 pr-4 sm:pr-6 lg:pr-8 transition-[padding] duration-500 group-hover:pl-7 sm:group-hover:pl-9 lg:group-hover:pl-11">
+        {/* Number */}
+        <span className="font-bold tabular-nums text-base sm:text-lg lg:text-xl shrink-0 w-7 sm:w-9 lg:w-12 text-deep-blue/15 transition-colors duration-500 group-hover:text-[color:var(--accent)] group-hover:opacity-80">
+          {numberLabel}
+        </span>
+
+        {/* Title + description */}
+        <div className="flex-1 min-w-0">
+          <h3 className="text-2xl sm:text-3xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.05] text-deep-blue transition-colors duration-500 group-hover:text-[color:var(--accent)]">
+            {service.title}
+          </h3>
+          <p className="mt-2 sm:mt-3 text-sm sm:text-[15px] text-deep-blue/55 leading-relaxed max-w-2xl">
+            {service.description}
+          </p>
         </div>
 
-        {/* Title */}
-        <h3 className="text-xl font-bold text-deep-blue leading-snug tracking-tight">
-          {service.title}
-        </h3>
-
-        {/* Description */}
-        <p className="mt-3 text-sm text-deep-blue/60 leading-relaxed flex-1">
-          {service.description}
-        </p>
-
-        {/* Brand-color outlined tags */}
-        <div className="mt-6 flex flex-wrap gap-1.5">
+        {/* Tags — fade in on hover (desktop only) */}
+        <div className="hidden lg:flex flex-wrap gap-1.5 max-w-[210px] justify-end items-center opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
           {service.tags.map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 text-[11px] font-semibold rounded-full border tracking-wide"
+              className="px-2.5 py-1 text-[10.5px] font-semibold rounded-full border tracking-wide"
               style={{
                 borderColor: `${accent}40`,
                 color: accent,
@@ -350,26 +326,25 @@ function ServiceCard({
             </span>
           ))}
         </div>
-      </div>
 
-      {/* Footer with hairline divider */}
-      <div className="relative px-7 pb-5 pt-4 flex items-center justify-between border-t border-deep-blue/[0.06]">
+        {/* Arrow — flips to a diagonal "open" arrow with accent fill on hover */}
         <span
-          className="text-sm font-semibold tracking-tight"
-          style={{ color: accent }}
+          className="shrink-0 w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border border-deep-blue/15 flex items-center justify-center text-deep-blue/60 transition-all duration-500 group-hover:border-transparent group-hover:text-white group-hover:-rotate-45"
+          style={{
+            backgroundColor: "transparent",
+          }}
         >
-          Learn more
-        </span>
-        <span
-          className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1"
-          style={{ backgroundColor: `${accent}14` }}
-        >
+          {/* The accent fill is layered behind so the rotation feels clean */}
+          <span
+            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{ backgroundColor: accent }}
+          />
           <svg
-            className="w-3.5 h-3.5"
+            className="relative w-4 h-4 sm:w-5 sm:h-5"
             fill="none"
             viewBox="0 0 24 24"
-            stroke={accent}
-            strokeWidth={2.4}
+            stroke="currentColor"
+            strokeWidth={2.5}
           >
             <path
               strokeLinecap="round"
@@ -379,12 +354,11 @@ function ServiceCard({
           </svg>
         </span>
       </div>
-    </motion.div>
     </Link>
   );
 }
 
-const INITIAL_COUNT = 6;
+const INITIAL_COUNT = 5;
 
 export default function Services() {
   const [showAll, setShowAll] = useState(false);
@@ -392,40 +366,63 @@ export default function Services() {
   const visibleServices = showAll ? services : services.slice(0, INITIAL_COUNT);
 
   return (
-    <section id="services" className="pt-16 pb-0 relative bg-light-accent">
-      <div className="max-w-7xl mx-auto px-6">
-        <AnimatedSection className="text-center mb-6">
-          <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
-            What We Offer
-          </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
-            Turning Ideas into Reality
-          </h2>
-          <p className="mt-4 text-deep-blue/60 max-w-3xl mx-auto text-lg">
-            Dev Inception is your end-to-end digital partner. Whether you&apos;ve
-            an idea or launching a product, rebranding a business, or scaling
-            growth &ndash; We combine design, development, strategy, & marketing
-            into one seamless service.
-          </p>
-        </AnimatedSection>
+    <section
+      id="services"
+      className="py-20 lg:py-24 relative bg-light-accent overflow-hidden"
+    >
+      {/* Decorative blooms */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Header — left-aligned for editorial feel */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-14">
+          <AnimatedSection className="lg:col-span-7">
+            <p className="eyebrow text-neon-purple">What We Offer</p>
+            <h2 className="mt-3 h-section text-deep-blue">
+              Turning ideas into{" "}
+              <span className="gradient-text-dark">reality.</span>
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+              An end-to-end studio — design, engineering, AI/ML, and growth.
+              Pick one capability or weave several into a single engagement.
+            </p>
+          </AnimatedSection>
+        </div>
+
+        {/* List */}
+        <div className="border-t border-deep-blue/[0.08]">
           {visibleServices.map((service, i) => (
-            <AnimatedSection key={service.title} delay={i < INITIAL_COUNT ? i * 0.05 : 0}>
-              <ServiceCard service={service} index={i} />
+            <AnimatedSection
+              key={service.title}
+              delay={i < INITIAL_COUNT ? i * 0.04 : 0}
+            >
+              <div className="border-b border-deep-blue/[0.08]">
+                <ServiceRow service={service} index={i} />
+              </div>
             </AnimatedSection>
           ))}
         </div>
 
+        {/* View more / less */}
         {services.length > INITIAL_COUNT && (
-          <div className="mt-12 text-center">
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-5">
+            <p className="text-sm text-deep-blue/50">
+              Showing{" "}
+              <span className="font-semibold text-deep-blue">
+                {visibleServices.length}
+              </span>{" "}
+              of {services.length} capabilities
+            </p>
             <motion.button
               onClick={() => setShowAll(!showAll)}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-8 py-4 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white hover:border-deep-blue transition-all duration-300"
             >
-              {showAll ? "Show Less" : `View More`}
+              {showAll ? "Show fewer" : `View all ${services.length} services`}
               <motion.svg
                 animate={{ rotate: showAll ? 180 : 0 }}
                 transition={{ duration: 0.3 }}

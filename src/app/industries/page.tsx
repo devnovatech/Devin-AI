@@ -3,176 +3,463 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
+import SectionDivider from "@/components/ui/SectionDivider";
+import CTABanner from "@/components/CTABanner";
+
+const DEEP = "#0a1628";
+const LIGHT = "#e3f2fd";
 
 const industries = [
   {
     name: "Healthcare & HealthTech",
     slug: "healthcare",
-    description: "Streamlining patient engagement, compliance, and operational efficiency.",
-    color: "bg-brand-4",
+    tagline:
+      "HIPAA-compliant platforms, telemedicine, and patient management systems.",
+    accent: "#0288D1",
+    stat: { value: "14", label: "hospitals onboarded" },
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
     ),
   },
   {
     name: "FinTech",
     slug: "fintech",
-    description: "Securing and scaling financial platforms while simplifying regulatory complexity.",
-    color: "bg-brand-9",
+    tagline:
+      "Secure financial platforms with regulatory-ready architecture.",
+    accent: "#1565C0",
+    stat: { value: "PCI-DSS", label: "compliant builds" },
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
     ),
   },
   {
-    name: "Ecommerce & Retail",
+    name: "E-commerce & Retail",
     slug: "ecommerce-retail",
-    description: "Optimizing digital commerce, improving conversions, and unifying operations.",
-    color: "bg-brand-3",
+    tagline:
+      "Conversion-tuned storefronts, headless commerce, and inventory at scale.",
+    accent: "#0277BD",
+    stat: { value: "+24%", label: "avg conversion lift" },
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+      </svg>
     ),
   },
   {
     name: "Logistics & Transportation",
     slug: "logistics",
-    description: "Driving efficiency with real-time tracking and integrated workflows.",
-    color: "bg-brand-6",
+    tagline:
+      "Real-time tracking, fleet management, and route optimization.",
+    accent: "#00ACC1",
+    stat: { value: "Real-time", label: "tracking systems" },
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+      </svg>
     ),
   },
   {
     name: "Education & EdTech",
     slug: "education",
-    description: "Enhancing learning platforms with better engagement, accessibility, and analytics.",
-    color: "bg-brand-1",
+    tagline:
+      "Interactive learning platforms, content delivery, and student tools.",
+    accent: "#1E88E5",
+    stat: { value: "WCAG", label: "accessibility-first" },
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
     ),
   },
   {
     name: "Travel & Hospitality",
     slug: "travel-hospitality",
-    description: "Simplifying bookings, operations, and personalized guest experiences.",
-    color: "bg-brand-5",
+    tagline:
+      "Booking platforms, guest portals, and concierge experiences.",
+    accent: "#039BE5",
+    stat: { value: "8 markets", label: "shipped to" },
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
     ),
   },
   {
     name: "SaaS & Tech Startups",
     slug: "saas-startups",
-    description: "Building scalable, high-performance platforms to accelerate growth.",
-    color: "bg-brand-2",
+    tagline:
+      "MVPs to scale-ups — speed without sacrificing the architecture.",
+    accent: "#0277BD",
+    stat: { value: "8–14 wks", label: "MVP to launch" },
     icon: (
-      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
     ),
   },
 ];
 
+const expertisePillars = [
+  {
+    title: "Compliance from day one",
+    description:
+      "HIPAA, PCI-DSS, GDPR, WCAG — we map regulatory requirements into the architecture before kickoff. No retrofits, no late-stage surprises.",
+    accent: "#1E88E5",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Research with real users",
+    description:
+      "We don't guess at industry needs — we interview clinicians, dispatchers, customers, and end-users in your sector before a line of code ships.",
+    accent: "#0288D1",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <circle cx="11" cy="11" r="7" />
+        <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
+      </svg>
+    ),
+  },
+  {
+    title: "Patterns from past clients",
+    description:
+      "250+ projects across 7 sectors means we recognize the shape of common problems. We bring vetted patterns instead of starting blank.",
+    accent: "#00ACC1",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+      </svg>
+    ),
+  },
+  {
+    title: "Stack matched to the sector",
+    description:
+      "Different industries reward different choices. We pick stacks based on the constraints of your sector — not what's trending on Twitter.",
+    accent: "#1565C0",
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    ),
+  },
+];
+
+function IndustryCard({
+  industry,
+  index,
+  featured = false,
+}: {
+  industry: (typeof industries)[number];
+  index: number;
+  featured?: boolean;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: index * 0.05, ease: [0.4, 0, 0.2, 1] }}
+      whileHover={{ y: -6 }}
+      className={`h-full ${featured ? "sm:col-span-2 lg:col-span-3" : ""}`}
+    >
+      <Link
+        href={`/industries/${industry.slug}`}
+        className="group relative block h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
+        style={
+          {
+            "--card-glow": `${industry.accent}55`,
+          } as React.CSSProperties
+        }
+      >
+        <div
+          className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.35] transition-opacity duration-500"
+          style={{ backgroundColor: industry.accent }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{ borderColor: `${industry.accent}33` }}
+        />
+
+        <div
+          className={`relative p-6 lg:p-7 flex h-full ${
+            featured ? "flex-col lg:flex-row lg:items-center gap-6" : "flex-col"
+          }`}
+        >
+          {/* Icon + stat row */}
+          <div
+            className={`flex items-start justify-between gap-3 ${
+              featured ? "lg:flex-col lg:items-start lg:justify-start lg:shrink-0" : "mb-5"
+            }`}
+          >
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-transform duration-500 group-hover:scale-105"
+              style={{
+                backgroundColor: industry.accent,
+                boxShadow: `0 12px 28px -10px ${industry.accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+              }}
+            >
+              {industry.icon}
+            </div>
+            <span
+              className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
+                featured ? "lg:mt-3" : ""
+              }`}
+              style={{
+                color: industry.accent,
+                borderColor: `${industry.accent}40`,
+                backgroundColor: `${industry.accent}0A`,
+              }}
+            >
+              Industry
+            </span>
+          </div>
+
+          {/* Title + tagline */}
+          <div className="flex-1 min-w-0">
+            <h3 className={`font-bold text-deep-blue tracking-tight leading-snug ${featured ? "text-2xl lg:text-3xl" : "text-lg"}`}>
+              {industry.name}
+            </h3>
+            <p className={`mt-2 text-deep-blue/65 leading-relaxed ${featured ? "text-base" : "text-sm"}`}>
+              {industry.tagline}
+            </p>
+          </div>
+
+          {/* Stat callout + arrow */}
+          <div
+            className={`${
+              featured
+                ? "lg:shrink-0"
+                : "mt-6 pt-5 border-t border-deep-blue/[0.06]"
+            } flex items-center justify-between gap-3`}
+          >
+            <div className="flex items-baseline gap-2">
+              <span
+                className={`font-bold tracking-tight tabular-nums ${
+                  featured ? "text-3xl lg:text-4xl" : "text-xl"
+                }`}
+                style={{ color: industry.accent }}
+              >
+                {industry.stat.value}
+              </span>
+              <span className="text-deep-blue/50 text-xs">
+                {industry.stat.label}
+              </span>
+            </div>
+            <span
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 shrink-0"
+              style={{ backgroundColor: `${industry.accent}14` }}
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke={industry.accent}
+                strokeWidth={2.4}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function IndustriesPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
+      {/* ───────── Hero ───────── */}
+      <section className="pt-32 pb-16 lg:pb-20 relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+        <div className="noise-overlay" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">
-              Industries
-            </p>
-            <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              Empowering Industries with{" "}
-              <span className="gradient-text">Targeted Digital Solutions</span>
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <AnimatedSection>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-neon-blue opacity-75 animate-ping" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-blue" />
+              </span>
+              <span className="text-[11px] font-semibold text-neon-blue tracking-wider uppercase">
+                7 industries · 250+ projects shipped
+              </span>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.1}>
+            <h1
+              className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
+              style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
+            >
+              Industry expertise,
+              <br />
+              <span className="gradient-text glow-text">built into the work.</span>
             </h1>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed">
-              We deliver tailored digital solutions to address the unique challenges of your industry,
-              driving efficiency and innovation.
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto">
+              Every sector has its own constraints, regulations, and user
+              expectations. We bring vetted patterns from past clients — so
+              your project doesn&apos;t start from a blank page.
             </p>
           </AnimatedSection>
-        </div>
-      </section>
 
-      {/* Visual Banner */}
-      <section className="py-12 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection className="text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-white/10 bg-white/[0.02]">
-              <svg className="w-5 h-5 text-neon-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="text-gray-300 text-sm font-medium">Accelerating Innovation Globally Across Every Industry</span>
+          <AnimatedSection delay={0.3}>
+            <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+              <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="inline-flex">
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                >
+                  Talk to a sector expert
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.span>
+              <a
+                href="#industries-grid"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+              >
+                Browse industries ↓
+              </a>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Industries Grid */}
-      <section className="py-16 bg-light-accent">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* dark → light */}
+      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
+
+      {/* ───────── Industries grid ───────── */}
+      <section
+        id="industries-grid"
+        className="py-20 lg:py-24 bg-light-accent relative overflow-hidden"
+      >
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-14">
+            <AnimatedSection className="lg:col-span-7">
+              <p className="eyebrow text-neon-purple">Sectors we serve</p>
+              <h2 className="mt-3 h-section text-deep-blue">
+                Pick the industry closest to{" "}
+                <span className="gradient-text-dark">yours.</span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+                Each page details the recurring friction we hear in that sector
+                and what we typically ship to solve it.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {industries.map((industry, i) => (
-              <AnimatedSection key={industry.slug} delay={i * 0.05}>
-                <Link href={`/industries/${industry.slug}`}>
-                  <motion.div
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.3 }}
-                    className="group relative h-full rounded-2xl overflow-hidden cursor-pointer"
+              <IndustryCard
+                key={industry.slug}
+                industry={industry}
+                index={i}
+                featured={i === industries.length - 1}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* light → dark */}
+      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
+
+      {/* ───────── Why industry expertise ───────── */}
+      <section className="py-20 lg:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 grid-bg" />
+        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.06] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-14">
+            <AnimatedSection className="lg:col-span-7">
+              <p className="eyebrow text-neon-blue">Why it matters</p>
+              <h2 className="mt-3 h-section text-white">
+                Industry expertise{" "}
+                <span className="gradient-text">isn&apos;t a tagline.</span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                It&apos;s the difference between a generic build and one that
+                holds up to the actual constraints of your sector. Here&apos;s
+                what that looks like for us.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {expertisePillars.map((p, i) => (
+              <AnimatedSection key={p.title} delay={i * 0.07}>
+                <div
+                  className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 overflow-hidden"
+                  style={
+                    {
+                      "--card-glow": `${p.accent}55`,
+                    } as React.CSSProperties
+                  }
+                >
+                  <div
+                    className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.15] group-hover:opacity-[0.32] transition-opacity duration-500"
+                    style={{ backgroundColor: p.accent }}
+                  />
+                  <div
+                    className="relative w-12 h-12 rounded-xl flex items-center justify-center text-white"
+                    style={{
+                      backgroundColor: p.accent,
+                      boxShadow: `0 12px 28px -10px ${p.accent}80`,
+                    }}
                   >
-                    <div className={`absolute inset-0 ${industry.color} opacity-10 group-hover:opacity-20 transition-opacity duration-500`} />
-                    <div className="relative h-full p-8 rounded-2xl border border-deep-blue/5 bg-white/60 group-hover:bg-white group-hover:shadow-lg group-hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm flex flex-col">
-                      <div className={`w-16 h-16 rounded-2xl ${industry.color} flex items-center justify-center text-white shadow-lg mb-5`}>
-                        {industry.icon}
-                      </div>
-                      <h3 className="text-xl font-bold text-deep-blue mb-3">{industry.name}</h3>
-                      <p className="text-deep-blue/60 leading-relaxed flex-1">{industry.description}</p>
-                      <div className="mt-5 flex items-center gap-2 text-neon-blue text-sm font-medium opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300">
-                        Explore solutions
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </div>
-                    </div>
-                  </motion.div>
-                </Link>
+                    {p.icon}
+                  </div>
+                  <h3 className="relative mt-5 h-card text-white">{p.title}</h3>
+                  <p className="relative mt-2.5 text-sm text-gray-400 leading-relaxed">
+                    {p.description}
+                  </p>
+                </div>
               </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 relative">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Industry-Specific Solutions for{" "}
-              <span className="gradient-text">Your Teams</span>
-            </h2>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed">
-              Every industry has unique demands, regulations, and customer expectations. We deliver
-              tailored solutions built around your sector&apos;s realities, equipping your teams with the
-              right systems and strategies to improve performance, accelerate execution, and drive
-              measurable results.
-            </p>
-            <div className="mt-10">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
-              >
-                Discover Your Solution
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      {/* ───────── Final CTA ───────── */}
+      <CTABanner
+        eyebrow="Sector-specific solutions"
+        heading={
+          <>
+            Don&apos;t see your industry?{" "}
+            <span className="gradient-text">Tell us about it.</span>
+          </>
+        }
+        description="Every industry has unique demands, regulations, and customer expectations. We tailor our work to your sector's realities — even if it's niche."
+        primaryLabel="Talk to a sector expert"
+        primaryHref="/contact"
+        secondaryLabel="See services"
+        secondaryHref="/services"
+      />
     </>
   );
 }

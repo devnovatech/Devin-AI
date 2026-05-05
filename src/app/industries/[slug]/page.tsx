@@ -1,9 +1,15 @@
 "use client";
 
+import { ReactNode } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
+import SectionDivider from "@/components/ui/SectionDivider";
+import CTABanner from "@/components/CTABanner";
+
+const DEEP = "#0a1628";
+const LIGHT = "#e3f2fd";
 
 interface IndustryData {
   title: string;
@@ -210,88 +216,445 @@ const industriesData: Record<string, IndustryData> = {
   },
 };
 
+/* ───────── Industry meta (spec card data) ───────── */
+
+interface IndustryMeta {
+  shortLabel: string;
+  compliance: string;
+  projectsShipped: string;
+  typicalEngagement: string;
+  topFocus: string[];
+  accent: string;
+  icon: ReactNode;
+}
+
+const industryMeta: Record<string, IndustryMeta> = {
+  healthcare: {
+    shortLabel: "Healthcare",
+    compliance: "HIPAA · HL7 · FHIR · GDPR",
+    projectsShipped: "30+ platforms",
+    typicalEngagement: "12–20 weeks",
+    topFocus: ["Telemedicine", "EHR integration", "Patient portals"],
+    accent: "#0288D1",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    ),
+  },
+  fintech: {
+    shortLabel: "FinTech",
+    compliance: "PCI-DSS · SOC 2 · KYC · AML",
+    projectsShipped: "25+ platforms",
+    typicalEngagement: "10–18 weeks",
+    topFocus: ["Payments", "Risk modeling", "Compliance automation"],
+    accent: "#1565C0",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  "ecommerce-retail": {
+    shortLabel: "E-commerce",
+    compliance: "PCI-DSS · GDPR · CCPA",
+    projectsShipped: "40+ storefronts",
+    typicalEngagement: "8–14 weeks",
+    topFocus: ["Conversion optimization", "Headless commerce", "Inventory"],
+    accent: "#0277BD",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+      </svg>
+    ),
+  },
+  logistics: {
+    shortLabel: "Logistics",
+    compliance: "ISO 27001 · GDPR",
+    projectsShipped: "15+ platforms",
+    typicalEngagement: "12–16 weeks",
+    topFocus: ["Real-time tracking", "Route optimization", "Workforce tools"],
+    accent: "#00ACC1",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+      </svg>
+    ),
+  },
+  education: {
+    shortLabel: "Education",
+    compliance: "FERPA · COPPA · WCAG 2.1",
+    projectsShipped: "20+ LMS builds",
+    typicalEngagement: "10–18 weeks",
+    topFocus: ["LMS platforms", "Analytics", "Accessibility"],
+    accent: "#1E88E5",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+    ),
+  },
+  "travel-hospitality": {
+    shortLabel: "Travel",
+    compliance: "PCI-DSS · GDPR",
+    projectsShipped: "12+ platforms",
+    typicalEngagement: "10–16 weeks",
+    topFocus: ["Booking engines", "PMS integration", "Guest experiences"],
+    accent: "#039BE5",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
+  "saas-startups": {
+    shortLabel: "SaaS & Startups",
+    compliance: "SOC 2 · GDPR · CCPA",
+    projectsShipped: "100+ MVPs & scale-ups",
+    typicalEngagement: "8–14 weeks",
+    topFocus: ["MVP velocity", "Cloud architecture", "Growth engineering"],
+    accent: "#0277BD",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    ),
+  },
+};
+
+const allIndustryTitles: Record<string, { title: string; tagline: string }> = {
+  healthcare: { title: "Healthcare & HealthTech", tagline: "HIPAA-compliant platforms, telemedicine, and patient management." },
+  fintech: { title: "FinTech", tagline: "Secure financial platforms with regulatory-ready architecture." },
+  "ecommerce-retail": { title: "E-commerce & Retail", tagline: "Conversion-tuned storefronts and inventory at scale." },
+  logistics: { title: "Logistics & Transportation", tagline: "Real-time tracking, fleet management, route optimization." },
+  education: { title: "Education & EdTech", tagline: "Interactive learning platforms and student engagement tools." },
+  "travel-hospitality": { title: "Travel & Hospitality", tagline: "Booking platforms and guest portals." },
+  "saas-startups": { title: "SaaS & Tech Startups", tagline: "MVPs to scale-ups, speed without sacrificing architecture." },
+};
+
+const relatedIndustryMap: Record<string, string[]> = {
+  healthcare: ["fintech", "education", "saas-startups"],
+  fintech: ["healthcare", "ecommerce-retail", "saas-startups"],
+  "ecommerce-retail": ["fintech", "logistics", "travel-hospitality"],
+  logistics: ["ecommerce-retail", "fintech", "saas-startups"],
+  education: ["healthcare", "saas-startups", "ecommerce-retail"],
+  "travel-hospitality": ["ecommerce-retail", "logistics", "saas-startups"],
+  "saas-startups": ["fintech", "ecommerce-retail", "education"],
+};
+
+/* Recent work — illustrative case studies per industry */
+const recentWorkByIndustry: Record<string, Array<{ client: string; summary: string; metric: string; metricLabel: string }>> = {
+  healthcare: [
+    { client: "HealthBridge", summary: "HIPAA-compliant telemedicine platform with EHR integration.", metric: "14", metricLabel: "hospitals onboarded in Q1" },
+    { client: "MediTrack", summary: "Patient adherence app with AI-powered medication reminders.", metric: "+62%", metricLabel: "adherence rate" },
+  ],
+  fintech: [
+    { client: "FinFlow Technologies", summary: "Real-time analytics platform powering financial decisions for SMBs.", metric: "50k+", metricLabel: "monthly active users" },
+    { client: "PayWise", summary: "PCI-DSS-compliant payment gateway with fraud detection.", metric: "$2.1M", metricLabel: "transactions / day" },
+  ],
+  "ecommerce-retail": [
+    { client: "ShopSphere", summary: "Mobile commerce app with personalized recommendations.", metric: "4.8★", metricLabel: "App Store rating" },
+    { client: "RetailNow", summary: "Headless storefront with optimized checkout flow.", metric: "+24%", metricLabel: "conversion lift" },
+  ],
+  logistics: [
+    { client: "RouteOptima", summary: "Real-time fleet tracking with AI route optimization.", metric: "−18%", metricLabel: "fuel costs" },
+    { client: "FreightLine", summary: "Driver app with digital proof-of-delivery and compliance.", metric: "200+", metricLabel: "drivers onboarded" },
+  ],
+  education: [
+    { client: "EduTech Global", summary: "LMS with gamification and AI-assisted tutoring.", metric: "12 schools", metricLabel: "deployed across" },
+    { client: "LearnPath", summary: "Accessible (WCAG-AA) corporate training platform.", metric: "50k+", metricLabel: "learners served" },
+  ],
+  "travel-hospitality": [
+    { client: "StaySwift", summary: "Hotel booking engine with dynamic pricing.", metric: "+31%", metricLabel: "direct booking lift" },
+    { client: "GuideAway", summary: "Mobile concierge app with offline support.", metric: "8 markets", metricLabel: "shipped to" },
+  ],
+  "saas-startups": [
+    { client: "FinFlow Technologies", summary: "Series B SaaS — platform rebuild for 10× scale.", metric: "+240%", metricLabel: "active user growth" },
+    { client: "LaunchKit", summary: "MVP for a developer-tools startup, kickoff to launch.", metric: "12 weeks", metricLabel: "to launch" },
+  ],
+};
+
+/* ───────── Component ───────── */
+
 export default function IndustryPage() {
   const params = useParams();
   const slug = params.slug as string;
   const industry = industriesData[slug];
+  const meta = industryMeta[slug];
+  const related = (relatedIndustryMap[slug] ?? []).slice(0, 3);
+  const recentWork = recentWorkByIndustry[slug] ?? [];
 
   if (!industry) {
     return (
-      <div className="pt-32 pb-16 text-center min-h-[60vh] flex flex-col items-center justify-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-4xl font-bold text-white">Industry Not Found</h1>
-          <p className="mt-4 text-gray-400">The industry page you&apos;re looking for doesn&apos;t exist.</p>
-          <Link
-            href="/industries"
-            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-neon-blue rounded-full text-white font-semibold hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
-          >
-            Back to Industries
-          </Link>
+      <div className="pt-32 pb-16 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 grid-bg" />
+        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
+        <div className="relative max-w-xl mx-auto px-6 text-center">
+          <div className="text-7xl font-bold gradient-text">404</div>
+          <h1 className="mt-4 h-section text-white">Industry Not Found</h1>
+          <p className="mt-4 body-lead text-gray-400">
+            The industry page you&apos;re looking for doesn&apos;t exist —
+            but we probably still serve it.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/industries"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-neon-blue rounded-full text-white font-semibold text-sm hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+            >
+              Back to Industries
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 transition-all duration-300"
+            >
+              Talk to Us
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 
+  const accent = meta?.accent ?? "#1E88E5";
+
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
+      {/* ───────── Hero with industry spec card ───────── */}
+      <section className="pt-32 pb-16 lg:pb-20 relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
+        <div
+          className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full blur-[120px]"
+          style={{ backgroundColor: `${accent}1A` }}
+        />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+        <div className="noise-overlay" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <AnimatedSection>
             <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
               <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
-              <span>/</span>
+              <span className="text-gray-600">/</span>
               <Link href="/industries" className="hover:text-neon-blue transition-colors">Industries</Link>
-              <span>/</span>
-              <span className="text-neon-blue">{industry.title}</span>
+              <span className="text-gray-600">/</span>
+              <span style={{ color: accent }}>{industry.title}</span>
             </nav>
           </AnimatedSection>
 
-          <AnimatedSection className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              {industry.title}
-            </h1>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed">
-              {industry.heroDescription}
-            </p>
-          </AnimatedSection>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* LEFT — content */}
+            <div className="lg:col-span-7">
+              <AnimatedSection>
+                <div className="flex items-center gap-3">
+                  {meta && (
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center text-white"
+                      style={{
+                        backgroundColor: accent,
+                        boxShadow: `0 12px 28px -10px ${accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                      }}
+                    >
+                      {meta.icon}
+                    </div>
+                  )}
+                  <span
+                    className="text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full border"
+                    style={{
+                      color: accent,
+                      borderColor: `${accent}40`,
+                      backgroundColor: `${accent}0A`,
+                    }}
+                  >
+                    Industry · {meta?.shortLabel ?? "Sector"}
+                  </span>
+                </div>
+
+                <h1 className="mt-6 h-display text-white">{industry.title}</h1>
+                <p className="mt-6 body-lead text-gray-400">
+                  {industry.heroDescription}
+                </p>
+
+                <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                  <motion.span
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex"
+                  >
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold tracking-wide text-sm transition-all duration-300"
+                      style={{
+                        backgroundColor: accent,
+                        boxShadow: `0 12px 28px -10px ${accent}80`,
+                      }}
+                    >
+                      {industry.ctaButton}
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                  </motion.span>
+                  <Link
+                    href="/industries"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+                  >
+                    All industries
+                  </Link>
+                </div>
+              </AnimatedSection>
+            </div>
+
+            {/* RIGHT — spec card */}
+            {meta && (
+              <AnimatedSection direction="right" className="lg:col-span-5">
+                <div
+                  className="relative rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
+                  style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
+                >
+                  <div
+                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
+                    style={{ backgroundColor: accent }}
+                  />
+
+                  <div className="relative">
+                    <p className="eyebrow" style={{ color: accent }}>
+                      Sector snapshot
+                    </p>
+
+                    {/* Compliance */}
+                    <div className="mt-6 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                          Compliance & standards
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.compliance}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Experience */}
+                    <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                          Our experience
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.projectsShipped}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Engagement length */}
+                    <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                          Typical engagement
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.typicalEngagement}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Top focus */}
+                    <div className="mt-5">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                        Top focus areas
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {meta.topFocus.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* Challenges */}
-      <section className="py-16 bg-light-accent">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection className="text-center mb-16">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">Challenges</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-deep-blue">
-              Industry <span className="gradient-text-dark">Pain Points</span>
-            </h2>
-          </AnimatedSection>
+      {/* dark → light */}
+      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
 
-          <div className="grid md:grid-cols-2 gap-6">
+      {/* ───────── Challenges ───────── */}
+      <section className="py-20 bg-light-accent relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+            <AnimatedSection className="lg:col-span-7">
+              <p className="eyebrow text-rose-500/80">Common challenges</p>
+              <h2 className="mt-3 h-section text-deep-blue">
+                What teams in this sector{" "}
+                <span className="gradient-text-dark">keep running into.</span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+                The friction we hear about most often. If any of these feel
+                familiar, you&apos;re definitely not alone.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
             {industry.challenges.map((challenge, i) => {
               const [title, ...descParts] = challenge.split(": ");
               const desc = descParts.join(": ");
               return (
-                <AnimatedSection key={i} delay={i * 0.05}>
+                <AnimatedSection key={i} delay={i * 0.04}>
                   <motion.div
                     whileHover={{ y: -4 }}
-                    transition={{ duration: 0.3 }}
-                    className="h-full p-6 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg transition-all duration-300 backdrop-blur-sm"
+                    transition={{ duration: 0.35 }}
+                    className="group relative h-full p-6 rounded-2xl bg-white border border-deep-blue/[0.07] hover:shadow-[0_20px_40px_-16px_rgba(244,63,94,0.25)] transition-all duration-500 overflow-hidden"
                   >
-                    <div className="flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg className="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <div className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full bg-rose-400/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative flex gap-4">
+                      <div className="w-10 h-10 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-105">
+                        <svg className="w-5 h-5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-bold text-deep-blue mb-1">{title}</h3>
-                        {desc && <p className="text-sm text-deep-blue/60 leading-relaxed">{desc}</p>}
+                        <h3 className="h-card text-deep-blue mb-1">{title}</h3>
+                        {desc && <p className="text-sm text-deep-blue/65 leading-relaxed">{desc}</p>}
                       </div>
                     </div>
                   </motion.div>
@@ -302,36 +665,73 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* Solutions */}
-      <section className="py-16 relative">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center mb-16">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">Solutions</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white max-w-3xl mx-auto">
-              {industry.solutionsHeading}
-            </h2>
-          </AnimatedSection>
+      {/* light → dark */}
+      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
-          <div className="grid md:grid-cols-2 gap-6">
+      {/* ───────── Solutions ───────── */}
+      <section className="py-20 lg:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 grid-bg" />
+        <div
+          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+          style={{ backgroundColor: `${accent}10` }}
+        />
+
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+            <AnimatedSection className="lg:col-span-7">
+              <p className="eyebrow" style={{ color: accent }}>
+                What we deliver
+              </p>
+              <h2 className="mt-3 h-section text-white">
+                {industry.solutionsHeading}
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                Vetted patterns from past projects. We bring these to the
+                table — your job is to tell us what matters most.
+              </p>
+            </AnimatedSection>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
             {industry.solutions.map((solution, i) => {
               const [title, ...descParts] = solution.split(": ");
               const desc = descParts.join(": ");
               return (
-                <AnimatedSection key={i} delay={i * 0.05}>
+                <AnimatedSection key={i} delay={i * 0.04}>
                   <motion.div
                     whileHover={{ y: -4 }}
-                    transition={{ duration: 0.3 }}
-                    className="h-full p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-neon-blue/20 transition-all duration-300"
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                    className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] transition-all duration-500 overflow-hidden"
+                    style={
+                      {
+                        "--card-glow": `${accent}55`,
+                      } as React.CSSProperties
+                    }
                   >
-                    <div className="flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-neon-blue/20 flex items-center justify-center flex-shrink-0 mt-1">
-                        <svg className="w-5 h-5 text-neon-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <div
+                      className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{ backgroundColor: `${accent}22` }}
+                    />
+                    <div
+                      className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{ borderColor: `${accent}33` }}
+                    />
+                    <div className="relative flex gap-4">
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                        style={{
+                          backgroundColor: `${accent}15`,
+                          border: `1px solid ${accent}30`,
+                        }}
+                      >
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-bold text-white mb-1">{title}</h3>
+                        <h3 className="h-card text-white mb-1">{title}</h3>
                         {desc && <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>}
                       </div>
                     </div>
@@ -343,34 +743,166 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-light-accent">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection>
-            <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-deep-blue" />
-              <div className="absolute inset-0 grid-bg opacity-50" />
+      {/* ───────── Recent work in this industry (NEW) ───────── */}
+      {recentWork.length > 0 && (
+        <>
+          <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
+          <section className="py-20 bg-light-accent relative overflow-hidden">
+            <div
+              className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+              style={{ backgroundColor: `${accent}0A` }}
+            />
 
-              <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
-                <h2 className="text-3xl sm:text-4xl font-bold text-white max-w-3xl mx-auto leading-tight">
-                  {industry.ctaHeading}
+            <div className="relative max-w-7xl mx-auto px-6">
+              <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
+                <p className="eyebrow" style={{ color: accent }}>
+                  Recent work in {meta?.shortLabel ?? "this sector"}
+                </p>
+                <h2 className="mt-3 h-section text-deep-blue">
+                  Outcomes, not{" "}
+                  <span className="gradient-text-dark">case-study fluff.</span>
                 </h2>
-                <div className="mt-10">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
-                  >
-                    {industry.ctaButton}
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
-                </div>
+              </AnimatedSection>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                {recentWork.map((cs, i) => (
+                  <AnimatedSection key={cs.client} delay={i * 0.08}>
+                    <motion.div
+                      whileHover={{ y: -6 }}
+                      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                      className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
+                      style={
+                        {
+                          "--card-glow": `${accent}55`,
+                        } as React.CSSProperties
+                      }
+                    >
+                      <div
+                        className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
+                        style={{ backgroundColor: accent }}
+                      />
+
+                      <span
+                        className="self-start text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border"
+                        style={{
+                          color: accent,
+                          borderColor: `${accent}40`,
+                          backgroundColor: `${accent}0A`,
+                        }}
+                      >
+                        {meta?.shortLabel ?? "Industry"}
+                      </span>
+
+                      <h3 className="mt-5 text-xl font-bold text-deep-blue tracking-tight">
+                        {cs.client}
+                      </h3>
+                      <p className="mt-3 text-sm text-deep-blue/65 leading-relaxed flex-1">
+                        {cs.summary}
+                      </p>
+
+                      <div className="mt-6 pt-5 border-t border-deep-blue/[0.07] flex items-baseline gap-3">
+                        <span
+                          className="text-3xl font-bold tracking-tight tabular-nums"
+                          style={{ color: accent }}
+                        >
+                          {cs.metric}
+                        </span>
+                        <span className="text-deep-blue/55 text-xs">
+                          {cs.metricLabel}
+                        </span>
+                      </div>
+                    </motion.div>
+                  </AnimatedSection>
+                ))}
               </div>
             </div>
-          </AnimatedSection>
-        </div>
-      </section>
+          </section>
+          <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
+        </>
+      )}
+
+      {/* ───────── Related industries (NEW) ───────── */}
+      {related.length > 0 && (
+        <section className="py-20 lg:py-24 relative overflow-hidden">
+          <div className="absolute inset-0 grid-bg" />
+
+          <div className="relative max-w-7xl mx-auto px-6">
+            <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
+              <p className="eyebrow text-neon-blue">Related sectors</p>
+              <h2 className="mt-3 h-section text-white">
+                Adjacent industries{" "}
+                <span className="gradient-text">we work with.</span>
+              </h2>
+            </AnimatedSection>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              {related.map((relSlug, i) => {
+                const relMeta = industryMeta[relSlug];
+                const relInfo = allIndustryTitles[relSlug];
+                if (!relMeta || !relInfo) return null;
+                return (
+                  <AnimatedSection key={relSlug} delay={i * 0.08}>
+                    <Link
+                      href={`/industries/${relSlug}`}
+                      className="group relative block h-full rounded-2xl overflow-hidden bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-500 p-6"
+                    >
+                      <div
+                        className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-[0.18] group-hover:opacity-[0.4] transition-opacity duration-500"
+                        style={{ backgroundColor: relMeta.accent }}
+                      />
+
+                      <div className="relative">
+                        <div className="flex items-center justify-between mb-5">
+                          <div
+                            className="w-11 h-11 rounded-xl flex items-center justify-center text-white"
+                            style={{
+                              backgroundColor: relMeta.accent,
+                              boxShadow: `0 12px 28px -10px ${relMeta.accent}80`,
+                            }}
+                          >
+                            {relMeta.icon}
+                          </div>
+                          <span
+                            className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
+                            style={{
+                              color: relMeta.accent,
+                              backgroundColor: `${relMeta.accent}15`,
+                            }}
+                          >
+                            {relMeta.shortLabel}
+                          </span>
+                        </div>
+                        <h3 className="h-card text-white">{relInfo.title}</h3>
+                        <p className="mt-2 text-sm text-gray-400 leading-snug">
+                          {relInfo.tagline}
+                        </p>
+                        <div
+                          className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between text-sm font-semibold"
+                          style={{ color: relMeta.accent }}
+                        >
+                          <span>Explore sector</span>
+                          <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </div>
+                      </div>
+                    </Link>
+                  </AnimatedSection>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── Final CTA ───────── */}
+      <CTABanner
+        eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
+        heading={<>{industry.ctaHeading}</>}
+        description="We've shipped solutions for teams in this space — let's talk about yours."
+        primaryLabel={industry.ctaButton}
+        primaryHref="/contact"
+        secondaryLabel="See all industries"
+        secondaryHref="/industries"
+      />
     </>
   );
 }
