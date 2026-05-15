@@ -18,27 +18,26 @@ interface CTABannerProps {
 }
 
 export default function CTABanner({
-  eyebrow = "Available for new projects",
+  eyebrow = "Now booking Q1 2026",
   heading = (
     <>
-      Have an idea? Let&apos;s turn it into{" "}
-      <span className="gradient-text">something real.</span>
+      Ready to ship the next{" "}
+      <span className="gradient-text">version of your product?</span>
     </>
   ),
-  description = "Tell us about your project and we'll come back with a tailored plan, scope, and timeline within 24 hours.",
-  primaryLabel = "Start a Project",
+  description = "Send us a brief — scope, timelines, must-haves. We come back inside 24 hours with a tailored proposal, team profiles, and a kickoff plan.",
+  primaryLabel = "Start a project",
   primaryHref = "/contact",
-  secondaryLabel = "Explore Services",
+  secondaryLabel = "See capabilities",
   secondaryHref = "/services",
   withPadding = true,
 }: CTABannerProps) {
   return (
-    <section className={`${withPadding ? "py-20" : ""} bg-light-accent overflow-hidden relative`}>
+    <section className={`${withPadding ? "py-20" : ""} bg-section-cta overflow-hidden relative`}>
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection>
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-deep-blue/20">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-deep-blue/20 bg-deep-blue">
             {/* Background */}
-            <div className="absolute inset-0 bg-deep-blue" />
             <div className="absolute inset-0 grid-bg opacity-50" />
             <div className="absolute -top-40 -right-32 w-[500px] h-[500px] bg-neon-blue/20 rounded-full blur-[140px]" />
             <div className="absolute -bottom-40 -left-32 w-[500px] h-[500px] bg-neon-purple/15 rounded-full blur-[140px]" />

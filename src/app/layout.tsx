@@ -4,6 +4,28 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import { ThemeProvider } from "@/components/ThemeProvider";
+
+// Inline script: applies the theme class before paint to avoid FOUC.
+// Policy: a user choice in localStorage always wins. Otherwise we INVERT
+// the OS preference — system light → site dark, system dark → site light.
+const themeInitScript = `
+(function(){
+  try {
+    var t = localStorage.getItem("devinception.theme");
+    if (t !== "light" && t !== "dark") {
+      var prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      t = prefersLight ? "dark" : "light";
+    }
+    var root = document.documentElement;
+    root.classList.remove("light","dark");
+    root.classList.add(t);
+    root.style.colorScheme = t;
+  } catch(_) {
+    document.documentElement.classList.add("dark");
+  }
+})();
+`;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -108,18 +130,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className={`${inter.variable} ${poppins.variable} font-sans antialiased`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <BackToTop />
+        <ThemeProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <BackToTop />
+        </ThemeProvider>
       </body>
     </html>
   );

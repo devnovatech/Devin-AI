@@ -116,25 +116,41 @@ export default function Industries() {
   const active = industries[activeIndex];
 
   return (
-    <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
-      {/* Decorative blooms */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.05] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+    <section className="min-h-screen flex flex-col justify-center py-16 lg:py-20 bg-section-industries relative overflow-hidden">
+      {/* Animated blooms */}
+      <motion.div
+        className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-blue/15 rounded-full blur-[120px] pointer-events-none"
+        animate={{ scale: [1, 1.18, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/12 rounded-full blur-[120px] pointer-events-none"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.55, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+      />
+      <div className="absolute inset-0 dotted-grid-light opacity-40 pointer-events-none" />
+      <div className="noise-overlay" />
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header — split editorial */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-14">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
           <AnimatedSection className="lg:col-span-7">
-            <p className="eyebrow text-neon-purple">Industries</p>
-            <h2 className="mt-3 h-section text-deep-blue">
-              Built for ambitious teams across{" "}
-              <span className="gradient-text-dark">every sector.</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/80">
+                Industries we serve
+              </span>
+            </div>
+            <h2 className="h-section text-white">
+              Domain context,{" "}
+              <span className="gradient-text">on day one.</span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
-            <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              Click an industry to see how we approach it — the recurring
-              friction we hear about, and what we typically ship to solve it.
+            <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+              We&apos;ve shipped in regulated, high-stakes verticals before.
+              Pick one to see the friction we usually hear about — and what
+              we ship to fix it.
             </p>
           </AnimatedSection>
         </div>
@@ -151,13 +167,13 @@ export default function Industries() {
                   <button
                     key={ind.slug}
                     onClick={() => setActiveIndex(i)}
-                    className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border"
+                    className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border backdrop-blur-sm"
                     style={{
-                      backgroundColor: isActive ? ind.accent : "white",
-                      color: isActive ? "white" : "#0a1628",
-                      borderColor: isActive ? "transparent" : "rgba(10,22,40,0.08)",
+                      backgroundColor: isActive ? ind.accent : "rgba(255,255,255,0.05)",
+                      color: isActive ? "white" : "rgba(255,255,255,0.75)",
+                      borderColor: isActive ? "transparent" : "rgba(255,255,255,0.12)",
                       boxShadow: isActive
-                        ? `0 8px 22px -8px ${ind.accent}80`
+                        ? `0 8px 22px -8px ${ind.accent}90`
                         : "none",
                     }}
                   >
@@ -175,11 +191,12 @@ export default function Industries() {
                   <button
                     key={ind.slug}
                     onClick={() => setActiveIndex(i)}
-                    className="group relative w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 overflow-hidden"
+                    className="group relative w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 overflow-hidden border"
                     style={{
-                      backgroundColor: isActive ? "white" : "transparent",
+                      backgroundColor: isActive ? "rgba(255,255,255,0.06)" : "transparent",
+                      borderColor: isActive ? "rgba(255,255,255,0.12)" : "transparent",
                       boxShadow: isActive
-                        ? `0 18px 36px -16px ${ind.accent}55`
+                        ? `0 18px 36px -16px ${ind.accent}90`
                         : "none",
                     }}
                   >
@@ -198,7 +215,7 @@ export default function Industries() {
                         layoutId="industries-tab-tint"
                         className="absolute inset-0 rounded-2xl pointer-events-none"
                         style={{
-                          background: `linear-gradient(90deg, ${ind.accent}10 0%, transparent 70%)`,
+                          background: `linear-gradient(90deg, ${ind.accent}25 0%, transparent 70%)`,
                         }}
                         transition={{
                           type: "spring",
@@ -211,10 +228,10 @@ export default function Industries() {
                     <div
                       className="relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0"
                       style={{
-                        backgroundColor: isActive ? ind.accent : `${ind.accent}15`,
+                        backgroundColor: isActive ? ind.accent : `${ind.accent}25`,
                         color: isActive ? "white" : ind.accent,
                         boxShadow: isActive
-                          ? `0 12px 28px -10px ${ind.accent}80`
+                          ? `0 12px 28px -10px ${ind.accent}90`
                           : "none",
                       }}
                     >
@@ -222,12 +239,12 @@ export default function Industries() {
                     </div>
 
                     <div className="relative flex-1 min-w-0">
-                      <h3 className="font-bold text-deep-blue text-base tracking-tight">
+                      <h3 className="font-bold text-white text-base tracking-tight">
                         {ind.name}
                       </h3>
                       <p
                         className={`text-xs mt-0.5 truncate transition-opacity duration-300 ${
-                          isActive ? "text-deep-blue/55" : "text-deep-blue/40"
+                          isActive ? "text-gray-400" : "text-gray-500"
                         }`}
                       >
                         {ind.shortLabel} · click to explore
@@ -266,7 +283,7 @@ export default function Industries() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 shadow-xl shadow-deep-blue/5 overflow-hidden"
+                className="relative rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden"
                 style={
                   {
                     "--card-glow": `${active.accent}55`,
@@ -275,13 +292,13 @@ export default function Industries() {
               >
                 {/* Big corner glow */}
                 <div
-                  className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-[0.18]"
+                  className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-[0.35]"
                   style={{ backgroundColor: active.accent }}
                 />
                 {/* Hairline accent border */}
                 <div
                   className="pointer-events-none absolute inset-0 rounded-2xl border"
-                  style={{ borderColor: `${active.accent}33` }}
+                  style={{ borderColor: `${active.accent}50` }}
                 />
 
                 <div className="relative">
@@ -303,27 +320,27 @@ export default function Industries() {
                       >
                         Industry · 0{activeIndex + 1} / 0{industries.length}
                       </p>
-                      <h3 className="mt-1 text-2xl lg:text-[1.875rem] font-bold text-deep-blue tracking-tight leading-[1.15]">
+                      <h3 className="mt-1 text-2xl lg:text-[1.875rem] font-bold text-white tracking-tight leading-[1.15]">
                         {active.name}
                       </h3>
                     </div>
                   </div>
 
-                  <p className="mt-6 text-deep-blue/65 leading-relaxed text-[15px]">
+                  <p className="mt-5 text-gray-300 leading-relaxed text-[15px]">
                     {active.description}
                   </p>
 
                   {/* Two-column: challenges vs deliverables */}
-                  <div className="mt-8 grid sm:grid-cols-2 gap-7 sm:gap-8">
+                  <div className="mt-6 grid sm:grid-cols-2 gap-6">
                     <div>
-                      <p className="eyebrow text-rose-500/80">
+                      <p className="eyebrow text-rose-400">
                         Common Challenges
                       </p>
                       <ul className="mt-4 space-y-3">
                         {active.challenges.map((c) => (
                           <li
                             key={c}
-                            className="flex gap-2.5 text-sm text-deep-blue/75 leading-relaxed"
+                            className="flex gap-2.5 text-sm text-gray-400 leading-relaxed"
                           >
                             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0" />
                             <span>{c}</span>
@@ -342,7 +359,7 @@ export default function Industries() {
                         {active.deliverables.map((d) => (
                           <li
                             key={d}
-                            className="flex gap-2.5 text-sm text-deep-blue/75 leading-relaxed"
+                            className="flex gap-2.5 text-sm text-gray-400 leading-relaxed"
                           >
                             <svg
                               className="w-4 h-4 mt-0.5 shrink-0"
@@ -365,8 +382,8 @@ export default function Industries() {
                   </div>
 
                   {/* Footer CTA */}
-                  <div className="mt-8 pt-6 border-t border-deep-blue/[0.07] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                    <span className="text-sm text-deep-blue/50">
+                  <div className="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <span className="text-sm text-gray-500">
                       Working in this industry?
                     </span>
                     <Link
@@ -397,10 +414,10 @@ export default function Industries() {
         </div>
 
         {/* See all link */}
-        <AnimatedSection className="mt-12 text-center">
+        <AnimatedSection className="mt-8 text-center">
           <Link
             href="/industries"
-            className="group inline-flex items-center gap-2 px-7 py-3.5 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white hover:border-deep-blue transition-all duration-300"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
           >
             See all industries we serve
             <svg

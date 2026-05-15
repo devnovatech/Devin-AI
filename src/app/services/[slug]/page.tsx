@@ -8,8 +8,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
 
-const DEEP = "#0a1628";
-const LIGHT = "#e3f2fd";
+const DEEP = "var(--section-deep)";
+const LIGHT = "var(--section-light)";
 
 const ACCENTS = ["#1E88E5", "#0277BD", "#0288D1", "#039BE5", "#00ACC1", "#1565C0"];
 
@@ -965,7 +965,7 @@ export default function ServicePage() {
 
   if (!service) {
     return (
-      <div className="pt-32 pb-16 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="pt-32 pb-16 min-h-[70vh] bg-section-dark flex flex-col items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="relative max-w-xl mx-auto px-6 text-center">
@@ -1000,7 +1000,7 @@ export default function ServicePage() {
   return (
     <>
       {/* ───────── Hero (split layout with spec card) ───────── */}
-      <section className="pt-32 pb-16 lg:pb-20 relative overflow-hidden">
+      <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div
           className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full blur-[120px]"
@@ -1460,7 +1460,7 @@ export default function ServicePage() {
       <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── How we work (4-step) ───────── */}
-      <section className="py-20 lg:py-24 relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div
           className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
@@ -1651,7 +1651,7 @@ export default function ServicePage() {
 
       {/* ───────── Related services (NEW) ───────── */}
       {related.length > 0 && (
-        <section className="py-20 lg:py-24 relative overflow-hidden">
+        <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
           <div className="absolute inset-0 grid-bg" />
 
           <div className="relative max-w-7xl mx-auto px-6">

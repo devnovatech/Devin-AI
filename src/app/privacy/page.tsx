@@ -5,8 +5,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
 
-const DEEP = "#0a1628";
-const LIGHT = "#e3f2fd";
+const DEEP = "var(--section-deep)";
+const LIGHT = "var(--section-light)";
 
 const LAST_UPDATED = "May 13, 2025";
 
@@ -100,7 +100,7 @@ export default function PrivacyPage() {
   return (
     <>
       {/* ───────── Hero ───────── */}
-      <section className="pt-32 pb-16 lg:pb-20 relative overflow-hidden">
+      <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />

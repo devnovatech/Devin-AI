@@ -1,446 +1,914 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, ReactNode } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
-const services = [
+interface Service {
+  title: string;
+  slug: string;
+  tagline: string;
+  accent: string;
+  category: string;
+  description: string;
+  outcomes: string[];
+  stack: string[];
+  icon: ReactNode;
+}
+
+const services: Service[] = [
   {
-    title: "Mobile App Development",
-    slug: "mobile-application",
-    bg: "bg-brand-7",
-    accent: "#0097A7",
-    description:
-      "Native and cross-platform apps engineered for performance, scale, and store-ready quality.",
-    tags: ["iOS", "Android", "Cross-Platform"],
-    icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <rect x="22" y="8" width="36" height="64" rx="6" />
-        <line x1="22" y1="18" x2="58" y2="18" />
-        <line x1="22" y1="58" x2="58" y2="58" />
-        <circle cx="40" cy="65" r="3" />
-        <rect x="30" y="26" width="20" height="12" rx="2" fill="white" fillOpacity="0.2" />
-        <rect x="30" y="42" width="12" height="4" rx="1" fill="white" fillOpacity="0.2" />
-        <rect x="46" y="42" width="4" height="4" rx="1" fill="white" fillOpacity="0.2" />
-      </svg>
-    ),
-    items: [
-      "Native App Development",
-      "Cross-Platform Development",
-      "Backend & API Development",
-      "App Store Optimization",
-      "System Integrations",
-      "MVP & Prototyping",
-      "App Maintenance",
-    ],
-  },
-  {
-    title: "Web Development",
-    slug: "web-development",
-    bg: "bg-brand-8",
-    accent: "#006064",
-    description:
-      "Fast, accessible, SEO-ready web platforms — from marketing sites to full-stack products.",
-    tags: ["Landing Page", "Full-Stack"],
-    icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <rect x="8" y="12" width="64" height="48" rx="4" />
-        <line x1="8" y1="24" x2="72" y2="24" />
-        <circle cx="16" cy="18" r="2" fill="white" fillOpacity="0.4" />
-        <circle cx="22" cy="18" r="2" fill="white" fillOpacity="0.4" />
-        <circle cx="28" cy="18" r="2" fill="white" fillOpacity="0.4" />
-        <path d="M30 38l-8 8 8 8" strokeWidth={2} />
-        <path d="M50 38l8 8-8 8" strokeWidth={2} />
-        <line x1="44" y1="34" x2="36" y2="52" strokeWidth={2} />
-        <rect x="24" y="64" width="32" height="4" rx="2" fill="white" fillOpacity="0.2" />
-      </svg>
-    ),
-    items: [
-      "Frontend Development",
-      "Backend Development",
-      "Full-Stack Development",
-      "Content Management Systems",
-      "Progressive Web Apps",
-      "Web Hosting & Deployment",
-      "Web Security",
-    ],
-  },
-  {
-    title: "UI/UX Design Services",
-    slug: "ui-ux-design",
-    bg: "bg-brand-9",
-    accent: "#1565C0",
-    description:
-      "Research-led design that turns user needs into elegant, conversion-focused experiences.",
-    tags: ["Website", "Mobile App"],
-    icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <rect x="16" y="8" width="32" height="56" rx="4" />
-        <circle cx="32" cy="30" r="8" fill="white" fillOpacity="0.15" />
-        <rect x="22" y="42" width="20" height="3" rx="1.5" fill="white" fillOpacity="0.2" />
-        <rect x="26" y="48" width="12" height="3" rx="1.5" fill="white" fillOpacity="0.15" />
-        <path d="M54 20l8-4v48l-8-4" strokeWidth={1.5} />
-        <circle cx="62" cy="16" r="3" fill="white" fillOpacity="0.3" />
-        <path d="M58 38h10" strokeWidth={1.5} />
-        <circle cx="56" cy="52" r="4" fill="white" fillOpacity="0.2" stroke="white" />
-      </svg>
-    ),
-    items: [
-      "User Research",
-      "Wireframing & Prototyping",
-      "Visual Design",
-      "Interaction Design",
-      "Usability Testing",
-      "Accessibility Design",
-      "Psychology backed designs",
-    ],
-  },
-  {
-    title: "ML & AI Solutions",
+    title: "AI & ML Engineering",
     slug: "machine-learning-ai",
-    bg: "bg-brand-3",
-    accent: "#01579B",
+    tagline: "Production-grade intelligence",
+    accent: "#1E88E5",
+    category: "Build",
     description:
-      "Custom models, NLP, computer vision, and chat assistants embedded into your existing stack.",
-    tags: ["Consultation", "Solutions"],
+      "From LLM-powered copilots to vision pipelines — we ship AI systems that hold up in production, not just in demos.",
+    outcomes: [
+      "Custom GenAI assistants & internal copilots",
+      "Recommendation engines & predictive analytics",
+      "Document AI, computer vision & OCR pipelines",
+      "Evals, monitoring, and MLOps from day one",
+    ],
+    stack: ["OpenAI", "Anthropic", "LangChain", "Python", "PyTorch"],
     icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <circle cx="40" cy="36" r="16" />
-        <circle cx="40" cy="36" r="6" fill="white" fillOpacity="0.2" />
-        <path d="M40 20v-8M56 36h8M40 52v8M24 36h-8" />
-        <path d="M52 24l4-4M52 48l4 4M28 48l-4 4M28 24l-4-4" />
-        <path d="M28 64c0-4 5-8 12-8s12 4 12 8" strokeWidth={1.5} fill="white" fillOpacity="0.1" />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <circle cx="12" cy="12" r="3.5" />
+        <path strokeLinecap="round" d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7.5 7.5L5 5M19 19l-2.5-2.5M7.5 16.5L5 19M19 5l-2.5 2.5" />
       </svg>
     ),
-    items: [
-      "Predictive Analytics",
-      "Natural Language Processing",
-      "Computer Vision",
-      "Recommendation Systems",
-      "Model Deployment",
-      "AI Chatbots",
-      "Custom Algorithms",
+  },
+  {
+    title: "Mobile Engineering",
+    slug: "mobile-application",
+    tagline: "Native and cross-platform apps",
+    accent: "#0097A7",
+    category: "Build",
+    description:
+      "Apps engineered for store-grade quality — fast UI, real-time data, and offline-first thinking baked in.",
+    outcomes: [
+      "iOS & Android in native or Flutter / React Native",
+      "Backend, push, real-time sync & deep linking",
+      "App Store / Play Store launch & ASO",
+      "Long-term maintenance and feature delivery",
     ],
+    stack: ["Swift", "Kotlin", "Flutter", "React Native"],
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <rect x="7" y="2" width="10" height="20" rx="2" />
+        <line x1="11" y1="18" x2="13" y2="18" strokeWidth={2} />
+      </svg>
+    ),
+  },
+  {
+    title: "Web Platforms",
+    slug: "web-development",
+    tagline: "From marketing sites to full-stack products",
+    accent: "#006064",
+    category: "Build",
+    description:
+      "Performant web platforms with the architecture decisions that don't bite you in year two.",
+    outcomes: [
+      "Marketing & content sites with sub-second loads",
+      "Full-stack SaaS apps and internal tools",
+      "Headless CMS, edge functions, and global CDN",
+      "Real-time, multi-tenant, audit-ready by default",
+    ],
+    stack: ["Next.js", "Node", "TypeScript", "PostgreSQL"],
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <rect x="3" y="4" width="18" height="14" rx="2" />
+        <line x1="3" y1="9" x2="21" y2="9" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+      </svg>
+    ),
+  },
+  {
+    title: "Product Design",
+    slug: "ui-ux-design",
+    tagline: "Research-led UI/UX that converts",
+    accent: "#1565C0",
+    category: "Design",
+    description:
+      "Design systems and product surfaces grounded in user research — not just pretty mockups.",
+    outcomes: [
+      "Discovery interviews & usability research",
+      "Design systems with tokens, components, docs",
+      "High-fidelity prototypes for real validation",
+      "WCAG-AA accessibility from the first frame",
+    ],
+    stack: ["Figma", "FigJam", "Maze", "Storybook"],
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l3.5 14.5L13 18l5-5-1.5-7.5L2 2z" />
+        <circle cx="11" cy="11" r="2" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l7-7 3 3-7 7-3-3z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Quality Engineering",
+    slug: "quality-assurance",
+    tagline: "Ship with confidence, not surprises",
+    accent: "#039BE5",
+    category: "Design",
+    description:
+      "Automated and manual QA that catches issues before users do — performance, security, accessibility.",
+    outcomes: [
+      "E2E, integration & visual regression suites",
+      "Performance budgets & Core Web Vitals enforcement",
+      "Pen-tests and OWASP-aligned security review",
+      "CI gates that block bad merges automatically",
+    ],
+    stack: ["Playwright", "Cypress", "k6", "Lighthouse"],
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
   },
   {
     title: "Staff Augmentation",
     slug: "staff-augmentation",
-    bg: "bg-brand-4",
+    tagline: "Senior engineers on demand",
     accent: "#0288D1",
+    category: "Grow",
     description:
-      "Vetted engineers slot into your sprints — flexible, time-zone aligned, and ready from day one.",
-    tags: ["Flexible", "Cost Effective"],
+      "Time-zone-aligned, vetted engineers who slot into your sprints and ship from week one.",
+    outcomes: [
+      "Senior IC & tech lead profiles, vetted in 48h",
+      "Time-zone overlap with US, EU, and APAC teams",
+      "Engineering, design, PM, data & DevOps roles",
+      "Month-to-month flex — scale up or down with runway",
+    ],
+    stack: ["Embedded", "Time-zone aligned", "Long-term"],
     icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <circle cx="30" cy="24" r="8" />
-        <circle cx="52" cy="24" r="8" />
-        <path d="M16 52c0-8 6-14 14-14h2" fill="white" fillOpacity="0.1" />
-        <path d="M64 52c0-8-6-14-14-14h-2" fill="white" fillOpacity="0.1" />
-        <path d="M16 52c0-8 6-14 14-14h20c8 0 14 6 14 14" />
-        <circle cx="40" cy="56" r="6" fill="white" fillOpacity="0.2" />
-        <path d="M38 56l2 2 4-4" strokeWidth={2} />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-    items: [
-      "Cross-Functional Experts",
-      "Seamless Team Integration",
-      "Flexible Team Scaling",
-      "Faster Product Delivery",
-      "Time-Zone Aligned Teams",
-      "Communication-Skilled Teams",
-      "Cost effective",
-    ],
   },
   {
-    title: "Digital Marketing",
-    slug: "digital-marketing",
-    bg: "bg-brand-5",
-    accent: "#039BE5",
-    description:
-      "Strategy, content, and paid campaigns built on data — measurable growth, not vanity metrics.",
-    tags: ["SEO", "Social Media"],
-    icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <path d="M12 56V32l20-12 16 8 20-12v48l-20 12-16-8-20 12V56z" fill="white" fillOpacity="0.1" />
-        <path d="M32 20v48M48 28v48" />
-        <circle cx="32" cy="36" r="4" fill="white" fillOpacity="0.3" />
-        <path d="M52 44l8-8 8 4" strokeWidth={2} />
-        <circle cx="20" cy="48" r="3" fill="white" fillOpacity="0.2" />
-      </svg>
-    ),
-    items: [
-      "Search Engine Optimization",
-      "Pay-Per-Click Advertising",
-      "Social Media Marketing",
-      "Content Marketing",
-      "Email Marketing",
-      "Analytics & Reporting",
-      "Account based marketing",
-    ],
-  },
-  {
-    title: "E-commerce Development",
+    title: "E-commerce",
     slug: "",
-    bg: "bg-brand-7",
+    tagline: "Conversion-tuned storefronts",
     accent: "#0097A7",
+    category: "Grow",
     description:
-      "Conversion-tuned storefronts, secure checkout, and inventory systems that scale with you.",
-    tags: ["Platform", "Payments"],
+      "Storefronts that load fast, check out cleanly, and integrate with the ops stack you actually run.",
+    outcomes: [
+      "Headless commerce on Shopify or custom stacks",
+      "Checkout optimization & cart-recovery flows",
+      "ERP, OMS & inventory sync with audit trails",
+      "PCI-DSS scope reduction and security review",
+    ],
+    stack: ["Shopify", "Stripe", "Hydrogen", "BigCommerce"],
     icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <path d="M16 20h8l8 32h28l6-20H30" strokeWidth={2} />
-        <circle cx="38" cy="60" r="4" />
-        <circle cx="56" cy="60" r="4" />
-        <rect x="34" y="30" width="20" height="14" rx="2" fill="white" fillOpacity="0.15" />
-        <path d="M40 34v6M44 34v6M48 34v6" strokeWidth={1} />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
       </svg>
     ),
-    items: [
-      "Platform Development",
-      "Payment Gateway Integration",
-      "Product Management Systems",
-      "Order Management & Fulfillment",
-      "Security & Compliance",
-      "Higher conversion rates",
-      "Lesser cart abandonment",
-    ],
   },
   {
-    title: "Quality Assurance",
-    slug: "quality-assurance",
-    bg: "bg-brand-8",
-    accent: "#006064",
+    title: "Growth & Marketing",
+    slug: "digital-marketing",
+    tagline: "Measurable growth, not vanity",
+    accent: "#0277BD",
+    category: "Grow",
     description:
-      "Manual and automated testing across platforms — ship with confidence, not surprises.",
-    tags: ["Manual", "Automated"],
+      "SEO, paid, content, and analytics — built on attribution that holds up in a board review.",
+    outcomes: [
+      "SEO strategy & technical site audits",
+      "Paid acquisition with attribution modelling",
+      "Content engines for organic and inbound",
+      "Dashboards & A/B testing baked into the stack",
+    ],
+    stack: ["GA4", "Mixpanel", "GTM", "Ahrefs"],
     icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <path d="M40 8l24 12v20c0 16-10 26-24 32-14-6-24-16-24-32V20L40 8z" fill="white" fillOpacity="0.1" />
-        <path d="M40 8l24 12v20c0 16-10 26-24 32-14-6-24-16-24-32V20L40 8z" />
-        <path d="M30 40l6 6 14-14" strokeWidth={2.5} />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M11 17a4 4 0 01-8 0V7a4 4 0 018 0v10z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 4l6 4-6 4V4z" />
+        <line x1="11" y1="14" x2="15" y2="14" strokeLinecap="round" />
       </svg>
     ),
-    items: [
-      "Manual Testing",
-      "Automated Testing",
-      "Performance Testing",
-      "Security Testing",
-      "Usability Testing",
-      "Cross-Platform Testing",
-      "Bug Tracking & Reporting",
-    ],
   },
   {
-    title: "Project Management",
+    title: "Delivery Management",
     slug: "project-management",
-    bg: "bg-brand-9",
-    accent: "#1565C0",
+    tagline: "Agile delivery, executive clarity",
+    accent: "#01579B",
+    category: "Grow",
     description:
-      "Agile delivery, transparent roadmaps, and stakeholder alignment that keep projects on rails.",
-    tags: ["Agile", "Scrum"],
+      "PM rigor that keeps every workstream on rails — weekly check-ins, transparent burndowns, zero surprises.",
+    outcomes: [
+      "Discovery sprints, scope shaping, RACI matrices",
+      "Two-week cadence with demo and retro built in",
+      "Live burndowns and stakeholder dashboards",
+      "Risk register reviewed every Friday — no drift",
+    ],
+    stack: ["Linear", "Notion", "Slack", "Figma"],
     icon: (
-      <svg className="w-20 h-20" fill="none" viewBox="0 0 80 80" stroke="white" strokeWidth={1.5}>
-        <rect x="12" y="12" width="56" height="56" rx="6" />
-        <line x1="12" y1="28" x2="68" y2="28" />
-        <line x1="32" y1="28" x2="32" y2="68" />
-        <rect x="38" y="34" width="12" height="6" rx="1" fill="white" fillOpacity="0.3" />
-        <rect x="38" y="46" width="20" height="6" rx="1" fill="white" fillOpacity="0.2" />
-        <rect x="38" y="58" width="8" height="6" rx="1" fill="white" fillOpacity="0.15" />
-        <circle cx="22" cy="20" r="2" fill="white" fillOpacity="0.4" />
-        <circle cx="28" cy="20" r="2" fill="white" fillOpacity="0.4" />
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <line x1="3" y1="9" x2="21" y2="9" />
+        <line x1="9" y1="21" x2="9" y2="9" />
       </svg>
     ),
-    items: [
-      "Agile & Scrum",
-      "Project Planning",
-      "Risk Management",
-      "Collaboration Setup",
-      "Stakeholder Communication",
-      "Resource Management",
-      "Change Management",
-    ],
   },
 ];
 
-function ServiceRow({
+/* ───────── Tab button (used on both sides) ───────── */
+function TabButton({
   service,
   index,
+  isActive,
+  onSelect,
+  align,
 }: {
-  service: (typeof services)[0];
+  service: Service;
   index: number;
+  isActive: boolean;
+  onSelect: () => void;
+  align: "left" | "right";
 }) {
-  const accent = service.accent;
-  const numberLabel = String(index + 1).padStart(2, "0");
-  const href = service.slug ? `/services/${service.slug}` : "/services";
-
   return (
-    <Link
-      href={href}
-      className="group relative block"
-      style={{ "--accent": accent } as React.CSSProperties}
+    <button
+      onClick={onSelect}
+      onMouseEnter={onSelect}
+      className={`group relative w-full ${
+        align === "right" ? "text-right" : "text-left"
+      } flex items-center gap-3 px-3.5 py-3 rounded-xl transition-all duration-300`}
     >
-      {/* Left accent bar — grows on hover */}
-      <span
-        className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-0 group-hover:h-[60%] rounded-full transition-all duration-500"
-        style={{ backgroundColor: accent }}
-      />
+      {/* Active glassy layer */}
+      {isActive && (
+        <motion.span
+          layoutId="service-active-bg"
+          className="absolute inset-0 rounded-xl bg-white shadow-lg shadow-deep-blue/5 border border-deep-blue/[0.06]"
+          transition={{ type: "spring", stiffness: 400, damping: 32 }}
+        />
+      )}
 
-      {/* Soft accent tint sweeping in from the left on hover */}
-      <span
-        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: `linear-gradient(90deg, ${accent}0F 0%, transparent 60%)`,
-        }}
-      />
-
-      <div className="relative flex items-center gap-4 sm:gap-6 lg:gap-8 py-7 sm:py-8 lg:py-10 pl-5 sm:pl-7 lg:pl-9 pr-4 sm:pr-6 lg:pr-8 transition-[padding] duration-500 group-hover:pl-7 sm:group-hover:pl-9 lg:group-hover:pl-11">
-        {/* Number */}
-        <span className="font-bold tabular-nums text-base sm:text-lg lg:text-xl shrink-0 w-7 sm:w-9 lg:w-12 text-deep-blue/15 transition-colors duration-500 group-hover:text-[color:var(--accent)] group-hover:opacity-80">
-          {numberLabel}
-        </span>
-
-        {/* Title + description */}
-        <div className="flex-1 min-w-0">
-          <h3 className="text-2xl sm:text-3xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.05] text-deep-blue transition-colors duration-500 group-hover:text-[color:var(--accent)]">
+      {/* On the right side, render in reverse so icon sits on the right */}
+      {align === "right" && (
+        <div className="relative flex-1 min-w-0">
+          <h3
+            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${
+              isActive
+                ? "text-deep-blue"
+                : "text-deep-blue/75 group-hover:text-deep-blue"
+            }`}
+          >
             {service.title}
           </h3>
-          <p className="mt-2 sm:mt-3 text-sm sm:text-[15px] text-deep-blue/55 leading-relaxed max-w-2xl">
-            {service.description}
+          <p
+            className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${
+              isActive ? "text-deep-blue/55" : "text-deep-blue/40"
+            }`}
+          >
+            {service.tagline}
           </p>
         </div>
+      )}
 
-        {/* Tags — fade in on hover (desktop only) */}
-        <div className="hidden lg:flex flex-wrap gap-1.5 max-w-[210px] justify-end items-center opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-          {service.tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-2.5 py-1 text-[10.5px] font-semibold rounded-full border tracking-wide"
-              style={{
-                borderColor: `${accent}40`,
-                color: accent,
-                backgroundColor: `${accent}0A`,
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+      <span
+        className="relative w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
+        style={{
+          backgroundColor: isActive ? service.accent : `${service.accent}15`,
+          color: isActive ? "white" : service.accent,
+          boxShadow: isActive
+            ? `0 10px 22px -8px ${service.accent}80`
+            : "none",
+        }}
+      >
+        {service.icon}
+      </span>
 
-        {/* Arrow — flips to a diagonal "open" arrow with accent fill on hover */}
-        <span
-          className="shrink-0 w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border border-deep-blue/15 flex items-center justify-center text-deep-blue/60 transition-all duration-500 group-hover:border-transparent group-hover:text-white group-hover:-rotate-45"
-          style={{
-            backgroundColor: "transparent",
-          }}
-        >
-          {/* The accent fill is layered behind so the rotation feels clean */}
-          <span
-            className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style={{ backgroundColor: accent }}
-          />
-          <svg
-            className="relative w-4 h-4 sm:w-5 sm:h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2.5}
+      {align === "left" && (
+        <div className="relative flex-1 min-w-0">
+          <h3
+            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${
+              isActive
+                ? "text-deep-blue"
+                : "text-deep-blue/75 group-hover:text-deep-blue"
+            }`}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </span>
-      </div>
-    </Link>
+            {service.title}
+          </h3>
+          <p
+            className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${
+              isActive ? "text-deep-blue/55" : "text-deep-blue/40"
+            }`}
+          >
+            {service.tagline}
+          </p>
+        </div>
+      )}
+
+      {/* Index marker — sits on the outer edge */}
+      <span
+        className={`relative font-mono text-[10px] font-semibold tracking-wider transition-colors duration-300 ${
+          isActive ? "text-deep-blue/40" : "text-deep-blue/20"
+        }`}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+    </button>
   );
 }
 
-const INITIAL_COUNT = 5;
-
 export default function Services() {
-  const [showAll, setShowAll] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
 
-  const visibleServices = showAll ? services : services.slice(0, INITIAL_COUNT);
+  // Split services into two columns (4 left, 5 right) for the side rails
+  const leftServices = services.slice(0, 4);
+  const rightServices = services.slice(4);
+  const active = services[activeIdx];
 
   return (
     <section
       id="services"
-      className="py-20 lg:py-24 relative bg-light-accent overflow-hidden"
+      className="min-h-screen flex flex-col justify-center py-16 lg:py-20 relative bg-section-services overflow-hidden"
     >
-      {/* Decorative blooms */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      {/* Subtle decor */}
+      <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-neon-blue/8 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-purple/8 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        {/* Header — left-aligned for editorial feel */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-14">
+      <div className="relative max-w-7xl mx-auto px-6 w-full">
+        {/* Header — editorial split */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
           <AnimatedSection className="lg:col-span-7">
-            <p className="eyebrow text-neon-purple">What We Offer</p>
-            <h2 className="mt-3 h-section text-deep-blue">
-              Turning ideas into{" "}
-              <span className="gradient-text-dark">reality.</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                Capabilities
+              </span>
+            </div>
+            <h2 className="h-section text-deep-blue">
+              Senior engineering,{" "}
+              <span className="gradient-text-dark">across the stack.</span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              An end-to-end studio — design, engineering, AI/ML, and growth.
-              Pick one capability or weave several into a single engagement.
+              Nine specialties under one roof — from product design to AI in
+              production. Hire one capability or weave several into a single
+              engagement.
             </p>
           </AnimatedSection>
         </div>
 
-        {/* List */}
-        <div className="border-t border-deep-blue/[0.08]">
-          {visibleServices.map((service, i) => (
-            <AnimatedSection
-              key={service.title}
-              delay={i < INITIAL_COUNT ? i * 0.04 : 0}
-            >
-              <div className="border-b border-deep-blue/[0.08]">
-                <ServiceRow service={service} index={i} />
-              </div>
-            </AnimatedSection>
-          ))}
+        {/* 3-column layout: tabs · center detail · tabs */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 lg:items-stretch">
+          {/* LEFT TABS */}
+          <div className="lg:col-span-3 lg:order-1 flex flex-col gap-1.5">
+            <p className="hidden lg:block text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pl-3.5">
+              Build · Design
+            </p>
+            {leftServices.map((s, i) => (
+              <TabButton
+                key={s.title}
+                service={s}
+                index={i}
+                isActive={activeIdx === i}
+                onSelect={() => setActiveIdx(i)}
+                align="left"
+              />
+            ))}
+          </div>
+
+          {/* CENTER VISUAL SHOWCASE */}
+          <div className="lg:col-span-6 lg:order-2 order-first lg:px-2 lg:h-full min-h-[360px] flex">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.title}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                className="relative w-full rounded-2xl overflow-hidden shadow-2xl shadow-deep-blue/15"
+                style={{
+                  background: `radial-gradient(circle at 30% 20%, ${active.accent} 0%, ${active.accent}e6 35%, ${active.accent}99 100%)`,
+                }}
+              >
+                {/* Decor layers */}
+                <div className="absolute inset-0 bg-mesh-dark opacity-45" />
+                <div className="absolute inset-0 grid-bg opacity-20" />
+                <div className="noise-overlay" />
+
+                {/* Inner vignette for depth */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 50% 55%, transparent 30%, rgba(0,0,0,0.25) 100%)",
+                  }}
+                />
+
+                {/* Floating glow orbs */}
+                <motion.div
+                  className="absolute -top-24 -right-20 w-72 h-72 rounded-full bg-white/25 blur-3xl"
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.35, 0.55, 0.35] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="absolute -bottom-24 -left-20 w-64 h-64 rounded-full bg-white/15 blur-3xl"
+                  animate={{ scale: [1.1, 1, 1.1], opacity: [0.25, 0.4, 0.25] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                {/* Static constellation dots */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[
+                    { top: "12%", left: "18%", size: 1.5, op: 0.5 },
+                    { top: "22%", left: "82%", size: 2, op: 0.7 },
+                    { top: "38%", left: "8%", size: 1, op: 0.4 },
+                    { top: "55%", left: "92%", size: 1.5, op: 0.55 },
+                    { top: "72%", left: "14%", size: 2, op: 0.6 },
+                    { top: "82%", left: "78%", size: 1, op: 0.4 },
+                    { top: "30%", left: "52%", size: 1, op: 0.35 },
+                    { top: "62%", left: "44%", size: 1, op: 0.3 },
+                  ].map((d, i) => (
+                    <motion.span
+                      key={i}
+                      className="absolute rounded-full bg-white"
+                      style={{
+                        top: d.top,
+                        left: d.left,
+                        width: d.size * 2,
+                        height: d.size * 2,
+                        opacity: d.op,
+                      }}
+                      animate={{ opacity: [d.op * 0.4, d.op, d.op * 0.4] }}
+                      transition={{
+                        duration: 2 + (i % 3),
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: i * 0.3,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {/* Orbiting rings + scanning arc SVG */}
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 400 400"
+                  fill="none"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <defs>
+                    <linearGradient id="scan-grad" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="white" stopOpacity="0" />
+                      <stop offset="100%" stopColor="white" stopOpacity="0.65" />
+                    </linearGradient>
+                  </defs>
+
+                  <motion.g
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                    style={{ transformOrigin: "200px 200px" }}
+                  >
+                    <circle
+                      cx="200"
+                      cy="200"
+                      r="160"
+                      stroke="white"
+                      strokeOpacity="0.2"
+                      strokeWidth="1"
+                      strokeDasharray="3 7"
+                    />
+                  </motion.g>
+                  <motion.g
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+                    style={{ transformOrigin: "200px 200px" }}
+                  >
+                    <circle
+                      cx="200"
+                      cy="200"
+                      r="115"
+                      stroke="white"
+                      strokeOpacity="0.25"
+                      strokeWidth="1"
+                    />
+                  </motion.g>
+                  <motion.g
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+                    style={{ transformOrigin: "200px 200px" }}
+                  >
+                    <circle
+                      cx="200"
+                      cy="200"
+                      r="195"
+                      stroke="white"
+                      strokeOpacity="0.12"
+                      strokeWidth="1"
+                      strokeDasharray="1 5"
+                    />
+                  </motion.g>
+
+                  {/* Scanning radar arc */}
+                  <motion.g
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    style={{ transformOrigin: "200px 200px" }}
+                  >
+                    <path
+                      d="M 200 200 L 360 200 A 160 160 0 0 0 285 60 Z"
+                      fill="url(#scan-grad)"
+                      opacity="0.35"
+                    />
+                  </motion.g>
+                </svg>
+
+                {/* Corner brackets */}
+                <span className="absolute top-4 left-4 w-4 h-4 border-l-2 border-t-2 border-white/40 rounded-tl" />
+                <span className="absolute top-4 right-4 w-4 h-4 border-r-2 border-t-2 border-white/40 rounded-tr" />
+                <span className="absolute bottom-4 left-4 w-4 h-4 border-l-2 border-b-2 border-white/40 rounded-bl" />
+                <span className="absolute bottom-4 right-4 w-4 h-4 border-r-2 border-b-2 border-white/40 rounded-br" />
+
+                {/* Top labels */}
+                <div className="absolute top-6 left-7 right-7 flex items-center justify-between text-white/90 z-10">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inset-0 rounded-full bg-white animate-ping opacity-75" />
+                      <span className="relative rounded-full h-2 w-2 bg-white" />
+                    </span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] font-semibold">
+                      {active.category}
+                    </span>
+                  </div>
+                  <span className="font-mono text-[10px] tracking-wider px-2 py-0.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
+                    {String(activeIdx + 1).padStart(2, "0")} /{" "}
+                    {String(services.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* Centerpiece: floating icon with orbiting dots */}
+                <div className="absolute inset-0 flex items-center justify-center pt-4">
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    className="relative"
+                  >
+                    {/* Orbital dots */}
+                    <motion.div
+                      className="absolute inset-0 flex items-center justify-center"
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 18,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      <span
+                        className="absolute w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+                        style={{ transform: "translateY(-82px)" }}
+                      />
+                      <span
+                        className="absolute w-1.5 h-1.5 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                        style={{ transform: "translate(72px, 40px)" }}
+                      />
+                      <span
+                        className="absolute w-1.5 h-1.5 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                        style={{ transform: "translate(-72px, 40px)" }}
+                      />
+                    </motion.div>
+
+                    {/* Outer pulse ring */}
+                    <motion.div
+                      className="absolute -inset-8 rounded-[2rem] border border-white/15"
+                      animate={{ scale: [1, 1.12, 1], opacity: [0.3, 0.55, 0.3] }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+
+                    {/* Inner glow ring */}
+                    <motion.div
+                      className="absolute -inset-4 rounded-3xl border border-white/30"
+                      animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.75, 0.4] }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+
+                    {/* Icon tile */}
+                    <div
+                      className="relative w-28 h-28 lg:w-32 lg:h-32 rounded-3xl bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-2xl"
+                      style={{
+                        boxShadow: `0 25px 50px -12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.4)`,
+                      }}
+                    >
+                      <div className="scale-[2.8] lg:scale-[3.2] drop-shadow-lg">
+                        {active.icon}
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Bottom scrim for legibility */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.35) 100%)",
+                  }}
+                />
+
+                {/* Bottom title */}
+                <div className="absolute bottom-7 left-7 right-7 text-white z-10">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="h-px w-6 bg-white/60" />
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-white/80 font-semibold">
+                      {active.tagline}
+                    </p>
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-bold tracking-tight drop-shadow-md">
+                    {active.title}
+                  </h3>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* RIGHT TABS */}
+          <div className="lg:col-span-3 lg:order-3 flex flex-col gap-1.5">
+            <p className="hidden lg:block text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pr-3.5 text-right">
+              Grow · Ops
+            </p>
+            {rightServices.map((s, i) => {
+              const realIdx = i + leftServices.length;
+              return (
+                <TabButton
+                  key={s.title}
+                  service={s}
+                  index={realIdx}
+                  isActive={activeIdx === realIdx}
+                  onSelect={() => setActiveIdx(realIdx)}
+                  align="right"
+                />
+              );
+            })}
+          </div>
         </div>
 
-        {/* View more / less */}
-        {services.length > INITIAL_COUNT && (
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-5">
-            <p className="text-sm text-deep-blue/50">
-              Showing{" "}
-              <span className="font-semibold text-deep-blue">
-                {visibleServices.length}
-              </span>{" "}
-              of {services.length} capabilities
-            </p>
-            <motion.button
-              onClick={() => setShowAll(!showAll)}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-2 px-7 py-3.5 border border-deep-blue/20 rounded-full text-deep-blue font-semibold text-sm hover:bg-deep-blue hover:text-white hover:border-deep-blue transition-all duration-300"
-            >
-              {showAll ? "Show fewer" : `View all ${services.length} services`}
-              <motion.svg
-                animate={{ rotate: showAll ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
-              </motion.svg>
-            </motion.button>
-          </div>
-        )}
+        {/* BOTTOM DETAIL PANEL — description, outcomes, stack, CTA */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`detail-${active.title}`}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+            className="mt-6 lg:mt-8 relative rounded-3xl bg-white border border-deep-blue/[0.07] shadow-2xl shadow-deep-blue/10 overflow-hidden"
+          >
+            {/* Vertical accent bar */}
+            <div
+              className="absolute top-0 left-0 bottom-0 w-1"
+              style={{
+                background: `linear-gradient(180deg, ${active.accent} 0%, ${active.accent}66 100%)`,
+              }}
+            />
+
+            {/* Subtle dotted pattern background */}
+            <div
+              className="absolute inset-0 opacity-[0.04] pointer-events-none"
+              style={{
+                backgroundImage: `radial-gradient(${active.accent} 1px, transparent 1px)`,
+                backgroundSize: "22px 22px",
+              }}
+            />
+
+            {/* Soft accent glow in top-right */}
+            <div
+              className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none opacity-[0.07] blur-3xl"
+              style={{ background: active.accent }}
+            />
+
+            <div className="relative grid lg:grid-cols-12 gap-8 lg:gap-12 p-6 lg:p-10">
+              {/* Description + stack + CTA */}
+              <div className="lg:col-span-5 flex flex-col">
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ backgroundColor: active.accent }}
+                  />
+                  <p
+                    className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                    style={{ color: active.accent }}
+                  >
+                    About this service
+                  </p>
+                </div>
+
+                {/* Large decorative quote mark */}
+                <div className="relative mt-3">
+                  <span
+                    className="absolute -top-3 -left-1 font-serif text-6xl leading-none select-none pointer-events-none"
+                    style={{ color: `${active.accent}1f` }}
+                    aria-hidden
+                  >
+                    &ldquo;
+                  </span>
+                  <p className="relative pl-6 text-deep-blue/80 leading-relaxed text-[15.5px]">
+                    {active.description}
+                  </p>
+                </div>
+
+                <div className="mt-6 lg:mt-auto lg:pt-8">
+                  <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-2.5">
+                    Tech &amp; tools
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {active.stack.map((s, i) => (
+                      <motion.span
+                        key={s}
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 + i * 0.04 }}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold rounded-full tracking-wide border transition-all duration-200 hover:scale-105"
+                        style={{
+                          color: active.accent,
+                          backgroundColor: `${active.accent}0d`,
+                          borderColor: `${active.accent}26`,
+                        }}
+                      >
+                        <span
+                          className="w-1 h-1 rounded-full"
+                          style={{ backgroundColor: active.accent }}
+                        />
+                        {s}
+                      </motion.span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <Link
+                      href={active.slug ? `/services/${active.slug}` : "/services"}
+                      className="group relative inline-flex items-center justify-center gap-2.5 pl-6 pr-2 py-2 rounded-full text-white font-semibold text-sm transition-all duration-300 hover:shadow-2xl"
+                      style={{
+                        backgroundColor: active.accent,
+                        boxShadow: `0 14px 32px -10px ${active.accent}a0`,
+                      }}
+                    >
+                      <span>Explore service</span>
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
+                        <svg
+                          className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </span>
+                    </Link>
+
+                    <Link
+                      href="/contact"
+                      className="text-sm font-semibold text-deep-blue/60 hover:text-deep-blue transition-colors underline-offset-4 hover:underline"
+                    >
+                      Get a quote →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Outcomes */}
+              <div className="lg:col-span-7 lg:border-l lg:border-deep-blue/[0.07] lg:pl-12">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: active.accent }}
+                    />
+                    <p
+                      className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                      style={{ color: active.accent }}
+                    >
+                      What you ship
+                    </p>
+                  </div>
+                  <span className="font-mono text-[10px] text-deep-blue/40 tracking-wider">
+                    {String(active.outcomes.length).padStart(2, "0")} deliverables
+                  </span>
+                </div>
+
+                <ul className="grid sm:grid-cols-2 gap-x-5 gap-y-2.5">
+                  {active.outcomes.map((o, i) => (
+                    <motion.li
+                      key={o}
+                      initial={{ opacity: 0, x: -6 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: 0.08 + i * 0.05,
+                      }}
+                      className="group relative flex items-start gap-3 p-3 rounded-xl transition-all duration-300 hover:bg-deep-blue/[0.025] cursor-default"
+                    >
+                      {/* Numbered badge */}
+                      <span
+                        className="shrink-0 flex items-center justify-center w-7 h-7 rounded-lg font-mono text-[10px] font-bold transition-all duration-300 group-hover:scale-110"
+                        style={{
+                          color: active.accent,
+                          backgroundColor: `${active.accent}14`,
+                          border: `1px solid ${active.accent}26`,
+                        }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+
+                      <span className="text-[13.5px] text-deep-blue/80 leading-relaxed pt-0.5 group-hover:text-deep-blue transition-colors">
+                        {o}
+                      </span>
+
+                      {/* Hover indicator */}
+                      <span
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 rounded-full transition-all duration-300 group-hover:h-6"
+                        style={{ backgroundColor: active.accent }}
+                      />
+                    </motion.li>
+                  ))}
+                </ul>
+
+                {/* Bottom mini-meta strip */}
+                <div className="mt-6 pt-5 border-t border-deep-blue/[0.06] flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-deep-blue/55">
+                  <div className="flex items-center gap-1.5">
+                    <svg
+                      className="w-3.5 h-3.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke={active.accent}
+                      strokeWidth={2}
+                    >
+                      <circle cx="12" cy="12" r="9" />
+                      <path strokeLinecap="round" d="M12 7v5l3 2" />
+                    </svg>
+                    <span>
+                      <span className="font-semibold text-deep-blue/75">2–6 weeks</span>{" "}
+                      typical engagement
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <svg
+                      className="w-3.5 h-3.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke={active.accent}
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    <span>
+                      <span className="font-semibold text-deep-blue/75">Senior team</span>,
+                      time-zone aligned
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <svg
+                      className="w-3.5 h-3.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke={active.accent}
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                    <span>
+                      <span className="font-semibold text-deep-blue/75">NDA-ready</span>,
+                      audit-friendly
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

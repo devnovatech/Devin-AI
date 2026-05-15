@@ -7,8 +7,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
 
-const DEEP = "#0a1628";
-const LIGHT = "#e3f2fd";
+const DEEP = "var(--section-deep)";
+const LIGHT = "var(--section-light)";
 
 /* ───────── Data ───────── */
 
@@ -222,13 +222,29 @@ const filters: { id: Category | "all"; label: string }[] = [
   { id: "operate", label: "Operate" },
 ];
 
-const processSteps = [
+interface ProcessStepData {
+  number: string;
+  title: string;
+  duration: string;
+  description: string;
+  deliverables: string[];
+  accent: string;
+  icon: ReactNode;
+}
+
+const processSteps: ProcessStepData[] = [
   {
     number: "01",
     title: "Discovery",
     duration: "1–2 weeks",
     description:
       "We start with goals, constraints, and the why. You leave with a scoped roadmap, timeline, and a fixed quote.",
+    deliverables: [
+      "Stakeholder interviews",
+      "Technical & brand audit",
+      "Success metrics",
+      "Fixed-price proposal",
+    ],
     accent: "#1E88E5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
@@ -243,6 +259,12 @@ const processSteps = [
     duration: "2–3 weeks",
     description:
       "User research, wireframes, prototypes, and a visual system. We pressure-test ideas with real users before a line of code is written.",
+    deliverables: [
+      "UX research & flows",
+      "Wireframes & prototypes",
+      "Visual system / tokens",
+      "WCAG-AA accessibility",
+    ],
     accent: "#0288D1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
@@ -256,6 +278,12 @@ const processSteps = [
     duration: "8–14 weeks",
     description:
       "2-week sprints, weekly demos, transparent burndowns. You see progress shipping behind a feature flag from day one — no surprises.",
+    deliverables: [
+      "Bi-weekly demos",
+      "Staging environments",
+      "CI/CD pipeline",
+      "Pair programming",
+    ],
     accent: "#00ACC1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
@@ -269,6 +297,12 @@ const processSteps = [
     duration: "1 week + ongoing",
     description:
       "Production deploy, monitoring dashboards wired in, and a 30-day stabilization window. Then optional retainer for ongoing support.",
+    deliverables: [
+      "Zero-downtime deploy",
+      "Monitoring & observability",
+      "30-day stabilization",
+      "On-call runbook",
+    ],
     accent: "#1565C0",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
@@ -335,7 +369,56 @@ const faqs = [
   },
 ];
 
-/* ───────── Service card ───────── */
+const heroStats = [
+  { value: "250+", label: "Projects shipped" },
+  { value: "9", label: "Capabilities" },
+  { value: "4.9★", label: "Avg rating" },
+  { value: "8+", label: "Years building" },
+];
+
+/* ───────── Service tile (hero grid) ───────── */
+function HeroTile({ service, index }: { service: Service; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16, scale: 0.92 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.45,
+        delay: 0.15 + index * 0.05,
+        ease: [0.4, 0, 0.2, 1],
+      }}
+      whileHover={{ y: -4, scale: 1.04 }}
+      className="group surface-tile relative aspect-square rounded-2xl border flex flex-col items-center justify-center text-center p-3 cursor-default overflow-hidden"
+    >
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(circle at center, ${service.accent}26 0%, transparent 70%)`,
+        }}
+      />
+      <div
+        className="absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ borderColor: `${service.accent}55` }}
+      />
+
+      <div
+        className="relative w-10 h-10 lg:w-11 lg:h-11 rounded-xl flex items-center justify-center text-white mb-2 transition-transform duration-500 group-hover:scale-110"
+        style={{
+          backgroundColor: service.accent,
+          boxShadow: `0 10px 24px -10px ${service.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
+        }}
+      >
+        {service.icon}
+      </div>
+      <p className="relative text-[10px] lg:text-[10.5px] font-semibold text-white/85 leading-tight tracking-tight">
+        {service.title}
+      </p>
+    </motion.div>
+  );
+}
+
+/* ───────── Service card (catalog grid) ───────── */
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
     <motion.div
@@ -343,74 +426,89 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       initial={{ opacity: 0, y: 20, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.4, delay: Math.min(index, 6) * 0.04, ease: [0.4, 0, 0.2, 1] }}
+      transition={{
+        duration: 0.4,
+        delay: Math.min(index, 6) * 0.04,
+        ease: [0.4, 0, 0.2, 1],
+      }}
       className="h-full"
     >
       <Link
         href={`/services/${service.slug}`}
-        className="group relative block h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
+        className="group relative block h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_28px_56px_-18px_var(--card-glow)]"
         style={
           {
-            "--card-glow": `${service.accent}55`,
+            "--card-glow": `${service.accent}66`,
           } as React.CSSProperties
         }
       >
+        {/* Top accent strip */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[3px]"
+          style={{
+            background: `linear-gradient(90deg, ${service.accent} 0%, ${service.accent}00 100%)`,
+          }}
+        />
+
         {/* Corner glow */}
         <div
-          className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
+          className="pointer-events-none absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
           style={{ backgroundColor: service.accent }}
         />
-        {/* Hairline accent border */}
+
+        {/* Dotted pattern */}
         <div
-          className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{ borderColor: `${service.accent}33` }}
+          className="pointer-events-none absolute inset-0 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500"
+          style={{
+            backgroundImage: `radial-gradient(${service.accent} 1px, transparent 1px)`,
+            backgroundSize: "20px 20px",
+          }}
         />
 
         <div className="relative p-6 lg:p-7 flex flex-col h-full">
           {/* Header — icon + category badge */}
           <div className="flex items-start justify-between gap-3 mb-5">
             <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-transform duration-500 group-hover:scale-105"
+              className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-3"
               style={{
                 backgroundColor: service.accent,
-                boxShadow: `0 12px 28px -10px ${service.accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                boxShadow: `0 14px 32px -10px ${service.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
               }}
             >
               {service.icon}
             </div>
             <span
-              className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border"
+              className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full border"
               style={{
                 color: service.accent,
                 borderColor: `${service.accent}40`,
-                backgroundColor: `${service.accent}0A`,
+                backgroundColor: `${service.accent}0F`,
               }}
             >
               {service.category}
             </span>
           </div>
 
-          {/* Title + tagline */}
           <h3 className="text-lg font-bold text-deep-blue tracking-tight leading-snug">
             {service.title}
           </h3>
-          <p className="mt-1 text-sm text-deep-blue/70 leading-snug">
+          <p className="mt-1 text-sm text-deep-blue/65 leading-snug">
             {service.tagline}
           </p>
 
-          {/* Capabilities list */}
+          {/* Capabilities */}
           <ul className="mt-5 space-y-1.5 flex-1">
             {service.capabilities.map((c) => (
               <li
                 key={c}
-                className="flex gap-2 text-[13px] text-deep-blue/65 leading-snug"
+                className="flex gap-2 text-[13px] text-deep-blue/70 leading-snug"
               >
                 <svg
                   className="w-3.5 h-3.5 mt-0.5 shrink-0"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke={service.accent}
-                  strokeWidth={2.4}
+                  strokeWidth={2.5}
                 >
                   <path
                     strokeLinecap="round"
@@ -429,10 +527,10 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
               className="text-sm font-semibold tracking-tight"
               style={{ color: service.accent }}
             >
-              Learn more
+              Explore service
             </span>
             <span
-              className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1"
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1"
               style={{ backgroundColor: `${service.accent}14` }}
             >
               <svg
@@ -440,7 +538,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke={service.accent}
-                strokeWidth={2.4}
+                strokeWidth={2.5}
               >
                 <path
                   strokeLinecap="round"
@@ -462,27 +560,52 @@ function FaqRow({
   a,
   isOpen,
   onToggle,
+  index,
 }: {
   q: string;
   a: string;
   isOpen: boolean;
   onToggle: () => void;
+  index: number;
 }) {
   return (
-    <div className="border-b border-white/[0.08]">
+    <div
+      className={`relative border-b border-white/[0.08] transition-colors duration-300 ${
+        isOpen ? "bg-white/[0.02]" : ""
+      }`}
+    >
+      {/* Accent left bar when open */}
+      <motion.span
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-r-full bg-neon-blue"
+        initial={false}
+        animate={{ height: isOpen ? 32 : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+      />
+
       <button
         type="button"
         onClick={onToggle}
-        className="w-full text-left py-5 flex items-start justify-between gap-4 group"
+        className="w-full text-left py-5 pl-5 pr-5 flex items-start justify-between gap-4 group"
       >
-        <span className="text-base sm:text-lg font-semibold text-white group-hover:text-neon-blue transition-colors">
-          {q}
-        </span>
+        <div className="flex items-start gap-4">
+          <span className="font-mono text-[11px] font-bold text-white/35 group-hover:text-neon-blue/80 transition-colors pt-1.5 tabular-nums">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span
+            className={`text-base sm:text-lg font-semibold transition-colors ${
+              isOpen
+                ? "text-white"
+                : "text-white/85 group-hover:text-neon-blue"
+            }`}
+          >
+            {q}
+          </span>
+        </div>
         <span
-          className={`shrink-0 mt-1 w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-gray-400 transition-all duration-300 ${
+          className={`shrink-0 mt-1 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${
             isOpen
-              ? "rotate-45 bg-neon-blue border-transparent text-white"
-              : "group-hover:border-neon-blue/40 group-hover:text-neon-blue"
+              ? "rotate-45 bg-neon-blue border-transparent text-white shadow-lg shadow-neon-blue/40"
+              : "border-white/15 text-white/55 group-hover:border-neon-blue/40 group-hover:text-neon-blue"
           }`}
         >
           <svg
@@ -505,7 +628,9 @@ function FaqRow({
             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 pr-12 body-base text-gray-400">{a}</p>
+            <p className="pb-6 pl-[3.25rem] pr-12 body-base text-white/65 leading-relaxed">
+              {a}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -517,68 +642,100 @@ function FaqRow({
 export default function ServicesPage() {
   const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
   const [openFaq, setOpenFaq] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
 
   const visibleServices =
     activeFilter === "all"
       ? services
       : services.filter((s) => s.category === activeFilter);
 
+  const step = processSteps[activeStep];
+
   return (
     <>
-      {/* ───────── Hero ───────── */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      {/* ───────── Hero — editorial split ───────── */}
+      <section className="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+        <motion.div
+          className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]"
+          animate={{ scale: [1, 1.12, 1], opacity: [0.55, 0.85, 0.55] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-purple/[0.10] rounded-full blur-[140px]"
+          animate={{ scale: [1, 1.18, 1], opacity: [0.45, 0.75, 0.45] }}
+          transition={{
+            duration: 11,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.5,
+          }}
+        />
         <div className="noise-overlay" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          {/* Status pill */}
-          <AnimatedSection>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-neon-blue opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-blue" />
-              </span>
-              <span className="text-[11px] font-semibold text-neon-blue tracking-wider uppercase">
-                9 capabilities · 250+ projects shipped
-              </span>
-            </div>
-          </AnimatedSection>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* LEFT — Copy + CTAs + Trust */}
+            <AnimatedSection className="lg:col-span-7">
+              <div className="surface-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-full border backdrop-blur-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
+                <span className="text-[11px] font-semibold text-neon-blue tracking-wider uppercase">
+                  Now booking · 9 capabilities
+                </span>
+              </div>
 
-          <AnimatedSection delay={0.1}>
-            <h1
-              className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
-              style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
-            >
-              From idea to launch —
-              <br />
-              <span className="gradient-text glow-text">all under one roof.</span>
-            </h1>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.2}>
-            <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto">
-              Engineering, design, AI, and growth — delivered as one cohesive
-              service. Pick the capability you need, or weave several into a
-              single engagement.
-            </p>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.3}>
-            <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-              <motion.span
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex"
+              <h1
+                className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
+                style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 4.75rem)" }}
               >
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                Senior engineering,{" "}
+                <span className="gradient-text glow-text">
+                  across the stack.
+                </span>
+              </h1>
+
+              <p className="mt-7 body-lead text-gray-400 max-w-xl">
+                From product strategy to launch and growth — design,
+                engineering, AI, and ops, delivered as one cohesive engagement.
+                Pick one capability, or weave several together.
+              </p>
+
+              <div className="mt-9 flex flex-col sm:flex-row gap-3">
+                <motion.span
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex"
                 >
-                  Book a discovery call
+                  <Link
+                    href="/contact"
+                    className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                  >
+                    Book a discovery call
+                    <svg
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </Link>
+                </motion.span>
+                <a
+                  href="#catalog"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+                >
+                  Browse services
                   <svg
-                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    className="w-3.5 h-3.5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -587,19 +744,81 @@ export default function ServicesPage() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
                     />
                   </svg>
-                </Link>
-              </motion.span>
-              <a
-                href="#catalog"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
-              >
-                Browse services ↓
-              </a>
-            </div>
-          </AnimatedSection>
+                </a>
+              </div>
+
+              {/* Trust strip */}
+              <div className="surface-divider mt-10 lg:mt-12 pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-5">
+                {heroStats.map((s, i) => (
+                  <motion.div
+                    key={s.label}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.4 + i * 0.07,
+                    }}
+                  >
+                    <p className="text-2xl lg:text-3xl font-bold gradient-text tabular-nums tracking-tight">
+                      {s.value}
+                    </p>
+                    <p className="mt-1 text-[10.5px] text-gray-400 tracking-[0.16em] uppercase font-semibold">
+                      {s.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
+
+            {/* RIGHT — Service tile grid */}
+            <AnimatedSection
+              direction="right"
+              className="lg:col-span-5"
+              delay={0.15}
+            >
+              <div className="relative">
+                {/* Soft accent backdrop */}
+                <motion.div
+                  className="absolute -inset-8 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20 rounded-[2rem] blur-3xl"
+                  animate={{ opacity: [0.55, 0.85, 0.55] }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+
+                {/* Glass panel */}
+                <div className="surface-panel relative rounded-3xl border p-4 lg:p-5">
+                  {/* Top label */}
+                  <div className="flex items-center justify-between mb-3 px-1">
+                    <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-semibold text-white/55">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                      Capabilities
+                    </div>
+                    <span className="surface-pill font-mono text-[10px] text-white/45 tracking-wider px-2 py-0.5 rounded-full border">
+                      09 / 09
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2.5 lg:gap-3">
+                    {services.map((s, i) => (
+                      <HeroTile key={s.slug} service={s} index={i} />
+                    ))}
+                  </div>
+
+                  {/* Bottom hint */}
+                  <p className="mt-4 text-center text-[10.5px] text-white/45 tracking-wide">
+                    Tap any tile below — or scroll for the full catalog.
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
@@ -612,28 +831,34 @@ export default function ServicesPage() {
         className="py-20 lg:py-24 bg-light-accent relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          {/* Header */}
+          {/* Editorial header */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
             <AnimatedSection className="lg:col-span-7">
-              <p className="eyebrow text-neon-purple">What We Do</p>
-              <h2 className="mt-3 h-section text-deep-blue">
-                Find the service that fits{" "}
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
+                  What we do
+                </p>
+              </div>
+              <h2 className="h-section text-deep-blue">
+                Find the capability that fits{" "}
                 <span className="gradient-text-dark">your problem.</span>
               </h2>
             </AnimatedSection>
             <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                Filter by what you&apos;re trying to do. Each card links to a
-                detailed page with deliverables, timelines, and recent work.
+              <p className="body-base text-deep-blue/65 max-w-md lg:ml-auto">
+                Filter by intent. Each card opens to deliverables, timelines,
+                stack details, and recent client work.
               </p>
             </AnimatedSection>
           </div>
 
           {/* Filter chips */}
-          <AnimatedSection className="mb-8" delay={0.15}>
-            <div className="flex flex-wrap gap-2">
+          <AnimatedSection className="mb-9" delay={0.15}>
+            <div className="flex flex-wrap items-center gap-2">
               {filters.map((f) => {
                 const isActive = activeFilter === f.id;
                 const count =
@@ -648,25 +873,32 @@ export default function ServicesPage() {
                     whileTap={{ scale: 0.97 }}
                     className={`relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                       isActive
-                        ? "bg-deep-blue text-white shadow-lg shadow-deep-blue/20"
-                        : "bg-white border border-deep-blue/[0.08] text-deep-blue/70 hover:bg-white/80 hover:text-deep-blue hover:border-deep-blue/20"
+                        ? "bg-deep-blue text-white shadow-lg shadow-deep-blue/30"
+                        : "bg-white border border-deep-blue/[0.08] text-deep-blue/70 hover:text-deep-blue hover:border-deep-blue/20 hover:shadow-md hover:shadow-deep-blue/[0.04]"
                     }`}
                   >
                     <span className="flex items-center gap-2">
                       {f.label}
                       <span
-                        className={`text-[10px] px-1.5 py-0.5 rounded-full tabular-nums ${
+                        className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full tabular-nums ${
                           isActive
                             ? "bg-white/15 text-white/90"
-                            : "bg-deep-blue/[0.06] text-deep-blue/50"
+                            : "bg-deep-blue/[0.06] text-deep-blue/55"
                         }`}
                       >
-                        {count}
+                        {String(count).padStart(2, "0")}
                       </span>
                     </span>
                   </motion.button>
                 );
               })}
+              <span className="ml-auto text-[11px] font-medium text-deep-blue/45 tracking-wide hidden sm:inline">
+                Showing{" "}
+                <span className="font-bold text-deep-blue/70 tabular-nums">
+                  {visibleServices.length}
+                </span>{" "}
+                of {services.length} services
+              </span>
             </div>
           </AnimatedSection>
 
@@ -686,7 +918,6 @@ export default function ServicesPage() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Empty hint (impossible but safe) */}
           {visibleServices.length === 0 && (
             <p className="text-center text-deep-blue/50 py-12">
               No services in this category yet.
@@ -698,18 +929,28 @@ export default function ServicesPage() {
       {/* light → dark */}
       <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
-      {/* ───────── Process ───────── */}
-      <section className="py-20 lg:py-24 relative overflow-hidden">
+      {/* ───────── Process (interactive timeline) ───────── */}
+      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+        <motion.div
+          className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.08] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+          {/* Header */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
             <AnimatedSection className="lg:col-span-7">
-              <p className="eyebrow text-neon-blue">How We Work</p>
-              <h2 className="mt-3 h-section text-white">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
+                  How we work
+                </p>
+              </div>
+              <h2 className="h-section text-white">
                 From kickoff to launch in{" "}
-                <span className="gradient-text">four clear steps.</span>
+                <span className="gradient-text">four clear stages.</span>
               </h2>
             </AnimatedSection>
             <AnimatedSection className="lg:col-span-5" delay={0.1}>
@@ -720,42 +961,164 @@ export default function ServicesPage() {
             </AnimatedSection>
           </div>
 
-          {/* Steps grid with connecting line */}
-          <div className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {/* Connecting dotted line on lg */}
-            <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px border-t border-dashed border-white/15" />
+          {/* Stepper bar */}
+          <AnimatedSection delay={0.15}>
+            <div className="surface-panel relative rounded-2xl border p-4 lg:p-5">
+              {/* Connecting line */}
+              <div className="surface-divider absolute inset-x-5 top-1/2 -translate-y-1/2 h-px border-t border-dashed pointer-events-none" />
 
-            {processSteps.map((step, i) => (
-              <AnimatedSection key={step.number} delay={i * 0.1}>
-                <div className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500">
-                  {/* Number badge */}
-                  <div className="flex items-center gap-3 mb-5">
-                    <div
-                      className="relative w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 z-10"
+              <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
+                {processSteps.map((s, i) => {
+                  const isActive = activeStep === i;
+                  return (
+                    <motion.button
+                      key={s.number}
+                      onMouseEnter={() => setActiveStep(i)}
+                      onFocus={() => setActiveStep(i)}
+                      onClick={() => setActiveStep(i)}
+                      animate={{ scale: isActive ? 1.02 : 1 }}
+                      transition={{
+                        duration: 0.25,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                      className="group relative flex items-center gap-3 h-14 px-3 lg:px-4 rounded-xl border text-left transition-colors duration-300"
+                      style={{
+                        backgroundColor: isActive
+                          ? s.accent
+                          : `${s.accent}12`,
+                        borderColor: isActive
+                          ? s.accent
+                          : `${s.accent}38`,
+                        boxShadow: isActive
+                          ? `0 16px 36px -14px ${s.accent}90, inset 0 1px 0 rgba(255,255,255,0.18)`
+                          : "none",
+                      }}
+                    >
+                      <span
+                        className={`shrink-0 font-mono text-[11px] font-bold tracking-wider ${
+                          isActive ? "text-white/85" : "text-white/45"
+                        }`}
+                      >
+                        {s.number}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p
+                          className={`text-sm font-bold tracking-tight truncate ${
+                            isActive ? "text-white" : "text-white/80"
+                          }`}
+                        >
+                          {s.title}
+                        </p>
+                        <p
+                          className={`text-[10.5px] truncate ${
+                            isActive ? "text-white/70" : "text-white/45"
+                          }`}
+                        >
+                          {s.duration}
+                        </p>
+                      </div>
+
+                      {isActive && (
+                        <motion.span
+                          layoutId="step-active-dot"
+                          className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full"
+                          style={{
+                            backgroundColor: s.accent,
+                            boxShadow: `0 0 14px ${s.accent}`,
+                          }}
+                        />
+                      )}
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+          </AnimatedSection>
+
+          {/* Detail panel — updates on hover */}
+          <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
+            <div className="lg:col-span-7">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <div className="flex items-center gap-4">
+                    <motion.div
+                      whileHover={{ scale: 1.05, rotate: 3 }}
+                      className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
                       style={{
                         backgroundColor: step.accent,
-                        boxShadow: `0 12px 28px -10px ${step.accent}80`,
+                        boxShadow: `0 14px 32px -10px ${step.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
                       }}
                     >
-                      {step.number}
+                      {step.icon}
+                    </motion.div>
+                    <div>
+                      <p
+                        className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+                        style={{ color: step.accent }}
+                      >
+                        Stage {step.number} · {step.duration}
+                      </p>
+                      <h3 className="mt-0.5 text-2xl lg:text-3xl font-bold text-white tracking-tight">
+                        {step.title}
+                      </h3>
                     </div>
-                    <span
-                      className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
-                      style={{
-                        color: step.accent,
-                        backgroundColor: `${step.accent}15`,
-                      }}
-                    >
-                      {step.duration}
-                    </span>
                   </div>
-                  <h3 className="h-card text-white mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
+                  <p className="mt-5 text-gray-400 leading-relaxed max-w-xl">
                     {step.description}
                   </p>
-                </div>
-              </AnimatedSection>
-            ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            <div className="lg:col-span-5">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${step.number}-deliverables`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  className="surface-panel relative rounded-2xl border p-5 lg:p-6 overflow-hidden"
+                >
+                  <div
+                    className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-25"
+                    style={{ backgroundColor: step.accent }}
+                  />
+
+                  <div className="relative">
+                    <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-white/55">
+                      What happens here
+                    </p>
+                    <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
+                      {step.deliverables.map((d, i) => (
+                        <motion.li
+                          key={d}
+                          initial={{ opacity: 0, x: -6 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: 0.1 + i * 0.05,
+                          }}
+                          className="flex items-center gap-2 text-sm text-white/75"
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full shrink-0"
+                            style={{ backgroundColor: step.accent }}
+                          />
+                          <span className="truncate">{d}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </section>
@@ -763,23 +1126,29 @@ export default function ServicesPage() {
       {/* dark → light */}
       <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
 
-      {/* ───────── Recent work / case studies ───────── */}
+      {/* ───────── Case studies ───────── */}
       <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
             <AnimatedSection className="lg:col-span-7">
-              <p className="eyebrow text-neon-purple">Recent Work</p>
-              <h2 className="mt-3 h-section text-deep-blue">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-purple">
+                  Recent work
+                </p>
+              </div>
+              <h2 className="h-section text-deep-blue">
                 Outcomes, not{" "}
                 <span className="gradient-text-dark">case-study fluff.</span>
               </h2>
             </AnimatedSection>
             <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                A few engagements we&apos;ve shipped recently — what we built,
-                and the metric that mattered.
+              <p className="body-base text-deep-blue/65 max-w-md lg:ml-auto">
+                A few engagements we shipped recently — what we built, and the
+                metric that mattered.
               </p>
             </AnimatedSection>
           </div>
@@ -790,31 +1159,44 @@ export default function ServicesPage() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                  className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
+                  className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_28px_56px_-18px_var(--card-glow)]"
                   style={
                     {
-                      "--card-glow": `${cs.accent}55`,
+                      "--card-glow": `${cs.accent}66`,
                     } as React.CSSProperties
                   }
                 >
+                  {/* Top accent strip */}
                   <div
-                    className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
+                    className="absolute top-0 left-0 right-0 h-[3px]"
+                    style={{
+                      background: `linear-gradient(90deg, ${cs.accent} 0%, ${cs.accent}00 100%)`,
+                    }}
+                  />
+
+                  <div
+                    className="pointer-events-none absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
                     style={{ backgroundColor: cs.accent }}
                   />
 
-                  {/* Industry chip */}
-                  <span
-                    className="self-start text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border"
-                    style={{
-                      color: cs.accent,
-                      borderColor: `${cs.accent}40`,
-                      backgroundColor: `${cs.accent}0A`,
-                    }}
-                  >
-                    {cs.industry}
-                  </span>
+                  {/* Industry chip + index */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span
+                      className="text-[10px] font-semibold uppercase tracking-[0.16em] px-2.5 py-1 rounded-full border"
+                      style={{
+                        color: cs.accent,
+                        borderColor: `${cs.accent}40`,
+                        backgroundColor: `${cs.accent}0F`,
+                      }}
+                    >
+                      {cs.industry}
+                    </span>
+                    <span className="font-mono text-[10px] text-deep-blue/40 tracking-wider">
+                      Case · {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
 
-                  <h3 className="mt-5 text-xl font-bold text-deep-blue tracking-tight">
+                  <h3 className="text-xl font-bold text-deep-blue tracking-tight">
                     {cs.client}
                   </h3>
                   <p className="mt-3 text-sm text-deep-blue/65 leading-relaxed flex-1">
@@ -829,7 +1211,7 @@ export default function ServicesPage() {
                     >
                       {cs.metric.value}
                     </span>
-                    <span className="text-deep-blue/55 text-xs">
+                    <span className="text-deep-blue/55 text-xs leading-snug">
                       {cs.metric.label}
                     </span>
                   </div>
@@ -856,46 +1238,53 @@ export default function ServicesPage() {
       <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── FAQ ───────── */}
-      <section className="py-20 lg:py-24 relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none" />
+        <motion.div
+          className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none"
+          animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-        <div className="relative max-w-4xl mx-auto px-6">
-          <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
-            <p className="eyebrow text-neon-blue">FAQ</p>
-            <h2 className="mt-3 h-section text-white">
-              Questions, <span className="gradient-text">answered.</span>
-            </h2>
-            <p className="mt-5 body-base text-gray-400">
-              Quick answers to what most teams ask before kickoff. Don&apos;t
-              see your question?{" "}
-              <Link
-                href="/contact"
-                className="text-neon-blue hover:underline font-semibold"
-              >
-                Just ask.
-              </Link>
-            </p>
-          </AnimatedSection>
+        <div className="relative max-w-5xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
+            <AnimatedSection className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
+                  FAQ
+                </p>
+              </div>
+              <h2 className="h-section text-white">
+                Questions,{" "}
+                <span className="gradient-text">answered.</span>
+              </h2>
+            </AnimatedSection>
+            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                Quick answers to what most teams ask before kickoff. Don&apos;t
+                see your question?{" "}
+                <Link
+                  href="/contact"
+                  className="text-neon-blue hover:underline font-semibold"
+                >
+                  Just ask.
+                </Link>
+              </p>
+            </AnimatedSection>
+          </div>
 
           <AnimatedSection delay={0.15}>
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm p-2 sm:p-3">
+            <div className="surface-panel rounded-2xl border overflow-hidden">
               {faqs.map((f, i) => (
-                <div
+                <FaqRow
                   key={f.q}
-                  className={i === faqs.length - 1 ? "" : ""}
-                >
-                  <div className="px-4 sm:px-6">
-                    <FaqRow
-                      q={f.q}
-                      a={f.a}
-                      isOpen={openFaq === i}
-                      onToggle={() =>
-                        setOpenFaq(openFaq === i ? -1 : i)
-                      }
-                    />
-                  </div>
-                </div>
+                  q={f.q}
+                  a={f.a}
+                  index={i}
+                  isOpen={openFaq === i}
+                  onToggle={() => setOpenFaq(openFaq === i ? -1 : i)}
+                />
               ))}
             </div>
           </AnimatedSection>

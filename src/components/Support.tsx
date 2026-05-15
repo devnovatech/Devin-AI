@@ -37,9 +37,8 @@ export default function Support() {
     <section id="contact" className="py-16 relative bg-light-accent">
       <div className="max-w-7xl mx-auto px-6">
         <AnimatedSection>
-          <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
+          <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl bg-deep-blue">
             {/* Background */}
-            <div className="absolute inset-0 bg-deep-blue" />
             <div className="absolute inset-0 grid-bg opacity-50" />
 
             <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20">

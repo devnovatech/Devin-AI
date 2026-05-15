@@ -8,8 +8,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
 
-const DEEP = "#0a1628";
-const LIGHT = "#e3f2fd";
+const DEEP = "var(--section-deep)";
+const LIGHT = "var(--section-light)";
 
 interface IndustryData {
   title: string;
@@ -386,7 +386,7 @@ export default function IndustryPage() {
 
   if (!industry) {
     return (
-      <div className="pt-32 pb-16 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="pt-32 pb-16 min-h-[70vh] bg-section-dark flex flex-col items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="relative max-w-xl mx-auto px-6 text-center">
@@ -420,7 +420,7 @@ export default function IndustryPage() {
   return (
     <>
       {/* ───────── Hero with industry spec card ───────── */}
-      <section className="pt-32 pb-16 lg:pb-20 relative overflow-hidden">
+      <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div
           className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full blur-[120px]"
@@ -669,7 +669,7 @@ export default function IndustryPage() {
       <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Solutions ───────── */}
-      <section className="py-20 lg:py-24 relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div
           className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
@@ -823,7 +823,7 @@ export default function IndustryPage() {
 
       {/* ───────── Related industries (NEW) ───────── */}
       {related.length > 0 && (
-        <section className="py-20 lg:py-24 relative overflow-hidden">
+        <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
           <div className="absolute inset-0 grid-bg" />
 
           <div className="relative max-w-7xl mx-auto px-6">

@@ -7,33 +7,33 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Industries from "@/components/Industries";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
-import SectionDivider from "@/components/ui/SectionDivider";
 
-const DEEP = "#0a1628";
-const LIGHT = "#e3f2fd";
-
+/**
+ * Home page — each section has a visually distinct background
+ * so users can clearly see where one section ends and another begins.
+ *
+ * BG palette in flow order:
+ * 1. Hero          → dark navy radial (deep blue)
+ * 2. LogoMarquee   → pure white
+ * 3. Services      → light icy-blue with gradient blooms
+ * 4. WorkingProcess→ dark navy gradient
+ * 5. About         → soft pearl white
+ * 6. WhyChooseUs   → muted blue tint
+ * 7. Industries    → dark navy (different gradient than #4)
+ * 8. Testimonials  → light blue tint (different from #3 & #6)
+ * 9. CTABanner     → pure white with dark card inside
+ */
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* dark → light transition into LogoMarquee */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       <LogoMarquee />
       <Services />
-
-      {/* light → dark transition into About */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
-
-      <About />
-
-      {/* dark → light transition into WhyChooseUs */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       <WorkingProcess />
-
+      <About />
       <WhyChooseUs />
       <Industries />
+      <Testimonials />
       <CTABanner />
     </>
   );

@@ -41,7 +41,8 @@ export default function SectionDivider({
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"
       >
-        <path d={paths[kind]} fill={toColor} />
+        {/* Use style instead of `fill` attr so CSS variables resolve. */}
+        <path d={paths[kind]} style={{ fill: toColor }} />
       </svg>
     </div>
   );

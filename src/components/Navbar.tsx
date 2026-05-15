@@ -5,6 +5,8 @@ import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "./ThemeProvider";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "Our Services", href: "/services" },
@@ -16,6 +18,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { theme } = useTheme();
+  const isLight = theme === "light";
 
   // Smooth scroll-progress bar at the very top of the viewport
   const { scrollYProgress } = useScroll();
@@ -51,16 +55,15 @@ export default function Navbar() {
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
+            ? isLight
+              ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
+              : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
             : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 py-3 flex items-center justify-between">
           {/* Logo + wordmark */}
-          <Link
-            href="/"
-            className="flex items-center gap-3 shrink-0 group"
-          >
+          <Link href="/" className="flex items-center gap-3 shrink-0 group">
             <Image
               src="/site_logo.png"
               alt="Dev Inception Logo"
@@ -69,34 +72,33 @@ export default function Navbar() {
               priority
               className="h-14 w-14 sm:h-16 sm:w-16 object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <span className="hidden sm:inline-flex flex-col leading-none">
-              <span className="text-lg lg:text-xl font-bold text-white tracking-tight">
-                Dev<span className="gradient-text">Inception</span>
-              </span>
-              <span className="mt-1 text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
-                Engineering Studio
-              </span>
-            </span>
           </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2">
             {navLinks.map((link) => {
               const active = isActive(link.href);
+              const baseText = isLight
+                ? active
+                  ? "text-deep-blue"
+                  : "text-deep-blue/70 hover:text-deep-blue"
+                : active
+                  ? "text-white"
+                  : "text-gray-300 hover:text-white";
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${
-                    active
-                      ? "text-white"
-                      : "text-gray-300 hover:text-white"
-                  }`}
+                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${baseText}`}
                 >
                   {active && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-white/10 border border-white/15 rounded-full"
+                      className={`absolute inset-0 rounded-full border ${
+                        isLight
+                          ? "bg-deep-blue/[0.06] border-deep-blue/10"
+                          : "bg-white/10 border-white/15"
+                      }`}
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -108,9 +110,10 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <ThemeToggle className="ml-2" />
             <Link
               href="/contact"
-              className="ml-3 inline-flex items-center gap-2 px-5 py-2.5 bg-neon-blue rounded-full text-sm font-semibold text-white hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+              className="ml-2 inline-flex items-center gap-2 px-5 py-2.5 bg-neon-blue rounded-full text-sm font-semibold text-white hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
             >
               Get in Touch
               <svg
@@ -129,9 +132,11 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile actions */}
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
           <button
-            className="md:hidden text-white p-2 -mr-2"
+            className={`p-2 ${isLight ? "text-deep-blue" : "text-white"}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -159,6 +164,7 @@ export default function Navbar() {
               )}
             </svg>
           </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -168,7 +174,11 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-deep-blue/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
+              className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${
+                isLight
+                  ? "bg-white/95 border-deep-blue/10"
+                  : "bg-deep-blue/95 border-white/5"
+              }`}
             >
               <div className="px-6 py-5 flex flex-col gap-2">
                 {navLinks.map((link) => (
@@ -177,9 +187,13 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className={`px-4 py-3 rounded-xl transition-colors ${
-                      isActive(link.href)
-                        ? "bg-white/10 text-white"
-                        : "text-gray-300 hover:bg-white/5 hover:text-white"
+                      isLight
+                        ? isActive(link.href)
+                          ? "bg-deep-blue/[0.06] text-deep-blue"
+                          : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
+                        : isActive(link.href)
+                          ? "bg-white/10 text-white"
+                          : "text-gray-300 hover:bg-white/5 hover:text-white"
                     }`}
                   >
                     {link.label}

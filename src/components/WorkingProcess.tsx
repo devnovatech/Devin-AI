@@ -1,299 +1,328 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
-const steps = [
+interface Stage {
+  number: string;
+  name: string;
+  accent: string;
+  bgMuted: string;
+  description: string;
+  activities: string[];
+  /** Grid column placement (12-col grid). */
+  colStart: number;
+  colEnd: number;
+  icon: ReactNode;
+}
+
+const stages: Stage[] = [
   {
     number: "01",
-    title: "Discovery & Planning",
+    name: "Plan",
+    accent: "#4FC3F7",
+    bgMuted: "rgba(79, 195, 247, 0.10)",
     description:
-      "Understanding your vision, goals, and requirements through deep discovery sessions.",
-    color: "bg-brand-1",
+      "Discovery, audit, success metrics, scope and roadmap. We align on what success looks like before we touch a Figma file.",
+    activities: ["Stakeholder interviews", "Tech & brand audit", "Success metrics", "Roadmap"],
+    colStart: 1,
+    colEnd: 4,
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <circle cx="12" cy="12" r="9" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 8l-2.5 5.5L8 16l2.5-5.5L16 8z" />
+      </svg>
     ),
   },
   {
     number: "02",
-    title: "Research & Design",
+    name: "Design",
+    accent: "#A78BFA",
+    bgMuted: "rgba(167, 139, 250, 0.10)",
     description:
-      "Crafting wireframes, prototypes, and technical blueprints that align with your goals.",
-    color: "bg-brand-2",
+      "Research-led design with high-fidelity prototypes. Tokens, components, motion, accessibility — productionised, not just pretty.",
+    activities: ["UX research", "Design system", "Prototypes", "Motion & a11y"],
+    colStart: 3,
+    colEnd: 7,
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l3.5 14.5L13 18l5-5-1.5-7.5L2 2z" />
+        <circle cx="11" cy="11" r="2" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l7-7 3 3-7 7-3-3z" />
+      </svg>
     ),
   },
   {
     number: "03",
-    title: "Development",
+    name: "Develop",
+    accent: "#2DD4BF",
+    bgMuted: "rgba(45, 212, 191, 0.10)",
     description:
-      "Bringing designs to life with clean, tested, and scalable code.",
-    color: "bg-brand-4",
+      "Two-week sprints, weekly demos, demoable from day 14. Clean, tested code shipped in production-ready increments.",
+    activities: ["Bi-weekly demos", "Staging envs", "CI/CD pipeline", "Pair programming"],
+    colStart: 5,
+    colEnd: 10,
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
     ),
   },
   {
     number: "04",
-    title: "Testing & QA",
+    name: "Test",
+    accent: "#10B981",
+    bgMuted: "rgba(16, 185, 129, 0.10)",
     description:
-      "Rigorous quality assurance ensures reliability, security, and performance.",
-    color: "bg-brand-6",
+      "E2E, performance, security, and accessibility — locked behind CI gates. We ship with confidence, not surprises.",
+    activities: ["E2E + visual regression", "Performance budgets", "OWASP review", "WCAG-AA audit"],
+    colStart: 7,
+    colEnd: 11,
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
     ),
   },
   {
     number: "05",
-    title: "Deployment & Support",
+    name: "Deploy",
+    accent: "#EF4444",
+    bgMuted: "rgba(239, 68, 68, 0.10)",
     description:
-      "Launch your product with ongoing support, monitoring, and iteration.",
-    color: "bg-brand-3",
+      "Zero-downtime production rollout with full rollback safety nets, observability, and a documented runbook handed off to your team.",
+    activities: ["Zero-downtime deploy", "Rollback runbook", "Observability stack", "On-call setup"],
+    colStart: 9,
+    colEnd: 12,
     icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+      </svg>
+    ),
+  },
+  {
+    number: "06",
+    name: "Support",
+    accent: "#F59E0B",
+    bgMuted: "rgba(245, 158, 11, 0.10)",
+    description:
+      "On-call coverage, iterative improvements, A/B tests, growth experiments and quarterly business reviews.",
+    activities: ["On-call", "A/B program", "Growth", "Quarterly review"],
+    colStart: 10,
+    colEnd: 13,
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M14 4l1.5 1.5L17 4M19 6l1 1" />
+      </svg>
     ),
   },
 ];
 
-function DesktopProcess() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const stripRef = useRef<HTMLDivElement>(null);
-  const [endX, setEndX] = useState(0);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  useEffect(() => {
-    const measure = () => {
-      if (!viewportRef.current || !stripRef.current) return;
-      const stripWidth = stripRef.current.scrollWidth;
-      const viewportWidth = viewportRef.current.clientWidth;
-      setEndX(Math.min(0, viewportWidth - stripWidth));
-    };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
-
-  const x = useTransform(scrollYProgress, (v) => `${v * endX}px`);
-
-  // Progress bar width
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-  // Trunk line draw
-  const trunkWidth = useTransform(scrollYProgress, [0, 0.9], ["0%", "100%"]);
+export default function WorkingProcess() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const active = stages[activeIdx];
 
   return (
-    <div ref={sectionRef} className="hidden md:block relative h-[300vh]">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden bg-light-accent">
+    <section
+      id="process"
+      className="min-h-screen flex flex-col justify-center py-14 lg:py-16 bg-section-process relative overflow-hidden"
+    >
+      {/* Animated background blooms */}
+      <motion.div
+        className="absolute top-1/4 -left-32 w-[420px] h-[420px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 -right-32 w-[420px] h-[420px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"
+        animate={{ scale: [1, 1.18, 1], opacity: [0.3, 0.55, 0.3] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+      <div className="absolute inset-0 dotted-grid-light opacity-40 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header */}
-        <div className="px-6 pt-8 max-w-7xl mx-auto w-full">
-          <AnimatedSection className="text-center">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
-              Our Approach
-            </p>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-deep-blue">
-              Full-Cycle Development Services,{" "}
-              <span className="gradient-text-dark">All Under One Roof</span>
+        <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-start mb-8 lg:mb-10">
+          <AnimatedSection className="lg:col-span-7">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-blue">
+                How we deliver
+              </span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-white tracking-tight leading-[1.1]">
+              Six stages.{" "}
+              <span className="text-white/45">
+                Designed to run in parallel, not waterfall.
+              </span>
             </h2>
-            <p className="mt-3 text-deep-blue/60 max-w-2xl mx-auto text-sm">
-              We cover the complete software lifecycle &ndash; from planning &
-              design to deployment & support.
+          </AnimatedSection>
+          <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+              Hover any stage on the timeline below — we don&apos;t pretend
+              design ends before development starts, or that QA only happens
+              at the end.
             </p>
           </AnimatedSection>
         </div>
 
-        {/* Horizontal scrolling area */}
-        <div ref={viewportRef} className="flex flex-col justify-center px-6 relative">
-          {/* Progress bar at top */}
-          <div className="max-w-4xl mx-auto w-full mb-8 mt-10">
-            <div className="h-1 rounded-full bg-deep-blue/10 overflow-hidden">
-              <motion.div
-                className="h-full rounded-full bg-neon-blue"
-                style={{ width: progressWidth }}
-              />
-            </div>
-          </div>
-
-          {/* Cards strip */}
-          <motion.div
-            ref={stripRef}
-            className="flex items-center gap-8 pl-[10vw] pr-[10vw]"
-            style={{ x }}
-          >
-            {steps.map((step, i) => (
-              <div key={step.number} className="flex items-center">
-                {/* Card */}
-                <motion.div
-                  className="relative flex-shrink-0 w-[340px] group"
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="p-6 rounded-2xl border border-deep-blue/5 bg-white/60 hover:bg-white hover:shadow-lg hover:shadow-deep-blue/5 transition-all duration-300 backdrop-blur-sm">
-                    {/* Number + Icon row */}
-                    <div className="flex items-center gap-4 mb-4">
-                      <div
-                        className={`w-14 h-14 rounded-2xl ${step.color} flex items-center justify-center text-white font-bold text-lg shadow-lg`}
-                      >
-                        {step.number}
-                      </div>
-                      <div className="w-12 h-12 rounded-xl bg-deep-blue/5 flex items-center justify-center text-deep-blue">
-                        {step.icon}
-                      </div>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-deep-blue mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-deep-blue/60 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Connector between cards */}
-                {i < steps.length - 1 && (
-                  <div className="flex items-center flex-shrink-0 w-8">
-                    <div className="relative w-full flex items-center">
-                      <motion.div
-                        className="h-px w-full bg-neon-blue/40"
-                        style={{ scaleX: trunkWidth, transformOrigin: "left" }}
-                      />
-                      <div className="absolute right-0 w-2 h-2 rounded-full bg-neon-blue/40" />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* End marker */}
-            <div className="flex-shrink-0 flex items-center gap-4">
-              <div className="w-px h-8 bg-neon-blue/20" />
-              <div className="w-14 h-14 rounded-full bg-neon-blue flex items-center justify-center shadow-lg shadow-neon-blue/30">
-                <svg
-                  className="w-6 h-6 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              {/* <p className="text-sm font-semibold text-deep-blue whitespace-nowrap">
-                Live!
-              </p> */}
-            </div>
-          </motion.div>
-
-          {/* Scroll hint */}
-          <div className="mt-8 flex items-center justify-center gap-2 text-deep-blue/40 text-xs">
-            <motion.div
-              animate={{ x: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+        {/* Gantt-style timeline */}
+        <AnimatedSection delay={0.2}>
+          <div className="relative rounded-2xl bg-white/[0.025] border border-white/10 p-5 lg:p-7 backdrop-blur-sm">
+            {/* Vertical gridlines */}
+            <div className="absolute inset-x-5 lg:inset-x-7 inset-y-0 grid grid-cols-12 pointer-events-none">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="border-l border-white/[0.04] h-full"
                 />
-              </svg>
-            </motion.div>
-            <span>Scroll to explore</span>
+              ))}
+            </div>
+
+            {/* Stage bars */}
+            <div className="relative grid grid-cols-12 gap-y-2.5">
+              {stages.map((stage, i) => {
+                const isActive = activeIdx === i;
+                return (
+                  <motion.button
+                    key={stage.number}
+                    onMouseEnter={() => setActiveIdx(i)}
+                    onFocus={() => setActiveIdx(i)}
+                    onClick={() => setActiveIdx(i)}
+                    style={{
+                      gridColumnStart: stage.colStart,
+                      gridColumnEnd: stage.colEnd,
+                      backgroundColor: isActive ? stage.accent : stage.bgMuted,
+                      borderColor: isActive
+                        ? stage.accent
+                        : `${stage.accent}40`,
+                      boxShadow: isActive
+                        ? `0 14px 32px -12px ${stage.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`
+                        : "none",
+                    }}
+                    animate={{ scale: isActive ? 1.02 : 1 }}
+                    transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                    className="group relative flex items-center gap-2.5 h-10 px-3 rounded-md border text-left transition-colors duration-300"
+                  >
+                    <span
+                      className={`font-mono text-[10px] font-bold tracking-wider ${
+                        isActive ? "text-white/80" : "text-white/40"
+                      }`}
+                    >
+                      {stage.number}
+                    </span>
+                    <span
+                      className={`text-sm font-bold tracking-tight truncate ${
+                        isActive ? "text-white" : "text-white/70"
+                      }`}
+                    >
+                      {stage.name}
+                    </span>
+
+                    {/* Active glow on right edge */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="stage-active-edge"
+                        className="absolute -right-1 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
+                        style={{ backgroundColor: stage.accent, boxShadow: `0 0 12px ${stage.accent}` }}
+                      />
+                    )}
+                  </motion.button>
+                );
+              })}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Detail panel — updates on hover */}
+        <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
+          {/* LEFT — stage description */}
+          <div className="lg:col-span-7">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.number}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <div className="flex items-center gap-4">
+                  <motion.div
+                    whileHover={{ scale: 1.05, rotate: 3 }}
+                    className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
+                    style={{
+                      backgroundColor: active.accent,
+                      boxShadow: `0 14px 32px -10px ${active.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
+                    }}
+                  >
+                    {active.icon}
+                  </motion.div>
+                  <div>
+                    <p
+                      className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+                      style={{ color: `${active.accent}` }}
+                    >
+                      Stage {active.number}
+                    </p>
+                    <h3 className="mt-0.5 text-2xl lg:text-3xl font-bold text-white tracking-tight">
+                      {active.name}
+                    </h3>
+                  </div>
+                </div>
+                <p className="mt-5 text-gray-400 leading-relaxed max-w-xl">
+                  {active.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* RIGHT — "what happens here" card */}
+          <div className="lg:col-span-5">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${active.number}-activities`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                className="relative rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm p-5 lg:p-6 overflow-hidden"
+                style={{ "--accent": active.accent } as React.CSSProperties}
+              >
+                {/* Soft accent glow */}
+                <div
+                  className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-25"
+                  style={{ backgroundColor: active.accent }}
+                />
+
+                <div className="relative">
+                  <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-gray-500">
+                    What happens here
+                  </p>
+                  <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
+                    {active.activities.map((a, i) => (
+                      <motion.li
+                        key={a}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+                        className="flex items-center gap-2 text-sm text-gray-300"
+                      >
+                        <span
+                          className="w-1.5 h-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: active.accent }}
+                        />
+                        <span className="truncate">{a}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function MobileProcess() {
-  return (
-    <div className="md:hidden py-16 px-6 bg-light-accent">
-      <AnimatedSection className="text-center mb-16">
-        <p className="text-sm font-semibold tracking-widest uppercase text-neon-purple">
-          Our Approach
-        </p>
-        <h2 className="mt-3 text-3xl font-bold text-deep-blue">
-          Full-Cycle Development,{" "}
-          <span className="gradient-text-dark">All Under One Roof</span>
-        </h2>
-        <p className="mt-3 text-deep-blue/60 text-sm">
-          We cover the complete software lifecycle.
-        </p>
-      </AnimatedSection>
-
-      <div className="relative">
-        {/* Vertical trunk */}
-        <div className="absolute left-8 top-0 bottom-0 w-px">
-          <motion.div
-            className="w-full h-full bg-neon-blue"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            style={{ transformOrigin: "top" }}
-          />
-        </div>
-
-        <div className="space-y-10">
-          {steps.map((step, i) => (
-            <AnimatedSection key={step.number} delay={i * 0.12}>
-              <div className="flex items-start gap-5">
-                <div className="relative z-10 flex-shrink-0">
-                  <motion.div
-                    whileInView={{ scale: [0, 1.15, 1] }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.12 }}
-                    className={`w-16 h-16 rounded-full ${step.color} flex items-center justify-center shadow-lg ring-4 ring-light-accent`}
-                  >
-                    <span className="text-white font-bold text-lg">
-                      {step.number}
-                    </span>
-                  </motion.div>
-                </div>
-
-                <div className="flex-1 p-5 rounded-2xl border border-deep-blue/5 bg-white/60 backdrop-blur-sm">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="text-deep-blue">{step.icon}</div>
-                    <h3 className="text-lg font-bold text-deep-blue">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm text-deep-blue/60 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            </AnimatedSection>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function WorkingProcess() {
-  return (
-    <section id="process">
-      <DesktopProcess />
-      <MobileProcess />
     </section>
   );
 }

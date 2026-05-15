@@ -6,8 +6,8 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
 
-const DEEP = "#0a1628";
-const LIGHT = "#e3f2fd";
+const DEEP = "var(--section-deep)";
+const LIGHT = "var(--section-light)";
 
 const industries = [
   {
@@ -281,7 +281,7 @@ export default function IndustriesPage() {
   return (
     <>
       {/* ───────── Hero ───────── */}
-      <section className="pt-32 pb-16 lg:pb-20 relative overflow-hidden">
+      <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
@@ -388,7 +388,7 @@ export default function IndustriesPage() {
       <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Why industry expertise ───────── */}
-      <section className="py-20 lg:py-24 relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.06] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
