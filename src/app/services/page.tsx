@@ -24,7 +24,6 @@ interface Service {
   capabilities: string[];
   accent: string;
   icon: ReactNode;
-  outcome: string;
 }
 
 const services: Service[] = [
@@ -49,7 +48,6 @@ const services: Service[] = [
         <line x1="11" y1="18" x2="13" y2="18" strokeWidth={2} />
       </svg>
     ),
-    outcome: "Launch a mobile product users love—with faster adoption, higher engagement, and a scalable foundation for future growth.",
   },
   {
     title: "Web Development",
@@ -72,7 +70,6 @@ const services: Service[] = [
         <circle cx="5" cy="6.5" r="0.5" fill="currentColor" />
       </svg>
     ),
-    outcome: "Transform your digital presence with a high-performing website that attracts, converts, and retains customers.",
 
   },
   {
@@ -94,7 +91,6 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
       </svg>
     ),
-    outcome: "Increase online revenue through a frictionless shopping experience optimized for conversion, retention, and scale.",
   },
   {
     title: "UI/UX Design",
@@ -116,7 +112,6 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z" />
       </svg>
     ),
-    outcome: "Deliver exceptional user experiences that reduce friction, improve satisfaction, and drive measurable business outcomes.",
   },
   {
     title: "ML & AI Solutions",
@@ -138,7 +133,6 @@ const services: Service[] = [
         <path strokeLinecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
       </svg>
     ),
-    outcome: "Turn data into a competitive advantage with AI-powered automation, predictions, and intelligent customer experiences.",
   },
   {
     title: "Digital Marketing",
@@ -160,7 +154,6 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
       </svg>
     ),
-    outcome: "Generate sustainable growth through targeted campaigns, stronger brand visibility, and measurable acquisition strategies.",
   },
   {
     title: "Staff Augmentation",
@@ -181,7 +174,6 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-    outcome: "Expand your team's capabilities instantly with senior talent that delivers impact from day one.",
   },
   {
     title: "Quality Assurance",
@@ -202,7 +194,6 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
-    outcome: "Release software with confidence through comprehensive testing that minimizes risk and maximizes reliability.",
   },
   {
     title: "Project Management",
@@ -223,7 +214,6 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
       </svg>
     ),
-    outcome: "Keep projects on track, on budget, and aligned with business goals through disciplined execution and clear communication."
   },
 ];
 
@@ -650,19 +640,27 @@ function FaqRow({
 
 /* ───────── Page ───────── */
 export default function ServicesPage() {
-  const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
-  const [openFaq, setOpenFaq] = useState<number>(0);
-  const [activeStep, setActiveStep] = useState<number>(0);
+ const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
+const [openFaq, setOpenFaq] = useState<number>(0);
+const [activeStep, setActiveStep] = useState<number>(0);
+const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const [activeIndex, setActiveIndex] = useState(-1);
+// Filtered services
+const visibleServices =
+  activeFilter === "all"
+    ? services
+    : services.filter((s) => s.category === activeFilter);
 
-  const activeService = services[activeIndex] || services[0];
-  const visibleServices =
-    activeFilter === "all"
-      ? services
-      : services.filter((s) => s.category === activeFilter);
+// Split for left/right layout
+const middle = Math.ceil(visibleServices.length / 2);
+const leftServices = visibleServices.slice(0, middle);
+const rightServices = visibleServices.slice(middle);
 
-  const step = processSteps[activeStep];
+// Safe active service (NEVER crashes)
+const activeService = visibleServices?.[activeIndex] ?? visibleServices?.[0];
+
+// Other UI data
+const step = processSteps[activeStep];
 
   return (
     <>
@@ -841,40 +839,52 @@ export default function ServicesPage() {
       {/* ───────── Catalog (filterable) ───────── */}
       <section
         id="services-grid"
-        className="py-20 lg:py-24 bg-light-accent relative overflow-hidden"
+        className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
       >
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
+        {/* ───────── BACKGROUND GLOW ───────── */}
+        <div className="absolute inset-0 opacity-70">
+          <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+        </div>
+
+        {/* noise overlay */}
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          {/* Editorial header */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
+
+          {/* ───────── HEADER ───────── */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-14">
             <AnimatedSection className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-purple">
-                  What we build
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 backdrop-blur border border-black/5 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+                <p className="text-[10px] uppercase tracking-[0.25em] text-deep-blue/60">
+                  Services Overview
                 </p>
               </div>
-              <h2 className="h-section text-deep-blue">
+
+              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-deep-blue leading-[1.1]">
                 Find the capability that fits{" "}
-                <span className="gradient-text-dark">your problem.</span>
+                <span className="bg-gradient-to-r from-neon-purple to-neon-blue bg-clip-text text-transparent">
+                  your problem
+                </span>
               </h2>
             </AnimatedSection>
+
             <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/65 max-w-md lg:ml-auto">
-                Filter by intent. Each card opens to deliverables, timelines,
-                stack details, and recent client work.
+              <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed">
+                Filter by intent. Each service opens a live preview with deliverables,
+                timelines, stack details, and real execution outcomes.
               </p>
             </AnimatedSection>
           </div>
 
+          {/* ───────── MOBILE ───────── */}
           <div className="xl:hidden space-y-4">
             {services.map((service, i) => (
               <motion.div
                 key={service.slug}
                 layout
-                className="bg-white rounded-2xl border border-deep-blue/[0.08] overflow-hidden shadow-sm"
+                className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
               >
                 <button
                   onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
@@ -890,15 +900,10 @@ export default function ServicesPage() {
                     {service.icon}
                   </div>
 
-                  ```
                   <div className="flex-1">
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="font-semibold text-deep-blue hover:text-neon-blue transition-colors"
-                    >
+                    <h3 className="font-semibold text-deep-blue">
                       {service.title}
-                    </Link>
-
+                    </h3>
                     <p className="text-xs text-deep-blue/50 mt-1">
                       {service.tagline}
                     </p>
@@ -928,7 +933,7 @@ export default function ServicesPage() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-5 border-t border-deep-blue/[0.06]">
+                      <div className="px-5 pb-5 border-t border-black/5">
                         <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
                           {service.description}
                         </p>
@@ -944,263 +949,218 @@ export default function ServicesPage() {
                           ))}
                         </div>
 
-                        <div className="mt-5 rounded-xl bg-deep-blue/[0.03] p-4">
-                          <p className="text-xs uppercase tracking-[0.15em] text-deep-blue/40 mb-2">
-                            Typical Outcome
-                          </p>
-
-                          <p className="text-sm text-deep-blue/70">
-                            {service.outcome}
-                          </p>
-                        </div>
-
                         <Link
                           href={`/services/${service.slug}`}
                           className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
                         >
-                          Learn More
-
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M17 8l4 4m0 0l-4 4m4-4H3"
-                            />
-                          </svg>
+                          Learn More →
                         </Link>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
-
             ))}
           </div>
 
-          {/* Book layout */}
-          <div className="hidden xl:block relative bg-white shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)] rounded-2xl overflow-hidden">
-            {/* spine */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-black/10 to-transparent hidden lg:block" />
+          {/* ───────── DESKTOP LAYOUT ───────── */}
+          {/* ───────── DESKTOP LAYOUT ───────── */}
+<div className="hidden xl:block">
+  <div className="grid grid-cols-[320px_1fr_320px] min-h-[650px] gap-6">
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
-              {/* LEFT PAGE */}
-              <div className="p-10 lg:p-12 border-r border-black/5 bg-white">
-                <p className="text-xs tracking-[0.25em] uppercase text-deep-blue/40 mb-6">
-                  Services
-                </p>
+    {/* LEFT */}
+    <div>
+      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
+        Build · Design
+      </p>
 
-                <div className="space-y-4">
-                  {services.map((service, i) => (
-                    <motion.button
-                      key={service.slug}
-                      onClick={() => setActiveIndex(i)}
-                      onMouseEnter={() => setActiveIndex(i)}
-                      onFocus={() => setActiveIndex(i)}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
-                      className="group flex items-center gap-4 py-2 text-left w-full rounded-lg transition-all duration-300"
-                    >
-                      {/* Icon with colored circle background */}
-                      <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-105"
-                        style={{
-                          backgroundColor: `${service.accent}15`,
-                          color: service.accent,
-                        }}
-                      >
-                        {service.icon}
-                      </div>
+      <div className="space-y-3">
+        {leftServices.map((service, i) => {
+          const isActive = activeIndex === i;
 
-                      <div className="flex-1 min-w-0">
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="text-deep-blue text-lg font-semibold group-hover:text-black transition"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {service.title}
-                        </Link>
-                        <p className="text-xs text-deep-blue/50 line-clamp-1">
-                          {service.tagline}
-                        </p>
-                      </div>
-
-                      {/* Active indicator */}
-                      {activeIndex === i && (
-                        <motion.div
-                          layoutId="activeIndicator"
-                          className="w-1.5 h-8 rounded-full"
-                          style={{ backgroundColor: service.accent }}
-                        />
-                      )}
-                    </motion.button>
-                  ))}
-                </div>
+          return (
+            <button
+              key={service.slug}
+              onClick={() => setActiveIndex(i)}
+              onMouseEnter={() => setActiveIndex(i)}
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
+              ${
+                isActive
+                  ? "bg-white shadow-xl shadow-black/5"
+                  : "hover:bg-white/50"
+              }`}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{
+                  backgroundColor: `${service.accent}15`,
+                  color: service.accent,
+                }}
+              >
+                {service.icon}
               </div>
 
-              {/* RIGHT PAGE */}
+              <div className="flex-1 text-left">
+                <h3 className="font-semibold text-deep-blue">
+                  {service.title}
+                </h3>
 
-              {/* RIGHT PAGE */}
-              <div className="p-10 lg:p-14 bg-white relative flex flex-col overflow-hidden">
-                {/* Divider */}
-                <div className="absolute left-6 top-0 bottom-0 w-[1px] bg-black/5 hidden lg:block" />
-
-                {/* Ambient design field */}
-                <div
-                  className="absolute bottom-0 right-0 w-[260px] h-[260px] rounded-full blur-[100px] pointer-events-none opacity-40"
-                  style={{
-                    backgroundColor: `${activeService.accent}08`,
-                  }}
-                />
-
-                <p className="text-xs tracking-[0.25em] uppercase text-deep-blue/40 mb-8 relative z-10">
-                  Preview
+                <p className="text-sm text-deep-blue/40">
+                  {service.tagline}
                 </p>
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeService.slug}
-                    initial={{ opacity: 0, x: 10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex flex-col flex-1 relative z-10"
-                  >
-                    {/* Preview header */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center"
-                        style={{
-                          backgroundColor: `${activeService.accent}15`,
-                          color: activeService.accent,
-                        }}
-                      >
-                        {activeService.icon}
-                      </div>
-
-                      <h3 className="text-2xl font-semibold text-deep-blue">
-                        {activeService.title}
-                      </h3>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-deep-blue/70 text-sm lg:text-base leading-relaxed">
-                      {activeService.description}
-                    </p>
-
-                    {/* Capabilities */}
-                    <div className="mt-8">
-                      <p className="text-xs text-deep-blue/40 mb-3">
-                        Capabilities
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {activeService.capabilities.slice(0, 4).map((cap, idx) => (
-                          <span
-                            key={idx}
-                            className="inline-block px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
-                          >
-                            {cap}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Meta */}
-                    <div className="mt-10 grid grid-cols-2 gap-6">
-                      <div>
-                        <p className="text-xs text-deep-blue/40">Category</p>
-
-                        <p className="mt-1 text-sm font-semibold text-deep-blue capitalize">
-                          {activeService.category}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="text-xs text-deep-blue/40">Approach</p>
-
-                        <p className="mt-1 text-sm text-deep-blue/70">
-                          {activeService.category === "build" &&
-                            "End-to-end development + launch"}
-
-                          {activeService.category === "design" &&
-                            "Research-led + accessibility-first"}
-
-                          {activeService.category === "scale" &&
-                            "Production-ready + monitored"}
-
-                          {activeService.category === "operate" &&
-                            "Sprint-ready + flexible scaling"}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Featured Outcome */}
-                    <div className="mt-10 rounded-xl border border-deep-blue/[0.08] bg-deep-blue/[0.02] p-5">
-                      <div className="flex items-center justify-between mb-3">
-                        <p className="text-xs tracking-[0.2em] uppercase text-deep-blue/40">
-                          Typical Outcome
-                        </p>
-
-                        <div
-                          className="w-2 h-2 rounded-full"
-                          style={{
-                            backgroundColor: activeService.accent,
-                          }}
-                        />
-                      </div>
-
-                      <p className="text-sm text-deep-blue/70 leading-relaxed">
-                        {activeService.outcome ||
-                          "Production-ready solution with scalable architecture, clear documentation, and a launch strategy designed for long-term growth."}
-                      </p>
-                    </div>
-
-                    {/* Editorial footer detail */}
-                    <div className="mt-6 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-deep-blue/30">
-                      <span>Capability Preview</span>
-
-                      <span>
-                        {String(activeIndex + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-
-                    {/* Push CTA to bottom */}
-                    <div className="flex-1 min-h-[24px]" />
-
-                    {/* CTA */}
-                    <div className="mt-6 pt-4 border-t border-deep-blue/[0.06]">
-                      <Link
-                        href={`/services/${activeService.slug}`}
-                        className="inline-flex items-center gap-2 text-sm font-medium text-neon-blue hover:translate-x-1 transition group"
-                      >
-                        Learn more about {activeService.title}
-
-                        <svg
-                          className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </Link>
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
               </div>
+
+              <span className="text-xs text-deep-blue/25">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+
+    {/* CENTER */}
+    <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-10">
+
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={services[activeIndex].slug}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="relative z-10 h-full flex flex-col"
+        >
+
+          <div className="flex items-center justify-between mb-12">
+
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-white" />
+
+              <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
+                Build
+              </p>
             </div>
+
+            <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(services.length).padStart(2, "0")}
+            </div>
+
           </div>
+
+          <div className="flex-1 flex items-center justify-center">
+
+            <div className="relative">
+
+              <div className="absolute -inset-12 border border-white/10 rounded-full" />
+
+              <div className="absolute -inset-24 border border-white/5 rounded-full" />
+
+              <div className="w-44 h-44 rounded-[32px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
+
+                <div className="text-white scale-[2.5]">
+                  {services[activeIndex].icon}
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-4">
+              {services[activeIndex].tagline}
+            </p>
+
+            <h3 className="text-5xl font-bold text-white mb-4">
+              {services[activeIndex].title}
+            </h3>
+
+            <p className="text-white/75 max-w-xl leading-relaxed mb-8">
+              {services[activeIndex].description}
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {services[activeIndex].capabilities
+                .slice(0, 5)
+                .map((cap) => (
+                  <span
+                    key={cap}
+                    className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
+                  >
+                    {cap}
+                  </span>
+                ))}
+            </div>
+
+          </div>
+
+        </motion.div>
+      </AnimatePresence>
+
+    </div>
+
+    {/* RIGHT */}
+    <div>
+      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+        Grow · Ops
+      </p>
+
+      <div className="space-y-3">
+        {rightServices.map((service, i) => {
+          const realIndex = i + leftServices.length;
+          const isActive = activeIndex === realIndex;
+
+          return (
+            <button
+              key={service.slug}
+              onClick={() => setActiveIndex(realIndex)}
+              onMouseEnter={() => setActiveIndex(realIndex)}
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
+              ${
+                isActive
+                  ? "bg-white shadow-xl shadow-black/5"
+                  : "hover:bg-white/50"
+              }`}
+            >
+              <div className="flex-1 text-right">
+                <h3 className="font-semibold text-deep-blue">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm text-deep-blue/40">
+                  {service.tagline}
+                </p>
+              </div>
+
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{
+                  backgroundColor: `${service.accent}15`,
+                  color: service.accent,
+                }}
+              >
+                {service.icon}
+              </div>
+
+              <span className="text-xs text-deep-blue/25">
+                {String(realIndex + 1).padStart(2, "0")}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+
+  </div>
+</div>
         </div>
       </section>
 

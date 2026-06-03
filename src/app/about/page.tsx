@@ -267,7 +267,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      
+
 
       {/* ───────── Our Story ───────── */}
       <section className="pb-20 bg-light-accent relative">
@@ -383,103 +383,86 @@ export default function AboutPage() {
       <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
 
       {/* ───────── Values (bento) ───────── */}
-     <section className="py-16 lg:py-20 bg-light-accent relative overflow-hidden">
+     {/* ───────── Values ───────── */}
+<section className="py-16 lg:py-20 bg-light-accent relative overflow-hidden">
   <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
   <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
 
   <div className="relative max-w-7xl mx-auto px-6">
-    <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-10">
+    {/* Header */}
+    <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-16 lg:mb-20">
       <AnimatedSection className="lg:col-span-7">
         <p className="eyebrow text-neon-purple">Our values</p>
         <h2 className="mt-3 h-section text-deep-blue">
-          What we{" "}
-          <span className="gradient-text-dark">stand for.</span>
+          What we <span className="gradient-text-dark">stand for.</span>
         </h2>
       </AnimatedSection>
 
       <AnimatedSection className="lg:col-span-5" delay={0.1}>
         <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-          The non-negotiables that show up in every project — the way we
-          work, communicate, and ship.
+          The non-negotiables that show up in every project — the way we work,
+          communicate, and ship.
         </p>
       </AnimatedSection>
     </div>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:auto-rows-[210px]">
-      {values.map((value, i) => {
-        const isFeatured = value.featured;
+    {/* Values Container */}
+    <div className="relative rounded-[32px] border border-deep-blue/[0.08] bg-white overflow-hidden p-8 lg:p-16">
+      {/* Ambient glow */}
+      <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-neon-blue/5 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-neon-purple/5 rounded-full blur-[100px]" />
 
-        return (
+      <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-14 gap-y-10 lg:gap-y-14">
+        {values.map((value, i) => (
           <motion.div
             key={value.title}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -6 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{
               duration: 0.55,
-              delay: i * 0.06,
+              delay: i * 0.08,
               ease: [0.4, 0, 0.2, 1],
             }}
-            whileHover={{ y: -4 }}
-            className={`group relative rounded-2xl overflow-hidden bg-white border border-deep-blue/[0.07] transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)] ${
-              isFeatured
-                ? "sm:col-span-2 lg:col-span-2 lg:row-span-2 p-6 lg:p-7 flex flex-col"
-                : "p-5 flex flex-col"
-            }`}
-            style={
-              {
-                "--card-glow": `${value.accent}55`,
-              } as React.CSSProperties
-            }
+            className="
+              relative
+              group
+              p-6
+              rounded-2xl
+              border
+              border-deep-blue/[0.06]
+              bg-white/70
+              backdrop-blur-sm
+              hover:border-neon-blue/20
+              hover:shadow-[0_20px_40px_-20px_rgba(30,136,229,0.25)]
+              transition-all
+              duration-500
+              min-h-[220px]
+              overflow-hidden
+            "
           >
-            <div
-              className="pointer-events-none absolute -top-12 -right-12 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
-              style={{
-                backgroundColor: value.accent,
-                width: isFeatured ? "20rem" : "9rem",
-                height: isFeatured ? "20rem" : "9rem",
-              }}
-            />
+            {/* Large Number */}
+            <div className="absolute -top-6 left-3 text-[90px] lg:text-[120px] font-bold leading-none text-neon-blue/[0.08] select-none pointer-events-none">
+              {String(i + 1).padStart(2, "0")}
+            </div>
 
-            <div
-              className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ borderColor: `${value.accent}33` }}
-            />
-
-            <div className="relative flex-1 flex flex-col">
-              <div
-                className={`rounded-xl flex items-center justify-center text-white ${
-                  isFeatured ? "w-14 h-14" : "w-11 h-11"
-                }`}
-                style={{
-                  backgroundColor: value.accent,
-                  boxShadow: `0 12px 28px -10px ${value.accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
-                }}
-              >
-                {value.icon}
-              </div>
-
-              <h3
-                className={`mt-4 font-bold text-deep-blue tracking-tight leading-snug ${
-                  isFeatured
-                    ? "text-xl lg:text-[1.65rem]"
-                    : "text-base"
-                }`}
-              >
+            {/* Content */}
+            <div className="relative z-10 pt-10 transition-all duration-500 group-hover:translate-x-2">
+              <h3 className="text-[1.6rem] lg:text-[1.9rem] font-bold leading-[1.1] tracking-tight text-deep-blue mb-4">
                 {value.title}
               </h3>
 
-              <p
-                className={`mt-2 text-deep-blue/65 leading-relaxed ${
-                  isFeatured ? "text-sm" : "text-sm"
-                }`}
-              >
+              <p className="text-base leading-relaxed text-deep-blue/60">
                 {value.description}
               </p>
+
+              {/* Accent line */}
+              <div className="mt-6 w-12 h-[2px] bg-gradient-to-r from-neon-blue to-neon-purple rounded-full opacity-60 group-hover:w-20 transition-all duration-500" />
             </div>
           </motion.div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   </div>
 </section>

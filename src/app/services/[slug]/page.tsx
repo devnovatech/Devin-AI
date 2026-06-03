@@ -159,14 +159,14 @@ const servicesData: Record<string, ServiceData> = {
         category: "App Analytics & Optimization",
         items: ["In-app analytics integration", "User behavior tracking", "A/B testing", "Data-driven feature improvements"],
       },
-      {
-        category: "Maintenance & Support",
-        items: ["Bug fixes & security patches", "OS/version upgrades", "Feature enhancements", "SLA-based ongoing support"],
-      },
-      {
-        category: "Growth & Monetization",
-        items: ["App Store Optimization (ASO)", "In-app purchase strategy", "Ad integration"],
-      },
+      // {
+      //   category: "Maintenance & Support",
+      //   items: ["Bug fixes & security patches", "OS/version upgrades", "Feature enhancements", "SLA-based ongoing support"],
+      // },
+      // {
+      //   category: "Growth & Monetization",
+      //   items: ["App Store Optimization (ASO)", "In-app purchase strategy", "Ad integration"],
+      // },
     ],
     painPoints: [
       "Not sure whether to go native or cross-platform?",
