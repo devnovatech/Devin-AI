@@ -53,19 +53,18 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? isLight
-              ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
-              : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? isLight
+            ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
+            : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
+          : "bg-transparent"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 py-3 flex items-center justify-between">
           {/* Logo + wordmark */}
           <Link href="/" className="flex items-center gap-3 shrink-0 group">
             <Image
-              src="/site_logo.png"
+              src={isLight ? "/site_logo2.png" : "/site_logo.png"}
               alt="Dev Inception Logo"
               width={72}
               height={72}
@@ -78,13 +77,15 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-1 lg:gap-2">
             {navLinks.map((link) => {
               const active = isActive(link.href);
-              const baseText = isLight
-                ? active
-                  ? "text-deep-blue"
-                  : "text-deep-blue/70 hover:text-deep-blue"
-                : active
-                  ? "text-white"
-                  : "text-gray-300 hover:text-white";
+
+              const baseText = active
+                ? isLight
+                  ? "text-gray-800"
+                  : "text-white"
+                : isLight
+                  ? "text-gray-700 hover:text-neon-purple"
+                  : "text-gray-300 hover:text-neon-blue";
+
               return (
                 <Link
                   key={link.href}
@@ -94,11 +95,10 @@ export default function Navbar() {
                   {active && (
                     <motion.span
                       layoutId="nav-pill"
-                      className={`absolute inset-0 rounded-full border ${
-                        isLight
-                          ? "bg-deep-blue/[0.06] border-deep-blue/10"
-                          : "bg-white/10 border-white/15"
-                      }`}
+                      className={`absolute inset-0 rounded-full border ${isLight
+                        ? "bg-neon-purple/10 border-neon-purple/20"
+                        : "bg-white/10 border-white/15"
+                        }`}
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -106,16 +106,20 @@ export default function Navbar() {
                       }}
                     />
                   )}
+
                   <span className="relative z-10">{link.label}</span>
                 </Link>
               );
             })}
+
             <ThemeToggle className="ml-2" />
+
             <Link
               href="/contact"
-              className="ml-2 inline-flex items-center gap-2 px-5 py-2.5 bg-neon-blue rounded-full text-sm font-semibold text-white hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+              className="ml-2 inline-flex items-center gap-2 px-5 py-2.5 bg-neon-blue rounded-full text-sm font-semibold  hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
             >
               Get in Touch
+
               <svg
                 className="w-3.5 h-3.5"
                 fill="none"
@@ -135,35 +139,35 @@ export default function Navbar() {
           {/* Mobile actions */}
           <div className="md:hidden flex items-center gap-1">
             <ThemeToggle />
-          <button
-            className={`p-2 ${isLight ? "text-deep-blue" : "text-white"}`}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <button
+              className={`p-2 ${isLight ? "text-deep-blue" : "text-white"}`}
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
             >
-              {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {mobileOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -174,11 +178,10 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${
-                isLight
-                  ? "bg-white/95 border-deep-blue/10"
-                  : "bg-deep-blue/95 border-white/5"
-              }`}
+              className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${isLight
+                ? "bg-white/95 border-deep-blue/10"
+                : "bg-deep-blue/95 border-white/5"
+                }`}
             >
               <div className="px-6 py-5 flex flex-col gap-2">
                 {navLinks.map((link) => (
@@ -186,15 +189,14 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`px-4 py-3 rounded-xl transition-colors ${
-                      isLight
-                        ? isActive(link.href)
-                          ? "bg-deep-blue/[0.06] text-deep-blue"
-                          : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
-                        : isActive(link.href)
-                          ? "bg-white/10 text-white"
-                          : "text-gray-300 hover:bg-white/5 hover:text-white"
-                    }`}
+                    className={`px-4 py-3 rounded-xl transition-colors ${isLight
+                      ? isActive(link.href)
+                        ? "bg-deep-blue/[0.06] text-deep-blue"
+                        : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
+                      : isActive(link.href)
+                        ? "bg-white/10 text-white"
+                        : "text-gray-300 hover:bg-white/5 hover:text-white"
+                      }`}
                   >
                     {link.label}
                   </Link>

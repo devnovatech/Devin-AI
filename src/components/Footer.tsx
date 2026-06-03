@@ -4,37 +4,52 @@ import { useState, FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTheme } from "./ThemeProvider";
 
-const linkColumns: { title: string; links: { label: string; href: string }[] }[] = [
-  {
-    title: "Company",
-    links: [
-      { label: "Home", href: "/" },
-      { label: "About Us", href: "/about" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { label: "Mobile App Development", href: "/services/mobile-application" },
-      { label: "Web Development", href: "/services/web-development" },
-      { label: "UI / UX Design", href: "/services/ui-ux-design" },
-      { label: "ML & AI Solutions", href: "/services/machine-learning-ai" },
-      { label: "Staff Augmentation", href: "/services/staff-augmentation" },
-    ],
-  },
-  {
-    title: "Industries",
-    links: [
-      { label: "All Industries", href: "/industries" },
-      { label: "SaaS & Tech Startups", href: "/industries" },
-      { label: "Healthcare", href: "/industries" },
-      { label: "E-commerce", href: "/industries" },
-      { label: "Education", href: "/industries" },
-    ],
-  },
-];
+const linkColumns: {
+  title: string;
+  links: { label: string; href: string }[];
+}[] = [
+    {
+      title: "Company",
+      links: [
+        { label: "Home", href: "/" },
+        { label: "About Us", href: "/about" },
+        { label: "Contact", href: "/contact" },
+      ],
+    },
+    {
+      title: "Services",
+      links: [
+        {
+          label: "Mobile App Development",
+          href: "/services/mobile-application",
+        },
+        { label: "Web Development", href: "/services/web-development" },
+        { label: "UI / UX Design", href: "/services/ui-ux-design" },
+        {
+          label: "ML & AI Solutions",
+          href: "/services/machine-learning-ai",
+        },
+        {
+          label: "Staff Augmentation",
+          href: "/services/staff-augmentation",
+        },
+      ],
+    },
+    {
+      title: "Industries",
+      links: [
+        { label: "All Industries", href: "/industries" },
+        { label: "SaaS & Tech Startups", href: "/industries/saas-startups" },
+        { label: "Healthcare", href: "/industries/healthcare" },
+        { label: "E-commerce", href: "/industries/ecommerce-retail" },
+        { label: "Logistics & Transportation", href: "/industries/logistics" },
+
+
+      ],
+    },
+  ];
 
 const socialLinks = [
   {
@@ -70,48 +85,70 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
+  const { theme } = useTheme();
+  const isLight = theme === "light";
+
   function handleSubscribe(e: FormEvent) {
     e.preventDefault();
+
     if (!email.includes("@")) return;
+
     setSubscribed(true);
     setEmail("");
+
     setTimeout(() => setSubscribed(false), 4000);
   }
 
   return (
-    <footer className="relative border-t border-white/5 bg-deep-blue overflow-hidden">
+    <footer
+      className={`relative overflow-hidden border-t ${isLight
+          ? "bg-white border-gray-200"
+          : "bg-deep-blue border-white/5"
+        }`}
+    >
       {/* Decorative orbs */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-8">
-        {/* Top — brand + columns + newsletter */}
+        {/* Top */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Brand block */}
           <div className="md:col-span-4">
             <Link href="/" className="inline-flex items-center gap-2">
               <Image
-                src="/site_logo.png"
+                src={isLight ? "/site_logo2.png" : "/site_logo.png"}
                 alt="Dev Inception"
                 width={70}
                 height={70}
-                className="h-14 w-14 object-contain"
+                className="h-24 w-24 object-contain"
               />
-              <span className="text-xl font-bold text-white">
-                Dev <span className="gradient-text">Inception</span>
-              </span>
             </Link>
-            <p className="mt-5 text-sm text-gray-400 leading-relaxed max-w-xs">
+
+            <p
+              className={`mt-3 text-sm leading-relaxed max-w-xs ${isLight ? "text-gray-600" : "text-gray-400"
+                }`}
+            >
               From strategy to systems — we build robust, scalable digital
               solutions tailored to your business.
             </p>
 
             {/* Newsletter */}
             <form onSubmit={handleSubscribe} className="mt-6 max-w-sm">
-              <label htmlFor="footer-email" className="block text-xs font-semibold text-white/80 uppercase tracking-wider mb-2">
+              <label
+                htmlFor="footer-email"
+                className={`block text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? "text-gray-700" : "text-white/80"
+                  }`}
+              >
                 Stay in the loop
               </label>
-              <div className="flex items-stretch rounded-full bg-white/[0.04] border border-white/10 focus-within:border-neon-blue/50 transition-colors overflow-hidden">
+
+              <div
+                className={`flex items-stretch rounded-full overflow-hidden transition-colors ${isLight
+                    ? "bg-gray-100 border border-gray-300 focus-within:border-neon-purple/50"
+                    : "bg-white/[0.04] border border-white/10 focus-within:border-neon-blue/50"
+                  }`}
+              >
                 <input
                   id="footer-email"
                   type="email"
@@ -119,8 +156,12 @@ export default function Footer() {
                   placeholder="you@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-2.5 bg-transparent text-sm text-white placeholder-gray-500 outline-none"
+                  className={`flex-1 px-4 py-2.5 bg-transparent text-sm outline-none ${isLight
+                      ? "text-gray-800 placeholder-gray-400"
+                      : "text-white placeholder-gray-500"
+                    }`}
                 />
+
                 <motion.button
                   type="submit"
                   whileHover={{ scale: 1.04 }}
@@ -130,11 +171,12 @@ export default function Footer() {
                   Subscribe
                 </motion.button>
               </div>
+
               {subscribed && (
                 <motion.p
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-2 text-xs text-emerald-400"
+                  className="mt-2 text-xs text-emerald-500"
                 >
                   ✓ Thanks — you&apos;re on the list.
                 </motion.p>
@@ -146,15 +188,22 @@ export default function Footer() {
           <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
             {linkColumns.map((col) => (
               <div key={col.title}>
-                <h4 className="text-sm font-bold text-white tracking-wide">
+                <h4
+                  className={`text-sm font-bold tracking-wide ${isLight ? "text-gray-900" : "text-white"
+                    }`}
+                >
                   {col.title}
                 </h4>
+
                 <ul className="mt-4 space-y-2.5">
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-sm text-gray-400 hover:text-neon-blue transition-colors duration-200"
+                        className={`text-sm transition-colors duration-200 ${isLight
+                            ? "text-gray-600 hover:text-neon-purple"
+                            : "text-gray-400 hover:text-neon-blue"
+                          }`}
                       >
                         {link.label}
                       </Link>
@@ -167,9 +216,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-500 order-2 sm:order-1">
-            &copy; {new Date().getFullYear()} Dev Inception. All rights reserved.
+        <div
+          className={`mt-14 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4 ${isLight ? "border-gray-200" : "border-white/5"
+            }`}
+        >
+          <p
+            className={`text-xs order-2 sm:order-1 ${isLight ? "text-gray-600" : "text-gray-500"
+              }`}
+          >
+            &copy; {new Date().getFullYear()} Dev Inception. All rights
+            reserved.
           </p>
 
           <div className="flex items-center gap-3 order-1 sm:order-2">
@@ -180,18 +236,34 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-blue/40 hover:bg-neon-blue/10 transition-all duration-300"
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${isLight
+                    ? "border border-gray-300 text-gray-600 hover:text-neon-purple hover:border-neon-purple/40 hover:bg-neon-purple/10"
+                    : "border border-white/10 text-gray-400 hover:text-white hover:border-neon-blue/40 hover:bg-neon-blue/10"
+                  }`}
               >
                 {social.icon}
               </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-5 order-3 text-xs text-gray-500">
-            <Link href="/privacy" className="hover:text-neon-blue transition-colors">
+          <div className="flex items-center gap-5 order-3 text-xs">
+            <Link
+              href="/privacy"
+              className={`transition-colors ${isLight
+                  ? "text-gray-600 hover:text-neon-purple"
+                  : "text-gray-500 hover:text-neon-blue"
+                }`}
+            >
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-neon-blue transition-colors">
+
+            <Link
+              href="/terms"
+              className={`transition-colors ${isLight
+                  ? "text-gray-600 hover:text-neon-purple"
+                  : "text-gray-500 hover:text-neon-blue"
+                }`}
+            >
               Terms
             </Link>
           </div>

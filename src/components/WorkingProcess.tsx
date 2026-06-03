@@ -154,7 +154,7 @@ export default function WorkingProcess() {
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-white tracking-tight leading-[1.1]">
               Six stages.{" "}
-              <span className="text-white/45">
+              <span className="gradient-text-dark">
                 Designed to run in parallel, not waterfall.
               </span>
             </h2>

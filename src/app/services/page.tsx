@@ -10,6 +10,7 @@ import CTABanner from "@/components/CTABanner";
 const DEEP = "var(--section-deep)";
 const LIGHT = "var(--section-light)";
 
+
 /* ───────── Data ───────── */
 
 type Category = "build" | "design" | "scale" | "operate";
@@ -23,6 +24,7 @@ interface Service {
   capabilities: string[];
   accent: string;
   icon: ReactNode;
+  outcome: string;
 }
 
 const services: Service[] = [
@@ -31,6 +33,7 @@ const services: Service[] = [
     slug: "mobile-application",
     category: "build",
     tagline: "Native & cross-platform apps people love using.",
+
     description:
       "Engineered for performance, accessibility, and the bar set by App Store editors. iOS, Android, or one shared codebase via React Native or Flutter.",
     capabilities: [
@@ -46,6 +49,7 @@ const services: Service[] = [
         <line x1="11" y1="18" x2="13" y2="18" strokeWidth={2} />
       </svg>
     ),
+    outcome: "Launch a mobile product users love—with faster adoption, higher engagement, and a scalable foundation for future growth.",
   },
   {
     title: "Web Development",
@@ -68,6 +72,8 @@ const services: Service[] = [
         <circle cx="5" cy="6.5" r="0.5" fill="currentColor" />
       </svg>
     ),
+    outcome: "Transform your digital presence with a high-performing website that attracts, converts, and retains customers.",
+
   },
   {
     title: "E-commerce Development",
@@ -88,6 +94,7 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
       </svg>
     ),
+    outcome: "Increase online revenue through a frictionless shopping experience optimized for conversion, retention, and scale.",
   },
   {
     title: "UI/UX Design",
@@ -109,6 +116,7 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z" />
       </svg>
     ),
+    outcome: "Deliver exceptional user experiences that reduce friction, improve satisfaction, and drive measurable business outcomes.",
   },
   {
     title: "ML & AI Solutions",
@@ -130,6 +138,7 @@ const services: Service[] = [
         <path strokeLinecap="round" d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
       </svg>
     ),
+    outcome: "Turn data into a competitive advantage with AI-powered automation, predictions, and intelligent customer experiences.",
   },
   {
     title: "Digital Marketing",
@@ -151,6 +160,7 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
       </svg>
     ),
+    outcome: "Generate sustainable growth through targeted campaigns, stronger brand visibility, and measurable acquisition strategies.",
   },
   {
     title: "Staff Augmentation",
@@ -171,6 +181,7 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
+    outcome: "Expand your team's capabilities instantly with senior talent that delivers impact from day one.",
   },
   {
     title: "Quality Assurance",
@@ -191,6 +202,7 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
+    outcome: "Release software with confidence through comprehensive testing that minimizes risk and maximizes reliability.",
   },
   {
     title: "Project Management",
@@ -211,6 +223,7 @@ const services: Service[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
       </svg>
     ),
+    outcome: "Keep projects on track, on budget, and aligned with business goals through disciplined execution and clear communication."
   },
 ];
 
@@ -570,9 +583,8 @@ function FaqRow({
 }) {
   return (
     <div
-      className={`relative border-b border-white/[0.08] transition-colors duration-300 ${
-        isOpen ? "bg-white/[0.02]" : ""
-      }`}
+      className={`relative border-b border-white/[0.08] transition-colors duration-300 ${isOpen ? "bg-white/[0.02]" : ""
+        }`}
     >
       {/* Accent left bar when open */}
       <motion.span
@@ -592,21 +604,19 @@ function FaqRow({
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className={`text-base sm:text-lg font-semibold transition-colors ${
-              isOpen
-                ? "text-white"
-                : "text-white/85 group-hover:text-neon-blue"
-            }`}
+            className={`text-base sm:text-lg font-semibold transition-colors ${isOpen
+              ? "text-white"
+              : "text-white/85 group-hover:text-neon-blue"
+              }`}
           >
             {q}
           </span>
         </div>
         <span
-          className={`shrink-0 mt-1 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${
-            isOpen
-              ? "rotate-45 bg-neon-blue border-transparent text-white shadow-lg shadow-neon-blue/40"
-              : "border-white/15 text-white/55 group-hover:border-neon-blue/40 group-hover:text-neon-blue"
-          }`}
+          className={`shrink-0 mt-1 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${isOpen
+            ? "rotate-45 bg-neon-blue border-transparent text-white shadow-lg shadow-neon-blue/40"
+            : "border-white/15 text-white/55 group-hover:border-neon-blue/40 group-hover:text-neon-blue"
+            }`}
         >
           <svg
             className="w-3.5 h-3.5"
@@ -644,6 +654,9 @@ export default function ServicesPage() {
   const [openFaq, setOpenFaq] = useState<number>(0);
   const [activeStep, setActiveStep] = useState<number>(0);
 
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const activeService = services[activeIndex] || services[0];
   const visibleServices =
     activeFilter === "all"
       ? services
@@ -827,7 +840,7 @@ export default function ServicesPage() {
 
       {/* ───────── Catalog (filterable) ───────── */}
       <section
-        id="catalog"
+        id="services-grid"
         className="py-20 lg:py-24 bg-light-accent relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
@@ -838,9 +851,9 @@ export default function ServicesPage() {
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
             <AnimatedSection className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
-                  What we do
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-purple">
+                  What we build
                 </p>
               </div>
               <h2 className="h-section text-deep-blue">
@@ -856,73 +869,338 @@ export default function ServicesPage() {
             </AnimatedSection>
           </div>
 
-          {/* Filter chips */}
-          <AnimatedSection className="mb-9" delay={0.15}>
-            <div className="flex flex-wrap items-center gap-2">
-              {filters.map((f) => {
-                const isActive = activeFilter === f.id;
-                const count =
-                  f.id === "all"
-                    ? services.length
-                    : services.filter((s) => s.category === f.id).length;
-                return (
-                  <motion.button
-                    key={f.id}
-                    onClick={() => setActiveFilter(f.id)}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className={`relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                      isActive
-                        ? "bg-deep-blue text-white shadow-lg shadow-deep-blue/30"
-                        : "bg-white border border-deep-blue/[0.08] text-deep-blue/70 hover:text-deep-blue hover:border-deep-blue/20 hover:shadow-md hover:shadow-deep-blue/[0.04]"
-                    }`}
+          <div className="xl:hidden space-y-4">
+            {services.map((service, i) => (
+              <motion.div
+                key={service.slug}
+                layout
+                className="bg-white rounded-2xl border border-deep-blue/[0.08] overflow-hidden shadow-sm"
+              >
+                <button
+                  onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
+                  className="w-full flex items-center gap-4 p-5 text-left"
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                    style={{
+                      backgroundColor: `${service.accent}15`,
+                      color: service.accent,
+                    }}
                   >
-                    <span className="flex items-center gap-2">
-                      {f.label}
-                      <span
-                        className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full tabular-nums ${
-                          isActive
-                            ? "bg-white/15 text-white/90"
-                            : "bg-deep-blue/[0.06] text-deep-blue/55"
-                        }`}
+                    {service.icon}
+                  </div>
+
+                  ```
+                  <div className="flex-1">
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="font-semibold text-deep-blue hover:text-neon-blue transition-colors"
+                    >
+                      {service.title}
+                    </Link>
+
+                    <p className="text-xs text-deep-blue/50 mt-1">
+                      {service.tagline}
+                    </p>
+                  </div>
+
+                  <svg
+                    className={`w-5 h-5 transition-transform ${activeIndex === i ? "rotate-180" : ""
+                      }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                <AnimatePresence>
+                  {activeIndex === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 border-t border-deep-blue/[0.06]">
+                        <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
+                          {service.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {service.capabilities.map((cap) => (
+                            <span
+                              key={cap}
+                              className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
+                            >
+                              {cap}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="mt-5 rounded-xl bg-deep-blue/[0.03] p-4">
+                          <p className="text-xs uppercase tracking-[0.15em] text-deep-blue/40 mb-2">
+                            Typical Outcome
+                          </p>
+
+                          <p className="text-sm text-deep-blue/70">
+                            {service.outcome}
+                          </p>
+                        </div>
+
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
+                        >
+                          Learn More
+
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
+            ))}
+          </div>
+
+          {/* Book layout */}
+          <div className="hidden xl:block relative bg-white shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)] rounded-2xl overflow-hidden">
+            {/* spine */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-black/10 to-transparent hidden lg:block" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
+              {/* LEFT PAGE */}
+              <div className="p-10 lg:p-12 border-r border-black/5 bg-white">
+                <p className="text-xs tracking-[0.25em] uppercase text-deep-blue/40 mb-6">
+                  Services
+                </p>
+
+                <div className="space-y-4">
+                  {services.map((service, i) => (
+                    <motion.button
+                      key={service.slug}
+                      onClick={() => setActiveIndex(i)}
+                      onMouseEnter={() => setActiveIndex(i)}
+                      onFocus={() => setActiveIndex(i)}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      className="group flex items-center gap-4 py-2 text-left w-full rounded-lg transition-all duration-300"
+                    >
+                      {/* Icon with colored circle background */}
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300 group-hover:scale-105"
+                        style={{
+                          backgroundColor: `${service.accent}15`,
+                          color: service.accent,
+                        }}
                       >
-                        {String(count).padStart(2, "0")}
-                      </span>
-                    </span>
-                  </motion.button>
-                );
-              })}
-              <span className="ml-auto text-[11px] font-medium text-deep-blue/45 tracking-wide hidden sm:inline">
-                Showing{" "}
-                <span className="font-bold text-deep-blue/70 tabular-nums">
-                  {visibleServices.length}
-                </span>{" "}
-                of {services.length} services
-              </span>
-            </div>
-          </AnimatedSection>
+                        {service.icon}
+                      </div>
 
-          {/* Service grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          >
-            <AnimatePresence mode="popLayout">
-              {visibleServices.map((service, i) => (
-                <ServiceCard
-                  key={service.slug}
-                  service={service}
-                  index={i}
+                      <div className="flex-1 min-w-0">
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className="text-deep-blue text-lg font-semibold group-hover:text-black transition"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          {service.title}
+                        </Link>
+                        <p className="text-xs text-deep-blue/50 line-clamp-1">
+                          {service.tagline}
+                        </p>
+                      </div>
+
+                      {/* Active indicator */}
+                      {activeIndex === i && (
+                        <motion.div
+                          layoutId="activeIndicator"
+                          className="w-1.5 h-8 rounded-full"
+                          style={{ backgroundColor: service.accent }}
+                        />
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+              {/* RIGHT PAGE */}
+
+              {/* RIGHT PAGE */}
+              <div className="p-10 lg:p-14 bg-white relative flex flex-col overflow-hidden">
+                {/* Divider */}
+                <div className="absolute left-6 top-0 bottom-0 w-[1px] bg-black/5 hidden lg:block" />
+
+                {/* Ambient design field */}
+                <div
+                  className="absolute bottom-0 right-0 w-[260px] h-[260px] rounded-full blur-[100px] pointer-events-none opacity-40"
+                  style={{
+                    backgroundColor: `${activeService.accent}08`,
+                  }}
                 />
-              ))}
-            </AnimatePresence>
-          </motion.div>
 
-          {visibleServices.length === 0 && (
-            <p className="text-center text-deep-blue/50 py-12">
-              No services in this category yet.
-            </p>
-          )}
+                <p className="text-xs tracking-[0.25em] uppercase text-deep-blue/40 mb-8 relative z-10">
+                  Preview
+                </p>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeService.slug}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex flex-col flex-1 relative z-10"
+                  >
+                    {/* Preview header */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center"
+                        style={{
+                          backgroundColor: `${activeService.accent}15`,
+                          color: activeService.accent,
+                        }}
+                      >
+                        {activeService.icon}
+                      </div>
+
+                      <h3 className="text-2xl font-semibold text-deep-blue">
+                        {activeService.title}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-deep-blue/70 text-sm lg:text-base leading-relaxed">
+                      {activeService.description}
+                    </p>
+
+                    {/* Capabilities */}
+                    <div className="mt-8">
+                      <p className="text-xs text-deep-blue/40 mb-3">
+                        Capabilities
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {activeService.capabilities.slice(0, 4).map((cap, idx) => (
+                          <span
+                            key={idx}
+                            className="inline-block px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
+                          >
+                            {cap}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Meta */}
+                    <div className="mt-10 grid grid-cols-2 gap-6">
+                      <div>
+                        <p className="text-xs text-deep-blue/40">Category</p>
+
+                        <p className="mt-1 text-sm font-semibold text-deep-blue capitalize">
+                          {activeService.category}
+                        </p>
+                      </div>
+
+                      <div>
+                        <p className="text-xs text-deep-blue/40">Approach</p>
+
+                        <p className="mt-1 text-sm text-deep-blue/70">
+                          {activeService.category === "build" &&
+                            "End-to-end development + launch"}
+
+                          {activeService.category === "design" &&
+                            "Research-led + accessibility-first"}
+
+                          {activeService.category === "scale" &&
+                            "Production-ready + monitored"}
+
+                          {activeService.category === "operate" &&
+                            "Sprint-ready + flexible scaling"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Featured Outcome */}
+                    <div className="mt-10 rounded-xl border border-deep-blue/[0.08] bg-deep-blue/[0.02] p-5">
+                      <div className="flex items-center justify-between mb-3">
+                        <p className="text-xs tracking-[0.2em] uppercase text-deep-blue/40">
+                          Typical Outcome
+                        </p>
+
+                        <div
+                          className="w-2 h-2 rounded-full"
+                          style={{
+                            backgroundColor: activeService.accent,
+                          }}
+                        />
+                      </div>
+
+                      <p className="text-sm text-deep-blue/70 leading-relaxed">
+                        {activeService.outcome ||
+                          "Production-ready solution with scalable architecture, clear documentation, and a launch strategy designed for long-term growth."}
+                      </p>
+                    </div>
+
+                    {/* Editorial footer detail */}
+                    <div className="mt-6 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-deep-blue/30">
+                      <span>Capability Preview</span>
+
+                      <span>
+                        {String(activeIndex + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+
+                    {/* Push CTA to bottom */}
+                    <div className="flex-1 min-h-[24px]" />
+
+                    {/* CTA */}
+                    <div className="mt-6 pt-4 border-t border-deep-blue/[0.06]">
+                      <Link
+                        href={`/services/${activeService.slug}`}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-neon-blue hover:translate-x-1 transition group"
+                      >
+                        Learn more about {activeService.title}
+
+                        <svg
+                          className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -990,29 +1268,26 @@ export default function ServicesPage() {
                           ? s.accent
                           : `${s.accent}38`,
                         boxShadow: isActive
-                          ? `0 16px 36px -14px ${s.accent}90, inset 0 1px 0 rgba(255,255,255,0.18)`
+                          ? `0 16px 36px - 14px ${s.accent}90, inset 0 1px 0 rgba(255, 255, 255, 0.18)`
                           : "none",
                       }}
                     >
                       <span
-                        className={`shrink-0 font-mono text-[11px] font-bold tracking-wider ${
-                          isActive ? "text-white/85" : "text-white/45"
-                        }`}
+                        className={`shrink - 0 font - mono text - [11px] font - bold tracking - wider ${isActive ? "text-white/85" : "text-white/45"
+                          }`}
                       >
                         {s.number}
                       </span>
                       <div className="min-w-0 flex-1">
                         <p
-                          className={`text-sm font-bold tracking-tight truncate ${
-                            isActive ? "text-white" : "text-white/80"
-                          }`}
+                          className={`text - sm font - bold tracking - tight truncate ${isActive ? "text-white" : "text-white/80"
+                            }`}
                         >
                           {s.title}
                         </p>
                         <p
-                          className={`text-[10.5px] truncate ${
-                            isActive ? "text-white/70" : "text-white/45"
-                          }`}
+                          className={`text - [10.5px] truncate ${isActive ? "text-white/70" : "text-white/45"
+                            }`}
                         >
                           {s.duration}
                         </p>
@@ -1052,7 +1327,7 @@ export default function ServicesPage() {
                       className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
                       style={{
                         backgroundColor: step.accent,
-                        boxShadow: `0 14px 32px -10px ${step.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
+                        boxShadow: `0 14px 32px - 10px ${step.accent}90, inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
                       }}
                     >
                       {step.icon}
@@ -1079,7 +1354,7 @@ export default function ServicesPage() {
             <div className="lg:col-span-5">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={`${step.number}-deliverables`}
+                  key={`${step.number} - deliverables`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
@@ -1170,7 +1445,7 @@ export default function ServicesPage() {
                   <div
                     className="absolute top-0 left-0 right-0 h-[3px]"
                     style={{
-                      background: `linear-gradient(90deg, ${cs.accent} 0%, ${cs.accent}00 100%)`,
+                      background: `linear - gradient(90deg, ${cs.accent} 0 %, ${cs.accent}00 100 %)`,
                     }}
                   />
 

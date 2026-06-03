@@ -32,7 +32,7 @@ const services: Service[] = [
       "Document AI, computer vision & OCR pipelines",
       "Evals, monitoring, and MLOps from day one",
     ],
-    stack: ["OpenAI", "Anthropic", "LangChain", "Python", "PyTorch"],
+    stack: ["OpenAI", "Anthropic", "LangChain", "Python"],
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <circle cx="12" cy="12" r="3.5" />
@@ -152,7 +152,7 @@ const services: Service[] = [
   },
   {
     title: "E-commerce",
-    slug: "",
+    slug: "E-commerce",
     tagline: "Conversion-tuned storefronts",
     accent: "#0097A7",
     category: "Grow",
