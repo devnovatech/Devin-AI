@@ -18,17 +18,17 @@ interface CTABannerProps {
 }
 
 export default function CTABanner({
-  eyebrow = "Now booking Q1 2026",
+  eyebrow = "Available for new projects",
   heading = (
     <>
-      Ready to ship the next{" "}
+      Ready to build the next{" "}
       <span className="gradient-text">version of your product?</span>
     </>
   ),
-  description = "Send us a brief — scope, timelines, must-haves. We come back inside 24 hours with a tailored proposal, team profiles, and a kickoff plan.",
-  primaryLabel = "Start a project",
+  description = "Tell us what you have in mind — your goals, timeline, and must-haves. We'll get back to you quickly with a clear proposal and a plan to get started.",
+  primaryLabel = "Start your project",
   primaryHref = "/contact",
-  secondaryLabel = "See capabilities",
+  secondaryLabel = "Explore services",
   secondaryHref = "/services",
   withPadding = true,
 }: CTABannerProps) {

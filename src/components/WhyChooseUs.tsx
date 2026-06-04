@@ -15,8 +15,8 @@ interface Reason {
 
 const reasons: Reason[] = [
   {
-    title: "Senior-only roster",
-    description: "Every IC has 8+ years shipping commercial software. No juniors on prod.",
+    title: "Senior engineers only",
+    description: "Experienced engineers handle your project end to end — never juniors learning on your time.",
     accent: "#1E88E5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -25,16 +25,16 @@ const reasons: Reason[] = [
     ),
     proof: (
       <div className="flex items-baseline gap-1">
-        <span className="text-lg font-bold text-deep-blue tabular-nums">10.4</span>
+        <span className="text-sm font-bold text-deep-blue">Senior</span>
         <span className="text-[10px] uppercase tracking-wider font-semibold text-deep-blue/50">
-          yr avg
+          team only
         </span>
       </div>
     ),
   },
   {
-    title: "Cross-functional pods",
-    description: "Engineer, designer, PM, QA on the same standup. No handoff lag.",
+    title: "One coordinated team",
+    description: "Engineers, designers, and project leads work together — no slow handoffs between separate groups.",
     accent: "#0277BD",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -54,8 +54,8 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "Two-week cadence",
-    description: "Live burndown, Friday demos, retros same day. Predictable from day 1.",
+    title: "Clear communication",
+    description: "Regular demos and honest updates, so you always know exactly where your project stands.",
     accent: "#0288D1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -64,16 +64,16 @@ const reasons: Reason[] = [
     ),
     proof: (
       <div className="flex items-baseline gap-1">
-        <span className="text-lg font-bold text-deep-blue tabular-nums">14</span>
+        <span className="text-sm font-bold text-deep-blue">Always</span>
         <span className="text-[10px] uppercase tracking-wider font-semibold text-deep-blue/50">
-          day sprint
+          in the loop
         </span>
       </div>
     ),
   },
   {
-    title: "Research-led design",
-    description: "Real user interviews and usability tests — not Dribbble shots as UX.",
+    title: "Design that works",
+    description: "We design based on real user research and testing — not guesswork or trends.",
     accent: "#039BE5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -92,8 +92,8 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "Built for 10× scale",
-    description: "Multi-tenant, observable, audit-ready by default. Not bolted on at Series B.",
+    title: "Built to scale",
+    description: "Architected to grow with you — secure and reliable as your product and usage expand.",
     accent: "#00ACC1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -118,7 +118,7 @@ const reasons: Reason[] = [
   },
   {
     title: "Transparent pricing",
-    description: "Fixed-scope quotes, monthly burn caps, no change-order theatre.",
+    description: "Clear quotes and honest scope — no hidden costs or surprise change orders.",
     accent: "#1565C0",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -229,18 +229,18 @@ export default function WhyChooseUs() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
-                Why teams pick us
+                Why teams choose us
               </span>
             </div>
             <h2 className="h-section text-deep-blue">
-              Six reasons clients{" "}
-              <span className="gradient-text-dark">stay for years.</span>
+              Why teams choose to{" "}
+              <span className="gradient-text-dark">work with us.</span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              We measure success by how often teams come back for project two,
-              three, and four.
+              We focus on doing great work and building relationships that
+              last — the kind of team you come back to.
             </p>
           </AnimatedSection>
         </div>
@@ -262,9 +262,9 @@ export default function WhyChooseUs() {
               </span>
               <p className="text-sm text-deep-blue/70">
                 <span className="font-semibold text-deep-blue">
-                  Every engagement, every principle.
+                  The same standards on every project.
                 </span>{" "}
-                Reviewed quarterly.
+                No exceptions.
               </p>
             </div>
             <Link

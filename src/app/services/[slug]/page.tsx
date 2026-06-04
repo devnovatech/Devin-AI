@@ -159,14 +159,14 @@ const servicesData: Record<string, ServiceData> = {
         category: "App Analytics & Optimization",
         items: ["In-app analytics integration", "User behavior tracking", "A/B testing", "Data-driven feature improvements"],
       },
-      {
-        category: "Maintenance & Support",
-        items: ["Bug fixes & security patches", "OS/version upgrades", "Feature enhancements", "SLA-based ongoing support"],
-      },
-      {
-        category: "Growth & Monetization",
-        items: ["App Store Optimization (ASO)", "In-app purchase strategy", "Ad integration"],
-      },
+      // {
+      //   category: "Maintenance & Support",
+      //   items: ["Bug fixes & security patches", "OS/version upgrades", "Feature enhancements", "SLA-based ongoing support"],
+      // },
+      // {
+      //   category: "Growth & Monetization",
+      //   items: ["App Store Optimization (ASO)", "In-app purchase strategy", "Ad integration"],
+      // },
     ],
     painPoints: [
       "Not sure whether to go native or cross-platform?",
@@ -210,7 +210,7 @@ const servicesData: Record<string, ServiceData> = {
           "API design, integration, and architecture",
           "Role-based access control and secure authentication systems",
           "Custom dashboards, portals, and internal tools",
-          "Progressive Web App (PWA) development",
+          // "Progressive Web App (PWA) development",
         ],
       },
       {
@@ -1244,9 +1244,6 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Pain points (cleaner, empathetic) ───────── */}
       <section className="py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
@@ -1304,150 +1301,291 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── What's included (interactive offerings) ───────── */}
-      <section className="py-20 bg-light-accent relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      <section className="relative py-16 lg:py-20 bg-light-accent overflow-hidden">
+        {/* Background Effects */}
+        {/* <div className="absolute inset-0 dotted-grid opacity-[0.04] pointer-events-none" /> */}
+
+        {/* <motion.div
+          className="absolute -top-32 right-0 w-[420px] h-[420px] rounded-full blur-[120px] opacity-20 pointer-events-none"
+          style={{ backgroundColor: accent }}
+          animate={{
+            scale: [1, 1.08, 1],
+            opacity: [0.15, 0.22, 0.15],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        /> */}
+
+        <motion.div
+          className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.05] rounded-full blur-[120px] pointer-events-none"
+          animate={{
+            x: [0, 20, 0],
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+          {/* Header */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-10 lg:mb-12">
             <AnimatedSection className="lg:col-span-7">
-              <p
-                className="eyebrow"
-                style={{ color: accent }}
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full border backdrop-blur-sm"
+                style={{
+                  borderColor: `${accent}20`,
+                  backgroundColor: `${accent}08`,
+                }}
               >
-                What&apos;s included
-              </p>
-              <h2 className="mt-3 h-section text-deep-blue">
-                Capabilities, in{" "}
-                <span style={{ color: accent }}>plain English.</span>
+                <span
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: accent }}
+                />
+
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.18em]"
+                  style={{ color: accent }}
+                >
+                  What&apos;s included
+                </span>
+              </div>
+
+              <h2 className="mt-4 h-section text-deep-blue max-w-2xl">
+                A studio engineered for
+                {" "}
+                <span
+                  className="relative inline-block"
+                  style={{ color: accent }}
+                >
+                  teams that ship.
+                  <span
+                    className="absolute left-0 bottom-1 w-full h-[8px] -z-10 opacity-20 rounded-full"
+                    style={{ backgroundColor: accent }}
+                  />
+                </span>
               </h2>
             </AnimatedSection>
+
             <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                Click a capability to see what we actually deliver. Nothing
-                hidden, nothing fluffed.
-              </p>
+              <div className="lg:pl-8 lg:border-l border-deep-blue/[0.08]">
+                <p className="body-base text-deep-blue/60 max-w-md">
+                  Founded by senior engineers tired of agency-grade deliverables. We embed like an in-house team — from seed-stage MVPs to Fortune-500 platforms.
+                </p>
+              </div>
             </AnimatedSection>
           </div>
 
-          {/* Interactive accordion-style category list */}
-          <div className="grid lg:grid-cols-12 gap-6">
-            {/* Category list (left) */}
-            <div className="lg:col-span-5 flex flex-col gap-2">
-              {service.offerings.map((offering, i) => {
-                const isActive = activeOffering === i;
-                return (
-                  <button
-                    key={offering.category}
-                    onClick={() => setActiveOffering(i)}
-                    className="group relative w-full text-left flex items-center gap-3 px-5 py-4 rounded-xl transition-all duration-300"
-                    style={{
-                      backgroundColor: isActive ? "white" : "rgba(255,255,255,0.5)",
-                      boxShadow: isActive
-                        ? `0 18px 36px -16px ${accent}55`
-                        : "none",
-                    }}
-                  >
-                    <span
-                      className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-full transition-all duration-500"
-                      style={{
-                        height: isActive ? "55%" : "0%",
-                        backgroundColor: accent,
-                      }}
-                    />
+          {/* Main Content */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            {/* LEFT SIDEBAR */}
+            <div className="lg:col-span-5">
+              <div className="sticky top-24 flex flex-col gap-2.5">
+                {service.offerings.map((offering, i) => {
+                  const isActive = activeOffering === i;
 
-                    <div
-                      className="w-8 h-8 rounded-lg flex items-center justify-center text-[12px] font-bold tabular-nums shrink-0"
+                  return (
+                    <motion.button
+                      key={offering.category}
+                      onClick={() => setActiveOffering(i)}
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.99 }}
+                      className="group relative overflow-hidden w-full text-left rounded-2xl transition-all duration-300"
                       style={{
-                        backgroundColor: isActive ? accent : `${accent}15`,
-                        color: isActive ? "white" : accent,
+                        backgroundColor: isActive
+                          ? "white"
+                          : "rgba(255,255,255,0.65)",
+                        border: `1px solid ${isActive ? `${accent}25` : "rgba(15,23,42,0.06)"
+                          }`,
+                        boxShadow: isActive
+                          ? `0 22px 45px -18px ${accent}40`
+                          : "0 2px 10px rgba(0,0,0,0.02)",
                       }}
                     >
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
+                      {/* Active Glow */}
+                      {/* {isActive && (
+                        <motion.div
+                          layoutId="activeServiceGlow"
+                          className="absolute inset-0 opacity-[0.07]"
+                          style={{
+                            background: `linear-gradient(135deg, ${accent}, transparent)`,
+                          }}
+                        />
+                      )} */}
 
-                    <span className="flex-1 font-semibold text-deep-blue text-sm">
-                      {offering.category}
-                    </span>
+                      <div className="relative flex items-center gap-4 px-5 py-4">
+                        {/* Number */}
+                        <div
+                          className="relative w-10 h-10 rounded-xl flex items-center justify-center text-[12px] font-bold tabular-nums shrink-0"
+                          style={{
+                            backgroundColor: isActive
+                              ? accent
+                              : `${accent}12`,
+                            color: isActive ? "white" : accent,
+                          }}
+                        >
+                          {String(i + 1).padStart(2, "0")}
 
-                    <svg
-                      className={`w-4 h-4 shrink-0 transition-all duration-300 ${
-                        isActive
-                          ? "opacity-100 translate-x-0"
-                          : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke={accent}
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </button>
-                );
-              })}
-            </div>
+                          {isActive && (
+                            <motion.div
+                              className="absolute inset-0 rounded-xl"
+                              animate={{
+                                opacity: [0.3, 0.7, 0.3],
+                                scale: [1, 1.08, 1],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                              }}
+                              style={{
+                                border: `1px solid ${accent}`,
+                              }}
+                            />
+                          )}
+                        </div>
 
-            {/* Detail panel (right) */}
-            <div className="lg:col-span-7">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeOffering}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                  className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 shadow-xl shadow-deep-blue/5 overflow-hidden"
-                >
-                  <div
-                    className="pointer-events-none absolute -top-20 -right-20 w-72 h-72 rounded-full blur-3xl opacity-[0.15]"
-                    style={{ backgroundColor: accent }}
-                  />
+                        {/* Text */}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-deep-blue tracking-tight">
+                            {offering.category}
+                          </p>
 
-                  <div className="relative">
-                    <div className="flex items-center gap-3">
-                      <span
-                        className="text-[10px] font-semibold uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
-                        style={{
-                          color: accent,
-                          backgroundColor: `${accent}10`,
-                        }}
-                      >
-                        {String(activeOffering + 1).padStart(2, "0")} ·{" "}
-                        {service.offerings.length} total
-                      </span>
-                    </div>
+                          <p className="mt-0.5 text-xs text-deep-blue/50">
+                            {offering.items.length} deliverables included
+                          </p>
+                        </div>
 
-                    <h3 className="mt-5 text-xl lg:text-2xl font-bold text-deep-blue tracking-tight">
-                      {service.offerings[activeOffering].category}
-                    </h3>
-
-                    <ul className="mt-6 grid sm:grid-cols-2 gap-3">
-                      {service.offerings[activeOffering].items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex gap-2.5 text-sm text-deep-blue/70 leading-relaxed"
+                        {/* Arrow */}
+                        <motion.div
+                          animate={{
+                            x: isActive ? 0 : -3,
+                            opacity: isActive ? 1 : 0.4,
+                          }}
+                          transition={{ duration: 0.25 }}
                         >
                           <svg
-                            className="w-4 h-4 mt-0.5 shrink-0"
+                            className="w-4 h-4"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke={accent}
-                            strokeWidth={2.4}
+                            strokeWidth={2.5}
                           >
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              d="M5 13l4 4L19 7"
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
                             />
                           </svg>
-                          <span>{item}</span>
-                        </li>
+                        </motion.div>
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* RIGHT PANEL */}
+            <div className="lg:col-span-7">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeOffering}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{
+                    duration: 0.35,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                  className="relative rounded-3xl bg-white border border-deep-blue/[0.07] overflow-hidden shadow-2xl shadow-deep-blue/[0.06]"
+                >
+                  {/* Top Glow */}
+                  <div
+                    className="absolute inset-x-0 top-0 h-[3px]"
+                    style={{
+                      background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
+                    }}
+                  />
+
+                  {/* Ambient Glow */}
+                  {/* <div
+                    className="absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-[0.14]"
+                    style={{ backgroundColor: accent }}
+                  /> */}
+
+                  <div className="relative p-6 lg:p-8">
+                    {/* Badge */}
+                    <div
+                      className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] px-3 py-1 rounded-full"
+                      style={{
+                        color: accent,
+                        backgroundColor: `${accent}10`,
+                      }}
+                    >
+                      <span
+                        className="w-1.5 h-1.5 rounded-full"
+                        style={{ backgroundColor: accent }}
+                      />
+
+                      {String(activeOffering + 1).padStart(2, "0")} ·{" "}
+                      {service.offerings.length} total capabilities
+                    </div>
+
+                    {/* Heading */}
+                    <h3 className="mt-5 text-2xl lg:text-3xl font-bold tracking-tight text-deep-blue leading-tight">
+                      {service.offerings[activeOffering].category}
+                    </h3>
+
+                    <p className="mt-3 text-sm lg:text-base text-deep-blue/55 max-w-2xl leading-relaxed">
+                      Everything below is included when we partner with your team —
+                      strategy, execution, optimization, and production support.
+                    </p>
+
+                    {/* Deliverables */}
+                    <div className="mt-8 grid sm:grid-cols-2 gap-3">
+                      {service.offerings[activeOffering].items.map((item, idx) => (
+                        <motion.div
+                          key={item}
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            delay: idx * 0.04,
+                          }}
+                          className="group relative flex items-start gap-3 rounded-2xl border border-deep-blue/[0.06] bg-light-accent/60 hover:bg-white hover:border-deep-blue/[0.1] transition-all duration-300 p-4"
+                        >
+                          <div
+                            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                            style={{
+                              backgroundColor: `${accent}12`,
+                            }}
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke={accent}
+                              strokeWidth={2.4}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                          </div>
+
+                          <div>
+                            <p className="text-sm font-medium text-deep-blue leading-relaxed">
+                              {item}
+                            </p>
+                          </div>
+                        </motion.div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -1455,9 +1593,6 @@ export default function ServicePage() {
           </div>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── How we work (4-step) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
@@ -1520,9 +1655,6 @@ export default function ServicePage() {
           </div>
         </div>
       </section>
-
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
 
       {/* ───────── Why us for THIS service ───────── */}
       <section className="py-20 bg-light-accent relative overflow-hidden">
@@ -1600,8 +1732,10 @@ export default function ServicePage() {
       {/* ───────── Industries we serve (compact) ───────── */}
       <section className="pb-20 bg-light-accent relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6">
-          <AnimatedSection className="rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 overflow-hidden relative">
+          <AnimatedSection className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-9 overflow-hidden relative">
             <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+
+              {/* Left Content */}
               <div className="lg:col-span-4">
                 <p
                   className="eyebrow"
@@ -1609,13 +1743,14 @@ export default function ServicePage() {
                 >
                   Industries
                 </p>
-                <h3 className="mt-3 text-2xl lg:text-3xl font-bold text-deep-blue tracking-tight leading-tight">
+
+                <h3 className="mt-3 text-2xl lg:text-3xl font-bold tracking-tight leading-tight text-white">
                   We&apos;ve shipped{" "}
-                  <span style={{ color: accent }}>this service</span> for teams
-                  across:
+                  <span className="gradient-text">this service</span> for teams across:
                 </h3>
               </div>
 
+              {/* Industry Cards */}
               <div className="lg:col-span-8 grid sm:grid-cols-2 gap-3">
                 {service.industries.map((industry, i) => (
                   <AnimatedSection
@@ -1623,17 +1758,22 @@ export default function ServicePage() {
                     delay={i * 0.05}
                   >
                     <div
-                      className="group flex items-start gap-3 p-4 rounded-xl bg-light-accent/50 hover:bg-white border border-transparent hover:border-deep-blue/[0.08] transition-all duration-300"
+                      className="group flex items-start gap-3 p-4 rounded-xl 
+                bg-white/5 hover:bg-white/10 
+                border border-white/10 hover:border-white/20 
+                transition-all duration-300"
                     >
                       <div
                         className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-125"
                         style={{ backgroundColor: accent }}
                       />
+
                       <div>
-                        <p className="font-semibold text-deep-blue text-sm">
+                        <p className="font-semibold text-white text-sm">
                           {industry.name}
                         </p>
-                        <p className="text-xs text-deep-blue/55 mt-0.5 leading-snug">
+
+                        <p className="text-xs text-white/70 mt-0.5 leading-snug">
                           {industry.description}
                         </p>
                       </div>
@@ -1645,9 +1785,6 @@ export default function ServicePage() {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Related services (NEW) ───────── */}
       {related.length > 0 && (

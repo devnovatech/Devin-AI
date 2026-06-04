@@ -227,9 +227,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Stats ───────── */}
       <section className="py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
@@ -268,26 +265,27 @@ export default function AboutPage() {
         </div>
       </section>
 
+
       {/* ───────── Our Story ───────── */}
       <section className="pb-20 bg-light-accent relative">
         <div className="relative max-w-7xl mx-auto px-6">
           <AnimatedSection>
-            <div className="rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-12 overflow-hidden relative">
+            <div className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-12 overflow-hidden relative">
               <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 <div className="lg:col-span-4">
                   <p className="eyebrow text-neon-purple">Our story</p>
-                  <h2 className="mt-3 h-section text-deep-blue">
+                  <h2 className="mt-3 h-section text-white">
                     Why <span className="gradient-text-dark">Dev Inception</span>?
                   </h2>
                 </div>
                 <div className="lg:col-span-8">
-                  <p className="body-lead text-deep-blue/70">
+                  <p className="body-lead text-white">
                     Dev Inception was founded with a clear mission: to help
                     businesses access world-class digital solutions without the
                     complexity, overhead, or guesswork. We believe great
                     technology should serve people — not the other way around.
                   </p>
-                  <p className="mt-5 body-base text-deep-blue/65">
+                  <p className="mt-5 body-base text-white">
                     Our team brings together engineers, designers, strategists,
                     and project managers from across the globe, all united by a
                     passion for building things that matter. Whether you&apos;re
@@ -301,9 +299,6 @@ export default function AboutPage() {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Team makeup ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
@@ -378,97 +373,124 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Values (bento) ───────── */}
-      <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
-        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
+     {/* ───────── Values ───────── */}
+<section className="py-16 lg:py-20 bg-light-accent relative overflow-hidden">
+  <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
+  <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <AnimatedSection className="lg:col-span-7">
-              <p className="eyebrow text-neon-purple">Our values</p>
-              <h2 className="mt-3 h-section text-deep-blue">
-                What we{" "}
-                <span className="gradient-text-dark">stand for.</span>
-              </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                The non-negotiables that show up in every project — the way we
-                work, communicate, and ship.
+  <div className="relative max-w-7xl mx-auto px-6">
+    {/* Header */}
+    <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-16 lg:mb-20">
+      <AnimatedSection className="lg:col-span-7">
+        <p className="eyebrow text-neon-purple">Our values</p>
+        <h2 className="mt-3 h-section text-deep-blue">
+          What we <span className="gradient-text-dark">stand for.</span>
+        </h2>
+      </AnimatedSection>
+
+      <AnimatedSection className="lg:col-span-5" delay={0.1}>
+        <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+          The non-negotiables that show up in every project — the way we work,
+          communicate, and ship.
+        </p>
+      </AnimatedSection>
+    </div>
+
+    {/* Values Container */}
+    <div className="relative rounded-[32px] border border-deep-blue/[0.08] bg-white overflow-hidden p-8 lg:p-16">
+      {/* Ambient glow */}
+      <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-neon-blue/5 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-neon-purple/5 rounded-full blur-[100px]" />
+
+      <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 lg:gap-x-14 gap-y-10 lg:gap-y-14">
+        {values.map((value, i) => (
+          <motion.div
+            key={value.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -6 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{
+              duration: 0.55,
+              delay: i * 0.08,
+              ease: [0.4, 0, 0.2, 1],
+            }}
+            className="
+              group
+              relative
+              p-6
+              lg:p-7
+              rounded-2xl
+              border
+              border-deep-blue/[0.06]
+              bg-white/70
+              backdrop-blur-sm
+              transition-all
+              duration-500
+              min-h-[250px]
+              overflow-hidden
+              hover:shadow-[0_28px_56px_-24px_rgba(10,22,40,0.22)]
+            "
+          >
+            {/* Accent-tinted corner glow (reveals on hover) */}
+            <div
+              className="pointer-events-none absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl opacity-0 group-hover:opacity-[0.16] transition-opacity duration-500"
+              style={{ backgroundColor: value.accent }}
+            />
+
+            {/* Top accent strip (wipes in on hover) */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[3px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+              style={{
+                background: `linear-gradient(90deg, ${value.accent}, ${value.accent}00)`,
+              }}
+            />
+
+            {/* Large ghost number */}
+            <div
+              className="absolute top-3 right-4 text-[68px] lg:text-[88px] font-bold leading-none select-none pointer-events-none"
+              style={{ color: `${value.accent}14` }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10">
+              {/* Icon badge */}
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3"
+                style={{
+                  backgroundColor: `${value.accent}14`,
+                  color: value.accent,
+                  boxShadow: `inset 0 0 0 1px ${value.accent}26`,
+                }}
+              >
+                {value.icon}
+              </div>
+
+              <h3 className="text-[1.35rem] lg:text-[1.5rem] font-bold leading-[1.15] tracking-tight text-deep-blue mb-3">
+                {value.title}
+              </h3>
+
+              <p className="text-[15px] leading-relaxed text-deep-blue/60">
+                {value.description}
               </p>
-            </AnimatedSection>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:auto-rows-[260px]">
-            {values.map((value, i) => {
-              const isFeatured = value.featured;
-              return (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.55, delay: i * 0.06, ease: [0.4, 0, 0.2, 1] }}
-                  whileHover={{ y: -4 }}
-                  className={`group relative rounded-2xl overflow-hidden bg-white border border-deep-blue/[0.07] transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)] ${
-                    isFeatured ? "sm:col-span-2 lg:col-span-2 lg:row-span-2 p-7 lg:p-9 flex flex-col" : "p-6 flex flex-col"
-                  }`}
-                  style={
-                    {
-                      "--card-glow": `${value.accent}55`,
-                    } as React.CSSProperties
-                  }
-                >
-                  <div
-                    className="pointer-events-none absolute -top-12 -right-12 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
-                    style={{
-                      backgroundColor: value.accent,
-                      width: isFeatured ? "20rem" : "9rem",
-                      height: isFeatured ? "20rem" : "9rem",
-                    }}
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ borderColor: `${value.accent}33` }}
-                  />
-
-                  <div className="relative flex-1 flex flex-col">
-                    <div
-                      className={`rounded-xl flex items-center justify-center text-white ${
-                        isFeatured ? "w-16 h-16" : "w-12 h-12"
-                      }`}
-                      style={{
-                        backgroundColor: value.accent,
-                        boxShadow: `0 12px 28px -10px ${value.accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
-                      }}
-                    >
-                      {value.icon}
-                    </div>
-                    <h3
-                      className={`mt-5 font-bold text-deep-blue tracking-tight leading-snug ${
-                        isFeatured ? "text-2xl lg:text-[1.875rem]" : "text-base"
-                      }`}
-                    >
-                      {value.title}
-                    </h3>
-                    <p
-                      className={`mt-2.5 text-deep-blue/65 leading-relaxed ${
-                        isFeatured ? "text-base" : "text-sm"
-                      }`}
-                    >
-                      {value.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+              {/* Accent underline */}
+              <div
+                className="mt-6 h-[2px] w-10 rounded-full transition-all duration-500 group-hover:w-20"
+                style={{
+                  background: `linear-gradient(90deg, ${value.accent}, ${value.accent}55)`,
+                }}
+              />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ───────── Final CTA ───────── */}
       <CTABanner

@@ -45,7 +45,7 @@ export default function LogoMarquee() {
           className="flex flex-col items-center gap-2 mb-7"
         >
           <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-deep-blue/50">
-            Trusted by industry leaders
+            Teams we have worked with
           </p>
           <div className="flex items-center gap-1.5">
             <span className="w-8 h-px bg-neon-blue/40" />

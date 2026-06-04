@@ -22,9 +22,9 @@ const stages: Stage[] = [
     number: "01",
     name: "Plan",
     accent: "#4FC3F7",
-    bgMuted: "rgba(79, 195, 247, 0.10)",
+    bgMuted: "rgba(79, 195, 247, 0.08)",
     description:
-      "Discovery, audit, success metrics, scope and roadmap. We align on what success looks like before we touch a Figma file.",
+      "We start by understanding your goals, users, and constraints. Together we agree on scope, success measures, and a clear roadmap before any work begins.",
     activities: ["Stakeholder interviews", "Tech & brand audit", "Success metrics", "Roadmap"],
     colStart: 1,
     colEnd: 4,
@@ -39,9 +39,9 @@ const stages: Stage[] = [
     number: "02",
     name: "Design",
     accent: "#A78BFA",
-    bgMuted: "rgba(167, 139, 250, 0.10)",
+    bgMuted: "rgba(167, 139, 250, 0.08)",
     description:
-      "Research-led design with high-fidelity prototypes. Tokens, components, motion, accessibility — productionised, not just pretty.",
+      "We design around real user needs, then turn it into clear, interactive prototypes. Accessible and consistent from the first screen — not just good-looking.",
     activities: ["UX research", "Design system", "Prototypes", "Motion & a11y"],
     colStart: 3,
     colEnd: 7,
@@ -57,9 +57,9 @@ const stages: Stage[] = [
     number: "03",
     name: "Develop",
     accent: "#2DD4BF",
-    bgMuted: "rgba(45, 212, 191, 0.10)",
+    bgMuted: "rgba(45, 212, 191, 0.08)",
     description:
-      "Two-week sprints, weekly demos, demoable from day 14. Clean, tested code shipped in production-ready increments.",
+      "We build in short, two-week cycles with regular demos. You see working software early and often — clean, tested, and ready for production.",
     activities: ["Bi-weekly demos", "Staging envs", "CI/CD pipeline", "Pair programming"],
     colStart: 5,
     colEnd: 10,
@@ -73,9 +73,9 @@ const stages: Stage[] = [
     number: "04",
     name: "Test",
     accent: "#10B981",
-    bgMuted: "rgba(16, 185, 129, 0.10)",
+    bgMuted: "rgba(16, 185, 129, 0.08)",
     description:
-      "E2E, performance, security, and accessibility — locked behind CI gates. We ship with confidence, not surprises.",
+      "We test thoroughly for quality, performance, security, and accessibility before anything goes live — so you launch with confidence, not surprises.",
     activities: ["E2E + visual regression", "Performance budgets", "OWASP review", "WCAG-AA audit"],
     colStart: 7,
     colEnd: 11,
@@ -89,9 +89,9 @@ const stages: Stage[] = [
     number: "05",
     name: "Deploy",
     accent: "#EF4444",
-    bgMuted: "rgba(239, 68, 68, 0.10)",
+    bgMuted: "rgba(239, 68, 68, 0.08)",
     description:
-      "Zero-downtime production rollout with full rollback safety nets, observability, and a documented runbook handed off to your team.",
+      "We release to production smoothly, with monitoring in place and a safe way to roll back if needed. Everything is documented and handed over to your team.",
     activities: ["Zero-downtime deploy", "Rollback runbook", "Observability stack", "On-call setup"],
     colStart: 9,
     colEnd: 12,
@@ -105,9 +105,9 @@ const stages: Stage[] = [
     number: "06",
     name: "Support",
     accent: "#F59E0B",
-    bgMuted: "rgba(245, 158, 11, 0.10)",
+    bgMuted: "rgba(245, 158, 11, 0.08)",
     description:
-      "On-call coverage, iterative improvements, A/B tests, growth experiments and quarterly business reviews.",
+      "We stay on after launch — fixing, improving, and adding features over time, with regular reviews to keep your product growing with your business.",
     activities: ["On-call", "A/B program", "Growth", "Quarterly review"],
     colStart: 10,
     colEnd: 13,
@@ -140,7 +140,7 @@ export default function WorkingProcess() {
         animate={{ scale: [1, 1.18, 1], opacity: [0.3, 0.55, 0.3] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
-      <div className="absolute inset-0 dotted-grid-light opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 dotted-grid-light opacity-30 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header */}
@@ -149,34 +149,34 @@ export default function WorkingProcess() {
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-blue">
-                How we deliver
+                How we work
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-white tracking-tight leading-[1.1]">
-              Six stages.{" "}
-              <span className="text-white/45">
-                Designed to run in parallel, not waterfall.
+              A clear process,{" "}
+              <span className="text-neon-blue">
+                from first idea to launch and beyond.
               </span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
             <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-              Hover any stage on the timeline below — we don&apos;t pretend
-              design ends before development starts, or that QA only happens
-              at the end.
+              Six simple stages. Hover any stage on the timeline to see what
+              happens and what you get at each step — with regular check-ins so
+              you always know where things stand.
             </p>
           </AnimatedSection>
         </div>
 
         {/* Gantt-style timeline */}
         <AnimatedSection delay={0.2}>
-          <div className="relative rounded-2xl bg-white/[0.025] border border-white/10 p-5 lg:p-7 backdrop-blur-sm">
+          <div className="relative rounded-2xl bg-white/[0.02] border border-white/10 p-5 lg:p-7 backdrop-blur-sm">
             {/* Vertical gridlines */}
             <div className="absolute inset-x-5 lg:inset-x-7 inset-y-0 grid grid-cols-12 pointer-events-none">
               {Array.from({ length: 12 }).map((_, i) => (
                 <span
                   key={i}
-                  className="border-l border-white/[0.04] h-full"
+                  className="border-l border-white/[0.03] h-full"
                 />
               ))}
             </div>
@@ -197,9 +197,9 @@ export default function WorkingProcess() {
                       backgroundColor: isActive ? stage.accent : stage.bgMuted,
                       borderColor: isActive
                         ? stage.accent
-                        : `${stage.accent}40`,
+                        : `${stage.accent}30`,
                       boxShadow: isActive
-                        ? `0 14px 32px -12px ${stage.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`
+                        ? `0 14px 32px -12px ${stage.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`
                         : "none",
                     }}
                     animate={{ scale: isActive ? 1.02 : 1 }}
@@ -208,14 +208,14 @@ export default function WorkingProcess() {
                   >
                     <span
                       className={`font-mono text-[10px] font-bold tracking-wider ${
-                        isActive ? "text-white/80" : "text-white/40"
+                        isActive ? "text-white/80" : "text-white/30"
                       }`}
                     >
                       {stage.number}
                     </span>
                     <span
                       className={`text-sm font-bold tracking-tight truncate ${
-                        isActive ? "text-white" : "text-white/70"
+                        isActive ? "text-white" : "text-white/60"
                       }`}
                     >
                       {stage.name}
@@ -254,7 +254,7 @@ export default function WorkingProcess() {
                     className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
                     style={{
                       backgroundColor: active.accent,
-                      boxShadow: `0 14px 32px -10px ${active.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
+                      boxShadow: `0 14px 32px -10px ${active.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`,
                     }}
                   >
                     {active.icon}
@@ -287,12 +287,12 @@ export default function WorkingProcess() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                className="relative rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-sm p-5 lg:p-6 overflow-hidden"
+                className="relative rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm p-5 lg:p-6 overflow-hidden"
                 style={{ "--accent": active.accent } as React.CSSProperties}
               >
                 {/* Soft accent glow */}
                 <div
-                  className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-25"
+                  className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-20"
                   style={{ backgroundColor: active.accent }}
                 />
 

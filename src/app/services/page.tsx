@@ -10,6 +10,7 @@ import CTABanner from "@/components/CTABanner";
 const DEEP = "var(--section-deep)";
 const LIGHT = "var(--section-light)";
 
+
 /* ───────── Data ───────── */
 
 type Category = "build" | "design" | "scale" | "operate";
@@ -31,6 +32,7 @@ const services: Service[] = [
     slug: "mobile-application",
     category: "build",
     tagline: "Native & cross-platform apps people love using.",
+
     description:
       "Engineered for performance, accessibility, and the bar set by App Store editors. iOS, Android, or one shared codebase via React Native or Flutter.",
     capabilities: [
@@ -68,6 +70,7 @@ const services: Service[] = [
         <circle cx="5" cy="6.5" r="0.5" fill="currentColor" />
       </svg>
     ),
+
   },
   {
     title: "E-commerce Development",
@@ -406,6 +409,7 @@ function HeroTile({ service, index }: { service: Service; index: number }) {
         className="relative w-10 h-10 lg:w-11 lg:h-11 rounded-xl flex items-center justify-center text-white mb-2 transition-transform duration-500 group-hover:scale-110"
         style={{
           backgroundColor: service.accent,
+          color: "#ffffff",
           boxShadow: `0 10px 24px -10px ${service.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
         }}
       >
@@ -570,9 +574,8 @@ function FaqRow({
 }) {
   return (
     <div
-      className={`relative border-b border-white/[0.08] transition-colors duration-300 ${
-        isOpen ? "bg-white/[0.02]" : ""
-      }`}
+      className={`relative border-b border-white/[0.08] transition-colors duration-300 ${isOpen ? "bg-white/[0.02]" : ""
+        }`}
     >
       {/* Accent left bar when open */}
       <motion.span
@@ -592,21 +595,19 @@ function FaqRow({
             {String(index + 1).padStart(2, "0")}
           </span>
           <span
-            className={`text-base sm:text-lg font-semibold transition-colors ${
-              isOpen
-                ? "text-white"
-                : "text-white/85 group-hover:text-neon-blue"
-            }`}
+            className={`text-base sm:text-lg font-semibold transition-colors ${isOpen
+              ? "text-white"
+              : "text-white/85 group-hover:text-neon-blue"
+              }`}
           >
             {q}
           </span>
         </div>
         <span
-          className={`shrink-0 mt-1 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${
-            isOpen
-              ? "rotate-45 bg-neon-blue border-transparent text-white shadow-lg shadow-neon-blue/40"
-              : "border-white/15 text-white/55 group-hover:border-neon-blue/40 group-hover:text-neon-blue"
-          }`}
+          className={`shrink-0 mt-1 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${isOpen
+            ? "rotate-45 bg-neon-blue border-transparent text-white shadow-lg shadow-neon-blue/40"
+            : "border-white/15 text-white/55 group-hover:border-neon-blue/40 group-hover:text-neon-blue"
+            }`}
         >
           <svg
             className="w-3.5 h-3.5"
@@ -640,16 +641,27 @@ function FaqRow({
 
 /* ───────── Page ───────── */
 export default function ServicesPage() {
-  const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
-  const [openFaq, setOpenFaq] = useState<number>(0);
-  const [activeStep, setActiveStep] = useState<number>(0);
+ const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
+const [openFaq, setOpenFaq] = useState<number>(0);
+const [activeStep, setActiveStep] = useState<number>(0);
+const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const visibleServices =
-    activeFilter === "all"
-      ? services
-      : services.filter((s) => s.category === activeFilter);
+// Filtered services
+const visibleServices =
+  activeFilter === "all"
+    ? services
+    : services.filter((s) => s.category === activeFilter);
 
-  const step = processSteps[activeStep];
+// Split for left/right layout
+const middle = Math.ceil(visibleServices.length / 2);
+const leftServices = visibleServices.slice(0, middle);
+const rightServices = visibleServices.slice(middle);
+
+// Safe active service (NEVER crashes)
+const activeService = visibleServices?.[activeIndex] ?? visibleServices?.[0];
+
+// Other UI data
+const step = processSteps[activeStep];
 
   return (
     <>
@@ -822,112 +834,353 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Catalog (filterable) ───────── */}
       <section
-        id="catalog"
-        className="py-20 lg:py-24 bg-light-accent relative overflow-hidden"
+        id="services-grid"
+        className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
       >
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
+        {/* ───────── BACKGROUND GLOW ───────── */}
+        <div className="absolute inset-0 opacity-70">
+          <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+        </div>
+
+        {/* noise overlay */}
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          {/* Editorial header */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
+
+          {/* ───────── HEADER ───────── */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-14">
             <AnimatedSection className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
-                  What we do
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 backdrop-blur border border-black/5 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+                <p className="text-[10px] uppercase tracking-[0.25em] text-deep-blue/60">
+                  Services Overview
                 </p>
               </div>
-              <h2 className="h-section text-deep-blue">
+
+              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-deep-blue leading-[1.1]">
                 Find the capability that fits{" "}
-                <span className="gradient-text-dark">your problem.</span>
+                <span className="bg-gradient-to-r from-neon-purple to-neon-blue bg-clip-text text-transparent">
+                  your problem
+                </span>
               </h2>
             </AnimatedSection>
+
             <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/65 max-w-md lg:ml-auto">
-                Filter by intent. Each card opens to deliverables, timelines,
-                stack details, and recent client work.
+              <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed">
+                Filter by intent. Each service opens a live preview with deliverables,
+                timelines, stack details, and real execution outcomes.
               </p>
             </AnimatedSection>
           </div>
 
-          {/* Filter chips */}
-          <AnimatedSection className="mb-9" delay={0.15}>
-            <div className="flex flex-wrap items-center gap-2">
-              {filters.map((f) => {
-                const isActive = activeFilter === f.id;
-                const count =
-                  f.id === "all"
-                    ? services.length
-                    : services.filter((s) => s.category === f.id).length;
-                return (
-                  <motion.button
-                    key={f.id}
-                    onClick={() => setActiveFilter(f.id)}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className={`relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                      isActive
-                        ? "bg-deep-blue text-white shadow-lg shadow-deep-blue/30"
-                        : "bg-white border border-deep-blue/[0.08] text-deep-blue/70 hover:text-deep-blue hover:border-deep-blue/20 hover:shadow-md hover:shadow-deep-blue/[0.04]"
-                    }`}
+          {/* ───────── MOBILE ───────── */}
+          <div className="xl:hidden space-y-4">
+            {services.map((service, i) => (
+              <motion.div
+                key={service.slug}
+                layout
+                className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
+              >
+                <button
+                  onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
+                  className="w-full flex items-center gap-4 p-5 text-left"
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                    style={{
+                      backgroundColor: `${service.accent}15`,
+                      color: service.accent,
+                    }}
                   >
-                    <span className="flex items-center gap-2">
-                      {f.label}
-                      <span
-                        className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full tabular-nums ${
-                          isActive
-                            ? "bg-white/15 text-white/90"
-                            : "bg-deep-blue/[0.06] text-deep-blue/55"
-                        }`}
-                      >
-                        {String(count).padStart(2, "0")}
-                      </span>
-                    </span>
-                  </motion.button>
-                );
-              })}
-              <span className="ml-auto text-[11px] font-medium text-deep-blue/45 tracking-wide hidden sm:inline">
-                Showing{" "}
-                <span className="font-bold text-deep-blue/70 tabular-nums">
-                  {visibleServices.length}
-                </span>{" "}
-                of {services.length} services
+                    {service.icon}
+                  </div>
+
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-deep-blue">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-deep-blue/50 mt-1">
+                      {service.tagline}
+                    </p>
+                  </div>
+
+                  <svg
+                    className={`w-5 h-5 transition-transform ${activeIndex === i ? "rotate-180" : ""
+                      }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                <AnimatePresence>
+                  {activeIndex === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 border-t border-black/5">
+                        <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
+                          {service.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {service.capabilities.map((cap) => (
+                            <span
+                              key={cap}
+                              className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
+                            >
+                              {cap}
+                            </span>
+                          ))}
+                        </div>
+
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
+                        >
+                          Learn More →
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* ───────── DESKTOP LAYOUT ───────── */}
+          {/* ───────── DESKTOP LAYOUT ───────── */}
+<div className="hidden xl:block">
+  <div className="grid grid-cols-[300px_1fr_300px] items-start gap-6">
+
+    {/* LEFT */}
+    <div>
+      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
+        Build · Design
+      </p>
+
+      <div className="space-y-3">
+        {leftServices.map((service, i) => {
+          const isActive = activeIndex === i;
+
+          return (
+            <button
+              key={service.slug}
+              onClick={() => setActiveIndex(i)}
+              onMouseEnter={() => setActiveIndex(i)}
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
+              ${
+                isActive
+                  ? "bg-white shadow-xl shadow-black/5"
+                  : "hover:bg-white/50"
+              }`}
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{
+                  backgroundColor: `${service.accent}15`,
+                  color: service.accent,
+                }}
+              >
+                {service.icon}
+              </div>
+
+              <div className="flex-1 text-left">
+                <h3 className="font-semibold text-deep-blue">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm text-deep-blue/40">
+                  {service.tagline}
+                </p>
+              </div>
+
+              <span className="text-xs text-deep-blue/25">
+                {String(i + 1).padStart(2, "0")}
               </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+
+    {/* CENTER */}
+    <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-8 mt-10">
+
+      <div className="absolute inset-0">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={services[activeIndex].slug}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="relative z-10 h-full flex flex-col"
+        >
+
+          <div className="flex items-center justify-between mb-8">
+
+            <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-white" />
+
+              <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
+                Build
+              </p>
             </div>
-          </AnimatedSection>
 
-          {/* Service grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          >
-            <AnimatePresence mode="popLayout">
-              {visibleServices.map((service, i) => (
-                <ServiceCard
-                  key={service.slug}
-                  service={service}
-                  index={i}
-                />
-              ))}
-            </AnimatePresence>
-          </motion.div>
+            <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(services.length).padStart(2, "0")}
+            </div>
 
-          {visibleServices.length === 0 && (
-            <p className="text-center text-deep-blue/50 py-12">
-              No services in this category yet.
+          </div>
+
+          <div className="flex-1 flex items-center justify-center py-4">
+
+            <div className="relative">
+
+              <div className="absolute -inset-6 border border-white/10 rounded-full" />
+
+              <div className="absolute -inset-12 border border-white/5 rounded-full" />
+
+              <div className="w-24 h-24 rounded-[24px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
+
+                <div className="text-white scale-[1.6]">
+                  {services[activeIndex].icon}
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div>
+
+            <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-3">
+              {services[activeIndex].tagline}
             </p>
-          )}
+
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-3">
+              {services[activeIndex].title}
+            </h3>
+
+            <p className="text-sm text-white/75 max-w-xl leading-relaxed mb-6">
+              {services[activeIndex].description}
+            </p>
+
+            <div className="flex flex-wrap gap-2">
+              {services[activeIndex].capabilities
+                .slice(0, 5)
+                .map((cap) => (
+                  <span
+                    key={cap}
+                    className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
+                  >
+                    {cap}
+                  </span>
+                ))}
+            </div>
+
+            <Link
+              href={`/services/${services[activeIndex].slug}`}
+              className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#063A3F] shadow-lg shadow-black/10 transition-all hover:gap-3 hover:bg-white/90"
+            >
+              Learn More
+              <svg
+                className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 12h14M13 6l6 6-6 6"
+                />
+              </svg>
+            </Link>
+
+          </div>
+
+        </motion.div>
+      </AnimatePresence>
+
+    </div>
+
+    {/* RIGHT */}
+    <div>
+      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+        Grow · Ops
+      </p>
+
+      <div className="space-y-3">
+        {rightServices.map((service, i) => {
+          const realIndex = i + leftServices.length;
+          const isActive = activeIndex === realIndex;
+
+          return (
+            <button
+              key={service.slug}
+              onClick={() => setActiveIndex(realIndex)}
+              onMouseEnter={() => setActiveIndex(realIndex)}
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
+              ${
+                isActive
+                  ? "bg-white shadow-xl shadow-black/5"
+                  : "hover:bg-white/50"
+              }`}
+            >
+              <div className="flex-1 text-right">
+                <h3 className="font-semibold text-deep-blue">
+                  {service.title}
+                </h3>
+
+                <p className="text-sm text-deep-blue/40">
+                  {service.tagline}
+                </p>
+              </div>
+
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
+                style={{
+                  backgroundColor: `${service.accent}15`,
+                  color: service.accent,
+                }}
+              >
+                {service.icon}
+              </div>
+
+              <span className="text-xs text-deep-blue/25">
+                {String(realIndex + 1).padStart(2, "0")}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+
+  </div>
+</div>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
@@ -990,29 +1243,26 @@ export default function ServicesPage() {
                           ? s.accent
                           : `${s.accent}38`,
                         boxShadow: isActive
-                          ? `0 16px 36px -14px ${s.accent}90, inset 0 1px 0 rgba(255,255,255,0.18)`
+                          ? `0 16px 36px - 14px ${s.accent}90, inset 0 1px 0 rgba(255, 255, 255, 0.18)`
                           : "none",
                       }}
                     >
                       <span
-                        className={`shrink-0 font-mono text-[11px] font-bold tracking-wider ${
-                          isActive ? "text-white/85" : "text-white/45"
-                        }`}
+                        className={`shrink - 0 font - mono text - [11px] font - bold tracking - wider ${isActive ? "text-white/85" : "text-white/45"
+                          }`}
                       >
                         {s.number}
                       </span>
                       <div className="min-w-0 flex-1">
                         <p
-                          className={`text-sm font-bold tracking-tight truncate ${
-                            isActive ? "text-white" : "text-white/80"
-                          }`}
+                          className={`text - sm font - bold tracking - tight truncate ${isActive ? "text-white" : "text-white/80"
+                            }`}
                         >
                           {s.title}
                         </p>
                         <p
-                          className={`text-[10.5px] truncate ${
-                            isActive ? "text-white/70" : "text-white/45"
-                          }`}
+                          className={`text - [10.5px] truncate ${isActive ? "text-white/70" : "text-white/45"
+                            }`}
                         >
                           {s.duration}
                         </p>
@@ -1052,7 +1302,7 @@ export default function ServicesPage() {
                       className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
                       style={{
                         backgroundColor: step.accent,
-                        boxShadow: `0 14px 32px -10px ${step.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
+                        boxShadow: `0 14px 32px - 10px ${step.accent}90, inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
                       }}
                     >
                       {step.icon}
@@ -1079,7 +1329,7 @@ export default function ServicesPage() {
             <div className="lg:col-span-5">
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={`${step.number}-deliverables`}
+                  key={`${step.number} - deliverables`}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
@@ -1122,9 +1372,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
 
       {/* ───────── Case studies ───────── */}
       <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
@@ -1170,7 +1417,7 @@ export default function ServicesPage() {
                   <div
                     className="absolute top-0 left-0 right-0 h-[3px]"
                     style={{
-                      background: `linear-gradient(90deg, ${cs.accent} 0%, ${cs.accent}00 100%)`,
+                      background: `linear - gradient(90deg, ${cs.accent} 0 %, ${cs.accent}00 100 %)`,
                     }}
                   />
 
@@ -1233,9 +1480,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── FAQ ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">

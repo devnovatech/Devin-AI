@@ -140,9 +140,6 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Pillars ───────── */}
       <section className="py-16 lg:py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />

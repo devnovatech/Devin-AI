@@ -32,7 +32,7 @@ const services: Service[] = [
       "Document AI, computer vision & OCR pipelines",
       "Evals, monitoring, and MLOps from day one",
     ],
-    stack: ["OpenAI", "Anthropic", "LangChain", "Python", "PyTorch"],
+    stack: ["OpenAI", "Anthropic", "LangChain", "Python"],
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <circle cx="12" cy="12" r="3.5" />
@@ -138,7 +138,7 @@ const services: Service[] = [
     description:
       "Time-zone-aligned, vetted engineers who slot into your sprints and ship from week one.",
     outcomes: [
-      "Senior IC & tech lead profiles, vetted in 48h",
+      "Senior engineers and tech leads, carefully vetted",
       "Time-zone overlap with US, EU, and APAC teams",
       "Engineering, design, PM, data & DevOps roles",
       "Month-to-month flex — scale up or down with runway",
@@ -152,7 +152,7 @@ const services: Service[] = [
   },
   {
     title: "E-commerce",
-    slug: "",
+    slug: "E-commerce",
     tagline: "Conversion-tuned storefronts",
     accent: "#0097A7",
     category: "Grow",
@@ -346,15 +346,15 @@ export default function Services() {
               </span>
             </div>
             <h2 className="h-section text-deep-blue">
-              Senior engineering,{" "}
-              <span className="gradient-text-dark">across the stack.</span>
+              Everything you need{" "}
+              <span className="gradient-text-dark">to build and grow.</span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              Nine specialties under one roof — from product design to AI in
-              production. Hire one capability or weave several into a single
-              engagement.
+              From design and development to growth and support — choose a
+              single service or combine several into one project. One team,
+              start to finish.
             </p>
           </AnimatedSection>
         </div>
@@ -862,8 +862,8 @@ export default function Services() {
                       <path strokeLinecap="round" d="M12 7v5l3 2" />
                     </svg>
                     <span>
-                      <span className="font-semibold text-deep-blue/75">2–6 weeks</span>{" "}
-                      typical engagement
+                      <span className="font-semibold text-deep-blue/75">Flexible</span>{" "}
+                      engagements, scoped to you
                     </span>
                   </div>
                   <div className="flex items-center gap-1.5">

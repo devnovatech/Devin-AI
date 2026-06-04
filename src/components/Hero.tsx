@@ -9,51 +9,60 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 
-type ActivityKind = "deploy" | "augment" | "product";
+interface Capability {
+  tag: string;
+  short: string;
+  title: string;
+  description: string;
+  accent: string;
+  points: string[];
+  icon: React.ReactNode;
+}
 
-const activityFeed: Array<{
-  kind: ActivityKind;
-  time: string;
-  primary: string;
-  secondary: string;
-}> = [
+const capabilities: Capability[] = [
   {
-    kind: "deploy",
-    time: "just now",
-    primary: "Shipped FinFlow v2.4",
-    secondary: "→ production · zero downtime",
+    tag: "Custom Development",
+    short: "Custom Dev",
+    title: "Software built for you",
+    description:
+      "Web, mobile, and AI products — designed, built, and shipped end to end.",
+    accent: "#4FC3F7",
+    points: ["Web & mobile apps", "AI & automation", "APIs & platforms"],
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    ),
   },
   {
-    kind: "augment",
-    time: "12m ago",
-    primary: "6 engineers placed",
-    secondary: "with HealthBridge · 18-month engagement",
+    tag: "Team Augmentation",
+    short: "Augment",
+    title: "Engineers for your team",
+    description:
+      "Senior engineers who embed with your team and contribute from day one.",
+    accent: "#A78BFA",
+    points: ["Senior engineers", "Embedded in your team", "Scale up or down"],
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
   },
   {
-    kind: "product",
-    time: "1h ago",
-    primary: "Released GovAI v1.2",
-    secondary: "RAG pipeline · 3 new tenants",
-  },
-  {
-    kind: "deploy",
-    time: "3h ago",
-    primary: "Merged 18 PRs",
-    secondary: "across 4 client repos · all green",
-  },
-  {
-    kind: "augment",
-    time: "5h ago",
-    primary: "2 new engagements signed",
-    secondary: "FinTech + EdTech · Q1 kickoff",
+    tag: "Our Products",
+    short: "Products",
+    title: "Products we build & run",
+    description:
+      "Software we design, build, and operate ourselves — refined over time.",
+    accent: "#34D399",
+    points: ["Built in-house", "Production-ready", "Always improving"],
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>
+    ),
   },
 ];
-
-const activityMeta: Record<ActivityKind, { label: string; color: string; bg: string }> = {
-  deploy: { label: "DEPLOY", color: "#4FC3F7", bg: "rgba(79,195,247,0.15)" },
-  augment: { label: "AUGMENT", color: "#A78BFA", bg: "rgba(167,139,250,0.15)" },
-  product: { label: "PRODUCT", color: "#34D399", bg: "rgba(52,211,153,0.15)" },
-};
 
 /* ───────── Network particles ───────── */
 function Particles() {
@@ -163,14 +172,15 @@ function Particles() {
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Activity feed — cycle the "live" highlight through entries
-  const [pulseIdx, setPulseIdx] = useState(0);
+  // Capability spotlight — auto-cycle through the three offerings
+  const [capIdx, setCapIdx] = useState(0);
   useEffect(() => {
     const t = setInterval(() => {
-      setPulseIdx((i) => (i + 1) % activityFeed.length);
-    }, 2200);
+      setCapIdx((i) => (i + 1) % capabilities.length);
+    }, 3600);
     return () => clearInterval(t);
   }, []);
+  const activeCap = capabilities[capIdx];
 
   // Mouse parallax
   const mouseX = useMotionValue(0);
@@ -254,7 +264,7 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
             </span>
             <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
-              Software house · Now booking Q1 2026
+              Software development partner · Available for new projects
             </span>
           </motion.div>
 
@@ -269,7 +279,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-              The software house
+              We build software
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
@@ -277,8 +287,8 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.32, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-              for teams that{" "}
-              <span className="gradient-text glow-text">ship.</span>
+              that{" "}
+              <span className="gradient-text glow-text">moves you forward.</span>
             </motion.span>
           </h1>
 
@@ -289,11 +299,12 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed"
           >
-            Devinception is a full-service software house with three offerings
-            under one roof — <span className="text-white font-semibold">custom development</span>,{" "}
-            <span className="text-white font-semibold">resource augmentation</span>, and a portfolio of{" "}
-            <span className="text-white font-semibold">in-house products</span>. One trusted partner,
-            engineered for outcomes.
+            Devinception is a software development company. We build{" "}
+            <span className="text-white font-semibold">custom products</span>,
+            provide <span className="text-white font-semibold">skilled engineers</span> to
+            strengthen your team, and ship our own{" "}
+            <span className="text-white font-semibold">software products</span> — all
+            under one roof.
           </motion.p>
 
           {/* Three-pillar chip row */}
@@ -305,8 +316,8 @@ export default function Hero() {
           >
             {[
               { label: "Custom Development", icon: "</>" },
-              { label: "Resource Augmentation", icon: "{ }" },
-              { label: "SaaS Products", icon: "▲" },
+              { label: "Team Augmentation", icon: "{ }" },
+              { label: "Our Products", icon: "▲" },
             ].map((p) => (
               <span
                 key={p.label}
@@ -334,7 +345,7 @@ export default function Hero() {
                 href="/contact"
                 className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
               >
-                Schedule a discovery call
+                Start your project
                 <svg
                   className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                   fill="none"
@@ -354,7 +365,7 @@ export default function Hero() {
               href="/services"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
             >
-              View our capabilities
+              Explore our services
             </Link>
           </motion.div>
 
@@ -377,24 +388,24 @@ export default function Hero() {
                 </svg>
               ))}
               <span className="ml-1.5">
-                <span className="text-white font-semibold">4.9 / 5</span>{" "}
-                across 100+ engagements
+                <span className="text-white font-semibold">Trusted</span>{" "}
+                by the teams we work with
               </span>
             </div>
             <span className="hidden sm:block w-px h-4 bg-white/10" />
             <span>
-              <span className="text-white font-semibold">SOC 2 Type II</span>{" "}
-              aligned · GDPR · WCAG-AA
+              <span className="text-white font-semibold">Security & accessibility</span>{" "}
+              built in
             </span>
             <span className="hidden md:block w-px h-4 bg-white/10" />
             <span className="hidden md:inline">
-              <span className="text-white font-semibold">15+ countries</span>{" "}
-              served
+              <span className="text-white font-semibold">Clients</span>{" "}
+              around the world
             </span>
           </motion.div>
         </div>
 
-        {/* RIGHT — animated live showcase */}
+        {/* RIGHT — animated orbital system */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -402,197 +413,203 @@ export default function Hero() {
           style={{ rotate: panelTilt }}
           className="lg:col-span-5 relative hidden lg:block"
         >
-          {/* Behind-card glow */}
+          {/* Ambient glow behind the orbit */}
           <motion.div
             className="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-neon-blue/25 via-neon-purple/15 to-transparent blur-3xl pointer-events-none"
             animate={{ opacity: [0.4, 0.7, 0.4] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          {/* Outer card */}
-          <div className="relative rounded-3xl bg-gradient-to-br from-white/[0.1] via-white/[0.04] to-white/[0.02] border border-white/15 backdrop-blur-md p-5 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)] overflow-hidden">
-            {/* Inner accent pulse */}
+          {/* ───────── Orbital system ───────── */}
+          <div className="relative mx-auto aspect-square w-full max-w-[540px]">
+            {/* Decorative rotating rings */}
+            <motion.svg
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              viewBox="0 0 100 100"
+              fill="none"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+            >
+              <circle cx="50" cy="50" r="44" stroke="rgba(255,255,255,0.10)" strokeWidth="0.25" strokeDasharray="1 2.5" />
+              <circle cx="50" cy="50" r="31" stroke="rgba(255,255,255,0.08)" strokeWidth="0.25" />
+              <circle cx="50" cy="50" r="18" stroke="rgba(255,255,255,0.06)" strokeWidth="0.25" strokeDasharray="0.5 2" />
+            </motion.svg>
+
+            {/* OUTER RING — tech stack (counter-rotating) */}
             <motion.div
-              className="absolute -top-32 -right-32 w-72 h-72 rounded-full bg-neon-blue/20 blur-[80px] pointer-events-none"
-              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            />
-
-            {/* Window chrome */}
-            <div className="relative flex items-center justify-between mb-4 px-1">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-400/70" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400/70" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/70" />
-              </div>
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/5 border border-white/10">
-                <span className="text-[9px] font-mono text-gray-400">devinception.io</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-                </span>
-                <span className="text-[9px] uppercase tracking-[0.18em] font-semibold text-emerald-300/90">
-                  Live
-                </span>
-              </div>
-            </div>
-
-            {/* Heading row */}
-            <div className="relative flex items-end justify-between px-1 pb-3 border-b border-white/[0.06]">
-              <div>
-                <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-neon-blue">
-                  Engineering activity
-                </p>
-                <h3 className="mt-0.5 text-lg font-bold text-white tracking-tight">
-                  Live across the team
-                </h3>
-              </div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25"
-              >
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-                </span>
-                <span className="text-[10px] font-mono text-emerald-300/90 tabular-nums">
-                  24h
-                </span>
-              </motion.div>
-            </div>
-
-            {/* Activity feed */}
-            <div className="relative mt-3 space-y-1.5">
-              {activityFeed.map((item, i) => {
-                const meta = activityMeta[item.kind];
-                const isPulse = i === pulseIdx;
+              className="absolute inset-0"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
+            >
+              {["React", "Next.js", "TypeScript", "Python", "AI", "Cloud"].map((t, i) => {
+                const angle = (Math.PI * 2 * i) / 6 + Math.PI / 6;
+                const x = 50 + Math.sin(angle) * 42;
+                const y = 50 - Math.cos(angle) * 42;
                 return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.45, delay: 0.85 + i * 0.1, ease: [0.4, 0, 0.2, 1] }}
-                    className="relative group"
+                  <div
+                    key={t}
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    style={{ left: `${x}%`, top: `${y}%` }}
                   >
-                    {/* Active highlight bar that travels */}
-                    {isPulse && (
-                      <motion.span
-                        layoutId="activity-pulse"
-                        className="absolute inset-0 rounded-lg border"
-                        style={{
-                          backgroundColor: meta.bg,
-                          borderColor: `${meta.color}50`,
-                        }}
-                        transition={{ type: "spring", stiffness: 320, damping: 30 }}
-                      />
-                    )}
-
-                    <div className="relative flex items-center gap-2.5 px-2.5 py-2 rounded-lg">
-                      {/* Pulsing dot */}
-                      <span className="relative flex h-2 w-2 shrink-0">
-                        {isPulse && (
-                          <span
-                            className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
-                            style={{ backgroundColor: meta.color }}
-                          />
-                        )}
-                        <span
-                          className="relative inline-flex rounded-full h-2 w-2"
-                          style={{ backgroundColor: meta.color }}
-                        />
-                      </span>
-
-                      {/* Tag */}
-                      <span
-                        className="font-mono text-[9px] font-bold tracking-[0.15em] px-1.5 py-0.5 rounded shrink-0"
-                        style={{
-                          color: meta.color,
-                          backgroundColor: `${meta.color}15`,
-                        }}
-                      >
-                        {meta.label}
-                      </span>
-
-                      {/* Content */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-baseline gap-1.5">
-                          <p className="text-[11px] font-semibold text-white truncate">
-                            {item.primary}
-                          </p>
-                        </div>
-                        <p className="text-[10px] text-gray-500 truncate leading-tight">
-                          {item.secondary}
-                        </p>
-                      </div>
-
-                      {/* Time */}
-                      <span className="font-mono text-[9px] text-gray-500 shrink-0">
-                        {item.time}
-                      </span>
-                    </div>
-                  </motion.div>
+                    <motion.span
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
+                      className="block px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-md text-[10px] font-semibold tracking-wide text-gray-200 whitespace-nowrap shadow-lg shadow-black/30"
+                    >
+                      {t}
+                    </motion.span>
+                  </div>
                 );
               })}
-            </div>
+            </motion.div>
 
-            {/* Status counters */}
-            <div className="relative grid grid-cols-3 gap-1.5 mt-4">
-              {[
-                { label: "Deploys", value: "138", color: "#4FC3F7" },
-                { label: "Placements", value: "12", color: "#A78BFA" },
-                { label: "Releases", value: "4", color: "#34D399" },
-              ].map((m, i) => (
-                <motion.div
-                  key={m.label}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 1.6 + i * 0.08 }}
-                  className="rounded-lg bg-white/[0.03] border border-white/[0.05] px-2.5 py-1.5"
-                >
-                  <div className="flex items-baseline gap-1.5">
-                    <p className="text-base font-bold text-white tabular-nums leading-none">
-                      {m.value}
-                    </p>
-                    <span
-                      className="text-[9px] font-bold uppercase tracking-wider"
-                      style={{ color: m.color }}
-                    >
-                      ↑
-                    </span>
-                  </div>
-                  <p className="text-[9px] uppercase tracking-wider text-gray-500 leading-tight mt-0.5">
-                    {m.label} · 24h
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+            {/* INNER RING — offerings + energy lines */}
+            <motion.div
+              className="absolute inset-0"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
+            >
+              {/* Energy lines from core to each node */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                viewBox="0 0 100 100"
+                fill="none"
+                preserveAspectRatio="none"
+              >
+                {capabilities.map((c, i) => {
+                  const angle = (Math.PI * 2 * i) / capabilities.length;
+                  const x = 50 + Math.sin(angle) * 31;
+                  const y = 50 - Math.cos(angle) * 31;
+                  const isActive = i === capIdx;
+                  return (
+                    <motion.line
+                      key={c.tag}
+                      x1="50"
+                      y1="50"
+                      x2={x}
+                      y2={y}
+                      stroke={c.accent}
+                      strokeWidth={isActive ? 0.7 : 0.35}
+                      strokeDasharray="1.5 2.5"
+                      animate={{
+                        strokeDashoffset: [0, -8],
+                        opacity: isActive ? [0.5, 0.95, 0.5] : 0.28,
+                      }}
+                      transition={{ duration: isActive ? 1 : 1.6, repeat: Infinity, ease: "linear" }}
+                    />
+                  );
+                })}
+              </svg>
 
-            {/* Tech stack rail */}
-            <div className="relative mt-4 pt-3 border-t border-white/[0.06]">
-              <div className="flex items-center justify-between mb-2 px-1">
-                <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-gray-500">
-                  Engineering stack
-                </p>
-                <span className="text-[9px] text-gray-600 font-mono">v2026.q1</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {["React", "Next.js", "Python", "Anthropic", "Stripe", "Postgres"].map((t, i) => (
-                  <motion.span
-                    key={t}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 1.8 + i * 0.06 }}
-                    className="text-[10px] font-semibold tracking-wide px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-300"
+              {capabilities.map((c, i) => {
+                const angle = (Math.PI * 2 * i) / capabilities.length;
+                const x = 50 + Math.sin(angle) * 31;
+                const y = 50 - Math.cos(angle) * 31;
+                const isActive = i === capIdx;
+                return (
+                  <div
+                    key={c.tag}
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    style={{ left: `${x}%`, top: `${y}%` }}
                   >
-                    {t}
-                  </motion.span>
-                ))}
+                    <motion.button
+                      onClick={() => setCapIdx(i)}
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
+                      whileHover={{ scale: 1.15 }}
+                      className="flex flex-col items-center gap-1.5"
+                    >
+                      <motion.span
+                        className="relative w-14 h-14 rounded-2xl flex items-center justify-center backdrop-blur-md border"
+                        style={{
+                          backgroundColor: `${c.accent}${isActive ? "33" : "1f"}`,
+                          borderColor: `${c.accent}${isActive ? "aa" : "55"}`,
+                          color: c.accent,
+                          boxShadow: isActive
+                            ? `0 0 34px -4px ${c.accent}`
+                            : `0 0 16px -8px ${c.accent}`,
+                        }}
+                        animate={isActive ? { scale: [1, 1.08, 1] } : { scale: 1 }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        {c.icon}
+                        {isActive && (
+                          <motion.span
+                            className="absolute inset-0 rounded-2xl border"
+                            style={{ borderColor: c.accent }}
+                            animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+                            transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                          />
+                        )}
+                      </motion.span>
+                      <span
+                        className="text-[10px] font-semibold tracking-tight whitespace-nowrap transition-colors"
+                        style={{ color: isActive ? "#fff" : "rgba(255,255,255,0.55)" }}
+                      >
+                        {c.short}
+                      </span>
+                    </motion.button>
+                  </div>
+                );
+              })}
+            </motion.div>
+
+            {/* CENTER CORE */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <div className="relative w-28 h-28 lg:w-32 lg:h-32">
+                {/* Rotating gradient ring */}
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background:
+                      "conic-gradient(from 0deg, #4FC3F7, #A78BFA, #34D399, #4FC3F7)",
+                  }}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+                />
+                {/* Pulsing halo */}
+                <motion.div
+                  className="absolute -inset-3 rounded-full border border-white/20"
+                  animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
+                />
+                {/* Inner disc */}
+                <div className="absolute inset-[3px] rounded-full bg-deep-blue flex flex-col items-center justify-center gap-1 shadow-[inset_0_0_30px_rgba(0,0,0,0.6)]">
+                  <motion.svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    animate={{ scale: [1, 1.12, 1] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </motion.svg>
+                  <span className="text-[8px] font-bold uppercase tracking-[0.18em] text-white/70">
+                    Devinception
+                  </span>
+                </div>
               </div>
             </div>
+
+            {/* Floating sparks */}
+            {[
+              { top: "8%", left: "22%", d: 0 },
+              { top: "16%", left: "80%", d: 0.6 },
+              { top: "80%", left: "14%", d: 1.1 },
+              { top: "86%", left: "78%", d: 1.6 },
+              { top: "48%", left: "95%", d: 0.3 },
+              { top: "50%", left: "4%", d: 0.9 },
+            ].map((s, i) => (
+              <motion.span
+                key={i}
+                className="absolute w-1 h-1 rounded-full bg-white pointer-events-none"
+                style={{ top: s.top, left: s.left }}
+                animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: s.d }}
+              />
+            ))}
           </div>
 
           {/* Floating top-right — Avg MVP */}
@@ -692,12 +709,12 @@ export default function Hero() {
               className="rounded-xl bg-deep-blue/95 backdrop-blur-md px-3 py-2 shadow-xl shadow-black/40 border border-white/10 font-mono text-[10px]"
             >
               <span className="text-emerald-400">$</span>{" "}
-              <span className="text-gray-300">devinception </span>
+              <span style={{ color: "#d1d5db" }}>devinception </span>
               <span className="text-neon-blue">ship</span>
               <motion.span
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
-                className="text-white"
+                style={{ color: "#ffffff" }}
               >
                 _
               </motion.span>

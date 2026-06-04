@@ -22,7 +22,7 @@ const industries: Industry[] = [
     shortLabel: "SaaS",
     slug: "saas-startups",
     description:
-      "MVPs to scale-ups — we ship fast without sacrificing the architecture decisions that bite later. Built for teams under VC pressure and runway constraints.",
+      "From early MVPs to growing platforms — we build quickly without cutting the corners that cause problems later. Made for fast-moving teams.",
     accent: "#1E88E5",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,9 +35,9 @@ const industries: Industry[] = [
       "Lean teams under investor pressure",
     ],
     deliverables: [
-      "MVP shipped in 8–14 weeks",
-      "Cloud-native infra that auto-scales",
-      "Product analytics & A/B testing wired in",
+      "MVP built and launched quickly",
+      "Cloud infrastructure that scales automatically",
+      "Product analytics and testing built in",
     ],
   },
   {
@@ -91,7 +91,7 @@ const industries: Industry[] = [
     shortLabel: "Education",
     slug: "education",
     description:
-      "Interactive learning platforms, content delivery systems, and student-engagement tools. Accessibility-first, scalable for cohorts of millions.",
+      "Interactive learning platforms, content delivery, and student-engagement tools. Accessible by design and built to scale for large audiences.",
     accent: "#0288D1",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,9 +104,9 @@ const industries: Industry[] = [
       "Scaling content for global cohorts",
     ],
     deliverables: [
-      "Custom LMS with gamification & analytics",
-      "WCAG-compliant accessible UX",
-      "Cloud-native infra for million-user scale",
+      "Custom learning platform with analytics",
+      "Accessible, WCAG-compliant design",
+      "Cloud infrastructure built to scale",
     ],
   },
 ];
@@ -142,15 +142,14 @@ export default function Industries() {
               </span>
             </div>
             <h2 className="h-section text-white">
-              Domain context,{" "}
-              <span className="gradient-text">on day one.</span>
+              Industries we{" "}
+              <span className="gradient-text">know well.</span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
             <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-              We&apos;ve shipped in regulated, high-stakes verticals before.
-              Pick one to see the friction we usually hear about — and what
-              we ship to fix it.
+              We&apos;ve worked across these industries before. Pick one to see
+              the challenges we often hear about — and how we help solve them.
             </p>
           </AnimatedSection>
         </div>
