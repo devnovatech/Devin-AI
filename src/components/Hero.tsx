@@ -692,12 +692,12 @@ export default function Hero() {
               className="rounded-xl bg-deep-blue/95 backdrop-blur-md px-3 py-2 shadow-xl shadow-black/40 border border-white/10 font-mono text-[10px]"
             >
               <span className="text-emerald-400">$</span>{" "}
-              <span className="text-gray-300">devinception </span>
+              <span style={{ color: "#d1d5db" }}>devinception </span>
               <span className="text-neon-blue">ship</span>
               <motion.span
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}
-                className="text-white"
+                style={{ color: "#ffffff" }}
               >
                 _
               </motion.span>

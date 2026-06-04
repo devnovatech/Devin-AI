@@ -321,9 +321,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Form + Contact info (split) ───────── */}
       <section className="py-16 lg:py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
@@ -777,8 +774,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── What happens next ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">

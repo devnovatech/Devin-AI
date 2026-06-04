@@ -358,9 +358,9 @@ export default function About() {
           ))}
         </div>
 
-        <div className="relative border-t border-white/[0.08] px-5 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 bg-black/20">
+        <div className="relative border-t border-white/[0.08] px-5 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 bg-deep-blue">
           <p className="text-sm text-gray-400">
-            Ready to add your team to the list?
+            Ready to add your team to the list? 
           </p>
 
           <div className="flex gap-3">

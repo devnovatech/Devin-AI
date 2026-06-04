@@ -409,6 +409,7 @@ function HeroTile({ service, index }: { service: Service; index: number }) {
         className="relative w-10 h-10 lg:w-11 lg:h-11 rounded-xl flex items-center justify-center text-white mb-2 transition-transform duration-500 group-hover:scale-110"
         style={{
           backgroundColor: service.accent,
+          color: "#ffffff",
           boxShadow: `0 10px 24px -10px ${service.accent}90, inset 0 1px 0 rgba(255,255,255,0.2)`,
         }}
       >
@@ -833,9 +834,6 @@ const step = processSteps[activeStep];
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Catalog (filterable) ───────── */}
       <section
         id="services-grid"
@@ -966,7 +964,7 @@ const step = processSteps[activeStep];
           {/* ───────── DESKTOP LAYOUT ───────── */}
           {/* ───────── DESKTOP LAYOUT ───────── */}
 <div className="hidden xl:block">
-  <div className="grid grid-cols-[320px_1fr_320px] min-h-[650px] gap-6">
+  <div className="grid grid-cols-[300px_1fr_300px] items-start gap-6">
 
     {/* LEFT */}
     <div>
@@ -1020,7 +1018,7 @@ const step = processSteps[activeStep];
     </div>
 
     {/* CENTER */}
-    <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-10">
+    <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-8 mt-10">
 
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
@@ -1036,7 +1034,7 @@ const step = processSteps[activeStep];
           className="relative z-10 h-full flex flex-col"
         >
 
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center justify-between mb-8">
 
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-white" />
@@ -1053,17 +1051,17 @@ const step = processSteps[activeStep];
 
           </div>
 
-          <div className="flex-1 flex items-center justify-center">
+          <div className="flex-1 flex items-center justify-center py-4">
 
             <div className="relative">
 
-              <div className="absolute -inset-12 border border-white/10 rounded-full" />
+              <div className="absolute -inset-6 border border-white/10 rounded-full" />
 
-              <div className="absolute -inset-24 border border-white/5 rounded-full" />
+              <div className="absolute -inset-12 border border-white/5 rounded-full" />
 
-              <div className="w-44 h-44 rounded-[32px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
+              <div className="w-24 h-24 rounded-[24px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
 
-                <div className="text-white scale-[2.5]">
+                <div className="text-white scale-[1.6]">
                   {services[activeIndex].icon}
                 </div>
 
@@ -1075,15 +1073,15 @@ const step = processSteps[activeStep];
 
           <div>
 
-            <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-4">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-3">
               {services[activeIndex].tagline}
             </p>
 
-            <h3 className="text-5xl font-bold text-white mb-4">
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-3">
               {services[activeIndex].title}
             </h3>
 
-            <p className="text-white/75 max-w-xl leading-relaxed mb-8">
+            <p className="text-sm text-white/75 max-w-xl leading-relaxed mb-6">
               {services[activeIndex].description}
             </p>
 
@@ -1099,6 +1097,26 @@ const step = processSteps[activeStep];
                   </span>
                 ))}
             </div>
+
+            <Link
+              href={`/services/${services[activeIndex].slug}`}
+              className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#063A3F] shadow-lg shadow-black/10 transition-all hover:gap-3 hover:bg-white/90"
+            >
+              Learn More
+              <svg
+                className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 12h14M13 6l6 6-6 6"
+                />
+              </svg>
+            </Link>
 
           </div>
 
@@ -1163,9 +1181,6 @@ const step = processSteps[activeStep];
 </div>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
@@ -1358,9 +1373,6 @@ const step = processSteps[activeStep];
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Case studies ───────── */}
       <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
@@ -1468,9 +1480,6 @@ const step = processSteps[activeStep];
           </div>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── FAQ ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">

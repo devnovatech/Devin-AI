@@ -610,9 +610,6 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Challenges ───────── */}
       <section className="py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
@@ -664,9 +661,6 @@ export default function IndustryPage() {
           </div>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Solutions ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
@@ -746,7 +740,6 @@ export default function IndustryPage() {
       {/* ───────── Recent work in this industry (NEW) ───────── */}
       {recentWork.length > 0 && (
         <>
-          <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
           <section className="py-20 bg-light-accent relative overflow-hidden">
             <div
               className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
@@ -817,7 +810,6 @@ export default function IndustryPage() {
               </div>
             </div>
           </section>
-          <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
         </>
       )}
 

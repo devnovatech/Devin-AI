@@ -343,9 +343,6 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Industries grid ───────── */}
       <section
         id="industries-grid"
@@ -384,8 +381,6 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Why industry expertise ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">

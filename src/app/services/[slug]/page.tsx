@@ -1244,9 +1244,6 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
-
       {/* ───────── Pain points (cleaner, empathetic) ───────── */}
       <section className="py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
@@ -1597,9 +1594,6 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
-
       {/* ───────── How we work (4-step) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
@@ -1661,9 +1655,6 @@ export default function ServicePage() {
           </div>
         </div>
       </section>
-
-      {/* dark → light */}
-      <SectionDivider fromColor={DEEP} toColor={LIGHT} kind="wave" />
 
       {/* ───────── Why us for THIS service ───────── */}
       <section className="py-20 bg-light-accent relative overflow-hidden">
@@ -1794,9 +1785,6 @@ export default function ServicePage() {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* light → dark */}
-      <SectionDivider fromColor={LIGHT} toColor={DEEP} kind="curve" />
 
       {/* ───────── Related services (NEW) ───────── */}
       {related.length > 0 && (
