@@ -430,9 +430,9 @@ export default function Hero() {
               animate={{ rotate: 360 }}
               transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
             >
-              <circle cx="50" cy="50" r="44" stroke="rgba(255,255,255,0.10)" strokeWidth="0.25" strokeDasharray="1 2.5" />
-              <circle cx="50" cy="50" r="31" stroke="rgba(255,255,255,0.08)" strokeWidth="0.25" />
-              <circle cx="50" cy="50" r="18" stroke="rgba(255,255,255,0.06)" strokeWidth="0.25" strokeDasharray="0.5 2" />
+              <circle cx="50" cy="50" r="44" className="stroke-[rgba(10,22,40,0.14)] dark:stroke-[rgba(255,255,255,0.10)]" strokeWidth="0.25" strokeDasharray="1 2.5" />
+              <circle cx="50" cy="50" r="31" className="stroke-[rgba(10,22,40,0.10)] dark:stroke-[rgba(255,255,255,0.08)]" strokeWidth="0.25" />
+              <circle cx="50" cy="50" r="18" className="stroke-[rgba(10,22,40,0.08)] dark:stroke-[rgba(255,255,255,0.06)]" strokeWidth="0.25" strokeDasharray="0.5 2" />
             </motion.svg>
 
             {/* OUTER RING — tech stack (counter-rotating) */}
@@ -454,7 +454,7 @@ export default function Hero() {
                     <motion.span
                       animate={{ rotate: 360 }}
                       transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
-                      className="block px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-md text-[10px] font-semibold tracking-wide text-gray-200 whitespace-nowrap shadow-lg shadow-black/30"
+                      className="block px-2.5 py-1 rounded-full border backdrop-blur-md text-[10px] font-semibold tracking-wide whitespace-nowrap shadow-lg bg-white border-deep-blue/10 text-deep-blue/70 shadow-deep-blue/10 dark:bg-white/[0.06] dark:border-white/15 dark:text-gray-200 dark:shadow-black/30"
                     >
                       {t}
                     </motion.span>
@@ -543,8 +543,11 @@ export default function Hero() {
                         )}
                       </motion.span>
                       <span
-                        className="text-[10px] font-semibold tracking-tight whitespace-nowrap transition-colors"
-                        style={{ color: isActive ? "#fff" : "rgba(255,255,255,0.55)" }}
+                        className={`text-[10px] font-semibold tracking-tight whitespace-nowrap transition-colors ${
+                          isActive
+                            ? "text-deep-blue dark:text-white"
+                            : "text-deep-blue/50 dark:text-white/55"
+                        }`}
                       >
                         {c.short}
                       </span>
@@ -573,10 +576,14 @@ export default function Hero() {
                   animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
                 />
-                {/* Inner disc */}
-                <div className="absolute inset-[3px] rounded-full bg-deep-blue flex flex-col items-center justify-center gap-1 shadow-[inset_0_0_30px_rgba(0,0,0,0.6)]">
+                {/* Inner disc — pinned dark in both themes */}
+                <div
+                  className="absolute inset-[3px] rounded-full flex flex-col items-center justify-center gap-1 shadow-[inset_0_0_30px_rgba(0,0,0,0.6)]"
+                  style={{ backgroundColor: "#0a1628" }}
+                >
                   <motion.svg
-                    className="w-8 h-8 text-white"
+                    className="w-8 h-8"
+                    style={{ color: "#ffffff" }}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -586,7 +593,10 @@ export default function Hero() {
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </motion.svg>
-                  <span className="text-[8px] font-bold uppercase tracking-[0.18em] text-white/70">
+                  <span
+                    className="text-[8px] font-bold uppercase tracking-[0.18em]"
+                    style={{ color: "rgba(255,255,255,0.7)" }}
+                  >
                     Devinception
                   </span>
                 </div>
