@@ -1,40 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, ReactNode } from "react";
-import { useInView, motion } from "framer-motion";
+import { ReactNode } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "./AnimatedSection";
-
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const duration = 1800;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-}
 
 interface Pillar {
   title: string;
@@ -45,8 +15,8 @@ interface Pillar {
 
 const pillars: Pillar[] = [
   {
-    title: "Senior-only roster",
-    description: "Every engineer has 8+ years shipping commercial software. No juniors on production code.",
+    title: "Experienced engineers",
+    description: "Your work is handled by senior engineers who have built and shipped real products.",
     accent: "#1E88E5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -55,8 +25,8 @@ const pillars: Pillar[] = [
     ),
   },
   {
-    title: "Embedded, not outsourced",
-    description: "Same Slack, same standups, same retro. We operate like your in-house team.",
+    title: "Part of your team",
+    description: "Same chat, same standups, same goals. We work alongside you, not at arm's length.",
     accent: "#0288D1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -65,8 +35,8 @@ const pillars: Pillar[] = [
     ),
   },
   {
-    title: "Transparent cadence",
-    description: "Two-week sprints, Friday demos, live burndowns. Predictable from week one.",
+    title: "Clear communication",
+    description: "Regular demos and honest updates, so you always know exactly where your project stands.",
     accent: "#039BE5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -77,10 +47,10 @@ const pillars: Pillar[] = [
 ];
 
 const stats = [
-  { value: 250, suffix: "+", label: "Projects shipped" },
-  { value: 50, suffix: "+", label: "Senior engineers" },
-  { value: 15, suffix: "+", label: "Countries served" },
-  { value: 98, suffix: "%", label: "Repeat-client rate" },
+  { value: "Senior", label: "Experienced engineers" },
+  { value: "End-to-end", label: "Design to delivery" },
+  { value: "Global", label: "Clients & time zones" },
+  { value: "Long-term", label: "Lasting partnerships" },
 ];
 
 export default function About() {
@@ -109,21 +79,21 @@ export default function About() {
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-4">
           <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
           <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
-            The Studio
+            About us
           </span>
         </div>
 
         <h2 className="h-section text-deep-blue">
-          A studio engineered for{" "}
-          <span className="gradient-text-dark">teams that ship.</span>
+          A software team that works{" "}
+          <span className="gradient-text-dark">like your own.</span>
         </h2>
       </AnimatedSection>
 
       <AnimatedSection className="lg:col-span-5" delay={0.1}>
         <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-          Founded by senior engineers tired of agency-grade deliverables.
-          We embed like an in-house team — from seed-stage MVPs to
-          Fortune-500 platforms.
+          We're a team of experienced engineers and designers who care about
+          doing things well. We work closely with you — from the first idea
+          to launch and beyond.
         </p>
       </AnimatedSection>
     </div>
@@ -152,10 +122,10 @@ export default function About() {
 
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-deep-blue/85 via-deep-blue/40 to-transparent p-4">
               <p className="text-[10px] uppercase tracking-[0.2em] font-semibold text-white/70">
-                Selected portfolio · 2018–2026
+                Selected work
               </p>
               <p className="mt-1 text-sm text-white font-semibold">
-                Brands we&apos;ve shipped alongside
+                Teams we&apos;ve worked with
               </p>
             </div>
           </div>
@@ -171,10 +141,10 @@ export default function About() {
           >
             <div className="rounded-xl bg-white border border-deep-blue/10 shadow-lg shadow-deep-blue/10 px-3 py-2">
               <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-deep-blue/50">
-                Founded
+                Built on
               </p>
-              <p className="mt-0.5 text-base font-bold text-deep-blue tabular-nums">
-                2018
+              <p className="mt-0.5 text-base font-bold text-deep-blue">
+                Quality
               </p>
             </div>
           </motion.div>
@@ -203,8 +173,8 @@ export default function About() {
               </div>
 
               <p className="mt-1 text-[10px] tracking-wide font-semibold">
-                <span className="text-white">4.9</span>
-                <span className="text-white/60"> · 100+ reviews</span>
+                <span className="text-white">Loved</span>
+                <span className="text-white/60"> by clients</span>
               </p>
             </div>
           </motion.div>
@@ -237,10 +207,10 @@ export default function About() {
 
               <div>
                 <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-deep-blue/50">
-                  Compliance
+                  Security
                 </p>
                 <p className="text-xs font-bold text-deep-blue">
-                  SOC 2-aligned
+                  Built in
                 </p>
               </div>
             </div>
@@ -263,7 +233,7 @@ export default function About() {
                 </span>
 
                 <p className="text-[10px] uppercase tracking-[0.18em] font-semibold">
-                  Now booking Q1
+                  Available for projects
                 </p>
               </div>
             </div>
@@ -278,8 +248,8 @@ export default function About() {
             <div className="absolute -top-12 -right-12 w-36 h-36 rounded-full bg-neon-blue/8 blur-2xl" />
 
             <p className="relative text-sm lg:text-base text-deep-blue/85 leading-relaxed font-medium">
-              &ldquo;Most agencies sell ceremony. We sell a working
-              product, on the date we promised.&rdquo;
+              &ldquo;We focus on one thing: delivering software that works,
+              on the timeline we agreed.&rdquo;
             </p>
 
             <div className="relative mt-4 pt-3 border-t border-deep-blue/[0.07] flex items-center gap-3">
@@ -289,11 +259,11 @@ export default function About() {
 
               <div>
                 <p className="text-sm font-bold text-deep-blue">
-                  Devinception Founders
+                  The Devinception Team
                 </p>
 
                 <p className="text-xs text-deep-blue/55">
-                  Senior engineers · est. 2018
+                  Engineers &amp; designers
                 </p>
               </div>
             </div>
@@ -347,8 +317,8 @@ export default function About() {
               transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
               className="px-5 py-4 lg:py-5 text-center group"
             >
-              <p className="text-3xl lg:text-4xl font-bold gradient-text tabular-nums tracking-tight">
-                <CountUp target={stat.value} suffix={stat.suffix} />
+              <p className="text-2xl lg:text-3xl font-bold gradient-text tracking-tight">
+                {stat.value}
               </p>
 
               <p className="mt-1 text-xs lg:text-sm text-gray-400 tracking-wide">
@@ -360,7 +330,7 @@ export default function About() {
 
         <div className="relative border-t border-white/[0.08] px-5 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 bg-deep-blue">
           <p className="text-sm text-gray-400">
-            Ready to add your team to the list? 
+            Want to build something with us?
           </p>
 
           <div className="flex gap-3">

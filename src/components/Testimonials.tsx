@@ -7,47 +7,47 @@ import AnimatedSection from "./AnimatedSection";
 const testimonials = [
   {
     quote:
-      "Dev Inception transformed our outdated platform into a modern, scalable solution. Their team felt like an extension of ours — same Slack, same standups, same goals from week one.",
+      "Devinception turned our outdated platform into a modern, scalable product. Their team felt like an extension of ours — same goals and the same focus from week one.",
     name: "Sarah Chen",
     role: "CTO",
     company: "FinFlow Technologies",
     accent: "#1E88E5",
-    metric: "+240% MoM growth",
+    metric: "Platform rebuild",
   },
   {
     quote:
-      "From concept to deployment, they delivered our mobile app ahead of schedule. The quality exceeded our expectations — 4.8★ on launch day.",
+      "From the first idea to launch, they delivered our mobile app on schedule, and the quality went beyond what we expected.",
     name: "Marcus Rivera",
     role: "Founder & CEO",
     company: "HealthBridge",
     accent: "#0288D1",
-    metric: "14 hospitals onboarded",
+    metric: "Mobile app launch",
   },
   {
     quote:
-      "Their AI/ML team built a recommendation engine that boosted our conversion rate by 40%. Absolutely brilliant work.",
+      "Their AI team built a recommendation engine that made a real difference to our product. Genuinely excellent work.",
     name: "Emily Larsson",
     role: "VP of Product",
     company: "ShopSphere",
     accent: "#0097A7",
-    metric: "+40% conversion lift",
+    metric: "AI recommendations",
   },
   {
     quote:
-      "The staff augmentation model was exactly what we needed. Skilled engineers who integrated seamlessly with our team from day one.",
+      "Team augmentation was exactly what we needed — skilled engineers who fit into our team and started contributing right away.",
     name: "David Park",
     role: "Engineering Manager",
     company: "CloudNine SaaS",
     accent: "#039BE5",
-    metric: "6 engineers · 18 months",
+    metric: "Embedded engineers",
   },
 ];
 
 const ratingStats = [
-  { value: "4.9", suffix: "/5", label: "Avg rating" },
-  { value: "100+", label: "Reviews" },
-  { value: "98%", label: "Retention" },
-  { value: "NPS 72", label: "Promoter score" },
+  { value: "Senior", label: "Engineering team" },
+  { value: "Clear", label: "Communication" },
+  { value: "On time", label: "Delivery" },
+  { value: "Long-term", label: "Partnerships" },
 ];
 
 export default function Testimonials() {
@@ -80,14 +80,14 @@ export default function Testimonials() {
               </span>
             </div>
             <h2 className="h-section text-deep-blue">
-              Trusted by teams that{" "}
-              <span className="gradient-text-dark">ship every quarter.</span>
+              What our clients{" "}
+              <span className="gradient-text-dark">say about us.</span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              From Series-B startups to public-market platforms — here&apos;s
-              what they say after working with us.
+              From early-stage startups to established companies — here&apos;s
+              what teams say after working with us.
             </p>
           </AnimatedSection>
         </div>
@@ -277,13 +277,8 @@ export default function Testimonials() {
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.07 }}
                   className="px-5 py-4 text-center"
                 >
-                  <p className="text-xl lg:text-2xl font-bold gradient-text tabular-nums tracking-tight">
+                  <p className="text-lg lg:text-xl font-bold gradient-text tracking-tight">
                     {stat.value}
-                    {stat.suffix && (
-                      <span className="text-sm text-gray-400 font-medium">
-                        {stat.suffix}
-                      </span>
-                    )}
                   </p>
                   <p className="mt-0.5 text-[11px] text-gray-400 tracking-wide uppercase">
                     {stat.label}

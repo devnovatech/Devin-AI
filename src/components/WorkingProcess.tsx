@@ -24,7 +24,7 @@ const stages: Stage[] = [
     accent: "#4FC3F7",
     bgMuted: "rgba(79, 195, 247, 0.08)",
     description:
-      "Discovery, audit, success metrics, scope and roadmap. We align on what success looks like before we touch a Figma file.",
+      "We start by understanding your goals, users, and constraints. Together we agree on scope, success measures, and a clear roadmap before any work begins.",
     activities: ["Stakeholder interviews", "Tech & brand audit", "Success metrics", "Roadmap"],
     colStart: 1,
     colEnd: 4,
@@ -41,7 +41,7 @@ const stages: Stage[] = [
     accent: "#A78BFA",
     bgMuted: "rgba(167, 139, 250, 0.08)",
     description:
-      "Research-led design with high-fidelity prototypes. Tokens, components, motion, accessibility — productionised, not just pretty.",
+      "We design around real user needs, then turn it into clear, interactive prototypes. Accessible and consistent from the first screen — not just good-looking.",
     activities: ["UX research", "Design system", "Prototypes", "Motion & a11y"],
     colStart: 3,
     colEnd: 7,
@@ -59,7 +59,7 @@ const stages: Stage[] = [
     accent: "#2DD4BF",
     bgMuted: "rgba(45, 212, 191, 0.08)",
     description:
-      "Two-week sprints, weekly demos, demoable from day 14. Clean, tested code shipped in production-ready increments.",
+      "We build in short, two-week cycles with regular demos. You see working software early and often — clean, tested, and ready for production.",
     activities: ["Bi-weekly demos", "Staging envs", "CI/CD pipeline", "Pair programming"],
     colStart: 5,
     colEnd: 10,
@@ -75,7 +75,7 @@ const stages: Stage[] = [
     accent: "#10B981",
     bgMuted: "rgba(16, 185, 129, 0.08)",
     description:
-      "E2E, performance, security, and accessibility — locked behind CI gates. We ship with confidence, not surprises.",
+      "We test thoroughly for quality, performance, security, and accessibility before anything goes live — so you launch with confidence, not surprises.",
     activities: ["E2E + visual regression", "Performance budgets", "OWASP review", "WCAG-AA audit"],
     colStart: 7,
     colEnd: 11,
@@ -91,7 +91,7 @@ const stages: Stage[] = [
     accent: "#EF4444",
     bgMuted: "rgba(239, 68, 68, 0.08)",
     description:
-      "Zero-downtime production rollout with full rollback safety nets, observability, and a documented runbook handed off to your team.",
+      "We release to production smoothly, with monitoring in place and a safe way to roll back if needed. Everything is documented and handed over to your team.",
     activities: ["Zero-downtime deploy", "Rollback runbook", "Observability stack", "On-call setup"],
     colStart: 9,
     colEnd: 12,
@@ -107,7 +107,7 @@ const stages: Stage[] = [
     accent: "#F59E0B",
     bgMuted: "rgba(245, 158, 11, 0.08)",
     description:
-      "On-call coverage, iterative improvements, A/B tests, growth experiments and quarterly business reviews.",
+      "We stay on after launch — fixing, improving, and adding features over time, with regular reviews to keep your product growing with your business.",
     activities: ["On-call", "A/B program", "Growth", "Quarterly review"],
     colStart: 10,
     colEnd: 13,
@@ -149,21 +149,21 @@ export default function WorkingProcess() {
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-blue">
-                How we deliver
+                How we work
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-white tracking-tight leading-[1.1]">
-              Six stages.{" "}
+              A clear process,{" "}
               <span className="text-neon-blue">
-                Designed to run in parallel, not waterfall.
+                from first idea to launch and beyond.
               </span>
             </h2>
           </AnimatedSection>
           <AnimatedSection className="lg:col-span-5" delay={0.1}>
             <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-              Hover any stage on the timeline below — we don&apos;t pretend
-              design ends before development starts, or that QA only happens
-              at the end.
+              Six simple stages. Hover any stage on the timeline to see what
+              happens and what you get at each step — with regular check-ins so
+              you always know where things stand.
             </p>
           </AnimatedSection>
         </div>
