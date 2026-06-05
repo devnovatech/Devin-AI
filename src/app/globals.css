@@ -281,9 +281,9 @@ html.light .surface-divider {
 /* ─── Section backgrounds: flip dark ones to light ─── */
 html.light .bg-section-hero {
   background:
-    radial-gradient(ellipse at top, rgba(30, 136, 229, 0.14) 0%, transparent 60%),
-    radial-gradient(circle at 70% 80%, rgba(79, 195, 247, 0.10) 0%, transparent 50%),
-    linear-gradient(180deg, #ffffff 0%, #e9f2fa 100%);
+    radial-gradient(ellipse at top, rgba(30, 136, 229, 0.28) 0%, transparent 65%),
+    radial-gradient(circle at 70% 80%, rgba(79, 195, 247, 0.18) 0%, transparent 70%),
+    linear-gradient(180deg, #f5fbff 0%, #d6ecff 100%);
 }
 html.light .bg-section-process {
   background:

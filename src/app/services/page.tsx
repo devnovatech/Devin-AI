@@ -382,17 +382,7 @@ const heroStats = [
 /* ───────── Service tile (hero grid) ───────── */
 function HeroTile({ service, index }: { service: Service; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.92 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.45,
-        delay: 0.15 + index * 0.05,
-        ease: [0.4, 0, 0.2, 1],
-      }}
-      whileHover={{ y: -4, scale: 1.04 }}
-      className="group surface-tile relative aspect-square rounded-2xl border flex flex-col items-center justify-center text-center p-3 cursor-default overflow-hidden"
+    <div  className="group surface-tile relative aspect-square rounded-2xl border flex flex-col items-center justify-center text-center p-3 cursor-default overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -418,24 +408,14 @@ function HeroTile({ service, index }: { service: Service; index: number }) {
       <p className="relative text-[10px] lg:text-[10.5px] font-semibold text-white/85 leading-tight tracking-tight">
         {service.title}
       </p>
-    </motion.div>
+    </div>
   );
 }
 
 /* ───────── Service card (catalog grid) ───────── */
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{
-        duration: 0.4,
-        delay: Math.min(index, 6) * 0.04,
-        ease: [0.4, 0, 0.2, 1],
-      }}
-      className="h-full"
+    <div  className="h-full"
     >
       <Link
         href={`/services/${service.slug}`}
@@ -554,7 +534,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
@@ -622,17 +602,12 @@ function FaqRow({
       </button>
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="overflow-hidden"
+          <div  className="overflow-hidden"
           >
             <p className="pb-6 pl-[3.25rem] pr-12 body-base text-white/65 leading-relaxed">
               {a}
             </p>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
@@ -668,21 +643,10 @@ const step = processSteps[activeStep];
       {/* ───────── Hero — editorial split ───────── */}
       <section className="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <motion.div
-          className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]"
-          animate={{ scale: [1, 1.12, 1], opacity: [0.55, 0.85, 0.55] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-purple/[0.10] rounded-full blur-[140px]"
-          animate={{ scale: [1, 1.18, 1], opacity: [0.45, 0.75, 0.45] }}
-          transition={{
-            duration: 11,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5,
-          }}
-        />
+        <div
+          className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]"  />
+        <div
+          className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-purple/[0.10] rounded-full blur-[140px]" />
         <div className="noise-overlay" />
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -765,23 +729,14 @@ const step = processSteps[activeStep];
               {/* Trust strip */}
               <div className="surface-divider mt-10 lg:mt-12 pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-5">
                 {heroStats.map((s, i) => (
-                  <motion.div
-                    key={s.label}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.4,
-                      delay: 0.4 + i * 0.07,
-                    }}
-                  >
+                  <div>
                     <p className="text-2xl lg:text-3xl font-bold gradient-text tabular-nums tracking-tight">
                       {s.value}
                     </p>
                     <p className="mt-1 text-[10.5px] text-gray-400 tracking-[0.16em] uppercase font-semibold">
                       {s.label}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </AnimatedSection>
@@ -794,15 +749,8 @@ const step = processSteps[activeStep];
             >
               <div className="relative">
                 {/* Soft accent backdrop */}
-                <motion.div
-                  className="absolute -inset-8 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20 rounded-[2rem] blur-3xl"
-                  animate={{ opacity: [0.55, 0.85, 0.55] }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                <div
+                  className="absolute -inset-8 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20 rounded-[2rem] blur-3xl"/>
 
                 {/* Glass panel */}
                 <div className="surface-panel relative rounded-3xl border p-4 lg:p-5">
@@ -856,15 +804,13 @@ const step = processSteps[activeStep];
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 backdrop-blur border border-black/5 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.25em] text-deep-blue/60">
-                  Services Overview
+                  Services
                 </p>
               </div>
 
-              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-deep-blue leading-[1.1]">
-                Find the capability that fits{" "}
-                <span className="bg-gradient-to-r from-neon-purple to-neon-blue bg-clip-text text-transparent">
-                  your problem
-                </span>
+              <h2 className="h-section text-deep-blue">
+                Find the capability that fits {" "}
+                <span className="gradient-text-dark"> your problem</span>
               </h2>
             </AnimatedSection>
 
@@ -879,10 +825,7 @@ const step = processSteps[activeStep];
           {/* ───────── MOBILE ───────── */}
           <div className="xl:hidden space-y-4">
             {services.map((service, i) => (
-              <motion.div
-                key={service.slug}
-                layout
-                className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
+              <div  className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
               >
                 <button
                   onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
@@ -925,11 +868,7 @@ const step = processSteps[activeStep];
 
                 <AnimatePresence>
                   {activeIndex === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
+                    <div     className="overflow-hidden"
                     >
                       <div className="px-5 pb-5 border-t border-black/5">
                         <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
@@ -954,10 +893,10 @@ const step = processSteps[activeStep];
                           Learn More →
                         </Link>
                       </div>
-                    </motion.div>
+                    </div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -1025,13 +964,7 @@ const step = processSteps[activeStep];
       </div>
 
       <AnimatePresence mode="wait">
-        <motion.div
-          key={services[activeIndex].slug}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="relative z-10 h-full flex flex-col"
+        <div  className="relative z-10 h-full flex flex-col"
         >
 
           <div className="flex items-center justify-between mb-8">
@@ -1120,7 +1053,7 @@ const step = processSteps[activeStep];
 
           </div>
 
-        </motion.div>
+        </div>
       </AnimatePresence>
 
     </div>
@@ -1185,10 +1118,8 @@ const step = processSteps[activeStep];
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <motion.div
+        <div
           className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.08] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -1289,24 +1220,11 @@ const step = processSteps[activeStep];
           <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
             <div className="lg:col-span-7">
               <AnimatePresence mode="wait">
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                >
+                <div  >
                   <div className="flex items-center gap-4">
-                    <motion.div
-                      whileHover={{ scale: 1.05, rotate: 3 }}
-                      className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
-                      style={{
-                        backgroundColor: step.accent,
-                        boxShadow: `0 14px 32px - 10px ${step.accent}90, inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
-                      }}
-                    >
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"  >
                       {step.icon}
-                    </motion.div>
+                    </div>
                     <div>
                       <p
                         className="text-[10px] uppercase tracking-[0.22em] font-semibold"
@@ -1322,18 +1240,13 @@ const step = processSteps[activeStep];
                   <p className="mt-5 text-gray-400 leading-relaxed max-w-xl">
                     {step.description}
                   </p>
-                </motion.div>
+                </div>
               </AnimatePresence>
             </div>
 
             <div className="lg:col-span-5">
               <AnimatePresence mode="wait">
-                <motion.div
-                  key={`${step.number} - deliverables`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                <div
                   className="surface-panel relative rounded-2xl border p-5 lg:p-6 overflow-hidden"
                 >
                   <div
@@ -1366,7 +1279,7 @@ const step = processSteps[activeStep];
                       ))}
                     </ul>
                   </div>
-                </motion.div>
+                </div>
               </AnimatePresence>
             </div>
           </div>
@@ -1403,9 +1316,7 @@ const step = processSteps[activeStep];
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {caseStudies.map((cs, i) => (
               <AnimatedSection key={cs.client} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                <div
                   className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_28px_56px_-18px_var(--card-glow)]"
                   style={
                     {
@@ -1474,7 +1385,7 @@ const step = processSteps[activeStep];
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               </AnimatedSection>
             ))}
           </div>
@@ -1484,10 +1395,9 @@ const step = processSteps[activeStep];
       {/* ───────── FAQ ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <motion.div
+        <div
           className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none"
-          animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+
         />
 
         <div className="relative max-w-5xl mx-auto px-6">

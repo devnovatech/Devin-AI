@@ -3,7 +3,7 @@
 import { useState, ReactNode } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
+// import AnimatedSection from "./AnimatedSection";
 
 interface Service {
   title: string;
@@ -47,14 +47,21 @@ const services: Service[] = [
     accent: "#0097A7",
     category: "Build",
     description:
-      "Apps engineered for store-grade quality — fast UI, real-time data, and offline-first thinking baked in.",
+      "Creating intuitive, high-performance mobile apps for Android and iOS platforms.",
     outcomes: [
       "iOS & Android in native or Flutter / React Native",
       "Backend, push, real-time sync & deep linking",
       "App Store / Play Store launch & ASO",
       "Long-term maintenance and feature delivery",
     ],
-    stack: ["Swift", "Kotlin", "Flutter", "React Native"],
+    stack: [
+      "Flutter",
+      "React Native",
+      "Swift",
+      "Kotlin",
+      "Firebase",
+      "REST APIs",
+    ],
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <rect x="7" y="2" width="10" height="20" rx="2" />
@@ -69,7 +76,7 @@ const services: Service[] = [
     accent: "#006064",
     category: "Build",
     description:
-      "Performant web platforms with the architecture decisions that don't bite you in year two.",
+      "Building responsive, scalable websites that deliver performance and reliability..",
     outcomes: [
       "Marketing & content sites with sub-second loads",
       "Full-stack SaaS apps and internal tools",
@@ -86,20 +93,27 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Product Design",
+    title: "UI/UX Design",
     slug: "ui-ux-design",
     tagline: "Research-led UI/UX that converts",
     accent: "#1565C0",
     category: "Design",
     description:
-      "Design systems and product surfaces grounded in user research — not just pretty mockups.",
+      "Designing user-focused interfaces that are simple, engaging, and effective.",
     outcomes: [
       "Discovery interviews & usability research",
       "Design systems with tokens, components, docs",
       "High-fidelity prototypes for real validation",
       "WCAG-AA accessibility from the first frame",
     ],
-    stack: ["Figma", "FigJam", "Maze", "Storybook"],
+    stack: [
+      "Figma",
+      "Adobe XD",
+      "Sketch",
+      "FigJam",
+      "Adobe Illustrator",
+      "InVision",
+    ],
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l3.5 14.5L13 18l5-5-1.5-7.5L2 2z" />
@@ -109,20 +123,27 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Quality Engineering",
+    title: "Software Quality Assurance",
     slug: "quality-assurance",
     tagline: "Ship with confidence, not surprises",
     accent: "#039BE5",
     category: "Design",
     description:
-      "Automated and manual QA that catches issues before users do — performance, security, accessibility.",
+      "Ensuring software quality through thorough testing and defect prevention.",
     outcomes: [
       "E2E, integration & visual regression suites",
       "Performance budgets & Core Web Vitals enforcement",
       "Pen-tests and OWASP-aligned security review",
       "CI gates that block bad merges automatically",
     ],
-    stack: ["Playwright", "Cypress", "k6", "Lighthouse"],
+    stack: [
+      "Selenium",
+      "Cypress",
+      "Playwright",
+      "Postman",
+      "JMeter",
+      "TestNG",
+    ],
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -136,14 +157,23 @@ const services: Service[] = [
     accent: "#0288D1",
     category: "Grow",
     description:
-      "Time-zone-aligned, vetted engineers who slot into your sprints and ship from week one.",
+      "Providing skilled professionals to seamlessly extend and strengthen your team.",
     outcomes: [
       "Senior engineers and tech leads, carefully vetted",
       "Time-zone overlap with US, EU, and APAC teams",
       "Engineering, design, PM, data & DevOps roles",
       "Month-to-month flex — scale up or down with runway",
     ],
-    stack: ["Embedded", "Time-zone aligned", "Long-term"],
+    stack: [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Java",
+      ".NET",
+      "React",
+      "Node.js",
+      "AWS",
+    ],
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -151,41 +181,55 @@ const services: Service[] = [
     ),
   },
   {
-    title: "E-commerce",
+    title: "E-commerce Solutions",
     slug: "E-commerce",
     tagline: "Conversion-tuned storefronts",
     accent: "#0097A7",
     category: "Grow",
     description:
-      "Storefronts that load fast, check out cleanly, and integrate with the ops stack you actually run.",
+      "Developing secure and optimized online stores that enhance sales and user experience.",
     outcomes: [
       "Headless commerce on Shopify or custom stacks",
       "Checkout optimization & cart-recovery flows",
       "ERP, OMS & inventory sync with audit trails",
       "PCI-DSS scope reduction and security review",
     ],
-    stack: ["Shopify", "Stripe", "Hydrogen", "BigCommerce"],
-    icon: (
+    stack: [
+      "Shopify",
+      "WooCommerce",
+      "Magento",
+      "Stripe",
+      "PayPal",
+      "Next.js",
+      "Node.js",
+    ], icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
       </svg>
     ),
   },
   {
-    title: "Growth & Marketing",
+    title: "Digital Marketing",
     slug: "digital-marketing",
     tagline: "Measurable growth, not vanity",
     accent: "#0277BD",
     category: "Grow",
     description:
-      "SEO, paid, content, and analytics — built on attribution that holds up in a board review.",
+      "Driving growth through targeted, data-driven digital campaigns across key channels.",
     outcomes: [
       "SEO strategy & technical site audits",
       "Paid acquisition with attribution modelling",
       "Content engines for organic and inbound",
       "Dashboards & A/B testing baked into the stack",
     ],
-    stack: ["GA4", "Mixpanel", "GTM", "Ahrefs"],
+    stack: [
+      "Google Analytics",
+      "Google Ads",
+      "Meta Ads Manager",
+      "Ahrefs",
+      "SEMrush",
+      "HubSpot",
+    ],
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M11 17a4 4 0 01-8 0V7a4 4 0 018 0v10z" />
@@ -195,21 +239,28 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Delivery Management",
+    title: "Project Management",
     slug: "project-management",
     tagline: "Agile delivery, executive clarity",
     accent: "#01579B",
     category: "Grow",
     description:
-      "PM rigor that keeps every workstream on rails — weekly check-ins, transparent burndowns, zero surprises.",
+      "Managing projects efficiently with structured planning and agile execution.",
     outcomes: [
       "Discovery sprints, scope shaping, RACI matrices",
       "Two-week cadence with demo and retro built in",
       "Live burndowns and stakeholder dashboards",
       "Risk register reviewed every Friday — no drift",
     ],
-    stack: ["Linear", "Notion", "Slack", "Figma"],
-    icon: (
+    stack: [
+      "Jira",
+      "Trello",
+      "Asana",
+      "ClickUp",
+      "Notion",
+      "Microsoft Project",
+      "Slack",
+    ], icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
         <rect x="3" y="3" width="18" height="18" rx="2" />
         <line x1="3" y1="9" x2="21" y2="9" />
@@ -237,9 +288,8 @@ function TabButton({
     <button
       onClick={onSelect}
       onMouseEnter={onSelect}
-      className={`group relative w-full ${
-        align === "right" ? "text-right" : "text-left"
-      } flex items-center gap-3 px-3.5 py-3 rounded-xl transition-all duration-300`}
+      className={`group relative w-full ${align === "right" ? "text-right" : "text-left"
+        } flex items-center gap-3 px-3.5 py-3 rounded-xl transition-all duration-300`}
     >
       {/* Active glassy layer */}
       {isActive && (
@@ -254,18 +304,16 @@ function TabButton({
       {align === "right" && (
         <div className="relative flex-1 min-w-0">
           <h3
-            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${
-              isActive
-                ? "text-deep-blue"
-                : "text-deep-blue/75 group-hover:text-deep-blue"
-            }`}
+            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive
+              ? "text-deep-blue"
+              : "text-deep-blue/75 group-hover:text-deep-blue"
+              }`}
           >
             {service.title}
           </h3>
           <p
-            className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${
-              isActive ? "text-deep-blue/55" : "text-deep-blue/40"
-            }`}
+            className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-deep-blue/55" : "text-deep-blue/40"
+              }`}
           >
             {service.tagline}
           </p>
@@ -288,18 +336,16 @@ function TabButton({
       {align === "left" && (
         <div className="relative flex-1 min-w-0">
           <h3
-            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${
-              isActive
-                ? "text-deep-blue"
-                : "text-deep-blue/75 group-hover:text-deep-blue"
-            }`}
+            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive
+              ? "text-deep-blue"
+              : "text-deep-blue/75 group-hover:text-deep-blue"
+              }`}
           >
             {service.title}
           </h3>
           <p
-            className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${
-              isActive ? "text-deep-blue/55" : "text-deep-blue/40"
-            }`}
+            className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-deep-blue/55" : "text-deep-blue/40"
+              }`}
           >
             {service.tagline}
           </p>
@@ -308,9 +354,8 @@ function TabButton({
 
       {/* Index marker — sits on the outer edge */}
       <span
-        className={`relative font-mono text-[10px] font-semibold tracking-wider transition-colors duration-300 ${
-          isActive ? "text-deep-blue/40" : "text-deep-blue/20"
-        }`}
+        className={`relative font-mono text-[10px] font-semibold tracking-wider transition-colors duration-300 ${isActive ? "text-deep-blue/40" : "text-deep-blue/20"
+          }`}
       >
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -338,29 +383,31 @@ export default function Services() {
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header — editorial split */}
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
-          <AnimatedSection className="lg:col-span-7">
+          <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
                 Capabilities
               </span>
             </div>
-            <h2 className="h-section text-deep-blue">
-              Everything you need{" "}
-              <span className="gradient-text-dark">to build and grow.</span>
-            </h2>
-          </AnimatedSection>
-          <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            <div className="w-full">
+              <h2 className="h-section text-deep-blue">
+                Systems designed for {" "}
+                <span className="gradient-text-dark">modern growth.</span>
+              </h2>
+            </div>
+          </div>
+          <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
               From design and development to growth and support — choose a
               single service or combine several into one project. One team,
               start to finish.
             </p>
-          </AnimatedSection>
+          </div>
         </div>
 
         {/* 3-column layout: tabs · center detail · tabs */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 lg:items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 lg:items-stretch">
           {/* LEFT TABS */}
           <div className="lg:col-span-3 lg:order-1 flex flex-col gap-1.5">
             <p className="hidden lg:block text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pl-3.5">
@@ -672,9 +719,8 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-            className="mt-6 lg:mt-8 relative rounded-3xl bg-white border border-deep-blue/[0.07] shadow-2xl shadow-deep-blue/10 overflow-hidden"
+            className="mt-3 lg:mt-4 relative rounded-3xl bg-white border border-deep-blue/[0.07] shadow-2xl shadow-deep-blue/10 overflow-hidden"
           >
-            {/* Vertical accent bar */}
             <div
               className="absolute top-0 left-0 bottom-0 w-1"
               style={{
@@ -682,7 +728,6 @@ export default function Services() {
               }}
             />
 
-            {/* Subtle dotted pattern background */}
             <div
               className="absolute inset-0 opacity-[0.04] pointer-events-none"
               style={{
@@ -691,29 +736,13 @@ export default function Services() {
               }}
             />
 
-            {/* Soft accent glow in top-right */}
             <div
               className="absolute -top-24 -right-24 w-64 h-64 rounded-full pointer-events-none opacity-[0.07] blur-3xl"
               style={{ background: active.accent }}
             />
 
-            <div className="relative grid lg:grid-cols-12 gap-8 lg:gap-12 p-6 lg:p-10">
-              {/* Description + stack + CTA */}
-              <div className="lg:col-span-5 flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ backgroundColor: active.accent }}
-                  />
-                  <p
-                    className="text-[10px] uppercase tracking-[0.2em] font-bold"
-                    style={{ color: active.accent }}
-                  >
-                    About this service
-                  </p>
-                </div>
-
-                {/* Large decorative quote mark */}
+            <div className="relative grid lg:grid-cols-2 gap-10 p-4 lg:p-6">
+              <div>
                 <div className="relative mt-3">
                   <span
                     className="absolute -top-3 -left-1 font-serif text-6xl leading-none select-none pointer-events-none"
@@ -726,11 +755,14 @@ export default function Services() {
                     {active.description}
                   </p>
                 </div>
+              </div>
 
-                <div className="mt-6 lg:mt-auto lg:pt-8">
+              <div className="lg:border-l lg:border-deep-blue/[0.07] lg:pl-10 flex flex-col justify-between">
+                <div>
                   <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-2.5">
                     Tech &amp; tools
                   </p>
+
                   <div className="flex flex-wrap gap-1.5 mb-6">
                     {active.stack.map((s, i) => (
                       <motion.span
@@ -752,157 +784,6 @@ export default function Services() {
                         {s}
                       </motion.span>
                     ))}
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <Link
-                      href={active.slug ? `/services/${active.slug}` : "/services"}
-                      className="group relative inline-flex items-center justify-center gap-2.5 pl-6 pr-2 py-2 rounded-full text-white font-semibold text-sm transition-all duration-300 hover:shadow-2xl"
-                      style={{
-                        backgroundColor: active.accent,
-                        boxShadow: `0 14px 32px -10px ${active.accent}a0`,
-                      }}
-                    >
-                      <span>Explore service</span>
-                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors">
-                        <svg
-                          className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2.5}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </span>
-                    </Link>
-
-                    <Link
-                      href="/contact"
-                      className="text-sm font-semibold text-deep-blue/60 hover:text-deep-blue transition-colors underline-offset-4 hover:underline"
-                    >
-                      Get a quote →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Outcomes */}
-              <div className="lg:col-span-7 lg:border-l lg:border-deep-blue/[0.07] lg:pl-12">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{ backgroundColor: active.accent }}
-                    />
-                    <p
-                      className="text-[10px] uppercase tracking-[0.2em] font-bold"
-                      style={{ color: active.accent }}
-                    >
-                      What you ship
-                    </p>
-                  </div>
-                  <span className="font-mono text-[10px] text-deep-blue/40 tracking-wider">
-                    {String(active.outcomes.length).padStart(2, "0")} deliverables
-                  </span>
-                </div>
-
-                <ul className="grid sm:grid-cols-2 gap-x-5 gap-y-2.5">
-                  {active.outcomes.map((o, i) => (
-                    <motion.li
-                      key={o}
-                      initial={{ opacity: 0, x: -6 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.08 + i * 0.05,
-                      }}
-                      className="group relative flex items-start gap-3 p-3 rounded-xl transition-all duration-300 hover:bg-deep-blue/[0.025] cursor-default"
-                    >
-                      {/* Numbered badge */}
-                      <span
-                        className="shrink-0 flex items-center justify-center w-7 h-7 rounded-lg font-mono text-[10px] font-bold transition-all duration-300 group-hover:scale-110"
-                        style={{
-                          color: active.accent,
-                          backgroundColor: `${active.accent}14`,
-                          border: `1px solid ${active.accent}26`,
-                        }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-
-                      <span className="text-[13.5px] text-deep-blue/80 leading-relaxed pt-0.5 group-hover:text-deep-blue transition-colors">
-                        {o}
-                      </span>
-
-                      {/* Hover indicator */}
-                      <span
-                        className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 rounded-full transition-all duration-300 group-hover:h-6"
-                        style={{ backgroundColor: active.accent }}
-                      />
-                    </motion.li>
-                  ))}
-                </ul>
-
-                {/* Bottom mini-meta strip */}
-                <div className="mt-6 pt-5 border-t border-deep-blue/[0.06] flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-deep-blue/55">
-                  <div className="flex items-center gap-1.5">
-                    <svg
-                      className="w-3.5 h-3.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke={active.accent}
-                      strokeWidth={2}
-                    >
-                      <circle cx="12" cy="12" r="9" />
-                      <path strokeLinecap="round" d="M12 7v5l3 2" />
-                    </svg>
-                    <span>
-                      <span className="font-semibold text-deep-blue/75">Flexible</span>{" "}
-                      engagements, scoped to you
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <svg
-                      className="w-3.5 h-3.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke={active.accent}
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-                    <span>
-                      <span className="font-semibold text-deep-blue/75">Senior team</span>,
-                      time-zone aligned
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <svg
-                      className="w-3.5 h-3.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke={active.accent}
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                      />
-                    </svg>
-                    <span>
-                      <span className="font-semibold text-deep-blue/75">NDA-ready</span>,
-                      audit-friendly
-                    </span>
                   </div>
                 </div>
               </div>

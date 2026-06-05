@@ -35,7 +35,7 @@ export default function CTABanner({
   return (
     <section className={`${withPadding ? "py-20" : ""} bg-section-cta overflow-hidden relative`}>
       <div className="max-w-7xl mx-auto px-6">
-        <AnimatedSection>
+        <div>
           <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-deep-blue/20 bg-deep-blue">
             {/* Background */}
             <div className="absolute inset-0 grid-bg opacity-50" />
@@ -46,18 +46,14 @@ export default function CTABanner({
             {/* Content */}
             <div className="relative z-10 px-8 sm:px-16 py-16 sm:py-20 text-center">
               {eyebrow && (
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03]"
+                <div
+  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03]"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-xs font-semibold tracking-wider uppercase text-neon-blue">
                     {eyebrow}
                   </span>
-                </motion.div>
+                </div>
               )}
 
               <h2 className="mt-6 h-section text-white max-w-3xl mx-auto">
@@ -102,7 +98,7 @@ export default function CTABanner({
               </div>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );

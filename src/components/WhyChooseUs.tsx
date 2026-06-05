@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
-import AnimatedSection from "./AnimatedSection";
+// import AnimatedSection from "./AnimatedSection";
 
 interface Reason {
   title: string;
@@ -140,14 +140,7 @@ function ReasonCard({ reason, index }: { reason: Reason; index: number }) {
   const numLabel = String(index + 1).padStart(2, "0");
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay: index * 0.05, ease: [0.4, 0, 0.2, 1] }}
-      whileHover={{ y: -4 }}
-      className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-5 lg:p-6 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5"
-      style={{ "--accent": reason.accent } as React.CSSProperties}
+    <div className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-5 lg:p-6 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5"
     >
       {/* Top accent line */}
       <div
@@ -193,16 +186,16 @@ function ReasonCard({ reason, index }: { reason: Reason; index: number }) {
         </p>
 
         {/* Proof + arrow */}
-        <div className="mt-auto pt-4 flex items-center justify-between gap-2">
+        {/* <div className="mt-auto pt-4 flex items-center justify-between gap-2">
           {reason.proof}
           <span className="w-7 h-7 rounded-full border border-deep-blue/10 flex items-center justify-center text-deep-blue/40 group-hover:border-transparent group-hover:bg-[color:var(--accent)] group-hover:text-white group-hover:-rotate-45 transition-all duration-300 shrink-0">
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </span>
-        </div>
+        </div> */}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -210,22 +203,17 @@ export default function WhyChooseUs() {
   return (
     <section className="min-h-screen flex flex-col justify-center py-14 lg:py-16 bg-section-why relative overflow-hidden">
       {/* Animated blooms */}
-      <motion.div
+      <div
         className="absolute top-0 right-0 w-[420px] h-[420px] bg-neon-purple/10 rounded-full blur-[120px] pointer-events-none"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
-        className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-blue/8 rounded-full blur-[120px] pointer-events-none"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.6, 0.4] }}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-blue/8 rounded-full blur-[120px] pointer-events-none"
       />
       <div className="absolute inset-0 dotted-grid opacity-25 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header — compact split */}
         <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-7 lg:mb-9">
-          <AnimatedSection className="lg:col-span-7">
+          <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
@@ -236,13 +224,13 @@ export default function WhyChooseUs() {
               Why teams choose to{" "}
               <span className="gradient-text-dark">work with us.</span>
             </h2>
-          </AnimatedSection>
-          <AnimatedSection className="lg:col-span-5" delay={0.1}>
+          </div>
+          <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
               We focus on doing great work and building relationships that
               last — the kind of team you come back to.
             </p>
-          </AnimatedSection>
+          </div>
         </div>
 
         {/* 3×2 grid of reason cards */}
@@ -253,7 +241,7 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Compact CTA strip */}
-        <AnimatedSection className="mt-7 lg:mt-8" delay={0.4}>
+        <div className="mt-4 lg:mt-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-2xl bg-white/60 border border-deep-blue/[0.07] backdrop-blur-sm px-5 py-4">
             <div className="flex items-center gap-3">
               <span className="relative flex h-2 w-2">
@@ -277,7 +265,7 @@ export default function WhyChooseUs() {
               </svg>
             </Link>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );

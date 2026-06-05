@@ -3,7 +3,7 @@
 import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import AnimatedSection from "./AnimatedSection";
+// import div from "./div";
 
 interface Industry {
   name: string;
@@ -32,12 +32,12 @@ const industries: Industry[] = [
     challenges: [
       "Speed to market without technical debt",
       "Scalable architecture from day one",
-      "Lean teams under investor pressure",
+      // "Lean teams under investor pressure",
     ],
     deliverables: [
       "MVP built and launched quickly",
       "Cloud infrastructure that scales automatically",
-      "Product analytics and testing built in",
+      // "Product analytics and testing built in",
     ],
   },
   {
@@ -118,15 +118,11 @@ export default function Industries() {
   return (
     <section className="min-h-screen flex flex-col justify-center py-16 lg:py-20 bg-section-industries relative overflow-hidden">
       {/* Animated blooms */}
-      <motion.div
+      <div
         className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-blue/15 rounded-full blur-[120px] pointer-events-none"
-        animate={{ scale: [1, 1.18, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <div
         className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/12 rounded-full blur-[120px] pointer-events-none"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.55, 0.3] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
       />
       <div className="absolute inset-0 dotted-grid-light opacity-40 pointer-events-none" />
       <div className="noise-overlay" />
@@ -134,7 +130,7 @@ export default function Industries() {
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header — split editorial */}
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
-          <AnimatedSection className="lg:col-span-7">
+          <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/80">
@@ -142,22 +138,22 @@ export default function Industries() {
               </span>
             </div>
             <h2 className="h-section text-white">
-              Industries we{" "}
-              <span className="gradient-text">know well.</span>
+              Powering Modern{" "}
+              <span className="gradient-text">Digital Ecosystems</span>
             </h2>
-          </AnimatedSection>
-          <AnimatedSection className="lg:col-span-5" delay={0.1}>
+          </div>
+          <div className="lg:col-span-5">
             <p className="body-base text-gray-400 max-w-md lg:ml-auto">
               We&apos;ve worked across these industries before. Pick one to see
               the challenges we often hear about — and how we help solve them.
             </p>
-          </AnimatedSection>
+          </div>
         </div>
 
         {/* Tabbed showcase */}
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Tabs */}
-          <AnimatedSection className="lg:col-span-5">
+          <div className="lg:col-span-5">
             {/* Mobile / tablet — horizontal pill row (wraps) */}
             <div className="lg:hidden flex flex-wrap gap-2 mb-2">
               {industries.map((ind, i) => {
@@ -271,24 +267,13 @@ export default function Industries() {
                 );
               })}
             </div>
-          </AnimatedSection>
+          </div>
 
           {/* Detail panel */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={active.slug}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                className="relative rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden"
-                style={
-                  {
-                    "--card-glow": `${active.accent}55`,
-                  } as React.CSSProperties
-                }
-              >
+              <div
+                className="relative rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden" >
                 {/* Big corner glow */}
                 <div
                   className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-[0.35]"
@@ -381,7 +366,7 @@ export default function Industries() {
                   </div>
 
                   {/* Footer CTA */}
-                  <div className="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  {/* <div className="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                     <span className="text-sm text-gray-500">
                       Working in this industry?
                     </span>
@@ -405,15 +390,15 @@ export default function Industries() {
                         />
                       </svg>
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
-              </motion.div>
+              </div>
             </AnimatePresence>
           </div>
         </div>
 
         {/* See all link */}
-        <AnimatedSection className="mt-8 text-center">
+        <div className="mt-8 text-center">
           <Link
             href="/industries"
             className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
@@ -433,7 +418,7 @@ export default function Industries() {
               />
             </svg>
           </Link>
-        </AnimatedSection>
+        </div>
       </div>
     </section>
   );
