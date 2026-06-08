@@ -279,7 +279,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-             Built for 
+            Engineering Systems Behind
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
@@ -288,7 +288,8 @@ export default function Hero() {
               className="block"
             >
                {" "}
-              <span className="gradient-text glow-text"> Operational Scale</span>
+              <span className="gradient-text glow-text"> Modern Business Growth
+</span>
             </motion.span>
           </h1>
 
@@ -299,10 +300,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed"
           >
-           Digital infrastructure, intelligent automation, and product systems engineered to reduce friction across modern businesses.
-<br></br>
-From cloud-native platforms to AI-powered workflows, every system is designed around speed, scalability, and long-term execution.
-          </motion.p>
+Transform operations, accelerate delivery, and unlock new opportunities through scalable software, AI, cloud, and growth solutions built for long-term business performance.<br></br>
+From intelligent automation and custom platforms to embedded teams and digital growth operations, we help organizations build the infrastructure required to compete, scale, and evolve.          </motion.p>
 
           {/* Three-pillar chip row */}
           {/* <motion.div

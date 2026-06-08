@@ -161,12 +161,7 @@ function IndustryCard({
   featured?: boolean;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, delay: index * 0.05, ease: [0.4, 0, 0.2, 1] }}
-      whileHover={{ y: -6 }}
+    <div
       className={`h-full ${featured ? "sm:col-span-2 lg:col-span-3" : ""}`}
     >
       <Link
@@ -193,33 +188,44 @@ function IndustryCard({
           }`}
         >
           {/* Icon + stat row */}
-          <div
-            className={`flex items-start justify-between gap-3 ${
-              featured ? "lg:flex-col lg:items-start lg:justify-start lg:shrink-0" : "mb-5"
-            }`}
-          >
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-transform duration-500 group-hover:scale-105"
-              style={{
-                backgroundColor: industry.accent,
-                boxShadow: `0 12px 28px -10px ${industry.accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
-              }}
-            >
-              {industry.icon}
-            </div>
-            <span
-              className={`text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border ${
-                featured ? "lg:mt-3" : ""
-              }`}
-              style={{
-                color: industry.accent,
-                borderColor: `${industry.accent}40`,
-                backgroundColor: `${industry.accent}0A`,
-              }}
-            >
-              Industry
-            </span>
-          </div>
+    <div
+  className={`flex items-start justify-between ${
+    featured
+      ? "lg:flex-col lg:items-start lg:gap-4 lg:shrink-0"
+      : "mb-4"
+  }`}
+>
+  <div
+    className="relative flex h-11 w-11 items-center justify-center rounded-xl text-white transition-all duration-300 group-hover:scale-105"
+    style={{
+      background: `linear-gradient(135deg, ${industry.accent}, ${industry.accent}CC)`,
+      boxShadow: `0 10px 24px -8px ${industry.accent}70`,
+    }}
+  >
+    {industry.icon}
+  </div>
+
+  <div
+    className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white transition-all duration-300 group-hover:translate-x-1 group-hover:border-transparent"
+    style={{
+      boxShadow: `0 4px 12px ${industry.accent}15`,
+    }}
+  >
+    <svg
+      className="h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke={industry.accent}
+      strokeWidth={2.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 12h14m0 0-5-5m5 5-5 5"
+      />
+    </svg>
+  </div>
+</div>
 
           {/* Title + tagline */}
           <div className="flex-1 min-w-0">
@@ -232,7 +238,7 @@ function IndustryCard({
           </div>
 
           {/* Stat callout + arrow */}
-          <div
+          {/* <div
             className={`${
               featured
                 ? "lg:shrink-0"
@@ -270,10 +276,10 @@ function IndustryCard({
                 />
               </svg>
             </span>
-          </div>
+          </div> */}
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
@@ -353,19 +359,14 @@ export default function IndustriesPage() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-14">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <p className="eyebrow text-neon-purple">Sectors we serve</p>
               <h2 className="mt-3 h-section text-deep-blue">
-                Pick the industry closest to{" "}
-                <span className="gradient-text-dark">yours.</span>
+              
+                <span className="gradient-text-dark">Industries</span>
+                {" "}We Support
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                Each page details the recurring friction we hear in that sector
-                and what we typically ship to solve it.
-              </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -389,25 +390,25 @@ export default function IndustriesPage() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-14">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <p className="eyebrow text-neon-blue">Why it matters</p>
               <h2 className="mt-3 h-section text-white">
                 Industry expertise{" "}
                 <span className="gradient-text">isn&apos;t a tagline.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 It&apos;s the difference between a generic build and one that
                 holds up to the actual constraints of your sector. Here&apos;s
                 what that looks like for us.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {expertisePillars.map((p, i) => (
-              <AnimatedSection key={p.title} delay={i * 0.07}>
+              <div key={p.title}>
                 <div
                   className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 overflow-hidden"
                   style={
@@ -434,7 +435,7 @@ export default function IndustriesPage() {
                     {p.description}
                   </p>
                 </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>

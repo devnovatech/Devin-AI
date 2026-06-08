@@ -287,7 +287,6 @@ function TabButton({
   return (
     <button
       onClick={onSelect}
-      onMouseEnter={onSelect}
       className={`group relative w-full ${align === "right" ? "text-right" : "text-left"
         } flex items-center gap-3 px-3.5 py-3 rounded-xl transition-all duration-300`}
     >

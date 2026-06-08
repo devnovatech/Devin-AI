@@ -28,13 +28,13 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: "Mobile App Development",
+    title: "Mobile Systems",
     slug: "mobile-application",
     category: "build",
     tagline: "Native & cross-platform apps people love using.",
 
     description:
-      "Engineered for performance, accessibility, and the bar set by App Store editors. iOS, Android, or one shared codebase via React Native or Flutter.",
+      "Native and cross-platform applications engineered for reliability, performance, and scale.",
     capabilities: [
       "iOS & Android native",
       "Cross-platform (RN, Flutter)",
@@ -50,12 +50,12 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Web Development",
+    title: "Web Platforms",
     slug: "web-development",
     category: "build",
     tagline: "Fast, accessible, SEO-ready platforms.",
     description:
-      "From marketing sites to full-stack products. Core Web Vitals in the green, lighthouse scores you can show off, and architecture that scales with traffic.",
+      "Fast, scalable web experiences built around usability, growth, and operational efficiency.",
     capabilities: [
       "Frontend (React, Next, Vue)",
       "Backend & APIs",
@@ -73,12 +73,12 @@ const services: Service[] = [
 
   },
   {
-    title: "E-commerce Development",
+    title: "Ecommerce Architecture",
     slug: "ecommerce",
     category: "build",
     tagline: "Storefronts that convert and scale.",
     description:
-      "Conversion-tuned checkout flows, secure payment infrastructure, and inventory systems that handle Black-Friday-level traffic without breaking a sweat.",
+      "Commerce platforms optimized for conversion, retention, and operational scalability.",
     capabilities: [
       "Shopify & custom platforms",
       "PCI-DSS-compliant checkout",
@@ -98,7 +98,7 @@ const services: Service[] = [
     category: "design",
     tagline: "Research-led design that converts.",
     description:
-      "User research, wireframes, prototypes, and visual systems that turn user needs into elegant, business-driving experiences. Accessibility-first by default.",
+      "Interfaces built for usability, accessibility, and product adoption.",
     capabilities: [
       "User research & personas",
       "Wireframing & prototyping",
@@ -114,12 +114,12 @@ const services: Service[] = [
     ),
   },
   {
-    title: "ML & AI Solutions",
+    title: "Intelligent Automation",
     slug: "machine-learning-ai",
     category: "scale",
     tagline: "Custom models, embedded into your stack.",
     description:
-      "Predictive analytics, NLP, computer vision, and AI assistants that fit into your existing systems — not standalone toys. Production-ready, monitored, retrainable.",
+      "AI and machine learning systems designed to automate workflows and improve decision-making.",
     capabilities: [
       "LLM apps & agents",
       "Predictive analytics",
@@ -161,7 +161,7 @@ const services: Service[] = [
     category: "operate",
     tagline: "Senior engineers, embedded with your team.",
     description:
-      "Vetted developers, designers, and PMs slot into your sprints. Time-zone aligned, communication-ready, and ramped from day one. Flexible scale up / down.",
+      "Cross-functional specialists integrated directly into your operational workflows.",
     capabilities: [
       "Senior, vetted talent",
       "Time-zone aligned",
@@ -176,12 +176,12 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Quality Assurance",
+    title: "Software Quality Engineering",
     slug: "quality-assurance",
     category: "operate",
     tagline: "Ship with confidence, not surprises.",
     description:
-      "Manual exploratory + automated testing across every browser, device, and edge case. Performance, security, accessibility — all validated before release.",
+      "Continuous testing and quality assurance embedded throughout the delivery lifecycle.",
     capabilities: [
       "Automation (Cypress, Playwright)",
       "Performance & load testing",
@@ -201,7 +201,7 @@ const services: Service[] = [
     category: "operate",
     tagline: "Agile delivery without the chaos.",
     description:
-      "Transparent roadmaps, weekly check-ins, and stakeholder alignment that keeps projects on rails. Jira, Linear, ClickUp — whatever your team already uses.",
+      "Project systems and delivery workflows designed for visibility and momentum.",
     capabilities: [
       "Agile / Scrum delivery",
       "Roadmap & backlog ownership",
@@ -382,7 +382,7 @@ const heroStats = [
 /* ───────── Service tile (hero grid) ───────── */
 function HeroTile({ service, index }: { service: Service; index: number }) {
   return (
-    <div  className="group surface-tile relative aspect-square rounded-2xl border flex flex-col items-center justify-center text-center p-3 cursor-default overflow-hidden"
+    <div className="group surface-tile relative aspect-square rounded-2xl border flex flex-col items-center justify-center text-center p-3 cursor-default overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -415,7 +415,7 @@ function HeroTile({ service, index }: { service: Service; index: number }) {
 /* ───────── Service card (catalog grid) ───────── */
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
-    <div  className="h-full"
+    <div className="h-full"
     >
       <Link
         href={`/services/${service.slug}`}
@@ -602,7 +602,7 @@ function FaqRow({
       </button>
       <AnimatePresence initial={false}>
         {isOpen && (
-          <div  className="overflow-hidden"
+          <div className="overflow-hidden"
           >
             <p className="pb-6 pl-[3.25rem] pr-12 body-base text-white/65 leading-relaxed">
               {a}
@@ -616,27 +616,27 @@ function FaqRow({
 
 /* ───────── Page ───────── */
 export default function ServicesPage() {
- const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
-const [openFaq, setOpenFaq] = useState<number>(0);
-const [activeStep, setActiveStep] = useState<number>(0);
-const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
+  const [openFaq, setOpenFaq] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
-// Filtered services
-const visibleServices =
-  activeFilter === "all"
-    ? services
-    : services.filter((s) => s.category === activeFilter);
+  // Filtered services
+  const visibleServices =
+    activeFilter === "all"
+      ? services
+      : services.filter((s) => s.category === activeFilter);
 
-// Split for left/right layout
-const middle = Math.ceil(visibleServices.length / 2);
-const leftServices = visibleServices.slice(0, middle);
-const rightServices = visibleServices.slice(middle);
+  // Split for left/right layout
+  const middle = Math.ceil(visibleServices.length / 2);
+  const leftServices = visibleServices.slice(0, middle);
+  const rightServices = visibleServices.slice(middle);
 
-// Safe active service (NEVER crashes)
-const activeService = visibleServices?.[activeIndex] ?? visibleServices?.[0];
+  // Safe active service (NEVER crashes)
+  const activeService = visibleServices?.[activeIndex] ?? visibleServices?.[0];
 
-// Other UI data
-const step = processSteps[activeStep];
+  // Other UI data
+  const step = processSteps[activeStep];
 
   return (
     <>
@@ -644,7 +644,7 @@ const step = processSteps[activeStep];
       <section className="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div
-          className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]"  />
+          className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]" />
         <div
           className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-purple/[0.10] rounded-full blur-[140px]" />
         <div className="noise-overlay" />
@@ -667,16 +667,16 @@ const step = processSteps[activeStep];
                 className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
                 style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 4.75rem)" }}
               >
-                Senior engineering,{" "}
+                Built around how{" "}
                 <span className="gradient-text glow-text">
-                  across the stack.
+                  modern teams operate.
                 </span>
               </h1>
 
               <p className="mt-7 body-lead text-gray-400 max-w-xl">
-                From product strategy to launch and growth — design,
-                engineering, AI, and ops, delivered as one cohesive engagement.
-                Pick one capability, or weave several together.
+              Software, infrastructure, and growth systems designed for speed, clarity, and scale. <br></br>
+              From AI-powered workflows to product engineering, every engagement adapts to your operations, roadmap, and delivery cycles.
+
               </p>
 
               <div className="mt-9 flex flex-col sm:flex-row gap-3">
@@ -727,7 +727,7 @@ const step = processSteps[activeStep];
               </div>
 
               {/* Trust strip */}
-              <div className="surface-divider mt-10 lg:mt-12 pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-5">
+              {/* <div className="surface-divider mt-10 lg:mt-12 pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-5">
                 {heroStats.map((s, i) => (
                   <div>
                     <p className="text-2xl lg:text-3xl font-bold gradient-text tabular-nums tracking-tight">
@@ -738,7 +738,7 @@ const step = processSteps[activeStep];
                     </p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </AnimatedSection>
 
             {/* RIGHT — Service tile grid */}
@@ -750,7 +750,7 @@ const step = processSteps[activeStep];
               <div className="relative">
                 {/* Soft accent backdrop */}
                 <div
-                  className="absolute -inset-8 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20 rounded-[2rem] blur-3xl"/>
+                  className="absolute -inset-8 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20 rounded-[2rem] blur-3xl" />
 
                 {/* Glass panel */}
                 <div className="surface-panel relative rounded-3xl border p-4 lg:p-5">
@@ -800,32 +800,32 @@ const step = processSteps[activeStep];
 
           {/* ───────── HEADER ───────── */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-14">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 backdrop-blur border border-black/5 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.25em] text-deep-blue/60">
-                  Services
+                  Core Capabilities
                 </p>
               </div>
 
-              <h2 className="h-section text-deep-blue">
+              {/* <h2 className="h-section text-deep-blue">
                 Find the capability that fits {" "}
                 <span className="gradient-text-dark"> your problem</span>
-              </h2>
-            </AnimatedSection>
+              </h2> */}
+            </div>
 
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            {/* <div className="lg:col-span-5" delay={0.1}>
               <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed">
                 Filter by intent. Each service opens a live preview with deliverables,
                 timelines, stack details, and real execution outcomes.
               </p>
-            </AnimatedSection>
+            </div> */}
           </div>
 
           {/* ───────── MOBILE ───────── */}
           <div className="xl:hidden space-y-4">
             {services.map((service, i) => (
-              <div  className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
+              <div className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
               >
                 <button
                   onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
@@ -868,7 +868,7 @@ const step = processSteps[activeStep];
 
                 <AnimatePresence>
                   {activeIndex === i && (
-                    <div     className="overflow-hidden"
+                    <div className="overflow-hidden"
                     >
                       <div className="px-5 pb-5 border-t border-black/5">
                         <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
@@ -902,216 +902,219 @@ const step = processSteps[activeStep];
 
           {/* ───────── DESKTOP LAYOUT ───────── */}
           {/* ───────── DESKTOP LAYOUT ───────── */}
-<div className="hidden xl:block">
-  <div className="grid grid-cols-[300px_1fr_300px] items-start gap-6">
+          <div className="hidden xl:block">
+            <div className="grid grid-cols-[300px_1fr_300px] items-start gap-6">
 
-    {/* LEFT */}
-    <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
-        Build · Design
-      </p>
-
-      <div className="space-y-3">
-        {leftServices.map((service, i) => {
-          const isActive = activeIndex === i;
-
-          return (
-            <button
-              key={service.slug}
-              onClick={() => setActiveIndex(i)}
-              onMouseEnter={() => setActiveIndex(i)}
-              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
-              ${
-                isActive
-                  ? "bg-white shadow-xl shadow-black/5"
-                  : "hover:bg-white/50"
-              }`}
-            >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  backgroundColor: `${service.accent}15`,
-                  color: service.accent,
-                }}
-              >
-                {service.icon}
-              </div>
-
-              <div className="flex-1 text-left">
-                <h3 className="font-semibold text-deep-blue">
-                  {service.title}
-                </h3>
-
-                <p className="text-sm text-deep-blue/40">
-                  {service.tagline}
+              {/* LEFT */}
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
+                  Build · Design
                 </p>
+
+                <div className="space-y-3">
+                  {leftServices.map((service, i) => {
+                    const isActive = activeIndex === i;
+
+                    return (
+                      <button
+                        key={service.slug}
+                        onClick={() => setActiveIndex(i)}
+                        onMouseEnter={() => setActiveIndex(i)}
+                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
+              ${isActive
+                            ? "bg-white shadow-xl shadow-black/5"
+                            : "hover:bg-white/50"
+                          }`}
+                      >
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          style={{
+                            backgroundColor: `${service.accent}15`,
+                            color: service.accent,
+                          }}
+                        >
+                          {service.icon}
+                        </div>
+
+                        <div className="flex-1 text-left">
+                          <h3
+                            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive
+                              ? "text-deep-blue"
+                              : "text-deep-blue/75 group-hover:text-deep-blue"
+                              }`}
+                          >
+                            {service.title}
+                          </h3>
+
+                          <p className="text-sm text-deep-blue/40">
+                            {service.tagline}
+                          </p>
+                        </div>
+
+                        <span className="text-xs text-deep-blue/25">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
-              <span className="text-xs text-deep-blue/25">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
+              {/* CENTER */}
+              <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-8 mt-10">
 
-    {/* CENTER */}
-    <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-8 mt-10">
-
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-      </div>
-
-      <AnimatePresence mode="wait">
-        <div  className="relative z-10 h-full flex flex-col"
-        >
-
-          <div className="flex items-center justify-between mb-8">
-
-            <div className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-white" />
-
-              <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
-                Build
-              </p>
-            </div>
-
-            <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
-              {String(activeIndex + 1).padStart(2, "0")} /{" "}
-              {String(services.length).padStart(2, "0")}
-            </div>
-
-          </div>
-
-          <div className="flex-1 flex items-center justify-center py-4">
-
-            <div className="relative">
-
-              <div className="absolute -inset-6 border border-white/10 rounded-full" />
-
-              <div className="absolute -inset-12 border border-white/5 rounded-full" />
-
-              <div className="w-24 h-24 rounded-[24px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
-
-                <div className="text-white scale-[1.6]">
-                  {services[activeIndex].icon}
+                <div className="absolute inset-0">
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
                 </div>
 
-              </div>
-
-            </div>
-
-          </div>
-
-          <div>
-
-            <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-3">
-              {services[activeIndex].tagline}
-            </p>
-
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-3">
-              {services[activeIndex].title}
-            </h3>
-
-            <p className="text-sm text-white/75 max-w-xl leading-relaxed mb-6">
-              {services[activeIndex].description}
-            </p>
-
-            <div className="flex flex-wrap gap-2">
-              {services[activeIndex].capabilities
-                .slice(0, 5)
-                .map((cap) => (
-                  <span
-                    key={cap}
-                    className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
+                <AnimatePresence mode="wait">
+                  <div className="relative z-10 h-full flex flex-col"
                   >
-                    {cap}
-                  </span>
-                ))}
-            </div>
 
-            <Link
-              href={`/services/${services[activeIndex].slug}`}
-              className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#063A3F] shadow-lg shadow-black/10 transition-all hover:gap-3 hover:bg-white/90"
-            >
-              Learn More
-              <svg
-                className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 12h14M13 6l6 6-6 6"
-                />
-              </svg>
-            </Link>
+                    <div className="flex items-center justify-between mb-8">
 
-          </div>
+                      <div className="flex items-center gap-3">
+                        <span className="w-2 h-2 rounded-full bg-white" />
 
-        </div>
-      </AnimatePresence>
+                        <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
+                          Build
+                        </p>
+                      </div>
 
-    </div>
+                      <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
+                        {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                        {String(services.length).padStart(2, "0")}
+                      </div>
 
-    {/* RIGHT */}
-    <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
-        Grow · Ops
-      </p>
+                    </div>
 
-      <div className="space-y-3">
-        {rightServices.map((service, i) => {
-          const realIndex = i + leftServices.length;
-          const isActive = activeIndex === realIndex;
+                    <div className="flex-1 flex items-center justify-center py-4">
 
-          return (
-            <button
-              key={service.slug}
-              onClick={() => setActiveIndex(realIndex)}
-              onMouseEnter={() => setActiveIndex(realIndex)}
-              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
-              ${
-                isActive
-                  ? "bg-white shadow-xl shadow-black/5"
-                  : "hover:bg-white/50"
-              }`}
-            >
-              <div className="flex-1 text-right">
-                <h3 className="font-semibold text-deep-blue">
-                  {service.title}
-                </h3>
+                      <div className="relative">
 
-                <p className="text-sm text-deep-blue/40">
-                  {service.tagline}
+                        <div className="absolute -inset-6 border border-white/10 rounded-full" />
+
+                        <div className="absolute -inset-12 border border-white/5 rounded-full" />
+
+                        <div className="w-24 h-24 rounded-[24px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
+
+                          <div className="text-white scale-[1.6]">
+                            {services[activeIndex].icon}
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div>
+
+                      <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-3">
+                        {services[activeIndex].tagline}
+                      </p>
+
+                      <h3 className="text-3xl lg:text-4xl font-bold text-white mb-3">
+                        {services[activeIndex].title}
+                      </h3>
+
+                      <p className="text-sm text-white/75 max-w-xl leading-relaxed mb-6">
+                        {services[activeIndex].description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {services[activeIndex].capabilities
+                          .slice(0, 5)
+                          .map((cap) => (
+                            <span
+                              key={cap}
+                              className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
+                            >
+                              {cap}
+                            </span>
+                          ))}
+                      </div>
+
+                      <Link
+                        href={`/services/${services[activeIndex].slug}`}
+                        className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#063A3F] shadow-lg shadow-black/10 transition-all hover:gap-3 hover:bg-white/90"
+                      >
+                        Learn More
+                        <svg
+                          className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 12h14M13 6l6 6-6 6"
+                          />
+                        </svg>
+                      </Link>
+
+                    </div>
+
+                  </div>
+                </AnimatePresence>
+
+              </div>
+
+              {/* RIGHT */}
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+                  Grow · Ops
                 </p>
+
+                <div className="space-y-3">
+                  {rightServices.map((service, i) => {
+                    const realIndex = i + leftServices.length;
+                    const isActive = activeIndex === realIndex;
+
+                    return (
+                      <button
+                        key={service.slug}
+                        onClick={() => setActiveIndex(realIndex)}
+                        onMouseEnter={() => setActiveIndex(realIndex)}
+                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
+              ${isActive
+                            ? "bg-white shadow-xl shadow-black/5"
+                            : "hover:bg-white/50"
+                          }`}
+                      >
+                        <div className="flex-1 text-right">
+                          <h3 className="font-semibold text-deep-blue">
+                            {service.title}
+                          </h3>
+
+                          <p className="text-sm text-deep-blue/40">
+                            {service.tagline}
+                          </p>
+                        </div>
+
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          style={{
+                            backgroundColor: `${service.accent}15`,
+                            color: service.accent,
+                          }}
+                        >
+                          {service.icon}
+                        </div>
+
+                        <span className="text-xs text-deep-blue/25">
+                          {String(realIndex + 1).padStart(2, "0")}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  backgroundColor: `${service.accent}15`,
-                  color: service.accent,
-                }}
-              >
-                {service.icon}
-              </div>
-
-              <span className="text-xs text-deep-blue/25">
-                {String(realIndex + 1).padStart(2, "0")}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-
-  </div>
-</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1125,7 +1128,7 @@ const step = processSteps[activeStep];
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
@@ -1136,17 +1139,17 @@ const step = processSteps[activeStep];
                 From kickoff to launch in{" "}
                 <span className="gradient-text">four clear stages.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 Transparent timelines, weekly demos, fixed quotes after
                 discovery. No surprise invoices, no scope creep.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           {/* Stepper bar */}
-          <AnimatedSection delay={0.15}>
+          <div>
             <div className="surface-panel relative rounded-2xl border p-4 lg:p-5">
               {/* Connecting line */}
               <div className="surface-divider absolute inset-x-5 top-1/2 -translate-y-1/2 h-px border-t border-dashed pointer-events-none" />
@@ -1214,7 +1217,7 @@ const step = processSteps[activeStep];
                 })}
               </div>
             </div>
-          </AnimatedSection>
+          </div>
 
           {/* Detail panel — updates on hover */}
           <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
@@ -1293,7 +1296,7 @@ const step = processSteps[activeStep];
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-purple">
@@ -1304,18 +1307,18 @@ const step = processSteps[activeStep];
                 Outcomes, not{" "}
                 <span className="gradient-text-dark">case-study fluff.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-deep-blue/65 max-w-md lg:ml-auto">
                 A few engagements we shipped recently — what we built, and the
                 metric that mattered.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {caseStudies.map((cs, i) => (
-              <AnimatedSection key={cs.client} delay={i * 0.08}>
+              <div key={cs.client}>
                 <div
                   className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_28px_56px_-18px_var(--card-glow)]"
                   style={
@@ -1386,7 +1389,7 @@ const step = processSteps[activeStep];
                     ))}
                   </div>
                 </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>
@@ -1402,7 +1405,7 @@ const step = processSteps[activeStep];
 
         <div className="relative max-w-5xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
@@ -1413,8 +1416,8 @@ const step = processSteps[activeStep];
                 Questions,{" "}
                 <span className="gradient-text">answered.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 Quick answers to what most teams ask before kickoff. Don&apos;t
                 see your question?{" "}
@@ -1425,10 +1428,10 @@ const step = processSteps[activeStep];
                   Just ask.
                 </Link>
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
-          <AnimatedSection delay={0.15}>
+          <div>
             <div className="surface-panel rounded-2xl border overflow-hidden">
               {faqs.map((f, i) => (
                 <FaqRow
@@ -1441,7 +1444,7 @@ const step = processSteps[activeStep];
                 />
               ))}
             </div>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
 

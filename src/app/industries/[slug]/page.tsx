@@ -616,19 +616,19 @@ export default function IndustryPage() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <p className="eyebrow text-rose-500/80">Common challenges</p>
               <h2 className="mt-3 h-section text-deep-blue">
                 What teams in this sector{" "}
                 <span className="gradient-text-dark">keep running into.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
                 The friction we hear about most often. If any of these feel
                 familiar, you&apos;re definitely not alone.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5">
@@ -636,7 +636,7 @@ export default function IndustryPage() {
               const [title, ...descParts] = challenge.split(": ");
               const desc = descParts.join(": ");
               return (
-                <AnimatedSection key={i} delay={i * 0.04}>
+                <div key={i} >
                   <motion.div
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.35 }}
@@ -655,7 +655,7 @@ export default function IndustryPage() {
                       </div>
                     </div>
                   </motion.div>
-                </AnimatedSection>
+                </div>
               );
             })}
           </div>
@@ -672,20 +672,20 @@ export default function IndustryPage() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <p className="eyebrow" style={{ color: accent }}>
                 What we deliver
               </p>
               <h2 className="mt-3 h-section text-white">
                 {industry.solutionsHeading}
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 Vetted patterns from past projects. We bring these to the
                 table — your job is to tell us what matters most.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-5">
@@ -693,7 +693,7 @@ export default function IndustryPage() {
               const [title, ...descParts] = solution.split(": ");
               const desc = descParts.join(": ");
               return (
-                <AnimatedSection key={i} delay={i * 0.04}>
+                <div key={i}>
                   <motion.div
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
@@ -730,7 +730,7 @@ export default function IndustryPage() {
                       </div>
                     </div>
                   </motion.div>
-                </AnimatedSection>
+                </div>
               );
             })}
           </div>
@@ -747,7 +747,7 @@ export default function IndustryPage() {
             />
 
             <div className="relative max-w-7xl mx-auto px-6">
-              <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
+              <div className="text-center max-w-2xl mx-auto mb-12">
                 <p className="eyebrow" style={{ color: accent }}>
                   Recent work in {meta?.shortLabel ?? "this sector"}
                 </p>
@@ -755,11 +755,11 @@ export default function IndustryPage() {
                   Outcomes, not{" "}
                   <span className="gradient-text-dark">case-study fluff.</span>
                 </h2>
-              </AnimatedSection>
+              </div>
 
               <div className="grid md:grid-cols-2 gap-5">
                 {recentWork.map((cs, i) => (
-                  <AnimatedSection key={cs.client} delay={i * 0.08}>
+                  <div key={cs.client} >
                     <motion.div
                       whileHover={{ y: -6 }}
                       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
@@ -805,7 +805,7 @@ export default function IndustryPage() {
                         </span>
                       </div>
                     </motion.div>
-                  </AnimatedSection>
+                  </div>
                 ))}
               </div>
             </div>
@@ -819,13 +819,13 @@ export default function IndustryPage() {
           <div className="absolute inset-0 grid-bg" />
 
           <div className="relative max-w-7xl mx-auto px-6">
-            <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
+            <div className="text-center max-w-2xl mx-auto mb-12">
               <p className="eyebrow text-neon-blue">Related sectors</p>
               <h2 className="mt-3 h-section text-white">
                 Adjacent industries{" "}
                 <span className="gradient-text">we work with.</span>
               </h2>
-            </AnimatedSection>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-5">
               {related.map((relSlug, i) => {
@@ -833,7 +833,7 @@ export default function IndustryPage() {
                 const relInfo = allIndustryTitles[relSlug];
                 if (!relMeta || !relInfo) return null;
                 return (
-                  <AnimatedSection key={relSlug} delay={i * 0.08}>
+                  <div key={relSlug}>
                     <Link
                       href={`/industries/${relSlug}`}
                       className="group relative block h-full rounded-2xl overflow-hidden bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-500 p-6"
@@ -877,7 +877,7 @@ export default function IndustryPage() {
                         </div>
                       </div>
                     </Link>
-                  </AnimatedSection>
+                  </div>
                 );
               })}
             </div>

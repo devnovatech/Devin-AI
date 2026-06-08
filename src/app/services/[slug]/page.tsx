@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, ReactNode } from "react";
+import { useState, Fragment, ReactNode } from "react";
 import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
+import React from "react";
 
 const DEEP = "var(--section-deep)";
 const LIGHT = "var(--section-light)";
@@ -130,9 +131,9 @@ const servicesData: Record<string, ServiceData> = {
   },
   "mobile-application": {
     title: "Mobile Application Development",
-    subtitle: "Crafted for humans. Engineered for scale.",
+    subtitle: "Enterprise Mobile Engineering for Scalable Digital Products",
     description:
-      "Whether you\u2019re launching a new idea or extending your business into the mobile space, we build high-performing mobile apps that deliver real-world impact. From native iOS and Android to cross-platform solutions in Flutter or React Native, we deliver seamless digital products - from first sketch to post-launch support.",
+      "We design and build custom mobile applications that help organizations streamline operations, improve customer experience, and scale digital products across iOS, Android, and cross-platform environments.\nFrom strategy and architecture to development and deployment, we deliver full-cycle mobile engineering services built for performance, security, and long-term scalability.",
     painIntro: "What\u2019s Holding You Back?",
     offerings: [
       {
@@ -1062,7 +1063,12 @@ export default function ServicePage() {
                   {service.subtitle}
                 </p>
                 <p className="mt-6 body-lead text-gray-400">
-                  {service.description}
+                  {service.description.split("\n").map((part, index, arr) => (
+                    <span key={index}>
+                      {part}
+                      {index < arr.length - 1 && <br />}
+                    </span>
+                  ))}
                 </p>
 
                 <div className="mt-10 flex flex-col sm:flex-row gap-3">
@@ -1250,23 +1256,23 @@ export default function ServicePage() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <p className="eyebrow text-rose-500/80">Sound familiar?</p>
               <h2 className="mt-3 h-section text-deep-blue">
                 {service.painIntro}
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
                 If any of these are slowing you down, you&apos;re not alone —
                 most teams we talk to are stuck on at least one.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {service.painPoints.map((point, i) => (
-              <AnimatedSection key={i} delay={i * 0.05}>
+              <div key={i}>
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.35 }}
@@ -1294,7 +1300,7 @@ export default function ServicePage() {
                     </p>
                   </div>
                 </motion.div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>
@@ -1335,7 +1341,7 @@ export default function ServicePage() {
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-10 lg:mb-12">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full border backdrop-blur-sm"
                 style={{
@@ -1370,15 +1376,15 @@ export default function ServicePage() {
                   />
                 </span>
               </h2>
-            </AnimatedSection>
+            </div>
 
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            <div className="lg:col-span-5">
               <div className="lg:pl-8 lg:border-l border-deep-blue/[0.08]">
                 <p className="body-base text-deep-blue/60 max-w-md">
                   Founded by senior engineers tired of agency-grade deliverables. We embed like an in-house team — from seed-stage MVPs to Fortune-500 platforms.
                 </p>
               </div>
-            </AnimatedSection>
+            </div>
           </div>
 
           {/* Main Content */}
@@ -1604,26 +1610,26 @@ export default function ServicePage() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <p className="eyebrow text-neon-blue">How we work</p>
               <h2 className="mt-3 h-section text-white">
                 From kickoff to launch in{" "}
                 <span style={{ color: accent }}>four clear steps.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 Transparent timelines, weekly demos, fixed quotes after
                 discovery. No surprises, no scope creep.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px border-t border-dashed border-white/15" />
 
             {processSteps.map((step, i) => (
-              <AnimatedSection key={step.number} delay={i * 0.08}>
+              <div key={step.number} >
                 <div className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500">
                   <div className="flex items-center gap-3 mb-5">
                     <div
@@ -1650,7 +1656,7 @@ export default function ServicePage() {
                     {step.description}
                   </p>
                 </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
         </div>
@@ -1661,7 +1667,7 @@ export default function ServicePage() {
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <p
               className="eyebrow"
               style={{ color: accent }}
@@ -1669,13 +1675,13 @@ export default function ServicePage() {
               Why teams pick us
             </p>
             <h2 className="mt-3 h-section text-deep-blue">{service.whyTitle}</h2>
-          </AnimatedSection>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {service.whyChoose.slice(0, 6).map((item, i) => {
               const itemAccent = ACCENTS[i % ACCENTS.length];
               return (
-                <AnimatedSection key={item.title} delay={i * 0.06}>
+                <div key={item.title} >
                   <motion.div
                     whileHover={{ y: -6 }}
                     transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
@@ -1722,7 +1728,7 @@ export default function ServicePage() {
                       </p>
                     </div>
                   </motion.div>
-                </AnimatedSection>
+                </div>
               );
             })}
           </div>
@@ -1732,7 +1738,7 @@ export default function ServicePage() {
       {/* ───────── Industries we serve (compact) ───────── */}
       <section className="pb-20 bg-light-accent relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6">
-          <AnimatedSection className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-9 overflow-hidden relative">
+          <div className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-9 overflow-hidden relative">
             <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
 
               {/* Left Content */}
@@ -1753,9 +1759,8 @@ export default function ServicePage() {
               {/* Industry Cards */}
               <div className="lg:col-span-8 grid sm:grid-cols-2 gap-3">
                 {service.industries.map((industry, i) => (
-                  <AnimatedSection
+                  <div
                     key={industry.name}
-                    delay={i * 0.05}
                   >
                     <div
                       className="group flex items-start gap-3 p-4 rounded-xl 
@@ -1778,11 +1783,11 @@ export default function ServicePage() {
                         </p>
                       </div>
                     </div>
-                  </AnimatedSection>
+                  </div>
                 ))}
               </div>
             </div>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
 
@@ -1792,7 +1797,7 @@ export default function ServicePage() {
           <div className="absolute inset-0 grid-bg" />
 
           <div className="relative max-w-7xl mx-auto px-6">
-            <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <p className="eyebrow text-neon-blue">Pair it with</p>
               <h2 className="mt-3 h-section text-white">
                 Often combined{" "}
@@ -1802,7 +1807,7 @@ export default function ServicePage() {
                 Most engagements weave 2–3 capabilities together. Here&apos;s
                 what teams typically pair with {service.title.toLowerCase()}.
               </p>
-            </AnimatedSection>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-5">
               {related.map((relSlug, i) => {
@@ -1810,7 +1815,7 @@ export default function ServicePage() {
                 const relInfo = allServiceTitles[relSlug];
                 if (!relMeta || !relInfo) return null;
                 return (
-                  <AnimatedSection key={relSlug} delay={i * 0.08}>
+                  <div key={relSlug}>
                     <Link
                       href={`/services/${relSlug}`}
                       className="group relative block h-full rounded-2xl overflow-hidden bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-500 p-6"
@@ -1861,7 +1866,7 @@ export default function ServicePage() {
                         </div>
                       </div>
                     </Link>
-                  </AnimatedSection>
+                  </div>
                 );
               })}
             </div>
