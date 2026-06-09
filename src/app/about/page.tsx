@@ -181,10 +181,10 @@ function HeroSection() {
 // ============================================================================
 function StatsSection() {
   const stats = [
-    { label: "Projects Delivered", value: 150, suffix: "+" },
-    { label: "Happy Clients", value: 98, suffix: "%" },
-    { label: "Team Members", value: 45, suffix: "+" },
-    { label: "Years Combined Experience", value: 120, suffix: "+" },
+    { label: "Years of experience", value: 25, suffix: "+" },
+    { label: "Success Stories", value: 150, suffix: "+" },
+    { label: "Results Guaranteed", value: 100, suffix: "%" },
+    { label: "employees in all over the world", value: 30, suffix: "+" },
   ];
 
   // Gradient colors copied from OpenPositionsSection roles
@@ -213,14 +213,14 @@ function StatsSection() {
               <span className="gradient-text">proud of.</span>
             </h2>
           </div>
-         
+
         </div>
 
         {/* Cards - with colors from OpenPositionsSection */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {stats.map((stat, i) => {
             const numLabel = String(i + 1).padStart(2, "0");
-            
+
             return (
               <div
                 key={stat.label}
@@ -252,7 +252,7 @@ function StatsSection() {
                   </div>
 
                   {/* Stat number with gradient */}
-                  <div 
+                  <div
                     className="relative text-4xl sm:text-5xl font-bold tabular-nums transition-all duration-300 group-hover:scale-105 text-center my-4"
                     style={{
                       background: `linear-gradient(135deg, ${cardAccents[i]}, ${cardAccents[i]}80)`,
@@ -265,7 +265,7 @@ function StatsSection() {
                   </div>
 
                   {/* Label */}
-                  <div 
+                  <div
                     className="relative text-center text-sm font-medium transition-colors duration-300 text-gray-400 group-hover:text-[color:var(--accent)]"
                     style={{ "--accent": cardAccents[i] } as React.CSSProperties}
                   >
@@ -274,9 +274,9 @@ function StatsSection() {
 
                   {/* Bottom accent line */}
                   <div className="mt-4 pt-2 flex justify-center">
-                    <div 
-                      className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16" 
-                      style={{ background: `linear-gradient(90deg, ${cardAccents[i]}, ${cardAccents[i]}55)` }} 
+                    <div
+                      className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
+                      style={{ background: `linear-gradient(90deg, ${cardAccents[i]}, ${cardAccents[i]}55)` }}
                     />
                   </div>
                 </div>
@@ -477,22 +477,22 @@ function ValuesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {values.map((value, i) => {
             const numLabel = String(i + 1).padStart(2, "0");
-            
+
             return (
-              <div 
-                key={value.title} 
-                className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[280px]"
+              <div
+                key={value.title}
+                className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[240px]"
               >
                 {/* Top accent line */}
-                <div 
-                  className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
-                  style={{ background: `linear-gradient(90deg, ${value.accent}, ${value.accent}55, transparent)` }} 
+                <div
+                  className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ background: `linear-gradient(90deg, ${value.accent}, ${value.accent}55, transparent)` }}
                 />
 
                 {/* Corner glow */}
-                <div 
-                  className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.06] group-hover:opacity-[0.15] transition-opacity duration-500" 
-                  style={{ backgroundColor: value.accent }} 
+                <div
+                  className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.06] group-hover:opacity-[0.15] transition-opacity duration-500"
+                  style={{ backgroundColor: value.accent }}
                 />
 
                 {/* Background number */}
@@ -502,12 +502,12 @@ function ValuesSection() {
 
                 <div className="relative z-10 flex flex-col h-full">
                   {/* Icon */}
-                  <div 
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3" 
-                    style={{ 
-                      backgroundColor: `${value.accent}14`, 
-                      color: value.accent, 
-                      boxShadow: `inset 0 0 0 1px ${value.accent}26` 
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3"
+                    style={{
+                      backgroundColor: `${value.accent}14`,
+                      color: value.accent,
+                      boxShadow: `inset 0 0 0 1px ${value.accent}26`
                     }}
                   >
                     {value.icon}
@@ -519,15 +519,15 @@ function ValuesSection() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm leading-relaxed text-deep-blue/60 flex-1">
+                  <p className="text-sm leading-relaxed text-deep-blue/60">
                     {value.description}
                   </p>
 
                   {/* Bottom accent line */}
-                  <div className="mt-4 pt-2">
-                    <div 
-                      className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16" 
-                      style={{ background: `linear-gradient(90deg, ${value.accent}, ${value.accent}55)` }} 
+                  <div className="mt-2 pt-1">
+                    <div
+                      className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
+                      style={{ background: `linear-gradient(90deg, ${value.accent}, ${value.accent}55)` }}
                     />
                   </div>
                 </div>
@@ -611,7 +611,7 @@ function CareersSection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {culturePoints.map((item, i) => {
             const numLabel = String(i + 1).padStart(2, "0");
-            
+
             return (
               <div key={item.title}>
                 <div
@@ -657,9 +657,9 @@ function CareersSection() {
                     </div>
 
                     {/* Title */}
-                    <h3 
+                    <h3
                       className="mt-4 text-base lg:text-[17px] font-bold text-white tracking-tight leading-snug transition-colors duration-300 group-hover:text-[color:var(--accent)]"
-                      style={{ 
+                      style={{
                         ["--accent" as string]: item.accent,
                       }}
                     >
@@ -673,9 +673,9 @@ function CareersSection() {
 
                     {/* Bottom accent line */}
                     <div className="mt-4 pt-2">
-                      <div 
-                        className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16" 
-                        style={{ background: `linear-gradient(90deg, ${item.accent}, ${item.accent}55)` }} 
+                      <div
+                        className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
+                        style={{ background: `linear-gradient(90deg, ${item.accent}, ${item.accent}55)` }}
                       />
                     </div>
                   </div>
@@ -717,29 +717,29 @@ type Role = {
 };
 
 const roles: Role[] = [
-  { 
-    title: "Development", 
-    key: "development", 
+  {
+    title: "Development",
+    key: "development",
     accent: "#1E88E5",
-    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /> 
+    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
   },
-  { 
-    title: "Marketing", 
-    key: "marketing", 
+  {
+    title: "Marketing",
+    key: "marketing",
     accent: "#00ACC1",
-    icon: <><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M20.488 9H15V3.512A9.001 9.001 0 0120.488 9z" /></> 
+    icon: <><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M20.488 9H15V3.512A9.001 9.001 0 0120.488 9z" /></>
   },
-  { 
-    title: "Human Resources", 
-    key: "humanResources", 
+  {
+    title: "Human Resources",
+    key: "humanResources",
     accent: "#0288D1",
-    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /> 
+    icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
   },
-  { 
-    title: "Designers", 
-    key: "designers", 
+  {
+    title: "Designers",
+    key: "designers",
     accent: "#039BE5",
-    icon: <><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></> 
+    icon: <><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></>
   },
 ];
 
@@ -754,136 +754,136 @@ export function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpe
   const data = propsJobOpenings ?? defaultOpenings;
 
   return (
-  <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
-    {/* Background effects */}
-    <div className="absolute inset-0 grid-bg" />
-    <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
-    <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-neon-blue/[0.05] rounded-full blur-[100px]" />
+    <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 grid-bg" />
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-neon-blue/[0.05] rounded-full blur-[100px]" />
 
-    <div className="relative max-w-7xl mx-auto px-6">
-      {/* Top content - split layout from WhyChooseUs */}
-      <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-12 lg:mb-14">
-        <div className="lg:col-span-7">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/[0.1] bg-white/70 backdrop-blur-sm mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
-            <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
-              Current Openings
-            </span>
+      <div className="relative max-w-7xl mx-auto px-6">
+        {/* Top content - split layout from WhyChooseUs */}
+        <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-12 lg:mb-14">
+          <div className="lg:col-span-7">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/[0.1] bg-white/70 backdrop-blur-sm mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                Current Openings
+              </span>
+            </div>
+            <h2 className="h-section text-deep-blue">
+              Join our <span className="gradient-text-dark">team</span>
+            </h2>
           </div>
-          <h2 className="h-section text-deep-blue">
-            Join our <span className="gradient-text-dark">team</span>
-          </h2>
+          <div className="lg:col-span-5">
+            <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+              We're always looking for talented people to join our mission.
+              If you're passionate about building great products, we want to hear from you.
+            </p>
+          </div>
         </div>
-        <div className="lg:col-span-5">
-          <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-            We're always looking for talented people to join our mission. 
-            If you're passionate about building great products, we want to hear from you.
-          </p>
-        </div>
-      </div>
 
-      {/* Cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {roles.map((role, idx) => {
-          const numLabel = String(idx + 1).padStart(2, "0");
-          
-          return (
-            <div
-              key={role.key}
-              className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-5 lg:p-6 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12]"
-            >
-              {/* Top accent line */}
+        {/* Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {roles.map((role, idx) => {
+            const numLabel = String(idx + 1).padStart(2, "0");
+
+            return (
               <div
-                className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `linear-gradient(90deg, ${role.accent}, ${role.accent}55, transparent)`,
-                }}
-              />
+                key={role.key}
+                className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-5 lg:p-6 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12]"
+              >
+                {/* Top accent line */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `linear-gradient(90deg, ${role.accent}, ${role.accent}55, transparent)`,
+                  }}
+                />
 
-              {/* Corner glow */}
-              <div
-                className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.06] group-hover:opacity-[0.15] transition-opacity duration-500"
-                style={{ backgroundColor: role.accent }}
-              />
+                {/* Corner glow */}
+                <div
+                  className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.06] group-hover:opacity-[0.15] transition-opacity duration-500"
+                  style={{ backgroundColor: role.accent }}
+                />
 
-              <div className="relative flex flex-col h-full">
-                {/* Top row: icon + number */}
-                <div className="flex items-center justify-between">
-                  <span
-                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
+                <div className="relative flex flex-col h-full">
+                  {/* Top row: icon + number */}
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        backgroundColor: role.accent,
+                        color: "white",
+                        boxShadow: `0 10px 22px -8px ${role.accent}80`,
+                      }}
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
+                        {role.icon}
+                      </svg>
+                    </span>
+                    <span
+                      className="font-mono text-[10px] font-bold tracking-wider transition-colors duration-300"
+                      style={{ color: `${role.accent}80` }}
+                    >
+                      {numLabel}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    className="mt-4 text-base lg:text-[17px] font-bold text-deep-blue tracking-tight leading-snug transition-colors duration-300 group-hover:text-[color:var(--accent)]"
                     style={{
-                      backgroundColor: role.accent,
-                      color: "white",
-                      boxShadow: `0 10px 22px -8px ${role.accent}80`,
+                      ["--accent" as string]: role.accent,
                     }}
                   >
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
-                      {role.icon}
-                    </svg>
-                  </span>
-                  <span
-                    className="font-mono text-[10px] font-bold tracking-wider transition-colors duration-300"
-                    style={{ color: `${role.accent}80` }}
-                  >
-                    {numLabel}
-                  </span>
-                </div>
+                    {role.title}
+                  </h3>
 
-                {/* Title */}
-                <h3 
-                  className="mt-4 text-base lg:text-[17px] font-bold text-deep-blue tracking-tight leading-snug transition-colors duration-300 group-hover:text-[color:var(--accent)]"
-                  style={{ 
-                    ["--accent" as string]: role.accent,
-                  }}
-                >
-                  {role.title}
-                </h3>
+                  {/* Job openings or message */}
+                  <div className="mt-3 flex-1">
+                    {data[role.key].length > 0 ? (
+                      <ul className="space-y-2">
+                        {data[role.key].map((job, jobIdx) => (
+                          <li key={jobIdx} className="flex items-start gap-2 text-sm text-deep-blue/60">
+                            <span
+                              className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 transition-all duration-300 group-hover:scale-125"
+                              style={{ backgroundColor: role.accent }}
+                            />
+                            <span className="leading-relaxed">{job}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-sm text-deep-blue/60 leading-relaxed">
+                        No openings currently.
+                        <br />
+                        <a
+                          href="mailto:careers@devinception.com"
+                          className="inline-block mt-2 text-sm transition-all duration-300 hover:underline"
+                          style={{ color: role.accent }}
+                        >
+                          careers@devinception.com →
+                        </a>
+                      </p>
+                    )}
+                  </div>
 
-                {/* Job openings or message */}
-                <div className="mt-3 flex-1">
-                  {data[role.key].length > 0 ? (
-                    <ul className="space-y-2">
-                      {data[role.key].map((job, jobIdx) => (
-                        <li key={jobIdx} className="flex items-start gap-2 text-sm text-deep-blue/60">
-                          <span 
-                            className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 transition-all duration-300 group-hover:scale-125" 
-                            style={{ backgroundColor: role.accent }} 
-                          />
-                          <span className="leading-relaxed">{job}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-sm text-deep-blue/60 leading-relaxed">
-                      No openings currently.
-                      <br />
-                      <a
-                        href="mailto:careers@devinception.com"
-                        className="inline-block mt-2 text-sm transition-all duration-300 hover:underline"
-                        style={{ color: role.accent }}
-                      >
-                        careers@devinception.com →
-                      </a>
-                    </p>
-                  )}
-                </div>
-
-                {/* Bottom accent line */}
-                <div className="mt-4 pt-2">
-                  <div 
-                    className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16" 
-                    style={{ background: `linear-gradient(90deg, ${role.accent}, ${role.accent}55)` }} 
-                  />
+                  {/* Bottom accent line */}
+                  <div className="mt-4 pt-2">
+                    <div
+                      className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
+                      style={{ background: `linear-gradient(90deg, ${role.accent}, ${role.accent}55)` }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
 }
 
 // ============================================================================
@@ -893,14 +893,14 @@ export default function AboutPage() {
   return (
     <>
       <HeroSection />
-      
+
       <HistorySection />
       <MissionVisionSection />
       <StatsSection />
       <ValuesSection />
       <CareersSection />
       <OpenPositionsSection />
-      
+
       <CTABanner
         eyebrow="Let's build together"
         heading={<>Have an idea? Let&apos;s create something <span className="gradient-text">extraordinary.</span></>}

@@ -31,15 +31,15 @@ const services: Service[] = [
     title: "Mobile Systems",
     slug: "mobile-application",
     category: "build",
-    tagline: "Native & cross-platform apps people love using.",
+    tagline: "NATIVE & CROSS-PLATFORM APPLICATIONS",
 
     description:
-      "Native and cross-platform applications engineered for reliability, performance, and scale.",
+      "Engineered for reliability, performance, and scale across iOS, Android, and modern cross-platform frameworks. From customer-facing apps to internal operational tools.",
     capabilities: [
-      "iOS & Android native",
-      "Cross-platform (RN, Flutter)",
-      "Backend & APIs",
-      "Store launch & ASO",
+      "iOS & Android",
+      "Cross-Platform",
+      "Backend APIs",
+      "App Store Launch",
     ],
     accent: "#1E88E5",
     icon: (
@@ -53,14 +53,14 @@ const services: Service[] = [
     title: "Web Platforms",
     slug: "web-development",
     category: "build",
-    tagline: "Fast, accessible, SEO-ready platforms.",
+    tagline: "SCALABLE DIGITAL PLATFORMS",
     description:
-      "Fast, scalable web experiences built around usability, growth, and operational efficiency.",
+      "Fast, secure, and scalable web platforms designed to support business operations, customer experiences, and long-term growth objectives.",
     capabilities: [
-      "Frontend (React, Next, Vue)",
-      "Backend & APIs",
-      "Headless CMS",
-      "Performance & SEO",
+      "Custom Development",
+      "SEO-Ready",
+      "CMS & Portals",
+      "Cloud Deployment",
     ],
     accent: "#0277BD",
     icon: (
@@ -76,14 +76,14 @@ const services: Service[] = [
     title: "Ecommerce Architecture",
     slug: "ecommerce",
     category: "build",
-    tagline: "Storefronts that convert and scale.",
+    tagline: "SCALABLE DIGITAL PLATFORMS.",
     description:
-      "Commerce platforms optimized for conversion, retention, and operational scalability.",
+      "Conversion-focused ecommerce platforms engineered for performance, retention, and operational efficiency across every stage of the customer journey.",
     capabilities: [
-      "Shopify & custom platforms",
-      "PCI-DSS-compliant checkout",
-      "Inventory & ERP integrations",
-      "A/B testing & analytics",
+      "Online Stores",
+      "Payment Systems",
+      "Conversion Optimization",
+      "Marketplace Integrations",
     ],
     accent: "#0288D1",
     icon: (
@@ -96,14 +96,14 @@ const services: Service[] = [
     title: "UI/UX Design",
     slug: "ui-ux-design",
     category: "design",
-    tagline: "Research-led design that converts.",
+    tagline: "Researched-led Product Design.",
     description:
-      "Interfaces built for usability, accessibility, and product adoption.",
+      "User-centered experiences designed to improve usability, accessibility, and adoption while aligning every interaction with business goals.",
     capabilities: [
-      "User research & personas",
-      "Wireframing & prototyping",
-      "Visual & interaction design",
-      "WCAG accessibility",
+      "User Research",
+      "Wireframing",
+      "Design Systems",
+      "Prototyping",
     ],
     accent: "#039BE5",
     icon: (
@@ -117,14 +117,14 @@ const services: Service[] = [
     title: "Intelligent Automation",
     slug: "machine-learning-ai",
     category: "scale",
-    tagline: "Custom models, embedded into your stack.",
+    tagline: "AI & ML Solutions.",
     description:
-      "AI and machine learning systems designed to automate workflows and improve decision-making.",
+      "AI-powered systems that automate workflows, streamline operations, and deliver actionable insights through intelligent decision support.",
     capabilities: [
-      "LLM apps & agents",
-      "Predictive analytics",
-      "Computer vision",
-      "Model deployment & MLOps",
+      "AI Workflows",
+      "Machine Learning",
+      "Process Automation",
+      "Predictive Systems",
     ],
     accent: "#00ACC1",
     icon: (
@@ -138,14 +138,14 @@ const services: Service[] = [
     title: "Digital Marketing",
     slug: "digital-marketing",
     category: "scale",
-    tagline: "Strategy and content built on data.",
+    tagline: "Growth Driven by Data.",
     description:
-      "SEO, paid campaigns, content marketing, and conversion optimization. Measurable growth, not vanity metrics. Tied directly to pipeline and revenue.",
+      "Performance-focused marketing strategies that increase visibility, generate qualified demand, and drive measurable business growth.",
     capabilities: [
-      "Technical & content SEO",
-      "Paid acquisition (Meta, LinkedIn, Google)",
-      "Content & email programs",
-      "Funnel analytics & attribution",
+      "SEO",
+      "Paid Campaigns",
+      "Content Strategy",
+      "Analytics",
     ],
     accent: "#1565C0",
     icon: (
@@ -159,14 +159,14 @@ const services: Service[] = [
     title: "Staff Augmentation",
     slug: "staff-augmentation",
     category: "operate",
-    tagline: "Senior engineers, embedded with your team.",
+    tagline: "Embedded Technical Talent.",
     description:
-      "Cross-functional specialists integrated directly into your operational workflows.",
+      "Experienced specialists integrated directly into your teams to accelerate delivery, expand capacity, and reduce hiring friction.",
     capabilities: [
-      "Senior, vetted talent",
-      "Time-zone aligned",
-      "Sprint-ready integration",
-      "Flexible scaling",
+      "Dedicated Resources",
+      "Flexible Scaling",
+      "Engineering Teams",
+      "Product Support",
     ],
     accent: "#01579B",
     icon: (
@@ -179,14 +179,14 @@ const services: Service[] = [
     title: "Software Quality Engineering",
     slug: "quality-assurance",
     category: "operate",
-    tagline: "Ship with confidence, not surprises.",
+    tagline: "Quality Built Into Delivery.",
     description:
-      "Continuous testing and quality assurance embedded throughout the delivery lifecycle.",
+      "Continuous testing and quality assurance practices embedded throughout development to ensure reliability, stability, and confidence.",
     capabilities: [
-      "Automation (Cypress, Playwright)",
-      "Performance & load testing",
-      "Security audits",
-      "Cross-platform validation",
+      "Manual Testing",
+      "Test Automation",
+      "Performance Testing",
+      "QA Strategy",
     ],
     accent: "#006064",
     icon: (
@@ -201,12 +201,12 @@ const services: Service[] = [
     category: "operate",
     tagline: "Agile delivery without the chaos.",
     description:
-      "Project systems and delivery workflows designed for visibility and momentum.",
+      "Project governance and delivery frameworks that improve visibility, maintain momentum, and keep teams aligned around outcomes.",
     capabilities: [
-      "Agile / Scrum delivery",
-      "Roadmap & backlog ownership",
-      "Stakeholder communication",
-      "Risk & change management",
+      "Agile Delivery",
+      "Sprint Planning",
+      "Risk Management",
+      "Stakeholder Reporting",
     ],
     accent: "#0097A7",
     icon: (
@@ -241,12 +241,12 @@ const processSteps: ProcessStepData[] = [
     title: "Discovery",
     duration: "1–2 weeks",
     description:
-      "We start with goals, constraints, and the why. You leave with a scoped roadmap, timeline, and a fixed quote.",
+      "We align business objectives, technical requirements, and delivery priorities to define scope, architecture direction, timelines, and measurable success criteria.",
     deliverables: [
-      "Stakeholder interviews",
-      "Technical & brand audit",
-      "Success metrics",
-      "Fixed-price proposal",
+      "Stakeholder Workshops",
+      "Technical Assessment",
+      "Requirements Definition",
+      "Success Metrics",
     ],
     accent: "#1E88E5",
     icon: (
@@ -261,12 +261,12 @@ const processSteps: ProcessStepData[] = [
     title: "Design",
     duration: "2–3 weeks",
     description:
-      "User research, wireframes, prototypes, and a visual system. We pressure-test ideas with real users before a line of code is written.",
+      "We transform requirements into validated user experiences, system architectures, and implementation blueprints that balance usability, scalability, and engineering feasibility",
     deliverables: [
-      "UX research & flows",
-      "Wireframes & prototypes",
-      "Visual system / tokens",
-      "WCAG-AA accessibility",
+      "User Experience Design",
+      "Solution Architecture",
+      "Wireframes & Prototypes",
+      "Technical Planning",
     ],
     accent: "#0288D1",
     icon: (
@@ -280,12 +280,12 @@ const processSteps: ProcessStepData[] = [
     title: "Build",
     duration: "8–14 weeks",
     description:
-      "2-week sprints, weekly demos, transparent burndowns. You see progress shipping behind a feature flag from day one — no surprises.",
+      "Cross-functional teams deliver production-ready solutions through agile execution, continuous testing, secure development practices, and iterative stakeholder feedback.",
     deliverables: [
-      "Bi-weekly demos",
-      "Staging environments",
-      "CI/CD pipeline",
-      "Pair programming",
+      "Software Development",
+      "System Integrations",
+      "Quality Assurance",
+      "Sprint Reviews",
     ],
     accent: "#00ACC1",
     icon: (
@@ -299,12 +299,12 @@ const processSteps: ProcessStepData[] = [
     title: "Launch",
     duration: "1 week + ongoing",
     description:
-      "Production deploy, monitoring dashboards wired in, and a 30-day stabilization window. Then optional retainer for ongoing support.",
+      "We manage deployment, monitoring, and optimization to ensure stability, adoption, and continuous improvement beyond the initial release.",
     deliverables: [
-      "Zero-downtime deploy",
-      "Monitoring & observability",
-      "30-day stabilization",
-      "On-call runbook",
+      "Software Development",
+      "System Integrations",
+      "Quality Assurance",
+      "Sprint Reviews",
     ],
     accent: "#1565C0",
     icon: (
@@ -674,8 +674,7 @@ export default function ServicesPage() {
               </h1>
 
               <p className="mt-7 body-lead text-gray-400 max-w-xl">
-              Software, infrastructure, and growth systems designed for speed, clarity, and scale. <br></br>
-              From AI-powered workflows to product engineering, every engagement adapts to your operations, roadmap, and delivery cycles.
+                Software, infrastructure, and growth systems engineered for speed, clarity, and scale. From AI-powered workflows to product engineering, every engagement adapts to your roadmap and delivery goals.
 
               </p>
 
@@ -783,56 +782,142 @@ export default function ServicesPage() {
       </section>
 
       {/* ───────── Catalog (filterable) ───────── */}
-      <section
-        id="services-grid"
-        className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
-      >
-        {/* ───────── BACKGROUND GLOW ───────── */}
-        <div className="absolute inset-0 opacity-70">
-          <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
-          <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+     <section
+  id="services-grid"
+  className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
+>
+  {/* ───────── BACKGROUND GLOW ───────── */}
+  <div className="absolute inset-0 opacity-70">
+    <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
+    <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+  </div>
+
+  {/* noise overlay */}
+  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+
+  <div className="relative max-w-7xl mx-auto px-6">
+    {/* ───────── HEADER ───────── */}
+    <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
+      <div className="lg:col-span-7">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5 mb-5 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+          <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
+            Core Capabilities
+          </p>
         </div>
 
-        {/* noise overlay */}
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+        {/* <h2 className="text-4xl lg:text-5xl font-bold text-deep-blue leading-tight">
+          Find the capability that fits{" "}
+          <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
+            your problem
+          </span>
+        </h2> */}
+      </div>
 
-        <div className="relative max-w-7xl mx-auto px-6">
+      {/* <div className="lg:col-span-5">
+        <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed text-sm lg:text-base">
+          Explore services by intent. Each module includes real execution outputs,
+          delivery timelines, and technical depth.
+        </p>
+      </div> */}
+    </div>
 
-          {/* ───────── HEADER ───────── */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-14">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 backdrop-blur border border-black/5 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-                <p className="text-[10px] uppercase tracking-[0.25em] text-deep-blue/60">
-                  Core Capabilities
-                </p>
-              </div>
-
-              {/* <h2 className="h-section text-deep-blue">
-                Find the capability that fits {" "}
-                <span className="gradient-text-dark"> your problem</span>
-              </h2> */}
+    {/* ───────── MOBILE ───────── */}
+    <div className="xl:hidden space-y-4">
+      {services.map((service, i) => (
+        <div
+          key={service.slug}
+          className="bg-white rounded-2xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+        >
+          <button
+            onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
+            className="w-full flex items-center gap-4 p-5 text-left active:scale-[0.99] transition"
+          >
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm"
+              style={{
+                backgroundColor: `${service.accent}12`,
+                color: service.accent,
+              }}
+            >
+              {service.icon}
             </div>
 
-            {/* <div className="lg:col-span-5" delay={0.1}>
-              <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed">
-                Filter by intent. Each service opens a live preview with deliverables,
-                timelines, stack details, and real execution outcomes.
-              </p>
-            </div> */}
-          </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-deep-blue">{service.title}</h3>
+              <p className="text-xs text-deep-blue/50 mt-1">{service.tagline}</p>
+            </div>
 
-          {/* ───────── MOBILE ───────── */}
-          <div className="xl:hidden space-y-4">
-            {services.map((service, i) => (
-              <div className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
-              >
+            <svg
+              className={`w-5 h-5 transition-transform ${
+                activeIndex === i ? "rotate-180" : ""
+              }`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <AnimatePresence>
+            {activeIndex === i && (
+              <div className="px-5 pb-5 border-t border-black/5">
+                <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
+                  {service.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {service.capabilities.map((cap) => (
+                    <span
+                      key={cap}
+                      className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
+                    >
+                      {cap}
+                    </span>
+                  ))}
+                </div>
+
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
+                >
+                  Learn More →
+                </Link>
+              </div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
+
+    {/* ───────── DESKTOP ───────── */}
+    <div className="hidden xl:block">
+      <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
+        
+        {/* LEFT */}
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
+            Build · Design
+          </p>
+
+          <div className="space-y-3">
+            {leftServices.map((service, i) => {
+              const isActive = activeIndex === i;
+
+              return (
                 <button
-                  onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
-                  className="w-full flex items-center gap-4 p-5 text-left"
+                  key={service.slug}
+                  onClick={() => setActiveIndex(i)}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                      ? "bg-white shadow-lg border-black/5"
+                      : "border-transparent hover:bg-white/60 hover:border-black/5"
+                    }`}
                 >
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
                     style={{
                       backgroundColor: `${service.accent}15`,
                       color: service.accent,
@@ -841,282 +926,156 @@ export default function ServicesPage() {
                     {service.icon}
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-deep-blue">
+                  <div className="flex-1 text-left">
+                    <h3 className="text-sm font-semibold text-deep-blue">
                       {service.title}
                     </h3>
-                    <p className="text-xs text-deep-blue/50 mt-1">
+                    <p className="text-xs text-deep-blue/50 mt-0.5">
                       {service.tagline}
                     </p>
                   </div>
 
-                  <svg
-                    className={`w-5 h-5 transition-transform ${activeIndex === i ? "rotate-180" : ""
-                      }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+                  <span className="text-xs text-deep-blue/25">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </button>
+              );
+            })}
+          </div>
+        </div>
 
-                <AnimatePresence>
-                  {activeIndex === i && (
-                    <div className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-5 border-t border-black/5">
-                        <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
-                          {service.description}
-                        </p>
-
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {service.capabilities.map((cap) => (
-                            <span
-                              key={cap}
-                              className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
-                            >
-                              {cap}
-                            </span>
-                          ))}
-                        </div>
-
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
-                        >
-                          Learn More →
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+        {/* CENTER */}
+        <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20">
+          
+          {/* glow layers */}
+          <div className="absolute inset-0 opacity-40">
+            <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 blur-3xl rounded-full" />
+            <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/5 blur-3xl rounded-full" />
           </div>
 
-          {/* ───────── DESKTOP LAYOUT ───────── */}
-          {/* ───────── DESKTOP LAYOUT ───────── */}
-          <div className="hidden xl:block">
-            <div className="grid grid-cols-[300px_1fr_300px] items-start gap-6">
-
-              {/* LEFT */}
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
-                  Build · Design
+          <div className="relative z-10 h-full flex flex-col">
+            
+            {/* top bar */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-white" />
+                <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
+                  Active Service
                 </p>
-
-                <div className="space-y-3">
-                  {leftServices.map((service, i) => {
-                    const isActive = activeIndex === i;
-
-                    return (
-                      <button
-                        key={service.slug}
-                        onClick={() => setActiveIndex(i)}
-                        onMouseEnter={() => setActiveIndex(i)}
-                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
-              ${isActive
-                            ? "bg-white shadow-xl shadow-black/5"
-                            : "hover:bg-white/50"
-                          }`}
-                      >
-                        <div
-                          className="w-12 h-12 rounded-xl flex items-center justify-center"
-                          style={{
-                            backgroundColor: `${service.accent}15`,
-                            color: service.accent,
-                          }}
-                        >
-                          {service.icon}
-                        </div>
-
-                        <div className="flex-1 text-left">
-                          <h3
-                            className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive
-                              ? "text-deep-blue"
-                              : "text-deep-blue/75 group-hover:text-deep-blue"
-                              }`}
-                          >
-                            {service.title}
-                          </h3>
-
-                          <p className="text-sm text-deep-blue/40">
-                            {service.tagline}
-                          </p>
-                        </div>
-
-                        <span className="text-xs text-deep-blue/25">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
               </div>
 
-              {/* CENTER */}
-              <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-8 mt-10">
+              <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(services.length).padStart(2, "0")}
+              </div>
+            </div>
 
-                <div className="absolute inset-0">
-                  <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-                </div>
+            {/* icon */}
+            <div className="flex-1 flex items-center justify-center relative">
+              <div className="relative">
+                <div className="absolute -inset-10 rounded-full border border-white/10" />
+                <div className="absolute -inset-20 rounded-full border border-white/5" />
 
-                <AnimatePresence mode="wait">
-                  <div className="relative z-10 h-full flex flex-col"
-                  >
-
-                    <div className="flex items-center justify-between mb-8">
-
-                      <div className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-white" />
-
-                        <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
-                          Build
-                        </p>
-                      </div>
-
-                      <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
-                        {String(activeIndex + 1).padStart(2, "0")} /{" "}
-                        {String(services.length).padStart(2, "0")}
-                      </div>
-
-                    </div>
-
-                    <div className="flex-1 flex items-center justify-center py-4">
-
-                      <div className="relative">
-
-                        <div className="absolute -inset-6 border border-white/10 rounded-full" />
-
-                        <div className="absolute -inset-12 border border-white/5 rounded-full" />
-
-                        <div className="w-24 h-24 rounded-[24px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
-
-                          <div className="text-white scale-[1.6]">
-                            {services[activeIndex].icon}
-                          </div>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                    <div>
-
-                      <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-3">
-                        {services[activeIndex].tagline}
-                      </p>
-
-                      <h3 className="text-3xl lg:text-4xl font-bold text-white mb-3">
-                        {services[activeIndex].title}
-                      </h3>
-
-                      <p className="text-sm text-white/75 max-w-xl leading-relaxed mb-6">
-                        {services[activeIndex].description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {services[activeIndex].capabilities
-                          .slice(0, 5)
-                          .map((cap) => (
-                            <span
-                              key={cap}
-                              className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
-                            >
-                              {cap}
-                            </span>
-                          ))}
-                      </div>
-
-                      <Link
-                        href={`/services/${services[activeIndex].slug}`}
-                        className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#063A3F] shadow-lg shadow-black/10 transition-all hover:gap-3 hover:bg-white/90"
-                      >
-                        Learn More
-                        <svg
-                          className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 12h14M13 6l6 6-6 6"
-                          />
-                        </svg>
-                      </Link>
-
-                    </div>
-
+                <div className="w-28 h-28 rounded-[28px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
+                  <div className="text-white scale-[1.6]">
+                    {services[activeIndex].icon}
                   </div>
-                </AnimatePresence>
-
-              </div>
-
-              {/* RIGHT */}
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
-                  Grow · Ops
-                </p>
-
-                <div className="space-y-3">
-                  {rightServices.map((service, i) => {
-                    const realIndex = i + leftServices.length;
-                    const isActive = activeIndex === realIndex;
-
-                    return (
-                      <button
-                        key={service.slug}
-                        onClick={() => setActiveIndex(realIndex)}
-                        onMouseEnter={() => setActiveIndex(realIndex)}
-                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
-              ${isActive
-                            ? "bg-white shadow-xl shadow-black/5"
-                            : "hover:bg-white/50"
-                          }`}
-                      >
-                        <div className="flex-1 text-right">
-                          <h3 className="font-semibold text-deep-blue">
-                            {service.title}
-                          </h3>
-
-                          <p className="text-sm text-deep-blue/40">
-                            {service.tagline}
-                          </p>
-                        </div>
-
-                        <div
-                          className="w-12 h-12 rounded-xl flex items-center justify-center"
-                          style={{
-                            backgroundColor: `${service.accent}15`,
-                            color: service.accent,
-                          }}
-                        >
-                          {service.icon}
-                        </div>
-
-                        <span className="text-xs text-deep-blue/25">
-                          {String(realIndex + 1).padStart(2, "0")}
-                        </span>
-                      </button>
-                    );
-                  })}
                 </div>
               </div>
+            </div>
 
+            {/* bottom content */}
+            <div className="mt-8">
+              <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-2">
+                {services[activeIndex].tagline}
+              </p>
+
+              <h3 className="text-3xl font-bold text-white mb-3">
+                {services[activeIndex].title}
+              </h3>
+
+              <p className="text-sm text-white/75 leading-relaxed mb-5 max-w-xl">
+                {services[activeIndex].description}
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {services[activeIndex].capabilities.slice(0, 5).map((cap) => (
+                  <span
+                    key={cap}
+                    className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
+                  >
+                    {cap}
+                  </span>
+                ))}
+              </div>
+
+              <Link
+                href={`/services/${services[activeIndex].slug}`}
+                className="group/btn mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02]"
+              >
+                Learn More
+                <span className="transition-transform group-hover/btn:translate-x-1">
+                  →
+                </span>
+              </Link>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* RIGHT */}
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+            Grow · Ops
+          </p>
+
+          <div className="space-y-3">
+            {rightServices.map((service, i) => {
+              const realIndex = i + leftServices.length;
+              const isActive = activeIndex === realIndex;
+
+              return (
+                <button
+                  key={service.slug}
+                  onClick={() => setActiveIndex(realIndex)}
+                  onMouseEnter={() => setActiveIndex(realIndex)}
+                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                      ? "bg-white shadow-lg border-black/5"
+                      : "border-transparent hover:bg-white/60 hover:border-black/5"
+                    }`}
+                >
+                  <div className="flex-1 text-right">
+                    <h3 className="text-sm font-semibold text-deep-blue">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-deep-blue/50 mt-0.5">
+                      {service.tagline}
+                    </p>
+                  </div>
+
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{
+                      backgroundColor: `${service.accent}15`,
+                      color: service.accent,
+                    }}
+                  >
+                    {service.icon}
+                  </div>
+
+                  <span className="text-xs text-deep-blue/25">
+                    {String(realIndex + 1).padStart(2, "0")}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
@@ -1136,14 +1095,13 @@ export default function ServicesPage() {
                 </p>
               </div>
               <h2 className="h-section text-white">
-                From kickoff to launch in{" "}
-                <span className="gradient-text">four clear stages.</span>
+                A structured path from {" "}
+                <span className="gradient-text">strategy to production.</span>
               </h2>
             </div>
             <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                Transparent timelines, weekly demos, fixed quotes after
-                discovery. No surprise invoices, no scope creep.
+                Every engagement follows a disciplined delivery framework built around alignment, visibility, and execution. Defined milestones, transparent governance, and measurable outcomes ensure confidence at every stage.
               </p>
             </div>
           </div>
