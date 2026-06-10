@@ -356,14 +356,19 @@ export default function IndustriesPage() {
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-14">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
             <div className="lg:col-span-7">
               <p className="eyebrow text-neon-purple">Sectors we serve</p>
               <h2 className="mt-3 h-section text-deep-blue">
-              
+              Delivering Across {""}
                 <span className="gradient-text-dark">Industries</span>
-                {" "}We Support
+                {" "}Since 2010
               </h2>
+            </div>
+             <div className="lg:col-span-5">
+              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                Over 15+ years, we have helped organizations across industries align technology with business objectives, operational realities, and long-term growth.
+              </p>
             </div>
           </div>
 
@@ -373,7 +378,7 @@ export default function IndustriesPage() {
                 key={industry.slug}
                 industry={industry}
                 index={i}
-                featured={i === industries.length - 1}
+                featured={i === industries.length - 2}
               />
             ))}
           </div>

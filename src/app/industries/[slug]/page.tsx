@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -14,14 +14,14 @@ const LIGHT = "var(--section-light)";
 interface IndustryData {
   title: string;
   heroDescription: string;
-  challengesHeading: string,
-  challengesDescription: string,
+  challengesHeading: string;
+  challengesDescription: string;
   challenges: string[];
   solutionsHeading: string;
-  solutionDescription: string,
+  solutionDescription: string;
   solutions: string[];
   ctaHeading: string;
-  ctaDescription: string,
+  ctaDescription: string;
   ctaButton: string;
 }
 
@@ -344,39 +344,903 @@ const relatedIndustryMap: Record<string, string[]> = {
   "saas-startups": ["fintech", "ecommerce-retail", "education"],
 };
 
-/* Recent work — illustrative case studies per industry */
-const recentWorkByIndustry: Record<string, Array<{ client: string; summary: string; metric: string; metricLabel: string }>> = {
-  healthcare: [
-    { client: "HealthBridge", summary: "HIPAA-compliant telemedicine platform with EHR integration.", metric: "14", metricLabel: "hospitals onboarded in Q1" },
-    { client: "MediTrack", summary: "Patient adherence app with AI-powered medication reminders.", metric: "+62%", metricLabel: "adherence rate" },
-  ],
-  fintech: [
-    { client: "FinFlow Technologies", summary: "Real-time analytics platform powering financial decisions for SMBs.", metric: "50k+", metricLabel: "monthly active users" },
-    { client: "PayWise", summary: "PCI-DSS-compliant payment gateway with fraud detection.", metric: "$2.1M", metricLabel: "transactions / day" },
-  ],
-  "ecommerce-retail": [
-    { client: "ShopSphere", summary: "Mobile commerce app with personalized recommendations.", metric: "4.8★", metricLabel: "App Store rating" },
-    { client: "RetailNow", summary: "Headless storefront with optimized checkout flow.", metric: "+24%", metricLabel: "conversion lift" },
-  ],
-  logistics: [
-    { client: "RouteOptima", summary: "Real-time fleet tracking with AI route optimization.", metric: "−18%", metricLabel: "fuel costs" },
-    { client: "FreightLine", summary: "Driver app with digital proof-of-delivery and compliance.", metric: "200+", metricLabel: "drivers onboarded" },
-  ],
-  education: [
-    { client: "EduTech Global", summary: "LMS with gamification and AI-assisted tutoring.", metric: "12 schools", metricLabel: "deployed across" },
-    { client: "LearnPath", summary: "Accessible (WCAG-AA) corporate training platform.", metric: "50k+", metricLabel: "learners served" },
-  ],
-  "travel-hospitality": [
-    { client: "StaySwift", summary: "Hotel booking engine with dynamic pricing.", metric: "+31%", metricLabel: "direct booking lift" },
-    { client: "GuideAway", summary: "Mobile concierge app with offline support.", metric: "8 markets", metricLabel: "shipped to" },
-  ],
-  "saas-startups": [
-    { client: "FinFlow Technologies", summary: "Series B SaaS — platform rebuild for 10× scale.", metric: "+240%", metricLabel: "active user growth" },
-    { client: "LaunchKit", summary: "MVP for a developer-tools startup, kickoff to launch.", metric: "12 weeks", metricLabel: "to launch" },
-  ],
+interface EcareCapability {
+  title: string;
+  description: string;
+  icon: ReactNode;
+}
+
+interface ImpactMetric {
+  title: string;
+  metrics: {
+    value: string;
+    label: string;
+  }[];
+}
+
+interface EcareIndustryData {
+  heading: string;
+  subHeading: string;
+  capabilities: EcareCapability[];
+  impact: {
+    heading: string;
+    subheading: string;
+    metrics: ImpactMetric[];
+  };
+}
+
+const ecareCapabilitiesByIndustry: Record<string, EcareIndustryData> = {
+  healthcare: {
+    heading: "Powering Every Stage of the eCare Journey",
+    subHeading: "We build connected healthcare solutions that support providers, patients, and systems across the entire care lifecycle. From engagement to intelligence, every layer is designed for security, scale, and clinical impact.",
+    capabilities: [
+      {
+        title: "Mobile Applications",
+        description: "Patient engagement, telehealth, remote care",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Web Platforms",
+        description: "Patient portals, provider systems, healthcare ecosystems",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "AI & Machine Learning",
+        description: "Predictive insights, intelligent automation, decision support",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Quality Assurance",
+        description: "Reliable, secure, regulation-ready healthcare software",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Staff Augmentation",
+        description: "Specialized healthcare technology expertise",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Project Management",
+        description: "Complex healthcare initiatives delivered with confidence",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real outcomes from connected healthcare solutions",
+      metrics: [
+        {
+          title: "Patient Engagement Platform",
+          metrics: [
+            { value: "42%", label: "increase in patient adoption" },
+            { value: "35%", label: "reduction in missed appointments" }
+          ]
+        },
+        {
+          title: "Telehealth Transformation",
+          metrics: [
+            { value: "3x", label: "growth in virtual consultations" },
+            { value: "60%", label: "faster appointment scheduling" }
+          ]
+        },
+        {
+          title: "Clinical Operations Modernization",
+          metrics: [
+            { value: "48%", label: "reduction in administrative workload" },
+            { value: "30%", label: "improvement in operational efficiency" }
+          ]
+        },
+        {
+          title: "AI-Powered Care Automation",
+          metrics: [
+            { value: "55%", label: "fewer manual processes" },
+            { value: "25%", label: "faster response times" }
+          ]
+        }
+      ]
+    }
+  },
+  fintech: {
+    heading: "Powering Every Layer of Modern Financial Services",
+    subHeading: "We build secure financial ecosystems that support institutions, customers, and operations across the entire financial value chain.",
+    capabilities: [
+      {
+        title: "Mobile Banking Apps",
+        description: "Secure mobile payments, digital wallets, biometric authentication",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Trading & Investment Platforms",
+        description: "Real-time market data, portfolio management, execution engines",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Risk & Fraud Detection",
+        description: "AI-powered anomaly detection, real-time transaction monitoring",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Regulatory Compliance",
+        description: "KYC/AML workflows, audit trails, PCI-DSS ready infrastructure",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Core Banking Integration",
+        description: "Legacy system modernization, API-first banking architecture",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Wealth Management Solutions",
+        description: "Financial planning, robo-advisory, portfolio analytics",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real financial outcomes from intelligent solutions",
+      metrics: [
+        {
+          title: "Digital Banking Platform",
+          metrics: [
+            { value: "56%", label: "increase in mobile adoption" },
+            { value: "42%", label: "reduction in branch visits" }
+          ]
+        },
+        {
+          title: "Fraud Detection System",
+          metrics: [
+            { value: "73%", label: "fewer fraudulent transactions" },
+            { value: "89%", label: "faster alert response" }
+          ]
+        },
+        {
+          title: "Automated Onboarding",
+          metrics: [
+            { value: "64%", label: "reduction in KYC processing time" },
+            { value: "38%", label: "higher conversion rates" }
+          ]
+        },
+        {
+          title: "AI Credit Scoring",
+          metrics: [
+            { value: "31%", label: "improved risk prediction" },
+            { value: "2.5x", label: "faster loan approvals" }
+          ]
+        }
+      ]
+    }
+  },
+  "ecommerce-retail": {
+    heading: "Powering Every Stage of the Commerce Journey",
+    subHeading: "We build connected retail and ecommerce solutions that support brands, customers, and operations throughout the entire commerce lifecycle.",
+    capabilities: [
+      {
+        title: "Mobile Commerce Apps",
+        description: "Native iOS/Android shopping experiences with seamless checkout",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Headless Commerce Platforms",
+        description: "API-first storefronts, flexible content management, omnichannel delivery",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Personalization Engines",
+        description: "AI-powered recommendations, dynamic pricing, behavioral targeting",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Inventory & Fulfillment",
+        description: "Real-time stock management, warehouse optimization, last-mile tracking",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Loyalty & Retention",
+        description: "Points systems, rewards engines, customer lifecycle management",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Marketplace Platforms",
+        description: "Multi-vendor systems, commission engines, seller dashboards",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real commerce outcomes from connected retail solutions",
+      metrics: [
+        {
+          title: "Mobile Commerce App",
+          metrics: [
+            { value: "67%", label: "increase in mobile revenue" },
+            { value: "28%", label: "higher average order value" }
+          ]
+        },
+        {
+          title: "Personalization Engine",
+          metrics: [
+            { value: "43%", label: "lift in conversion rate" },
+            { value: "35%", label: "improvement in repeat purchases" }
+          ]
+        },
+        {
+          title: "Headless Commerce",
+          metrics: [
+            { value: "52%", label: "faster page load times" },
+            { value: "22%", label: "reduction in cart abandonment" }
+          ]
+        },
+        {
+          title: "Inventory Optimization",
+          metrics: [
+            { value: "31%", label: "reduction in stockouts" },
+            { value: "18%", label: "lower carrying costs" }
+          ]
+        }
+      ]
+    }
+  },
+  logistics: {
+    heading: "Powering Every Stage of the Logistics Journey",
+    subHeading: "We build connected logistics and transportation solutions that support operations, customers, and supply chain stakeholders across the entire movement lifecycle.",
+    capabilities: [
+      {
+        title: "Fleet Management Systems",
+        description: "Real-time tracking, route optimization, driver mobile apps",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Warehouse Management",
+        description: "Inventory tracking, picking optimization, automated workflows",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Predictive Analytics",
+        description: "Demand forecasting, route prediction, maintenance alerts",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Compliance & Safety",
+        description: "ELD integration, driver logs, safety monitoring, audit trails",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Supply Chain Visibility",
+        description: "End-to-end tracking, carrier integration, customer portals",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Last-Mile Delivery",
+        description: "Route optimization, delivery tracking, proof of delivery",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real supply chain outcomes from connected logistics",
+      metrics: [
+        {
+          title: "Route Optimization",
+          metrics: [
+            { value: "27%", label: "reduction in fuel costs" },
+            { value: "34%", label: "improvement in on-time delivery" }
+          ]
+        },
+        {
+          title: "Real-Time Tracking",
+          metrics: [
+            { value: "62%", label: "fewer customer support calls" },
+            { value: "45%", label: "higher customer satisfaction" }
+          ]
+        },
+        {
+          title: "Warehouse Automation",
+          metrics: [
+            { value: "41%", label: "faster order picking" },
+            { value: "28%", label: "reduction in labor costs" }
+          ]
+        },
+        {
+          title: "Predictive Maintenance",
+          metrics: [
+            { value: "33%", label: "fewer unexpected breakdowns" },
+            { value: "19%", label: "lower maintenance costs" }
+          ]
+        }
+      ]
+    }
+  },
+  education: {
+    heading: "Powering Every Stage of the Learning Journey",
+    subHeading: "We build connected education solutions that support institutions, educators, learners, and administrators across the complete education lifecycle—from recruitment and enrollment to engagement, achievement, and retention.",
+    capabilities: [
+      {
+        title: "Learning Management Systems",
+        description: "Course delivery, assessments, progress tracking, certifications",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Student Portals",
+        description: "Enrollment management, grade access, communication tools",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Adaptive Learning",
+        description: "AI-powered personalization, learning paths, skill gap analysis",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Assessment Platforms",
+        description: "Online exams, proctoring, automated grading, analytics",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Virtual Classrooms",
+        description: "Video conferencing, collaboration tools, breakout rooms",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Analytics & Reporting",
+        description: "Student performance tracking, retention insights, outcome measurement",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real learning outcomes from connected education solutions",
+      metrics: [
+        {
+          title: "LMS Platform",
+          metrics: [
+            { value: "47%", label: "higher course completion rates" },
+            { value: "38%", label: "improved student engagement" }
+          ]
+        },
+        {
+          title: "Adaptive Learning",
+          metrics: [
+            { value: "34%", label: "faster concept mastery" },
+            { value: "29%", label: "reduction in learning gaps" }
+          ]
+        },
+        {
+          title: "Virtual Classroom",
+          metrics: [
+            { value: "3x", label: "increase in student participation" },
+            { value: "56%", label: "fewer missed sessions" }
+          ]
+        },
+        {
+          title: "Analytics Dashboard",
+          metrics: [
+            { value: "41%", label: "earlier intervention capability" },
+            { value: "23%", label: "improved retention rates" }
+          ]
+        }
+      ]
+    }
+  },
+  "travel-hospitality": {
+    heading: "Powering Every Stage of the Guest Journey",
+    subHeading: "We build connected travel and hospitality solutions that support organizations, staff, and travelers across the complete customer lifecycle—from discovery and booking to engagement, loyalty, and retention.",
+    capabilities: [
+      {
+        title: "Booking Platforms",
+        description: "Real-time availability, dynamic pricing, payment integration",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Guest Mobile Apps",
+        description: "Digital check-in, room keys, concierge services, in-app messaging",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Revenue Management",
+        description: "Dynamic pricing, demand forecasting, inventory optimization",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Loyalty Engines",
+        description: "Points management, tier systems, personalized offers",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Property Management",
+        description: "PMS integration, housekeeping, maintenance, operations",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Trip Planning",
+        description: "Itinerary builders, recommendations, real-time updates",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real guest outcomes from connected hospitality solutions",
+      metrics: [
+        {
+          title: "Booking Platform",
+          metrics: [
+            { value: "51%", label: "increase in direct bookings" },
+            { value: "33%", label: "reduction in booking abandonment" }
+          ]
+        },
+        {
+          title: "Guest Mobile App",
+          metrics: [
+            { value: "4.8★", label: "average app rating" },
+            { value: "44%", label: "higher guest satisfaction scores" }
+          ]
+        },
+        {
+          title: "Revenue Management",
+          metrics: [
+            { value: "27%", label: "increase in RevPAR" },
+            { value: "19%", label: "higher occupancy rates" }
+          ]
+        },
+        {
+          title: "Loyalty Engine",
+          metrics: [
+            { value: "38%", label: "increase in repeat bookings" },
+            { value: "$2.1M", label: "incremental loyalty revenue" }
+          ]
+        }
+      ]
+    }
+  },
+  "saas-startups": {
+    heading: "Powering Every Stage of the Product Journey",
+    subHeading: "We build connected technology solutions that support founders, product teams, and growing organizations throughout the entire product lifecycle.",
+    capabilities: [
+      {
+        title: "MVP Development",
+        description: "Rapid prototyping, lean validation, accelerated time-to-market",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Scalable Architecture",
+        description: "Cloud-native design, microservices, elastic infrastructure",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Analytics & Insights",
+        description: "Product analytics, user behavior, growth metrics dashboards",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Security & Compliance",
+        description: "SOC 2 readiness, GDPR compliance, enterprise-grade security",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Product-Led Growth",
+        description: "Onboarding flows, freemium models, self-serve analytics",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Integrations Ecosystem",
+        description: "API-first design, third-party connections, workflow automation",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real growth outcomes from connected SaaS solutions",
+      metrics: [
+        {
+          title: "MVP Launch",
+          metrics: [
+            { value: "12 weeks", label: "from concept to launch" },
+            { value: "35%", label: "lower development costs" }
+          ]
+        },
+        {
+          title: "Scalable Architecture",
+          metrics: [
+            { value: "10x", label: "user growth capacity" },
+            { value: "99.99%", label: "platform uptime" }
+          ]
+        },
+        {
+          title: "Product Analytics",
+          metrics: [
+            { value: "43%", label: "improvement in user retention" },
+            { value: "28%", label: "higher feature adoption" }
+          ]
+        },
+        {
+          title: "Enterprise Readiness",
+          metrics: [
+            { value: "8 weeks", label: "to SOC 2 compliance" },
+            { value: "25+", label: "enterprise customers onboarded" }
+          ]
+        }
+      ]
+    }
+  }
 };
 
-/* ───────── Component ───────── */
+// ChallengeSolutionSection component defined outside IndustryPage
+interface ChallengeSolutionSectionProps {
+  pairedData: Array<{
+    challenge: { title: string; description: string };
+    solution: { title: string; description: string };
+  }>;
+  accent: string;
+}
+
+function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSectionProps) {
+  const [showAll, setShowAll] = useState(false);
+  const visibleCount = 4;
+
+  return (
+    <section className="py-20 bg-light-accent relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        {/* Header */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-6 lg:mb-8">
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-rose-500/80">
+              Challenge → Solution
+            </p>
+
+            <h2 className="mt-2 h-section text-deep-blue">
+              From Problem to Progress
+            </h2>
+          </div>
+        </div>
+
+        {/* TABLE */}
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b-2 border-deep-blue/20">
+                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[45%]">
+                  The Challenge
+                </th>
+                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[10%]"></th>
+                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[45%]">
+                  Our Solution
+                </th>
+               </tr>
+            </thead>
+
+            <tbody>
+              {pairedData
+                .slice(0, showAll ? pairedData.length : visibleCount)
+                .map((item, idx) => (
+                  <tr
+                    key={idx}
+                    className={`border-b border-deep-blue/10 hover:bg-white/30 transition-all duration-300 ${
+                      idx % 2 === 0 ? "bg-white/10" : ""
+                    }`}
+                  >
+                    {/* Challenge */}
+                    <td className="py-5 px-6 align-top">
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                        </div>
+
+                        <div>
+                          <h3 className="font-bold text-deep-blue mb-1">
+                            {item.challenge.title}
+                          </h3>
+                          {item.challenge.description && (
+                            <p className="text-sm text-deep-blue/65 leading-relaxed">
+                              {item.challenge.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                     </td>
+
+                    {/* Arrow */}
+                    <td className="py-5 px-2 align-middle text-center">
+                      <svg className="w-6 h-6 text-deep-blue/40 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                     </td>
+
+                    {/* Solution */}
+                    <td className="py-5 px-6 align-top">
+                      <div className="flex gap-3">
+                        <div
+                          className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          style={{
+                            backgroundColor: `${accent}15`,
+                            border: `1px solid ${accent}30`,
+                          }}
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+
+                        <div>
+                          <h3 className="font-bold text-deep-blue mb-1">
+                            {item.solution.title}
+                          </h3>
+                          {item.solution.description && (
+                            <p className="text-sm text-deep-blue/65 leading-relaxed">
+                              {item.solution.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                     </td>
+                   </tr>
+                ))}
+            </tbody>
+           </table>
+        </div>
+
+        {/* SEE MORE BUTTON */}
+        {pairedData.length > visibleCount && (
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-5 py-2 text-sm font-semibold text-deep-blue border border-deep-blue/20 rounded-full hover:bg-white/30 transition"
+            >
+              {showAll ? "Show less" : "See more"}
+            </button>
+          </div>
+        )}
+
+        {/* MOBILE VIEW */}
+        <div className="block lg:hidden mt-8 space-y-6">
+          {pairedData
+            .slice(0, showAll ? pairedData.length : visibleCount)
+            .map((item, idx) => (
+              <div key={idx} className="bg-white/10 rounded-xl p-5 border border-deep-blue/10">
+                {/* Challenge */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-rose-100 flex items-center justify-center">
+                      <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <span className="text-xs font-semibold text-rose-500 uppercase tracking-wide">
+                      Challenge
+                    </span>
+                  </div>
+
+                  <h3 className="font-bold text-deep-blue">
+                    {item.challenge.title}
+                  </h3>
+
+                  {item.challenge.description && (
+                    <p className="text-sm text-deep-blue/65 mt-1">
+                      {item.challenge.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Arrow */}
+                <div className="flex justify-center my-3">
+                  <svg className="w-5 h-5 text-deep-blue/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
+
+                {/* Solution */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div
+                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      style={{
+                        backgroundColor: `${accent}15`,
+                        border: `1px solid ${accent}30`,
+                      }}
+                    >
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+
+                    <span
+                      className="text-xs font-semibold uppercase tracking-wide"
+                      style={{ color: accent }}
+                    >
+                      Our Solution
+                    </span>
+                  </div>
+
+                  <h3 className="font-bold text-deep-blue">
+                    {item.solution.title}
+                  </h3>
+
+                  {item.solution.description && (
+                    <p className="text-sm text-deep-blue/65 mt-1">
+                      {item.solution.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+/* ───────── Main Component ───────── */
 
 export default function IndustryPage() {
   const params = useParams();
@@ -384,7 +1248,6 @@ export default function IndustryPage() {
   const industry = industriesData[slug];
   const meta = industryMeta[slug];
   const related = (relatedIndustryMap[slug] ?? []).slice(0, 3);
-  const recentWork = recentWorkByIndustry[slug] ?? [];
 
   if (!industry) {
     return (
@@ -418,6 +1281,26 @@ export default function IndustryPage() {
   }
 
   const accent = meta?.accent ?? "#1E88E5";
+
+  // Parse challenges and solutions into structured arrays
+  const parsedChallenges = industry.challenges.map(challenge => {
+    const [title, ...descParts] = challenge.split(": ");
+    const description = descParts.join(": ");
+    return { title, description };
+  });
+
+  const parsedSolutions = industry.solutions.map(solution => {
+    const [title, ...descParts] = solution.split(": ");
+    const description = descParts.join(": ");
+    return { title, description };
+  });
+
+  // Create paired data for table (challenge and corresponding solution)
+  // Pair them by index - challenges and solutions should be in corresponding order
+  const pairedData = parsedChallenges.map((challenge, index) => ({
+    challenge: challenge,
+    solution: parsedSolutions[index] || { title: "", description: "" }
+  }));
 
   return (
     <>
@@ -612,275 +1495,129 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* ───────── Challenges ───────── */}
-      <section className="py-20 bg-light-accent relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
+      {/* ───────── Challenges & Solutions Table ───────── */}
+      <ChallengeSolutionSection pairedData={pairedData} accent={accent} />
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <div className="lg:col-span-7">
-              <p className="eyebrow text-rose-500/80">Common challenges</p>
-              <h2 className="mt-3 h-section text-deep-blue">
-                {industry.challengesHeading}
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                {industry.challengesDescription}
-              </p>
-            </div>
-          </div>
+      {/* ───────── Recent work in this industry ───────── */}
+      {ecareCapabilitiesByIndustry[slug] && (
+        <section className="py-20 bg-light-accent relative overflow-hidden">
+          <div
+            className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+            style={{ backgroundColor: `${accent}0A` }}
+          />
 
-          <div className="grid md:grid-cols-2 gap-5">
-            {industry.challenges.map((challenge, i) => {
-              const [title, ...descParts] = challenge.split(": ");
-              const desc = descParts.join(": ");
-              return (
-                <div key={i} >
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.35 }}
-                    className="group relative h-full p-6 rounded-2xl bg-white border border-deep-blue/[0.07] hover:shadow-[0_20px_40px_-16px_rgba(244,63,94,0.25)] transition-all duration-500 overflow-hidden"
-                  >
-                    <div className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full bg-rose-400/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="relative flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-105">
-                        <svg className="w-5 h-5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="h-card text-deep-blue mb-1">{title}</h3>
-                        {desc && <p className="text-sm text-deep-blue/65 leading-relaxed">{desc}</p>}
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── Solutions ───────── */}
-      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
-        <div
-          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-          style={{ backgroundColor: `${accent}10` }}
-        />
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <div className="lg:col-span-7">
-              <p className="eyebrow" style={{ color: accent }}>
-                What we deliver
-              </p>
-              <h2 className="mt-3 h-section text-white">
-                {industry.solutionsHeading}
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                  {industry.solutionDescription}
+          <div className="relative max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-14">
+              {/* Left column */}
+              <div className="lg:col-span-7">
+                <p className="eyebrow text-neon-purple" style={{ color: accent }}>
+                  Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
                 </p>
-              </p>
-            </div>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-5">
-            {industry.solutions.map((solution, i) => {
-              const [title, ...descParts] = solution.split(": ");
-              const desc = descParts.join(": ");
-              return (
-                <div key={i}>
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                    className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] transition-all duration-500 overflow-hidden"
-                    style={
-                      {
-                        "--card-glow": `${accent}55`,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <div
-                      className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ backgroundColor: `${accent}22` }}
-                    />
-                    <div
-                      className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ borderColor: `${accent}33` }}
-                    />
-                    <div className="relative flex gap-4">
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                        style={{
-                          backgroundColor: `${accent}15`,
-                          border: `1px solid ${accent}30`,
-                        }}
-                      >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="h-card text-white mb-1">{title}</h3>
-                        {desc && <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>}
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── Recent work in this industry (NEW) ───────── */}
-      {recentWork.length > 0 && (
-        <>
-          <section className="py-20 bg-light-accent relative overflow-hidden">
-            <div
-              className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-              style={{ backgroundColor: `${accent}0A` }}
-            />
-
-            <div className="relative max-w-7xl mx-auto px-6">
-              <div className="text-center max-w-2xl mx-auto mb-12">
-                <p className="eyebrow" style={{ color: accent }}>
-                  Recent work in {meta?.shortLabel ?? "this sector"}
-                </p>
                 <h2 className="mt-3 h-section text-deep-blue">
-                  Outcomes, not{" "}
-                  <span className="gradient-text-dark">case-study fluff.</span>
+                  {ecareCapabilitiesByIndustry[slug]?.heading}
                 </h2>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-5">
-                {recentWork.map((cs, i) => (
-                  <div key={cs.client} >
-                    <motion.div
-                      whileHover={{ y: -6 }}
-                      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                      className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
-                      style={
-                        {
-                          "--card-glow": `${accent}55`,
-                        } as React.CSSProperties
-                      }
-                    >
-                      <div
-                        className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
-                        style={{ backgroundColor: accent }}
-                      />
-
-                      <span
-                        className="self-start text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border"
-                        style={{
-                          color: accent,
-                          borderColor: `${accent}40`,
-                          backgroundColor: `${accent}0A`,
-                        }}
-                      >
-                        {meta?.shortLabel ?? "Industry"}
-                      </span>
-
-                      <h3 className="mt-5 text-xl font-bold text-deep-blue tracking-tight">
-                        {cs.client}
-                      </h3>
-                      <p className="mt-3 text-sm text-deep-blue/65 leading-relaxed flex-1">
-                        {cs.summary}
-                      </p>
-
-                      <div className="mt-6 pt-5 border-t border-deep-blue/[0.07] flex items-baseline gap-3">
-                        <span
-                          className="text-3xl font-bold tracking-tight tabular-nums"
-                          style={{ color: accent }}
-                        >
-                          {cs.metric}
-                        </span>
-                        <span className="text-deep-blue/55 text-xs">
-                          {cs.metricLabel}
-                        </span>
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
+              {/* Right column */}
+              <div className="lg:col-span-5">
+                <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed">
+                  {ecareCapabilitiesByIndustry[slug]?.subHeading}
+                </p>
               </div>
             </div>
-          </section>
-        </>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {ecareCapabilitiesByIndustry[slug]?.capabilities.map((capability, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.35 }}
+                  className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
+                  style={{ "--card-glow": `${accent}55` } as React.CSSProperties}
+                >
+                  <div
+                    className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
+                    style={{ backgroundColor: accent }}
+                  />
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                    style={{
+                      backgroundColor: `${accent}15`,
+                      border: `1px solid ${accent}30`,
+                    }}
+                  >
+                    <div className="w-6 h-6" style={{ color: accent }}>
+                      {capability.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-deep-blue tracking-tight mb-2">
+                    {capability.title}
+                  </h3>
+                  <p className="text-sm text-deep-blue/65 leading-relaxed">
+                    {capability.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
-      {/* ───────── Related industries (NEW) ───────── */}
-      {related.length > 0 && (
-        <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
+      {/* ───────── Impact Beyond Technology ───────── */}
+      {ecareCapabilitiesByIndustry[slug] && (
+        <section className="py-20 bg-section-dark relative overflow-hidden">
           <div className="absolute inset-0 grid-bg" />
+          <div
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
+            style={{ backgroundColor: `${accent}08` }}
+          />
+          <div
+            className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
+            style={{ backgroundColor: `${accent}06` }}
+          />
 
           <div className="relative max-w-7xl mx-auto px-6">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <p className="eyebrow text-neon-blue">Related sectors</p>
-              <h2 className="mt-3 h-section text-white">
-                Adjacent industries{" "}
-                <span className="gradient-text">we work with.</span>
-              </h2>
+              <p className="eyebrow" style={{ color: accent }}>
+                {ecareCapabilitiesByIndustry[slug].impact.heading}
+              </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-5">
-              {related.map((relSlug, i) => {
-                const relMeta = industryMeta[relSlug];
-                const relInfo = allIndustryTitles[relSlug];
-                if (!relMeta || !relInfo) return null;
-                return (
-                  <div key={relSlug}>
-                    <Link
-                      href={`/industries/${relSlug}`}
-                      className="group relative block h-full rounded-2xl overflow-hidden bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-500 p-6"
-                    >
-                      <div
-                        className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-[0.18] group-hover:opacity-[0.4] transition-opacity duration-500"
-                        style={{ backgroundColor: relMeta.accent }}
-                      />
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+              {ecareCapabilitiesByIndustry[slug].impact.metrics.map((metricGroup, idx) => (
+                <div
+                  key={idx}
+                  className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.05] transition-all duration-500 overflow-hidden p-6 lg:p-7"
+                >
+                  <div
+                    className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                    style={{ backgroundColor: accent }}
+                  />
 
-                      <div className="relative">
-                        <div className="flex items-center justify-between mb-5">
-                          <div
-                            className="w-11 h-11 rounded-xl flex items-center justify-center text-white"
-                            style={{
-                              backgroundColor: relMeta.accent,
-                              boxShadow: `0 12px 28px -10px ${relMeta.accent}80`,
-                            }}
-                          >
-                            {relMeta.icon}
-                          </div>
-                          <span
-                            className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
-                            style={{
-                              color: relMeta.accent,
-                              backgroundColor: `${relMeta.accent}15`,
-                            }}
-                          >
-                            {relMeta.shortLabel}
-                          </span>
-                        </div>
-                        <h3 className="h-card text-white">{relInfo.title}</h3>
-                        <p className="mt-2 text-sm text-gray-400 leading-snug">
-                          {relInfo.tagline}
-                        </p>
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-white mb-5 tracking-tight border-b border-white/[0.08] pb-3">
+                    {metricGroup.title}
+                  </h3>
+
+                  {/* Metrics grid */}
+                  <div className="grid grid-cols-2 gap-5">
+                    {metricGroup.metrics.map((metric, mIdx) => (
+                      <div key={mIdx} className="space-y-1">
                         <div
-                          className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between text-sm font-semibold"
-                          style={{ color: relMeta.accent }}
+                          className="text-2xl lg:text-3xl font-bold tracking-tight"
+                          style={{ color: accent }}
                         >
-                          <span>Explore sector</span>
-                          <span className="group-hover:translate-x-1 transition-transform">→</span>
+                          {metric.value}
+                        </div>
+                        <div className="text-xs text-gray-400 leading-relaxed">
+                          {metric.label}
                         </div>
                       </div>
-                    </Link>
+                    ))}
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -890,7 +1627,7 @@ export default function IndustryPage() {
       <CTABanner
         eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
         heading={<>{industry.ctaHeading}</>}
-        description={industry.ctaDescription}  
+        description={industry.ctaDescription}
         primaryLabel={industry.ctaButton}
         primaryHref="/contact"
         secondaryLabel="See all industries"

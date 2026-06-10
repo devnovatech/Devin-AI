@@ -46,6 +46,7 @@ interface ServiceData {
   industryTitle: string;
   industryDescription: string;
   industries: IndustryItem[];
+   processHeading:string,
   processSteps: {
     number: string;
     title: string;
@@ -60,10 +61,10 @@ interface ServiceData {
 const servicesData: Record<string, ServiceData> = {
   "digital-marketing": {
     title: "Digital Marketing Services",
-    subtitle: "Growth Marketing Systems Built for Measurable Business Outcomes",
-    description: "We help organizations attract qualified audiences, generate demand, and accelerate revenue growth through data-driven digital marketing strategies.\n\nFrom search visibility and paid acquisition to content marketing and conversion optimization, we build scalable marketing systems designed to drive sustainable growth across the entire customer lifecycle.",
+    subtitle: "Performance-Led Marketing for Measurable ROI",
+    description:"We help organizations attract qualified audiences, generate demand, and drive revenue growth through data-driven marketing. From SEO and paid acquisition to content and conversion optimization, we build scalable systems for sustainable lifecycle growth.",
     painIntro: "What\u2019s Holding Your Marketing Back?",
-    offeringsTitle: "Revenue growth and demand generation capabilities built for sustainable business outcomes.",
+    offeringsTitle: "Revenue Growth & Demand Generation Capabilities",
     offeringsDescription: "A performance-driven marketing framework focused on increasing visibility, attracting qualified prospects, improving conversion rates, and maximizing customer lifetime value.",
     offerings: [
       {
@@ -154,8 +155,9 @@ const servicesData: Record<string, ServiceData> = {
       { name: "Real Estate & PropTech", description: "Generate qualified leads and build market presence" },
       { name: "Manufacturing & Industrial", description: "Showcase capabilities and connect with enterprise buyers" },
     ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We help organizations build and scale growth marketing operations across multiple sectors:",
+    industryTitle: "Industries We Help Grow",
+    industryDescription: "We support organizations across diverse industries through strategic digital marketing initiatives",
+     processHeading:"From Market Visibility to Revenue Growth Through Four Strategic Phases",
     processSteps: [
       {
         number: "01",
@@ -192,7 +194,7 @@ const servicesData: Record<string, ServiceData> = {
     description:
       "Custom mobile applications designed to streamline operations, enhance user experience, and drive digital growth from strategy to deployment.",
     painIntro: "What\u2019s Holding You Back?",
-    offeringsTitle: "Mobile engineering capabilities built for long-term growth.",
+    offeringsTitle: "Mobile Applications built for long-term growth",
     offeringsDescription: "A complete delivery framework covering product strategy, design, engineering, quality assurance, and optimization—aligned to support scalable mobile products and enterprise digital initiatives.",
     offerings: [
       {
@@ -263,7 +265,7 @@ const servicesData: Record<string, ServiceData> = {
       "Your current app doesn\u2019t scale with your business needs?",
       "Tired of missing deadlines and unclear development roadmaps?",
     ],
-    whyTitle: "Why Businesses Choose Our Mobile Engineering Team",
+    whyTitle: "Why Businesses Partner with Us",
     whyChoose: [
       { title: "Full-Cycle Mobile Engineering Expertise", description: "From product strategy and architecture to deployment and optimization, we deliver end-to-end mobile solutions." },
       { title: "Scalable Architecture-First Approach", description: "We build mobile ecosystems designed to support business growth, operational efficiency, and long-term scalability." },
@@ -284,7 +286,8 @@ const servicesData: Record<string, ServiceData> = {
       { name: "Media & Entertainment", description: "Content streaming, social engagement, personalized recommendations, and interactive experiences" },
     ],
     industryTitle: "Industries We Serve",
-    industryDescription: "We help organizations build and scale mobile solutions across multiple sectors:",
+    industryDescription: "We deliver mobile solutions for organizations across multiple industries",
+     processHeading:"From kickoff to launch in four clear steps.",
     processSteps: [
       {
         number: "01",
@@ -317,10 +320,10 @@ const servicesData: Record<string, ServiceData> = {
   },
   "web-development": {
     title: "Web Development Services",
-    subtitle: "Enterprise Web Engineering for Scalable Digital Platforms",
-    description: "We design and develop high-performance web platforms that help organizations streamline operations, enhance customer experiences, and accelerate digital growth.\n\nFrom customer-facing applications and enterprise portals to complex SaaS platforms and operational systems, we deliver full-cycle web engineering services built for scalability, security, and long-term maintainability.",
+    subtitle: "Full-Stack Web Development For High-performance",
+    description:"High-performance web platforms designed to streamline operations, enhance user experience, and accelerate digital growth through full-cycle engineering built for scalability, security, and maintainability.",
     painIntro: "What\u2019s Holding Your Website Back?",
-    offeringsTitle: "Web engineering capabilities built for long-term growth.",
+    offeringsTitle: "Full-Spectrum Web Development",
     offeringsDescription: "A comprehensive delivery framework covering product strategy, architecture, engineering, quality assurance, infrastructure, and optimization—aligned to support modern web platforms and enterprise digital initiatives.",
     offerings: [
       {
@@ -391,7 +394,7 @@ const servicesData: Record<string, ServiceData> = {
       "Can\u2019t manage updates easily or keep content fresh?",
       "Losing users because your site isn\u2019t mobile-friendly or accessible?",
     ],
-    whyTitle: "Why Businesses Choose Our Web Engineering Team",
+    whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Full-Cycle Web Engineering Expertise", description: "From product discovery and solution architecture to deployment and optimization, we deliver end-to-end web platforms." },
       { title: "Architecture-First Development Approach", description: "We engineer scalable systems, data models, and infrastructure aligned with future growth requirements." },
@@ -412,7 +415,8 @@ const servicesData: Record<string, ServiceData> = {
       { name: "Logistics & Supply Chain", description: "Operational dashboards, tracking systems, and partner portals" },
     ],
     industryTitle: "Industries We Serve",
-    industryDescription: "We help organizations build and scale web platforms across multiple sectors:",
+    industryDescription: "We deliver web platforms and digital systems for organizations across multiple industries:",
+    processHeading:"From Strategy to Production in Four Engineered Stages",
     processSteps: [
       {
         number: "01",
@@ -445,10 +449,10 @@ const servicesData: Record<string, ServiceData> = {
   },
   "ui-ux-design": {
     title: "UI/UX Design Services",
-    subtitle: "Experience Design for Digital Products and Enterprise Platforms",
-    description: "We design user experiences that simplify complexity, improve engagement, and drive product adoption across digital platforms.\n\nFrom user research and information architecture to interface design and usability validation, we deliver end-to-end UX and product design services that align user needs with business objectives and technical requirements.",
+    subtitle: "Human-Centric UI/UX for Seamless Digital Experiences",
+    description: "Research-driven, human-centric UX that simplifies complexity, improves engagement, and drives product adoption. From user research and information architecture to interface design and usability testing, we deliver end-to-end solutions aligned with user needs, business goals, and technical requirements.",
     painIntro: "What\u2019s Holding Your Product Back?",
-    offeringsTitle: "Experience design capabilities built for product success.",
+    offeringsTitle: "Experience Design Capabilities",
     offeringsDescription: "A comprehensive design framework covering user research, information architecture, interface design, usability validation, and design systems—built to create experiences that users understand, trust, and adopt.",
     offerings: [
       {
@@ -519,7 +523,7 @@ const servicesData: Record<string, ServiceData> = {
       "Are developers constantly stuck due to missing specs or unclear flows?",
       "Is your product functional but not delightful or intuitive?",
     ],
-    whyTitle: "Why Businesses Choose Our Experience Design Team",
+    whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Research-Driven Design Methodology", description: "User interviews, stakeholder workshops, and behavioral analysis inform every design decision we make." },
       { title: "Strong Product & UX Strategy Expertise", description: "We align user needs with business objectives and technical requirements to create effective digital experiences." },
@@ -540,8 +544,9 @@ const servicesData: Record<string, ServiceData> = {
       { name: "Logistics & Supply Chain", description: "Operational dashboards and workforce efficiency tools" },
     ],
     industryTitle: "Industries We Serve",
-    industryDescription: "We help organizations design digital experiences across multiple sectors:",
+    industryDescription: "We design digital experiences for organizations across a wide range of industries",
     ctaHeading: "Let\u2019s Design Something People Love to Use",
+     processHeading:"From Research to Product-Ready Experiences Through Four Design Stages",
     processSteps: [
       {
         number: "01",
@@ -573,10 +578,10 @@ const servicesData: Record<string, ServiceData> = {
   },
   "ecommerce": {
     title: "Ecommerce Development Services",
-    subtitle: "Commerce Platforms Engineered for Growth, Conversion, and Scale",
-    description: "We design and develop ecommerce ecosystems that help businesses increase revenue, optimize customer experiences, and streamline operational workflows.\n\nFrom direct-to-consumer storefronts and B2B commerce platforms to multi-vendor marketplaces and omnichannel ecosystems, we deliver end-to-end ecommerce engineering services built for performance, scalability, and long-term growth.",
+    subtitle: "eCommerce Platforms for Growth, Conversion, and Scale",
+    description: "From direct-to-consumer storefronts and B2B commerce platforms to multi-vendor marketplaces and omnichannel ecosystems, we deliver end-to-end ecommerce engineering services built for performance, scalability, and long-term growth.",
     painIntro: "What\u2019s Holding Your Store Back?",
-    offeringsTitle: "Commerce growth and platform engineering capabilities built for long-term success.",
+    offeringsTitle: "Commerce Growth & Platform Engineering Capabilities",
     offeringsDescription: "A comprehensive ecommerce delivery framework covering customer journeys, platform architecture, transaction systems, conversion optimization, and operational scalability.",
     offerings: [
       {
@@ -647,7 +652,7 @@ const servicesData: Record<string, ServiceData> = {
       "Is your store missing key features like product recommendations or reviews?",
       "Losing customers due to confusing navigation or limited payment options?",
     ],
-    whyTitle: "Why Businesses Choose Our Commerce Engineering Team",
+    whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Deep Ecommerce Platform Expertise", description: "Shopify, WooCommerce, headless commerce, and custom platform development for every business model." },
       { title: "Conversion-Focused Development Approach", description: "Every feature, workflow, and integration is designed to increase revenue and improve customer retention." },
@@ -669,6 +674,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We help organizations build and scale ecommerce operations across multiple sectors:",
+     processHeading:"From Customer Acquisition to Revenue Growth Through Four Commerce Stages",
     processSteps: [
       {
         number: "01",
@@ -701,10 +707,10 @@ const servicesData: Record<string, ServiceData> = {
   },
   "machine-learning-ai": {
     title: "Machine Learning & AI Services",
-    subtitle: "Enterprise AI Engineering for Intelligent Business Systems",
-    description: "We design, develop, and deploy AI-powered solutions that help organizations automate processes, augment decision-making, and unlock value from enterprise data.\n\nFrom predictive analytics and machine learning systems to generative AI applications and intelligent automation, we deliver end-to-end AI engineering services built for accuracy, scalability, governance, and measurable business outcomes.",
-    painIntro: "What\u2019s Holding You Back from Adopting AI?",
-    offeringsTitle: "AI engineering and data intelligence capabilities built for enterprise adoption.",
+    subtitle: "Future-Ready AI/ML Solutions",
+    description: "We design and deploy AI-powered solutions that automate processes, improve decision-making, and turn enterprise data into actionable intelligence. Our services span machine learning, predictive analytics, generative AI, and intelligent automation, built for scalable, accurate, and governed business outcomes.",
+       painIntro: "What\u2019s Holding You Back from Adopting AI?",
+    offeringsTitle: "AI engineering and data intelligence capabilities ",
     offeringsDescription: "A comprehensive AI delivery framework covering strategy, data engineering, model development, deployment, governance, and continuous optimization—designed to support long-term business value.",
     offerings: [
       {
@@ -775,7 +781,7 @@ const servicesData: Record<string, ServiceData> = {
       "Is your internal team stretched thin or lacking AI expertise?",
       "Concerned about scalability, cost, or compliance?",
     ],
-    whyTitle: "Why Businesses Choose Our AI Engineering Team",
+    whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "End-to-End AI Engineering Expertise", description: "From opportunity assessment and data engineering to deployment and governance, we deliver complete AI solutions." },
       { title: "Strong Data Engineering Capabilities", description: "Data pipelines, feature engineering, and infrastructure designed for reliable machine learning systems." },
@@ -797,6 +803,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We help organizations implement AI and machine learning solutions across multiple sectors:",
+     processHeading:"From Data to Intelligence Through Four Engineered Stages",
     processSteps: [
       {
         number: "01",
@@ -829,10 +836,10 @@ const servicesData: Record<string, ServiceData> = {
   },
   "quality-assurance": {
     title: "Quality Assurance Services",
-    subtitle: "Quality Engineering for Reliable, Secure, and Scalable Software Systems",
-    description: "We help organizations improve software reliability, reduce release risk, and maintain product quality through structured quality assurance and testing practices.\n\nFrom test strategy and automation frameworks to performance validation and continuous quality monitoring, we deliver end-to-end quality engineering services that support faster releases and more predictable software delivery.",
+    subtitle: "SQA Engineering for Reliable, Secure Software Systems",
+    description:"Improves software reliability, reduces release risk, and ensures product quality through structured QA. From test strategy and automation to performance and continuous validation, enabling faster, more predictable delivery.",
     painIntro: "What\u2019s Holding Your Product Back from Peak Performance?",
-    offeringsTitle: "Software quality engineering capabilities built for release confidence.",
+    offeringsTitle: "Software Quality Engineering Capabilities",
     offeringsDescription: "A comprehensive quality framework focused on risk reduction, release confidence, application stability, and continuous improvement across the software delivery lifecycle.",
     offerings: [
       {
@@ -925,6 +932,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We provide software quality assurance services across a wide range of industries:",
+     processHeading:"From Quality Planning to Release Confidence Through Four Validation Stages",
     processSteps: [
       {
         number: "01",
@@ -957,10 +965,10 @@ const servicesData: Record<string, ServiceData> = {
   },
   "project-management": {
     title: "Project Management Services",
-    subtitle: "Delivery Governance Designed for Predictable Execution and Business Outcomes",
-    description: "We help organizations improve project visibility, delivery consistency, and execution efficiency through structured project management frameworks and operational governance systems.\n\nFrom project planning and stakeholder alignment to delivery oversight and performance reporting, we establish scalable delivery systems that keep teams focused, projects on track, and business objectives moving forward.",
+    subtitle: "The Ultimate End-to-End Project Management System",
+    description:"We streamline project planning, stakeholder alignment, and delivery oversight to keep projects on track and teams focused.",
     painIntro: "What\u2019s Holding Your Projects Back?",
-    offeringsTitle: "Delivery governance and execution management capabilities built for predictable outcomes.",
+    offeringsTitle: "Delivery Governance & Execution Management Capabilities",
     offeringsDescription: "A structured delivery framework focused on planning, coordination, visibility, accountability, and continuous improvement across projects, teams, and business initiatives.",
 
 
@@ -1033,7 +1041,7 @@ const servicesData: Record<string, ServiceData> = {
       "Are you unsure what\u2019s really happening inside your projects?",
       "Do you feel like there\u2019s no structure, only chaos?",
     ],
-    whyTitle: "Why Businesses Choose Our Delivery Management Team",
+    whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Proven Project & Delivery Management Expertise", description: "Structured governance, clear accountability, and predictable execution for complex initiatives." },
       { title: "Strong Governance & Reporting Frameworks", description: "Executive dashboards, status reporting, stakeholder communication, and KPI tracking built in." },
@@ -1055,6 +1063,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We support organizations managing complex initiatives across multiple sectors:",
+     processHeading:"From Project Initiation to Operational Excellence Through Four Delivery Phases",
     processSteps: [
       {
         number: "01",
@@ -1087,10 +1096,10 @@ const servicesData: Record<string, ServiceData> = {
   },
   "staff-augmentation": {
     title: "Staff Augmentation Services",
-    subtitle: "Embedded Engineering Talent for Scalable Delivery Operations",
-    description: "We help organizations expand delivery capacity, accelerate execution, and access specialized expertise through flexible staff augmentation solutions.\n\nFrom individual specialists to fully integrated delivery teams, we provide vetted technical professionals who seamlessly align with your workflows, technology stack, and business objectives.",
+    subtitle: "Rapidly Deployed IT Teams for On-Demand Delivery",
+    description: "Staff augmentation for extending IT teams with vetted specialists and dedicated squads to increase delivery capacity, close skill gaps, and accelerate execution. Resources are seamlessly integrated into your ecosystem, aligned with your workflows, technology stack, and delivery needs for consistent output.",
     painIntro: "What\u2019s Slowing Down Your Growth?",
-    offeringsTitle: "Workforce scaling and delivery enablement capabilities built for operational momentum.",
+    offeringsTitle: "Workforce Scaling & Delivery Enablement Capabilities",
     offeringsDescription: "A structured talent engagement framework designed to help organizations increase delivery capacity, reduce hiring friction, and maintain operational momentum across critical initiatives.",
     offerings: [
       {
@@ -1161,7 +1170,7 @@ const servicesData: Record<string, ServiceData> = {
       "Do you need specialized talent without long-term commitments?",
       "Are hiring costs limiting your ability to scale?",
     ],
-    whyTitle: "Why Businesses Choose Our Talent Solutions Team",
+    whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Access to Pre-Vetted Technical Professionals", description: "Rigorous technical screening, skills assessment, and behavioral evaluation for every candidate." },
       { title: "Rapid Onboarding & Team Integration", description: "Seamless alignment with your tools, workflows, communication platforms, and delivery processes." },
@@ -1181,8 +1190,9 @@ const servicesData: Record<string, ServiceData> = {
       { name: "Education & E-Learning", description: "Scale platform development and content delivery teams" },
       { name: "Media & Entertainment", description: "Streaming platform development and content management" },
     ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We provide specialized professionals across multiple disciplines and sectors:",
+    industryTitle: "Talent Areas We Support",
+    industryDescription: "We provide specialized professionals across multiple disciplines and sectors",
+     processHeading:"From Resource Planning to Team Integration Through Four Talent Delivery Stages",
     processSteps: [
       {
         number: "01",
@@ -1755,7 +1765,7 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── Pain points (cleaner, empathetic) ───────── */}
-      <section className="py-20 bg-light-accent relative overflow-hidden">
+      {/* <section className="py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -1808,7 +1818,7 @@ export default function ServicePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ───────── What's included (interactive offerings) ───────── */}
       <section className="relative py-16 lg:py-20 bg-light-accent overflow-hidden">
@@ -2088,8 +2098,7 @@ export default function ServicePage() {
             <div className="lg:col-span-7">
               <p className="eyebrow text-neon-blue">How we work</p>
               <h2 className="mt-3 h-section text-white">
-                From kickoff to launch in{" "}
-                <span style={{ color: accent }}>four clear steps.</span>
+               {service.processHeading}
               </h2>
             </div>
             <div className="lg:col-span-5">
