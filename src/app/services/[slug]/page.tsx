@@ -188,9 +188,9 @@ const servicesData: Record<string, ServiceData> = {
   },
   "mobile-application": {
     title: "Mobile Application Development",
-    subtitle: "Enterprise Mobile Engineering for Scalable Digital Products",
+    subtitle: "Mobile Engineering for Next-Gen Apps",
     description:
-      "We design and build custom mobile applications that help organizations streamline operations, improve customer experience, and scale digital products across iOS, Android, and cross-platform environments.\nFrom strategy and architecture to development and deployment, we deliver full-cycle mobile engineering services built for performance, security, and long-term scalability.",
+      "Custom mobile applications designed to streamline operations, enhance user experience, and drive digital growth from strategy to deployment.",
     painIntro: "What\u2019s Holding You Back?",
     offeringsTitle: "Mobile engineering capabilities built for long-term growth.",
     offeringsDescription: "A complete delivery framework covering product strategy, design, engineering, quality assurance, and optimization—aligned to support scalable mobile products and enterprise digital initiatives.",

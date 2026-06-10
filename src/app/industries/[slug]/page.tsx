@@ -14,205 +14,207 @@ const LIGHT = "var(--section-light)";
 interface IndustryData {
   title: string;
   heroDescription: string;
+  challengesHeading: string,
+  challengesDescription: string,
   challenges: string[];
   solutionsHeading: string;
+  solutionDescription: string,
   solutions: string[];
   ctaHeading: string;
+  ctaDescription: string,
   ctaButton: string;
 }
 
 const industriesData: Record<string, IndustryData> = {
   healthcare: {
-    title: "Healthcare & HealthTech",
+    title: "Healthcare Without Limits",
     heroDescription:
-      "Behind the scenes, healthcare teams face hurdles that slow innovation and care.",
+      "Transforming patient experiences, clinical operations, and care delivery through intelligent digital solutions.",
+    challengesHeading: "The Friction Behind Modern Healthcare Systems",
+    challengesDescription: "Healthcare organizations are expected to deliver seamless patient experiences, maintain regulatory compliance, and improve operational efficiency, yet many continue to rely on fragmented technology ecosystems that limit performance and growth.",
     challenges: [
-      "Poor Mobile User Experience: Unintuitive interfaces, slow performance, and lack of offline functionality lead to patient disengagement in telemedicine and wellness apps.",
-      "Compliance and Security Risks: Strict regulations (e.g., HIPAA, GDPR) and vulnerabilities in apps or platforms risk data breaches and penalties.",
-      "Slow Time-to-Market: Complex requirements delay the launch of critical patient care or provider solutions.",
-      "Lack of Actionable Data Insights: Inability to extract meaningful insights from patient data hinders personalized care and efficiency.",
-      "Fragmented User Experience: Inconsistent experiences across mobile apps and web platforms frustrate users, reducing adoption.",
-      "Limited Patient Access to Information: Patients struggle to access real-time health information or guidance, leading to frustration and reduced engagement.",
-      "High Development Costs: Building separate iOS and Android apps is resource-intensive, straining budgets.",
+      "Poor Digital Experience: Slow, unintuitive apps and portals reduce engagement across patients and providers, especially in telemedicine and wellness platforms.",
+      "Compliance and Security Risks: Strict regulations like HIPAA and GDPR demand strong architecture. Weak systems increase exposure to breaches, penalties, and trust loss.",
+      "Slow Delivery Cycles: Complex requirements, legacy systems, and fragmented teams delay critical healthcare product launches.",
+      "Limited Data Intelligence: Disconnected systems make it difficult to extract actionable insights for better clinical and operational decisions.",
+      "Fragmented User Journeys: Inconsistent experiences across mobile, web, and internal tools reduce adoption and user satisfaction.",
+      "Poor Patient Access: Lack of real-time access to records and updates leads to delays, confusion, and weaker patient engagement.",
     ],
-    solutionsHeading:
-      "Accelerate Patient Care with Secure, Scalable Digital Platforms",
+    solutionsHeading: "Engineering Clarity Into Complex Healthcare Systems",
+    solutionDescription: "We don't treat these challenges as isolated problems. We solve them at the system level through architecture, engineering discipline, and healthcare-grade design principles.",
     solutions: [
-      "Mobile Application Development: Cross-platform apps (iOS, Android, Hybrid via Flutter, React Native, Ionic) with offline capabilities and native performance for seamless patient engagement.",
-      "UI/UX Design: Intuitive, patient-centered designs with clear navigation and engaging onboarding to boost retention.",
-      "Quality Assurance: Manual and automated testing (Selenium, Cypress) ensuring HIPAA-compliant, secure apps and platforms.",
-      "Web Development: Secure, scalable platforms using React, Angular, or Laravel with compliance-ready architecture.",
-      "Machine Learning & AI: Custom AI models for predictive diagnostics, patient insights, and operational optimization, with real-time data visualization dashboards.",
-      "Intelligent AI Assistants: Conversational AI integrated into mobile apps and web platforms to provide 24/7 patient support, answer queries, and offer personalized health guidance.",
-      "Cost-Effective Development: Hybrid frameworks and automated testing to reduce development costs by up to 30% compared to native builds.",
+      "Experience-Led System Design: We rebuild patient and provider journeys using performance-optimized mobile and web architectures, ensuring fast, intuitive, and accessible digital experiences across every touchpoint.",
+      "Compliance-First Engineering: Security and compliance are embedded into the foundation of every system through HIPAA-aligned workflows, GDPR-ready data structures, encrypted communication layers, and role-based access control.",
+      "Accelerated Delivery Architecture: We reduce time-to-market through modular development, reusable components, API-first design, and agile delivery pipelines that eliminate dependency bottlenecks.",
+      "Data Unification & Intelligence Layers: We integrate fragmented systems into centralized data ecosystems, enabling real-time analytics, predictive insights, and decision-support capabilities powered by AI and structured data pipelines.",
+      "Unified Omnichannel Healthcare Experience: We synchronize mobile, web, and backend systems into a single connected ecosystem, ensuring consistent user journeys across patients, providers, and administrators.",
+      "Real-Time Access Infrastructure: We design secure, scalable systems that enable instant access to patient records, updates, and care information through cloud-native architecture and interoperable APIs.",
     ],
-    ctaHeading:
-      "Take control of your digital health operations and deliver better patient outcomes.",
-    ctaButton: "Optimize Your Patient Experience",
+    ctaHeading: "Turn Healthcare Friction Into Connected, Scalable Care",
+    ctaDescription: "Healthcare is often slowed by fragmented systems, legacy infrastructure, and disconnected tools that impact efficiency, compliance, and patient experience.\nWe build secure, scalable healthcare ecosystems that unify systems, streamline operations, and improve care delivery.",
+    ctaButton: "Ready to modernize your healthcare ecosystem?",
   },
   fintech: {
-    title: "FinTech",
-    heroDescription:
-      "Even the most advanced financial platforms run into hidden challenges every day.",
+    title: "Banking Built for the Digital Economy",
+    heroDescription: "Transforming customer experiences, financial operations, and digital banking ecosystems through secure, intelligent technology solutions.",
+    challengesHeading: "The Complexity Behind Modern Financial Services",
+    challengesDescription: "Financial institutions are under constant pressure to deliver seamless digital experiences, maintain regulatory compliance, strengthen security, and innovate faster. Yet many organizations remain constrained by legacy systems, fragmented infrastructure, and disconnected customer journeys.",
     challenges: [
-      "Data Security and Privacy Risks: Handling sensitive financial data (e.g., PII, PCI) makes FinTech platforms vulnerable to cyberattacks, with breaches costing an average of $4.24 million.",
-      "Regulatory Compliance Challenges: Evolving regulations (e.g., GDPR, AML, KYC) across jurisdictions create complexities, risking penalties for non-compliance in AI-driven systems.",
-      "Integration with Legacy Systems: Difficulty integrating AI assistants and modern platforms with outdated banking systems disrupts workflows and limits functionality.",
-      "Poor User Experience and Adoption: Clunky or overly complex interfaces in AI assistants and apps lead to low customer adoption due to unintuitive designs.",
-      "Scalability Limitations: Platforms and AI assistants struggle to handle growing transaction volumes or diverse use cases, impacting performance.",
-      "Fraud Detection and Prevention: Rising AI-driven fraud (e.g., deepfake scams, synthetic identities) results in billions in losses, challenging trust and security.",
-      "Fragmented Data Ecosystems: Limited interoperability between banking, telecom, and credit bureau systems hinders accurate analytics and risk modeling.",
-      "High Development Costs and Time: Building secure, compliant AI assistants and apps for iOS and Android is resource-intensive, delaying launches.",
+      "Legacy Banking Infrastructure: Outdated core systems create operational inefficiencies, limit innovation, and increase the cost of maintaining critical financial services.",
+      "Regulatory and Compliance Pressure: Financial organizations must continuously adapt to evolving regulations such as PCI DSS, AML, KYC, GDPR, PSD2, and regional banking requirements.",
+      "Security and Fraud Risks: Increasing cyber threats, fraud attempts, and data breaches require advanced security architecture and continuous monitoring.",
+      "Slow Product Innovation: Complex approval processes, disconnected systems, and technical debt delay the launch of new financial products and services.",
+      "Fragmented Customer Experiences: Customers expect seamless experiences across mobile, web, branch, and digital channels, yet many institutions still operate in silos.",
+      "Limited Financial Intelligence: Data trapped across systems prevents organizations from generating actionable insights for risk management, forecasting, and customer growth.",
     ],
-    solutionsHeading:
-      "Future-Ready Financial Systems Built for Compliance and Growth",
+    solutionsHeading: "Engineering Confidence Into Financial Ecosystems",
+    solutionDescription: "We don't treat financial technology challenges as isolated issues. We solve them through scalable architecture, security-first engineering, and enterprise-grade operational design.",
     solutions: [
-      "Data Security: Build secure cross-platform mobile apps (Flutter, React Native) and web platforms (React, Laravel) with end-to-end encryption, biometric authentication, and automated testing to ensure GDPR and PCI compliance.",
-      "Regulatory Compliance: Develop AI assistants with real-time KYC and AML monitoring, supported by automated regulatory testing to ensure adherence across jurisdictions.",
-      "Legacy Integration: Design modular web and hybrid mobile apps with APIs for seamless integration with legacy banking systems, enabling real-time transaction support.",
-      "User Experience: Craft AI assistants with intuitive, NLP-driven interfaces and user-friendly mobile apps featuring personalized financial advice.",
-      "Scalability: Deploy cloud-native platforms (Next.js, Python) and AI models on scalable infrastructure to support 10x transaction growth without performance degradation.",
-      "Fraud Detection: Train AI assistants with behavioral analytics and anomaly detection for real-time fraud monitoring.",
-      "Data Unification: Build AI assistants to aggregate data from banking, telecom, and credit bureau systems, paired with web dashboards for unified visualization.",
-      "Cost-Effective Development: Use hybrid frameworks (Ionic, Flutter) and agile project management (Jira, Asana) to develop cost-effective AI assistant apps.",
+      "Digital-First Customer Experiences: We create high-performance banking and financial platforms that deliver intuitive experiences across mobile, web, and self-service channels.",
+      "Compliance-Driven Architecture: Security, governance, and regulatory alignment are embedded into every layer through PCI DSS-ready infrastructure, KYC workflows, AML controls, audit trails, and role-based access management.",
+      "Secure Transaction Infrastructure: We design resilient payment systems, transaction engines, and financial platforms that support reliability, scalability, and operational continuity.",
+      "Data Intelligence & Risk Management: We unify financial data across systems to enable advanced analytics, risk monitoring, fraud detection, and predictive decision-making.",
+      "Connected Omnichannel Banking: We synchronize customer journeys across digital and physical touchpoints, ensuring consistency throughout the entire financial lifecycle.",
+      "Cloud-Native Financial Platforms: We modernize legacy environments through cloud-native architecture, API ecosystems, and scalable infrastructure designed for long-term growth.",
     ],
-    ctaHeading:
-      "Secure, scalable, and compliant solutions designed for modern finance.",
-    ctaButton: "Transform Your Financial Systems",
+    ctaHeading: "Turn Financial Complexity Into Competitive Advantage",
+    ctaDescription: "Financial growth is often limited by legacy systems, compliance burdens, fragmented customer experiences, and operational inefficiencies.\nWe build secure, scalable financial ecosystems that modernize operations, strengthen compliance, and accelerate innovation.",
+    ctaButton: "Ready to modernize your financial ecosystem?",
   },
   "ecommerce-retail": {
-    title: "Ecommerce & Retail",
-    heroDescription:
-      "Retail operations often grapple with digital inefficiencies that quietly impact growth.",
+    title: "Commerce Without Friction",
+    heroDescription: "Transforming customer experiences, retail operations, and digital commerce ecosystems through intelligent technology solutions designed for growth.",
+    challengesHeading: "The Challenges Behind Modern Commerce",
+    challengesDescription: "Retail and ecommerce organizations are expected to deliver seamless customer experiences, optimize operations, and scale across multiple channels. Yet many continue to struggle with fragmented systems, disconnected data, and increasingly demanding customer expectations.",
     challenges: [
-      "Poor Website and Mobile App Performance: Slow load times and unresponsive designs lead to high bounce rates, with 53% of mobile users abandoning sites taking over 3 seconds to load.",
-      "Inadequate Mobile Optimization: Non-mobile-friendly platforms result in poor user experiences, with 61% of users unlikely to return to a non-optimized site.",
-      "Security Vulnerabilities: Ecommerce platforms handling sensitive customer data are prone to cyberattacks, with retail data breaches costing millions.",
-      "Low Search Engine Visibility: Weak SEO strategies, including poor keyword targeting and site structure, lead to low organic traffic.",
-      "High Cart Abandonment Rates: Clunky checkout processes and unintuitive UX cause high abandonment, with global rates averaging 70%.",
-      "Inefficient Inventory and Order Management: Disconnected IT systems result in inventory mismatches or delayed order processing.",
-      "Lack of Personalized Customer Experiences: Generic marketing and lack of AI-driven personalization fail to engage customers effectively.",
-      "Fragmented Marketing Data: Siloed data across platforms hinders effective campaign targeting, reducing ROI on marketing spend.",
+      "Poor Customer Experience: Slow websites, complicated checkout flows, and inconsistent digital experiences reduce engagement, conversions, and customer loyalty.",
+      "Disconnected Commerce Systems: Inventory, sales, fulfillment, marketing, and customer data often operate in separate systems, creating inefficiencies and limiting visibility.",
+      "Cart Abandonment & Conversion Loss: Friction throughout the purchasing journey leads to lost revenue and lower customer acquisition returns.",
+      "Limited Customer Intelligence: Fragmented data makes it difficult to understand customer behavior, personalize experiences, and optimize marketing performance.",
+      "Omnichannel Complexity: Maintaining consistency across online stores, mobile applications, marketplaces, and physical retail environments remains a significant challenge.",
+      "Scalability Constraints: Legacy platforms and outdated infrastructure struggle to support growing traffic, expanding product catalogs, and seasonal demand spikes.",
     ],
-    solutionsHeading:
-      "Build Seamless Shopping Experiences That Convert and Scale",
+    solutionsHeading: "Engineering Growth Into Modern Commerce Ecosystems",
+    solutionDescription: "We don't solve ecommerce challenges in isolation. We build connected retail ecosystems that improve customer experiences, streamline operations, and support sustainable growth.",
     solutions: [
-      "Performance Optimization: Build lightning-fast, responsive ecommerce platforms with optimized Core Web Vitals and mobile-first architecture.",
-      "Mobile Commerce: Cross-platform mobile apps with native performance, push notifications, and seamless in-app checkout experiences.",
-      "Security & Compliance: PCI-DSS compliant platforms with SSL encryption, secure payment gateways, and regular security audits.",
-      "SEO & Visibility: Technical SEO, keyword strategy, and content optimization to drive organic traffic and improve search rankings.",
-      "Conversion Optimization: Streamlined checkout flows, A/B testing, personalized product recommendations, and abandoned cart recovery automation.",
-      "Inventory & Operations: Integrated inventory management systems, real-time order tracking, and ERP/CRM integrations.",
-      "AI-Powered Personalization: Machine learning models for dynamic pricing, product recommendations, and customer behavior analysis.",
-      "Unified Marketing Analytics: Consolidated marketing dashboards, campaign attribution modeling, and audience segmentation tools.",
+      "Experience-Led Commerce Design: We create fast, intuitive, and conversion-focused digital experiences that simplify customer journeys and increase engagement across every touchpoint.",
+      "Connected Commerce Infrastructure: We integrate ecommerce, inventory, fulfillment, CRM, ERP, and marketing systems into unified ecosystems that improve visibility and operational efficiency.",
+      "Conversion Optimization Architecture: We eliminate friction throughout the customer journey through performance optimization, streamlined checkout experiences, and data-driven user experience design.",
+      "Customer Intelligence & Personalization: We centralize customer data to enable advanced analytics, behavioral insights, personalization engines, and AI-driven recommendations.",
+      "Unified Omnichannel Experiences: We connect mobile, web, marketplaces, point-of-sale systems, and retail operations to deliver seamless customer experiences across every channel.",
+      "Scalable Retail Platforms: We design cloud-native commerce architectures capable of supporting growth, seasonal demand fluctuations, and expanding product ecosystems.",
     ],
-    ctaHeading:
-      "Transform your retail operations with digital solutions that drive revenue and loyalty.",
-    ctaButton: "Elevate Your Retail Experience",
+    ctaHeading: "Turn Retail Complexity Into Sustainable Growth",
+    ctaDescription: "Retail growth is often limited by disconnected systems, fragmented customer journeys, operational inefficiencies, and outdated commerce infrastructure.\nWe build scalable ecommerce ecosystems that unify operations, optimize customer experiences, and accelerate business growth across every channel.",
+    ctaButton: "Ready to modernize your commerce ecosystem?",
   },
   logistics: {
-    title: "Logistics & Transportation",
-    heroDescription:
-      "Logistics companies face mounting pressure to modernize operations while keeping costs in check.",
+    title: "Moving Supply Chains Forward",
+    heroDescription: "Transforming logistics operations, transportation networks, and supply chain performance through intelligent digital solutions designed for visibility, efficiency, and scale.",
+    challengesHeading: "The Challenges Behind Modern Logistics Operations",
+    challengesDescription: "Logistics and transportation organizations are expected to deliver faster shipments, maintain operational visibility, optimize costs, and meet rising customer expectations. Yet many continue to operate with disconnected systems, limited data transparency, and increasingly complex compliance requirements.",
     challenges: [
-      "Lack of Real-Time Visibility: Inability to track shipments, vehicles, or inventory in real-time leads to delays and poor customer communication.",
-      "Manual and Paper-Based Processes: Reliance on spreadsheets and manual data entry causes errors, inefficiencies, and slow decision-making.",
-      "Route Optimization Gaps: Without intelligent routing, companies face increased fuel costs, delayed deliveries, and underutilized fleets.",
-      "Disconnected Systems: Siloed software for warehousing, transport, and customer management leads to data fragmentation and operational blind spots.",
-      "Driver and Workforce Management: Scheduling, compliance tracking, and communication challenges reduce workforce productivity.",
-      "Rising Customer Expectations: Customers demand same-day delivery, real-time updates, and seamless returns, raising the bar for service levels.",
+      "Limited Operational Visibility: Disconnected systems make it difficult to track shipments, fleet performance, inventory movement, and delivery operations in real time.",
+      "Inefficient Route & Fleet Management: Manual planning and outdated systems increase fuel costs, delivery delays, and resource inefficiencies.",
+      "Fragmented Supply Chain Systems: Warehouse, transportation, inventory, and customer management systems often operate independently, creating operational silos.",
+      "Compliance & Security Challenges: Meeting requirements such as FMCSA regulations, ELD mandates, GDPR, ISO 27001, CTPAT, and supply chain security standards requires robust systems, auditability, and secure data management. Legacy platforms often struggle to maintain compliance at scale.",
+      "Delayed Decision-Making: Lack of centralized data prevents organizations from identifying bottlenecks, forecasting disruptions, and optimizing operations proactively.",
+      "Customer Experience Challenges: Limited shipment transparency and communication lead to poor customer satisfaction and reduced trust.",
     ],
-    solutionsHeading:
-      "Streamline Operations with Intelligent, Connected Logistics Platforms",
+    solutionsHeading: "Engineering Visibility Into Complex Logistics Ecosystems",
+    solutionDescription: "We don't solve logistics challenges in isolation. We build connected operational ecosystems that improve visibility, automate processes, and enable smarter decision-making across the entire supply chain.",
     solutions: [
-      "Real-Time Tracking: GPS-enabled mobile apps and web dashboards for live shipment tracking, fleet monitoring, and delivery status updates.",
-      "Process Automation: Digital workflows replacing manual processes for order processing, document generation, and compliance reporting.",
-      "AI-Powered Route Optimization: Machine learning algorithms for dynamic route planning, fuel optimization, and delivery time prediction.",
-      "System Integration: Unified platforms connecting warehouse management, transportation management, and CRM systems via APIs.",
-      "Workforce Management Tools: Mobile apps for driver scheduling, compliance tracking, digital proof of delivery, and real-time communication.",
-      "Customer Experience: Self-service portals, automated notifications, and real-time tracking links to meet modern delivery expectations.",
+      "Real-Time Logistics Visibility: We design centralized platforms that provide live tracking, operational monitoring, and complete visibility across transportation and logistics networks.",
+      "Compliance-Driven Infrastructure: Security, governance, and regulatory readiness are embedded into every solution through ISO 27001-aligned security controls, GDPR-compliant data management, FMCSA-ready operational workflows, ELD integration capabilities, and comprehensive audit trails that support transportation and supply chain compliance requirements.",
+      "Connected Supply Chain Architecture: We integrate transportation, warehouse, inventory, ERP, and customer systems into unified ecosystems that eliminate silos and improve coordination.",
+      "Intelligent Fleet Optimization: We implement route optimization, fleet monitoring, predictive maintenance, and resource allocation systems that improve efficiency and reduce operational costs.",
+      "Data Intelligence & Predictive Operations: We unify operational data to enable forecasting, performance analytics, demand planning, and AI-powered operational insights.",
+      "Customer-Centric Logistics Experiences: We create digital experiences that provide real-time shipment updates, communication tools, and self-service capabilities for customers and partners.",
     ],
-    ctaHeading:
-      "Modernize your logistics operations with technology that moves as fast as your business.",
-    ctaButton: "Optimize Your Operations",
+    ctaHeading: "Turn Logistics Complexity Into Operational Advantage",
+    ctaDescription: "Supply chain performance is often limited by disconnected systems, fragmented data, inefficient processes, and limited operational visibility.\nWe build scalable logistics ecosystems that connect operations, optimize transportation networks, and enable smarter decision-making across the entire supply chain.",
+    ctaButton: "Ready to modernize your logistics ecosystem?",
   },
   education: {
-    title: "Education & EdTech",
-    heroDescription:
-      "Educational institutions and EdTech companies face evolving challenges in delivering effective, accessible learning.",
+    title: "Building the Future of Learning",
+    heroDescription: "Transforming educational experiences, institutional operations, and learner outcomes through intelligent digital solutions designed for accessibility, engagement, and long-term impact.",
+    challengesHeading: "The Barriers Holding Modern Education Back",
+    challengesDescription: "Educational institutions and EdTech organizations face growing pressure to deliver engaging digital experiences, improve learner outcomes, expand access, and operate efficiently. Yet many continue to rely on disconnected technologies, manual processes, and legacy systems that limit innovation and educational effectiveness.",
     challenges: [
-      "Low Student Engagement: Traditional learning formats fail to capture attention, leading to poor retention and completion rates.",
-      "Accessibility Barriers: Platforms that aren't designed for diverse learners, devices, or connectivity levels exclude potential users.",
-      "Fragmented Learning Experiences: Disconnected tools for content delivery, assessments, and communication create friction for students and educators.",
-      "Limited Analytics: Inability to track student progress, identify at-risk learners, or measure curriculum effectiveness in real-time.",
-      "Scalability Challenges: Platforms that work for hundreds struggle to support thousands or millions of concurrent users.",
-      "Content Management Complexity: Creating, organizing, and updating educational content across multiple formats and languages is time-consuming.",
+      "Disconnected Learning Ecosystems: Students, educators, and administrators often work across multiple platforms that create fragmented experiences and operational inefficiencies.",
+      "Low Learner Engagement: Traditional digital learning environments frequently struggle to maintain participation, motivation, and long-term student engagement.",
+      "Administrative Complexity: Manual processes across admissions, enrollment, scheduling, communication, and reporting consume valuable institutional resources.",
+      "Student Data Privacy & Compliance Risks: Educational organizations must safeguard sensitive learner information while complying with FERPA, COPPA, GDPR, accessibility standards, and evolving privacy regulations.",
+      "Limited Visibility Into Performance: Scattered academic and operational data makes it difficult to identify learning gaps, track outcomes, and make informed decisions.",
+      "Scalability Challenges: As institutions expand programs, online learning initiatives, and student populations, legacy infrastructure often becomes a barrier to growth.",
     ],
-    solutionsHeading:
-      "Build Engaging, Accessible Learning Platforms That Scale",
+    solutionsHeading: "Engineering Connected Learning Ecosystems",
+    solutionDescription: "We don't view educational challenges as isolated technology problems. We build integrated digital ecosystems that connect learners, educators, and institutions while improving outcomes at every stage of the learning journey.",
     solutions: [
-      "Interactive Learning Platforms: Custom LMS development with gamification, progress tracking, video streaming, and interactive assessments.",
-      "Accessible Design: WCAG-compliant UI/UX design with responsive layouts, offline capabilities, and multi-language support.",
-      "Unified Learning Ecosystems: Integrated platforms connecting content management, student portals, assessments, and communication tools.",
-      "Learning Analytics: AI-powered dashboards tracking student performance, engagement metrics, and curriculum effectiveness with predictive insights.",
-      "Scalable Infrastructure: Cloud-native architectures supporting millions of concurrent users with reliable uptime and performance.",
-      "Content Management: Headless CMS solutions for easy content creation, organization, and delivery across web and mobile platforms.",
+      "Student-Centered Digital Experiences: We design intuitive mobile and web experiences that make learning more engaging, accessible, and effective across every educational touchpoint.",
+      "Privacy-First Education Platforms: Security and compliance are embedded into every solution through FERPA-aligned data governance, GDPR-ready privacy controls, COPPA-compliant workflows, role-based access management, and secure cloud infrastructure.",
+      "Unified Academic Operations: We integrate learning management systems, student information systems, communication tools, assessment platforms, and administrative workflows into a connected ecosystem.",
+      "Learning Intelligence & Analytics: We transform educational data into actionable insights that help institutions improve student performance, measure outcomes, and optimize operations.",
+      "Personalized Learning Experiences: Using AI and intelligent automation, we enable adaptive learning pathways, personalized content delivery, and proactive student support.",
+      "Scalable Digital Education Infrastructure: We build cloud-native platforms capable of supporting hybrid learning models, growing student populations, and evolving institutional needs.",
     ],
-    ctaHeading:
-      "Transform education with platforms that make learning accessible, engaging, and measurable.",
-    ctaButton: "Build Your EdTech Solution",
+    ctaHeading: "Turn Educational Challenges Into Measurable Outcomes",
+    ctaDescription: "Education is often constrained by disconnected systems, administrative inefficiencies, fragmented learning experiences, and limited visibility into student success.\nWe build secure, scalable education ecosystems that connect people, processes, and technology to improve engagement, streamline operations, and deliver stronger learning outcomes.",
+    ctaButton: "Ready to transform your learning ecosystem?",
   },
   "travel-hospitality": {
-    title: "Travel & Hospitality",
-    heroDescription:
-      "The travel industry faces unique digital challenges that directly impact guest satisfaction and revenue.",
+    title: "Experiences That Move People",
+    heroDescription: "Transforming guest experiences, travel operations, and hospitality ecosystems through intelligent digital solutions designed for personalization, efficiency, and growth.",
+    challengesHeading: "The Challenges Behind Modern Travel & Hospitality",
+    challengesDescription: "Travel and hospitality organizations are expected to deliver seamless guest experiences, manage complex operations, and adapt to rapidly evolving customer expectations. Yet many continue to operate with fragmented systems, disconnected customer data, and outdated digital experiences that limit growth and loyalty.",
     challenges: [
-      "Complex Booking Processes: Multi-step reservation flows with poor UX lead to high abandonment rates and lost revenue.",
-      "Fragmented Operations: Disconnected systems for reservations, housekeeping, guest services, and billing create operational inefficiencies.",
-      "Limited Personalization: Generic experiences fail to leverage guest preferences, travel history, and behavior for tailored offerings.",
-      "Seasonal Demand Fluctuations: Platforms that can't scale dynamically lead to poor performance during peak seasons.",
-      "Review and Reputation Management: Difficulty monitoring and responding to reviews across multiple platforms impacts brand perception.",
-      "Mobile Experience Gaps: Travelers expect seamless mobile booking, check-in, and concierge services that many providers lack.",
+      "Fragmented Guest Journeys: Travelers interact across websites, mobile apps, booking engines, loyalty programs, and on-property experiences, yet these touchpoints often remain disconnected.",
+      "Rising Customer Expectations: Modern travelers expect personalized recommendations, real-time updates, self-service capabilities, and frictionless experiences at every stage of their journey.",
+      "Booking & Conversion Challenges: Slow platforms, complicated booking processes, and poor user experiences result in abandoned reservations and lost revenue opportunities.",
+      "Operational Inefficiencies: Manual processes across reservations, guest services, property management, and customer support reduce productivity and service quality.",
+      "Data Silos & Limited Personalization: Customer information is often scattered across multiple systems, making it difficult to deliver personalized experiences and build long-term loyalty.",
+      "Security & Compliance Requirements: Travel and hospitality organizations must protect customer data, payment information, and operational systems while meeting GDPR, PCI DSS, data privacy regulations, and security standards.",
     ],
-    solutionsHeading:
-      "Create Seamless Guest Experiences from Booking to Checkout",
+    solutionsHeading: "Engineering Exceptional Travel Experiences",
+    solutionDescription: "We don't treat hospitality and travel challenges as isolated issues. We build connected digital ecosystems that improve guest experiences, streamline operations, and create sustainable business growth.",
     solutions: [
-      "Streamlined Booking: Intuitive, mobile-optimized booking engines with real-time availability, dynamic pricing, and one-click reservations.",
-      "Integrated Operations: Unified platforms connecting reservation systems, property management, guest services, and analytics.",
-      "AI-Personalization: Machine learning models for personalized recommendations, dynamic pricing, and targeted marketing based on guest behavior.",
-      "Scalable Architecture: Cloud-native platforms that auto-scale during peak travel seasons while maintaining fast performance.",
-      "Reputation Management: Automated review monitoring, sentiment analysis, and response management across all major platforms.",
-      "Mobile-First Experiences: Cross-platform mobile apps with digital check-in, room service ordering, local guides, and concierge chat.",
+      "Guest-Centric Experience Design: We create intuitive mobile and web experiences that simplify planning, booking, communication, and guest engagement across every touchpoint.",
+      "Compliance-Driven Digital Infrastructure: Security and compliance are embedded into every solution through PCI DSS-aligned payment systems, GDPR-ready privacy controls, secure authentication frameworks, role-based access management, and comprehensive data governance practices.",
+      "Connected Hospitality Ecosystems: We integrate booking platforms, property management systems, CRM solutions, loyalty programs, payment gateways, and operational tools into a unified environment.",
+      "Personalization & Customer Intelligence: We transform customer data into actionable insights that power personalized recommendations, targeted offers, loyalty initiatives, and improved guest experiences.",
+      "Omnichannel Travel Experiences: We connect digital and physical touchpoints to deliver consistent experiences across websites, mobile applications, customer support channels, and on-site interactions.",
+      "Scalable Travel Infrastructure: We build cloud-native platforms capable of supporting seasonal demand, expanding operations, global audiences, and future growth initiatives.",
     ],
-    ctaHeading:
-      "Delight your guests with technology that makes every journey seamless.",
-    ctaButton: "Transform Your Guest Experience",
+    ctaHeading: "Turn Travel Complexity Into Memorable Experiences",
+    ctaDescription: "Growth in travel and hospitality is often constrained by disconnected systems, fragmented guest journeys, operational inefficiencies, and limited customer visibility.\nWe build secure, scalable travel ecosystems that connect experiences, streamline operations, and create meaningful customer relationships that drive long-term growth.",
+    ctaButton: "Ready to elevate your travel and hospitality ecosystem?",
   },
   "saas-startups": {
-    title: "SaaS & Tech Startups",
-    heroDescription:
-      "Startups and SaaS companies operate in a high-speed environment where technical decisions have outsized impact.",
+    title: "Building Products Ready for Scale",
+    heroDescription: "Transforming ideas into scalable digital products through intelligent engineering, rapid execution, and growth-focused technology strategies.",
+    challengesHeading: "The Challenges Behind High-Growth Technology Companies",
+    challengesDescription: "SaaS companies and technology startups operate in highly competitive markets where speed, innovation, and scalability determine success. Yet many organizations struggle with technical debt, resource constraints, product complexity, and growing customer expectations that slow momentum and limit growth.",
     challenges: [
-      "Speed to Market Pressure: Intense competition requires rapid MVP development and iteration without sacrificing quality.",
-      "Scalability Concerns: Architecture decisions made early can become bottlenecks as user base grows from hundreds to millions.",
-      "Resource Constraints: Limited budgets and small teams mean every hire and technology choice must deliver maximum impact.",
-      "Technical Debt Accumulation: Moving fast often leads to shortcuts that compound into maintenance nightmares and slow feature delivery.",
-      "User Retention and Engagement: Acquiring users is expensive; poor onboarding and UX lead to high churn rates.",
-      "Investor and Stakeholder Expectations: Demonstrating product-market fit, growth metrics, and technical robustness is critical for fundraising.",
+      "Pressure to Ship Faster: Startups must continuously release new features and improvements while balancing product quality, stability, and user experience.",
+      "Scalability Challenges: Applications built for early-stage growth often struggle under increasing user demand, expanding datasets, and growing operational complexity.",
+      "Technical Debt Accumulation: Rapid development cycles frequently create architectural limitations that hinder future innovation and increase maintenance costs.",
+      "Resource & Talent Constraints: Building and retaining specialized engineering teams can be difficult while maintaining focus on core business growth.",
+      "Product Adoption & Retention Issues: Even strong products can struggle with onboarding, engagement, retention, and long-term customer success.",
+      "Security & Compliance Expectations: As businesses grow, customers increasingly expect enterprise-grade security, privacy controls, and compliance readiness without compromising agility.",
     ],
-    solutionsHeading:
-      "Build Scalable, Market-Ready Products That Attract Users and Investors",
+    solutionsHeading: "Engineering Products Built for Growth",
+    solutionDescription: "We don't simply build software. We help SaaS companies and startups establish the technical foundations required to scale products, teams, and operations with confidence.",
     solutions: [
-      "Rapid MVP Development: Full-stack development with modern frameworks, agile sprints, and continuous delivery to ship fast and iterate faster.",
-      "Scalable Architecture: Cloud-native infrastructure design with microservices, auto-scaling, and database optimization for growth.",
-      "Staff Augmentation: On-demand access to senior developers, designers, and QA engineers who integrate seamlessly into your team.",
-      "Product Design: User research-driven UI/UX design with rapid prototyping, usability testing, and conversion-optimized interfaces.",
-      "Quality at Speed: Automated testing pipelines, CI/CD integration, and code review processes that maintain quality without slowing delivery.",
-      "Growth Engineering: Analytics integration, A/B testing infrastructure, and performance monitoring to drive data-informed product decisions.",
+      "Product-Led Experience Design: We create intuitive user experiences that improve onboarding, engagement, retention, and overall customer satisfaction.",
+      "Scalable Cloud-Native Architecture: We design flexible, high-performance platforms that support growth, evolving business requirements, and increasing user demand.",
+      "Security & Compliance by Design: Security is embedded throughout the development lifecycle through secure architecture, role-based access controls, data protection frameworks, audit capabilities, and readiness for standards such as SOC 2, GDPR, ISO 27001, and enterprise customer requirements.",
+      "Accelerated Product Delivery: We leverage agile methodologies, automation, CI/CD pipelines, and modern engineering practices to shorten development cycles and accelerate time-to-market.",
+      "Data Intelligence & Product Insights: We build analytics ecosystems that provide visibility into user behavior, product performance, customer health, and growth opportunities.",
+      "Future-Ready Technology Foundations: We create modular, API-first systems that enable seamless integrations, continuous innovation, and long-term scalability.",
     ],
-    ctaHeading:
-      "Accelerate your startup with the technical expertise and execution speed you need.",
-    ctaButton: "Scale Your Startup",
+    ctaHeading: "Turn Product Ambition Into Sustainable Growth",
+    ctaDescription: "Many startups and SaaS businesses are limited not by vision, but by technology foundations that cannot keep pace with growth, customer expectations, and market demands.\nWe build secure, scalable product ecosystems that accelerate innovation, strengthen operational efficiency, and support long-term business growth.",
+    ctaButton: "Ready to scale your product with confidence?",
   },
 };
 
@@ -619,14 +621,12 @@ export default function IndustryPage() {
             <div className="lg:col-span-7">
               <p className="eyebrow text-rose-500/80">Common challenges</p>
               <h2 className="mt-3 h-section text-deep-blue">
-                What teams in this sector{" "}
-                <span className="gradient-text-dark">keep running into.</span>
+                {industry.challengesHeading}
               </h2>
             </div>
             <div className="lg:col-span-5">
               <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                The friction we hear about most often. If any of these feel
-                familiar, you&apos;re definitely not alone.
+                {industry.challengesDescription}
               </p>
             </div>
           </div>
@@ -682,8 +682,9 @@ export default function IndustryPage() {
             </div>
             <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                Vetted patterns from past projects. We bring these to the
-                table — your job is to tell us what matters most.
+                <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                  {industry.solutionDescription}
+                </p>
               </p>
             </div>
           </div>
@@ -889,7 +890,7 @@ export default function IndustryPage() {
       <CTABanner
         eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
         heading={<>{industry.ctaHeading}</>}
-        description="We've shipped solutions for teams in this space — let's talk about yours."
+        description={industry.ctaDescription}  
         primaryLabel={industry.ctaButton}
         primaryHref="/contact"
         secondaryLabel="See all industries"

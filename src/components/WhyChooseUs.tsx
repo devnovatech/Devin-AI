@@ -178,7 +178,7 @@ function ReasonCard({ reason, index }: { reason: Reason; index: number }) {
         </div>
 
         {/* Title + description */}
-        <h3 className="mt-4 text-base lg:text-[17px] font-bold text-deep-blue tracking-tight leading-snug transition-colors duration-300 group-hover:text-[color:var(--accent)]">
+        <h3 className="mt-4 text-base lg:text-[17px] font-bold text-deep-blue tracking-tight leading-snug">
           {reason.title}
         </h3>
         <p className="mt-1.5 text-xs lg:text-[13px] text-deep-blue/55 leading-relaxed">

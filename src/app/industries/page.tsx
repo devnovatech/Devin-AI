@@ -14,7 +14,7 @@ const industries = [
     name: "Healthcare & HealthTech",
     slug: "healthcare",
     tagline:
-      "HIPAA-compliant platforms, telemedicine, and patient management systems.",
+      "104+ healthcare organizations served.",
     accent: "#0288D1",
     stat: { value: "14", label: "hospitals onboarded" },
     icon: (
@@ -27,7 +27,7 @@ const industries = [
     name: "FinTech",
     slug: "fintech",
     tagline:
-      "Secure financial platforms with regulatory-ready architecture.",
+      "100+ financial technology initiatives delivered.",
     accent: "#1565C0",
     stat: { value: "PCI-DSS", label: "compliant builds" },
     icon: (
@@ -40,7 +40,7 @@ const industries = [
     name: "E-commerce & Retail",
     slug: "ecommerce-retail",
     tagline:
-      "Conversion-tuned storefronts, headless commerce, and inventory at scale.",
+      "150+ commerce platforms supported.",
     accent: "#0277BD",
     stat: { value: "+24%", label: "avg conversion lift" },
     icon: (
@@ -53,7 +53,7 @@ const industries = [
     name: "Logistics & Transportation",
     slug: "logistics",
     tagline:
-      "Real-time tracking, fleet management, and route optimization.",
+      "50+ logistics transformation projects.",
     accent: "#00ACC1",
     stat: { value: "Real-time", label: "tracking systems" },
     icon: (
@@ -66,7 +66,7 @@ const industries = [
     name: "Education & EdTech",
     slug: "education",
     tagline:
-      "Interactive learning platforms, content delivery, and student tools.",
+      "275+ digital learning solutions delivered.",
     accent: "#1E88E5",
     stat: { value: "WCAG", label: "accessibility-first" },
     icon: (
@@ -79,7 +79,7 @@ const industries = [
     name: "Travel & Hospitality",
     slug: "travel-hospitality",
     tagline:
-      "Booking platforms, guest portals, and concierge experiences.",
+      "50+ hospitality experiences enhanced.",
     accent: "#039BE5",
     stat: { value: "8 markets", label: "shipped to" },
     icon: (
@@ -92,7 +92,7 @@ const industries = [
     name: "SaaS & Tech Startups",
     slug: "saas-startups",
     tagline:
-      "MVPs to scale-ups — speed without sacrificing the architecture.",
+      " 200+ products and platforms scaled.",
     accent: "#0277BD",
     stat: { value: "8–14 wks", label: "MVP to launch" },
     icon: (
@@ -105,9 +105,9 @@ const industries = [
 
 const expertisePillars = [
   {
-    title: "Compliance from day one",
+    title: "Compliance by design",
     description:
-      "HIPAA, PCI-DSS, GDPR, WCAG — we map regulatory requirements into the architecture before kickoff. No retrofits, no late-stage surprises.",
+      "HIPAA, PCI-DSS, GDPR, WCAG — embedded into architecture from day one.",
     accent: "#1E88E5",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -116,9 +116,9 @@ const expertisePillars = [
     ),
   },
   {
-    title: "Research with real users",
+    title: "Built with real users",
     description:
-      "We don't guess at industry needs — we interview clinicians, dispatchers, customers, and end-users in your sector before a line of code ships.",
+      "Validated through clinicians, operators, customers, and end-users.",
     accent: "#0288D1",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -128,9 +128,9 @@ const expertisePillars = [
     ),
   },
   {
-    title: "Patterns from past clients",
+    title: "Proven system patterns",
     description:
-      "250+ projects across 7 sectors means we recognize the shape of common problems. We bring vetted patterns instead of starting blank.",
+      "250+ builds distilled into reusable, battle-tested foundations.",
     accent: "#00ACC1",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -139,9 +139,9 @@ const expertisePillars = [
     ),
   },
   {
-    title: "Stack matched to the sector",
+    title: "Stack chosen by constraint",
     description:
-      "Different industries reward different choices. We pick stacks based on the constraints of your sector — not what's trending on Twitter.",
+      "Technology decisions driven by scale, security, and regulation — not trends.",
     accent: "#1565C0",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -311,17 +311,15 @@ export default function IndustriesPage() {
               className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
               style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
             >
-              Industry expertise,
+              Built Around Your Constraints
               <br />
-              <span className="gradient-text glow-text">built into the work.</span>
+              <span className="gradient-text glow-text"> Not Just Your Requirements.</span>
             </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
             <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto">
-              Every sector has its own constraints, regulations, and user
-              expectations. We bring vetted patterns from past clients — so
-              your project doesn&apos;t start from a blank page.
+             Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
             </p>
           </AnimatedSection>
 
@@ -393,15 +391,13 @@ export default function IndustriesPage() {
             <div className="lg:col-span-7">
               <p className="eyebrow text-neon-blue">Why it matters</p>
               <h2 className="mt-3 h-section text-white">
-                Industry expertise{" "}
-                <span className="gradient-text">isn&apos;t a tagline.</span>
+                Built Around How Your Industry {" "}
+                <span className="gradient-text">Actually Operates</span>
               </h2>
             </div>
             <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                It&apos;s the difference between a generic build and one that
-                holds up to the actual constraints of your sector. Here&apos;s
-                what that looks like for us.
+                Built on Industry Reality, Not Assumptions —- Industry expertise isn’t a claim. It’s how systems avoid failure in the real world.
               </p>
             </div>
           </div>
@@ -446,11 +442,11 @@ export default function IndustriesPage() {
         eyebrow="Sector-specific solutions"
         heading={
           <>
-            Don&apos;t see your industry?{" "}
-            <span className="gradient-text">Tell us about it.</span>
+            Systems That Work as One,{" "}
+            <span className="gradient-text"> Not in Pieces</span>
           </>
         }
-        description="Every industry has unique demands, regulations, and customer expectations. We tailor our work to your sector's realities — even if it's niche."
+        description="Most organizations don’t need more tools — they need their systems to finally align. We help companies move beyond fragmented setups by building integrated digital infrastructure that reflects how they actually operate, scale, and compete."
         primaryLabel="Talk to a sector expert"
         primaryHref="/contact"
         secondaryLabel="See services"
