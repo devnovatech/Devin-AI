@@ -28,18 +28,18 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: "Mobile App Development",
+    title: "Mobile Systems",
     slug: "mobile-application",
     category: "build",
-    tagline: "Native & cross-platform apps people love using.",
+    tagline: "NATIVE & CROSS-PLATFORM APPLICATIONS",
 
     description:
-      "Engineered for performance, accessibility, and the bar set by App Store editors. iOS, Android, or one shared codebase via React Native or Flutter.",
+      "Engineered for reliability, performance, and scale across iOS, Android, and modern cross-platform frameworks. From customer-facing apps to internal operational tools.",
     capabilities: [
-      "iOS & Android native",
-      "Cross-platform (RN, Flutter)",
-      "Backend & APIs",
-      "Store launch & ASO",
+      "iOS & Android",
+      "Cross-Platform",
+      "Backend APIs",
+      "App Store Launch",
     ],
     accent: "#1E88E5",
     icon: (
@@ -50,17 +50,17 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Web Development",
+    title: "Web Platforms",
     slug: "web-development",
     category: "build",
-    tagline: "Fast, accessible, SEO-ready platforms.",
+    tagline: "SCALABLE DIGITAL PLATFORMS",
     description:
-      "From marketing sites to full-stack products. Core Web Vitals in the green, lighthouse scores you can show off, and architecture that scales with traffic.",
+      "Fast, secure, and scalable web platforms designed to support business operations, customer experiences, and long-term growth objectives.",
     capabilities: [
-      "Frontend (React, Next, Vue)",
-      "Backend & APIs",
-      "Headless CMS",
-      "Performance & SEO",
+      "Custom Development",
+      "SEO-Ready",
+      "CMS & Portals",
+      "Cloud Deployment",
     ],
     accent: "#0277BD",
     icon: (
@@ -73,17 +73,17 @@ const services: Service[] = [
 
   },
   {
-    title: "E-commerce Development",
+    title: "Ecommerce Architecture",
     slug: "ecommerce",
     category: "build",
-    tagline: "Storefronts that convert and scale.",
+    tagline: "SCALABLE DIGITAL PLATFORMS.",
     description:
-      "Conversion-tuned checkout flows, secure payment infrastructure, and inventory systems that handle Black-Friday-level traffic without breaking a sweat.",
+      "Conversion-focused ecommerce platforms engineered for performance, retention, and operational efficiency across every stage of the customer journey.",
     capabilities: [
-      "Shopify & custom platforms",
-      "PCI-DSS-compliant checkout",
-      "Inventory & ERP integrations",
-      "A/B testing & analytics",
+      "Online Stores",
+      "Payment Systems",
+      "Conversion Optimization",
+      "Marketplace Integrations",
     ],
     accent: "#0288D1",
     icon: (
@@ -96,14 +96,14 @@ const services: Service[] = [
     title: "UI/UX Design",
     slug: "ui-ux-design",
     category: "design",
-    tagline: "Research-led design that converts.",
+    tagline: "Researched-led Product Design.",
     description:
-      "User research, wireframes, prototypes, and visual systems that turn user needs into elegant, business-driving experiences. Accessibility-first by default.",
+      "User-centered experiences designed to improve usability, accessibility, and adoption while aligning every interaction with business goals.",
     capabilities: [
-      "User research & personas",
-      "Wireframing & prototyping",
-      "Visual & interaction design",
-      "WCAG accessibility",
+      "User Research",
+      "Wireframing",
+      "Design Systems",
+      "Prototyping",
     ],
     accent: "#039BE5",
     icon: (
@@ -114,17 +114,17 @@ const services: Service[] = [
     ),
   },
   {
-    title: "ML & AI Solutions",
+    title: "Intelligent Automation",
     slug: "machine-learning-ai",
     category: "scale",
-    tagline: "Custom models, embedded into your stack.",
+    tagline: "AI & ML Solutions.",
     description:
-      "Predictive analytics, NLP, computer vision, and AI assistants that fit into your existing systems — not standalone toys. Production-ready, monitored, retrainable.",
+      "AI-powered systems that automate workflows, streamline operations, and deliver actionable insights through intelligent decision support.",
     capabilities: [
-      "LLM apps & agents",
-      "Predictive analytics",
-      "Computer vision",
-      "Model deployment & MLOps",
+      "AI Workflows",
+      "Machine Learning",
+      "Process Automation",
+      "Predictive Systems",
     ],
     accent: "#00ACC1",
     icon: (
@@ -138,14 +138,14 @@ const services: Service[] = [
     title: "Digital Marketing",
     slug: "digital-marketing",
     category: "scale",
-    tagline: "Strategy and content built on data.",
+    tagline: "Growth Driven by Data.",
     description:
-      "SEO, paid campaigns, content marketing, and conversion optimization. Measurable growth, not vanity metrics. Tied directly to pipeline and revenue.",
+      "Performance-focused marketing strategies that increase visibility, generate qualified demand, and drive measurable business growth.",
     capabilities: [
-      "Technical & content SEO",
-      "Paid acquisition (Meta, LinkedIn, Google)",
-      "Content & email programs",
-      "Funnel analytics & attribution",
+      "SEO",
+      "Paid Campaigns",
+      "Content Strategy",
+      "Analytics",
     ],
     accent: "#1565C0",
     icon: (
@@ -159,14 +159,14 @@ const services: Service[] = [
     title: "Staff Augmentation",
     slug: "staff-augmentation",
     category: "operate",
-    tagline: "Senior engineers, embedded with your team.",
+    tagline: "Embedded Technical Talent.",
     description:
-      "Vetted developers, designers, and PMs slot into your sprints. Time-zone aligned, communication-ready, and ramped from day one. Flexible scale up / down.",
+      "Experienced specialists integrated directly into your teams to accelerate delivery, expand capacity, and reduce hiring friction.",
     capabilities: [
-      "Senior, vetted talent",
-      "Time-zone aligned",
-      "Sprint-ready integration",
-      "Flexible scaling",
+      "Dedicated Resources",
+      "Flexible Scaling",
+      "Engineering Teams",
+      "Product Support",
     ],
     accent: "#01579B",
     icon: (
@@ -176,17 +176,17 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Quality Assurance",
+    title: "Software Quality Engineering",
     slug: "quality-assurance",
     category: "operate",
-    tagline: "Ship with confidence, not surprises.",
+    tagline: "Quality Built Into Delivery.",
     description:
-      "Manual exploratory + automated testing across every browser, device, and edge case. Performance, security, accessibility — all validated before release.",
+      "Continuous testing and quality assurance practices embedded throughout development to ensure reliability, stability, and confidence.",
     capabilities: [
-      "Automation (Cypress, Playwright)",
-      "Performance & load testing",
-      "Security audits",
-      "Cross-platform validation",
+      "Manual Testing",
+      "Test Automation",
+      "Performance Testing",
+      "QA Strategy",
     ],
     accent: "#006064",
     icon: (
@@ -201,12 +201,12 @@ const services: Service[] = [
     category: "operate",
     tagline: "Agile delivery without the chaos.",
     description:
-      "Transparent roadmaps, weekly check-ins, and stakeholder alignment that keeps projects on rails. Jira, Linear, ClickUp — whatever your team already uses.",
+      "Project governance and delivery frameworks that improve visibility, maintain momentum, and keep teams aligned around outcomes.",
     capabilities: [
-      "Agile / Scrum delivery",
-      "Roadmap & backlog ownership",
-      "Stakeholder communication",
-      "Risk & change management",
+      "Agile Delivery",
+      "Sprint Planning",
+      "Risk Management",
+      "Stakeholder Reporting",
     ],
     accent: "#0097A7",
     icon: (
@@ -241,12 +241,12 @@ const processSteps: ProcessStepData[] = [
     title: "Discovery",
     duration: "1–2 weeks",
     description:
-      "We start with goals, constraints, and the why. You leave with a scoped roadmap, timeline, and a fixed quote.",
+      "We align business objectives, technical requirements, and delivery priorities to define scope, architecture direction, timelines, and measurable success criteria.",
     deliverables: [
-      "Stakeholder interviews",
-      "Technical & brand audit",
-      "Success metrics",
-      "Fixed-price proposal",
+      "Stakeholder Workshops",
+      "Technical Assessment",
+      "Requirements Definition",
+      "Success Metrics",
     ],
     accent: "#1E88E5",
     icon: (
@@ -261,12 +261,12 @@ const processSteps: ProcessStepData[] = [
     title: "Design",
     duration: "2–3 weeks",
     description:
-      "User research, wireframes, prototypes, and a visual system. We pressure-test ideas with real users before a line of code is written.",
+      "We transform requirements into validated user experiences, system architectures, and implementation blueprints that balance usability, scalability, and engineering feasibility",
     deliverables: [
-      "UX research & flows",
-      "Wireframes & prototypes",
-      "Visual system / tokens",
-      "WCAG-AA accessibility",
+      "User Experience Design",
+      "Solution Architecture",
+      "Wireframes & Prototypes",
+      "Technical Planning",
     ],
     accent: "#0288D1",
     icon: (
@@ -280,12 +280,12 @@ const processSteps: ProcessStepData[] = [
     title: "Build",
     duration: "8–14 weeks",
     description:
-      "2-week sprints, weekly demos, transparent burndowns. You see progress shipping behind a feature flag from day one — no surprises.",
+      "Cross-functional teams deliver production-ready solutions through agile execution, continuous testing, secure development practices, and iterative stakeholder feedback.",
     deliverables: [
-      "Bi-weekly demos",
-      "Staging environments",
-      "CI/CD pipeline",
-      "Pair programming",
+      "Software Development",
+      "System Integrations",
+      "Quality Assurance",
+      "Sprint Reviews",
     ],
     accent: "#00ACC1",
     icon: (
@@ -299,12 +299,12 @@ const processSteps: ProcessStepData[] = [
     title: "Launch",
     duration: "1 week + ongoing",
     description:
-      "Production deploy, monitoring dashboards wired in, and a 30-day stabilization window. Then optional retainer for ongoing support.",
+      "We manage deployment, monitoring, and optimization to ensure stability, adoption, and continuous improvement beyond the initial release.",
     deliverables: [
-      "Zero-downtime deploy",
-      "Monitoring & observability",
-      "30-day stabilization",
-      "On-call runbook",
+      "Software Development",
+      "System Integrations",
+      "Quality Assurance",
+      "Sprint Reviews",
     ],
     accent: "#1565C0",
     icon: (
@@ -382,17 +382,7 @@ const heroStats = [
 /* ───────── Service tile (hero grid) ───────── */
 function HeroTile({ service, index }: { service: Service; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.92 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{
-        duration: 0.45,
-        delay: 0.15 + index * 0.05,
-        ease: [0.4, 0, 0.2, 1],
-      }}
-      whileHover={{ y: -4, scale: 1.04 }}
-      className="group surface-tile relative aspect-square rounded-2xl border flex flex-col items-center justify-center text-center p-3 cursor-default overflow-hidden"
+    <div className="group surface-tile relative aspect-square rounded-2xl border flex flex-col items-center justify-center text-center p-3 cursor-default overflow-hidden"
     >
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -418,24 +408,14 @@ function HeroTile({ service, index }: { service: Service; index: number }) {
       <p className="relative text-[10px] lg:text-[10.5px] font-semibold text-white/85 leading-tight tracking-tight">
         {service.title}
       </p>
-    </motion.div>
+    </div>
   );
 }
 
 /* ───────── Service card (catalog grid) ───────── */
 function ServiceCard({ service, index }: { service: Service; index: number }) {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{
-        duration: 0.4,
-        delay: Math.min(index, 6) * 0.04,
-        ease: [0.4, 0, 0.2, 1],
-      }}
-      className="h-full"
+    <div className="h-full"
     >
       <Link
         href={`/services/${service.slug}`}
@@ -554,7 +534,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
@@ -622,17 +602,12 @@ function FaqRow({
       </button>
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="overflow-hidden"
+          <div className="overflow-hidden"
           >
             <p className="pb-6 pl-[3.25rem] pr-12 body-base text-white/65 leading-relaxed">
               {a}
             </p>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
@@ -641,48 +616,37 @@ function FaqRow({
 
 /* ───────── Page ───────── */
 export default function ServicesPage() {
- const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
-const [openFaq, setOpenFaq] = useState<number>(0);
-const [activeStep, setActiveStep] = useState<number>(0);
-const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeFilter, setActiveFilter] = useState<Category | "all">("all");
+  const [openFaq, setOpenFaq] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
-// Filtered services
-const visibleServices =
-  activeFilter === "all"
-    ? services
-    : services.filter((s) => s.category === activeFilter);
+  // Filtered services
+  const visibleServices =
+    activeFilter === "all"
+      ? services
+      : services.filter((s) => s.category === activeFilter);
 
-// Split for left/right layout
-const middle = Math.ceil(visibleServices.length / 2);
-const leftServices = visibleServices.slice(0, middle);
-const rightServices = visibleServices.slice(middle);
+  // Split for left/right layout
+  const middle = Math.ceil(visibleServices.length / 2);
+  const leftServices = visibleServices.slice(0, middle);
+  const rightServices = visibleServices.slice(middle);
 
-// Safe active service (NEVER crashes)
-const activeService = visibleServices?.[activeIndex] ?? visibleServices?.[0];
+  // Safe active service (NEVER crashes)
+  const activeService = visibleServices?.[activeIndex] ?? visibleServices?.[0];
 
-// Other UI data
-const step = processSteps[activeStep];
+  // Other UI data
+  const step = processSteps[activeStep];
 
   return (
     <>
       {/* ───────── Hero — editorial split ───────── */}
       <section className="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <motion.div
-          className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]"
-          animate={{ scale: [1, 1.12, 1], opacity: [0.55, 0.85, 0.55] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-purple/[0.10] rounded-full blur-[140px]"
-          animate={{ scale: [1, 1.18, 1], opacity: [0.45, 0.75, 0.45] }}
-          transition={{
-            duration: 11,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5,
-          }}
-        />
+        <div
+          className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]" />
+        <div
+          className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-purple/[0.10] rounded-full blur-[140px]" />
         <div className="noise-overlay" />
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -703,16 +667,15 @@ const step = processSteps[activeStep];
                 className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
                 style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 4.75rem)" }}
               >
-                Senior engineering,{" "}
+                Built around how{" "}
                 <span className="gradient-text glow-text">
-                  across the stack.
+                  modern teams operate.
                 </span>
               </h1>
 
               <p className="mt-7 body-lead text-gray-400 max-w-xl">
-                From product strategy to launch and growth — design,
-                engineering, AI, and ops, delivered as one cohesive engagement.
-                Pick one capability, or weave several together.
+                Software, infrastructure, and growth systems engineered for speed, clarity, and scale. From AI-powered workflows to product engineering, every engagement adapts to your roadmap and delivery goals.
+
               </p>
 
               <div className="mt-9 flex flex-col sm:flex-row gap-3">
@@ -763,27 +726,18 @@ const step = processSteps[activeStep];
               </div>
 
               {/* Trust strip */}
-              <div className="surface-divider mt-10 lg:mt-12 pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-5">
+              {/* <div className="surface-divider mt-10 lg:mt-12 pt-6 border-t grid grid-cols-2 sm:grid-cols-4 gap-5">
                 {heroStats.map((s, i) => (
-                  <motion.div
-                    key={s.label}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 0.4,
-                      delay: 0.4 + i * 0.07,
-                    }}
-                  >
+                  <div>
                     <p className="text-2xl lg:text-3xl font-bold gradient-text tabular-nums tracking-tight">
                       {s.value}
                     </p>
                     <p className="mt-1 text-[10.5px] text-gray-400 tracking-[0.16em] uppercase font-semibold">
                       {s.label}
                     </p>
-                  </motion.div>
+                  </div>
                 ))}
-              </div>
+              </div> */}
             </AnimatedSection>
 
             {/* RIGHT — Service tile grid */}
@@ -794,15 +748,8 @@ const step = processSteps[activeStep];
             >
               <div className="relative">
                 {/* Soft accent backdrop */}
-                <motion.div
-                  className="absolute -inset-8 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20 rounded-[2rem] blur-3xl"
-                  animate={{ opacity: [0.55, 0.85, 0.55] }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                <div
+                  className="absolute -inset-8 bg-gradient-to-br from-neon-blue/20 via-transparent to-neon-purple/20 rounded-[2rem] blur-3xl" />
 
                 {/* Glass panel */}
                 <div className="surface-panel relative rounded-3xl border p-4 lg:p-5">
@@ -835,61 +782,142 @@ const step = processSteps[activeStep];
       </section>
 
       {/* ───────── Catalog (filterable) ───────── */}
-      <section
-        id="services-grid"
-        className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
-      >
-        {/* ───────── BACKGROUND GLOW ───────── */}
-        <div className="absolute inset-0 opacity-70">
-          <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
-          <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+     <section
+  id="services-grid"
+  className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
+>
+  {/* ───────── BACKGROUND GLOW ───────── */}
+  <div className="absolute inset-0 opacity-70">
+    <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
+    <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+  </div>
+
+  {/* noise overlay */}
+  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+
+  <div className="relative max-w-7xl mx-auto px-6">
+    {/* ───────── HEADER ───────── */}
+    <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
+      <div className="lg:col-span-7">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5 mb-5 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+          <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
+            Core Capabilities
+          </p>
         </div>
 
-        {/* noise overlay */}
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+        {/* <h2 className="text-4xl lg:text-5xl font-bold text-deep-blue leading-tight">
+          Find the capability that fits{" "}
+          <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
+            your problem
+          </span>
+        </h2> */}
+      </div>
 
-        <div className="relative max-w-7xl mx-auto px-6">
+      {/* <div className="lg:col-span-5">
+        <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed text-sm lg:text-base">
+          Explore services by intent. Each module includes real execution outputs,
+          delivery timelines, and technical depth.
+        </p>
+      </div> */}
+    </div>
 
-          {/* ───────── HEADER ───────── */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-14">
-            <AnimatedSection className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 backdrop-blur border border-black/5 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-                <p className="text-[10px] uppercase tracking-[0.25em] text-deep-blue/60">
-                  Services Overview
+    {/* ───────── MOBILE ───────── */}
+    <div className="xl:hidden space-y-4">
+      {services.map((service, i) => (
+        <div
+          key={service.slug}
+          className="bg-white rounded-2xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+        >
+          <button
+            onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
+            className="w-full flex items-center gap-4 p-5 text-left active:scale-[0.99] transition"
+          >
+            <div
+              className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm"
+              style={{
+                backgroundColor: `${service.accent}12`,
+                color: service.accent,
+              }}
+            >
+              {service.icon}
+            </div>
+
+            <div className="flex-1">
+              <h3 className="font-semibold text-deep-blue">{service.title}</h3>
+              <p className="text-xs text-deep-blue/50 mt-1">{service.tagline}</p>
+            </div>
+
+            <svg
+              className={`w-5 h-5 transition-transform ${
+                activeIndex === i ? "rotate-180" : ""
+              }`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <AnimatePresence>
+            {activeIndex === i && (
+              <div className="px-5 pb-5 border-t border-black/5">
+                <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
+                  {service.description}
                 </p>
+
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {service.capabilities.map((cap) => (
+                    <span
+                      key={cap}
+                      className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
+                    >
+                      {cap}
+                    </span>
+                  ))}
+                </div>
+
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
+                >
+                  Learn More →
+                </Link>
               </div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
 
-              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight text-deep-blue leading-[1.1]">
-                Find the capability that fits{" "}
-                <span className="bg-gradient-to-r from-neon-purple to-neon-blue bg-clip-text text-transparent">
-                  your problem
-                </span>
-              </h2>
-            </AnimatedSection>
+    {/* ───────── DESKTOP ───────── */}
+    <div className="hidden xl:block">
+      <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
+        
+        {/* LEFT */}
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
+            Build · Design
+          </p>
 
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed">
-                Filter by intent. Each service opens a live preview with deliverables,
-                timelines, stack details, and real execution outcomes.
-              </p>
-            </AnimatedSection>
-          </div>
+          <div className="space-y-3">
+            {leftServices.map((service, i) => {
+              const isActive = activeIndex === i;
 
-          {/* ───────── MOBILE ───────── */}
-          <div className="xl:hidden space-y-4">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.slug}
-                layout
-                className="bg-white rounded-2xl border border-black/5 overflow-hidden shadow-sm"
-              >
+              return (
                 <button
-                  onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
-                  className="w-full flex items-center gap-4 p-5 text-left"
+                  key={service.slug}
+                  onClick={() => setActiveIndex(i)}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                      ? "bg-white shadow-lg border-black/5"
+                      : "border-transparent hover:bg-white/60 hover:border-black/5"
+                    }`}
                 >
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
                     style={{
                       backgroundColor: `${service.accent}15`,
                       color: service.accent,
@@ -898,197 +926,80 @@ const step = processSteps[activeStep];
                     {service.icon}
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-deep-blue">
+                  <div className="flex-1 text-left">
+                    <h3 className="text-sm font-semibold text-deep-blue">
                       {service.title}
                     </h3>
-                    <p className="text-xs text-deep-blue/50 mt-1">
+                    <p className="text-xs text-deep-blue/50 mt-0.5">
                       {service.tagline}
                     </p>
                   </div>
 
-                  <svg
-                    className={`w-5 h-5 transition-transform ${activeIndex === i ? "rotate-180" : ""
-                      }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
+                  <span className="text-xs text-deep-blue/25">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </button>
+              );
+            })}
+          </div>
+        </div>
 
-                <AnimatePresence>
-                  {activeIndex === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-5 border-t border-black/5">
-                        <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
-                          {service.description}
-                        </p>
-
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {service.capabilities.map((cap) => (
-                            <span
-                              key={cap}
-                              className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
-                            >
-                              {cap}
-                            </span>
-                          ))}
-                        </div>
-
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
-                        >
-                          Learn More →
-                        </Link>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+        {/* CENTER */}
+        <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20">
+          
+          {/* glow layers */}
+          <div className="absolute inset-0 opacity-40">
+            <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 blur-3xl rounded-full" />
+            <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/5 blur-3xl rounded-full" />
           </div>
 
-          {/* ───────── DESKTOP LAYOUT ───────── */}
-          {/* ───────── DESKTOP LAYOUT ───────── */}
-<div className="hidden xl:block">
-  <div className="grid grid-cols-[300px_1fr_300px] items-start gap-6">
-
-    {/* LEFT */}
-    <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
-        Build · Design
-      </p>
-
-      <div className="space-y-3">
-        {leftServices.map((service, i) => {
-          const isActive = activeIndex === i;
-
-          return (
-            <button
-              key={service.slug}
-              onClick={() => setActiveIndex(i)}
-              onMouseEnter={() => setActiveIndex(i)}
-              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
-              ${
-                isActive
-                  ? "bg-white shadow-xl shadow-black/5"
-                  : "hover:bg-white/50"
-              }`}
-            >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  backgroundColor: `${service.accent}15`,
-                  color: service.accent,
-                }}
-              >
-                {service.icon}
-              </div>
-
-              <div className="flex-1 text-left">
-                <h3 className="font-semibold text-deep-blue">
-                  {service.title}
-                </h3>
-
-                <p className="text-sm text-deep-blue/40">
-                  {service.tagline}
+          <div className="relative z-10 h-full flex flex-col">
+            
+            {/* top bar */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-white" />
+                <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
+                  Active Service
                 </p>
               </div>
 
-              <span className="text-xs text-deep-blue/25">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-
-    {/* CENTER */}
-    <div className="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#0D6C74] via-[#08585E] to-[#063A3F] p-8 mt-10">
-
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-      </div>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={services[activeIndex].slug}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="relative z-10 h-full flex flex-col"
-        >
-
-          <div className="flex items-center justify-between mb-8">
-
-            <div className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-white" />
-
-              <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
-                Build
-              </p>
-            </div>
-
-            <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
-              {String(activeIndex + 1).padStart(2, "0")} /{" "}
-              {String(services.length).padStart(2, "0")}
-            </div>
-
-          </div>
-
-          <div className="flex-1 flex items-center justify-center py-4">
-
-            <div className="relative">
-
-              <div className="absolute -inset-6 border border-white/10 rounded-full" />
-
-              <div className="absolute -inset-12 border border-white/5 rounded-full" />
-
-              <div className="w-24 h-24 rounded-[24px] bg-white/15 border border-white/20 backdrop-blur-xl flex items-center justify-center">
-
-                <div className="text-white scale-[1.6]">
-                  {services[activeIndex].icon}
-                </div>
-
+              <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(services.length).padStart(2, "0")}
               </div>
-
             </div>
 
-          </div>
+            {/* icon */}
+            <div className="flex-1 flex items-center justify-center relative">
+              <div className="relative">
+                <div className="absolute -inset-10 rounded-full border border-white/10" />
+                <div className="absolute -inset-20 rounded-full border border-white/5" />
 
-          <div>
+                <div className="w-28 h-28 rounded-[28px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
+                  <div className="text-white scale-[1.6]">
+                    {services[activeIndex].icon}
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-3">
-              {services[activeIndex].tagline}
-            </p>
+            {/* bottom content */}
+            <div className="mt-8">
+              <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-2">
+                {services[activeIndex].tagline}
+              </p>
 
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-3">
-              {services[activeIndex].title}
-            </h3>
+              <h3 className="text-3xl font-bold text-white mb-3">
+                {services[activeIndex].title}
+              </h3>
 
-            <p className="text-sm text-white/75 max-w-xl leading-relaxed mb-6">
-              {services[activeIndex].description}
-            </p>
+              <p className="text-sm text-white/75 leading-relaxed mb-5 max-w-xl">
+                {services[activeIndex].description}
+              </p>
 
-            <div className="flex flex-wrap gap-2">
-              {services[activeIndex].capabilities
-                .slice(0, 5)
-                .map((cap) => (
+              <div className="flex flex-wrap gap-2">
+                {services[activeIndex].capabilities.slice(0, 5).map((cap) => (
                   <span
                     key={cap}
                     className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
@@ -1096,105 +1007,87 @@ const step = processSteps[activeStep];
                     {cap}
                   </span>
                 ))}
+              </div>
+
+              <Link
+                href={`/services/${services[activeIndex].slug}`}
+                className="group/btn mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02]"
+              >
+                Learn More
+                <span className="transition-transform group-hover/btn:translate-x-1">
+                  →
+                </span>
+              </Link>
             </div>
-
-            <Link
-              href={`/services/${services[activeIndex].slug}`}
-              className="group/btn mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#063A3F] shadow-lg shadow-black/10 transition-all hover:gap-3 hover:bg-white/90"
-            >
-              Learn More
-              <svg
-                className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M5 12h14M13 6l6 6-6 6"
-                />
-              </svg>
-            </Link>
-
           </div>
+        </div>
 
-        </motion.div>
-      </AnimatePresence>
+        {/* RIGHT */}
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+            Grow · Ops
+          </p>
 
-    </div>
+          <div className="space-y-3">
+            {rightServices.map((service, i) => {
+              const realIndex = i + leftServices.length;
+              const isActive = activeIndex === realIndex;
 
-    {/* RIGHT */}
-    <div>
-      <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
-        Grow · Ops
-      </p>
+              return (
+                <button
+                  key={service.slug}
+                  onClick={() => setActiveIndex(realIndex)}
+                  onMouseEnter={() => setActiveIndex(realIndex)}
+                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                      ? "bg-white shadow-lg border-black/5"
+                      : "border-transparent hover:bg-white/60 hover:border-black/5"
+                    }`}
+                >
+                  <div className="flex-1 text-right">
+                    <h3 className="text-sm font-semibold text-deep-blue">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-deep-blue/50 mt-0.5">
+                      {service.tagline}
+                    </p>
+                  </div>
 
-      <div className="space-y-3">
-        {rightServices.map((service, i) => {
-          const realIndex = i + leftServices.length;
-          const isActive = activeIndex === realIndex;
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{
+                      backgroundColor: `${service.accent}15`,
+                      color: service.accent,
+                    }}
+                  >
+                    {service.icon}
+                  </div>
 
-          return (
-            <button
-              key={service.slug}
-              onClick={() => setActiveIndex(realIndex)}
-              onMouseEnter={() => setActiveIndex(realIndex)}
-              className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all
-              ${
-                isActive
-                  ? "bg-white shadow-xl shadow-black/5"
-                  : "hover:bg-white/50"
-              }`}
-            >
-              <div className="flex-1 text-right">
-                <h3 className="font-semibold text-deep-blue">
-                  {service.title}
-                </h3>
+                  <span className="text-xs text-deep-blue/25">
+                    {String(realIndex + 1).padStart(2, "0")}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
-                <p className="text-sm text-deep-blue/40">
-                  {service.tagline}
-                </p>
-              </div>
-
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  backgroundColor: `${service.accent}15`,
-                  color: service.accent,
-                }}
-              >
-                {service.icon}
-              </div>
-
-              <span className="text-xs text-deep-blue/25">
-                {String(realIndex + 1).padStart(2, "0")}
-              </span>
-            </button>
-          );
-        })}
       </div>
     </div>
-
   </div>
-</div>
-        </div>
-      </section>
+</section>
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <motion.div
+        <div
           className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.08] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Header */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
@@ -1202,20 +1095,19 @@ const step = processSteps[activeStep];
                 </p>
               </div>
               <h2 className="h-section text-white">
-                From kickoff to launch in{" "}
-                <span className="gradient-text">four clear stages.</span>
+                A structured path from {" "}
+                <span className="gradient-text">strategy to production.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                Transparent timelines, weekly demos, fixed quotes after
-                discovery. No surprise invoices, no scope creep.
+                Every engagement follows a disciplined delivery framework built around alignment, visibility, and execution. Defined milestones, transparent governance, and measurable outcomes ensure confidence at every stage.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           {/* Stepper bar */}
-          <AnimatedSection delay={0.15}>
+          <div>
             <div className="surface-panel relative rounded-2xl border p-4 lg:p-5">
               {/* Connecting line */}
               <div className="surface-divider absolute inset-x-5 top-1/2 -translate-y-1/2 h-px border-t border-dashed pointer-events-none" />
@@ -1283,30 +1175,17 @@ const step = processSteps[activeStep];
                 })}
               </div>
             </div>
-          </AnimatedSection>
+          </div>
 
           {/* Detail panel — updates on hover */}
           <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
             <div className="lg:col-span-7">
               <AnimatePresence mode="wait">
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                >
+                <div  >
                   <div className="flex items-center gap-4">
-                    <motion.div
-                      whileHover={{ scale: 1.05, rotate: 3 }}
-                      className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
-                      style={{
-                        backgroundColor: step.accent,
-                        boxShadow: `0 14px 32px - 10px ${step.accent}90, inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
-                      }}
-                    >
+                    <div className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"  >
                       {step.icon}
-                    </motion.div>
+                    </div>
                     <div>
                       <p
                         className="text-[10px] uppercase tracking-[0.22em] font-semibold"
@@ -1322,18 +1201,13 @@ const step = processSteps[activeStep];
                   <p className="mt-5 text-gray-400 leading-relaxed max-w-xl">
                     {step.description}
                   </p>
-                </motion.div>
+                </div>
               </AnimatePresence>
             </div>
 
             <div className="lg:col-span-5">
               <AnimatePresence mode="wait">
-                <motion.div
-                  key={`${step.number} - deliverables`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                <div
                   className="surface-panel relative rounded-2xl border p-5 lg:p-6 overflow-hidden"
                 >
                   <div
@@ -1366,7 +1240,7 @@ const step = processSteps[activeStep];
                       ))}
                     </ul>
                   </div>
-                </motion.div>
+                </div>
               </AnimatePresence>
             </div>
           </div>
@@ -1380,7 +1254,7 @@ const step = processSteps[activeStep];
 
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-purple">
@@ -1391,21 +1265,19 @@ const step = processSteps[activeStep];
                 Outcomes, not{" "}
                 <span className="gradient-text-dark">case-study fluff.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-deep-blue/65 max-w-md lg:ml-auto">
                 A few engagements we shipped recently — what we built, and the
                 metric that mattered.
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {caseStudies.map((cs, i) => (
-              <AnimatedSection key={cs.client} delay={i * 0.08}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              <div key={cs.client}>
+                <div
                   className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_28px_56px_-18px_var(--card-glow)]"
                   style={
                     {
@@ -1474,8 +1346,8 @@ const step = processSteps[activeStep];
                       </span>
                     ))}
                   </div>
-                </motion.div>
-              </AnimatedSection>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -1484,15 +1356,14 @@ const step = processSteps[activeStep];
       {/* ───────── FAQ ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <motion.div
+        <div
           className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none"
-          animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+
         />
 
         <div className="relative max-w-5xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10">
-            <AnimatedSection className="lg:col-span-7">
+            <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
@@ -1503,8 +1374,8 @@ const step = processSteps[activeStep];
                 Questions,{" "}
                 <span className="gradient-text">answered.</span>
               </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
+            </div>
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 Quick answers to what most teams ask before kickoff. Don&apos;t
                 see your question?{" "}
@@ -1515,10 +1386,10 @@ const step = processSteps[activeStep];
                   Just ask.
                 </Link>
               </p>
-            </AnimatedSection>
+            </div>
           </div>
 
-          <AnimatedSection delay={0.15}>
+          <div>
             <div className="surface-panel rounded-2xl border overflow-hidden">
               {faqs.map((f, i) => (
                 <FaqRow
@@ -1531,7 +1402,7 @@ const step = processSteps[activeStep];
                 />
               ))}
             </div>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
 

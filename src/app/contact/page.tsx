@@ -328,7 +328,7 @@ export default function ContactPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
             {/* LEFT — Budget estimator */}
-            <AnimatedSection direction="left" className="lg:col-span-6 flex">
+            <div className="lg:col-span-6 flex">
               <div className="w-full rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-8 shadow-xl shadow-deep-blue/5">
                 <div className="flex items-start gap-3">
                   <div className="w-11 h-11 rounded-xl bg-neon-blue/10 text-neon-blue flex items-center justify-center shrink-0">
@@ -533,10 +533,10 @@ export default function ContactPage() {
                   </div>
                 </motion.div>
               </div>
-            </AnimatedSection>
+            </div>
 
             {/* RIGHT — Form + Contact info */}
-            <AnimatedSection direction="right" className="lg:col-span-6 flex flex-col gap-5">
+            <div className="lg:col-span-6 flex flex-col gap-5">
               <div className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 shadow-xl shadow-deep-blue/5 overflow-hidden">
                 {submitted ? (
                   <motion.div
@@ -769,7 +769,7 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-            </AnimatedSection>
+            </div>
           </div>
         </div>
       </section>
@@ -781,7 +781,7 @@ export default function ContactPage() {
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <p className="eyebrow text-neon-blue">What happens next</p>
             <h2 className="mt-3 h-section text-white">
               From message to{" "}
@@ -791,13 +791,13 @@ export default function ContactPage() {
               No black box. Here&apos;s exactly what to expect after you hit
               send.
             </p>
-          </AnimatedSection>
+          </div>
 
           <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div className="hidden lg:block absolute top-7 left-[16.5%] right-[16.5%] h-px border-t border-dashed border-white/15" />
 
             {nextSteps.map((step, i) => (
-              <AnimatedSection key={step.number} delay={i * 0.1}>
+              <div key={step.number}>
                 <div
                   className="group relative h-full p-6 lg:p-7 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 overflow-hidden"
                   style={
@@ -838,12 +838,12 @@ export default function ContactPage() {
                     {step.description}
                   </p>
                 </div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
 
           {/* Bottom hint */}
-          <AnimatedSection delay={0.4} className="mt-12 text-center">
+          <div className="mt-12 text-center">
             <p className="text-sm text-gray-500">
               Prefer to skip the form?{" "}
               <a
@@ -854,7 +854,7 @@ export default function ContactPage() {
               </a>{" "}
               — same response time.
             </p>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
     </>

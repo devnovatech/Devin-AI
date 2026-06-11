@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -14,205 +14,207 @@ const LIGHT = "var(--section-light)";
 interface IndustryData {
   title: string;
   heroDescription: string;
+  challengesHeading: string;
+  challengesDescription: string;
   challenges: string[];
   solutionsHeading: string;
+  solutionDescription: string;
   solutions: string[];
   ctaHeading: string;
+  ctaDescription: string;
   ctaButton: string;
 }
 
 const industriesData: Record<string, IndustryData> = {
   healthcare: {
-    title: "Healthcare & HealthTech",
+    title: "Healthcare Without Limits",
     heroDescription:
-      "Behind the scenes, healthcare teams face hurdles that slow innovation and care.",
+      "Transforming patient experiences, clinical operations, and care delivery through intelligent digital solutions.",
+    challengesHeading: "The Friction Behind Modern Healthcare Systems",
+    challengesDescription: "Healthcare organizations are expected to deliver seamless patient experiences, maintain regulatory compliance, and improve operational efficiency, yet many continue to rely on fragmented technology ecosystems that limit performance and growth.",
     challenges: [
-      "Poor Mobile User Experience: Unintuitive interfaces, slow performance, and lack of offline functionality lead to patient disengagement in telemedicine and wellness apps.",
-      "Compliance and Security Risks: Strict regulations (e.g., HIPAA, GDPR) and vulnerabilities in apps or platforms risk data breaches and penalties.",
-      "Slow Time-to-Market: Complex requirements delay the launch of critical patient care or provider solutions.",
-      "Lack of Actionable Data Insights: Inability to extract meaningful insights from patient data hinders personalized care and efficiency.",
-      "Fragmented User Experience: Inconsistent experiences across mobile apps and web platforms frustrate users, reducing adoption.",
-      "Limited Patient Access to Information: Patients struggle to access real-time health information or guidance, leading to frustration and reduced engagement.",
-      "High Development Costs: Building separate iOS and Android apps is resource-intensive, straining budgets.",
+      "Poor Digital Experience: Slow, unintuitive apps and portals reduce engagement across patients and providers, especially in telemedicine and wellness platforms.",
+      "Compliance and Security Risks: Strict regulations like HIPAA and GDPR demand strong architecture. Weak systems increase exposure to breaches, penalties, and trust loss.",
+      "Slow Delivery Cycles: Complex requirements, legacy systems, and fragmented teams delay critical healthcare product launches.",
+      "Limited Data Intelligence: Disconnected systems make it difficult to extract actionable insights for better clinical and operational decisions.",
+      "Fragmented User Journeys: Inconsistent experiences across mobile, web, and internal tools reduce adoption and user satisfaction.",
+      "Poor Patient Access: Lack of real-time access to records and updates leads to delays, confusion, and weaker patient engagement.",
     ],
-    solutionsHeading:
-      "Accelerate Patient Care with Secure, Scalable Digital Platforms",
+    solutionsHeading: "Engineering Clarity Into Complex Healthcare Systems",
+    solutionDescription: "We don't treat these challenges as isolated problems. We solve them at the system level through architecture, engineering discipline, and healthcare-grade design principles.",
     solutions: [
-      "Mobile Application Development: Cross-platform apps (iOS, Android, Hybrid via Flutter, React Native, Ionic) with offline capabilities and native performance for seamless patient engagement.",
-      "UI/UX Design: Intuitive, patient-centered designs with clear navigation and engaging onboarding to boost retention.",
-      "Quality Assurance: Manual and automated testing (Selenium, Cypress) ensuring HIPAA-compliant, secure apps and platforms.",
-      "Web Development: Secure, scalable platforms using React, Angular, or Laravel with compliance-ready architecture.",
-      "Machine Learning & AI: Custom AI models for predictive diagnostics, patient insights, and operational optimization, with real-time data visualization dashboards.",
-      "Intelligent AI Assistants: Conversational AI integrated into mobile apps and web platforms to provide 24/7 patient support, answer queries, and offer personalized health guidance.",
-      "Cost-Effective Development: Hybrid frameworks and automated testing to reduce development costs by up to 30% compared to native builds.",
+      "Experience-Led System Design: We rebuild patient and provider journeys using performance-optimized mobile and web architectures, ensuring fast, intuitive, and accessible digital experiences across every touchpoint.",
+      "Compliance-First Engineering: Security and compliance are embedded into the foundation of every system through HIPAA-aligned workflows, GDPR-ready data structures, encrypted communication layers, and role-based access control.",
+      "Accelerated Delivery Architecture: We reduce time-to-market through modular development, reusable components, API-first design, and agile delivery pipelines that eliminate dependency bottlenecks.",
+      "Data Unification & Intelligence Layers: We integrate fragmented systems into centralized data ecosystems, enabling real-time analytics, predictive insights, and decision-support capabilities powered by AI and structured data pipelines.",
+      "Unified Omnichannel Healthcare Experience: We synchronize mobile, web, and backend systems into a single connected ecosystem, ensuring consistent user journeys across patients, providers, and administrators.",
+      "Real-Time Access Infrastructure: We design secure, scalable systems that enable instant access to patient records, updates, and care information through cloud-native architecture and interoperable APIs.",
     ],
-    ctaHeading:
-      "Take control of your digital health operations and deliver better patient outcomes.",
-    ctaButton: "Optimize Your Patient Experience",
+    ctaHeading: "Turn Healthcare Friction Into Connected, Scalable Care",
+    ctaDescription: "Healthcare is often slowed by fragmented systems, legacy infrastructure, and disconnected tools that impact efficiency, compliance, and patient experience.\nWe build secure, scalable healthcare ecosystems that unify systems, streamline operations, and improve care delivery.",
+    ctaButton: "Ready to modernize your healthcare ecosystem?",
   },
   fintech: {
-    title: "FinTech",
-    heroDescription:
-      "Even the most advanced financial platforms run into hidden challenges every day.",
+    title: "Banking Built for the Digital Economy",
+    heroDescription: "Transforming customer experiences, financial operations, and digital banking ecosystems through secure, intelligent technology solutions.",
+    challengesHeading: "The Complexity Behind Modern Financial Services",
+    challengesDescription: "Financial institutions are under constant pressure to deliver seamless digital experiences, maintain regulatory compliance, strengthen security, and innovate faster. Yet many organizations remain constrained by legacy systems, fragmented infrastructure, and disconnected customer journeys.",
     challenges: [
-      "Data Security and Privacy Risks: Handling sensitive financial data (e.g., PII, PCI) makes FinTech platforms vulnerable to cyberattacks, with breaches costing an average of $4.24 million.",
-      "Regulatory Compliance Challenges: Evolving regulations (e.g., GDPR, AML, KYC) across jurisdictions create complexities, risking penalties for non-compliance in AI-driven systems.",
-      "Integration with Legacy Systems: Difficulty integrating AI assistants and modern platforms with outdated banking systems disrupts workflows and limits functionality.",
-      "Poor User Experience and Adoption: Clunky or overly complex interfaces in AI assistants and apps lead to low customer adoption due to unintuitive designs.",
-      "Scalability Limitations: Platforms and AI assistants struggle to handle growing transaction volumes or diverse use cases, impacting performance.",
-      "Fraud Detection and Prevention: Rising AI-driven fraud (e.g., deepfake scams, synthetic identities) results in billions in losses, challenging trust and security.",
-      "Fragmented Data Ecosystems: Limited interoperability between banking, telecom, and credit bureau systems hinders accurate analytics and risk modeling.",
-      "High Development Costs and Time: Building secure, compliant AI assistants and apps for iOS and Android is resource-intensive, delaying launches.",
+      "Legacy Banking Infrastructure: Outdated core systems create operational inefficiencies, limit innovation, and increase the cost of maintaining critical financial services.",
+      "Regulatory and Compliance Pressure: Financial organizations must continuously adapt to evolving regulations such as PCI DSS, AML, KYC, GDPR, PSD2, and regional banking requirements.",
+      "Security and Fraud Risks: Increasing cyber threats, fraud attempts, and data breaches require advanced security architecture and continuous monitoring.",
+      "Slow Product Innovation: Complex approval processes, disconnected systems, and technical debt delay the launch of new financial products and services.",
+      "Fragmented Customer Experiences: Customers expect seamless experiences across mobile, web, branch, and digital channels, yet many institutions still operate in silos.",
+      "Limited Financial Intelligence: Data trapped across systems prevents organizations from generating actionable insights for risk management, forecasting, and customer growth.",
     ],
-    solutionsHeading:
-      "Future-Ready Financial Systems Built for Compliance and Growth",
+    solutionsHeading: "Engineering Confidence Into Financial Ecosystems",
+    solutionDescription: "We don't treat financial technology challenges as isolated issues. We solve them through scalable architecture, security-first engineering, and enterprise-grade operational design.",
     solutions: [
-      "Data Security: Build secure cross-platform mobile apps (Flutter, React Native) and web platforms (React, Laravel) with end-to-end encryption, biometric authentication, and automated testing to ensure GDPR and PCI compliance.",
-      "Regulatory Compliance: Develop AI assistants with real-time KYC and AML monitoring, supported by automated regulatory testing to ensure adherence across jurisdictions.",
-      "Legacy Integration: Design modular web and hybrid mobile apps with APIs for seamless integration with legacy banking systems, enabling real-time transaction support.",
-      "User Experience: Craft AI assistants with intuitive, NLP-driven interfaces and user-friendly mobile apps featuring personalized financial advice.",
-      "Scalability: Deploy cloud-native platforms (Next.js, Python) and AI models on scalable infrastructure to support 10x transaction growth without performance degradation.",
-      "Fraud Detection: Train AI assistants with behavioral analytics and anomaly detection for real-time fraud monitoring.",
-      "Data Unification: Build AI assistants to aggregate data from banking, telecom, and credit bureau systems, paired with web dashboards for unified visualization.",
-      "Cost-Effective Development: Use hybrid frameworks (Ionic, Flutter) and agile project management (Jira, Asana) to develop cost-effective AI assistant apps.",
+      "Digital-First Customer Experiences: We create high-performance banking and financial platforms that deliver intuitive experiences across mobile, web, and self-service channels.",
+      "Compliance-Driven Architecture: Security, governance, and regulatory alignment are embedded into every layer through PCI DSS-ready infrastructure, KYC workflows, AML controls, audit trails, and role-based access management.",
+      "Secure Transaction Infrastructure: We design resilient payment systems, transaction engines, and financial platforms that support reliability, scalability, and operational continuity.",
+      "Data Intelligence & Risk Management: We unify financial data across systems to enable advanced analytics, risk monitoring, fraud detection, and predictive decision-making.",
+      "Connected Omnichannel Banking: We synchronize customer journeys across digital and physical touchpoints, ensuring consistency throughout the entire financial lifecycle.",
+      "Cloud-Native Financial Platforms: We modernize legacy environments through cloud-native architecture, API ecosystems, and scalable infrastructure designed for long-term growth.",
     ],
-    ctaHeading:
-      "Secure, scalable, and compliant solutions designed for modern finance.",
-    ctaButton: "Transform Your Financial Systems",
+    ctaHeading: "Turn Financial Complexity Into Competitive Advantage",
+    ctaDescription: "Financial growth is often limited by legacy systems, compliance burdens, fragmented customer experiences, and operational inefficiencies.\nWe build secure, scalable financial ecosystems that modernize operations, strengthen compliance, and accelerate innovation.",
+    ctaButton: "Ready to modernize your financial ecosystem?",
   },
   "ecommerce-retail": {
-    title: "Ecommerce & Retail",
-    heroDescription:
-      "Retail operations often grapple with digital inefficiencies that quietly impact growth.",
+    title: "Commerce Without Friction",
+    heroDescription: "Transforming customer experiences, retail operations, and digital commerce ecosystems through intelligent technology solutions designed for growth.",
+    challengesHeading: "The Challenges Behind Modern Commerce",
+    challengesDescription: "Retail and ecommerce organizations are expected to deliver seamless customer experiences, optimize operations, and scale across multiple channels. Yet many continue to struggle with fragmented systems, disconnected data, and increasingly demanding customer expectations.",
     challenges: [
-      "Poor Website and Mobile App Performance: Slow load times and unresponsive designs lead to high bounce rates, with 53% of mobile users abandoning sites taking over 3 seconds to load.",
-      "Inadequate Mobile Optimization: Non-mobile-friendly platforms result in poor user experiences, with 61% of users unlikely to return to a non-optimized site.",
-      "Security Vulnerabilities: Ecommerce platforms handling sensitive customer data are prone to cyberattacks, with retail data breaches costing millions.",
-      "Low Search Engine Visibility: Weak SEO strategies, including poor keyword targeting and site structure, lead to low organic traffic.",
-      "High Cart Abandonment Rates: Clunky checkout processes and unintuitive UX cause high abandonment, with global rates averaging 70%.",
-      "Inefficient Inventory and Order Management: Disconnected IT systems result in inventory mismatches or delayed order processing.",
-      "Lack of Personalized Customer Experiences: Generic marketing and lack of AI-driven personalization fail to engage customers effectively.",
-      "Fragmented Marketing Data: Siloed data across platforms hinders effective campaign targeting, reducing ROI on marketing spend.",
+      "Poor Customer Experience: Slow websites, complicated checkout flows, and inconsistent digital experiences reduce engagement, conversions, and customer loyalty.",
+      "Disconnected Commerce Systems: Inventory, sales, fulfillment, marketing, and customer data often operate in separate systems, creating inefficiencies and limiting visibility.",
+      "Cart Abandonment & Conversion Loss: Friction throughout the purchasing journey leads to lost revenue and lower customer acquisition returns.",
+      "Limited Customer Intelligence: Fragmented data makes it difficult to understand customer behavior, personalize experiences, and optimize marketing performance.",
+      "Omnichannel Complexity: Maintaining consistency across online stores, mobile applications, marketplaces, and physical retail environments remains a significant challenge.",
+      "Scalability Constraints: Legacy platforms and outdated infrastructure struggle to support growing traffic, expanding product catalogs, and seasonal demand spikes.",
     ],
-    solutionsHeading:
-      "Build Seamless Shopping Experiences That Convert and Scale",
+    solutionsHeading: "Engineering Growth Into Modern Commerce Ecosystems",
+    solutionDescription: "We don't solve ecommerce challenges in isolation. We build connected retail ecosystems that improve customer experiences, streamline operations, and support sustainable growth.",
     solutions: [
-      "Performance Optimization: Build lightning-fast, responsive ecommerce platforms with optimized Core Web Vitals and mobile-first architecture.",
-      "Mobile Commerce: Cross-platform mobile apps with native performance, push notifications, and seamless in-app checkout experiences.",
-      "Security & Compliance: PCI-DSS compliant platforms with SSL encryption, secure payment gateways, and regular security audits.",
-      "SEO & Visibility: Technical SEO, keyword strategy, and content optimization to drive organic traffic and improve search rankings.",
-      "Conversion Optimization: Streamlined checkout flows, A/B testing, personalized product recommendations, and abandoned cart recovery automation.",
-      "Inventory & Operations: Integrated inventory management systems, real-time order tracking, and ERP/CRM integrations.",
-      "AI-Powered Personalization: Machine learning models for dynamic pricing, product recommendations, and customer behavior analysis.",
-      "Unified Marketing Analytics: Consolidated marketing dashboards, campaign attribution modeling, and audience segmentation tools.",
+      "Experience-Led Commerce Design: We create fast, intuitive, and conversion-focused digital experiences that simplify customer journeys and increase engagement across every touchpoint.",
+      "Connected Commerce Infrastructure: We integrate ecommerce, inventory, fulfillment, CRM, ERP, and marketing systems into unified ecosystems that improve visibility and operational efficiency.",
+      "Conversion Optimization Architecture: We eliminate friction throughout the customer journey through performance optimization, streamlined checkout experiences, and data-driven user experience design.",
+      "Customer Intelligence & Personalization: We centralize customer data to enable advanced analytics, behavioral insights, personalization engines, and AI-driven recommendations.",
+      "Unified Omnichannel Experiences: We connect mobile, web, marketplaces, point-of-sale systems, and retail operations to deliver seamless customer experiences across every channel.",
+      "Scalable Retail Platforms: We design cloud-native commerce architectures capable of supporting growth, seasonal demand fluctuations, and expanding product ecosystems.",
     ],
-    ctaHeading:
-      "Transform your retail operations with digital solutions that drive revenue and loyalty.",
-    ctaButton: "Elevate Your Retail Experience",
+    ctaHeading: "Turn Retail Complexity Into Sustainable Growth",
+    ctaDescription: "Retail growth is often limited by disconnected systems, fragmented customer journeys, operational inefficiencies, and outdated commerce infrastructure.\nWe build scalable ecommerce ecosystems that unify operations, optimize customer experiences, and accelerate business growth across every channel.",
+    ctaButton: "Ready to modernize your commerce ecosystem?",
   },
   logistics: {
-    title: "Logistics & Transportation",
-    heroDescription:
-      "Logistics companies face mounting pressure to modernize operations while keeping costs in check.",
+    title: "Moving Supply Chains Forward",
+    heroDescription: "Transforming logistics operations, transportation networks, and supply chain performance through intelligent digital solutions designed for visibility, efficiency, and scale.",
+    challengesHeading: "The Challenges Behind Modern Logistics Operations",
+    challengesDescription: "Logistics and transportation organizations are expected to deliver faster shipments, maintain operational visibility, optimize costs, and meet rising customer expectations. Yet many continue to operate with disconnected systems, limited data transparency, and increasingly complex compliance requirements.",
     challenges: [
-      "Lack of Real-Time Visibility: Inability to track shipments, vehicles, or inventory in real-time leads to delays and poor customer communication.",
-      "Manual and Paper-Based Processes: Reliance on spreadsheets and manual data entry causes errors, inefficiencies, and slow decision-making.",
-      "Route Optimization Gaps: Without intelligent routing, companies face increased fuel costs, delayed deliveries, and underutilized fleets.",
-      "Disconnected Systems: Siloed software for warehousing, transport, and customer management leads to data fragmentation and operational blind spots.",
-      "Driver and Workforce Management: Scheduling, compliance tracking, and communication challenges reduce workforce productivity.",
-      "Rising Customer Expectations: Customers demand same-day delivery, real-time updates, and seamless returns, raising the bar for service levels.",
+      "Limited Operational Visibility: Disconnected systems make it difficult to track shipments, fleet performance, inventory movement, and delivery operations in real time.",
+      "Inefficient Route & Fleet Management: Manual planning and outdated systems increase fuel costs, delivery delays, and resource inefficiencies.",
+      "Fragmented Supply Chain Systems: Warehouse, transportation, inventory, and customer management systems often operate independently, creating operational silos.",
+      "Compliance & Security Challenges: Meeting requirements such as FMCSA regulations, ELD mandates, GDPR, ISO 27001, CTPAT, and supply chain security standards requires robust systems, auditability, and secure data management. Legacy platforms often struggle to maintain compliance at scale.",
+      "Delayed Decision-Making: Lack of centralized data prevents organizations from identifying bottlenecks, forecasting disruptions, and optimizing operations proactively.",
+      "Customer Experience Challenges: Limited shipment transparency and communication lead to poor customer satisfaction and reduced trust.",
     ],
-    solutionsHeading:
-      "Streamline Operations with Intelligent, Connected Logistics Platforms",
+    solutionsHeading: "Engineering Visibility Into Complex Logistics Ecosystems",
+    solutionDescription: "We don't solve logistics challenges in isolation. We build connected operational ecosystems that improve visibility, automate processes, and enable smarter decision-making across the entire supply chain.",
     solutions: [
-      "Real-Time Tracking: GPS-enabled mobile apps and web dashboards for live shipment tracking, fleet monitoring, and delivery status updates.",
-      "Process Automation: Digital workflows replacing manual processes for order processing, document generation, and compliance reporting.",
-      "AI-Powered Route Optimization: Machine learning algorithms for dynamic route planning, fuel optimization, and delivery time prediction.",
-      "System Integration: Unified platforms connecting warehouse management, transportation management, and CRM systems via APIs.",
-      "Workforce Management Tools: Mobile apps for driver scheduling, compliance tracking, digital proof of delivery, and real-time communication.",
-      "Customer Experience: Self-service portals, automated notifications, and real-time tracking links to meet modern delivery expectations.",
+      "Real-Time Logistics Visibility: We design centralized platforms that provide live tracking, operational monitoring, and complete visibility across transportation and logistics networks.",
+      "Compliance-Driven Infrastructure: Security, governance, and regulatory readiness are embedded into every solution through ISO 27001-aligned security controls, GDPR-compliant data management, FMCSA-ready operational workflows, ELD integration capabilities, and comprehensive audit trails that support transportation and supply chain compliance requirements.",
+      "Connected Supply Chain Architecture: We integrate transportation, warehouse, inventory, ERP, and customer systems into unified ecosystems that eliminate silos and improve coordination.",
+      "Intelligent Fleet Optimization: We implement route optimization, fleet monitoring, predictive maintenance, and resource allocation systems that improve efficiency and reduce operational costs.",
+      "Data Intelligence & Predictive Operations: We unify operational data to enable forecasting, performance analytics, demand planning, and AI-powered operational insights.",
+      "Customer-Centric Logistics Experiences: We create digital experiences that provide real-time shipment updates, communication tools, and self-service capabilities for customers and partners.",
     ],
-    ctaHeading:
-      "Modernize your logistics operations with technology that moves as fast as your business.",
-    ctaButton: "Optimize Your Operations",
+    ctaHeading: "Turn Logistics Complexity Into Operational Advantage",
+    ctaDescription: "Supply chain performance is often limited by disconnected systems, fragmented data, inefficient processes, and limited operational visibility.\nWe build scalable logistics ecosystems that connect operations, optimize transportation networks, and enable smarter decision-making across the entire supply chain.",
+    ctaButton: "Ready to modernize your logistics ecosystem?",
   },
   education: {
-    title: "Education & EdTech",
-    heroDescription:
-      "Educational institutions and EdTech companies face evolving challenges in delivering effective, accessible learning.",
+    title: "Building the Future of Learning",
+    heroDescription: "Transforming educational experiences, institutional operations, and learner outcomes through intelligent digital solutions designed for accessibility, engagement, and long-term impact.",
+    challengesHeading: "The Barriers Holding Modern Education Back",
+    challengesDescription: "Educational institutions and EdTech organizations face growing pressure to deliver engaging digital experiences, improve learner outcomes, expand access, and operate efficiently. Yet many continue to rely on disconnected technologies, manual processes, and legacy systems that limit innovation and educational effectiveness.",
     challenges: [
-      "Low Student Engagement: Traditional learning formats fail to capture attention, leading to poor retention and completion rates.",
-      "Accessibility Barriers: Platforms that aren't designed for diverse learners, devices, or connectivity levels exclude potential users.",
-      "Fragmented Learning Experiences: Disconnected tools for content delivery, assessments, and communication create friction for students and educators.",
-      "Limited Analytics: Inability to track student progress, identify at-risk learners, or measure curriculum effectiveness in real-time.",
-      "Scalability Challenges: Platforms that work for hundreds struggle to support thousands or millions of concurrent users.",
-      "Content Management Complexity: Creating, organizing, and updating educational content across multiple formats and languages is time-consuming.",
+      "Disconnected Learning Ecosystems: Students, educators, and administrators often work across multiple platforms that create fragmented experiences and operational inefficiencies.",
+      "Low Learner Engagement: Traditional digital learning environments frequently struggle to maintain participation, motivation, and long-term student engagement.",
+      "Administrative Complexity: Manual processes across admissions, enrollment, scheduling, communication, and reporting consume valuable institutional resources.",
+      "Student Data Privacy & Compliance Risks: Educational organizations must safeguard sensitive learner information while complying with FERPA, COPPA, GDPR, accessibility standards, and evolving privacy regulations.",
+      "Limited Visibility Into Performance: Scattered academic and operational data makes it difficult to identify learning gaps, track outcomes, and make informed decisions.",
+      "Scalability Challenges: As institutions expand programs, online learning initiatives, and student populations, legacy infrastructure often becomes a barrier to growth.",
     ],
-    solutionsHeading:
-      "Build Engaging, Accessible Learning Platforms That Scale",
+    solutionsHeading: "Engineering Connected Learning Ecosystems",
+    solutionDescription: "We don't view educational challenges as isolated technology problems. We build integrated digital ecosystems that connect learners, educators, and institutions while improving outcomes at every stage of the learning journey.",
     solutions: [
-      "Interactive Learning Platforms: Custom LMS development with gamification, progress tracking, video streaming, and interactive assessments.",
-      "Accessible Design: WCAG-compliant UI/UX design with responsive layouts, offline capabilities, and multi-language support.",
-      "Unified Learning Ecosystems: Integrated platforms connecting content management, student portals, assessments, and communication tools.",
-      "Learning Analytics: AI-powered dashboards tracking student performance, engagement metrics, and curriculum effectiveness with predictive insights.",
-      "Scalable Infrastructure: Cloud-native architectures supporting millions of concurrent users with reliable uptime and performance.",
-      "Content Management: Headless CMS solutions for easy content creation, organization, and delivery across web and mobile platforms.",
+      "Student-Centered Digital Experiences: We design intuitive mobile and web experiences that make learning more engaging, accessible, and effective across every educational touchpoint.",
+      "Privacy-First Education Platforms: Security and compliance are embedded into every solution through FERPA-aligned data governance, GDPR-ready privacy controls, COPPA-compliant workflows, role-based access management, and secure cloud infrastructure.",
+      "Unified Academic Operations: We integrate learning management systems, student information systems, communication tools, assessment platforms, and administrative workflows into a connected ecosystem.",
+      "Learning Intelligence & Analytics: We transform educational data into actionable insights that help institutions improve student performance, measure outcomes, and optimize operations.",
+      "Personalized Learning Experiences: Using AI and intelligent automation, we enable adaptive learning pathways, personalized content delivery, and proactive student support.",
+      "Scalable Digital Education Infrastructure: We build cloud-native platforms capable of supporting hybrid learning models, growing student populations, and evolving institutional needs.",
     ],
-    ctaHeading:
-      "Transform education with platforms that make learning accessible, engaging, and measurable.",
-    ctaButton: "Build Your EdTech Solution",
+    ctaHeading: "Turn Educational Challenges Into Measurable Outcomes",
+    ctaDescription: "Education is often constrained by disconnected systems, administrative inefficiencies, fragmented learning experiences, and limited visibility into student success.\nWe build secure, scalable education ecosystems that connect people, processes, and technology to improve engagement, streamline operations, and deliver stronger learning outcomes.",
+    ctaButton: "Ready to transform your learning ecosystem?",
   },
   "travel-hospitality": {
-    title: "Travel & Hospitality",
-    heroDescription:
-      "The travel industry faces unique digital challenges that directly impact guest satisfaction and revenue.",
+    title: "Experiences That Move People",
+    heroDescription: "Transforming guest experiences, travel operations, and hospitality ecosystems through intelligent digital solutions designed for personalization, efficiency, and growth.",
+    challengesHeading: "The Challenges Behind Modern Travel & Hospitality",
+    challengesDescription: "Travel and hospitality organizations are expected to deliver seamless guest experiences, manage complex operations, and adapt to rapidly evolving customer expectations. Yet many continue to operate with fragmented systems, disconnected customer data, and outdated digital experiences that limit growth and loyalty.",
     challenges: [
-      "Complex Booking Processes: Multi-step reservation flows with poor UX lead to high abandonment rates and lost revenue.",
-      "Fragmented Operations: Disconnected systems for reservations, housekeeping, guest services, and billing create operational inefficiencies.",
-      "Limited Personalization: Generic experiences fail to leverage guest preferences, travel history, and behavior for tailored offerings.",
-      "Seasonal Demand Fluctuations: Platforms that can't scale dynamically lead to poor performance during peak seasons.",
-      "Review and Reputation Management: Difficulty monitoring and responding to reviews across multiple platforms impacts brand perception.",
-      "Mobile Experience Gaps: Travelers expect seamless mobile booking, check-in, and concierge services that many providers lack.",
+      "Fragmented Guest Journeys: Travelers interact across websites, mobile apps, booking engines, loyalty programs, and on-property experiences, yet these touchpoints often remain disconnected.",
+      "Rising Customer Expectations: Modern travelers expect personalized recommendations, real-time updates, self-service capabilities, and frictionless experiences at every stage of their journey.",
+      "Booking & Conversion Challenges: Slow platforms, complicated booking processes, and poor user experiences result in abandoned reservations and lost revenue opportunities.",
+      "Operational Inefficiencies: Manual processes across reservations, guest services, property management, and customer support reduce productivity and service quality.",
+      "Data Silos & Limited Personalization: Customer information is often scattered across multiple systems, making it difficult to deliver personalized experiences and build long-term loyalty.",
+      "Security & Compliance Requirements: Travel and hospitality organizations must protect customer data, payment information, and operational systems while meeting GDPR, PCI DSS, data privacy regulations, and security standards.",
     ],
-    solutionsHeading:
-      "Create Seamless Guest Experiences from Booking to Checkout",
+    solutionsHeading: "Engineering Exceptional Travel Experiences",
+    solutionDescription: "We don't treat hospitality and travel challenges as isolated issues. We build connected digital ecosystems that improve guest experiences, streamline operations, and create sustainable business growth.",
     solutions: [
-      "Streamlined Booking: Intuitive, mobile-optimized booking engines with real-time availability, dynamic pricing, and one-click reservations.",
-      "Integrated Operations: Unified platforms connecting reservation systems, property management, guest services, and analytics.",
-      "AI-Personalization: Machine learning models for personalized recommendations, dynamic pricing, and targeted marketing based on guest behavior.",
-      "Scalable Architecture: Cloud-native platforms that auto-scale during peak travel seasons while maintaining fast performance.",
-      "Reputation Management: Automated review monitoring, sentiment analysis, and response management across all major platforms.",
-      "Mobile-First Experiences: Cross-platform mobile apps with digital check-in, room service ordering, local guides, and concierge chat.",
+      "Guest-Centric Experience Design: We create intuitive mobile and web experiences that simplify planning, booking, communication, and guest engagement across every touchpoint.",
+      "Compliance-Driven Digital Infrastructure: Security and compliance are embedded into every solution through PCI DSS-aligned payment systems, GDPR-ready privacy controls, secure authentication frameworks, role-based access management, and comprehensive data governance practices.",
+      "Connected Hospitality Ecosystems: We integrate booking platforms, property management systems, CRM solutions, loyalty programs, payment gateways, and operational tools into a unified environment.",
+      "Personalization & Customer Intelligence: We transform customer data into actionable insights that power personalized recommendations, targeted offers, loyalty initiatives, and improved guest experiences.",
+      "Omnichannel Travel Experiences: We connect digital and physical touchpoints to deliver consistent experiences across websites, mobile applications, customer support channels, and on-site interactions.",
+      "Scalable Travel Infrastructure: We build cloud-native platforms capable of supporting seasonal demand, expanding operations, global audiences, and future growth initiatives.",
     ],
-    ctaHeading:
-      "Delight your guests with technology that makes every journey seamless.",
-    ctaButton: "Transform Your Guest Experience",
+    ctaHeading: "Turn Travel Complexity Into Memorable Experiences",
+    ctaDescription: "Growth in travel and hospitality is often constrained by disconnected systems, fragmented guest journeys, operational inefficiencies, and limited customer visibility.\nWe build secure, scalable travel ecosystems that connect experiences, streamline operations, and create meaningful customer relationships that drive long-term growth.",
+    ctaButton: "Ready to elevate your travel and hospitality ecosystem?",
   },
   "saas-startups": {
-    title: "SaaS & Tech Startups",
-    heroDescription:
-      "Startups and SaaS companies operate in a high-speed environment where technical decisions have outsized impact.",
+    title: "Building Products Ready for Scale",
+    heroDescription: "Transforming ideas into scalable digital products through intelligent engineering, rapid execution, and growth-focused technology strategies.",
+    challengesHeading: "The Challenges Behind High-Growth Technology Companies",
+    challengesDescription: "SaaS companies and technology startups operate in highly competitive markets where speed, innovation, and scalability determine success. Yet many organizations struggle with technical debt, resource constraints, product complexity, and growing customer expectations that slow momentum and limit growth.",
     challenges: [
-      "Speed to Market Pressure: Intense competition requires rapid MVP development and iteration without sacrificing quality.",
-      "Scalability Concerns: Architecture decisions made early can become bottlenecks as user base grows from hundreds to millions.",
-      "Resource Constraints: Limited budgets and small teams mean every hire and technology choice must deliver maximum impact.",
-      "Technical Debt Accumulation: Moving fast often leads to shortcuts that compound into maintenance nightmares and slow feature delivery.",
-      "User Retention and Engagement: Acquiring users is expensive; poor onboarding and UX lead to high churn rates.",
-      "Investor and Stakeholder Expectations: Demonstrating product-market fit, growth metrics, and technical robustness is critical for fundraising.",
+      "Pressure to Ship Faster: Startups must continuously release new features and improvements while balancing product quality, stability, and user experience.",
+      "Scalability Challenges: Applications built for early-stage growth often struggle under increasing user demand, expanding datasets, and growing operational complexity.",
+      "Technical Debt Accumulation: Rapid development cycles frequently create architectural limitations that hinder future innovation and increase maintenance costs.",
+      "Resource & Talent Constraints: Building and retaining specialized engineering teams can be difficult while maintaining focus on core business growth.",
+      "Product Adoption & Retention Issues: Even strong products can struggle with onboarding, engagement, retention, and long-term customer success.",
+      "Security & Compliance Expectations: As businesses grow, customers increasingly expect enterprise-grade security, privacy controls, and compliance readiness without compromising agility.",
     ],
-    solutionsHeading:
-      "Build Scalable, Market-Ready Products That Attract Users and Investors",
+    solutionsHeading: "Engineering Products Built for Growth",
+    solutionDescription: "We don't simply build software. We help SaaS companies and startups establish the technical foundations required to scale products, teams, and operations with confidence.",
     solutions: [
-      "Rapid MVP Development: Full-stack development with modern frameworks, agile sprints, and continuous delivery to ship fast and iterate faster.",
-      "Scalable Architecture: Cloud-native infrastructure design with microservices, auto-scaling, and database optimization for growth.",
-      "Staff Augmentation: On-demand access to senior developers, designers, and QA engineers who integrate seamlessly into your team.",
-      "Product Design: User research-driven UI/UX design with rapid prototyping, usability testing, and conversion-optimized interfaces.",
-      "Quality at Speed: Automated testing pipelines, CI/CD integration, and code review processes that maintain quality without slowing delivery.",
-      "Growth Engineering: Analytics integration, A/B testing infrastructure, and performance monitoring to drive data-informed product decisions.",
+      "Product-Led Experience Design: We create intuitive user experiences that improve onboarding, engagement, retention, and overall customer satisfaction.",
+      "Scalable Cloud-Native Architecture: We design flexible, high-performance platforms that support growth, evolving business requirements, and increasing user demand.",
+      "Security & Compliance by Design: Security is embedded throughout the development lifecycle through secure architecture, role-based access controls, data protection frameworks, audit capabilities, and readiness for standards such as SOC 2, GDPR, ISO 27001, and enterprise customer requirements.",
+      "Accelerated Product Delivery: We leverage agile methodologies, automation, CI/CD pipelines, and modern engineering practices to shorten development cycles and accelerate time-to-market.",
+      "Data Intelligence & Product Insights: We build analytics ecosystems that provide visibility into user behavior, product performance, customer health, and growth opportunities.",
+      "Future-Ready Technology Foundations: We create modular, API-first systems that enable seamless integrations, continuous innovation, and long-term scalability.",
     ],
-    ctaHeading:
-      "Accelerate your startup with the technical expertise and execution speed you need.",
-    ctaButton: "Scale Your Startup",
+    ctaHeading: "Turn Product Ambition Into Sustainable Growth",
+    ctaDescription: "Many startups and SaaS businesses are limited not by vision, but by technology foundations that cannot keep pace with growth, customer expectations, and market demands.\nWe build secure, scalable product ecosystems that accelerate innovation, strengthen operational efficiency, and support long-term business growth.",
+    ctaButton: "Ready to scale your product with confidence?",
   },
 };
 
@@ -342,39 +344,903 @@ const relatedIndustryMap: Record<string, string[]> = {
   "saas-startups": ["fintech", "ecommerce-retail", "education"],
 };
 
-/* Recent work — illustrative case studies per industry */
-const recentWorkByIndustry: Record<string, Array<{ client: string; summary: string; metric: string; metricLabel: string }>> = {
-  healthcare: [
-    { client: "HealthBridge", summary: "HIPAA-compliant telemedicine platform with EHR integration.", metric: "14", metricLabel: "hospitals onboarded in Q1" },
-    { client: "MediTrack", summary: "Patient adherence app with AI-powered medication reminders.", metric: "+62%", metricLabel: "adherence rate" },
-  ],
-  fintech: [
-    { client: "FinFlow Technologies", summary: "Real-time analytics platform powering financial decisions for SMBs.", metric: "50k+", metricLabel: "monthly active users" },
-    { client: "PayWise", summary: "PCI-DSS-compliant payment gateway with fraud detection.", metric: "$2.1M", metricLabel: "transactions / day" },
-  ],
-  "ecommerce-retail": [
-    { client: "ShopSphere", summary: "Mobile commerce app with personalized recommendations.", metric: "4.8★", metricLabel: "App Store rating" },
-    { client: "RetailNow", summary: "Headless storefront with optimized checkout flow.", metric: "+24%", metricLabel: "conversion lift" },
-  ],
-  logistics: [
-    { client: "RouteOptima", summary: "Real-time fleet tracking with AI route optimization.", metric: "−18%", metricLabel: "fuel costs" },
-    { client: "FreightLine", summary: "Driver app with digital proof-of-delivery and compliance.", metric: "200+", metricLabel: "drivers onboarded" },
-  ],
-  education: [
-    { client: "EduTech Global", summary: "LMS with gamification and AI-assisted tutoring.", metric: "12 schools", metricLabel: "deployed across" },
-    { client: "LearnPath", summary: "Accessible (WCAG-AA) corporate training platform.", metric: "50k+", metricLabel: "learners served" },
-  ],
-  "travel-hospitality": [
-    { client: "StaySwift", summary: "Hotel booking engine with dynamic pricing.", metric: "+31%", metricLabel: "direct booking lift" },
-    { client: "GuideAway", summary: "Mobile concierge app with offline support.", metric: "8 markets", metricLabel: "shipped to" },
-  ],
-  "saas-startups": [
-    { client: "FinFlow Technologies", summary: "Series B SaaS — platform rebuild for 10× scale.", metric: "+240%", metricLabel: "active user growth" },
-    { client: "LaunchKit", summary: "MVP for a developer-tools startup, kickoff to launch.", metric: "12 weeks", metricLabel: "to launch" },
-  ],
+interface EcareCapability {
+  title: string;
+  description: string;
+  icon: ReactNode;
+}
+
+interface ImpactMetric {
+  title: string;
+  metrics: {
+    value: string;
+    label: string;
+  }[];
+}
+
+interface EcareIndustryData {
+  heading: string;
+  subHeading: string;
+  capabilities: EcareCapability[];
+  impact: {
+    heading: string;
+    subheading: string;
+    metrics: ImpactMetric[];
+  };
+}
+
+const ecareCapabilitiesByIndustry: Record<string, EcareIndustryData> = {
+  healthcare: {
+    heading: "Powering Every Stage of the eCare Journey",
+    subHeading: "We build connected healthcare solutions that support providers, patients, and systems across the entire care lifecycle. From engagement to intelligence, every layer is designed for security, scale, and clinical impact.",
+    capabilities: [
+      {
+        title: "Mobile Applications",
+        description: "Patient engagement, telehealth, remote care",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Web Platforms",
+        description: "Patient portals, provider systems, healthcare ecosystems",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "AI & Machine Learning",
+        description: "Predictive insights, intelligent automation, decision support",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Quality Assurance",
+        description: "Reliable, secure, regulation-ready healthcare software",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Staff Augmentation",
+        description: "Specialized healthcare technology expertise",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Project Management",
+        description: "Complex healthcare initiatives delivered with confidence",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real outcomes from connected healthcare solutions",
+      metrics: [
+        {
+          title: "Patient Engagement Platform",
+          metrics: [
+            { value: "42%", label: "increase in patient adoption" },
+            { value: "35%", label: "reduction in missed appointments" }
+          ]
+        },
+        {
+          title: "Telehealth Transformation",
+          metrics: [
+            { value: "3x", label: "growth in virtual consultations" },
+            { value: "60%", label: "faster appointment scheduling" }
+          ]
+        },
+        {
+          title: "Clinical Operations Modernization",
+          metrics: [
+            { value: "48%", label: "reduction in administrative workload" },
+            { value: "30%", label: "improvement in operational efficiency" }
+          ]
+        },
+        {
+          title: "AI-Powered Care Automation",
+          metrics: [
+            { value: "55%", label: "fewer manual processes" },
+            { value: "25%", label: "faster response times" }
+          ]
+        }
+      ]
+    }
+  },
+  fintech: {
+    heading: "Powering Every Layer of Modern Financial Services",
+    subHeading: "We build secure financial ecosystems that support institutions, customers, and operations across the entire financial value chain.",
+    capabilities: [
+      {
+        title: "Mobile Banking Apps",
+        description: "Secure mobile payments, digital wallets, biometric authentication",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Trading & Investment Platforms",
+        description: "Real-time market data, portfolio management, execution engines",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Risk & Fraud Detection",
+        description: "AI-powered anomaly detection, real-time transaction monitoring",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Regulatory Compliance",
+        description: "KYC/AML workflows, audit trails, PCI-DSS ready infrastructure",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Core Banking Integration",
+        description: "Legacy system modernization, API-first banking architecture",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Wealth Management Solutions",
+        description: "Financial planning, robo-advisory, portfolio analytics",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real financial outcomes from intelligent solutions",
+      metrics: [
+        {
+          title: "Digital Banking Platform",
+          metrics: [
+            { value: "56%", label: "increase in mobile adoption" },
+            { value: "42%", label: "reduction in branch visits" }
+          ]
+        },
+        {
+          title: "Fraud Detection System",
+          metrics: [
+            { value: "73%", label: "fewer fraudulent transactions" },
+            { value: "89%", label: "faster alert response" }
+          ]
+        },
+        {
+          title: "Automated Onboarding",
+          metrics: [
+            { value: "64%", label: "reduction in KYC processing time" },
+            { value: "38%", label: "higher conversion rates" }
+          ]
+        },
+        {
+          title: "AI Credit Scoring",
+          metrics: [
+            { value: "31%", label: "improved risk prediction" },
+            { value: "2.5x", label: "faster loan approvals" }
+          ]
+        }
+      ]
+    }
+  },
+  "ecommerce-retail": {
+    heading: "Powering Every Stage of the Commerce Journey",
+    subHeading: "We build connected retail and ecommerce solutions that support brands, customers, and operations throughout the entire commerce lifecycle.",
+    capabilities: [
+      {
+        title: "Mobile Commerce Apps",
+        description: "Native iOS/Android shopping experiences with seamless checkout",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Headless Commerce Platforms",
+        description: "API-first storefronts, flexible content management, omnichannel delivery",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Personalization Engines",
+        description: "AI-powered recommendations, dynamic pricing, behavioral targeting",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Inventory & Fulfillment",
+        description: "Real-time stock management, warehouse optimization, last-mile tracking",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Loyalty & Retention",
+        description: "Points systems, rewards engines, customer lifecycle management",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Marketplace Platforms",
+        description: "Multi-vendor systems, commission engines, seller dashboards",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real commerce outcomes from connected retail solutions",
+      metrics: [
+        {
+          title: "Mobile Commerce App",
+          metrics: [
+            { value: "67%", label: "increase in mobile revenue" },
+            { value: "28%", label: "higher average order value" }
+          ]
+        },
+        {
+          title: "Personalization Engine",
+          metrics: [
+            { value: "43%", label: "lift in conversion rate" },
+            { value: "35%", label: "improvement in repeat purchases" }
+          ]
+        },
+        {
+          title: "Headless Commerce",
+          metrics: [
+            { value: "52%", label: "faster page load times" },
+            { value: "22%", label: "reduction in cart abandonment" }
+          ]
+        },
+        {
+          title: "Inventory Optimization",
+          metrics: [
+            { value: "31%", label: "reduction in stockouts" },
+            { value: "18%", label: "lower carrying costs" }
+          ]
+        }
+      ]
+    }
+  },
+  logistics: {
+    heading: "Powering Every Stage of the Logistics Journey",
+    subHeading: "We build connected logistics and transportation solutions that support operations, customers, and supply chain stakeholders across the entire movement lifecycle.",
+    capabilities: [
+      {
+        title: "Fleet Management Systems",
+        description: "Real-time tracking, route optimization, driver mobile apps",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Warehouse Management",
+        description: "Inventory tracking, picking optimization, automated workflows",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Predictive Analytics",
+        description: "Demand forecasting, route prediction, maintenance alerts",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Compliance & Safety",
+        description: "ELD integration, driver logs, safety monitoring, audit trails",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Supply Chain Visibility",
+        description: "End-to-end tracking, carrier integration, customer portals",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Last-Mile Delivery",
+        description: "Route optimization, delivery tracking, proof of delivery",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real supply chain outcomes from connected logistics",
+      metrics: [
+        {
+          title: "Route Optimization",
+          metrics: [
+            { value: "27%", label: "reduction in fuel costs" },
+            { value: "34%", label: "improvement in on-time delivery" }
+          ]
+        },
+        {
+          title: "Real-Time Tracking",
+          metrics: [
+            { value: "62%", label: "fewer customer support calls" },
+            { value: "45%", label: "higher customer satisfaction" }
+          ]
+        },
+        {
+          title: "Warehouse Automation",
+          metrics: [
+            { value: "41%", label: "faster order picking" },
+            { value: "28%", label: "reduction in labor costs" }
+          ]
+        },
+        {
+          title: "Predictive Maintenance",
+          metrics: [
+            { value: "33%", label: "fewer unexpected breakdowns" },
+            { value: "19%", label: "lower maintenance costs" }
+          ]
+        }
+      ]
+    }
+  },
+  education: {
+    heading: "Powering Every Stage of the Learning Journey",
+    subHeading: "We build connected education solutions that support institutions, educators, learners, and administrators across the complete education lifecycle—from recruitment and enrollment to engagement, achievement, and retention.",
+    capabilities: [
+      {
+        title: "Learning Management Systems",
+        description: "Course delivery, assessments, progress tracking, certifications",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Student Portals",
+        description: "Enrollment management, grade access, communication tools",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Adaptive Learning",
+        description: "AI-powered personalization, learning paths, skill gap analysis",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Assessment Platforms",
+        description: "Online exams, proctoring, automated grading, analytics",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Virtual Classrooms",
+        description: "Video conferencing, collaboration tools, breakout rooms",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Analytics & Reporting",
+        description: "Student performance tracking, retention insights, outcome measurement",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real learning outcomes from connected education solutions",
+      metrics: [
+        {
+          title: "LMS Platform",
+          metrics: [
+            { value: "47%", label: "higher course completion rates" },
+            { value: "38%", label: "improved student engagement" }
+          ]
+        },
+        {
+          title: "Adaptive Learning",
+          metrics: [
+            { value: "34%", label: "faster concept mastery" },
+            { value: "29%", label: "reduction in learning gaps" }
+          ]
+        },
+        {
+          title: "Virtual Classroom",
+          metrics: [
+            { value: "3x", label: "increase in student participation" },
+            { value: "56%", label: "fewer missed sessions" }
+          ]
+        },
+        {
+          title: "Analytics Dashboard",
+          metrics: [
+            { value: "41%", label: "earlier intervention capability" },
+            { value: "23%", label: "improved retention rates" }
+          ]
+        }
+      ]
+    }
+  },
+  "travel-hospitality": {
+    heading: "Powering Every Stage of the Guest Journey",
+    subHeading: "We build connected travel and hospitality solutions that support organizations, staff, and travelers across the complete customer lifecycle—from discovery and booking to engagement, loyalty, and retention.",
+    capabilities: [
+      {
+        title: "Booking Platforms",
+        description: "Real-time availability, dynamic pricing, payment integration",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Guest Mobile Apps",
+        description: "Digital check-in, room keys, concierge services, in-app messaging",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Revenue Management",
+        description: "Dynamic pricing, demand forecasting, inventory optimization",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Loyalty Engines",
+        description: "Points management, tier systems, personalized offers",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Property Management",
+        description: "PMS integration, housekeeping, maintenance, operations",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Trip Planning",
+        description: "Itinerary builders, recommendations, real-time updates",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real guest outcomes from connected hospitality solutions",
+      metrics: [
+        {
+          title: "Booking Platform",
+          metrics: [
+            { value: "51%", label: "increase in direct bookings" },
+            { value: "33%", label: "reduction in booking abandonment" }
+          ]
+        },
+        {
+          title: "Guest Mobile App",
+          metrics: [
+            { value: "4.8★", label: "average app rating" },
+            { value: "44%", label: "higher guest satisfaction scores" }
+          ]
+        },
+        {
+          title: "Revenue Management",
+          metrics: [
+            { value: "27%", label: "increase in RevPAR" },
+            { value: "19%", label: "higher occupancy rates" }
+          ]
+        },
+        {
+          title: "Loyalty Engine",
+          metrics: [
+            { value: "38%", label: "increase in repeat bookings" },
+            { value: "$2.1M", label: "incremental loyalty revenue" }
+          ]
+        }
+      ]
+    }
+  },
+  "saas-startups": {
+    heading: "Powering Every Stage of the Product Journey",
+    subHeading: "We build connected technology solutions that support founders, product teams, and growing organizations throughout the entire product lifecycle.",
+    capabilities: [
+      {
+        title: "MVP Development",
+        description: "Rapid prototyping, lean validation, accelerated time-to-market",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+        )
+      },
+      {
+        title: "Scalable Architecture",
+        description: "Cloud-native design, microservices, elastic infrastructure",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Analytics & Insights",
+        description: "Product analytics, user behavior, growth metrics dashboards",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+        )
+      },
+      {
+        title: "Security & Compliance",
+        description: "SOC 2 readiness, GDPR compliance, enterprise-grade security",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        )
+      },
+      {
+        title: "Product-Led Growth",
+        description: "Onboarding flows, freemium models, self-serve analytics",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        )
+      },
+      {
+        title: "Integrations Ecosystem",
+        description: "API-first design, third-party connections, workflow automation",
+        icon: (
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+          </svg>
+        )
+      }
+    ],
+    impact: {
+      heading: "Impact Beyond Technology",
+      subheading: "Real growth outcomes from connected SaaS solutions",
+      metrics: [
+        {
+          title: "MVP Launch",
+          metrics: [
+            { value: "12 weeks", label: "from concept to launch" },
+            { value: "35%", label: "lower development costs" }
+          ]
+        },
+        {
+          title: "Scalable Architecture",
+          metrics: [
+            { value: "10x", label: "user growth capacity" },
+            { value: "99.99%", label: "platform uptime" }
+          ]
+        },
+        {
+          title: "Product Analytics",
+          metrics: [
+            { value: "43%", label: "improvement in user retention" },
+            { value: "28%", label: "higher feature adoption" }
+          ]
+        },
+        {
+          title: "Enterprise Readiness",
+          metrics: [
+            { value: "8 weeks", label: "to SOC 2 compliance" },
+            { value: "25+", label: "enterprise customers onboarded" }
+          ]
+        }
+      ]
+    }
+  }
 };
 
-/* ───────── Component ───────── */
+// ChallengeSolutionSection component defined outside IndustryPage
+interface ChallengeSolutionSectionProps {
+  pairedData: Array<{
+    challenge: { title: string; description: string };
+    solution: { title: string; description: string };
+  }>;
+  accent: string;
+}
+
+function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSectionProps) {
+  const [showAll, setShowAll] = useState(false);
+  const visibleCount = 4;
+
+  return (
+    <section className="py-20 bg-light-accent relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        {/* Header */}
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-6 lg:mb-8">
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-rose-500/80">
+              Challenge → Solution
+            </p>
+
+            <h2 className="mt-2 h-section text-deep-blue">
+              From Problem to Progress
+            </h2>
+          </div>
+        </div>
+
+        {/* TABLE */}
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b-2 border-deep-blue/20">
+                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[45%]">
+                  The Challenge
+                </th>
+                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[10%]"></th>
+                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[45%]">
+                  Our Solution
+                </th>
+               </tr>
+            </thead>
+
+            <tbody>
+              {pairedData
+                .slice(0, showAll ? pairedData.length : visibleCount)
+                .map((item, idx) => (
+                  <tr
+                    key={idx}
+                    className={`border-b border-deep-blue/10 hover:bg-white/30 transition-all duration-300 ${
+                      idx % 2 === 0 ? "bg-white/10" : ""
+                    }`}
+                  >
+                    {/* Challenge */}
+                    <td className="py-5 px-6 align-top">
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                        </div>
+
+                        <div>
+                          <h3 className="font-bold text-deep-blue mb-1">
+                            {item.challenge.title}
+                          </h3>
+                          {item.challenge.description && (
+                            <p className="text-sm text-deep-blue/65 leading-relaxed">
+                              {item.challenge.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                     </td>
+
+                    {/* Arrow */}
+                    <td className="py-5 px-2 align-middle text-center">
+                      <svg className="w-6 h-6 text-deep-blue/40 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                     </td>
+
+                    {/* Solution */}
+                    <td className="py-5 px-6 align-top">
+                      <div className="flex gap-3">
+                        <div
+                          className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          style={{
+                            backgroundColor: `${accent}15`,
+                            border: `1px solid ${accent}30`,
+                          }}
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+
+                        <div>
+                          <h3 className="font-bold text-deep-blue mb-1">
+                            {item.solution.title}
+                          </h3>
+                          {item.solution.description && (
+                            <p className="text-sm text-deep-blue/65 leading-relaxed">
+                              {item.solution.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                     </td>
+                   </tr>
+                ))}
+            </tbody>
+           </table>
+        </div>
+
+        {/* SEE MORE BUTTON */}
+        {pairedData.length > visibleCount && (
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-5 py-2 text-sm font-semibold text-deep-blue border border-deep-blue/20 rounded-full hover:bg-white/30 transition"
+            >
+              {showAll ? "Show less" : "See more"}
+            </button>
+          </div>
+        )}
+
+        {/* MOBILE VIEW */}
+        <div className="block lg:hidden mt-8 space-y-6">
+          {pairedData
+            .slice(0, showAll ? pairedData.length : visibleCount)
+            .map((item, idx) => (
+              <div key={idx} className="bg-white/10 rounded-xl p-5 border border-deep-blue/10">
+                {/* Challenge */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-rose-100 flex items-center justify-center">
+                      <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <span className="text-xs font-semibold text-rose-500 uppercase tracking-wide">
+                      Challenge
+                    </span>
+                  </div>
+
+                  <h3 className="font-bold text-deep-blue">
+                    {item.challenge.title}
+                  </h3>
+
+                  {item.challenge.description && (
+                    <p className="text-sm text-deep-blue/65 mt-1">
+                      {item.challenge.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Arrow */}
+                <div className="flex justify-center my-3">
+                  <svg className="w-5 h-5 text-deep-blue/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
+
+                {/* Solution */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div
+                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      style={{
+                        backgroundColor: `${accent}15`,
+                        border: `1px solid ${accent}30`,
+                      }}
+                    >
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+
+                    <span
+                      className="text-xs font-semibold uppercase tracking-wide"
+                      style={{ color: accent }}
+                    >
+                      Our Solution
+                    </span>
+                  </div>
+
+                  <h3 className="font-bold text-deep-blue">
+                    {item.solution.title}
+                  </h3>
+
+                  {item.solution.description && (
+                    <p className="text-sm text-deep-blue/65 mt-1">
+                      {item.solution.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+/* ───────── Main Component ───────── */
 
 export default function IndustryPage() {
   const params = useParams();
@@ -382,7 +1248,6 @@ export default function IndustryPage() {
   const industry = industriesData[slug];
   const meta = industryMeta[slug];
   const related = (relatedIndustryMap[slug] ?? []).slice(0, 3);
-  const recentWork = recentWorkByIndustry[slug] ?? [];
 
   if (!industry) {
     return (
@@ -416,6 +1281,26 @@ export default function IndustryPage() {
   }
 
   const accent = meta?.accent ?? "#1E88E5";
+
+  // Parse challenges and solutions into structured arrays
+  const parsedChallenges = industry.challenges.map(challenge => {
+    const [title, ...descParts] = challenge.split(": ");
+    const description = descParts.join(": ");
+    return { title, description };
+  });
+
+  const parsedSolutions = industry.solutions.map(solution => {
+    const [title, ...descParts] = solution.split(": ");
+    const description = descParts.join(": ");
+    return { title, description };
+  });
+
+  // Create paired data for table (challenge and corresponding solution)
+  // Pair them by index - challenges and solutions should be in corresponding order
+  const pairedData = parsedChallenges.map((challenge, index) => ({
+    challenge: challenge,
+    solution: parsedSolutions[index] || { title: "", description: "" }
+  }));
 
   return (
     <>
@@ -610,276 +1495,129 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      {/* ───────── Challenges ───────── */}
-      <section className="py-20 bg-light-accent relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
+      {/* ───────── Challenges & Solutions Table ───────── */}
+      <ChallengeSolutionSection pairedData={pairedData} accent={accent} />
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <AnimatedSection className="lg:col-span-7">
-              <p className="eyebrow text-rose-500/80">Common challenges</p>
-              <h2 className="mt-3 h-section text-deep-blue">
-                What teams in this sector{" "}
-                <span className="gradient-text-dark">keep running into.</span>
-              </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                The friction we hear about most often. If any of these feel
-                familiar, you&apos;re definitely not alone.
-              </p>
-            </AnimatedSection>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {industry.challenges.map((challenge, i) => {
-              const [title, ...descParts] = challenge.split(": ");
-              const desc = descParts.join(": ");
-              return (
-                <AnimatedSection key={i} delay={i * 0.04}>
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.35 }}
-                    className="group relative h-full p-6 rounded-2xl bg-white border border-deep-blue/[0.07] hover:shadow-[0_20px_40px_-16px_rgba(244,63,94,0.25)] transition-all duration-500 overflow-hidden"
-                  >
-                    <div className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full bg-rose-400/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="relative flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-105">
-                        <svg className="w-5 h-5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="h-card text-deep-blue mb-1">{title}</h3>
-                        {desc && <p className="text-sm text-deep-blue/65 leading-relaxed">{desc}</p>}
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── Solutions ───────── */}
-      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
-        <div
-          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-          style={{ backgroundColor: `${accent}10` }}
-        />
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <AnimatedSection className="lg:col-span-7">
-              <p className="eyebrow" style={{ color: accent }}>
-                What we deliver
-              </p>
-              <h2 className="mt-3 h-section text-white">
-                {industry.solutionsHeading}
-              </h2>
-            </AnimatedSection>
-            <AnimatedSection className="lg:col-span-5" delay={0.1}>
-              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                Vetted patterns from past projects. We bring these to the
-                table — your job is to tell us what matters most.
-              </p>
-            </AnimatedSection>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {industry.solutions.map((solution, i) => {
-              const [title, ...descParts] = solution.split(": ");
-              const desc = descParts.join(": ");
-              return (
-                <AnimatedSection key={i} delay={i * 0.04}>
-                  <motion.div
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                    className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] transition-all duration-500 overflow-hidden"
-                    style={
-                      {
-                        "--card-glow": `${accent}55`,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <div
-                      className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ backgroundColor: `${accent}22` }}
-                    />
-                    <div
-                      className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ borderColor: `${accent}33` }}
-                    />
-                    <div className="relative flex gap-4">
-                      <div
-                        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                        style={{
-                          backgroundColor: `${accent}15`,
-                          border: `1px solid ${accent}30`,
-                        }}
-                      >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h3 className="h-card text-white mb-1">{title}</h3>
-                        {desc && <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>}
-                      </div>
-                    </div>
-                  </motion.div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── Recent work in this industry (NEW) ───────── */}
-      {recentWork.length > 0 && (
-        <>
-          <section className="py-20 bg-light-accent relative overflow-hidden">
-            <div
-              className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-              style={{ backgroundColor: `${accent}0A` }}
-            />
-
-            <div className="relative max-w-7xl mx-auto px-6">
-              <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
-                <p className="eyebrow" style={{ color: accent }}>
-                  Recent work in {meta?.shortLabel ?? "this sector"}
-                </p>
-                <h2 className="mt-3 h-section text-deep-blue">
-                  Outcomes, not{" "}
-                  <span className="gradient-text-dark">case-study fluff.</span>
-                </h2>
-              </AnimatedSection>
-
-              <div className="grid md:grid-cols-2 gap-5">
-                {recentWork.map((cs, i) => (
-                  <AnimatedSection key={cs.client} delay={i * 0.08}>
-                    <motion.div
-                      whileHover={{ y: -6 }}
-                      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                      className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 flex flex-col transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
-                      style={
-                        {
-                          "--card-glow": `${accent}55`,
-                        } as React.CSSProperties
-                      }
-                    >
-                      <div
-                        className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
-                        style={{ backgroundColor: accent }}
-                      />
-
-                      <span
-                        className="self-start text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border"
-                        style={{
-                          color: accent,
-                          borderColor: `${accent}40`,
-                          backgroundColor: `${accent}0A`,
-                        }}
-                      >
-                        {meta?.shortLabel ?? "Industry"}
-                      </span>
-
-                      <h3 className="mt-5 text-xl font-bold text-deep-blue tracking-tight">
-                        {cs.client}
-                      </h3>
-                      <p className="mt-3 text-sm text-deep-blue/65 leading-relaxed flex-1">
-                        {cs.summary}
-                      </p>
-
-                      <div className="mt-6 pt-5 border-t border-deep-blue/[0.07] flex items-baseline gap-3">
-                        <span
-                          className="text-3xl font-bold tracking-tight tabular-nums"
-                          style={{ color: accent }}
-                        >
-                          {cs.metric}
-                        </span>
-                        <span className="text-deep-blue/55 text-xs">
-                          {cs.metricLabel}
-                        </span>
-                      </div>
-                    </motion.div>
-                  </AnimatedSection>
-                ))}
-              </div>
-            </div>
-          </section>
-        </>
-      )}
-
-      {/* ───────── Related industries (NEW) ───────── */}
-      {related.length > 0 && (
-        <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg" />
+      {/* ───────── Recent work in this industry ───────── */}
+      {ecareCapabilitiesByIndustry[slug] && (
+        <section className="py-20 bg-light-accent relative overflow-hidden">
+          <div
+            className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+            style={{ backgroundColor: `${accent}0A` }}
+          />
 
           <div className="relative max-w-7xl mx-auto px-6">
-            <AnimatedSection className="text-center max-w-2xl mx-auto mb-12">
-              <p className="eyebrow text-neon-blue">Related sectors</p>
-              <h2 className="mt-3 h-section text-white">
-                Adjacent industries{" "}
-                <span className="gradient-text">we work with.</span>
-              </h2>
-            </AnimatedSection>
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-14">
+              {/* Left column */}
+              <div className="lg:col-span-7">
+                <p className="eyebrow text-neon-purple" style={{ color: accent }}>
+                  Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
+                </p>
 
-            <div className="grid md:grid-cols-3 gap-5">
-              {related.map((relSlug, i) => {
-                const relMeta = industryMeta[relSlug];
-                const relInfo = allIndustryTitles[relSlug];
-                if (!relMeta || !relInfo) return null;
-                return (
-                  <AnimatedSection key={relSlug} delay={i * 0.08}>
-                    <Link
-                      href={`/industries/${relSlug}`}
-                      className="group relative block h-full rounded-2xl overflow-hidden bg-white/[0.03] border border-white/[0.08] hover:border-white/[0.18] hover:bg-white/[0.06] transition-all duration-500 p-6"
-                    >
-                      <div
-                        className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-[0.18] group-hover:opacity-[0.4] transition-opacity duration-500"
-                        style={{ backgroundColor: relMeta.accent }}
-                      />
+                <h2 className="mt-3 h-section text-deep-blue">
+                  {ecareCapabilitiesByIndustry[slug]?.heading}
+                </h2>
+              </div>
 
-                      <div className="relative">
-                        <div className="flex items-center justify-between mb-5">
-                          <div
-                            className="w-11 h-11 rounded-xl flex items-center justify-center text-white"
-                            style={{
-                              backgroundColor: relMeta.accent,
-                              boxShadow: `0 12px 28px -10px ${relMeta.accent}80`,
-                            }}
-                          >
-                            {relMeta.icon}
-                          </div>
-                          <span
-                            className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
-                            style={{
-                              color: relMeta.accent,
-                              backgroundColor: `${relMeta.accent}15`,
-                            }}
-                          >
-                            {relMeta.shortLabel}
-                          </span>
-                        </div>
-                        <h3 className="h-card text-white">{relInfo.title}</h3>
-                        <p className="mt-2 text-sm text-gray-400 leading-snug">
-                          {relInfo.tagline}
-                        </p>
+              {/* Right column */}
+              <div className="lg:col-span-5">
+                <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed">
+                  {ecareCapabilitiesByIndustry[slug]?.subHeading}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {ecareCapabilitiesByIndustry[slug]?.capabilities.map((capability, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.35 }}
+                  className="group relative h-full rounded-2xl bg-white border border-deep-blue/[0.07] overflow-hidden p-6 lg:p-7 transition-shadow duration-500 hover:shadow-[0_24px_48px_-16px_var(--card-glow)]"
+                  style={{ "--card-glow": `${accent}55` } as React.CSSProperties}
+                >
+                  <div
+                    className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full blur-3xl opacity-[0.18] group-hover:opacity-[0.32] transition-opacity duration-500"
+                    style={{ backgroundColor: accent }}
+                  />
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                    style={{
+                      backgroundColor: `${accent}15`,
+                      border: `1px solid ${accent}30`,
+                    }}
+                  >
+                    <div className="w-6 h-6" style={{ color: accent }}>
+                      {capability.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-deep-blue tracking-tight mb-2">
+                    {capability.title}
+                  </h3>
+                  <p className="text-sm text-deep-blue/65 leading-relaxed">
+                    {capability.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ───────── Impact Beyond Technology ───────── */}
+      {ecareCapabilitiesByIndustry[slug] && (
+        <section className="py-20 bg-section-dark relative overflow-hidden">
+          <div className="absolute inset-0 grid-bg" />
+          <div
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
+            style={{ backgroundColor: `${accent}08` }}
+          />
+          <div
+            className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
+            style={{ backgroundColor: `${accent}06` }}
+          />
+
+          <div className="relative max-w-7xl mx-auto px-6">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <p className="eyebrow" style={{ color: accent }}>
+                {ecareCapabilitiesByIndustry[slug].impact.heading}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+              {ecareCapabilitiesByIndustry[slug].impact.metrics.map((metricGroup, idx) => (
+                <div
+                  key={idx}
+                  className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.05] transition-all duration-500 overflow-hidden p-6 lg:p-7"
+                >
+                  <div
+                    className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                    style={{ backgroundColor: accent }}
+                  />
+
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-white mb-5 tracking-tight border-b border-white/[0.08] pb-3">
+                    {metricGroup.title}
+                  </h3>
+
+                  {/* Metrics grid */}
+                  <div className="grid grid-cols-2 gap-5">
+                    {metricGroup.metrics.map((metric, mIdx) => (
+                      <div key={mIdx} className="space-y-1">
                         <div
-                          className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between text-sm font-semibold"
-                          style={{ color: relMeta.accent }}
+                          className="text-2xl lg:text-3xl font-bold tracking-tight"
+                          style={{ color: accent }}
                         >
-                          <span>Explore sector</span>
-                          <span className="group-hover:translate-x-1 transition-transform">→</span>
+                          {metric.value}
+                        </div>
+                        <div className="text-xs text-gray-400 leading-relaxed">
+                          {metric.label}
                         </div>
                       </div>
-                    </Link>
-                  </AnimatedSection>
-                );
-              })}
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -889,7 +1627,7 @@ export default function IndustryPage() {
       <CTABanner
         eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
         heading={<>{industry.ctaHeading}</>}
-        description="We've shipped solutions for teams in this space — let's talk about yours."
+        description={industry.ctaDescription}
         primaryLabel={industry.ctaButton}
         primaryHref="/contact"
         secondaryLabel="See all industries"

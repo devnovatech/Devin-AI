@@ -130,46 +130,30 @@ export default function WorkingProcess() {
       className="min-h-screen flex flex-col justify-center py-14 lg:py-16 bg-section-process relative overflow-hidden"
     >
       {/* Animated background blooms */}
-      <motion.div
+      <div
         className="absolute top-1/4 -left-32 w-[420px] h-[420px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+
       />
-      <motion.div
+      <div
         className="absolute bottom-1/4 -right-32 w-[420px] h-[420px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"
-        animate={{ scale: [1, 1.18, 1], opacity: [0.3, 0.55, 0.3] }}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
       <div className="absolute inset-0 dotted-grid-light opacity-30 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header */}
         <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-start mb-8 lg:mb-10">
-          <AnimatedSection className="lg:col-span-7">
+          <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-blue">
                 How we work
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-white tracking-tight leading-[1.1]">
-              A clear process,{" "}
-              <span className="text-neon-blue">
-                from first idea to launch and beyond.
-              </span>
-            </h2>
-          </AnimatedSection>
-          <AnimatedSection className="lg:col-span-5" delay={0.1}>
-            <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-              Six simple stages. Hover any stage on the timeline to see what
-              happens and what you get at each step — with regular check-ins so
-              you always know where things stand.
-            </p>
-          </AnimatedSection>
+          </div>
         </div>
 
         {/* Gantt-style timeline */}
-        <AnimatedSection delay={0.2}>
+        <div>
           <div className="relative rounded-2xl bg-white/[0.02] border border-white/10 p-5 lg:p-7 backdrop-blur-sm">
             {/* Vertical gridlines */}
             <div className="absolute inset-x-5 lg:inset-x-7 inset-y-0 grid grid-cols-12 pointer-events-none">
@@ -234,23 +218,19 @@ export default function WorkingProcess() {
               })}
             </div>
           </div>
-        </AnimatedSection>
+        </div>
 
         {/* Detail panel — updates on hover */}
         <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
           {/* LEFT — stage description */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={active.number}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              <div
+
               >
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    whileHover={{ scale: 1.05, rotate: 3 }}
+                  <div
+
                     className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
                     style={{
                       backgroundColor: active.accent,
@@ -258,7 +238,7 @@ export default function WorkingProcess() {
                     }}
                   >
                     {active.icon}
-                  </motion.div>
+                  </div>
                   <div>
                     <p
                       className="text-[10px] uppercase tracking-[0.22em] font-semibold"
@@ -274,19 +254,14 @@ export default function WorkingProcess() {
                 <p className="mt-5 text-gray-400 leading-relaxed max-w-xl">
                   {active.description}
                 </p>
-              </motion.div>
+              </div>
             </AnimatePresence>
           </div>
 
           {/* RIGHT — "what happens here" card */}
           <div className="lg:col-span-5">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={`${active.number}-activities`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              <div
                 className="relative rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm p-5 lg:p-6 overflow-hidden"
                 style={{ "--accent": active.accent } as React.CSSProperties}
               >
@@ -302,11 +277,8 @@ export default function WorkingProcess() {
                   </p>
                   <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
                     {active.activities.map((a, i) => (
-                      <motion.li
+                      <div
                         key={a}
-                        initial={{ opacity: 0, x: -6 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
                         className="flex items-center gap-2 text-sm text-gray-300"
                       >
                         <span
@@ -314,11 +286,11 @@ export default function WorkingProcess() {
                           style={{ backgroundColor: active.accent }}
                         />
                         <span className="truncate">{a}</span>
-                      </motion.li>
+                      </div>
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </div>
             </AnimatePresence>
           </div>
         </div>

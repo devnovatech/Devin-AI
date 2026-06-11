@@ -279,7 +279,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-              We build software
+            Engineering Systems Behind
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
@@ -287,8 +287,9 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.32, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-              that{" "}
-              <span className="gradient-text glow-text">moves you forward.</span>
+               {" "}
+              <span className="gradient-text glow-text"> Modern Business Growth
+</span>
             </motion.span>
           </h1>
 
@@ -299,16 +300,11 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed"
           >
-            Devinception is a software development company. We build{" "}
-            <span className="text-white font-semibold">custom products</span>,
-            provide <span className="text-white font-semibold">skilled engineers</span> to
-            strengthen your team, and ship our own{" "}
-            <span className="text-white font-semibold">software products</span> — all
-            under one roof.
-          </motion.p>
+Our strength lies in transforming operations, accelerating delivery, and unlocking sustainable growth through scalable, intelligent technology that drives long-term business performance, empowering organizations to compete, scale, and lead with confidence in a dynamic digital world.
+  </motion.p>
 
           {/* Three-pillar chip row */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
@@ -327,7 +323,7 @@ export default function Hero() {
                 {p.label}
               </span>
             ))}
-          </motion.div>
+          </motion.div> */}
 
           {/* CTAs */}
           <motion.div
@@ -370,7 +366,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Inline trust strip */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.9 }}
@@ -402,7 +398,7 @@ export default function Hero() {
               <span className="text-white font-semibold">Clients</span>{" "}
               around the world
             </span>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* RIGHT — animated orbital system */}
