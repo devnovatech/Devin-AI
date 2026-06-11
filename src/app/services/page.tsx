@@ -345,30 +345,31 @@ const caseStudies = [
   },
 ];
 
+// Expanded FAQ data that will be shared between main page and separate page
 const faqs = [
   {
-    q: "How long does a typical project take?",
-    a: "Most engagements run 8–14 weeks from kickoff to launch. Discovery and design happen in the first 3–5 weeks, then build is 2-week sprints with weekly demos. We share a fixed timeline before you commit.",
+    q: "What types of projects does Dev Inception typically deliver?",
+    a: "We partner with organizations to design, build, optimize, and scale digital products, platforms, and operational systems. Our capabilities span software engineering, AI solutions, web platforms, ecommerce, UI/UX design, quality engineering, project management, and staff augmentation."
   },
   {
-    q: "What's your pricing model?",
-    a: "Either fixed-price (for well-scoped projects) or time-and-materials with weekly caps (for evolving scope). After discovery, we share a written quote with milestones — no surprise invoices, ever.",
+    q: "Do you work with startups, mid-sized businesses, or enterprises?",
+    a: "We support organizations at every stage of growth. Whether you're launching a new product, modernizing legacy systems, or scaling enterprise operations, our engagement model adapts to your business objectives, technical requirements, and delivery needs."
   },
   {
-    q: "Do you work with our existing team?",
-    a: "Yes — we routinely embed with internal teams. We can take ownership of an isolated workstream or augment a specific role (senior engineer, designer, PM). Your tools, your rituals — we adapt.",
+    q: "How do you ensure project transparency and accountability?",
+    a: "Every engagement follows a structured delivery framework with clearly defined milestones, documented requirements, regular stakeholder reviews, progress reporting, and measurable success criteria. Clients maintain visibility throughout the entire delivery lifecycle."
   },
   {
-    q: "What's your tech stack?",
-    a: "Mobile: React Native, Flutter, native iOS/Android. Web: Next.js, React, Node, Python. AI/ML: Python, PyTorch, OpenAI / Anthropic APIs. Cloud: AWS, GCP, Vercel. We're stack-agnostic — we use what fits the problem.",
+    q: "Can you integrate with our existing team and technology stack?",
+    a: "Yes. Our teams regularly work within existing engineering environments, product workflows, cloud infrastructures, and operational processes. We prioritize seamless collaboration and alignment with your established tools and standards."
   },
   {
-    q: "Can you sign an NDA?",
-    a: "Of course. We sign mutual NDAs before discovery so we can talk freely. We're also comfortable with custom data-handling agreements for regulated industries (HIPAA, PCI-DSS, GDPR).",
+    q: "Do you provide dedicated resources through staff augmentation?",
+    a: "Yes. We provide experienced engineers, designers, QA specialists, project managers, and technical consultants who integrate directly into your team, workflows, and delivery processes while maintaining full alignment with your objectives."
   },
   {
-    q: "Do you handle ongoing maintenance?",
-    a: "Yes — most clients move into a retainer after launch (typically 20–40 hours/month) for fixes, small features, and on-call support. You can also fully hand off to your team; we'll document everything.",
+    q: "How do you handle different time zones?",
+    a: "We operate on our clients' schedules. Our teams align working hours, communication cadences, and delivery workflows with your preferred time zone to ensure efficient collaboration, faster decision-making, and seamless project execution regardless of location."
   },
 ];
 
@@ -604,9 +605,21 @@ function FaqRow({
         {isOpen && (
           <div className="overflow-hidden"
           >
-            <p className="pb-6 pl-[3.25rem] pr-12 body-base text-white/65 leading-relaxed">
-              {a}
-            </p>
+            <motion.div
+              key="content"
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={{
+                open: { opacity: 1, height: "auto" },
+                collapsed: { opacity: 0, height: 0 },
+              }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <p className="pb-6 pl-[3.25rem] pr-12 body-base text-white/65 leading-relaxed">
+                {a}
+              </p>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>
@@ -620,6 +633,9 @@ export default function ServicesPage() {
   const [openFaq, setOpenFaq] = useState<number>(0);
   const [activeStep, setActiveStep] = useState<number>(0);
   const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  // Only show first 6 FAQs on main page
+  const visibleFaqs = faqs.slice(0, 6);
 
   // Filtered services
   const visibleServices =
@@ -782,310 +798,307 @@ export default function ServicesPage() {
       </section>
 
       {/* ───────── Catalog (filterable) ───────── */}
-     <section
-  id="services-grid"
-  className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
->
-  {/* ───────── BACKGROUND GLOW ───────── */}
-  <div className="absolute inset-0 opacity-70">
-    <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
-    <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
-  </div>
-
-  {/* noise overlay */}
-  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
-
-  <div className="relative max-w-7xl mx-auto px-6">
-    {/* ───────── HEADER ───────── */}
-    <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
-      <div className="lg:col-span-7">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5 mb-5 shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-          <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
-            Core Capabilities
-          </p>
+      <section
+        id="services-grid"
+        className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
+      >
+        {/* ───────── BACKGROUND GLOW ───────── */}
+        <div className="absolute inset-0 opacity-70">
+          <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
         </div>
 
-        {/* <h2 className="text-4xl lg:text-5xl font-bold text-deep-blue leading-tight">
-          Find the capability that fits{" "}
-          <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
-            your problem
-          </span>
-        </h2> */}
-      </div>
+        {/* noise overlay */}
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
 
-      {/* <div className="lg:col-span-5">
-        <p className="text-deep-blue/60 max-w-md lg:ml-auto leading-relaxed text-sm lg:text-base">
-          Explore services by intent. Each module includes real execution outputs,
-          delivery timelines, and technical depth.
-        </p>
-      </div> */}
-    </div>
-
-    {/* ───────── MOBILE ───────── */}
-    <div className="xl:hidden space-y-4">
-      {services.map((service, i) => (
-        <div
-          key={service.slug}
-          className="bg-white rounded-2xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
-        >
-          <button
-            onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
-            className="w-full flex items-center gap-4 p-5 text-left active:scale-[0.99] transition"
-          >
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm"
-              style={{
-                backgroundColor: `${service.accent}12`,
-                color: service.accent,
-              }}
-            >
-              {service.icon}
-            </div>
-
-            <div className="flex-1">
-              <h3 className="font-semibold text-deep-blue">{service.title}</h3>
-              <p className="text-xs text-deep-blue/50 mt-1">{service.tagline}</p>
-            </div>
-
-            <svg
-              className={`w-5 h-5 transition-transform ${
-                activeIndex === i ? "rotate-180" : ""
-              }`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <AnimatePresence>
-            {activeIndex === i && (
-              <div className="px-5 pb-5 border-t border-black/5">
-                <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
-                  {service.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {service.capabilities.map((cap) => (
-                    <span
-                      key={cap}
-                      className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
-                    >
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
-                >
-                  Learn More →
-                </Link>
-              </div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
-    </div>
-
-    {/* ───────── DESKTOP ───────── */}
-    <div className="hidden xl:block">
-      <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
-        
-        {/* LEFT */}
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6">
-            Build · Design
-          </p>
-
-          <div className="space-y-3">
-            {leftServices.map((service, i) => {
-              const isActive = activeIndex === i;
-
-              return (
-                <button
-                  key={service.slug}
-                  onClick={() => setActiveIndex(i)}
-                  onMouseEnter={() => setActiveIndex(i)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
-                    ${isActive
-                      ? "bg-white shadow-lg border-black/5"
-                      : "border-transparent hover:bg-white/60 hover:border-black/5"
-                    }`}
-                >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{
-                      backgroundColor: `${service.accent}15`,
-                      color: service.accent,
-                    }}
-                  >
-                    {service.icon}
-                  </div>
-
-                  <div className="flex-1 text-left">
-                    <h3 className="text-sm font-semibold text-deep-blue">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs text-deep-blue/50 mt-0.5">
-                      {service.tagline}
-                    </p>
-                  </div>
-
-                  <span className="text-xs text-deep-blue/25">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* CENTER */}
-        <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20">
-          
-          {/* glow layers */}
-          <div className="absolute inset-0 opacity-40">
-            <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 blur-3xl rounded-full" />
-            <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/5 blur-3xl rounded-full" />
-          </div>
-
-          <div className="relative z-10 h-full flex flex-col">
-            
-            {/* top bar */}
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-white" />
-                <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
-                  Active Service
+        <div className="relative max-w-7xl mx-auto px-6">
+          {/* ───────── HEADER ───────── */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5  shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+                <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
+                  Core Capabilities
                 </p>
               </div>
-
-              <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
-                {String(activeIndex + 1).padStart(2, "0")} /{" "}
-                {String(services.length).padStart(2, "0")}
-              </div>
             </div>
+          </div>
 
-            {/* icon */}
-            <div className="flex-1 flex items-center justify-center relative">
-              <div className="relative">
-                <div className="absolute -inset-10 rounded-full border border-white/10" />
-                <div className="absolute -inset-20 rounded-full border border-white/5" />
-
-                <div className="w-28 h-28 rounded-[28px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
-                  <div className="text-white scale-[1.6]">
-                    {services[activeIndex].icon}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* bottom content */}
-            <div className="mt-8">
-              <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-2">
-                {services[activeIndex].tagline}
-              </p>
-
-              <h3 className="text-3xl font-bold text-white mb-3">
-                {services[activeIndex].title}
-              </h3>
-
-              <p className="text-sm text-white/75 leading-relaxed mb-5 max-w-xl">
-                {services[activeIndex].description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {services[activeIndex].capabilities.slice(0, 5).map((cap) => (
-                  <span
-                    key={cap}
-                    className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
-                  >
-                    {cap}
-                  </span>
-                ))}
-              </div>
-
-              <Link
-                href={`/services/${services[activeIndex].slug}`}
-                className="group/btn mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02]"
+          {/* ───────── MOBILE ───────── */}
+          <div className="xl:hidden space-y-4">
+            {services.map((service, i) => (
+              <div
+                key={service.slug}
+                className="bg-white rounded-2xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
               >
-                Learn More
-                <span className="transition-transform group-hover/btn:translate-x-1">
-                  →
-                </span>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT */}
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
-            Grow · Ops
-          </p>
-
-          <div className="space-y-3">
-            {rightServices.map((service, i) => {
-              const realIndex = i + leftServices.length;
-              const isActive = activeIndex === realIndex;
-
-              return (
                 <button
-                  key={service.slug}
-                  onClick={() => setActiveIndex(realIndex)}
-                  onMouseEnter={() => setActiveIndex(realIndex)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
-                    ${isActive
-                      ? "bg-white shadow-lg border-black/5"
-                      : "border-transparent hover:bg-white/60 hover:border-black/5"
-                    }`}
+                  onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
+                  className="w-full flex items-center gap-4 p-5 text-left active:scale-[0.99] transition"
                 >
-                  <div className="flex-1 text-right">
-                    <h3 className="text-sm font-semibold text-deep-blue">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs text-deep-blue/50 mt-0.5">
-                      {service.tagline}
-                    </p>
-                  </div>
-
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm"
                     style={{
-                      backgroundColor: `${service.accent}15`,
+                      backgroundColor: `${service.accent}12`,
                       color: service.accent,
                     }}
                   >
                     {service.icon}
                   </div>
 
-                  <span className="text-xs text-deep-blue/25">
-                    {String(realIndex + 1).padStart(2, "0")}
-                  </span>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-deep-blue">{service.title}</h3>
+                    <p className="text-xs text-deep-blue/50 mt-1">{service.tagline}</p>
+                  </div>
+
+                  <svg
+                    className={`w-5 h-5 transition-transform ${activeIndex === i ? "rotate-180" : ""
+                      }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </button>
-              );
-            })}
+
+                <AnimatePresence>
+                  {activeIndex === i && (
+                    <motion.div
+                      key="content"
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: { opacity: 1, height: "auto" },
+                        collapsed: { opacity: 0, height: 0 },
+                      }}
+                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                    >
+                      <div className="px-5 pb-5 border-t border-black/5">
+                        <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
+                          {service.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {service.capabilities.map((cap) => (
+                            <span
+                              key={cap}
+                              className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
+                            >
+                              {cap}
+                            </span>
+                          ))}
+                        </div>
+
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
+                        >
+                          Learn More →
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+
+          {/* ───────── DESKTOP ───────── */}
+          <div className="hidden xl:block">
+            <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
+
+              {/* LEFT */}
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-2">
+                  Build · Design
+                </p>
+
+                <div className="space-y-3">
+                  {leftServices.map((service, i) => {
+                    const isActive = activeIndex === i;
+
+                    return (
+                      <button
+                        key={service.slug}
+                        onClick={() => setActiveIndex(i)}
+                        onMouseEnter={() => setActiveIndex(i)}
+                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                            ? "bg-white shadow-lg border-black/5"
+                            : "border-transparent hover:bg-white/60 hover:border-black/5"
+                          }`}
+                      >
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          style={{
+                            backgroundColor: `${service.accent}15`,
+                            color: service.accent,
+                          }}
+                        >
+                          {service.icon}
+                        </div>
+
+                        <div className="flex-1 text-left">
+                          <h3 className="text-sm font-semibold text-deep-blue">
+                            {service.title}
+                          </h3>
+                          <p className="text-xs text-deep-blue/50 mt-0.5">
+                            {service.tagline}
+                          </p>
+                        </div>
+
+                        <span className="text-xs text-deep-blue/25">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* CENTER - FIXED HEIGHT ADDED */}
+              <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 min-h-[600px]">
+
+                {/* glow layers */}
+                <div className="absolute inset-0 opacity-40">
+                  <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 blur-3xl rounded-full" />
+                  <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/5 blur-3xl rounded-full" />
+                </div>
+
+                <div className="relative z-10 h-full flex flex-col">
+
+                  {/* top bar */}
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-white" />
+                      <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
+                        Active Service
+                      </p>
+                    </div>
+
+                    <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
+                      {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                      {String(services.length).padStart(2, "0")}
+                    </div>
+                  </div>
+
+                  {/* icon - centered vertically with flex */}
+                  <div className="flex-1 flex items-center justify-center relative">
+                    <div className="relative">
+                      <div className="absolute -inset-10 rounded-full border border-white/10" />
+                      <div className="absolute -inset-20 rounded-full border border-white/5" />
+
+                      <div className="w-28 h-28 rounded-[28px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
+                        <div className="text-white scale-[1.6]">
+                          {services[activeIndex].icon}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* bottom content - will take remaining space */}
+                  <div className="flex-shrink-0 mt-8">
+                    <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-2">
+                      {services[activeIndex].tagline}
+                    </p>
+
+                    <h3 className="text-3xl font-bold text-white mb-3">
+                      {services[activeIndex].title}
+                    </h3>
+
+                    <p className="text-sm text-white/75 leading-relaxed mb-5 max-w-xl">
+                      {services[activeIndex].description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {services[activeIndex].capabilities.slice(0, 5).map((cap) => (
+                        <span
+                          key={cap}
+                          className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
+                        >
+                          {cap}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link
+                      href={`/services/${services[activeIndex].slug}`}
+                      className="group/btn mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02]"
+                    >
+                      Learn More
+                      <span className="transition-transform group-hover/btn:translate-x-1">
+                        →
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT */}
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+                  Grow · Ops
+                </p>
+
+                <div className="space-y-3">
+                  {rightServices.map((service, i) => {
+                    const realIndex = i + leftServices.length;
+                    const isActive = activeIndex === realIndex;
+
+                    return (
+                      <button
+                        key={service.slug}
+                        onClick={() => setActiveIndex(realIndex)}
+                        onMouseEnter={() => setActiveIndex(realIndex)}
+                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                            ? "bg-white shadow-lg border-black/5"
+                            : "border-transparent hover:bg-white/60 hover:border-black/5"
+                          }`}
+                      >
+                        <div className="flex-1 text-right">
+                          <h3 className="text-sm font-semibold text-deep-blue">
+                            {service.title}
+                          </h3>
+                          <p className="text-xs text-deep-blue/50 mt-0.5">
+                            {service.tagline}
+                          </p>
+                        </div>
+
+                        <div
+                          className="w-12 h-12 rounded-xl flex items-center justify-center"
+                          style={{
+                            backgroundColor: `${service.accent}15`,
+                            color: service.accent,
+                          }}
+                        >
+                          {service.icon}
+                        </div>
+
+                        <span className="text-xs text-deep-blue/25">
+                          {String(realIndex + 1).padStart(2, "0")}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
-
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
-        <div
-          className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.08] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
-        />
+
+        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.08] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          {/* Header */}
+
+          {/* HEADER */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
@@ -1094,11 +1107,13 @@ export default function ServicesPage() {
                   How we work
                 </p>
               </div>
+
               <h2 className="h-section text-white">
-                A structured path from {" "}
+                A structured path from{" "}
                 <span className="gradient-text">strategy to production.</span>
               </h2>
             </div>
+
             <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 Every engagement follows a disciplined delivery framework built around alignment, visibility, and execution. Defined milestones, transparent governance, and measurable outcomes ensure confidence at every stage.
@@ -1106,86 +1121,109 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Stepper bar */}
-          <div>
-            <div className="surface-panel relative rounded-2xl border p-4 lg:p-5">
-              {/* Connecting line */}
-              <div className="surface-divider absolute inset-x-5 top-1/2 -translate-y-1/2 h-px border-t border-dashed pointer-events-none" />
+          {/* STEPPER */}
+          <div className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 lg:p-5 shadow-xl">
 
-              <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
-                {processSteps.map((s, i) => {
-                  const isActive = activeStep === i;
-                  return (
-                    <motion.button
-                      key={s.number}
-                      onMouseEnter={() => setActiveStep(i)}
-                      onFocus={() => setActiveStep(i)}
-                      onClick={() => setActiveStep(i)}
-                      animate={{ scale: isActive ? 1.02 : 1 }}
-                      transition={{
-                        duration: 0.25,
-                        ease: [0.4, 0, 0.2, 1],
-                      }}
-                      className="group relative flex items-center gap-3 h-14 px-3 lg:px-4 rounded-xl border text-left transition-colors duration-300"
-                      style={{
-                        backgroundColor: isActive
-                          ? s.accent
-                          : `${s.accent}12`,
-                        borderColor: isActive
-                          ? s.accent
-                          : `${s.accent}38`,
-                        boxShadow: isActive
-                          ? `0 16px 36px - 14px ${s.accent}90, inset 0 1px 0 rgba(255, 255, 255, 0.18)`
-                          : "none",
-                      }}
+            {/* connecting line */}
+            <div className="absolute inset-x-5 top-1/2 -translate-y-1/2 h-px border-t border-dashed border-white/10 pointer-events-none" />
+
+            <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
+
+              {processSteps.map((s, i) => {
+                const isActive = activeStep === i;
+
+                return (
+                  <motion.button
+                    key={s.number}
+                    onMouseEnter={() => setActiveStep(i)}
+                    onFocus={() => setActiveStep(i)}
+                    onClick={() => setActiveStep(i)}
+                    animate={{ scale: isActive ? 1.03 : 1 }}
+                    transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                    className="group relative flex items-center gap-3 h-14 px-3 lg:px-4 rounded-xl border text-left transition-all duration-300"
+                    style={{
+                      backgroundColor: isActive ? s.accent : `${s.accent}10`,
+                      borderColor: isActive ? s.accent : `${s.accent}30`,
+                      boxShadow: isActive
+                        ? `0 18px 40px -16px ${s.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`
+                        : "none",
+                    }}
+                  >
+                    {/* number */}
+                    <span
+                      className={`shrink-0 font-mono text-[11px] font-bold tracking-wider ${isActive ? "text-white" : "text-white/50"
+                        }`}
                     >
-                      <span
-                        className={`shrink - 0 font - mono text - [11px] font - bold tracking - wider ${isActive ? "text-white/85" : "text-white/45"
+                      {s.number}
+                    </span>
+
+                    {/* text */}
+                    <div className="min-w-0 flex-1">
+                      <p
+                        className={`text-sm font-bold tracking-tight truncate ${isActive ? "text-white" : "text-white/80"
                           }`}
                       >
-                        {s.number}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <p
-                          className={`text - sm font - bold tracking - tight truncate ${isActive ? "text-white" : "text-white/80"
-                            }`}
-                        >
-                          {s.title}
-                        </p>
-                        <p
-                          className={`text - [10.5px] truncate ${isActive ? "text-white/70" : "text-white/45"
-                            }`}
-                        >
-                          {s.duration}
-                        </p>
-                      </div>
+                        {s.title}
+                      </p>
 
-                      {isActive && (
-                        <motion.span
-                          layoutId="step-active-dot"
-                          className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full"
-                          style={{
-                            backgroundColor: s.accent,
-                            boxShadow: `0 0 14px ${s.accent}`,
-                          }}
-                        />
-                      )}
-                    </motion.button>
-                  );
-                })}
-              </div>
+                      <p
+                        className={`text-[10.5px] truncate ${isActive ? "text-white/70" : "text-white/40"
+                          }`}
+                      >
+                        {s.duration}
+                      </p>
+                    </div>
+
+                    {/* active dot */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="step-active-dot"
+                        className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full"
+                        style={{
+                          backgroundColor: s.accent,
+                          boxShadow: `0 0 14px ${s.accent}`,
+                        }}
+                      />
+                    )}
+                  </motion.button>
+                );
+              })}
             </div>
           </div>
 
-          {/* Detail panel — updates on hover */}
+          {/* DETAIL PANEL */}
           <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
+
+            {/* LEFT DETAIL */}
             <div className="lg:col-span-7">
               <AnimatePresence mode="wait">
-                <div  >
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                >
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"  >
-                      {step.icon}
+
+                    {/* ICON */}
+                    <div
+                      className="relative w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0 overflow-hidden"
+                      style={{
+                        backgroundColor: `${step.accent}18`,
+                        border: `1px solid ${step.accent}40`,
+                        boxShadow: `0 18px 40px -14px ${step.accent}70`,
+                      }}
+                    >
+                      <div
+                        className="absolute inset-0 blur-xl opacity-40"
+                        style={{ backgroundColor: step.accent }}
+                      />
+                      <div className="relative z-10">
+                        {step.icon}
+                      </div>
                     </div>
+
                     <div>
                       <p
                         className="text-[10px] uppercase tracking-[0.22em] font-semibold"
@@ -1193,56 +1231,61 @@ export default function ServicesPage() {
                       >
                         Stage {step.number} · {step.duration}
                       </p>
+
                       <h3 className="mt-0.5 text-2xl lg:text-3xl font-bold text-white tracking-tight">
                         {step.title}
                       </h3>
                     </div>
                   </div>
+
                   <p className="mt-5 text-gray-400 leading-relaxed max-w-xl">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
               </AnimatePresence>
             </div>
 
+            {/* RIGHT DETAIL */}
             <div className="lg:col-span-5">
               <AnimatePresence mode="wait">
-                <div
-                  className="surface-panel relative rounded-2xl border p-5 lg:p-6 overflow-hidden"
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, x: 8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -8 }}
+                  transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                  className="relative rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-5 lg:p-6 overflow-hidden"
                 >
                   <div
                     className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-25"
                     style={{ backgroundColor: step.accent }}
                   />
 
-                  <div className="relative">
-                    <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-white/55">
-                      What happens here
-                    </p>
-                    <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
-                      {step.deliverables.map((d, i) => (
-                        <motion.li
-                          key={d}
-                          initial={{ opacity: 0, x: -6 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{
-                            duration: 0.3,
-                            delay: 0.1 + i * 0.05,
-                          }}
-                          className="flex items-center gap-2 text-sm text-white/75"
-                        >
-                          <span
-                            className="w-1.5 h-1.5 rounded-full shrink-0"
-                            style={{ backgroundColor: step.accent }}
-                          />
-                          <span className="truncate">{d}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-white/55">
+                    What happens here
+                  </p>
+
+                  <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
+                    {step.deliverables.map((d, i) => (
+                      <motion.li
+                        key={d}
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+                        className="flex items-center gap-2 text-sm text-white/75"
+                      >
+                        <span
+                          className="w-1.5 h-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: step.accent }}
+                        />
+                        <span className="truncate">{d}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
               </AnimatePresence>
             </div>
+
           </div>
         </div>
       </section>
@@ -1262,8 +1305,8 @@ export default function ServicesPage() {
                 </p>
               </div>
               <h2 className="h-section text-deep-blue">
-                Outcomes, not{" "}
-                <span className="gradient-text-dark">case-study fluff.</span>
+                Deployed and optimized{" "}
+                <span className="gradient-text-dark">validated.</span>
               </h2>
             </div>
             <div className="lg:col-span-5">
@@ -1353,7 +1396,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ───────── FAQ ───────── */}
+      {/* ───────── FAQ (First 6 items with See More link) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div
@@ -1391,7 +1434,7 @@ export default function ServicesPage() {
 
           <div>
             <div className="surface-panel rounded-2xl border overflow-hidden">
-              {faqs.map((f, i) => (
+              {visibleFaqs.map((f, i) => (
                 <FaqRow
                   key={f.q}
                   q={f.q}
@@ -1402,6 +1445,29 @@ export default function ServicesPage() {
                 />
               ))}
             </div>
+          </div>
+
+          {/* See More Button */}
+          <div className="mt-8 text-center">
+            <Link
+              href="/faq"
+              className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue font-semibold text-sm hover:bg-neon-blue/20 hover:border-neon-blue/50 transition-all duration-300"
+            >
+              <span>See More FAQs</span>
+              <svg
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
