@@ -149,6 +149,9 @@ export default function WorkingProcess() {
                 How we work
               </span>
             </div>
+
+          
+
           </div>
         </div>
 
@@ -191,16 +194,14 @@ export default function WorkingProcess() {
                     className="group relative flex items-center gap-2.5 h-10 px-3 rounded-md border text-left transition-colors duration-300"
                   >
                     <span
-                      className={`font-mono text-[10px] font-bold tracking-wider ${
-                        isActive ? "text-white/80" : "text-white/30"
-                      }`}
+                      className={`font-mono text-[10px] font-bold tracking-wider ${isActive ? "text-white/80" : "text-white/30"
+                        }`}
                     >
                       {stage.number}
                     </span>
                     <span
-                      className={`text-sm font-bold tracking-tight truncate ${
-                        isActive ? "text-white" : "text-white/60"
-                      }`}
+                      className={`text-sm font-bold tracking-tight truncate ${isActive ? "text-white" : "text-white/60"
+                        }`}
                     >
                       {stage.name}
                     </span>

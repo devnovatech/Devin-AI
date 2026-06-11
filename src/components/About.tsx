@@ -40,14 +40,14 @@ interface Pillar {
 
 const pillars: Pillar[] = [
   {
-    title: "Senior-only roster",
-    description: "Every engineer has 8+ years shipping commercial software. No juniors on production code.",
+    title: "Intelligent by default",
+    description: "Every solution we build is backed by AI, machine learning, and automation — engineered to perform, not just function.",
     accent: "#1E88E5",
     icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
   },
   {
-    title: "Embedded, not outsourced",
-    description: "Same Slack, same standups, same retro. We operate like your in-house team.",
+    title: "Architecture that scales",
+    description: "Cloud-native foundations and modern infrastructure designed to grow with your business, not against it.",
     accent: "#0288D1",
     icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
   },
@@ -67,7 +67,7 @@ const stats = [
 ];
 
 const FloatingBadge = ({ children, className, delay, rotate }: any) => (
-  <div    className={className}
+  <div className={className}
   >
     {children}
   </div>
@@ -90,12 +90,12 @@ export default function About() {
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">The Studio</span>
             </div>
             <h2 className="h-section text-deep-blue">
-              A studio engineered for <span className="gradient-text-dark">teams that ship.</span>
+              A company Engineered for <span className="gradient-text-dark">Businesses that Scale.</span>
             </h2>
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              Founded by senior engineers tired of agency-grade deliverables. We embed like an in-house team — from seed-stage MVPs to Fortune-500 platforms.
+              Built by engineers and strategists who refused to settle for surface-level delivery. We embed across your entire operation — from early-stage architecture to enterprise-grade transformation.
             </p>
           </div>
         </div>
@@ -164,11 +164,19 @@ export default function About() {
                 <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-neon-blue/8 blur-2xl" />
                 <svg className="absolute top-4 right-5 w-10 h-10 text-neon-blue/15" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 12.832 1 20.96 1 26.336 4.288 29.6 8.32 29.6c3.776 0 6.56-3.04 6.56-6.624 0-3.584-2.56-6.176-5.92-6.176-.704 0-1.6.128-1.792.192.384-3.04 3.328-6.752 6.272-8.864L9.352 4zm17.952 0c-4.832 3.456-8.288 8.832-8.288 16.96 0 5.376 3.296 8.64 7.328 8.64 3.712 0 6.56-3.04 6.56-6.624 0-3.584-2.624-6.176-5.984-6.176-.704 0-1.536.128-1.728.192.384-3.04 3.264-6.752 6.208-8.864L27.304 4z" /></svg>
                 <p className="relative text-base lg:text-lg text-deep-blue/85 leading-relaxed font-medium">
-                  &ldquo;Most agencies sell ceremony. We sell a working product, on the date we promised. Same team from kickoff to launch — no offshore handoffs, no resource swaps mid-sprint.&rdquo;
+                  &ldquo;Most firms sell presentations. We ship systems. From intelligent automation to cloud-native infrastructure — same team, same standards, from kickoff to go-live.&rdquo;
                 </p>
                 <div className="relative mt-5 pt-4 border-t border-deep-blue/[0.07] flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center text-white font-bold text-sm shadow-md">DI</div>
-                  <div><p className="text-sm font-bold text-deep-blue">Devinception Founders</p><p className="text-xs text-deep-blue/55">Senior engineers · est. 2018</p></div>
+                  <div className="w-10 h-10 flex items-center justify-center">
+                    <Image
+                      src="/site_logo2.png"
+                      alt="Dev Inception"
+                      width={70}
+                      height={70}
+                      className="h-24 w-24 object-contain"
+                    />
+                  </div>
+                  <div><p className="text-sm font-bold text-deep-blue">Ali Abbas</p><p className="text-xs text-deep-blue/55">Senior engineers </p></div>
                 </div>
               </div>
             </div>

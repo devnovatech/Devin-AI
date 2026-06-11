@@ -73,7 +73,7 @@ const reasons: Reason[] = [
   },
   {
     title: "Scalable Systems",
-    description: ": Scalable, future-ready systems designed for organizational growth",
+    description: "Scalable, future-ready systems designed for organizational growth",
     accent: "#039BE5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>

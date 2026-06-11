@@ -389,20 +389,20 @@ export default function Services() {
                 Capabilities
               </span>
             </div>
-            <div className="w-full">
+            {/* <div className="w-full">
               <h2 className="h-section text-deep-blue">
                 Systems designed for {" "}
                 <span className="gradient-text-dark">modern growth.</span>
               </h2>
-            </div>
+            </div> */}
           </div>
-          <div className="lg:col-span-5">
+          {/* <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
               From design and development to growth and support — choose a
               single service or combine several into one project. One team,
               start to finish.
             </p>
-          </div>
+          </div> */}
         </div>
 
         {/* 3-column layout: tabs · center detail · tabs */}

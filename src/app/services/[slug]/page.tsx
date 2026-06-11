@@ -546,7 +546,7 @@ const servicesData: Record<string, ServiceData> = {
     industryTitle: "Industries We Serve",
     industryDescription: "We design digital experiences for organizations across a wide range of industries",
     ctaHeading: "Let\u2019s Design Something People Love to Use",
-     processHeading:"From Research to Product-Ready Experiences Through Four Design Stages",
+     processHeading:"Discovered. Defined. Designed. Delivered.",
     processSteps: [
       {
         number: "01",
@@ -674,7 +674,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We help organizations build and scale ecommerce operations across multiple sectors:",
-     processHeading:"From Customer Acquisition to Revenue Growth Through Four Commerce Stages",
+     processHeading:"Full-Funnel Commerce. End-to-End.",
     processSteps: [
       {
         number: "01",
@@ -803,7 +803,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We help organizations implement AI and machine learning solutions across multiple sectors:",
-     processHeading:"From Data to Intelligence Through Four Engineered Stages",
+     processHeading:"Ingested. Modeled. Trained. Deployed",
     processSteps: [
       {
         number: "01",
@@ -932,7 +932,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We provide software quality assurance services across a wide range of industries:",
-     processHeading:"From Quality Planning to Release Confidence Through Four Validation Stages",
+     processHeading:"Four Checkpoints. Zero Compromises.",
     processSteps: [
       {
         number: "01",
@@ -1192,7 +1192,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Talent Areas We Support",
     industryDescription: "We provide specialized professionals across multiple disciplines and sectors",
-     processHeading:"From Resource Planning to Team Integration Through Four Talent Delivery Stages",
+     processHeading:"Vetted Talent. Zero Ramp-Up.",
     processSteps: [
       {
         number: "01",
