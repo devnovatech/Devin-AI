@@ -743,7 +743,7 @@ const roles: Role[] = [
   },
 ];
 
-export function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?: JobOpenings }) {
+function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?: JobOpenings }) {
   const defaultOpenings: JobOpenings = {
     development: [],
     marketing: [],

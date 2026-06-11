@@ -750,6 +750,7 @@ export default function Services() {
                   >
                     &ldquo;
                   </span>
+                  
                   <p className="relative pl-6 text-deep-blue/80 leading-relaxed text-[15.5px]">
                     {active.description}
                   </p>
