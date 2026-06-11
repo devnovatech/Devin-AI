@@ -15,8 +15,8 @@ interface Reason {
 
 const reasons: Reason[] = [
   {
-    title: "Senior engineers only",
-    description: "Experienced engineers handle your project end to end — never juniors learning on your time.",
+    title: "Business Outcomes",
+    description: "Alignment with business outcomes, not just technical delivery",
     accent: "#1E88E5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -33,8 +33,8 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "One coordinated team",
-    description: "Engineers, designers, and project leads work together — no slow handoffs between separate groups.",
+    title: "Embedded Collaboration",
+    description: "Embedded collaboration that extends internal capability, not external dependency",
     accent: "#0277BD",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -54,8 +54,8 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "Clear communication",
-    description: "Regular demos and honest updates, so you always know exactly where your project stands.",
+    title: "Long-Term Value",
+    description: "Long-term value creation over short-term execution cycles",
     accent: "#0288D1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -72,8 +72,8 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "Design that works",
-    description: "We design based on real user research and testing — not guesswork or trends.",
+    title: "Scalable Systems",
+    description: ": Scalable, future-ready systems designed for organizational growth",
     accent: "#039BE5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -92,8 +92,8 @@ const reasons: Reason[] = [
     ),
   },
   {
-    title: "Built to scale",
-    description: "Architected to grow with you — secure and reliable as your product and usage expand.",
+    title: "Real-Time Delivery",
+    description: " Delivery aligned with client time zones for real-time collaboration and reduced delays",
     accent: "#00ACC1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
@@ -221,8 +221,8 @@ export default function WhyChooseUs() {
               </span>
             </div>
             <h2 className="h-section text-deep-blue">
-              Why teams choose to{" "}
-              <span className="gradient-text-dark">work with us.</span>
+              Built on  More Than{" "}
+              <span className="gradient-text-dark">Just Partnerships</span>
             </h2>
           </div>
           <div className="lg:col-span-5">

@@ -378,7 +378,7 @@ export default function IndustriesPage() {
                 key={industry.slug}
                 industry={industry}
                 index={i}
-                featured={i === industries.length - 2}
+                featured={i === industries.length - 1}
               />
             ))}
           </div>

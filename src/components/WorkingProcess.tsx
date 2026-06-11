@@ -153,7 +153,7 @@ export default function WorkingProcess() {
         </div>
 
         {/* Gantt-style timeline */}
-        <AnimatedSection delay={0.2}>
+        <div>
           <div className="relative rounded-2xl bg-white/[0.02] border border-white/10 p-5 lg:p-7 backdrop-blur-sm">
             {/* Vertical gridlines */}
             <div className="absolute inset-x-5 lg:inset-x-7 inset-y-0 grid grid-cols-12 pointer-events-none">
@@ -218,7 +218,7 @@ export default function WorkingProcess() {
               })}
             </div>
           </div>
-        </AnimatedSection>
+        </div>
 
         {/* Detail panel — updates on hover */}
         <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
@@ -277,11 +277,8 @@ export default function WorkingProcess() {
                   </p>
                   <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
                     {active.activities.map((a, i) => (
-                      <motion.li
+                      <div
                         key={a}
-                        initial={{ opacity: 0, x: -6 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
                         className="flex items-center gap-2 text-sm text-gray-300"
                       >
                         <span
@@ -289,7 +286,7 @@ export default function WorkingProcess() {
                           style={{ backgroundColor: active.accent }}
                         />
                         <span className="truncate">{a}</span>
-                      </motion.li>
+                      </div>
                     ))}
                   </ul>
                 </div>

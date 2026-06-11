@@ -300,8 +300,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed"
           >
-Transform operations, accelerate delivery, and unlock new opportunities through scalable software, AI, cloud, and growth solutions built for long-term business performance.<br></br>
-From intelligent automation and custom platforms to embedded teams and digital growth operations, we help organizations build the infrastructure required to compete, scale, and evolve.          </motion.p>
+Our strength lies in transforming operations, accelerating delivery, and unlocking sustainable growth through scalable, intelligent technology that drives long-term business performance, empowering organizations to compete, scale, and lead with confidence in a dynamic digital world.
+  </motion.p>
 
           {/* Three-pillar chip row */}
           {/* <motion.div

@@ -124,7 +124,7 @@ export default function About() {
               <FloatingBadge className="absolute -top-5 -left-3 lg:-left-6 z-10" delay={0.4} rotate={-6}>
                 <div className="rounded-xl bg-white border border-deep-blue/10 shadow-xl px-4 py-2.5">
                   <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-deep-blue/50">Founded</p>
-                  <p className="mt-0.5 text-lg font-bold text-deep-blue tabular-nums">2018</p>
+                  <p className="mt-0.5 text-lg font-bold text-deep-blue tabular-nums">2010</p>
                 </div>
               </FloatingBadge>
 
