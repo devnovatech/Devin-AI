@@ -279,7 +279,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-            Engineering Systems Behind
+            Architected for Scale. 
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
@@ -288,7 +288,7 @@ export default function Hero() {
               className="block"
             >
                {" "}
-              <span className="gradient-text glow-text"> Modern Business Growth
+              <span className="gradient-text glow-text"> Built for Impact.
 </span>
             </motion.span>
           </h1>
@@ -300,8 +300,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed"
           >
-Our strength lies in transforming operations, accelerating delivery, and unlocking sustainable growth through scalable, intelligent technology that drives long-term business performance, empowering organizations to compete, scale, and lead with confidence in a dynamic digital world.
-  </motion.p>
+From architecture to deployment, we build the digital foundations that ambitious businesses run on. Scalable applications, intelligent automation, and full-stack delivery — engineered to perform at every stage of growth.  </motion.p>
 
           {/* Three-pillar chip row */}
           {/* <motion.div

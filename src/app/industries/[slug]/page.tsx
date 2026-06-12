@@ -1041,7 +1041,7 @@ interface ChallengeSolutionSectionProps {
 
 function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSectionProps) {
   const [showAll, setShowAll] = useState(false);
-  const visibleCount = 4;
+  const visibleCount = 3;
 
   return (
     <section className="py-20 bg-light-accent relative overflow-hidden">
@@ -1074,7 +1074,7 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
                 <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[45%]">
                   Our Solution
                 </th>
-               </tr>
+              </tr>
             </thead>
 
             <tbody>
@@ -1083,9 +1083,8 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
                 .map((item, idx) => (
                   <tr
                     key={idx}
-                    className={`border-b border-deep-blue/10 hover:bg-white/30 transition-all duration-300 ${
-                      idx % 2 === 0 ? "bg-white/10" : ""
-                    }`}
+                    className={`border-b border-deep-blue/10 hover:bg-white/30 transition-all duration-300 ${idx % 2 === 0 ? "bg-white/10" : ""
+                      }`}
                   >
                     {/* Challenge */}
                     <td className="py-5 px-6 align-top">
@@ -1107,14 +1106,14 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
                           )}
                         </div>
                       </div>
-                     </td>
+                    </td>
 
                     {/* Arrow */}
                     <td className="py-5 px-2 align-middle text-center">
                       <svg className="w-6 h-6 text-deep-blue/40 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                     </td>
+                    </td>
 
                     {/* Solution */}
                     <td className="py-5 px-6 align-top">
@@ -1142,11 +1141,11 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
                           )}
                         </div>
                       </div>
-                     </td>
-                   </tr>
+                    </td>
+                  </tr>
                 ))}
             </tbody>
-           </table>
+          </table>
         </div>
 
         {/* SEE MORE BUTTON */}
@@ -1578,13 +1577,28 @@ export default function IndustryPage() {
           />
 
           <div className="relative max-w-7xl mx-auto px-6">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <p className="eyebrow" style={{ color: accent }}>
-                {ecareCapabilitiesByIndustry[slug].impact.heading}
-              </p>
+
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span
+                  className="w-1.5 h-1.5 rounded-full animate-pulse"
+                  style={{ backgroundColor: accent }}
+                />
+                <p
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                  style={{ color: accent }}
+                >
+                  Case Study
+                </p>
+              </div>
+
+              <h2 className="h-section text-white">
+                {ecareCapabilitiesByIndustry[slug]?.impact.heading}
+              </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+
+            <div className="grid md:grid-cols-2 gap-6 pt-10 lg:gap-8">
               {ecareCapabilitiesByIndustry[slug].impact.metrics.map((metricGroup, idx) => (
                 <div
                   key={idx}

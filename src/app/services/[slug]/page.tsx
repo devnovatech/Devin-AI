@@ -117,16 +117,16 @@ const servicesData: Record<string, ServiceData> = {
           "A/B testing programs",
         ],
       },
-      {
-        category: "Marketing Analytics & Attribution",
-        description: "Transform marketing data into actionable insights that improve performance and ROI.",
-        items: [
-          "Analytics implementation",
-          "Attribution reporting",
-          "Performance dashboards",
-          "Growth recommendations",
-        ],
-      },
+      // {
+      //   category: "Marketing Analytics & Attribution",
+      //   description: "Transform marketing data into actionable insights that improve performance and ROI.",
+      //   items: [
+      //     "Analytics implementation",
+      //     "Attribution reporting",
+      //     "Performance dashboards",
+      //     "Growth recommendations",
+      //   ],
+      // },
     ],
     painPoints: [
       "Are you creating content that never ranks or worse, doesn\u2019t convert?",
@@ -247,16 +247,16 @@ const servicesData: Record<string, ServiceData> = {
           "Security validation",
         ],
       },
-      {
-        category: "Analytics & Optimization",
-        description: "Monitor product performance and user behavior to support continuous improvement and growth.",
-        items: [
-          "Product analytics implementation",
-          "Performance monitoring",
-          "User behavior insights",
-          "Optimization recommendations",
-        ],
-      },
+      // {
+      //   category: "Analytics & Optimization",
+      //   description: "Monitor product performance and user behavior to support continuous improvement and growth.",
+      //   items: [
+      //     "Product analytics implementation",
+      //     "Performance monitoring",
+      //     "User behavior insights",
+      //     "Optimization recommendations",
+      //   ],
+      // },
     ],
     painPoints: [
       "Not sure whether to go native or cross-platform?",
@@ -376,16 +376,16 @@ const servicesData: Record<string, ServiceData> = {
           "Automated testing frameworks",
         ],
       },
-      {
-        category: "Cloud Infrastructure & Optimization",
-        description: "Deploy and optimize web platforms for performance, scalability, and operational visibility.",
-        items: [
-          "Cloud infrastructure deployment",
-          "CI/CD implementation",
-          "Monitoring & observability",
-          "Performance optimization",
-        ],
-      },
+      // {
+      //   category: "Cloud Infrastructure & Optimization",
+      //   description: "Deploy and optimize web platforms for performance, scalability, and operational visibility.",
+      //   items: [
+      //     "Cloud infrastructure deployment",
+      //     "CI/CD implementation",
+      //     "Monitoring & observability",
+      //     "Performance optimization",
+      //   ],
+      // },
     ],
     painPoints: [
       "Is your current site slow, clunky, or frustrating to use?",
@@ -505,16 +505,16 @@ const servicesData: Record<string, ServiceData> = {
           "Stakeholder validation sessions",
         ],
       },
-      {
-        category: "Usability Testing & Design Validation",
-        description: "Evaluate user interactions and refine experiences based on real-world feedback.",
-        items: [
-          "Usability testing",
-          "User behavior analysis",
-          "Experience audits",
-          "Design optimization recommendations",
-        ],
-      },
+      // {
+      //   category: "Usability Testing & Design Validation",
+      //   description: "Evaluate user interactions and refine experiences based on real-world feedback.",
+      //   items: [
+      //     "Usability testing",
+      //     "User behavior analysis",
+      //     "Experience audits",
+      //     "Design optimization recommendations",
+      //   ],
+      // },
     ],
     painPoints: [
       "Are users dropping off before completing key actions?",
@@ -634,16 +634,16 @@ const servicesData: Record<string, ServiceData> = {
           "Customer behavior analysis",
         ],
       },
-      {
-        category: "Commerce Analytics & Revenue Intelligence",
-        description: "Transform commerce data into actionable insights that support growth and operational decision-making.",
-        items: [
-          "Ecommerce analytics implementation",
-          "Revenue performance dashboards",
-          "Customer behavior reporting",
-          "Growth opportunity analysis",
-        ],
-      },
+      // {
+      //   category: "Commerce Analytics & Revenue Intelligence",
+      //   description: "Transform commerce data into actionable insights that support growth and operational decision-making.",
+      //   items: [
+      //     "Ecommerce analytics implementation",
+      //     "Revenue performance dashboards",
+      //     "Customer behavior reporting",
+      //     "Growth opportunity analysis",
+      //   ],
+      // },
     ],
     painPoints: [
       "Is your current site slow, clunky, or hard to update?",
@@ -763,16 +763,16 @@ const servicesData: Record<string, ServiceData> = {
           "Continuous model delivery",
         ],
       },
-      {
-        category: "AI Governance & Model Performance",
-        description: "Maintain reliability, transparency, compliance, and long-term effectiveness across the AI lifecycle.",
-        items: [
-          "Model performance monitoring",
-          "Bias & risk assessment",
-          "Governance frameworks",
-          "Continuous model optimization",
-        ],
-      },
+      // {
+      //   category: "AI Governance & Model Performance",
+      //   description: "Maintain reliability, transparency, compliance, and long-term effectiveness across the AI lifecycle.",
+      //   items: [
+      //     "Model performance monitoring",
+      //     "Bias & risk assessment",
+      //     "Governance frameworks",
+      //     "Continuous model optimization",
+      //   ],
+      // },
     ],
     painPoints: [
       "Do you have data but don\u2019t know how to use it effectively?",
@@ -892,16 +892,16 @@ const servicesData: Record<string, ServiceData> = {
           "Compliance readiness reviews",
         ],
       },
-      {
-        category: "Continuous Quality Intelligence",
-        description: "Monitor quality metrics, release performance, and testing effectiveness to support continuous improvement.",
-        items: [
-          "Quality dashboards",
-          "Defect trend analysis",
-          "Release readiness reporting",
-          "Process optimization recommendations",
-        ],
-      },
+      // {
+      //   category: "Continuous Quality Intelligence",
+      //   description: "Monitor quality metrics, release performance, and testing effectiveness to support continuous improvement.",
+      //   items: [
+      //     "Quality dashboards",
+      //     "Defect trend analysis",
+      //     "Release readiness reporting",
+      //     "Process optimization recommendations",
+      //   ],
+      // },
     ],
     painPoints: [
       "Are you shipping fast but skipping critical QA steps?",
@@ -1023,16 +1023,16 @@ const servicesData: Record<string, ServiceData> = {
           "KPI tracking frameworks",
         ],
       },
-      {
-        category: "Delivery Optimization & Process Improvement",
-        description: "Continuously improve delivery performance through operational analysis and workflow optimization.",
-        items: [
-          "Process assessments",
-          "Delivery performance reviews",
-          "Workflow optimization",
-          "Continuous improvement initiatives",
-        ],
-      },
+      // {
+      //   category: "Delivery Optimization & Process Improvement",
+      //   description: "Continuously improve delivery performance through operational analysis and workflow optimization.",
+      //   items: [
+      //     "Process assessments",
+      //     "Delivery performance reviews",
+      //     "Workflow optimization",
+      //     "Continuous improvement initiatives",
+      //   ],
+      // },
     ],
     painPoints: [
       "Are your teams always busy but nothing ever seems to get done?",
@@ -1152,16 +1152,16 @@ const servicesData: Record<string, ServiceData> = {
           "Long-term scaling strategies",
         ],
       },
-      {
-        category: "Knowledge Retention & Transition Planning",
-        description: "Protect organizational continuity through structured documentation and transition processes.",
-        items: [
-          "Knowledge transfer planning",
-          "Documentation frameworks",
-          "Resource transition support",
-          "Operational continuity planning",
-        ],
-      },
+      // {
+      //   category: "Knowledge Retention & Transition Planning",
+      //   description: "Protect organizational continuity through structured documentation and transition processes.",
+      //   items: [
+      //     "Knowledge transfer planning",
+      //     "Documentation frameworks",
+      //     "Resource transition support",
+      //     "Operational continuity planning",
+      //   ],
+      // },
     ],
     painPoints: [
       "Are projects delayed because you lack the right expertise?",
