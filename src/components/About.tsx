@@ -176,7 +176,7 @@ export default function About() {
                       className="h-24 w-24 object-contain"
                     />
                   </div>
-                  <div><p className="text-sm font-bold text-deep-blue">Ali Abbas</p><p className="text-xs text-deep-blue/55">Senior engineers </p></div>
+                  <div><p className="text-sm font-bold text-deep-blue">Ali Abbas</p><p className="text-xs text-deep-blue/55">CEO </p></div>
                 </div>
               </div>
             </div>

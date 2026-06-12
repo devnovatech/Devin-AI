@@ -859,11 +859,11 @@ function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?:
                         No openings currently.
                         <br />
                         <a
-                          href="mailto:careers@devinception.com"
+                          href="mailto:HR@devinception.com"
                           className="inline-block mt-2 text-sm transition-all duration-300 hover:underline"
                           style={{ color: role.accent }}
                         >
-                          careers@devinception.com →
+                          HR@devinception.com →
                         </a>
                       </p>
                     )}
