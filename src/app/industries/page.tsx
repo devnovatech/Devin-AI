@@ -183,49 +183,47 @@ function IndustryCard({
         />
 
         <div
-          className={`relative p-6 lg:p-7 flex h-full ${
-            featured ? "flex-col lg:flex-row lg:items-center gap-6" : "flex-col"
-          }`}
+          className={`relative p-4 lg:p-5 flex h-full ${featured ? "flex-col lg:flex-row lg:items-center gap-6" : "flex-col"
+            }`}
         >
           {/* Icon + stat row */}
-    <div
-  className={`flex items-start justify-between ${
-    featured
-      ? "lg:flex-col lg:items-start lg:gap-4 lg:shrink-0"
-      : "mb-4"
-  }`}
->
-  <div
-    className="relative flex h-11 w-11 items-center justify-center rounded-xl text-white transition-all duration-300 group-hover:scale-105"
-    style={{
-      background: `linear-gradient(135deg, ${industry.accent}, ${industry.accent}CC)`,
-      boxShadow: `0 10px 24px -8px ${industry.accent}70`,
-    }}
-  >
-    {industry.icon}
-  </div>
+          <div
+            className={`flex items-start justify-between ${featured
+              ? "lg:flex-col lg:items-start lg:gap-4 lg:shrink-0"
+              : "mb-4"
+              }`}
+          >
+            <div
+              className="relative flex h-11 w-11 items-center justify-center rounded-xl text-white transition-all duration-300 group-hover:scale-105"
+              style={{
+                background: `linear-gradient(135deg, ${industry.accent}, ${industry.accent}CC)`,
+                boxShadow: `0 10px 24px -8px ${industry.accent}70`,
+              }}
+            >
+              {industry.icon}
+            </div>
 
-  <div
-    className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white transition-all duration-300 group-hover:translate-x-1 group-hover:border-transparent"
-    style={{
-      boxShadow: `0 4px 12px ${industry.accent}15`,
-    }}
-  >
-    <svg
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke={industry.accent}
-      strokeWidth={2.5}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M5 12h14m0 0-5-5m5 5-5 5"
-      />
-    </svg>
-  </div>
-</div>
+            <div
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white transition-all duration-300 group-hover:translate-x-1 group-hover:border-transparent"
+              style={{
+                boxShadow: `0 4px 12px ${industry.accent}15`,
+              }}
+            >
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke={industry.accent}
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 12h14m0 0-5-5m5 5-5 5"
+                />
+              </svg>
+            </div>
+          </div>
 
           {/* Title + tagline */}
           <div className="flex-1 min-w-0">
@@ -319,7 +317,7 @@ export default function IndustriesPage() {
 
           <AnimatedSection delay={0.2}>
             <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto">
-             Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
+              Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
             </p>
           </AnimatedSection>
 
@@ -360,12 +358,12 @@ export default function IndustriesPage() {
             <div className="lg:col-span-7">
               <p className="eyebrow text-neon-purple">Sectors we serve</p>
               <h2 className="mt-3 h-section text-deep-blue">
-              Delivering Across {""}
+                Delivering Across {""}
                 <span className="gradient-text-dark">Industries</span>
-                {" "}Since 2010
+                {" "}
               </h2>
             </div>
-             <div className="lg:col-span-5">
+            <div className="lg:col-span-5">
               <p className="body-base text-gray-400 max-w-md lg:ml-auto">
                 Over 15+ years, we have helped organizations across industries align technology with business objectives, operational realities, and long-term growth.
               </p>
