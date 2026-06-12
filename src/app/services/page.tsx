@@ -78,7 +78,7 @@ const services: Service[] = [
     category: "build",
     tagline: "SCALABLE DIGITAL PLATFORMS.",
     description:
-      "Conversion-focused ecommerce platforms engineered for performance, retention, and operational efficiency across every stage of the customer journey.",
+      "Conversion-focused ecommerce platforms built for performance, retention, and efficiency throughout the customer journey.",
     capabilities: [
       "Online Stores",
       "Payment Systems",
@@ -958,7 +958,7 @@ export default function ServicesPage() {
               </div>
 
               {/* CENTER - FIXED HEIGHT ADDED */}
-              <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 min-h-[600px]">
+              <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 min-h-[550px]">
 
                 {/* glow layers */}
                 <div className="absolute inset-0 opacity-40">
@@ -1448,7 +1448,7 @@ export default function ServicesPage() {
           </div>
 
           {/* See More Button */}
-          <div className="mt-8 text-center">
+          <div className="mt-4 text-center">
             <Link
               href="/faq"
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue font-semibold text-sm hover:bg-neon-blue/20 hover:border-neon-blue/50 transition-all duration-300"

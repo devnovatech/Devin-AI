@@ -1150,7 +1150,7 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
 
         {/* SEE MORE BUTTON */}
         {pairedData.length > visibleCount && (
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-4">
             <button
               onClick={() => setShowAll(!showAll)}
               className="px-5 py-2 text-sm font-semibold text-deep-blue border border-deep-blue/20 rounded-full hover:bg-white/30 transition"
@@ -1593,7 +1593,7 @@ export default function IndustryPage() {
               </div>
 
               <h2 className="h-section text-white">
-                {ecareCapabilitiesByIndustry[slug]?.impact.heading}
+                 Impact Beyond <span className="gradient-text-dark">Technology</span>
               </h2>
             </div>
 

@@ -481,7 +481,7 @@ function ValuesSection() {
             return (
               <div
                 key={value.title}
-                className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[240px]"
+                className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[220px]"
               >
                 {/* Top accent line */}
                 <div

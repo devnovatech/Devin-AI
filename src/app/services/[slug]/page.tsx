@@ -581,7 +581,7 @@ const servicesData: Record<string, ServiceData> = {
     subtitle: "eCommerce Platforms for Growth, Conversion, and Scale",
     description: "From direct-to-consumer storefronts and B2B commerce platforms to multi-vendor marketplaces and omnichannel ecosystems, we deliver end-to-end ecommerce engineering services built for performance, scalability, and long-term growth.",
     painIntro: "What\u2019s Holding Your Store Back?",
-    offeringsTitle: "Commerce Growth & Platform Engineering Capabilities",
+    offeringsTitle: "E-Commerce Platform Engineering",
     offeringsDescription: "A comprehensive ecommerce delivery framework covering customer journeys, platform architecture, transaction systems, conversion optimization, and operational scalability.",
     offerings: [
       {
@@ -2147,87 +2147,75 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── Why us for THIS service ───────── */}
-      <section className="py-20 bg-light-accent relative overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
+     <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
+  <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
+  <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            {/* Left side */}
-            <div className="lg:col-span-7">
-              <p className="eyebrow" style={{ color: accent }}>
-                Why teams pick us
-              </p>
+  <div className="relative max-w-7xl mx-auto px-6">
+    
+    {/* Header */}
+    <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-12 lg:mb-14">
+      <div className="lg:col-span-7">
+        <p className="eyebrow" style={{ color: accent }}>
+          Why teams pick us
+        </p>
 
-              <h2 className="mt-3 h-section text-deep-blue">
-                {service.whyTitle}
-              </h2>
+        <h2 className="mt-3 h-section text-deep-blue">
+          {service.whyTitle}
+        </h2>
+      </div>
+
+      <div className="lg:col-span-5">
+        <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+          {service.whyTagline}
+        </p>
+      </div>
+    </div>
+
+    {/* Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {service.whyChoose.slice(0, 6).map((item, i) => {
+        const itemAccent = ACCENTS[i % ACCENTS.length];
+        const numLabel = String(i + 1).padStart(2, "0");
+
+        return (
+          <div
+            key={item.title}
+            className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[210px]"
+          >
+            {/* Soft number background */}
+            <div
+              className="absolute top-3 right-4 text-[68px] font-bold leading-none select-none pointer-events-none"
+              style={{ color: `${itemAccent}10` }}
+            >
+              {numLabel}
             </div>
 
-            {/* Right side tagline (NEW) */}
-            <div className="lg:col-span-5">
-              <p className="body-base text-gray-500 max-w-md lg:ml-auto">
-                {service.whyTagline}
+            {/* Content */}
+            <div className="relative z-10 flex flex-col h-full">
+              
+              {/* Accent line (left) */}
+              <div
+                className="mb-5 h-1 w-10 rounded-full transition-all duration-300 group-hover:w-16"
+                style={{ backgroundColor: itemAccent }}
+              />
+
+              {/* Title */}
+              <h3 className="text-xl font-bold leading-tight tracking-tight text-deep-blue mb-2">
+                {item.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm leading-relaxed text-deep-blue/60">
+                {item.description}
               </p>
             </div>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {service.whyChoose.slice(0, 6).map((item, i) => {
-              const itemAccent = ACCENTS[i % ACCENTS.length];
-              return (
-                <div key={item.title} >
-                  <motion.div
-                    whileHover={{ y: -6 }}
-                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                    className="group relative h-full rounded-2xl overflow-hidden"
-                    style={
-                      {
-                        "--card-glow": `${itemAccent}55`,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <div
-                      className="pointer-events-none absolute -top-8 -right-8 w-28 h-28 rounded-full blur-2xl opacity-[0.16] group-hover:opacity-[0.32] transition-opacity duration-500"
-                      style={{ backgroundColor: itemAccent }}
-                    />
-                    <div className="relative h-full p-7 rounded-2xl border border-deep-blue/[0.07] bg-white group-hover:shadow-[0_20px_40px_-16px_var(--card-glow)] transition-all duration-500">
-                      <div
-                        className="pointer-events-none absolute inset-0 rounded-2xl border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        style={{ borderColor: `${itemAccent}33` }}
-                      />
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-transform duration-500 group-hover:scale-105"
-                        style={{
-                          backgroundColor: itemAccent,
-                          boxShadow: `0 12px 28px -10px ${itemAccent}80`,
-                        }}
-                      >
-                        <svg
-                          className="w-6 h-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={1.8}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                      <h3 className="mt-5 h-card text-deep-blue">{item.title}</h3>
-                      <p className="mt-2.5 text-sm text-deep-blue/65 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+        );
+      })}
+    </div>
+  </div>
+</section>
 
       {/* ───────── Industries we serve (compact) ───────── */}
       <section className="pb-20 bg-light-accent relative overflow-hidden">
