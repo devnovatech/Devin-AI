@@ -199,10 +199,10 @@ export default function FAQPage() {
             </section>
 
             {/* FAQ List - All FAQs */}
-  <section
-      id="faq"
-      className="min-h-screen flex flex-col justify-center py-16 lg:py-20 relative bg-section-services overflow-hidden"
-    >                {/* background */}
+            <section
+                id="faq"
+                className="min-h-screen flex flex-col justify-center py-16 lg:py-20 relative bg-section-services overflow-hidden"
+            >                {/* background */}
                 <div className="absolute inset-0 grid-bg opacity-40" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent " />
 
@@ -218,7 +218,7 @@ export default function FAQPage() {
                             </div>
                             <h2 className="h-section text-deep-blue">
                                 Questions,{" "}
-                                <span className="gradient-text">answered.</span>
+                                <span className="gradient-text-dark">Answere</span>
                             </h2>
                         </div>
                         <div className="lg:col-span-5">

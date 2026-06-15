@@ -239,33 +239,6 @@ export default function WhyChooseUs() {
             <ReasonCard key={reason.title} reason={reason} index={i} />
           ))}
         </div>
-
-        {/* Compact CTA strip */}
-        <div className="mt-4 lg:mt-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-2xl bg-white/60 border border-deep-blue/[0.07] backdrop-blur-sm px-5 py-4">
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <p className="text-sm text-deep-blue/70">
-                <span className="font-semibold text-deep-blue">
-                  The same standards on every project.
-                </span>{" "}
-                No exceptions.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-deep-blue text-white font-semibold text-xs hover:bg-neon-blue hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
-            >
-              Start a project
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
-        </div>
       </div>
     </section>
   );

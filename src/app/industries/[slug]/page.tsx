@@ -1044,7 +1044,7 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
   const visibleCount = 3;
 
   return (
-    <section className="py-20 bg-light-accent relative overflow-hidden">
+    <section className="py-20 bg-light relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
@@ -1110,9 +1110,6 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
 
                     {/* Arrow */}
                     <td className="py-5 px-2 align-middle text-center">
-                      <svg className="w-6 h-6 text-deep-blue/40 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
                     </td>
 
                     {/* Solution */}

@@ -45,16 +45,12 @@ export default function CTABanner({
 
             {/* Content */}
             <div className="relative z-10 px-8 sm:px-16 py-16 sm:py-20 text-center">
-              {eyebrow && (
-                <div
-  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03]"
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs font-semibold tracking-wider uppercase text-neon-blue">
-                    {eyebrow}
-                  </span>
-                </div>
-              )}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+                <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/80">
+                  Available for new projects
+                </span>
+              </div>
 
               <h2 className="mt-6 h-section text-white max-w-3xl mx-auto">
                 {heading}

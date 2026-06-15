@@ -120,40 +120,6 @@ export default function About() {
                   <p className="mt-1 text-sm text-white font-semibold">Brands we&apos;ve shipped alongside</p>
                 </div>
               </div>
-
-              <FloatingBadge className="absolute -top-5 -left-3 lg:-left-6 z-10" delay={0.4} rotate={-6}>
-                <div className="rounded-xl bg-white border border-deep-blue/10 shadow-xl px-4 py-2.5">
-                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-deep-blue/50">Founded</p>
-                  <p className="mt-0.5 text-lg font-bold text-deep-blue tabular-nums">2010</p>
-                </div>
-              </FloatingBadge>
-
-              <FloatingBadge className="absolute -top-5 -right-3 lg:-right-6 z-10" delay={0.55} rotate={6}>
-                <div className="rounded-xl bg-deep-blue text-white shadow-xl px-4 py-2.5">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => <svg key={i} className="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
-                  </div>
-                  <p className="mt-1 text-[10px] tracking-wide font-semibold"><span className="text-white">4.9</span><span className="text-white/60"> · 100+ reviews</span></p>
-                </div>
-              </FloatingBadge>
-
-              <FloatingBadge className="absolute -bottom-5 -left-3 lg:-left-7 z-10" delay={0.7} rotate={6}>
-                <div className="flex items-center gap-2.5 rounded-xl bg-white border border-deep-blue/10 shadow-xl px-3.5 py-2.5">
-                  <span className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                  </span>
-                  <div><p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-deep-blue/50">Compliance</p><p className="text-xs font-bold text-deep-blue">SOC 2-aligned</p></div>
-                </div>
-              </FloatingBadge>
-
-              <FloatingBadge className="absolute -bottom-5 -right-3 lg:-right-6 z-10" delay={0.85} rotate={-6}>
-                <div className="rounded-xl bg-neon-blue text-white shadow-xl px-4 py-2.5 ring-4 ring-white/30">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75 animate-ping" /><span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-300" /></span>
-                    <p className="text-[10px] uppercase tracking-[0.18em] font-semibold">Now booking Q1</p>
-                  </div>
-                </div>
-              </FloatingBadge>
             </div>
           </div>
 

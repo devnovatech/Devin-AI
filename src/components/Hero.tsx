@@ -253,7 +253,7 @@ export default function Hero() {
         {/* LEFT — text */}
         <div className="lg:col-span-7">
           {/* Status pill */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -266,7 +266,7 @@ export default function Hero() {
             <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
               Software development partner · Available for new projects
             </span>
-          </motion.div>
+          </motion.div> */}
 
           {/* Headline */}
           <h1
@@ -279,7 +279,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-            Architected for Scale. 
+            Your Vision.
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
@@ -288,7 +288,7 @@ export default function Hero() {
               className="block"
             >
                {" "}
-              <span className="gradient-text glow-text"> Built for Impact.
+              <span className="gradient-text glow-text"> Engineered Into Deployable Software
 </span>
             </motion.span>
           </h1>
@@ -300,7 +300,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed"
           >
-From architecture to deployment, we build the digital foundations that ambitious businesses run on. Scalable applications, intelligent automation, and full-stack delivery — engineered to perform at every stage of growth.  </motion.p>
+Whether you're building your first MVP or scaling to enterprise, our full-stack engineers deliver production-grade software, end to end.  </motion.p>
 
           {/* Three-pillar chip row */}
           {/* <motion.div
