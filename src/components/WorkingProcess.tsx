@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
@@ -122,41 +122,120 @@ const stages: Stage[] = [
 
 export default function WorkingProcess() {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const active = stages[activeIdx];
+
+  // Check if screen is large (1024px and above)
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  // Mobile: Handle swipe/touch for stage selection
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    const startX = touch.clientX;
+    
+    const handleTouchEnd = (e: TouchEvent) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && activeIdx < stages.length - 1) {
+          setActiveIdx(activeIdx + 1);
+        } else if (diff < 0 && activeIdx > 0) {
+          setActiveIdx(activeIdx - 1);
+        }
+      }
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+    
+    document.addEventListener('touchend', handleTouchEnd);
+  };
 
   return (
     <section
       id="process"
-      className="min-h-screen flex flex-col justify-center py-14 lg:py-16 bg-section-process relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center py-10 sm:py-12 lg:py-16 bg-section-process relative overflow-hidden"
     >
       {/* Animated background blooms */}
       <div
         className="absolute top-1/4 -left-32 w-[420px] h-[420px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none"
-
       />
       <div
         className="absolute bottom-1/4 -right-32 w-[420px] h-[420px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"
       />
       <div className="absolute inset-0 dotted-grid-light opacity-30 pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 w-full">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
         {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-start mb-8 lg:mb-10">
+        <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-start mb-6 sm:mb-8 lg:mb-10">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 mb-3">
+            <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-blue">
+              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-blue">
                 How we work
               </span>
             </div>
-
-          
-
           </div>
         </div>
 
-        {/* Gantt-style timeline */}
-        <div>
+        {/* Mobile: Horizontal scrollable stage selector */}
+        <div className="lg:hidden flex gap-2 overflow-x-auto pb-4 mb-4 scrollbar-hide -mx-4 px-4 snap-x snap-mandatory">
+          {stages.map((stage, i) => {
+            const isActive = activeIdx === i;
+            return (
+              <button
+                key={stage.number}
+                onClick={() => setActiveIdx(i)}
+                className={`snap-start shrink-0 px-4 py-3 rounded-xl transition-all duration-300 touch-manipulation ${
+                  isActive
+                    ? "bg-white/10 border-2"
+                    : "bg-white/5 border border-white/5 hover:bg-white/10"
+                }`}
+                style={{
+                  borderColor: isActive ? stage.accent : "transparent",
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0"
+                    style={{
+                      backgroundColor: isActive ? stage.accent : `${stage.accent}30`,
+                    }}
+                  >
+                    {stage.icon}
+                  </span>
+                  <div className="text-left">
+                    <span
+                      className={`text-[9px] font-mono font-bold tracking-wider block ${
+                        isActive ? "text-white/80" : "text-white/40"
+                      }`}
+                    >
+                      {stage.number}
+                    </span>
+                    <span
+                      className={`text-sm font-bold tracking-tight block ${
+                        isActive ? "text-white" : "text-white/60"
+                      }`}
+                    >
+                      {stage.name}
+                    </span>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Desktop: Gantt-style timeline */}
+        <div className="hidden lg:block">
           <div className="relative rounded-2xl bg-white/[0.02] border border-white/10 p-5 lg:p-7 backdrop-blur-sm">
             {/* Vertical gridlines */}
             <div className="absolute inset-x-5 lg:inset-x-7 inset-y-0 grid grid-cols-12 pointer-events-none">
@@ -191,17 +270,19 @@ export default function WorkingProcess() {
                     }}
                     animate={{ scale: isActive ? 1.02 : 1 }}
                     transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                    className="group relative flex items-center gap-2.5 h-10 px-3 rounded-md border text-left transition-colors duration-300"
+                    className="group relative flex items-center gap-2.5 h-10 px-3 rounded-md border text-left transition-colors duration-300 touch-manipulation"
                   >
                     <span
-                      className={`font-mono text-[10px] font-bold tracking-wider ${isActive ? "text-white/80" : "text-white/30"
-                        }`}
+                      className={`font-mono text-[10px] font-bold tracking-wider ${
+                        isActive ? "text-white/80" : "text-white/30"
+                      }`}
                     >
                       {stage.number}
                     </span>
                     <span
-                      className={`text-sm font-bold tracking-tight truncate ${isActive ? "text-white" : "text-white/60"
-                        }`}
+                      className={`text-sm font-bold tracking-tight truncate ${
+                        isActive ? "text-white" : "text-white/60"
+                      }`}
                     >
                       {stage.name}
                     </span>
@@ -221,18 +302,24 @@ export default function WorkingProcess() {
           </div>
         </div>
 
-        {/* Detail panel — updates on hover */}
-        <div className="mt-7 lg:mt-9 grid lg:grid-cols-12 gap-5 lg:gap-7 items-start">
+        {/* Detail panel — updates on hover/click */}
+        <div 
+          className="mt-5 sm:mt-6 lg:mt-9 grid lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-7 items-start"
+          onTouchStart={handleTouchStart}
+        >
           {/* LEFT — stage description */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
-              <div
-
+              <motion.div
+                key={active.number}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <div
-
-                    className="w-14 h-14 rounded-xl flex items-center justify-center text-white shrink-0"
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-white shrink-0 transition-all duration-300"
                     style={{
                       backgroundColor: active.accent,
                       boxShadow: `0 14px 32px -10px ${active.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`,
@@ -242,28 +329,33 @@ export default function WorkingProcess() {
                   </div>
                   <div>
                     <p
-                      className="text-[10px] uppercase tracking-[0.22em] font-semibold"
+                      className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] font-semibold"
                       style={{ color: `${active.accent}` }}
                     >
                       Stage {active.number}
                     </p>
-                    <h3 className="mt-0.5 text-2xl lg:text-3xl font-bold text-white tracking-tight">
+                    <h3 className="mt-0.5 text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight">
                       {active.name}
                     </h3>
                   </div>
                 </div>
-                <p className="mt-5 text-gray-400 leading-relaxed max-w-xl">
+                <p className="mt-4 sm:mt-5 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl">
                   {active.description}
                 </p>
-              </div>
+              </motion.div>
             </AnimatePresence>
           </div>
 
           {/* RIGHT — "what happens here" card */}
           <div className="lg:col-span-5">
             <AnimatePresence mode="wait">
-              <div
-                className="relative rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm p-5 lg:p-6 overflow-hidden"
+              <motion.div
+                key={`activities-${active.number}`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1], delay: 0.05 }}
+                className="relative rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm p-4 sm:p-5 lg:p-6 overflow-hidden"
                 style={{ "--accent": active.accent } as React.CSSProperties}
               >
                 {/* Soft accent glow */}
@@ -273,29 +365,61 @@ export default function WorkingProcess() {
                 />
 
                 <div className="relative">
-                  <p className="text-[10px] uppercase tracking-[0.22em] font-semibold text-gray-500">
+                  <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] font-semibold text-gray-500">
                     What happens here
                   </p>
-                  <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
+                  <ul className="mt-3 sm:mt-4 grid grid-cols-2 gap-x-3 sm:gap-x-4 gap-y-2 sm:gap-y-2.5">
                     {active.activities.map((a, i) => (
-                      <div
+                      <motion.div
                         key={a}
-                        className="flex items-center gap-2 text-sm text-gray-300"
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+                        className="flex items-center gap-2 text-xs sm:text-sm text-gray-300"
                       >
                         <span
                           className="w-1.5 h-1.5 rounded-full shrink-0"
                           style={{ backgroundColor: active.accent }}
                         />
                         <span className="truncate">{a}</span>
-                      </div>
+                      </motion.div>
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Mobile: Stage progress indicator */}
+        <div className="lg:hidden flex justify-center gap-1.5 mt-4 sm:mt-5">
+          {stages.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIdx(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 touch-manipulation ${
+                i === activeIdx ? "w-6" : "w-1.5"
+              }`}
+              style={{
+                backgroundColor: i === activeIdx ? stages[activeIdx].accent : "rgba(255,255,255,0.2)",
+              }}
+            />
+          ))}
+        </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .touch-manipulation {
+          touch-action: manipulation;
+        }
+      `}</style>
     </section>
   );
 }

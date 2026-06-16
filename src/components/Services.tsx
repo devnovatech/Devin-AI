@@ -378,7 +378,7 @@ function TabButton({ service, index, isActive, onSelect, align }: { service: Ser
   return (
     <button
       onClick={onSelect}
-      className={`group relative w-full ${align === "right" ? "text-right" : "text-left"} flex items-center gap-3 px-3.5 py-3 rounded-xl transition-all duration-300`}
+      className={`group relative w-full ${align === "right" ? "lg:text-right" : "lg:text-left"} flex items-center gap-2 sm:gap-3 px-2.5 sm:px-3.5 py-2.5 sm:py-3 rounded-xl transition-all duration-300 touch-manipulation`}
     >
       {isActive && (
         <motion.span
@@ -388,7 +388,7 @@ function TabButton({ service, index, isActive, onSelect, align }: { service: Ser
         />
       )}
       {align === "right" && (
-        <div className="relative flex-1 min-w-0">
+        <div className="relative flex-1 min-w-0 hidden lg:block">
           <h3 className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-deep-blue" : "text-deep-blue/75 group-hover:text-deep-blue"}`}>
             {service.title}
           </h3>
@@ -398,16 +398,16 @@ function TabButton({ service, index, isActive, onSelect, align }: { service: Ser
         </div>
       )}
       <span
-        className="relative w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
+        className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300"
         style={{ backgroundColor: isActive ? service.accent : `${service.accent}15`, color: isActive ? "white" : service.accent, boxShadow: isActive ? `0 10px 22px -8px ${service.accent}80` : "none" }}
       >
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <circle cx="12" cy="12" r="3" />
           <path strokeLinecap="round" d="M12 5V2M12 22v-3M5 12H2M22 12h-3M7.5 7.5L5 5M19 19l-2.5-2.5" />
         </svg>
       </span>
       {align === "left" && (
-        <div className="relative flex-1 min-w-0">
+        <div className="relative flex-1 min-w-0 hidden lg:block">
           <h3 className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-deep-blue" : "text-deep-blue/75 group-hover:text-deep-blue"}`}>
             {service.title}
           </h3>
@@ -416,7 +416,18 @@ function TabButton({ service, index, isActive, onSelect, align }: { service: Ser
           </p>
         </div>
       )}
-      <span className={`relative font-mono text-[10px] font-semibold tracking-wider transition-colors duration-300 ${isActive ? "text-deep-blue/40" : "text-deep-blue/20"}`}>
+      
+      {/* Mobile: Show title next to icon */}
+      <div className="relative flex-1 min-w-0 lg:hidden">
+        <h3 className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-deep-blue" : "text-deep-blue/75"}`}>
+          {service.title}
+        </h3>
+        <p className={`text-[10px] sm:text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-deep-blue/55" : "text-deep-blue/40"}`}>
+          {service.tagline}
+        </p>
+      </div>
+      
+      <span className={`relative font-mono text-[9px] sm:text-[10px] font-semibold tracking-wider transition-colors duration-300 ${isActive ? "text-deep-blue/40" : "text-deep-blue/20"}`}>
         {String(index + 1).padStart(2, "0")}
       </span>
     </button>
@@ -430,30 +441,55 @@ export default function Services() {
   const active = services[activeIdx];
 
   return (
-    <section id="services" className="min-h-screen flex flex-col justify-center py-16 lg:py-20 relative bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+    <section id="services" className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-gradient-to-b from-slate-50 to-white overflow-hidden">
       <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-blue-400/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-purple-400/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 w-full">
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
+        <div className="grid lg:grid-cols-12 gap-4 lg:gap-6 items-end mb-6 lg:mb-10">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-4 sm:mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">Capabilities</span>
+              <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">Capabilities</span>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 lg:items-stretch">
-          <div className="lg:col-span-3 lg:order-1 flex flex-col gap-1.5">
-            <p className="hidden lg:block text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pl-3.5">Build · Design</p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 lg:gap-6 lg:items-stretch">
+          {/* Mobile: Horizontal scrollable tabs */}
+          <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-1 scrollbar-hide -mx-4 px-4 snap-x snap-mandatory">
+            {services.map((s, i) => (
+              <button
+                key={s.title}
+                onClick={() => setActiveIdx(i)}
+                className={`snap-start shrink-0 px-4 py-2.5 rounded-xl transition-all duration-300 whitespace-nowrap touch-manipulation ${
+                  activeIdx === i 
+                    ? "bg-white shadow-lg shadow-deep-blue/10 border border-deep-blue/[0.06]" 
+                    : "bg-white/50 hover:bg-white/80"
+                }`}
+                style={{ 
+                  borderColor: activeIdx === i ? s.accent : "transparent",
+                  borderWidth: activeIdx === i ? "2px" : "1px"
+                }}
+              >
+                <span className={`text-xs font-semibold transition-colors duration-300 ${
+                  activeIdx === i ? "text-deep-blue" : "text-deep-blue/60"
+                }`}>
+                  {s.title}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <div className="lg:col-span-3 lg:order-1 hidden lg:flex flex-col gap-1.5">
+            <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pl-3.5">Build · Design</p>
             {leftServices.map((s, i) => (
               <TabButton key={s.title} service={s} index={i} isActive={activeIdx === i} onSelect={() => setActiveIdx(i)} align="left" />
             ))}
           </div>
 
           {/* CENTER SLIDER AREA — Dynamic demo content per service */}
-          <div className="lg:col-span-6 lg:order-2 order-first lg:px-2 lg:h-full min-h-[380px] flex">
+          <div className="lg:col-span-6 lg:order-2 order-first lg:px-2 lg:h-full min-h-[340px] sm:min-h-[380px] flex">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.title}
@@ -469,39 +505,39 @@ export default function Services() {
                 <div className="noise-overlay" />
                 <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 50% 55%, transparent 30%, rgba(0,0,0,0.25) 100%)" }} />
 
-                <div className="absolute top-6 left-7 right-7 flex items-center justify-between text-white/90 z-10">
+                <div className="absolute top-4 sm:top-6 left-4 sm:left-7 right-4 sm:right-7 flex items-center justify-between text-white/90 z-10">
                   <div className="flex items-center gap-2">
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inset-0 rounded-full bg-white animate-ping opacity-75" />
                       <span className="relative rounded-full h-2 w-2 bg-white" />
                     </span>
-                    <span className="text-[10px] uppercase tracking-[0.2em] font-semibold">{active.category}</span>
+                    <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-semibold">{active.category}</span>
                   </div>
-                  <span className="font-mono text-[10px] tracking-wider px-2 py-0.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
+                  <span className="font-mono text-[9px] sm:text-[10px] tracking-wider px-2 py-0.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
                     {String(activeIdx + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
                   </span>
                 </div>
 
                 {/* Demo content area — changes per service */}
-                <div className="absolute inset-0 flex items-center justify-center p-8 pt-20 pb-24">
+                <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-8 pt-16 sm:pt-20 pb-20 sm:pb-24">
                   <div className="w-full max-w-sm">
                     {active.demoPreview}
                   </div>
                 </div>
 
-                <div className="absolute bottom-7 left-7 right-7 text-white z-10">
+                <div className="absolute bottom-4 sm:bottom-7 left-4 sm:left-7 right-4 sm:right-7 text-white z-10">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="h-px w-6 bg-white/60" />
-                    <p className="text-[10px] uppercase tracking-[0.18em] text-white/80 font-semibold">{active.tagline}</p>
+                    <span className="h-px w-4 sm:w-6 bg-white/60" />
+                    <p className="text-[8px] sm:text-[10px] uppercase tracking-[0.18em] text-white/80 font-semibold">{active.tagline}</p>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold tracking-tight drop-shadow-md">{active.title}</h3>
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight drop-shadow-md">{active.title}</h3>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="lg:col-span-3 lg:order-3 flex flex-col gap-1.5">
-            <p className="hidden lg:block text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pr-3.5 text-right">Grow · Ops</p>
+          <div className="lg:col-span-3 lg:order-3 hidden lg:flex flex-col gap-1.5">
+            <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pr-3.5 text-right">Grow · Ops</p>
             {rightServices.map((s, i) => {
               const realIdx = i + leftServices.length;
               return <TabButton key={s.title} service={s} index={realIdx} isActive={activeIdx === realIdx} onSelect={() => setActiveIdx(realIdx)} align="right" />;
@@ -520,17 +556,17 @@ export default function Services() {
             className="mt-3 lg:mt-4 relative rounded-3xl bg-white border border-deep-blue/[0.07] shadow-2xl shadow-deep-blue/10 overflow-hidden"
           >
             <div className="absolute top-0 left-0 bottom-0 w-1" style={{ background: `linear-gradient(180deg, ${active.accent} 0%, ${active.accent}66 100%)` }} />
-            <div className="relative grid lg:grid-cols-2 gap-10 p-4 lg:p-6">
+            <div className="relative grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 p-4 sm:p-5 lg:p-6">
               <div>
-                <span className="absolute -top-3 -left-1 font-serif text-6xl leading-none select-none pointer-events-none" style={{ color: `${active.accent}1f` }} aria-hidden>&ldquo;</span>
-                <p className="relative pl-6 text-deep-blue/80 leading-relaxed text-[15.5px]">{active.description}</p>
+                <span className="absolute -top-3 -left-1 font-serif text-5xl sm:text-6xl leading-none select-none pointer-events-none" style={{ color: `${active.accent}1f` }} aria-hidden>&ldquo;</span>
+                <p className="relative pl-5 sm:pl-6 text-deep-blue/80 leading-relaxed text-[14px] sm:text-[15.5px]">{active.description}</p>
               </div>
               <div className="lg:border-l lg:border-deep-blue/[0.07] lg:pl-10">
                 <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-2.5">Tech & tools</p>
                 <div className="flex flex-wrap gap-1.5 mb-6">
                   {active.stack.map((s, i) => (
                     <motion.span key={s} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 + i * 0.04 }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold rounded-full tracking-wide border transition-all duration-200 hover:scale-105"
+                      className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-[10px] sm:text-[11px] font-semibold rounded-full tracking-wide border transition-all duration-200 hover:scale-105"
                       style={{ color: active.accent, backgroundColor: `${active.accent}0d`, borderColor: `${active.accent}26` }}>
                       <span className="w-1 h-1 rounded-full" style={{ backgroundColor: active.accent }} />{s}
                     </motion.span>
@@ -541,6 +577,20 @@ export default function Services() {
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Custom scrollbar hide for mobile */}
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .touch-manipulation {
+          touch-action: manipulation;
+        }
+      `}</style>
     </section>
   );
 }

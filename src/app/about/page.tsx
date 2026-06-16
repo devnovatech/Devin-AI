@@ -123,7 +123,7 @@ function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <AnimatedSection direction="left" className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/5 backdrop-blur-sm">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/5 backdrop-blur-sm">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
@@ -131,14 +131,14 @@ function HeroSection() {
               <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
                 Founded 2010 · 30+ employees worldwide
               </span>
-            </div>
+            </div> */}
 
             <h1 className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white" style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}>
-              About <span className="gradient-text glow-text">Dev Inception</span>
+              About  <span className="gradient-text glow-text">Us</span>
             </h1>
 
             <p className="mt-7 body-lead text-gray-400 max-w-xl">
-              We offer dynamic IT services to suit your specific requirements. Our flexible approach means we can adjust our offerings to accommodate your evolving needs, whether you require comprehensive IT infrastructure support, strategic consultancy or software development.
+              At Dev Inception, we pride ourselves on offering dynamic IT services to suit your specific requirements. Our flexible approach means we can adjust our offerings to accommodate your evolving needs, whether you require comprehensive IT infrastructure support, strategic consultancy or software development.
             </p>
 
             <div className="mt-9 flex flex-col sm:flex-row gap-3">
@@ -292,37 +292,7 @@ function StatsSection() {
 // ============================================================================
 // History Section
 // ============================================================================
-function HistorySection() {
-  return (
-    <section className="py-20 bg-light-accent relative overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-12 overflow-hidden relative">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            <div className="lg:col-span-4">
-              <p className="eyebrow text-neon-purple">Our journey</p>
-              <h2 className="mt-3 h-section text-white">
-                Founded in <span className="gradient-text-dark">2010</span>
-              </h2>
-            </div>
-            <div className="lg:col-span-8">
-              <p className="body-lead text-white">
-                Dev Inception helps organizations solve complex business challenges through technology that is purposeful, scalable, and built for long-term impact. We partner with startups, enterprises, and growing businesses to design and deliver digital systems that improve operations, accelerate growth, and create measurable value.
-              </p>
-              <p className="mt-5 body-base text-white/80">
-                Over the years, we have evolved into a multidisciplinary team of strategists, designers, and engineers united by a shared commitment to excellence. From navigating periods of disruption to supporting ambitious transformation initiatives, our focus has remained consistent: building technology that aligns with business objectives, adapts to change, and enables sustainable growth.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ============================================================================
-// Mission & Vision Section
-// ============================================================================
-function MissionVisionSection() {
+function OurMissionSection() {
   const missionPoints = [
     "Design digital solutions that solve real business challenges",
     "Align technology investments with measurable business outcomes",
@@ -332,31 +302,70 @@ function MissionVisionSection() {
   ];
 
   return (
+    <section className="py-20 bg-light-accent relative overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-12 overflow-hidden relative">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left Side */}
+            <div className="lg:col-span-4">
+              <p className="eyebrow text-neon-blue">Our Mission</p>
+
+              <h2 className="mt-3 h-section text-white">
+                What <br></br>{" "}
+                <span className="gradient-text-dark">Drives Us</span>
+              </h2>
+            </div>
+
+            {/* Right Side */}
+            <div className="lg:col-span-8">
+              <p className="body-lead text-white">
+                At Dev Inception, we help organizations turn complexity into competitive advantage through technology that is purposeful, scalable, and built for long-term impact.
+              </p>
+
+              <div className="mt-8 grid md:grid-cols-2 gap-4">
+                {missionPoints.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-neon-blue flex-shrink-0" />
+                    <span className="text-white/80">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className=" mt-8 body-lead text-white">
+                We combine strategic thinking with technical excellence to help organizations adapt, grow, and lead in an increasingly digital world.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
+
+// ============================================================================
+// History & Vision Section
+// ============================================================================
+function HistoryVisionSection() {
+  return (
     <section className="bg-light-accent relative">
       <div className="relative max-w-7xl mx-auto px-6 pb-20">
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Mission Card */}
+          {/* Journey/History Card */}
           <div className="rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-8 shadow-lg">
             <div className="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center mb-5">
-              <svg className="w-6 h-6 text-neon-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-neon-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={0.8}>
+                <path fill="#aae2fb" d="M16.727 3.18C12.31.81 6.915 2.103 4 6V3.5a.5.5 0 0 0-1 0v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H4.522a8.954 8.954 0 0 1 7.411-4A8.967 8.967 0 1 1 3 12c0-.16 0-.312.009-.472A.5.5 0 0 0 2.52 11c-.27-.01-.5.2-.51.472C2 11.652 2 11.82 2 12c.006 5.52 4.48 9.994 10 10a10.005 10.005 0 0 0 8.81-5.273c2.614-4.868.786-10.933-4.083-13.547zM12 8a.5.5 0 0 0-.5.5V12a.5.5 0 0 0 .5.5h2.5a.5.5 0 0 0 0-1h-2v-3A.5.5 0 0 0 12 8z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-deep-blue mb-4">Our Mission</h3>
+            <h3 className="text-2xl font-bold text-deep-blue mb-4">Our Journey</h3>
             <p className="text-deep-blue/70 leading-relaxed">
-              At Dev Inception, we help organizations turn complexity into competitive advantage through technology that is purposeful, scalable, and built for long-term impact.
+              Founded in 2010, Dev Inception helps organizations solve complex business challenges through technology that is purposeful, scalable, and built for long-term impact. We partner with startups, enterprises, and growing businesses to design and deliver digital systems that improve operations, accelerate growth, and create measurable value.
             </p>
-            <div className="mt-5 space-y-2 text-sm text-deep-blue/60">
-              {missionPoints.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-4 pt-4 border-t border-deep-blue/[0.06] text-deep-blue/60 text-sm">
-              We combine strategic thinking with technical excellence to help organizations adapt, grow, and lead in an increasingly digital world.
-            </p>
+            <p className="mt-4 text-deep-blue/70 leading-relaxed">
+              Over the years, we have evolved into a multidisciplinary team of strategists, designers, and engineers united by a shared commitment to excellence. From navigating periods of disruption to supporting ambitious transformation initiatives, our focus has remained consistent: building technology that aligns with business objectives, adapts to change, and enables sustainable growth.            </p>
           </div>
 
           {/* Vision Card */}
@@ -372,8 +381,7 @@ function MissionVisionSection() {
               Our vision is to become a global leader in digital innovation - setting the benchmark for smart, scalable, and sustainable technology solutions. We aim to redefine how modern businesses grow, connect, and thrive by merging deep technical expertise with creative thinking.
             </p>
             <p className="mt-4 text-deep-blue/70 leading-relaxed">
-              In a world where change is constant, we envision a future where digital transformation is not a luxury, but a universal opportunity. We strive to build technologies that are not only powerful but accessible and adaptable to diverse industries and needs. Through continuous learning, cutting-edge tools, and a user-first mindset, we aspire to shape the future of digital ecosystems.
-            </p>
+              In a world where change is constant, we envision a future where digital transformation is not a luxury, but a universal opportunity. We strive to build technologies that are not only powerful but accessible and adaptable to diverse industries and needs.Through continuous learning, cutting-edge tools, and a user-first mindset, we aspire to shape the future of digital ecosystems.             </p>
           </div>
         </div>
       </div>
@@ -381,15 +389,26 @@ function MissionVisionSection() {
   );
 }
 
+
 // ============================================================================
 // Values Section (Our Edge)
 // ============================================================================
 function ValuesSection() {
   const values = [
     {
-      title: "Senior Engineering",
-      description: "Experienced engineers handle your project end to end — never juniors learning on your time.",
+      title: "People-first Tech",
+      description: "We build technology around people—ensuring usability, collaboration, and long-term value come first.",
       accent: "#1E88E5",
+      icon: (
+        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+    },
+    {
+      title: "Agility meets Expertise",
+      description: "We combine fast, adaptive delivery with deep technical knowledge to solve complex challenges efficiently.",
+      accent: "#00ACC1",
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -397,52 +416,43 @@ function ValuesSection() {
       ),
     },
     {
-      title: "Coordinated Teams",
-      description: "Engineers, designers, and project leads work together — no slow handoffs between separate groups.",
-      accent: "#00ACC1",
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857" />
-        </svg>
-      ),
-    },
-    {
-      title: "Clear Communication",
-      description: "Regular demos and honest updates, so you always know exactly where your project stands.",
+      title: "Partners, not just Providers",
+      description: "We work as an extension of your team, invested in your goals, outcomes, and long-term success.",
       accent: "#0288D1",
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
         </svg>
       ),
     },
     {
-      title: "Design That Works",
-      description: "We design based on real user research and testing — not guesswork or trends.",
+      title: "Time coordination",
+      description: "We stay in sync with your schedule to ensure real-time collaboration and faster decision-making.",
       accent: "#039BE5",
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" />
         </svg>
       ),
     },
     {
-      title: "Built to Scale",
-      description: "Architected to grow with you — secure and reliable as your product and usage expand.",
+      title: "Exceptionally Talented Teams",
+      description: "Our teams bring together highly skilled engineers, designers, and strategists focused on delivering excellence.",
       accent: "#00BCD4",
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
       ),
     },
     {
-      title: "Transparent Pricing",
-      description: "Clear quotes and honest scope — no hidden costs or surprise change orders.",
+      title: "Resource-efficient",
+      description: "We optimize effort and technology use to deliver maximum value without unnecessary overhead.",
       accent: "#1565C0",
       icon: (
         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 8h6m-5 4h4m-7 4h10a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2zm0 0v2a2 2 0 002 2h6a2 2 0 002-2v-2" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
         </svg>
       ),
     },
@@ -468,7 +478,7 @@ function ValuesSection() {
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              The non-negotiables that show up in every project — the way we work, communicate, and ship.
+              TWhat sets us apart is a blend of deep expertise, modern engineering, and execution speed that drives real impact.
             </p>
           </div>
         </div>
@@ -548,30 +558,31 @@ function CareersSection() {
     {
       title: "Growth Environment",
       description: "A learning-driven workplace where individuals are encouraged to develop skills, take initiative, and grow professionally.",
-      accent: "#1E88E5", // Updated to match OpenPositionsSection
+      accent: "#1E88E5",
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
     },
     {
       title: "Inclusivity & Respect",
       description: "A culture that values diverse perspectives and fosters mutual respect, ensuring everyone feels heard, valued, and supported.",
-      accent: "#00ACC1", // Updated to match OpenPositionsSection
+      accent: "#00ACC1",
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
         </svg>
       ),
     },
     {
       title: "Engineered for Productivity",
       description: "A structured and collaborative environment designed to minimize friction, streamline workflows, and enable teams to perform at their best.",
-      accent: "#0288D1", // Updated to match OpenPositionsSection
+      accent: "#0288D1",
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       ),
     },
@@ -592,12 +603,12 @@ function CareersSection() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-sm mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-300">
-                Join the team
+                Carrers
               </span>
             </div>
             <h2 className="h-section text-white">
-              Build your future{" "}
-              <span className="gradient-text">with us</span>
+              Ready to start your{" "}
+              <span className="gradient-text"> career with us?</span>
             </h2>
           </div>
           <div className="lg:col-span-5">
@@ -686,14 +697,14 @@ function CareersSection() {
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <a
             href="/careers"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
           >
             View All Opportunities →
           </a>
-        </div>
+        </div> */}
       </div>
     </section>
   );
@@ -894,8 +905,8 @@ export default function AboutPage() {
     <>
       <HeroSection />
 
-      <HistorySection />
-      <MissionVisionSection />
+      <OurMissionSection />
+      <HistoryVisionSection />
       <StatsSection />
       <ValuesSection />
       <CareersSection />

@@ -109,15 +109,14 @@ export default function About() {
 
               <div className="relative rounded-2xl overflow-hidden ring-1 ring-deep-blue/10 shadow-2xl shadow-deep-blue/20 bg-white">
                 <Image
-                  src="/aboutusimage.png"
+                  src="/AboutUs.png"
                   alt="Clients Devinception has shipped alongside"
                   width={600}
                   height={428}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="w-full h-auto block"
-                />                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-deep-blue/85 via-deep-blue/40 to-transparent p-5">
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-semibold text-white/70">Selected portfolio · 2018–2026</p>
-                  <p className="mt-1 text-sm text-white font-semibold">Brands we&apos;ve shipped alongside</p>
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-deep-blue/85 via-deep-blue/40 to-transparent p-5">
                 </div>
               </div>
             </div>
