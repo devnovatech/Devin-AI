@@ -2,6 +2,7 @@
 
 import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Service {
   title: string;
@@ -12,7 +13,6 @@ interface Service {
   description: string;
   outcomes: string[];
   stack: string[];
-  demoPreview: ReactNode; // Each service gets its own dynamic demo content
 }
 
 const services: Service[] = [
@@ -31,60 +31,6 @@ const services: Service[] = [
       "Evals, monitoring, and MLOps from day one",
     ],
     stack: ["OpenAI", "Anthropic", "LangChain", "Python", "TensorFlow"],
-    demoPreview: (
-      <div className="w-full space-y-5">
-        <div className="flex items-center justify-between border-b border-white/20 pb-2">
-          <span className="text-xs font-mono text-white/70">REAL-TIME INFERENCE</span>
-          <span className="text-xs font-bold text-white/90">v2.4.1</span>
-        </div>
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-full bg-white/20 backdrop-blur flex items-center justify-center">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
-            </div>
-            <div className="flex-1">
-              <div className="flex justify-between text-xs">
-                <span className="text-white/60">Model confidence</span>
-                <span className="text-white font-mono">94.2%</span>
-              </div>
-              <div className="h-1.5 w-full bg-white/10 rounded-full mt-1 overflow-hidden">
-                <motion.div 
-                  className="h-full rounded-full" 
-                  style={{ backgroundColor: "#1E88E5" }}
-                  initial={{ width: "0%" }}
-                  animate={{ width: "94.2%" }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="bg-white/5 rounded-xl p-3 backdrop-blur-sm">
-            <div className="flex justify-between text-[11px] mb-2">
-              <span className="text-white/50">Processing</span>
-              <span className="text-white/80 font-mono">LLM / GPT-4o</span>
-            </div>
-            <div className="h-6 w-full flex gap-1">
-              {[85, 92, 78, 96, 88, 91, 84].map((val, i) => (
-                <motion.div 
-                  key={i}
-                  className="flex-1 bg-white/20 rounded-sm"
-                  initial={{ height: "0%" }}
-                  animate={{ height: `${val}%` }}
-                  transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
-                  style={{ alignSelf: "flex-end" }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="flex gap-2 text-[11px] text-white/60 justify-between">
-          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Online</span>
-          <span className="font-mono">1,284 req/s</span>
-        </div>
-      </div>
-    )
   },
   {
     title: "Mobile Engineering",
@@ -101,40 +47,6 @@ const services: Service[] = [
       "Long-term maintenance and feature delivery",
     ],
     stack: ["Flutter", "React Native", "Swift", "Kotlin", "Firebase"],
-    demoPreview: (
-      <div className="w-full space-y-5">
-        <div className="flex justify-between items-center">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-400/70"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-400/70"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400/70"></div>
-          </div>
-          <span className="text-[10px] font-mono text-white/50">App Preview</span>
-        </div>
-        <div className="bg-black/30 rounded-2xl p-3 backdrop-blur-sm border border-white/10">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18v-5a2 2 0 00-2-2H6a2 2 0 00-2 2v5m12 0v-5a2 2 0 00-2-2h-2m-4 0H6m12 0h2M4 18h16" />
-              </svg>
-            </div>
-            <div>
-              <div className="text-sm font-semibold text-white">Mobile Dashboard</div>
-              <div className="text-[10px] text-white/50">Real-time sync</div>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <div className="h-1.5 w-full bg-white/10 rounded-full"><div className="w-3/4 h-full bg-cyan-400/70 rounded-full"></div></div>
-            <div className="h-1.5 w-full bg-white/10 rounded-full"><div className="w-1/2 h-full bg-cyan-400/70 rounded-full"></div></div>
-            <div className="flex justify-between text-[10px] text-white/50 mt-2">
-              <span>📱 iOS 17+</span>
-              <span>🤖 Android 14</span>
-              <span>⚡ 60 FPS</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
   },
   {
     title: "Web Platforms",
@@ -151,26 +63,6 @@ const services: Service[] = [
       "Real-time, multi-tenant, audit-ready by default",
     ],
     stack: ["Next.js", "Node", "TypeScript", "PostgreSQL"],
-    demoPreview: (
-      <div className="w-full space-y-4">
-        <div className="flex gap-2 text-[10px] font-mono text-white/60 border-b border-white/10 pb-2">
-          <span className="text-emerald-400">● LIVE</span>
-          <span>LCP: 0.8s</span>
-          <span>CLS: 0.02</span>
-        </div>
-        <div className="bg-white/5 rounded-xl p-3">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-xs font-semibold text-white">Edge deployment</span>
-            <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full">CDN</span>
-          </div>
-          <div className="grid grid-cols-3 gap-2 text-center text-[10px]">
-            <div className="bg-white/5 rounded p-1.5"><span className="block font-bold text-white">98</span><span className="text-white/40">ms</span></div>
-            <div className="bg-white/5 rounded p-1.5"><span className="block font-bold text-white">99.9%</span><span className="text-white/40">uptime</span></div>
-            <div className="bg-white/5 rounded p-1.5"><span className="block font-bold text-white">∞</span><span className="text-white/40">scale</span></div>
-          </div>
-        </div>
-      </div>
-    )
   },
   {
     title: "UI/UX Design",
@@ -187,23 +79,6 @@ const services: Service[] = [
       "WCAG-AA accessibility from the first frame",
     ],
     stack: ["Figma", "Adobe XD", "Sketch", "FigJam"],
-    demoPreview: (
-      <div className="w-full space-y-4">
-        <div className="flex items-center gap-2 text-white/70 text-xs">
-          <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">🎨</div>
-          <span>Design System v3.0</span>
-        </div>
-        <div className="grid grid-cols-4 gap-2">
-          {["#1565C0", "#42A5F5", "#90CAF9", "#BBDEFB"].map((color, i) => (
-            <div key={i} className="h-12 rounded-lg" style={{ backgroundColor: color }}></div>
-          ))}
-        </div>
-        <div className="bg-white/5 rounded-xl p-2 flex gap-2 text-[11px]">
-          <span className="px-2 py-1 rounded bg-white/10">WCAG-AA ✓</span>
-          <span className="px-2 py-1 rounded bg-white/10">100% components</span>
-        </div>
-      </div>
-    )
   },
   {
     title: "Software Quality Assurance",
@@ -220,28 +95,6 @@ const services: Service[] = [
       "CI gates that block bad merges automatically",
     ],
     stack: ["Cypress", "Playwright", "Postman", "JMeter"],
-    demoPreview: (
-      <div className="w-full space-y-4">
-        <div className="flex justify-between text-[10px] font-mono">
-          <span className="text-emerald-400">● 247 passed</span>
-          <span className="text-red-400">○ 0 failed</span>
-          <span className="text-yellow-400">◇ 3 skipped</span>
-        </div>
-        <div className="bg-white/5 rounded-xl p-3">
-          <div className="flex justify-between text-xs mb-2">
-            <span className="text-white/70">E2E Coverage</span>
-            <span className="text-white font-bold">96%</span>
-          </div>
-          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-            <motion.div className="h-full bg-emerald-400" initial={{ width: "0%" }} animate={{ width: "96%" }} transition={{ duration: 0.6 }} />
-          </div>
-        </div>
-        <div className="text-[10px] text-white/50 flex justify-between">
-          <span>⏱️ 12.4s avg</span>
-          <span>🔒 OWASP Top 10 ✓</span>
-        </div>
-      </div>
-    )
   },
   {
     title: "Staff Augmentation",
@@ -257,22 +110,6 @@ const services: Service[] = [
       "Month-to-month flex — scale up or down with runway",
     ],
     stack: ["React", "Node.js", "Python", "AWS", "TypeScript"],
-    demoPreview: (
-      <div className="w-full space-y-4">
-        <div className="flex gap-2 flex-wrap">
-          {["Senior Frontend", "DevOps Lead", "ML Engineer", "QA Architect"].map((role, i) => (
-            <span key={i} className="text-[10px] px-2 py-1 rounded-full bg-white/10 text-white/80">{role}</span>
-          ))}
-        </div>
-        <div className="bg-white/5 rounded-xl p-3">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">✓</div>
-            <div className="text-xs">Matched in &lt; 48h</div>
-          </div>
-          <div className="text-[10px] text-white/50">97% retention rate • Global coverage</div>
-        </div>
-      </div>
-    )
   },
   {
     title: "E-commerce Solutions",
@@ -288,26 +125,6 @@ const services: Service[] = [
       "ERP, OMS & inventory sync with audit trails",
     ],
     stack: ["Shopify", "Stripe", "Next.js", "Node.js"],
-    demoPreview: (
-      <div className="w-full space-y-3">
-        <div className="flex justify-between text-[11px]">
-          <span className="text-white/60">Cart value</span>
-          <span className="text-white font-bold">$184.50</span>
-        </div>
-        <div className="h-10 bg-white/5 rounded-lg flex items-center justify-between px-3">
-          <span className="text-xs">🛒 3 items</span>
-          <span className="text-emerald-400 text-xs">+12% conv.</span>
-        </div>
-        <motion.button 
-          className="w-full py-2 rounded-lg text-xs font-semibold text-white"
-          style={{ backgroundColor: "#0097A7" }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Express checkout →
-        </motion.button>
-      </div>
-    )
   },
   {
     title: "Digital Marketing",
@@ -323,24 +140,6 @@ const services: Service[] = [
       "Content engines for organic and inbound",
     ],
     stack: ["Google Analytics", "Google Ads", "Ahrefs", "SEMrush"],
-    demoPreview: (
-      <div className="w-full space-y-4">
-        <div className="grid grid-cols-2 gap-2 text-center">
-          <div className="bg-white/5 rounded-xl p-2">
-            <div className="text-lg font-bold text-white">+47%</div>
-            <div className="text-[9px] text-white/50">Organic traffic</div>
-          </div>
-          <div className="bg-white/5 rounded-xl p-2">
-            <div className="text-lg font-bold text-white">3.2x</div>
-            <div className="text-[9px] text-white/50">ROAS</div>
-          </div>
-        </div>
-        <div className="flex justify-between text-[10px] text-white/60">
-          <span>📈 CTR: 5.8%</span>
-          <span>🎯 Quality score: 9/10</span>
-        </div>
-      </div>
-    )
   },
   {
     title: "Project Management",
@@ -356,21 +155,6 @@ const services: Service[] = [
       "Live burndowns and stakeholder dashboards",
     ],
     stack: ["Jira", "Asana", "Notion", "Slack"],
-    demoPreview: (
-      <div className="w-full space-y-3">
-        <div className="flex justify-between text-[10px]">
-          <span>Sprint 24 • 8/12 tasks</span>
-          <span className="text-emerald-400">On track</span>
-        </div>
-        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-          <motion.div className="h-full bg-emerald-400" initial={{ width: "0%" }} animate={{ width: "67%" }} transition={{ duration: 0.5 }} />
-        </div>
-        <div className="flex gap-2 text-[10px] text-white/50">
-          <span>✅ 8 completed</span>
-          <span>🔄 4 in progress</span>
-        </div>
-      </div>
-    )
   },
 ];
 
@@ -434,11 +218,281 @@ function TabButton({ service, index, isActive, onSelect, align }: { service: Ser
   );
 }
 
+// Service-specific mock preview components
+// Service-specific mock preview components
+function ServiceMock({ service, index }: { service: Service; index: number }) {
+  const frame = "relative w-full max-w-[20rem] overflow-hidden rounded-2xl border border-white/15 bg-white/[0.05] shadow-xl shadow-teal-950/40 backdrop-blur-md";
+
+  // Different mock designs based on service category or index
+  const getMockContent = () => {
+    switch (service.slug) {
+      case "machine-learning-ai":
+        return (
+          <div className={frame}>
+            <div className="relative h-44 p-4">
+              <div className="absolute -right-6 -top-6 size-24 rounded-full bg-blue-300/30 blur-2xl" />
+              <div className="absolute bottom-2 left-6 size-20 rounded-full bg-cyan-300/20 blur-2xl" />
+              <div className="relative rounded-xl border border-white/15 bg-white/10 p-3">
+                <div className="text-xs text-white/80 font-semibold mb-1">Model: GPT-4o</div>
+                <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full w-[94%] bg-blue-400 rounded-full" />
+                </div>
+                <div className="flex justify-between text-[10px] text-white/60 mt-1">
+                  <span>Confidence</span>
+                  <span>94.2%</span>
+                </div>
+              </div>
+              <div className="relative mt-3 grid grid-cols-2 gap-2">
+                <div className="h-14 rounded-xl border border-white/15 bg-white/10 backdrop-blur-md flex flex-col items-center justify-center text-white/70 text-[10px]">
+                  <span className="font-bold text-sm">1.2k</span>
+                  <span>req/s</span>
+                </div>
+                <div className="h-14 rounded-xl border border-white/15 bg-white/[0.07] backdrop-blur-md flex flex-col items-center justify-center text-white/70 text-[10px]">
+                  <span className="font-bold text-sm">99.9%</span>
+                  <span>uptime</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      
+      case "mobile-application":
+        return (
+          <div className="relative flex h-44 w-full max-w-[20rem] items-center justify-center [perspective:900px]">
+            <div className="absolute h-28 w-44 -translate-x-16 rounded-xl border border-white/10 bg-white/[0.04] [transform:rotateY(35deg)]" />
+            <div className="absolute h-28 w-44 translate-x-16 rounded-xl border border-white/10 bg-white/[0.04] [transform:rotateY(-35deg)]" />
+            <div className="relative z-10 w-48 overflow-hidden rounded-xl border border-white/20 bg-white/10 shadow-2xl shadow-teal-950/50">
+              <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.06] px-2.5 py-1.5">
+                <span className="size-1.5 rounded-full bg-rose-400/80" />
+                <span className="size-1.5 rounded-full bg-amber-300/80" />
+                <span className="size-1.5 rounded-full bg-emerald-300/80" />
+                <span className="text-[8px] text-white/40 ml-auto">iOS 17+</span>
+              </div>
+              <div className="space-y-1.5 p-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] text-white/80 font-semibold">Dashboard</span>
+                  <span className="text-[8px] text-white/40">● Live</span>
+                </div>
+                <div className="grid grid-cols-2 gap-1.5">
+                  <div className="h-8 rounded bg-white/10 flex items-center justify-center text-white/60 text-[8px]">📊 12k</div>
+                  <div className="h-8 rounded bg-white/10 flex items-center justify-center text-white/60 text-[8px]">⚡ 60fps</div>
+                </div>
+                <div className="h-6 rounded bg-white/10 flex items-center justify-center text-white/40 text-[8px]">Real-time sync</div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case "web-development":
+        return (
+          <div className={frame}>
+            <div className="relative h-44">
+              <div className="absolute inset-0 bg-gradient-to-tr from-teal-400/40 via-emerald-300/30 to-cyan-400/40 blur-xl" />
+              <div className="relative flex h-full flex-col items-center justify-center gap-2 p-5">
+                <div className="flex items-center gap-2">
+                  <span className="text-white/90 font-bold text-lg">⚡</span>
+                  <span className="text-white/90 font-mono text-xs">0.8s LCP</span>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/20 text-white/80">Next.js</span>
+                  <span className="text-[10px] px-2 py-1 rounded-full bg-white/20 text-white/80">Edge</span>
+                </div>
+                <div className="flex items-center gap-4 text-white/60 text-[10px]">
+                  <span>99.9% uptime</span>
+                  <span>∞ scale</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case "ui-ux-design":
+        return (
+          <div className="relative h-44 w-full max-w-[20rem] overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-xl shadow-black/60">
+            <div className="space-y-3 p-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-white/80">Design System v3</span>
+                <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-white/60">WCAG-AA</span>
+              </div>
+              <div className="flex gap-2">
+                {["#1565C0", "#42A5F5", "#90CAF9", "#BBDEFB"].map((color) => (
+                  <div key={color} className="h-8 w-8 rounded-lg" style={{ backgroundColor: color }} />
+                ))}
+              </div>
+              <div className="flex gap-2 text-[10px] text-white/60">
+                <span>✓ 100% components</span>
+                <span>✓ Prototypes</span>
+              </div>
+              <div className="flex gap-2">
+                <div className="h-8 flex-1 rounded-lg border border-white/10 bg-white/[0.04]" />
+                <div className="h-8 flex-1 rounded-lg border border-purple-300/30 bg-purple-300/10 flex items-center justify-center text-white/60 text-[10px]">Figma</div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case "quality-assurance":
+        return (
+          <div className={frame}>
+            <div className="space-y-3 p-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-white/80">Test Suite</span>
+                <span className="text-[10px] text-emerald-400">● 247 passed</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {["96%", "E2E", "0 failed"].map((v) => (
+                  <div key={v} className="rounded-lg border border-white/10 bg-white/[0.06] p-2 text-center">
+                    <div className="text-[11px] font-bold text-white">{v}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex h-12 items-end gap-1 rounded-lg border border-white/10 bg-white/[0.04] p-2">
+                {[85, 92, 78, 96, 88, 91, 84].map((h, i) => (
+                  <div
+                    key={i}
+                    className={`flex-1 rounded-sm ${i % 2 === 0 ? "bg-emerald-300" : "bg-cyan-300/60"}`}
+                    style={{ height: `${h}%` }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
+      case "staff-augmentation":
+        return (
+          <div className={frame}>
+            <div className="grid h-44 grid-cols-3 grid-rows-3 gap-2 p-3">
+              <div className="col-span-2 row-span-2 rounded-xl border border-white/10 bg-gradient-to-br from-teal-400/30 to-emerald-300/20 flex flex-col items-center justify-center text-white/70">
+                <span className="text-lg font-bold">97%</span>
+                <span className="text-[8px]">retention rate</span>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.06] flex flex-col items-center justify-center text-white/70">
+                <span className="text-sm font-bold">48h</span>
+                <span className="text-[8px]">match</span>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/[0.06] flex flex-col items-center justify-center text-white/70">
+                <span className="text-sm font-bold">🌍</span>
+                <span className="text-[8px]">global</span>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-cyan-300/15 flex flex-col items-center justify-center text-white/70">
+                <span className="text-sm font-bold">US</span>
+                <span className="text-[8px]">timezone</span>
+              </div>
+              <div className="col-span-2 rounded-xl border border-white/10 bg-white/[0.06] flex items-center justify-center text-white/70 text-[10px]">
+                Senior engineers
+              </div>
+            </div>
+          </div>
+        );
+
+      case "E-commerce":
+        return (
+          <div className="relative flex h-44 w-full max-w-[20rem] items-center justify-center [perspective:1000px]">
+            <div className="w-52 overflow-hidden rounded-xl border border-white/20 bg-white/10 shadow-2xl shadow-teal-950/50 [transform:rotateX(12deg)_rotateY(-18deg)]">
+              <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.06] px-2.5 py-1.5">
+                <span className="size-1.5 rounded-full bg-white/40" />
+                <span className="size-1.5 rounded-full bg-white/30" />
+                <span className="text-[8px] text-white/40 ml-auto">Storefront</span>
+              </div>
+              <div className="space-y-2 p-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-white/80">Cart</span>
+                  <span className="text-xs font-bold text-white">$184.50</span>
+                </div>
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="h-8 rounded-md bg-white/15 flex items-center justify-center text-white/60 text-[8px]">🛒 3</div>
+                  <div className="h-8 rounded-md bg-white/10 flex items-center justify-center text-white/60 text-[8px]">+12%</div>
+                  <div className="h-8 rounded-md bg-white/15 flex items-center justify-center text-white/60 text-[8px]">✓</div>
+                </div>
+                <div className="h-7 rounded bg-emerald-400/20 flex items-center justify-center text-emerald-300 text-[8px] font-semibold">
+                  Express checkout →
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case "digital-marketing":
+        return (
+          <div className="relative h-44 w-full max-w-[20rem] overflow-hidden rounded-2xl border border-white/20 shadow-xl shadow-teal-950/40">
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/40 via-teal-300/20 to-emerald-300/40" />
+            <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_30%,rgba(255,255,255,0.35)_50%,transparent_70%)]" />
+            <div className="relative space-y-3 p-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-white/90">Campaign ROI</span>
+                <span className="text-[10px] text-emerald-300">● Live</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-lg border border-white/30 bg-white/15 backdrop-blur-md p-2 text-center">
+                  <div className="text-lg font-bold text-white">+47%</div>
+                  <div className="text-[8px] text-white/60">organic traffic</div>
+                </div>
+                <div className="rounded-lg border border-white/30 bg-white/10 backdrop-blur-md p-2 text-center">
+                  <div className="text-lg font-bold text-white">3.2x</div>
+                  <div className="text-[8px] text-white/60">ROAS</div>
+                </div>
+              </div>
+              <div className="flex justify-between text-[10px] text-white/60">
+                <span>📈 CTR: 5.8%</span>
+                <span>🎯 Quality: 9/10</span>
+              </div>
+            </div>
+          </div>
+        );
+
+      case "project-management":
+        return (
+          <div className="relative flex h-44 w-full max-w-[20rem] items-center justify-center">
+            <div className="absolute h-28 w-44 -translate-y-4 translate-x-6 rounded-xl border border-white/10 bg-white/[0.04]" />
+            <div className="absolute h-28 w-44 -translate-y-2 translate-x-3 rounded-xl border border-white/10 bg-white/[0.07]" />
+            <div className="relative h-28 w-44 overflow-hidden rounded-xl border border-white/20 bg-white/12 shadow-2xl shadow-teal-950/50">
+              <div className="space-y-2 p-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-semibold text-white/80">Sprint 24</span>
+                  <span className="text-[8px] text-emerald-400">On track</span>
+                </div>
+                <div className="flex justify-between text-[10px] text-white/60">
+                  <span>8/12 tasks</span>
+                  <span>67%</span>
+                </div>
+                <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full w-[67%] bg-emerald-400 rounded-full" />
+                </div>
+                <div className="flex gap-2 text-[8px] text-white/50">
+                  <span>✅ 8 done</span>
+                  <span>🔄 4 active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div className={frame}>
+            <div className="flex h-44 items-center justify-center">
+              <div className="text-center text-white/60">
+                <div className="text-4xl mb-2">✦</div>
+                <div className="text-xs">{service.title}</div>
+              </div>
+            </div>
+          </div>
+        );
+    }
+  };
+
+  return getMockContent();
+}
+
 export default function Services() {
   const [activeIdx, setActiveIdx] = useState(0);
   const leftServices = services.slice(0, 4);
   const rightServices = services.slice(4);
   const active = services[activeIdx];
+  const count = services.length;
+
+  const go = (dir: number) => setActiveIdx((prev) => (prev + dir + count) % count);
 
   return (
     <section id="services" className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-gradient-to-b from-slate-50 to-white overflow-hidden">
@@ -446,13 +500,11 @@ export default function Services() {
       <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-purple-400/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
-        <div className="grid lg:grid-cols-12 gap-4 lg:gap-6 items-end mb-6 lg:mb-10">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-4 sm:mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-4 sm:mb-10">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">Capabilities</span>
             </div>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 lg:gap-6 lg:items-stretch">
@@ -488,52 +540,131 @@ export default function Services() {
             ))}
           </div>
 
-          {/* CENTER SLIDER AREA — Dynamic demo content per service */}
+          {/* CENTER SLIDER AREA — Redesigned like FeatureCard */}
           <div className="lg:col-span-6 lg:order-2 order-first lg:px-2 lg:h-full min-h-[340px] sm:min-h-[380px] flex">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                className="relative w-full rounded-2xl overflow-hidden shadow-2xl shadow-deep-blue/15"
-                style={{ background: `radial-gradient(circle at 30% 20%, ${active.accent} 0%, ${active.accent}e6 35%, ${active.accent}99 100%)` }}
+            <div className="relative w-full overflow-hidden rounded-[28px] shadow-2xl shadow-deep-blue/15">
+              <div 
+                className="relative overflow-hidden rounded-[27px]"
+                style={{ 
+                  background: `radial-gradient(circle at 30% 20%, ${active.accent} 0%, ${active.accent}e6 35%, ${active.accent}99 100%)` 
+                }}
               >
-                <div className="absolute inset-0 bg-mesh-dark opacity-45" />
-                <div className="absolute inset-0 grid-bg opacity-20" />
-                <div className="noise-overlay" />
-                <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 50% 55%, transparent 30%, rgba(0,0,0,0.25) 100%)" }} />
+                {/* background accents */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.07]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+                    backgroundSize: "32px 32px",
+                  }}
+                />
+                {/* subtle noise texture */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay"
+                  style={{
+                    backgroundImage:
+                      "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+                  }}
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-white/20 blur-3xl"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-24 -left-16 size-72 rounded-full bg-white/10 blur-3xl"
+                />
 
-                <div className="absolute top-4 sm:top-6 left-4 sm:left-7 right-4 sm:right-7 flex items-center justify-between text-white/90 z-10">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inset-0 rounded-full bg-white animate-ping opacity-75" />
-                      <span className="relative rounded-full h-2 w-2 bg-white" />
+                <div className="relative flex min-h-[400px] flex-col p-6 sm:p-8">
+                  {/* header */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <span className="relative flex size-2">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-white/70" />
+                        <span className="relative inline-flex size-2 rounded-full bg-white" />
+                      </span>
+                      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
+                        {active.category}
+                      </span>
+                    </div>
+                    <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium tabular-nums text-white/80 backdrop-blur-sm">
+                      {String(activeIdx + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
                     </span>
-                    <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-semibold">{active.category}</span>
                   </div>
-                  <span className="font-mono text-[9px] sm:text-[10px] tracking-wider px-2 py-0.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
-                    {String(activeIdx + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
-                  </span>
-                </div>
 
-                {/* Demo content area — changes per service */}
-                <div className="absolute inset-0 flex items-center justify-center p-5 sm:p-8 pt-16 sm:pt-20 pb-20 sm:pb-24">
-                  <div className="w-full max-w-sm">
-                    {active.demoPreview}
-                  </div>
-                </div>
+                  {/* slider viewport */}
+                  <div className="relative flex flex-1 items-center py-6">
+                    {/* prev */}
+                    <button
+                      type="button"
+                      onClick={() => go(-1)}
+                      aria-label="Previous service"
+                      className="absolute left-0 z-10 flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 backdrop-blur-sm transition hover:bg-white/15 hover:text-white"
+                    >
+                      <ChevronLeft className="size-5" aria-hidden="true" />
+                    </button>
 
-                <div className="absolute bottom-4 sm:bottom-7 left-4 sm:left-7 right-4 sm:right-7 text-white z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="h-px w-4 sm:w-6 bg-white/60" />
-                    <p className="text-[8px] sm:text-[10px] uppercase tracking-[0.18em] text-white/80 font-semibold">{active.tagline}</p>
+                    {/* track */}
+                    <div className="w-full overflow-hidden px-10">
+                      <div
+                        className="flex transition-transform duration-500 ease-out"
+                        style={{ transform: `translateX(-${activeIdx * 100}%)` }}
+                      >
+                        {services.map((service, i) => (
+                          <div key={service.title} className="flex w-full shrink-0 flex-col items-center gap-4">
+                            <div
+                              className={`flex w-full justify-center transition-all duration-500 ${
+                                i === activeIdx ? "scale-100 opacity-100" : "scale-90 opacity-40"
+                              }`}
+                            >
+                              <ServiceMock service={service} index={i} />
+                            </div>
+                            <p className="max-w-[18rem] text-balance text-center text-sm text-white/70">
+                              {service.tagline}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* next */}
+                    <button
+                      type="button"
+                      onClick={() => go(1)}
+                      aria-label="Next service"
+                      className="absolute right-0 z-10 flex size-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 backdrop-blur-sm transition hover:bg-white/15 hover:text-white"
+                    >
+                      <ChevronRight className="size-5" aria-hidden="true" />
+                    </button>
                   </div>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight drop-shadow-md">{active.title}</h3>
+
+                  {/* footer */}
+                  <div className="space-y-4">
+                    <h2 className="text-pretty text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                      {active.title}
+                    </h2>
+
+                    {/* progress dots */}
+                    <div className="flex items-center gap-2">
+                      {services.map((service, i) => (
+                        <button
+                          key={service.title}
+                          type="button"
+                          onClick={() => setActiveIdx(i)}
+                          aria-label={`Go to ${service.title}`}
+                          aria-current={i === activeIdx}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            i === activeIdx ? "w-8 bg-white" : "w-1.5 bg-white/25 hover:bg-white/40"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+            </div>
           </div>
 
           <div className="lg:col-span-3 lg:order-3 hidden lg:flex flex-col gap-1.5">
