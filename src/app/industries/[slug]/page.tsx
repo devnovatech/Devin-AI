@@ -1044,7 +1044,7 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
   const visibleCount = 3;
 
   return (
-    <section className="py-20 bg-light relative overflow-hidden">
+    <section className="py-20 bg-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-rose-400/[0.05] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">

@@ -325,6 +325,31 @@ html.light .bg-deep-blue .text-white {
   color: #0a1628;
 }
 
+/* Keep buttons and icons white across all dark sections */
+html.light .bg-section-hero a[style*="background-color"],
+html.light .bg-section-process a[style*="background-color"],
+html.light .bg-section-industries a[style*="background-color"],
+html.light .bg-section-dark a[style*="background-color"],
+html.light .bg-deep-blue a[style*="background-color"] {
+  color: #ffffff !important;
+}
+
+html.light .bg-section-hero a[style*="background-color"] svg,
+html.light .bg-section-process a[style*="background-color"] svg,
+html.light .bg-section-industries a[style*="background-color"] svg,
+html.light .bg-section-dark a[style*="background-color"] svg,
+html.light .bg-deep-blue a[style*="background-color"] svg {
+  color: #ffffff !important;
+}
+
+html.light .bg-section-hero .w-12.h-12.rounded-xl.flex.items-center.justify-center.text-white,
+html.light .bg-section-process .w-12.h-12.rounded-xl.flex.items-center.justify-center.text-white,
+html.light .bg-section-industries .w-12.h-12.rounded-xl.flex.items-center.justify-center.text-white,
+html.light .bg-section-dark .w-12.h-12.rounded-xl.flex.items-center.justify-center.text-white,
+html.light .bg-deep-blue .w-12.h-12.rounded-xl.flex.items-center.justify-center.text-white {
+  color: #ffffff !important;
+}
+
 /* Slash-opacity variants (text-white/40, text-white/70, etc.) — Tailwind
    generates these as `color: rgb(255 255 255 / X)` which the rule above
    doesn't catch. Map them to dark with comparable opacity tiers. */
