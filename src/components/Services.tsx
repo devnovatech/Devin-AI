@@ -2,8 +2,8 @@
 
 import { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  ChevronLeft, 
+import {
+  ChevronLeft,
   ChevronRight,
   Brain,
   Smartphone,
@@ -277,7 +277,7 @@ function TabButton({ service, index, isActive, onSelect, align }: { service: Ser
           </p>
         </div>
       )}
-      
+
       <div className="relative flex-1 min-w-0 lg:hidden">
         <h3 className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-deep-blue" : "text-deep-blue/75"}`}>
           {service.title}
@@ -286,7 +286,7 @@ function TabButton({ service, index, isActive, onSelect, align }: { service: Ser
           {service.tagline}
         </p>
       </div>
-      
+
       <span className={`relative font-mono text-[9px] sm:text-[10px] font-semibold tracking-wider transition-colors duration-300 ${isActive ? "text-deep-blue/40" : "text-deep-blue/20"}`}>
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -301,13 +301,12 @@ function StepLabel({ steps, active }: { steps: string[]; active: number }) {
       {steps.map((label, i) => (
         <div key={label} className="flex items-center gap-1.5">
           <span
-            className={`h-1.5 rounded-full transition-all duration-500 ${
-              i === active
+            className={`h-1.5 rounded-full transition-all duration-500 ${i === active
                 ? "w-6 bg-white"
                 : i < active
-                ? "w-1.5 bg-white/60"
-                : "w-1.5 bg-white/15"
-            }`}
+                  ? "w-1.5 bg-white/60"
+                  : "w-1.5 bg-white/15"
+              }`}
           />
           {i === active && (
             <motion.span
@@ -484,7 +483,7 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
 
       case "mobile-application":
         return (
-          <div className="relative h-56 w-32 overflow-hidden rounded-3xl border-[3px] border-white/15 bg-black ">
+          <div className="relative h-56 w-32 overflow-hidden rounded-3xl border-[3px] border-white/15 bg-black ]">
             <div className="absolute inset-x-0 top-1.5 mx-auto h-1 w-8 rounded-full bg-white/20" />
             <AnimatePresence mode="wait">
               {phaseIndex === 0 && (
@@ -788,7 +787,7 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
   return (
     <div className="flex flex-col items-center justify-center gap-4 w-full">
       <div className="flex items-center gap-3 mb-2">
-        <div>
+        <div className="text-center">
           <p className="text-sm font-semibold text-white">{phase.name}</p>
           <p className="text-xs text-white/60">{phase.description}</p>
         </div>
@@ -879,9 +878,9 @@ export default function Services() {
             ))}
           </div>
 
-          {/* CENTER SLIDER AREA — Premium card with fixed height */}
+          {/* CENTER SLIDER AREA — Fixed height card matching mobile/web services */}
           <div className="lg:col-span-6 lg:order-2 order-first lg:px-2 lg:h-full flex">
-            <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl shadow-deep-blue/20">
+            <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl shadow-deep-blue/20 h-[400px] lg:h-[440px]">
               {/* Gradient background with glass effect */}
               <div
                 className="relative overflow-hidden rounded-3xl h-full"
@@ -941,8 +940,8 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Phase visualization area - flex-grow to fill available space */}
-                  <div className="relative flex-1 flex items-center min-h-0">
+                  {/* Phase visualization area - flex-grow with consistent height */}
+                  <div className="relative flex-1 flex items-center justify-center min-h-[200px] py-2">
                     <div className="w-full overflow-hidden px-4">
                       <motion.div
                         className="flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -956,7 +955,7 @@ export default function Services() {
                               animate={{ opacity: 1, scale: 1, y: 0 }}
                               exit={{ opacity: 0, scale: 0.95, y: -10 }}
                               transition={{ duration: 0.4, ease: "easeOut" }}
-                              className="flex w-full justify-center"
+                              className="flex w-full justify-center items-center"
                             >
                               <PhaseContent service={active} phaseIndex={i} />
                             </motion.div>
@@ -966,9 +965,8 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Bottom: Service title and phase controls - now showing "Phases" heading */}
+                  {/* Bottom: Service title and phase controls */}
                   <div className="space-y-4 flex-shrink-0">
-
                     {/* Phase progress dots with "Phases" heading */}
                     <div className="flex items-center mt-2 gap-3">
                       <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">

@@ -16,15 +16,21 @@ const logos = [
   { name: "Radiant", src: "/clients/radiant.png" },
 ];
 
-function LogoItem({ name, src }: { name: string; src: string }) {
+function LogoItem({
+  name,
+  src,
+}: {
+  name: string;
+  src: string;
+}) {
   return (
-    <div className="flex-shrink-0 mx-3 px-3 flex items-center justify-center h-14 w-32 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+    <div className="flex-shrink-0 mx-8 h-16 w-40 flex items-center justify-center opacity-50 hover:opacity-100 transition-all duration-500">
       <Image
         src={src}
-        alt={`${name} logo`}
-        width={128}
-        height={56}
-        className="h-full w-full object-contain"
+        alt={name}
+        width={160}
+        height={64}
+        className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-500"
       />
     </div>
   );
@@ -32,36 +38,51 @@ function LogoItem({ name, src }: { name: string; src: string }) {
 
 export default function LogoMarquee() {
   return (
-    <section className="py-12 lg:py-14 relative overflow-hidden bg-section-trust">
-      {/* Subtle dotted grid background */}
-      <div className="absolute inset-0 dotted-grid opacity-50 pointer-events-none" />
+    <section className="relative overflow-hidden bg-[#F7F7FA] py-16 lg:py-10">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-[320px_1fr] gap-10 lg:gap-16 items-center">
+          {/* LEFT CONTENT */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-[12px] tracking-[0.35em] uppercase text-slate-500 mb-5">
+              Together, We Build
+            </p>
+            <p className="mt-2 text-base font-semibold text-slate-500  leading-tight">
+              250+ projects shipped <br />
+              for ambitious teams.
+            </p>
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-2 mb-7"
-        >
-          <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-deep-blue/50">
-            Teams we have worked with
-          </p>
-          <div className="flex items-center gap-1.5">
-            <span className="w-8 h-px bg-neon-blue/40" />
-            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-            <span className="w-8 h-px bg-neon-blue/40" />
-          </div>
-        </motion.div>
 
-        <div className="group relative overflow-hidden">
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
+            <div className="flex items-center gap-3 mt-7">
+              <div className="flex text-orange-500 text-lg">
+                ★ ★ ★ ★ ★
+              </div>
 
-          <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] will-change-transform">
-            {[...logos, ...logos].map((logo, i) => (
-              <LogoItem key={`${logo.name}-${i}`} src={logo.src} name={logo.name} />
-            ))}
+              <span className="text-lg text-slate-700">
+                4.9 · 200+ reviews
+              </span>
+            </div>
+          </motion.div>
+
+          {/* RIGHT LOGO MARQUEE */}
+          <div className="relative overflow-hidden">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#F7F7FA] to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#F7F7FA] to-transparent z-10" />
+
+            <div className="flex w-max animate-marquee will-change-transform">
+              {[...logos, ...logos].map((logo, index) => (
+                <LogoItem
+                  key={`${logo.name}-${index}`}
+                  name={logo.name}
+                  src={logo.src}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
