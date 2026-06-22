@@ -1,19 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 const logos = [
-  { name: "Nokia", src: "/clients/Nokia.png" },
+  { name: "Nokia", src: "/clients/Nokia1.png" },
   { name: "SolarWinds", src: "/clients/SolarWinds.png" },
   { name: "Strava", src: "/clients/strave-company.png" },
   { name: "Syntronic", src: "/clients/Syntronic.png" },
   { name: "DeerCast", src: "/clients/DearCast.png" },
-  { name: "Ericsson", src: "/clients/ericssion.png" },
+  { name: "Ericsson", src: "/clients/ericssion1.png" },
   { name: "American Airlines", src: "/clients/american.png" },
-  { name: "Adbox", src: "/clients/Adbox.png" },
-  { name: "MaxHub", src: "/clients/maxhub.png" },
-  { name: "Radiant", src: "/clients/radiant.png" },
+  { name: "Adbox", src: "/clients/Adbox1.png" },
+  { name: "Magikk", src: "/clients/Magikk1.png" },
 ];
 
 function LogoItem({
@@ -38,49 +37,51 @@ function LogoItem({
 
 export default function LogoMarquee() {
   return (
-    <section className="relative overflow-hidden bg-[#F7F7FA] py-16 lg:py-10">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-[320px_1fr] gap-10 lg:gap-16 items-center">
-          {/* LEFT CONTENT */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-[12px] tracking-[0.35em] uppercase text-slate-500 mb-5">
+    <section className="border-y border-white/[0.08] bg-section-trust">
+      <div className="mx-auto w-full max-w-[1320px] px-6 md:px-8 lg:px-12 py-10">
+        <div className="grid items-center gap-8 md:grid-cols-12">
+          <div className="md:col-span-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
               Together, We Build
-            </p>
-            <p className="mt-2 text-base font-semibold text-slate-500  leading-tight">
+                            </span>
+            </div>
+
+            <p className="mt-2 text-base font-semibold leading-tight text-gray-900 ">
               250+ projects shipped <br />
               for ambitious teams.
             </p>
 
+            <div className="mt-3 flex items-center gap-1">
+              {[...Array(5)].map((_, k) => (
+                <Star
+                  key={k}
+                  size={14}
+                  className="fill-[#ff6b3d] text-[#ff6b3d]"
+                />
+              ))}
 
-            <div className="flex items-center gap-3 mt-7">
-              <div className="flex text-orange-500 text-lg">
-                ★ ★ ★ ★ ★
-              </div>
-
-              <span className="text-lg text-slate-700">
+              <span className="ml-1.5 text-xs font-medium text-gray-400">
                 4.9 · 200+ reviews
               </span>
             </div>
-          </motion.div>
+          </div>
 
-          {/* RIGHT LOGO MARQUEE */}
-          <div className="relative overflow-hidden">
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#F7F7FA] to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#F7F7FA] to-transparent z-10" />
-
-            <div className="flex w-max animate-marquee will-change-transform">
-              {[...logos, ...logos].map((logo, index) => (
-                <LogoItem
-                  key={`${logo.name}-${index}`}
-                  name={logo.name}
-                  src={logo.src}
-                />
+          <div
+            className="md:col-span-9 overflow-hidden"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+              maskImage:
+                "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+            }}
+          >
+            <div className="flex animate-marquee gap-14 whitespace-nowrap">
+              {[...logos, ...logos, ...logos].map((logo, i) => (
+                <div key={i} className="flex-shrink-0">
+                  <LogoItem name={logo.name} src={logo.src} />
+                </div>
               ))}
             </div>
           </div>

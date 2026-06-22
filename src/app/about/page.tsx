@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTABanner from "@/components/CTABanner";
+import React from "react";
 
 // ============================================================================
 // CountUp Component
@@ -553,36 +554,75 @@ function ValuesSection() {
 // ============================================================================
 // Careers Section (Culture & Benefits - Light Background)
 // ============================================================================
+
 function CareersSection() {
   const culturePoints = [
     {
       title: "Growth Environment",
-      description: "A learning-driven workplace where individuals are encouraged to develop skills, take initiative, and grow professionally.",
+      description:
+        "A learning-driven workplace where individuals are encouraged to develop skills, take initiative, and grow professionally.",
       accent: "#1E88E5",
       icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.7}
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
         </svg>
       ),
     },
     {
       title: "Inclusivity & Respect",
-      description: "A culture that values diverse perspectives and fosters mutual respect, ensuring everyone feels heard, valued, and supported.",
+      description:
+        "A culture that values diverse perspectives and fosters mutual respect, ensuring everyone feels heard, valued, and supported.",
       accent: "#00ACC1",
       icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.7}
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+          />
         </svg>
       ),
     },
     {
       title: "Engineered for Productivity",
-      description: "A structured and collaborative environment designed to minimize friction, streamline workflows, and enable teams to perform at their best.",
+      description:
+        "A structured and collaborative environment designed to minimize friction, streamline workflows, and enable teams to perform at their best.",
       accent: "#0288D1",
       icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.7}
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.7}
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+          />
         </svg>
       ),
     },
@@ -590,125 +630,112 @@ function CareersSection() {
 
   return (
     <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-      {/* Background effects - matching OpenPositionsSection */}
+      {/* Background Effects - Enhanced */}
       <div className="absolute inset-0 grid-bg" />
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-neon-blue/[0.05] rounded-full blur-[100px]" />
+      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px] animate-pulse-slow" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px] animate-pulse-slow delay-1000" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-neon-blue/5 rounded-full blur-[100px]" />
 
       <div className="relative max-w-7xl mx-auto px-6">
-        {/* Top content - matching OpenPositionsSection */}
+        {/* Header - Enhanced */}
         <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-12 lg:mb-14">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-sm mb-4 group hover:border-white/[0.2] transition-all duration-300">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-300">
-                Carrers
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-300 group-hover:text-white transition-colors duration-300">
+                Careers
               </span>
             </div>
-            <h2 className="h-section text-white">
+
+            <h2 className="h-section text-white leading-[1.1]">
               Ready to start your{" "}
-              <span className="gradient-text"> career with us?</span>
+              <span className="gradient-text relative">
+                career with us?
+              </span>
             </h2>
           </div>
+
           <div className="lg:col-span-5">
-            <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-              Whether you're an expert or just starting your career, Dev Inception offers an environment built for growth, learning, and leadership.
+            <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+              Whether you're an expert or just starting your career, Dev
+              Inception offers an environment built for growth, learning, and
+              leadership.
             </p>
           </div>
         </div>
 
-        {/* Cards - matching OpenPositionsSection styling */}
+        {/* Cards - Enhanced */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {culturePoints.map((item, i) => {
-            const numLabel = String(i + 1).padStart(2, "0");
+          {culturePoints.map((item, index) => (
+            <div
+              key={item.title}
+              className="group relative h-full transform transition-all duration-500 hover:-translate-y-1"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="relative h-full p-7 lg:p-8 rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.03] to-transparent hover:bg-white/[0.05] hover:border-white/[0.15] transition-all duration-500 overflow-hidden">
+                {/* Glow Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#1E88E5]/5 to-transparent" />
+                </div>
 
-            return (
-              <div key={item.title}>
+                {/* Top Accent Line - Enhanced */}
                 <div
-                  className="group relative h-full p-5 lg:p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 overflow-hidden"
-                  style={
-                    {
-                      "--card-glow": `${item.accent}55`,
-                    } as React.CSSProperties
-                  }
+                  className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:h-[3px]"
+                  style={{
+                    background: `linear-gradient(90deg, ${item.accent}, ${item.accent}88, transparent)`,
+                  }}
+                />
+
+                {/* Decorative Watermark Icon - Enhanced */}
+                <div
+                  className="absolute -bottom-6 -right-6 opacity-[0.05] group-hover:opacity-[0.08] transition-all duration-500 group-hover:scale-110 group-hover:rotate-12"
+                  style={{ color: item.accent }}
                 >
-                  {/* Top accent line */}
+                  {React.cloneElement(
+                    item.icon as React.ReactElement,
+                    {
+                      className: "w-32 h-32",
+                    }
+                  )}
+                </div>
+
+                <div className="relative z-10">
+                  {/* Small Top Icon - Enhanced */}
                   <div
-                    className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
                     style={{
-                      background: `linear-gradient(90deg, ${item.accent}, ${item.accent}55, transparent)`,
+                      backgroundColor: `${item.accent}15`,
+                      color: item.accent,
+                      boxShadow: `0 0 30px ${item.accent}10`,
                     }}
-                  />
-
-                  {/* Corner glow */}
-                  <div
-                    className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.10] group-hover:opacity-[0.28] transition-opacity duration-500"
-                    style={{ backgroundColor: item.accent }}
-                  />
-
-                  <div className="relative flex flex-col h-full">
-                    {/* Top row: icon + number */}
-                    <div className="flex items-center justify-between">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110"
-                        style={{
-                          backgroundColor: item.accent,
-                          boxShadow: `0 10px 22px -8px ${item.accent}80`,
-                        }}
-                      >
-                        {item.icon}
-                      </div>
-                      <span
-                        className="font-mono text-[10px] font-bold tracking-wider transition-colors duration-300"
-                        style={{ color: `${item.accent}90` }}
-                      >
-                        {numLabel}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3
-                      className="mt-4 text-base lg:text-[17px] font-bold text-white tracking-tight leading-snug transition-colors duration-300 group-hover:text-[color:var(--accent)]"
-                      style={{
-                        ["--accent" as string]: item.accent,
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="mt-2.5 text-sm text-gray-400 leading-relaxed flex-1">
-                      {item.description}
-                    </p>
-
-                    {/* Bottom accent line */}
-                    <div className="mt-4 pt-2">
-                      <div
-                        className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
-                        style={{ background: `linear-gradient(90deg, ${item.accent}, ${item.accent}55)` }}
-                      />
+                  >
+                    <div className="transition-transform duration-300 group-hover:rotate-6">
+                      {item.icon}
                     </div>
                   </div>
+
+                  {/* Title - Enhanced */}
+                  <h3 className="text-xl font-bold text-white mb-3 transition-colors duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-400 group-hover:bg-clip-text">
+                    {item.title}
+                  </h3>
+
+                  {/* Description - Enhanced */}
+                  <p className="text-gray-400 leading-relaxed transition-colors duration-300 group-hover:text-gray-300">
+                    {item.description}
+                  </p>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
-
-        {/* CTA Button */}
-        {/* <div className="text-center mt-12">
-          <a
-            href="/careers"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
-          >
-            View All Opportunities →
-          </a>
-        </div> */}
       </div>
     </section>
   );
 }
+
+
+
+
 
 // ============================================================================
 // Open Positions Section (Dark Background - Like Values Section Style)

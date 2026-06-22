@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 
-// ─── Capabilities (moved outside component) ───────────────────────────
+// ─── Capabilities ──────────────────────────────────────────────────────
 
 interface Capability {
   tag: string;
@@ -871,7 +871,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT — replaced with HeroArt */}
+        {/* RIGHT — HeroArt with animation matching first version */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}

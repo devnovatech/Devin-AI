@@ -302,10 +302,10 @@ function StepLabel({ steps, active }: { steps: string[]; active: number }) {
         <div key={label} className="flex items-center gap-1.5">
           <span
             className={`h-1.5 rounded-full transition-all duration-500 ${i === active
-                ? "w-6 bg-white"
-                : i < active
-                  ? "w-1.5 bg-white/60"
-                  : "w-1.5 bg-white/15"
+              ? "w-6 bg-white"
+              : i < active
+                ? "w-1.5 bg-white/60"
+                : "w-1.5 bg-white/15"
               }`}
           />
           {i === active && (
@@ -785,7 +785,7 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 w-full">
+    <div className="flex flex-col items-center justify-center gap-2 w-full">
       <div className="flex items-center gap-3 mb-2">
         <div className="text-center">
           <p className="text-sm font-semibold text-white">{phase.name}</p>
@@ -801,8 +801,8 @@ export default function Services() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [phaseIdx, setPhaseIdx] = useState(0);
   const [isAutoRolling, setIsAutoRolling] = useState(true);
-  const leftServices = services.slice(0, 4);
-  const rightServices = services.slice(4);
+  const leftServices = services.slice(0, 5);
+  const rightServices = services.slice(5);
   const active = services[activeIdx];
   const count = services.length;
   const totalPhases = active?.phases?.length || 4;
@@ -835,7 +835,7 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+    <section id="services" className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-section-services  from-slate-50 to-white overflow-hidden">
       <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-blue-400/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-purple-400/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -871,7 +871,7 @@ export default function Services() {
             ))}
           </div>
 
-          <div className="lg:col-span-3 lg:order-1 hidden lg:flex flex-col gap-1.5">
+          <div className="lg:col-span-3 lg:order-1 hidden lg:flex flex-col gap-2">
             <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pl-3.5">Build · Design</p>
             {leftServices.map((s, i) => (
               <TabButton key={s.title} service={s} index={i} isActive={activeIdx === i} onSelect={() => setActiveIdx(i)} align="left" />
@@ -879,13 +879,14 @@ export default function Services() {
           </div>
 
           {/* CENTER SLIDER AREA — Fixed height card matching mobile/web services */}
+          {/* CENTER SLIDER AREA — Reduced and responsive */}
           <div className="lg:col-span-6 lg:order-2 order-first lg:px-2 lg:h-full flex">
-            <div className="relative w-full overflow-hidden rounded-3xl shadow-2xl shadow-deep-blue/20 h-[400px] lg:h-[440px]">
+            <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-deep-blue/20 h-[320px] sm:h-[360px] lg:h-[380px]">
               {/* Gradient background with glass effect */}
               <div
-                className="relative overflow-hidden rounded-3xl h-full"
+                className="relative overflow-hidden rounded-2xl h-full"
                 style={{
-                  background: `radial-gradient(circle at 30% 20%, ${active.accent} 0%, ${active.accent}dd 45%, ${active.accent}99 100%)`
+                  background: "#0a1128",
                 }}
               >
                 {/* Subtle grid overlay */}
@@ -895,18 +896,18 @@ export default function Services() {
                   style={{
                     backgroundImage:
                       "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-                    backgroundSize: "28px 28px",
+                    backgroundSize: "24px 24px",
                   }}
                 />
 
                 {/* Blur overlays for depth */}
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -right-32 -top-32 size-80 rounded-full bg-white/20 blur-3xl"
+                  className="pointer-events-none absolute -right-24 -top-24 size-60 rounded-full bg-white/20 blur-3xl"
                 />
                 <div
                   aria-hidden="true"
-                  className="pointer-events-none absolute -bottom-32 -left-32 size-80 rounded-full bg-white/10 blur-3xl"
+                  className="pointer-events-none absolute -bottom-24 -left-24 size-60 rounded-full bg-white/10 blur-3xl"
                 />
 
                 {/* Glass reflection effect */}
@@ -915,49 +916,51 @@ export default function Services() {
                   className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5"
                 />
 
-                <div className="relative flex flex-col h-full p-6 sm:p-8">
-                  {/* Top bar with category and counter */}
+                <div className="relative flex flex-col h-full p-5 sm:p-6">
+                  {/* Top bar with category and counter - more compact */}
                   <div className="flex items-center justify-between flex-shrink-0">
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex size-2.5">
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex size-2">
                         <span className="absolute inline-flex size-full animate-ping rounded-full bg-white/70" />
-                        <span className="relative inline-flex size-2.5 rounded-full bg-white" />
+                        <span className="relative inline-flex size-2 rounded-full bg-white" />
                       </div>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
                         {active.category}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      {/* Phase indicator pill */}
-                      <div className="rounded-full border border-white/15 bg-white/10 px-3 py-1 backdrop-blur-md">
-                        <span className="text-[10px] font-medium tabular-nums text-white/80">
+                      {/* Phase indicator pill - smaller */}
+                      <div className="rounded-full border border-white/15 bg-white/10 px-2.5 py-0.5 backdrop-blur-md">
+                        <span className="text-[9px] font-medium tabular-nums text-white/80">
                           Phase {String(phaseIdx + 1).padStart(2, "0")}
                         </span>
                       </div>
-                      <span className="text-[11px] font-medium text-white/60 tabular-nums">
+                      <span className="text-[10px] font-medium text-white/60 tabular-nums">
                         {String(activeIdx + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
                       </span>
                     </div>
                   </div>
 
-                  {/* Phase visualization area - flex-grow with consistent height */}
-                  <div className="relative flex-1 flex items-center justify-center min-h-[200px] py-2">
-                    <div className="w-full overflow-hidden px-4">
+                  {/* Phase visualization area - reduced height */}
+                  <div className="relative flex-1 flex items-center justify-center py-1" style={{ minHeight: '160px', height: '160px' }}>
+                    <div className="w-full overflow-hidden px-2 h-full">
                       <motion.div
-                        className="flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                        className="flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] h-full"
                         animate={{ transform: `translateX(-${phaseIdx * 100}%)` }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       >
                         {active.phases.map((phase, i) => (
-                          <div key={phase.name} className="flex w-full shrink-0 flex-col items-center gap-2">
+                          <div key={phase.name} className="flex w-full shrink-0 flex-col items-center justify-center gap-1 h-full">
                             <motion.div
                               initial={{ opacity: 0, scale: 0.95, y: 10 }}
                               animate={{ opacity: 1, scale: 1, y: 0 }}
                               exit={{ opacity: 0, scale: 0.95, y: -10 }}
                               transition={{ duration: 0.4, ease: "easeOut" }}
-                              className="flex w-full justify-center items-center"
+                              className="flex w-full justify-center items-center h-full"
                             >
-                              <PhaseContent service={active} phaseIndex={i} />
+                              <div className="flex items-center justify-center h-full w-full">
+                                <PhaseContent service={active} phaseIndex={i} />
+                              </div>
                             </motion.div>
                           </div>
                         ))}
@@ -965,14 +968,14 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Bottom: Service title and phase controls */}
-                  <div className="space-y-4 flex-shrink-0">
+                  {/* Bottom: Service title and phase controls - more compact */}
+                  <div className="space-y-2 flex-shrink-0">
                     {/* Phase progress dots with "Phases" heading */}
-                    <div className="flex items-center mt-2 gap-3">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70">
                         Phases
                       </span>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5">
                         {active.phases.map((phase, i) => (
                           <button
                             key={phase.name}
@@ -980,17 +983,17 @@ export default function Services() {
                             onClick={() => handlePhaseChange(i)}
                             aria-label={`Go to ${phase.name} phase`}
                             aria-current={i === phaseIdx}
-                            className="group flex items-center gap-2 rounded-full px-2 py-1 transition-all hover:bg-white/10"
+                            className="group flex items-center gap-1.5 rounded-full px-1.5 py-0.5 transition-all hover:bg-white/10"
                           >
                             <span
                               className={`h-1.5 rounded-full transition-all duration-300 ${i === phaseIdx
-                                ? "w-8 bg-white shadow-[0_0_12px_rgba(255,255,255,0.4)]"
+                                ? "w-6 bg-white shadow-[0_0_12px_rgba(255,255,255,0.4)]"
                                 : i < phaseIdx
                                   ? "w-1.5 bg-white/50"
                                   : "w-1.5 bg-white/20 group-hover:bg-white/30"
                                 }`}
                             />
-                            <span className={`hidden text-[9px] font-medium uppercase tracking-widest transition-colors duration-300 sm:block ${i === phaseIdx ? "text-white" : "text-white/40 group-hover:text-white/60"
+                            <span className={`hidden text-[8px] font-medium uppercase tracking-widest transition-colors duration-300 sm:block ${i === phaseIdx ? "text-white" : "text-white/40 group-hover:text-white/60"
                               }`}>
                               {phase.name}
                             </span>
@@ -1004,7 +1007,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 lg:order-3 hidden lg:flex flex-col gap-1.5">
+          <div className="lg:col-span-3 lg:order-3 hidden lg:flex flex-col gap-2">
             <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-deep-blue/40 mb-1 pr-3.5 text-right">Grow · Ops</p>
             {rightServices.map((s, i) => {
               const realIdx = i + leftServices.length;

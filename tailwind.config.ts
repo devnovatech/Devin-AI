@@ -35,8 +35,8 @@ const config: Config = {
         sans: ["var(--font-poppins)", "var(--font-inter)", "system-ui", "sans-serif"],
       },
       animation: {
-        "marquee": "marquee 30s linear infinite",
-        "marquee-reverse": "marquee-reverse 30s linear infinite",
+        "marquee": "marquee 50s linear infinite",
+        "marquee-reverse": "marquee-reverse 50s linear infinite",
         "spin-slow": "spin 20s linear infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
       },

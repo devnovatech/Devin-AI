@@ -815,7 +815,7 @@ export default function ServicesPage() {
           {/* ───────── HEADER ───────── */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
             <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5  shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
                   Core Capabilities
@@ -824,90 +824,9 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* ───────── MOBILE ───────── */}
-          <div className="xl:hidden space-y-4">
-            {services.map((service, i) => (
-              <div
-                key={service.slug}
-                className="bg-white rounded-2xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
-              >
-                <button
-                  onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
-                  className="w-full flex items-center gap-4 p-5 text-left active:scale-[0.99] transition"
-                >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm"
-                    style={{
-                      backgroundColor: `${service.accent}12`,
-                      color: service.accent,
-                    }}
-                  >
-                    {service.icon}
-                  </div>
-
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-deep-blue">{service.title}</h3>
-                    <p className="text-xs text-deep-blue/50 mt-1">{service.tagline}</p>
-                  </div>
-
-                  <svg
-                    className={`w-5 h-5 transition-transform ${activeIndex === i ? "rotate-180" : ""
-                      }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                <AnimatePresence>
-                  {activeIndex === i && (
-                    <motion.div
-                      key="content"
-                      initial="collapsed"
-                      animate="open"
-                      exit="collapsed"
-                      variants={{
-                        open: { opacity: 1, height: "auto" },
-                        collapsed: { opacity: 0, height: 0 },
-                      }}
-                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                    >
-                      <div className="px-5 pb-5 border-t border-black/5">
-                        <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
-                          {service.description}
-                        </p>
-
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {service.capabilities.map((cap) => (
-                            <span
-                              key={cap}
-                              className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
-                            >
-                              {cap}
-                            </span>
-                          ))}
-                        </div>
-
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
-                        >
-                          Learn More →
-                        </Link>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-
           {/* ───────── DESKTOP ───────── */}
           <div className="hidden xl:block">
             <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
-
               {/* LEFT */}
               <div>
                 <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-2">
@@ -923,7 +842,7 @@ export default function ServicesPage() {
                         key={service.slug}
                         onClick={() => setActiveIndex(i)}
                         onMouseEnter={() => setActiveIndex(i)}
-                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                        className={`w-full flex items-center gap-4 p-2 rounded-2xl transition-all duration-300 border
                     ${isActive
                             ? "bg-white shadow-lg border-black/5"
                             : "border-transparent hover:bg-white/60 hover:border-black/5"
@@ -957,65 +876,63 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              {/* CENTER - FIXED HEIGHT ADDED */}
-              <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 min-h-[550px]">
-
+              {/* CENTER */}
+              <div className="relative overflow-hidden rounded-[24px] p-6 sm:p-8 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 min-h-[420px] sm:min-h-[460px]">
                 {/* glow layers */}
-                <div className="absolute inset-0 opacity-40">
-                  <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 blur-3xl rounded-full" />
-                  <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/5 blur-3xl rounded-full" />
+                <div className="absolute inset-0 opacity-30">
+                  <div className="absolute -top-16 -right-16 w-72 h-72 bg-white/10 blur-3xl rounded-full" />
+                  <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-white/5 blur-3xl rounded-full" />
                 </div>
 
                 <div className="relative z-10 h-full flex flex-col">
-
                   {/* top bar */}
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-white" />
-                      <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
+                  <div className="flex items-center justify-between mb-4 sm:mb-6">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                      <p className="text-[10px] tracking-[0.25em] uppercase text-white/80">
                         Active Service
                       </p>
                     </div>
 
-                    <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
+                    <div className="px-2.5 py-0.5 rounded-full border border-white/20 text-white/70 text-[10px]">
                       {String(activeIndex + 1).padStart(2, "0")} /{" "}
                       {String(services.length).padStart(2, "0")}
                     </div>
                   </div>
 
-                  {/* icon - centered vertically with flex */}
-                  <div className="flex-1 flex items-center justify-center relative">
+                  {/* icon */}
+                  <div className="flex-1 flex items-center justify-center relative py-2">
                     <div className="relative">
-                      <div className="absolute -inset-10 rounded-full border border-white/10" />
-                      <div className="absolute -inset-20 rounded-full border border-white/5" />
+                      <div className="absolute -inset-8 rounded-full border border-white/10" />
+                      <div className="absolute -inset-16 rounded-full border border-white/5" />
 
-                      <div className="w-28 h-28 rounded-[28px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
-                        <div className="text-white scale-[1.6]">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-[20px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
+                        <div className="text-white scale-[1.3] sm:scale-[1.4]">
                           {services[activeIndex].icon}
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* bottom content - will take remaining space */}
-                  <div className="flex-shrink-0 mt-8">
-                    <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-2">
+                  {/* bottom content */}
+                  <div className="flex-shrink-0 mt-4 sm:mt-6">
+                    <p className="text-[10px] tracking-[0.2em] uppercase text-white/60 mb-1.5">
                       {services[activeIndex].tagline}
                     </p>
 
-                    <h3 className="text-3xl font-bold text-white mb-3">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                       {services[activeIndex].title}
                     </h3>
 
-                    <p className="text-sm text-white/75 leading-relaxed mb-5 max-w-xl">
+                    <p className="text-sm text-white/75 leading-relaxed mb-4 max-w-xl">
                       {services[activeIndex].description}
                     </p>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {services[activeIndex].capabilities.slice(0, 5).map((cap) => (
                         <span
                           key={cap}
-                          className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
+                          className="px-2.5 py-1 rounded-full border border-white/15 bg-white/5 text-white/80 text-[10px] sm:text-xs"
                         >
                           {cap}
                         </span>
@@ -1024,7 +941,7 @@ export default function ServicesPage() {
 
                     <Link
                       href={`/services/${services[activeIndex].slug}`}
-                      className="group/btn mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02]"
+                      className="group/btn mt-5 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02]"
                     >
                       Learn More
                       <span className="transition-transform group-hover/btn:translate-x-1">
@@ -1084,7 +1001,6 @@ export default function ServicesPage() {
                   })}
                 </div>
               </div>
-
             </div>
           </div>
         </div>
