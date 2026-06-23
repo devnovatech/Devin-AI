@@ -160,7 +160,7 @@ function HeroSection() {
               <div className="absolute inset-0 rounded-2xl bg-neon-blue/20 translate-x-3 translate-y-3" aria-hidden="true" />
               <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-black/40">
                 <Image
-                  src="/devinception-together-build.png"
+                  src="/AboutUs4.png"
                   alt="Dev Inception — together we build"
                   width={1379}
                   height={1141}
