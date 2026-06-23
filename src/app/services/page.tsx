@@ -798,297 +798,248 @@ export default function ServicesPage() {
       </section>
 
       {/* ───────── Catalog (filterable) ───────── */}
-      <section
-        id="services-grid"
-        className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
-      >
-        {/* ───────── BACKGROUND GLOW ───────── */}
-        <div className="absolute inset-0 opacity-70">
-          <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
-          <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+     <section
+  id="services-grid"
+  className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
+>
+  {/* ───────── BACKGROUND GLOW ───────── */}
+  <div className="absolute inset-0 opacity-70">
+    <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
+    <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
+  </div>
+
+  {/* noise overlay */}
+  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+
+  <div className="relative max-w-7xl mx-auto px-6">
+    {/* ───────── HEADER ───────── */}
+    <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
+      <div className="lg:col-span-7">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+          <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
+            Core Capabilities
+          </p>
         </div>
+      </div>
+    </div>
 
-        {/* noise overlay */}
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+    {/* ───────── DESKTOP ───────── */}
+    <div className="hidden xl:block">
+      <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
+        {/* LEFT */}
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-2">
+            Build · Design
+          </p>
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          {/* ───────── HEADER ───────── */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5  shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-                <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
-                  Core Capabilities
-                </p>
-              </div>
-            </div>
-          </div>
+          <div className="space-y-3">
+            {leftServices.map((service, i) => {
+              const isActive = activeIndex === i;
 
-          {/* ───────── MOBILE ───────── */}
-          <div className="xl:hidden space-y-4">
-            {services.map((service, i) => (
-              <div
-                key={service.slug}
-                className="bg-white rounded-2xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
-              >
+              return (
                 <button
-                  onClick={() => setActiveIndex(activeIndex === i ? -1 : i)}
-                  className="w-full flex items-center gap-4 p-5 text-left active:scale-[0.99] transition"
+                  key={service.slug}
+                  onClick={() => setActiveIndex(i)}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  className={`w-full flex items-center gap-4 p-2 rounded-2xl transition-all duration-300 border
+                    ${
+                      isActive
+                        ? "bg-white shadow-lg border-black/5"
+                        : "border-transparent hover:bg-white/60 hover:border-black/5"
+                    }`}
                 >
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
                     style={{
-                      backgroundColor: `${service.accent}12`,
+                      backgroundColor: `${service.accent}15`,
                       color: service.accent,
                     }}
                   >
                     {service.icon}
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-deep-blue">{service.title}</h3>
-                    <p className="text-xs text-deep-blue/50 mt-1">{service.tagline}</p>
+                  <div className="flex-1 text-left">
+                    <h3 className="text-sm font-semibold text-deep-blue">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-deep-blue/50 mt-0.5">
+                      {service.tagline}
+                    </p>
                   </div>
 
-                  <svg
-                    className={`w-5 h-5 transition-transform ${activeIndex === i ? "rotate-180" : ""
-                      }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="text-xs text-deep-blue/25">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </button>
+              );
+            })}
+          </div>
+        </div>
 
-                <AnimatePresence>
-                  {activeIndex === i && (
-                    <motion.div
-                      key="content"
-                      initial="collapsed"
-                      animate="open"
-                      exit="collapsed"
-                      variants={{
-                        open: { opacity: 1, height: "auto" },
-                        collapsed: { opacity: 0, height: 0 },
-                      }}
-                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                    >
-                      <div className="px-5 pb-5 border-t border-black/5">
-                        <p className="mt-4 text-sm text-deep-blue/70 leading-relaxed">
-                          {service.description}
-                        </p>
-
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {service.capabilities.map((cap) => (
-                            <span
-                              key={cap}
-                              className="px-2.5 py-1 text-xs rounded-full bg-deep-blue/[0.05] text-deep-blue/70"
-                            >
-                              {cap}
-                            </span>
-                          ))}
-                        </div>
-
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 mt-5 text-sm font-medium text-neon-blue"
-                        >
-                          Learn More →
-                        </Link>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+        {/* CENTER - FIXED HEIGHT */}
+        <div className="relative overflow-hidden rounded-[24px] p-6 sm:p-8 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 h-[460px] sm:h-[480px] flex items-center">
+          {/* glow layers */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute -top-16 -right-16 w-72 h-72 bg-white/10 blur-3xl rounded-full" />
+            <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-white/5 blur-3xl rounded-full" />
           </div>
 
-          {/* ───────── DESKTOP ───────── */}
-          <div className="hidden xl:block">
-            <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
+          {/* Subtle grid overlay */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+              backgroundSize: "24px 24px",
+            }}
+          />
 
-              {/* LEFT */}
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-2">
-                  Build · Design
-                </p>
-
-                <div className="space-y-3">
-                  {leftServices.map((service, i) => {
-                    const isActive = activeIndex === i;
-
-                    return (
-                      <button
-                        key={service.slug}
-                        onClick={() => setActiveIndex(i)}
-                        onMouseEnter={() => setActiveIndex(i)}
-                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
-                    ${isActive
-                            ? "bg-white shadow-lg border-black/5"
-                            : "border-transparent hover:bg-white/60 hover:border-black/5"
-                          }`}
-                      >
-                        <div
-                          className="w-12 h-12 rounded-xl flex items-center justify-center"
-                          style={{
-                            backgroundColor: `${service.accent}15`,
-                            color: service.accent,
-                          }}
-                        >
-                          {service.icon}
-                        </div>
-
-                        <div className="flex-1 text-left">
-                          <h3 className="text-sm font-semibold text-deep-blue">
-                            {service.title}
-                          </h3>
-                          <p className="text-xs text-deep-blue/50 mt-0.5">
-                            {service.tagline}
-                          </p>
-                        </div>
-
-                        <span className="text-xs text-deep-blue/25">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                      </button>
-                    );
-                  })}
+          <div className="relative z-10 w-full h-full flex flex-col">
+            {/* top bar */}
+            <div className="flex items-center justify-between mb-3 sm:mb-4 flex-shrink-0">
+              <div className="flex items-center gap-2">
+                <div className="relative flex size-2">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-white/70" />
+                  <span className="relative inline-flex size-2 rounded-full bg-white" />
                 </div>
+                <p className="text-[10px] tracking-[0.25em] uppercase text-white/80">
+                  Active Service
+                </p>
               </div>
 
-              {/* CENTER - FIXED HEIGHT ADDED */}
-              <div className="relative overflow-hidden rounded-[28px] p-10 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 min-h-[550px]">
+              <div className="px-2.5 py-0.5 rounded-full border border-white/20 text-white/70 text-[10px]">
+                {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                {String(services.length).padStart(2, "0")}
+              </div>
+            </div>
 
-                {/* glow layers */}
-                <div className="absolute inset-0 opacity-40">
-                  <div className="absolute -top-20 -right-20 w-96 h-96 bg-white/10 blur-3xl rounded-full" />
-                  <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-white/5 blur-3xl rounded-full" />
-                </div>
+            {/* icon */}
+            <div className="flex-1 flex items-center justify-center relative py-1 min-h-[80px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={services[activeIndex].slug}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="relative"
+                >
+                  <div className="absolute -inset-8 rounded-full border border-white/10" />
+                  <div className="absolute -inset-16 rounded-full border border-white/5" />
 
-                <div className="relative z-10 h-full flex flex-col">
-
-                  {/* top bar */}
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-white" />
-                      <p className="text-[11px] tracking-[0.3em] uppercase text-white/80">
-                        Active Service
-                      </p>
-                    </div>
-
-                    <div className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">
-                      {String(activeIndex + 1).padStart(2, "0")} /{" "}
-                      {String(services.length).padStart(2, "0")}
-                    </div>
-                  </div>
-
-                  {/* icon - centered vertically with flex */}
-                  <div className="flex-1 flex items-center justify-center relative">
-                    <div className="relative">
-                      <div className="absolute -inset-10 rounded-full border border-white/10" />
-                      <div className="absolute -inset-20 rounded-full border border-white/5" />
-
-                      <div className="w-28 h-28 rounded-[28px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
-                        <div className="text-white scale-[1.6]">
-                          {services[activeIndex].icon}
-                        </div>
-                      </div>
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[20px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
+                    <div className="text-white scale-[1.2] sm:scale-[1.3]">
+                      {services[activeIndex].icon}
                     </div>
                   </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-                  {/* bottom content - will take remaining space */}
-                  <div className="flex-shrink-0 mt-8">
-                    <p className="text-[11px] tracking-[0.25em] uppercase text-white/60 mb-2">
-                      {services[activeIndex].tagline}
-                    </p>
+            {/* bottom content */}
+            <div className="flex-shrink-0 mt-1 sm:mt-2">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={services[activeIndex].slug}
+                  initial={{ y: 10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -10, opacity: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                >
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-white/60 mb-1">
+                    {services[activeIndex].tagline}
+                  </p>
 
-                    <h3 className="text-3xl font-bold text-white mb-3">
-                      {services[activeIndex].title}
-                    </h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
+                    {services[activeIndex].title}
+                  </h3>
 
-                    <p className="text-sm text-white/75 leading-relaxed mb-5 max-w-xl">
-                      {services[activeIndex].description}
-                    </p>
+                  <p className="text-sm text-white/75 leading-relaxed mb-3 max-w-xl line-clamp-2">
+                    {services[activeIndex].description}
+                  </p>
 
-                    <div className="flex flex-wrap gap-2">
-                      {services[activeIndex].capabilities.slice(0, 5).map((cap) => (
-                        <span
-                          key={cap}
-                          className="px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs"
-                        >
-                          {cap}
-                        </span>
-                      ))}
-                    </div>
-
-                    <Link
-                      href={`/services/${services[activeIndex].slug}`}
-                      className="group/btn mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02]"
-                    >
-                      Learn More
-                      <span className="transition-transform group-hover/btn:translate-x-1">
-                        →
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {services[activeIndex].capabilities.slice(0, 4).map((cap) => (
+                      <span
+                        key={cap}
+                        className="px-2.5 py-1 rounded-full border border-white/15 bg-white/5 text-white/80 text-[10px] sm:text-xs"
+                      >
+                        {cap}
                       </span>
-                    </Link>
+                    ))}
                   </div>
-                </div>
-              </div>
 
-              {/* RIGHT */}
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
-                  Grow · Ops
-                </p>
-
-                <div className="space-y-3">
-                  {rightServices.map((service, i) => {
-                    const realIndex = i + leftServices.length;
-                    const isActive = activeIndex === realIndex;
-
-                    return (
-                      <button
-                        key={service.slug}
-                        onClick={() => setActiveIndex(realIndex)}
-                        onMouseEnter={() => setActiveIndex(realIndex)}
-                        className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
-                    ${isActive
-                            ? "bg-white shadow-lg border-black/5"
-                            : "border-transparent hover:bg-white/60 hover:border-black/5"
-                          }`}
-                      >
-                        <div className="flex-1 text-right">
-                          <h3 className="text-sm font-semibold text-deep-blue">
-                            {service.title}
-                          </h3>
-                          <p className="text-xs text-deep-blue/50 mt-0.5">
-                            {service.tagline}
-                          </p>
-                        </div>
-
-                        <div
-                          className="w-12 h-12 rounded-xl flex items-center justify-center"
-                          style={{
-                            backgroundColor: `${service.accent}15`,
-                            color: service.accent,
-                          }}
-                        >
-                          {service.icon}
-                        </div>
-
-                        <span className="text-xs text-deep-blue/25">
-                          {String(realIndex + 1).padStart(2, "0")}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
+                  <Link
+                    href={`/services/${services[activeIndex].slug}`}
+                    className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl"
+                  >
+                    Learn More
+                    <span className="transition-transform duration-300 group-hover/btn:translate-x-1">
+                      →
+                    </span>
+                  </Link>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* RIGHT */}
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+            Grow · Ops
+          </p>
+
+          <div className="space-y-3">
+            {rightServices.map((service, i) => {
+              const realIndex = i + leftServices.length;
+              const isActive = activeIndex === realIndex;
+
+              return (
+                <button
+                  key={service.slug}
+                  onClick={() => setActiveIndex(realIndex)}
+                  onMouseEnter={() => setActiveIndex(realIndex)}
+                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
+                    ${
+                      isActive
+                        ? "bg-white shadow-lg border-black/5"
+                        : "border-transparent hover:bg-white/60 hover:border-black/5"
+                    }`}
+                >
+                  <div className="flex-1 text-right">
+                    <h3 className="text-sm font-semibold text-deep-blue">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs text-deep-blue/50 mt-0.5">
+                      {service.tagline}
+                    </p>
+                  </div>
+
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{
+                      backgroundColor: `${service.accent}15`,
+                      color: service.accent,
+                    }}
+                  >
+                    {service.icon}
+                  </div>
+
+                  <span className="text-xs text-deep-blue/25">
+                    {String(realIndex + 1).padStart(2, "0")}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">

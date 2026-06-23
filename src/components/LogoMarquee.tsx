@@ -1,30 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 const logos = [
-  { name: "Nokia", src: "/clients/Nokia.png" },
+  { name: "Nokia", src: "/clients/Nokia1.png" },
   { name: "SolarWinds", src: "/clients/SolarWinds.png" },
   { name: "Strava", src: "/clients/strave-company.png" },
   { name: "Syntronic", src: "/clients/Syntronic.png" },
   { name: "DeerCast", src: "/clients/DearCast.png" },
-  { name: "Ericsson", src: "/clients/ericssion.png" },
+  { name: "Ericsson", src: "/clients/ericssion1.png" },
   { name: "American Airlines", src: "/clients/american.png" },
-  { name: "Adbox", src: "/clients/Adbox.png" },
-  { name: "MaxHub", src: "/clients/maxhub.png" },
-  { name: "Radiant", src: "/clients/radiant.png" },
+  { name: "Adbox", src: "/clients/Adbox1.png" },
+  { name: "Magikk", src: "/clients/Magikk1.png" },
 ];
 
-function LogoItem({ name, src }: { name: string; src: string }) {
+function LogoItem({
+  name,
+  src,
+}: {
+  name: string;
+  src: string;
+}) {
   return (
-    <div className="flex-shrink-0 mx-3 px-3 flex items-center justify-center h-14 w-32 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+    <div className="flex-shrink-0 mx-8 h-16 w-40 flex items-center justify-center opacity-50 hover:opacity-100 transition-all duration-500">
       <Image
         src={src}
-        alt={`${name} logo`}
-        width={128}
-        height={56}
-        className="h-full w-full object-contain"
+        alt={name}
+        width={160}
+        height={64}
+        className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-500"
       />
     </div>
   );
@@ -32,36 +37,53 @@ function LogoItem({ name, src }: { name: string; src: string }) {
 
 export default function LogoMarquee() {
   return (
-    <section className="py-12 lg:py-14 relative overflow-hidden bg-section-trust">
-      {/* Subtle dotted grid background */}
-      <div className="absolute inset-0 dotted-grid opacity-50 pointer-events-none" />
+    <section className="border-y border-white/[0.08] bg-section-trust">
+      <div className="mx-auto w-full max-w-[1320px] px-6 md:px-8 lg:px-12 py-10">
+        <div className="grid items-center gap-8 md:grid-cols-12">
+          <div className="md:col-span-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+              Together, We Build
+                            </span>
+            </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-2 mb-7"
-        >
-          <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-deep-blue/50">
-            Teams we have worked with
-          </p>
-          <div className="flex items-center gap-1.5">
-            <span className="w-8 h-px bg-neon-blue/40" />
-            <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-            <span className="w-8 h-px bg-neon-blue/40" />
+            <p className="mt-2 text-base font-semibold leading-tight text-gray-900 ">
+              250+ projects shipped <br />
+              for ambitious teams.
+            </p>
+
+            <div className="mt-3 flex items-center gap-1">
+              {[...Array(5)].map((_, k) => (
+                <Star
+                  key={k}
+                  size={14}
+                  className="fill-[#ff6b3d] text-[#ff6b3d]"
+                />
+              ))}
+
+              <span className="ml-1.5 text-xs font-medium text-gray-400">
+                4.9 · 200+ reviews
+              </span>
+            </div>
           </div>
-        </motion.div>
 
-        <div className="group relative overflow-hidden">
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
-
-          <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused] will-change-transform">
-            {[...logos, ...logos].map((logo, i) => (
-              <LogoItem key={`${logo.name}-${i}`} src={logo.src} name={logo.name} />
-            ))}
+          <div
+            className="md:col-span-9 overflow-hidden"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+              maskImage:
+                "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+            }}
+          >
+            <div className="flex animate-marquee gap-6 whitespace-nowrap">
+              {[...logos, ...logos, ...logos].map((logo, i) => (
+                <div key={i} className="flex-shrink-0">
+                  <LogoItem name={logo.name} src={logo.src} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

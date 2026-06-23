@@ -9,6 +9,8 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 
+// ─── Capabilities ──────────────────────────────────────────────────────
+
 interface Capability {
   tag: string;
   short: string;
@@ -64,7 +66,550 @@ const capabilities: Capability[] = [
   },
 ];
 
-/* ───────── Network particles ───────── */
+// ─── Tech Logo Components ───────────────────────────────────────────────
+
+const ReactLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <circle cx="50" cy="50" r="10" fill="#61DAFB" />
+    <ellipse cx="50" cy="50" rx="40" ry="12" fill="none" stroke="#61DAFB" strokeWidth="3" />
+    <ellipse cx="50" cy="50" rx="40" ry="12" fill="none" stroke="#61DAFB" strokeWidth="3" transform="rotate(60 50 50)" />
+    <ellipse cx="50" cy="50" rx="40" ry="12" fill="none" stroke="#61DAFB" strokeWidth="3" transform="rotate(-60 50 50)" />
+  </svg>
+);
+
+const NextLogo = ({ size = 19 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#000" strokeWidth="8" />
+    <path d="M30 30 L30 70 L60 50 L30 30" fill="none" stroke="#000" strokeWidth="8" />
+    <line x1="70" y1="30" x2="70" y2="70" stroke="#000" strokeWidth="8" />
+  </svg>
+);
+
+const NodeLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <ellipse cx="50" cy="50" rx="45" ry="40" fill="none" stroke="#339933" strokeWidth="6" />
+    <circle cx="50" cy="50" r="10" fill="#339933" />
+  </svg>
+);
+
+const TypescriptLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <rect x="15" y="15" width="70" height="70" rx="8" fill="none" stroke="#3178C6" strokeWidth="6" />
+    <text x="50" y="68" fontSize="48" fontWeight="bold" fill="#3178C6" textAnchor="middle">TS</text>
+  </svg>
+);
+
+const PythonLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <ellipse cx="50" cy="50" rx="45" ry="40" fill="none" stroke="#3776AB" strokeWidth="6" />
+    <text x="50" y="68" fontSize="40" fontWeight="bold" fill="#3776AB" textAnchor="middle">Py</text>
+  </svg>
+);
+
+const OpenAILogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <circle cx="50" cy="50" r="40" fill="none" stroke="#10A37F" strokeWidth="6" />
+    <text x="50" y="68" fontSize="36" fontWeight="bold" fill="#10A37F" textAnchor="middle">AI</text>
+  </svg>
+);
+
+const AnthropicLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <circle cx="50" cy="50" r="40" fill="none" stroke="#D4A574" strokeWidth="6" />
+    <text x="50" y="68" fontSize="32" fontWeight="bold" fill="#D4A574" textAnchor="middle">An</text>
+  </svg>
+);
+
+const AWSLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="#FF9900" strokeWidth="5" />
+    <text x="50" y="68" fontSize="36" fontWeight="bold" fill="#FF9900" textAnchor="middle">AWS</text>
+  </svg>
+);
+
+const PostgresLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <circle cx="50" cy="50" r="40" fill="none" stroke="#336791" strokeWidth="6" />
+    <text x="50" y="68" fontSize="36" fontWeight="bold" fill="#336791" textAnchor="middle">Pg</text>
+  </svg>
+);
+
+const MongoLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <ellipse cx="50" cy="50" rx="45" ry="40" fill="none" stroke="#4EA94B" strokeWidth="6" />
+    <text x="50" y="68" fontSize="32" fontWeight="bold" fill="#4EA94B" textAnchor="middle">MDB</text>
+  </svg>
+);
+
+const DockerLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <rect x="15" y="25" width="70" height="50" rx="10" fill="none" stroke="#2496ED" strokeWidth="5" />
+    <text x="50" y="68" fontSize="40" fontWeight="bold" fill="#2496ED" textAnchor="middle">D</text>
+  </svg>
+);
+
+const GraphQLLogo = ({ size = 18 }: { size?: number }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size}>
+    <circle cx="50" cy="50" r="40" fill="none" stroke="#E10098" strokeWidth="5" />
+    <text x="50" y="68" fontSize="28" fontWeight="bold" fill="#E10098" textAnchor="middle">GQL</text>
+  </svg>
+);
+
+// ─── HeroArt Component ──────────────────────────────────────────────────
+
+function TravellingGlow() {
+  return (
+    <motion.div
+      className="absolute inset-0"
+      animate={{ rotate: 360 }}
+      transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+    >
+      <motion.div
+        animate={{
+          background: [
+            "radial-gradient(circle, rgba(96,165,250,0.55) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(167,139,250,0.55) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(244,114,182,0.55) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(251,146,60,0.55) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(52,211,153,0.55) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(34,211,238,0.55) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(96,165,250,0.55) 0%, transparent 60%)",
+          ],
+          scale: [1, 1.08, 1],
+        }}
+        transition={{
+          background: { duration: 14, repeat: Infinity, ease: "linear" },
+          scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+        }}
+        className="absolute h-[55%] w-[55%] rounded-full blur-2xl"
+        style={{ top: "12%", left: "22%" }}
+      />
+    </motion.div>
+  );
+}
+
+function Primitive({
+  type,
+  angle,
+  radius,
+  duration,
+  size,
+  reverse = false,
+}: {
+  type: "cube" | "ring";
+  angle: number;
+  radius: number;
+  duration: number;
+  size: number;
+  reverse?: boolean;
+}) {
+  const radiusPct = (radius / 400) * 100;
+  return (
+    <motion.div
+      className="absolute inset-0"
+      animate={{ rotate: reverse ? -360 : 360 }}
+      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    >
+      <div
+        className="absolute"
+        style={{
+          left: `${(50 + radiusPct * Math.cos((angle * Math.PI) / 180)).toFixed(4)}%`,
+          top: `${(50 + radiusPct * Math.sin((angle * Math.PI) / 180)).toFixed(4)}%`,
+        }}
+      >
+        <motion.div
+          animate={{ rotate: reverse ? 360 : -360 }}
+          transition={{ duration, repeat: Infinity, ease: "linear" }}
+          className="absolute -translate-x-1/2 -translate-y-1/2"
+          style={{ width: size, height: size }}
+        >
+          {type === "cube" ? (
+            <svg viewBox="0 0 100 100" className="h-full w-full drop-shadow-[0_4px_8px_rgba(10,10,20,0.18)]">
+              <polygon points="50,10 85,30 50,50 15,30" fill="#fff" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" />
+              <polygon points="85,30 85,70 50,90 50,50" fill="#dde1ee" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" />
+              <polygon points="15,30 15,70 50,90 50,50" fill="#b8c1ff" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 100 100" className="h-full w-full">
+              <defs>
+                <linearGradient id={`pr-${angle}`} x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#ff6b3d" />
+                  <stop offset="100%" stopColor="#f59e0b" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="38" fill="none" stroke={`url(#pr-${angle})`} strokeWidth="6" strokeLinecap="round" />
+            </svg>
+          )}
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
+function OrbitRing({
+  logos,
+  radius,
+  duration,
+  direction,
+  size,
+  startOffset = 0,
+}: {
+  logos: { Logo: React.ComponentType<{ size?: number }>; name: string }[];
+  radius: number;
+  duration: number;
+  direction: 1 | -1;
+  size: number;
+  startOffset?: number;
+}) {
+  const radiusPct = (radius / 400) * 100;
+  return (
+    <motion.div
+      className="absolute inset-0"
+      animate={{ rotate: 360 * direction }}
+      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    >
+      {logos.map((it, i) => {
+        const angle = (i * 360) / logos.length + startOffset;
+        const rad = (angle * Math.PI) / 180;
+        const xPct = (50 + radiusPct * Math.cos(rad)).toFixed(4);
+        const yPct = (50 + radiusPct * Math.sin(rad)).toFixed(4);
+        return (
+          <div
+            key={it.name}
+            className="absolute"
+            style={{
+              left: `${xPct}%`,
+              top: `${yPct}%`,
+              width: 0,
+              height: 0,
+            }}
+          >
+            <motion.div
+              animate={{ rotate: -360 * direction }}
+              transition={{ duration, repeat: Infinity, ease: "linear" }}
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ willChange: "transform" }}
+              title={it.name}
+            >
+              <it.Logo size={size} />
+            </motion.div>
+          </div>
+        );
+      })}
+    </motion.div>
+  );
+}
+
+function HeroArt() {
+  // 6 inner-orbit logos (engineering + AI core)
+  const INNER_LOGOS = [
+    { Logo: ReactLogo, name: "React" },
+    { Logo: NodeLogo, name: "Node.js" },
+    { Logo: TypescriptLogo, name: "TypeScript" },
+    { Logo: PythonLogo, name: "Python" },
+    { Logo: OpenAILogo, name: "OpenAI" },
+    { Logo: AnthropicLogo, name: "Anthropic" },
+  ];
+
+  // 6 outer-orbit logos (platforms + databases + delivery)
+  const OUTER_LOGOS = [
+    { Logo: NextLogo, name: "Next.js" },
+    { Logo: PostgresLogo, name: "Postgres" },
+    { Logo: MongoLogo, name: "MongoDB" },
+    { Logo: AWSLogo, name: "AWS" },
+    { Logo: DockerLogo, name: "Docker" },
+    { Logo: GraphQLLogo, name: "GraphQL" },
+  ];
+
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-[400px]">
+      {/* Background dot grid */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 opacity-40"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(10,10,20,0.1) 1px, transparent 0)",
+          backgroundSize: "24px 24px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 0%, transparent 70%)",
+        }}
+      />
+
+      {/* OUTER ring with co-ordinate marks */}
+      <motion.svg
+        viewBox="0 0 400 400"
+        className="absolute inset-0"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
+      >
+        <defs>
+          <linearGradient id="outer-ring-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#2486c5" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="#2486c5" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <circle
+          cx="200"
+          cy="200"
+          r="195"
+          fill="none"
+          stroke="url(#outer-ring-grad)"
+          strokeWidth="1.6"
+          strokeDasharray="4 6"
+        />
+        {Array.from({ length: 24 }).map((_, i) => {
+          const angle = (i * 360) / 24;
+          const inner = 184;
+          const outer = i % 6 === 0 ? 202 : 192;
+          const cos = Math.cos((angle * Math.PI) / 180);
+          const sin = Math.sin((angle * Math.PI) / 180);
+          const x1 = (200 + inner * cos).toFixed(3);
+          const y1 = (200 + inner * sin).toFixed(3);
+          const x2 = (200 + outer * cos).toFixed(3);
+          const y2 = (200 + outer * sin).toFixed(3);
+          return (
+            <line
+              key={i}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              stroke="rgba(10,10,20,0.18)"
+              strokeWidth={i % 6 === 0 ? "1.4" : "1"}
+            />
+          );
+        })}
+      </motion.svg>
+
+      {/* MID ring (counter-rotating) */}
+      <motion.svg
+        viewBox="0 0 400 400"
+        className="absolute inset-0"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+      >
+        <circle
+          cx="200"
+          cy="200"
+          r="148"
+          fill="none"
+          stroke="rgba(10,10,20,0.18)"
+          strokeWidth="1"
+          strokeDasharray="2 6"
+        />
+      </motion.svg>
+
+      {/* INNER pulsing ring */}
+      <motion.svg
+        viewBox="0 0 400 400"
+        className="absolute inset-0"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+      >
+        <motion.circle
+          cx="200"
+          cy="200"
+          r="140"
+          fill="none"
+          stroke="rgba(79,70,229,0.45)"
+          strokeWidth="1"
+          strokeDasharray="3 5"
+          animate={{ strokeOpacity: [0.45, 0.15, 0.45] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </motion.svg>
+
+      {/* Orbiting satellite dots */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      >
+        <span
+          className="absolute h-3.5 w-3.5 rounded-full"
+          style={{
+            top: "calc(50% - 35% - 7px)",
+            left: "calc(50% - 7px)",
+            background: "radial-gradient(circle at 30% 30%, #ffffff, #2486c5)",
+            boxShadow: "0 0 24px 6px rgba(79,70,229,0.6)",
+          }}
+        />
+      </motion.div>
+      <motion.div
+        className="absolute inset-0"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+      >
+        <span
+          className="absolute h-3 w-3 rounded-full"
+          style={{
+            top: "calc(50% - 6px)",
+            left: "calc(50% + 35%)",
+            background: "radial-gradient(circle at 30% 30%, #ffffff, #ff6b3d)",
+            boxShadow: "0 0 18px 4px rgba(255,107,61,0.55)",
+          }}
+        />
+      </motion.div>
+
+      {/* CENTRAL SPHERE */}
+      <div className="absolute left-1/2 top-1/2 h-[54%] w-[54%] -translate-x-1/2 -translate-y-1/2">
+        <motion.div
+          animate={{ scale: [1, 1.025, 1], rotate: [0, 360] }}
+          transition={{
+            scale: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+            rotate: { duration: 70, repeat: Infinity, ease: "linear" },
+          }}
+          className="relative h-full w-full"
+        >
+          {/* Drop shadow under sphere */}
+          <div
+            aria-hidden
+            className="absolute inset-0 rounded-full blur-2xl"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 75%, rgba(10,10,20,0.45) 0%, transparent 60%)",
+              transform: "translateY(10%) scale(0.92)",
+            }}
+          />
+
+          {/* Main sphere body */}
+          <div
+            className="absolute inset-0 overflow-hidden rounded-full"
+            style={{
+              background: `
+                radial-gradient(circle at 35% 28%, #6ec1e8 0%, #46a4f6 18%, #2486c5 38%, #1d5784 65%, #1a3a5c 100%)
+              `,
+              boxShadow:
+                "inset -25px -50px 90px rgba(0,0,0,0.5), inset 30px 40px 80px rgba(255,255,255,0.18), 0 30px 60px -20px rgba(10,10,20,0.4)",
+            }}
+          >
+            <TravellingGlow />
+
+            {/* Surface meridians */}
+            <svg
+              viewBox="0 0 100 100"
+              className="absolute inset-0 h-full w-full opacity-30"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="merg2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="white" stopOpacity="0" />
+                  <stop offset="50%" stopColor="white" stopOpacity="0.45" />
+                  <stop offset="100%" stopColor="white" stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              {[18, 32, 50, 68, 82].map((cx) => (
+                <ellipse
+                  key={cx}
+                  cx="50"
+                  cy="50"
+                  rx={Math.abs(50 - cx) || 1}
+                  ry="48"
+                  fill="none"
+                  stroke="url(#merg2)"
+                  strokeWidth="0.3"
+                />
+              ))}
+              {[18, 32, 50, 68, 82].map((cy) => (
+                <ellipse
+                  key={`lat-${cy}`}
+                  cx="50"
+                  cy="50"
+                  rx="48"
+                  ry={Math.abs(50 - cy) || 1}
+                  fill="none"
+                  stroke="url(#merg2)"
+                  strokeWidth="0.3"
+                />
+              ))}
+            </svg>
+
+            {/* Sweeping shimmer */}
+            <motion.div
+              animate={{ x: ["-100%", "120%"] }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                repeatDelay: 2.5,
+              }}
+              className="absolute inset-y-0 w-1/3"
+              style={{
+                background:
+                  "linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%)",
+                filter: "blur(8px)",
+              }}
+            />
+          </div>
+
+          {/* Outer rim highlight */}
+          <div
+            aria-hidden
+            className="absolute inset-0 rounded-full"
+            style={{
+              boxShadow:
+                "inset 0 0 0 1px rgba(255,255,255,0.2), 0 0 0 1px rgba(10,10,20,0.06)",
+            }}
+          />
+        </motion.div>
+      </div>
+
+      {/* Radial connection lines */}
+      <svg
+        viewBox="0 0 400 400"
+        className="absolute inset-0 -z-[1]"
+        aria-hidden
+      >
+        {INNER_LOGOS.map((_, i) => {
+          const angle = (i * 360) / INNER_LOGOS.length - 90;
+          const x = (200 + 140 * Math.cos((angle * Math.PI) / 180)).toFixed(3);
+          const y = (200 + 140 * Math.sin((angle * Math.PI) / 180)).toFixed(3);
+          return (
+            <line
+              key={`s-${i}`}
+              x1="200"
+              y1="200"
+              x2={x}
+              y2={y}
+              stroke="rgba(79,70,229,0.12)"
+              strokeWidth="1"
+              strokeDasharray="2 4"
+            />
+          );
+        })}
+      </svg>
+
+      {/* INNER orbit */}
+      <OrbitRing
+        logos={INNER_LOGOS}
+        radius={140}
+        duration={80}
+        direction={1}
+        size={18}
+      />
+
+      {/* OUTER orbit */}
+      <OrbitRing
+        logos={OUTER_LOGOS}
+        radius={192}
+        duration={130}
+        direction={-1}
+        size={19}
+        startOffset={30}
+      />
+
+      {/* Geometric primitives */}
+      <Primitive type="cube" angle={20} radius={166} duration={95} size={18} />
+      <Primitive type="ring" angle={210} radius={166} duration={95} size={20} />
+      <Primitive type="cube" angle={140} radius={166} duration={140} size={14} reverse />
+      <Primitive type="ring" angle={320} radius={166} duration={60} size={14} reverse />
+    </div>
+  );
+}
+
+// ─── Particles Component ───────────────────────────────────────────────
+
 function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -168,19 +713,20 @@ function Particles() {
   );
 }
 
-/* ───────── Hero ───────── */
+// ─── Hero Component ────────────────────────────────────────────────────
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Capability spotlight — auto-cycle through the three offerings
+  // Capability spotlight
   const [capIdx, setCapIdx] = useState(0);
+  
   useEffect(() => {
     const t = setInterval(() => {
       setCapIdx((i) => (i + 1) % capabilities.length);
     }, 3600);
     return () => clearInterval(t);
   }, []);
-  const activeCap = capabilities[capIdx];
 
   // Mouse parallax
   const mouseX = useMotionValue(0);
@@ -252,23 +798,6 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 lg:gap-12 items-center">
         {/* LEFT — text */}
         <div className="lg:col-span-7">
-          {/* Status pill */}
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/5 backdrop-blur-sm"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
-              Software development partner · Available for new projects
-            </span>
-          </motion.div>
-
-          {/* Headline */}
           <h1
             className="mt-6 font-bold tracking-[-0.025em] leading-[0.96] text-white"
             style={{ fontSize: "clamp(2.5rem, 5.5vw + 0.25rem, 5.5rem)" }}
@@ -279,7 +808,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-            Architected for Scale. 
+              Your Vision.
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
@@ -287,62 +816,39 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.32, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-               {" "}
-              <span className="gradient-text glow-text"> Built for Impact.
-</span>
+              {" "}
+              <span className="gradient-text glow-text">Engineered Into Deployable Software</span>
             </motion.span>
           </h1>
 
-          {/* Subhead */}
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed"
           >
-From architecture to deployment, we build the digital foundations that ambitious businesses run on. Scalable applications, intelligent automation, and full-stack delivery — engineered to perform at every stage of growth.  </motion.p>
-
-          {/* Three-pillar chip row */}
-          {/* <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
-            className="mt-5 flex flex-wrap gap-2"
-          >
-            {[
-              { label: "Custom Development", icon: "</>" },
-              { label: "Team Augmentation", icon: "{ }" },
-              { label: "Our Products", icon: "▲" },
-            ].map((p) => (
-              <span
-                key={p.label}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-sm text-[11px] font-semibold text-gray-300 tracking-wide"
-              >
-                <span className="text-neon-blue font-mono text-[10px]">{p.icon}</span>
-                {p.label}
-              </span>
-            ))}
-          </motion.div> */}
+            Whether you're building your first MVP or scaling to enterprise, our full-stack engineers deliver production-grade software, end to end.
+          </motion.p>
 
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7 }}
-            className="mt-7 flex flex-col sm:flex-row gap-3"
+            className="mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <motion.span
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex"
+              className="w-full sm:w-auto"
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 sm:py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm sm:text-base hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300 min-h-[52px] sm:min-h-[56px]"
               >
                 Start your project
                 <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                  className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -358,49 +864,14 @@ From architecture to deployment, we build the digital foundations that ambitious
             </motion.span>
             <Link
               href="/services"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 sm:py-4 rounded-full border border-white/15 text-white font-semibold text-sm sm:text-base hover:bg-white/5 hover:border-white/30 transition-all duration-300 min-h-[52px] sm:min-h-[56px]"
             >
               Explore our services
             </Link>
           </motion.div>
-
-          {/* Inline trust strip */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
-            className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-gray-500"
-          >
-            <div className="flex items-center gap-1.5">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-3.5 h-3.5 text-amber-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-              <span className="ml-1.5">
-                <span className="text-white font-semibold">Trusted</span>{" "}
-                by the teams we work with
-              </span>
-            </div>
-            <span className="hidden sm:block w-px h-4 bg-white/10" />
-            <span>
-              <span className="text-white font-semibold">Security & accessibility</span>{" "}
-              built in
-            </span>
-            <span className="hidden md:block w-px h-4 bg-white/10" />
-            <span className="hidden md:inline">
-              <span className="text-white font-semibold">Clients</span>{" "}
-              around the world
-            </span>
-          </motion.div> */}
         </div>
 
-        {/* RIGHT — animated orbital system */}
+        {/* RIGHT — HeroArt with animation matching first version */}
         <motion.div
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -408,323 +879,7 @@ From architecture to deployment, we build the digital foundations that ambitious
           style={{ rotate: panelTilt }}
           className="lg:col-span-5 relative hidden lg:block"
         >
-          {/* Ambient glow behind the orbit */}
-          <motion.div
-            className="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-neon-blue/25 via-neon-purple/15 to-transparent blur-3xl pointer-events-none"
-            animate={{ opacity: [0.4, 0.7, 0.4] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          />
-
-          {/* ───────── Orbital system ───────── */}
-          <div className="relative mx-auto aspect-square w-full max-w-[540px]">
-            {/* Decorative rotating rings */}
-            <motion.svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              viewBox="0 0 100 100"
-              fill="none"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-            >
-              <circle cx="50" cy="50" r="44" className="stroke-[rgba(10,22,40,0.14)] dark:stroke-[rgba(255,255,255,0.10)]" strokeWidth="0.25" strokeDasharray="1 2.5" />
-              <circle cx="50" cy="50" r="31" className="stroke-[rgba(10,22,40,0.10)] dark:stroke-[rgba(255,255,255,0.08)]" strokeWidth="0.25" />
-              <circle cx="50" cy="50" r="18" className="stroke-[rgba(10,22,40,0.08)] dark:stroke-[rgba(255,255,255,0.06)]" strokeWidth="0.25" strokeDasharray="0.5 2" />
-            </motion.svg>
-
-            {/* OUTER RING — tech stack (counter-rotating) */}
-            <motion.div
-              className="absolute inset-0"
-              animate={{ rotate: -360 }}
-              transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
-            >
-              {["React", "Next.js", "TypeScript", "Python", "AI", "Cloud"].map((t, i) => {
-                const angle = (Math.PI * 2 * i) / 6 + Math.PI / 6;
-                const x = 50 + Math.sin(angle) * 42;
-                const y = 50 - Math.cos(angle) * 42;
-                return (
-                  <div
-                    key={t}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{ left: `${x}%`, top: `${y}%` }}
-                  >
-                    <motion.span
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
-                      className="block px-2.5 py-1 rounded-full border backdrop-blur-md text-[10px] font-semibold tracking-wide whitespace-nowrap shadow-lg bg-white border-deep-blue/10 text-deep-blue/70 shadow-deep-blue/10 dark:bg-white/[0.06] dark:border-white/15 dark:text-gray-200 dark:shadow-black/30"
-                    >
-                      {t}
-                    </motion.span>
-                  </div>
-                );
-              })}
-            </motion.div>
-
-            {/* INNER RING — offerings + energy lines */}
-            <motion.div
-              className="absolute inset-0"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
-            >
-              {/* Energy lines from core to each node */}
-              <svg
-                className="absolute inset-0 w-full h-full pointer-events-none"
-                viewBox="0 0 100 100"
-                fill="none"
-                preserveAspectRatio="none"
-              >
-                {capabilities.map((c, i) => {
-                  const angle = (Math.PI * 2 * i) / capabilities.length;
-                  const x = 50 + Math.sin(angle) * 31;
-                  const y = 50 - Math.cos(angle) * 31;
-                  const isActive = i === capIdx;
-                  return (
-                    <motion.line
-                      key={c.tag}
-                      x1="50"
-                      y1="50"
-                      x2={x}
-                      y2={y}
-                      stroke={c.accent}
-                      strokeWidth={isActive ? 0.7 : 0.35}
-                      strokeDasharray="1.5 2.5"
-                      animate={{
-                        strokeDashoffset: [0, -8],
-                        opacity: isActive ? [0.5, 0.95, 0.5] : 0.28,
-                      }}
-                      transition={{ duration: isActive ? 1 : 1.6, repeat: Infinity, ease: "linear" }}
-                    />
-                  );
-                })}
-              </svg>
-
-              {capabilities.map((c, i) => {
-                const angle = (Math.PI * 2 * i) / capabilities.length;
-                const x = 50 + Math.sin(angle) * 31;
-                const y = 50 - Math.cos(angle) * 31;
-                const isActive = i === capIdx;
-                return (
-                  <div
-                    key={c.tag}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{ left: `${x}%`, top: `${y}%` }}
-                  >
-                    <motion.button
-                      onClick={() => setCapIdx(i)}
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
-                      whileHover={{ scale: 1.15 }}
-                      className="flex flex-col items-center gap-1.5"
-                    >
-                      <motion.span
-                        className="relative w-14 h-14 rounded-2xl flex items-center justify-center backdrop-blur-md border"
-                        style={{
-                          backgroundColor: `${c.accent}${isActive ? "33" : "1f"}`,
-                          borderColor: `${c.accent}${isActive ? "aa" : "55"}`,
-                          color: c.accent,
-                          boxShadow: isActive
-                            ? `0 0 34px -4px ${c.accent}`
-                            : `0 0 16px -8px ${c.accent}`,
-                        }}
-                        animate={isActive ? { scale: [1, 1.08, 1] } : { scale: 1 }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        {c.icon}
-                        {isActive && (
-                          <motion.span
-                            className="absolute inset-0 rounded-2xl border"
-                            style={{ borderColor: c.accent }}
-                            animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
-                            transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
-                          />
-                        )}
-                      </motion.span>
-                      <span
-                        className={`text-[10px] font-semibold tracking-tight whitespace-nowrap transition-colors ${
-                          isActive
-                            ? "text-deep-blue dark:text-white"
-                            : "text-deep-blue/50 dark:text-white/55"
-                        }`}
-                      >
-                        {c.short}
-                      </span>
-                    </motion.button>
-                  </div>
-                );
-              })}
-            </motion.div>
-
-            {/* CENTER CORE */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="relative w-28 h-28 lg:w-32 lg:h-32">
-                {/* Rotating gradient ring */}
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    background:
-                      "conic-gradient(from 0deg, #4FC3F7, #A78BFA, #34D399, #4FC3F7)",
-                  }}
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-                />
-                {/* Pulsing halo */}
-                <motion.div
-                  className="absolute -inset-3 rounded-full border border-white/20"
-                  animate={{ scale: [1, 1.18, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
-                />
-                {/* Inner disc — pinned dark in both themes */}
-                <div
-                  className="absolute inset-[3px] rounded-full flex flex-col items-center justify-center gap-1 shadow-[inset_0_0_30px_rgba(0,0,0,0.6)]"
-                  style={{ backgroundColor: "#0a1628" }}
-                >
-                  <motion.svg
-                    className="w-8 h-8"
-                    style={{ color: "#ffffff" }}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    animate={{ scale: [1, 1.12, 1] }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </motion.svg>
-                  <span
-                    className="text-[8px] font-bold uppercase tracking-[0.18em]"
-                    style={{ color: "rgba(255,255,255,0.7)" }}
-                  >
-                    Devinception
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating sparks */}
-            {[
-              { top: "8%", left: "22%", d: 0 },
-              { top: "16%", left: "80%", d: 0.6 },
-              { top: "80%", left: "14%", d: 1.1 },
-              { top: "86%", left: "78%", d: 1.6 },
-              { top: "48%", left: "95%", d: 0.3 },
-              { top: "50%", left: "4%", d: 0.9 },
-            ].map((s, i) => (
-              <motion.span
-                key={i}
-                className="absolute w-1 h-1 rounded-full bg-white pointer-events-none"
-                style={{ top: s.top, left: s.left }}
-                animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
-                transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: s.d }}
-              />
-            ))}
-          </div>
-
-          {/* Floating top-right — Avg MVP */}
-          {/* <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
-            animate={{ opacity: 1, scale: 1, rotate: -4 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            whileHover={{ rotate: 0, scale: 1.05 }}
-          >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-5 -right-5 rounded-2xl bg-neon-blue text-white px-4 py-2.5 shadow-xl shadow-neon-blue/50 ring-4 ring-deep-blue"
-            >
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <div>
-                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold opacity-90 leading-tight">
-                    Avg. MVP
-                  </p>
-                  <p className="text-sm font-bold tabular-nums leading-tight">10 weeks</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div> */}
-
-          {/* Floating top-left — Team avatars */}
-          {/* <motion.div
-            initial={{ opacity: 0, x: -10, rotate: 4 }}
-            animate={{ opacity: 1, x: 0, rotate: 2 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-            whileHover={{ rotate: 0, scale: 1.05 }}
-            className="absolute top-12 -left-7 z-10"
-          >
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="rounded-2xl bg-deep-blue/95 backdrop-blur-md px-3 py-2.5 shadow-xl shadow-black/40 border border-white/10"
-            >
-              <p className="text-[8px] uppercase tracking-[0.18em] font-semibold text-gray-400 mb-1.5">
-                Pod assigned
-              </p>
-              <div className="flex items-center gap-1.5">
-                <div className="flex -space-x-1.5">
-                  {["#1E88E5", "#0288D1", "#0097A7", "#039BE5"].map((c) => (
-                    <span
-                      key={c}
-                      className="w-5 h-5 rounded-full ring-2 ring-deep-blue"
-                      style={{ backgroundColor: c }}
-                    />
-                  ))}
-                </div>
-                <span className="text-[10px] font-bold text-white">+ 2</span>
-              </div>
-            </motion.div>
-          </motion.div> */}
-
-          {/* Floating bottom-left — retention */}
-          {/* <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: 6 }}
-            animate={{ opacity: 1, scale: 1, rotate: 3 }}
-            transition={{ duration: 0.6, delay: 1.3 }}
-            whileHover={{ rotate: 0, scale: 1.05 }}
-          >
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-5 -left-5 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white px-4 py-2.5 shadow-xl shadow-emerald-500/40 ring-4 ring-deep-blue"
-            >
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                <div>
-                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold opacity-90 leading-tight">
-                    Retention
-                  </p>
-                  <p className="text-sm font-bold tabular-nums leading-tight">98%</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div> */}
-
-          {/* Floating bottom-right — code snippet */}
-          <motion.div
-            initial={{ opacity: 0, y: 10, rotate: -4 }}
-            animate={{ opacity: 1, y: 0, rotate: -2 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-            whileHover={{ rotate: 0, scale: 1.05 }}
-            className="absolute -bottom-6 right-8 z-10"
-          >
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-              className="rounded-xl bg-deep-blue/95 backdrop-blur-md px-3 py-2 shadow-xl shadow-black/40 border border-white/10 font-mono text-[10px]"
-            >
-              <span className="text-emerald-400">$</span>{" "}
-              <span style={{ color: "#d1d5db" }}>devinception </span>
-              <span className="text-neon-blue">ship</span>
-              <motion.span
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-                style={{ color: "#ffffff" }}
-              >
-                _
-              </motion.span>
-            </motion.div>
-          </motion.div>
+          <HeroArt />
         </motion.div>
       </div>
 

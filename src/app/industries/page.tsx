@@ -334,12 +334,6 @@ export default function IndustriesPage() {
                   </svg>
                 </Link>
               </motion.span>
-              <a
-                href="#industries-grid"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
-              >
-                Browse industries ↓
-              </a>
             </div>
           </AnimatedSection>
         </div>

@@ -140,60 +140,54 @@ function ReasonCard({ reason, index }: { reason: Reason; index: number }) {
   const numLabel = String(index + 1).padStart(2, "0");
 
   return (
-    <div className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-5 lg:p-6 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5"
-    >
+    <div className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[220px]">
       {/* Top accent line */}
       <div
         className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: `linear-gradient(90deg, ${reason.accent}, ${reason.accent}55, transparent)`,
-        }}
+        style={{ background: `linear-gradient(90deg, ${reason.accent}, ${reason.accent}55, transparent)` }}
       />
 
       {/* Corner glow */}
       <div
-        className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.10] group-hover:opacity-[0.28] transition-opacity duration-500"
+        className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.06] group-hover:opacity-[0.15] transition-opacity duration-500"
         style={{ backgroundColor: reason.accent }}
       />
 
-      <div className="relative flex flex-col h-full">
-        {/* Top row: icon + number */}
-        <div className="flex items-center justify-between">
-          <span
-            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110"
-            style={{
-              backgroundColor: reason.accent,
-              color: "white",
-              boxShadow: `0 10px 22px -8px ${reason.accent}80`,
-            }}
-          >
-            {reason.icon}
-          </span>
-          <span
-            className="font-mono text-[10px] font-bold tracking-wider transition-colors duration-300"
-            style={{ color: `${reason.accent}90` }}
-          >
-            {numLabel}
-          </span>
+      {/* Background number */}
+      <div className="absolute top-3 right-4 text-[68px] font-bold leading-none select-none pointer-events-none" style={{ color: `${reason.accent}10` }}>
+        {numLabel}
+      </div>
+
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Icon */}
+        <div
+          className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3"
+          style={{
+            backgroundColor: `${reason.accent}14`,
+            color: reason.accent,
+            boxShadow: `inset 0 0 0 1px ${reason.accent}26`
+          }}
+        >
+          {reason.icon}
         </div>
 
-        {/* Title + description */}
-        <h3 className="mt-4 text-base lg:text-[17px] font-bold text-deep-blue tracking-tight leading-snug">
+        {/* Title */}
+        <h3 className="text-xl font-bold leading-tight tracking-tight text-deep-blue mb-2">
           {reason.title}
         </h3>
-        <p className="mt-1.5 text-xs lg:text-[13px] text-deep-blue/55 leading-relaxed">
+
+        {/* Description */}
+        <p className="text-sm leading-relaxed text-deep-blue/60">
           {reason.description}
         </p>
 
-        {/* Proof + arrow */}
-        {/* <div className="mt-auto pt-4 flex items-center justify-between gap-2">
-          {reason.proof}
-          <span className="w-7 h-7 rounded-full border border-deep-blue/10 flex items-center justify-center text-deep-blue/40 group-hover:border-transparent group-hover:bg-[color:var(--accent)] group-hover:text-white group-hover:-rotate-45 transition-all duration-300 shrink-0">
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </span>
-        </div> */}
+        {/* Bottom accent line */}
+        <div className="mt-auto pt-4">
+          <div
+            className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
+            style={{ background: `linear-gradient(90deg, ${reason.accent}, ${reason.accent}55)` }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -233,38 +227,11 @@ export default function WhyChooseUs() {
           </div>
         </div>
 
-        {/* 3×2 grid of reason cards */}
+        {/* 3×2 grid of reason cards - now with cleaner ValuesSection style */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {reasons.map((reason, i) => (
             <ReasonCard key={reason.title} reason={reason} index={i} />
           ))}
-        </div>
-
-        {/* Compact CTA strip */}
-        <div className="mt-4 lg:mt-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-2xl bg-white/60 border border-deep-blue/[0.07] backdrop-blur-sm px-5 py-4">
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <p className="text-sm text-deep-blue/70">
-                <span className="font-semibold text-deep-blue">
-                  The same standards on every project.
-                </span>{" "}
-                No exceptions.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-deep-blue text-white font-semibold text-xs hover:bg-neon-blue hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
-            >
-              Start a project
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
         </div>
       </div>
     </section>

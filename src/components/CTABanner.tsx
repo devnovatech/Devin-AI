@@ -33,10 +33,10 @@ export default function CTABanner({
   withPadding = true,
 }: CTABannerProps) {
   return (
-    <section className={`${withPadding ? "py-20" : ""} bg-section-cta overflow-hidden relative`}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section className={`${withPadding ? "py-12 sm:py-16 lg:py-20" : ""} bg-section-cta overflow-hidden relative`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div>
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-deep-blue/20 bg-deep-blue">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-deep-blue/20 bg-deep-blue">
             {/* Background */}
             <div className="absolute inset-0 grid-bg opacity-50" />
             <div className="absolute -top-40 -right-32 w-[500px] h-[500px] bg-neon-blue/20 rounded-full blur-[140px]" />
@@ -44,36 +44,42 @@ export default function CTABanner({
             <div className="noise-overlay" />
 
             {/* Content */}
-            <div className="relative z-10 px-8 sm:px-16 py-16 sm:py-20 text-center">
-              {eyebrow && (
-                <div
-  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03]"
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs font-semibold tracking-wider uppercase text-neon-blue">
-                    {eyebrow}
-                  </span>
-                </div>
-              )}
+            <div className="relative z-10 px-5 sm:px-8 lg:px-16 py-10 sm:py-16 lg:py-20 text-center">
+              {/* Eyebrow - hidden on mobile, shown on tablet+ */}
+              <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+                <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/80">
+                  {eyebrow}
+                </span>
+              </div>
 
-              <h2 className="mt-6 h-section text-white max-w-3xl mx-auto">
+              {/* Mobile: Simplified eyebrow */}
+              <div className="sm:hidden inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+                <span className="text-[9px] font-semibold tracking-[0.18em] uppercase text-white/80">
+                  Let's build
+                </span>
+              </div>
+
+              <h2 className="mt-4 sm:mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold text-white max-w-3xl mx-auto leading-tight">
                 {heading}
               </h2>
+              
               {description && (
-                <p className="mt-5 body-lead text-gray-400 max-w-2xl mx-auto">
+                <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
                   {description}
                 </p>
               )}
 
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <motion.span
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-flex"
+                  className="inline-flex w-full sm:w-auto"
                 >
                   <Link
                     href={primaryHref}
-                    className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                    className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-neon-blue rounded-full text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300 w-full sm:w-auto touch-manipulation"
                   >
                     {primaryLabel}
                     <svg
@@ -90,7 +96,7 @@ export default function CTABanner({
                 {secondaryLabel && secondaryHref && (
                   <Link
                     href={secondaryHref}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+                    className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300 w-full sm:w-auto touch-manipulation"
                   >
                     {secondaryLabel}
                   </Link>
@@ -100,6 +106,12 @@ export default function CTABanner({
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .touch-manipulation {
+          touch-action: manipulation;
+        }
+      `}</style>
     </section>
   );
 }
