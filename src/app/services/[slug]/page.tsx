@@ -2236,8 +2236,9 @@ export default function ServicePage() {
                 </p>
 
                 <h2 className="mt-3 h-section text-white">
-                  {service.industryTitle}
-                </h2>
+                 {" "}
+                <span className="gradient-text">Industries</span> We Serve
+              </h2>
 
                 <p className="body-base text-gray-400 mt-4 max-w-md lg:ml-auto">
                   {service.industryDescription}

@@ -76,7 +76,7 @@ const services: Service[] = [
     title: "Ecommerce Architecture",
     slug: "ecommerce",
     category: "build",
-    tagline: "SCALABLE DIGITAL PLATFORMS.",
+    tagline: "E-commerce Systems Built to Sacle",
     description:
       "Conversion-focused ecommerce platforms built for performance, retention, and efficiency throughout the customer journey.",
     capabilities: [
@@ -199,7 +199,7 @@ const services: Service[] = [
     title: "Project Management",
     slug: "project-management",
     category: "operate",
-    tagline: "Agile delivery without the chaos.",
+    tagline: "Structured Delivery Systems.",
     description:
       "Project governance and delivery frameworks that improve visibility, maintain momentum, and keep teams aligned around outcomes.",
     capabilities: [
@@ -301,10 +301,10 @@ const processSteps: ProcessStepData[] = [
     description:
       "We manage deployment, monitoring, and optimization to ensure stability, adoption, and continuous improvement beyond the initial release.",
     deliverables: [
-      "Software Development",
-      "System Integrations",
-      "Quality Assurance",
-      "Sprint Reviews",
+      "Production Rollout",
+      "Performance Monitoring",
+      "Team Enablement",
+      "Ongoing Optimization",
     ],
     accent: "#1565C0",
     icon: (
@@ -798,248 +798,257 @@ export default function ServicesPage() {
       </section>
 
       {/* ───────── Catalog (filterable) ───────── */}
-     <section
-  id="services-grid"
-  className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
->
-  {/* ───────── BACKGROUND GLOW ───────── */}
-  <div className="absolute inset-0 opacity-70">
-    <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
-    <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
-  </div>
-
-  {/* noise overlay */}
-  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
-
-  <div className="relative max-w-7xl mx-auto px-6">
-    {/* ───────── HEADER ───────── */}
-    <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-16">
-      <div className="lg:col-span-7">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-md border border-black/5 shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-          <p className="text-[10px] uppercase tracking-[0.3em] text-deep-blue/60">
-            Core Capabilities
-          </p>
-        </div>
-      </div>
-    </div>
-
-    {/* ───────── DESKTOP ───────── */}
-    <div className="hidden xl:block">
-      <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
-        {/* LEFT */}
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-2">
-            Build · Design
-          </p>
-
-          <div className="space-y-3">
-            {leftServices.map((service, i) => {
-              const isActive = activeIndex === i;
-
-              return (
-                <button
-                  key={service.slug}
-                  onClick={() => setActiveIndex(i)}
-                  onMouseEnter={() => setActiveIndex(i)}
-                  className={`w-full flex items-center gap-4 p-2 rounded-2xl transition-all duration-300 border
-                    ${
-                      isActive
-                        ? "bg-white shadow-lg border-black/5"
-                        : "border-transparent hover:bg-white/60 hover:border-black/5"
-                    }`}
-                >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{
-                      backgroundColor: `${service.accent}15`,
-                      color: service.accent,
-                    }}
-                  >
-                    {service.icon}
-                  </div>
-
-                  <div className="flex-1 text-left">
-                    <h3 className="text-sm font-semibold text-deep-blue">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs text-deep-blue/50 mt-0.5">
-                      {service.tagline}
-                    </p>
-                  </div>
-
-                  <span className="text-xs text-deep-blue/25">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+      <section
+        id="services-grid"
+        className="py-20 lg:py-24 relative overflow-hidden bg-light-accent"
+      >
+        {/* ───────── BACKGROUND GLOW ───────── */}
+        <div className="absolute inset-0 opacity-70">
+          <div className="absolute top-[-200px] right-[-200px] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[140px]" />
+          <div className="absolute bottom-[-200px] left-[-200px] w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[140px]" />
         </div>
 
-        {/* CENTER - FIXED HEIGHT */}
-        <div className="relative overflow-hidden rounded-[24px] p-6 sm:p-8 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 h-[460px] sm:h-[480px] flex items-center">
-          {/* glow layers */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute -top-16 -right-16 w-72 h-72 bg-white/10 blur-3xl rounded-full" />
-            <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-white/5 blur-3xl rounded-full" />
-          </div>
+        {/* noise overlay */}
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
 
-          {/* Subtle grid overlay */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-[0.06]"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-            }}
-          />
-
-          <div className="relative z-10 w-full h-full flex flex-col">
-            {/* top bar */}
-            <div className="flex items-center justify-between mb-3 sm:mb-4 flex-shrink-0">
-              <div className="flex items-center gap-2">
-                <div className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-white/70" />
-                  <span className="relative inline-flex size-2 rounded-full bg-white" />
-                </div>
-                <p className="text-[10px] tracking-[0.25em] uppercase text-white/80">
-                  Active Service
+        <div className="relative max-w-7xl mx-auto px-6">
+          {/* ───────── HEADER ───────── */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end  mb-8">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
+                  How we work
                 </p>
               </div>
 
-              <div className="px-2.5 py-0.5 rounded-full border border-white/20 text-white/70 text-[10px]">
-                {String(activeIndex + 1).padStart(2, "0")} /{" "}
-                {String(services.length).padStart(2, "0")}
-              </div>
+              <h2 className="h-section ">
+                End-to-End {" "}
+                <span className="gradient-text">Digital Services</span>
+              </h2>
             </div>
 
-            {/* icon */}
-            <div className="flex-1 flex items-center justify-center relative py-1 min-h-[80px]">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={services[activeIndex].slug}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="relative"
-                >
-                  <div className="absolute -inset-8 rounded-full border border-white/10" />
-                  <div className="absolute -inset-16 rounded-full border border-white/5" />
+            <div className="lg:col-span-5">
+              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                A unified portfolio of technology, product, and operational services engineered to help organizations innovate, optimize performance, and achieve measurable business results.
+              </p>
+            </div>
+          </div>
 
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[20px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
-                    <div className="text-white scale-[1.2] sm:scale-[1.3]">
-                      {services[activeIndex].icon}
+          {/* ───────── DESKTOP ───────── */}
+          <div className="hidden xl:block">
+            <div className="grid grid-cols-[280px_1fr_280px] items-stretch gap-8">
+              {/* LEFT */}
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-2">
+                  Build · Design
+                </p>
+
+                <div className="space-y-3">
+                  {leftServices.map((service, i) => {
+                    const isActive = activeIndex === i;
+
+                    return (
+                      <button
+                        key={service.slug}
+                        onClick={() => setActiveIndex(i)}
+                        onMouseEnter={() => setActiveIndex(i)}
+                        className={`w-full flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                            ? "bg-white shadow-lg border-black/5"
+                            : "border-transparent hover:bg-white/60 hover:border-black/5"
+                          }`}
+                      >
+                        <div
+                          className="w-10 h-10 rounded-xl flex items-center justify-center"
+                          style={{
+                            backgroundColor: `${service.accent}15`,
+                            color: service.accent,
+                          }}
+                        >
+                          {service.icon}
+                        </div>
+
+                        <div className="flex-1 text-left">
+                          <h3 className="text-sm font-semibold text-deep-blue">
+                            {service.title}
+                          </h3>
+                          <p className="text-xs text-deep-blue/50 mt-0.5">
+                            {service.tagline}
+                          </p>
+                        </div>
+
+                        <span className="text-xs text-deep-blue/25">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* CENTER - FIXED HEIGHT */}
+              <div className="relative overflow-hidden rounded-[24px] p-6 sm:p-8 bg-gradient-to-br from-[#0C666E] via-[#074E54] to-[#052F33] shadow-2xl shadow-black/20 h-[460px] sm:h-[480px] flex items-center">
+                {/* glow layers */}
+                <div className="absolute inset-0 opacity-30">
+                  <div className="absolute -top-16 -right-16 w-72 h-72 bg-white/10 blur-3xl rounded-full" />
+                  <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-white/5 blur-3xl rounded-full" />
+                </div>
+
+                {/* Subtle grid overlay */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-[0.06]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                  }}
+                />
+
+                <div className="relative z-10 w-full h-full flex flex-col">
+                  {/* top bar */}
+                  <div className="flex items-center justify-between mb-3 sm:mb-4 flex-shrink-0">
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex size-2">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-white/70" />
+                        <span className="relative inline-flex size-2 rounded-full bg-white" />
+                      </div>
+                      <p className="text-[10px] tracking-[0.25em] uppercase text-white/80">
+                        Active Service
+                      </p>
+                    </div>
+
+                    <div className="px-2.5 py-0.5 rounded-full border border-white/20 text-white/70 text-[10px]">
+                      {String(activeIndex + 1).padStart(2, "0")} /{" "}
+                      {String(services.length).padStart(2, "0")}
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
 
-            {/* bottom content */}
-            <div className="flex-shrink-0 mt-1 sm:mt-2">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={services[activeIndex].slug}
-                  initial={{ y: 10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -10, opacity: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                >
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-white/60 mb-1">
-                    {services[activeIndex].tagline}
-                  </p>
-
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
-                    {services[activeIndex].title}
-                  </h3>
-
-                  <p className="text-sm text-white/75 leading-relaxed mb-3 max-w-xl line-clamp-2">
-                    {services[activeIndex].description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {services[activeIndex].capabilities.slice(0, 4).map((cap) => (
-                      <span
-                        key={cap}
-                        className="px-2.5 py-1 rounded-full border border-white/15 bg-white/5 text-white/80 text-[10px] sm:text-xs"
+                  {/* icon */}
+                  <div className="flex-1 flex items-center justify-center relative py-1 min-h-[80px]">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={services[activeIndex].slug}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="relative"
                       >
-                        {cap}
-                      </span>
-                    ))}
+                        <div className="absolute -inset-8 rounded-full border border-white/10" />
+                        <div className="absolute -inset-16 rounded-full border border-white/5" />
+
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-[20px] bg-white/10 border border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg">
+                          <div className="text-white scale-[1.2] sm:scale-[1.3]">
+                            {services[activeIndex].icon}
+                          </div>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
 
-                  <Link
-                    href={`/services/${services[activeIndex].slug}`}
-                    className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl"
-                  >
-                    Learn More
-                    <span className="transition-transform duration-300 group-hover/btn:translate-x-1">
-                      →
-                    </span>
-                  </Link>
-                </motion.div>
-              </AnimatePresence>
+                  {/* bottom content */}
+                  <div className="flex-shrink-0 mt-1 sm:mt-2">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={services[activeIndex].slug}
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -10, opacity: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                      >
+                        <p className="text-[10px] tracking-[0.2em] uppercase text-white/60 mb-1">
+                          {services[activeIndex].tagline}
+                        </p>
+
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
+                          {services[activeIndex].title}
+                        </h3>
+
+                        <p className="text-sm text-white/75 leading-relaxed mb-3 max-w-xl line-clamp-2">
+                          {services[activeIndex].description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1.5 mb-3">
+                          {services[activeIndex].capabilities.slice(0, 4).map((cap) => (
+                            <span
+                              key={cap}
+                              className="px-2.5 py-1 rounded-full border border-white/15 bg-white/5 text-white/80 text-[10px] sm:text-xs"
+                            >
+                              {cap}
+                            </span>
+                          ))}
+                        </div>
+
+                        <Link
+                          href={`/services/${services[activeIndex].slug}`}
+                          className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl"
+                        >
+                          Learn More
+                          <span className="transition-transform duration-300 group-hover/btn:translate-x-1">
+                            →
+                          </span>
+                        </Link>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT */}
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
+                  Grow · Ops
+                </p>
+
+                <div className="space-y-3">
+                  {rightServices.map((service, i) => {
+                    const realIndex = i + leftServices.length;
+                    const isActive = activeIndex === realIndex;
+
+                    return (
+                      <button
+                        key={service.slug}
+                        onClick={() => setActiveIndex(realIndex)}
+                        onMouseEnter={() => setActiveIndex(realIndex)}
+                        className={`w-full flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 border
+                    ${isActive
+                            ? "bg-white shadow-lg border-black/5"
+                            : "border-transparent hover:bg-white/60 hover:border-black/5"
+                          }`}
+                      >
+                        <div className="flex-1 text-right">
+                          <h3 className="text-sm font-semibold text-deep-blue">
+                            {service.title}
+                          </h3>
+                          <p className="text-xs text-deep-blue/50 mt-0.5">
+                            {service.tagline}
+                          </p>
+                        </div>
+
+                        <div
+                          className="w-10 h-10 rounded-xl flex items-center justify-center"
+                          style={{
+                            backgroundColor: `${service.accent}15`,
+                            color: service.accent,
+                          }}
+                        >
+                          {service.icon}
+                        </div>
+
+                        <span className="text-xs text-deep-blue/25">
+                          {String(realIndex + 1).padStart(2, "0")}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* RIGHT */}
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.3em] text-deep-blue/30 mb-6 text-right">
-            Grow · Ops
-          </p>
-
-          <div className="space-y-3">
-            {rightServices.map((service, i) => {
-              const realIndex = i + leftServices.length;
-              const isActive = activeIndex === realIndex;
-
-              return (
-                <button
-                  key={service.slug}
-                  onClick={() => setActiveIndex(realIndex)}
-                  onMouseEnter={() => setActiveIndex(realIndex)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border
-                    ${
-                      isActive
-                        ? "bg-white shadow-lg border-black/5"
-                        : "border-transparent hover:bg-white/60 hover:border-black/5"
-                    }`}
-                >
-                  <div className="flex-1 text-right">
-                    <h3 className="text-sm font-semibold text-deep-blue">
-                      {service.title}
-                    </h3>
-                    <p className="text-xs text-deep-blue/50 mt-0.5">
-                      {service.tagline}
-                    </p>
-                  </div>
-
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{
-                      backgroundColor: `${service.accent}15`,
-                      color: service.accent,
-                    }}
-                  >
-                    {service.icon}
-                  </div>
-
-                  <span className="text-xs text-deep-blue/25">
-                    {String(realIndex + 1).padStart(2, "0")}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">

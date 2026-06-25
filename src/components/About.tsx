@@ -87,7 +87,7 @@ export default function About() {
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">The Studio</span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">The Company</span>
             </div>
             <h2 className="h-section text-deep-blue">
               A company Engineered for <span className="gradient-text-dark">Businesses that Scale.</span>
@@ -95,7 +95,7 @@ export default function About() {
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              Built by engineers and strategists who refused to settle for surface-level delivery. We embed across your entire operation — from early-stage architecture to enterprise-grade transformation.
+Built by engineers and strategists who refused to settle for surface-level delivery. We embed across your entire operation — from early-stage architecture to enterprise-grade transformation.
             </p>
           </div>
         </div>

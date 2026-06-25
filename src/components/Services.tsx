@@ -3,8 +3,6 @@
 import { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ChevronLeft,
-  ChevronRight,
   Brain,
   Smartphone,
   Globe,
@@ -23,7 +21,6 @@ interface Service {
   accent: string;
   category: string;
   description: string;
-  outcomes: string[];
   stack: string[];
   icon: ReactNode;
   phases: {
@@ -40,14 +37,9 @@ const services: Service[] = [
     accent: "#1E88E5",
     category: "Build",
     description:
-      "From LLM-powered copilots to vision pipelines — we ship AI systems that hold up in production, not just in demos.",
-    outcomes: [
-      "Custom GenAI assistants & internal copilots",
-      "Recommendation engines & predictive analytics",
-      "Document AI, computer vision & OCR pipelines",
-      "Evals, monitoring, and MLOps from day one",
-    ],
-    stack: ["OpenAI", "Anthropic", "LangChain", "Python", "TensorFlow"],
+      "End-to-end AI and ML development from data engineering and model building to deployment and optimization for production systems.",
+   
+    stack: ["OpenAI APIs", "TensorFlow", "PyTorch", "Scikit-learn", "Python", "AWS", "Azure", " Databricks", "MLOps "],
     icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Assess", description: "AI opportunities, business goals, and data readiness" },
@@ -64,13 +56,10 @@ const services: Service[] = [
     category: "Build",
     description:
       "Creating intuitive, high-performance mobile apps for Android and iOS platforms.",
-    outcomes: [
-      "iOS & Android in native or Flutter / React Native",
-      "Backend, push, real-time sync & deep linking",
-      "App Store / Play Store launch & ASO",
-      "Long-term maintenance and feature delivery",
+  
+    stack: [
+      "Flutter", "React Native", "Swift", "Kotlin", "Firebase", "REST APIs"
     ],
-    stack: ["Flutter", "React Native", "Swift", "Kotlin", "Firebase"],
     icon: <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Envision", description: "Product strategy, user needs, and platform planning" },
@@ -87,19 +76,32 @@ const services: Service[] = [
     category: "Build",
     description:
       "Building responsive, scalable websites that deliver performance and reliability.",
-    outcomes: [
-      "Marketing & content sites with sub-second loads",
-      "Full-stack SaaS apps and internal tools",
-      "Headless CMS, edge functions, and global CDN",
-      "Real-time, multi-tenant, audit-ready by default",
-    ],
-    stack: ["Next.js", "Node", "TypeScript", "PostgreSQL"],
+    stack: ["React", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Tailwind CSS"],
     icon: <Globe className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Strategize", description: "Business objectives, requirements analysis, and technical roadmap" },
       { name: "Architect", description: "Information architecture, UX frameworks, wireframes, and workflows" },
       { name: "Engineer", description: "Development, integrations, QA, and security implementation" },
       { name: "Evolve", description: "Deployment, performance optimization, scalability, and continuous improvement" },
+    ]
+  },
+    {
+    title: "E-commerce Solutions",
+    slug: "E-commerce",
+    tagline: "Conversion-tuned storefronts",
+    accent: "#0097A7",
+    category: "Build",
+    description:
+      "Developing secure and optimized online stores that enhance sales and user experience.",
+
+    stack: ["Shopify", "WooCommerce", "Magento", "Stripe", "PayPal", "Next.js", "Node.js"
+    ],
+    icon: <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
+    phases: [
+      { name: "Evaluate", description: "Business goals, commerce requirements, and platform selection" },
+      { name: "Structure", description: "Store architecture, user journeys, and conversion design" },
+      { name: "Develop", description: "Storefront development, integrations, automation, and QA" },
+      { name: "Accelerate", description: "Launch, optimization, performance tuning, and growth scaling" },
     ]
   },
   {
@@ -110,13 +112,9 @@ const services: Service[] = [
     category: "Design",
     description:
       "Designing user-focused interfaces that are simple, engaging, and effective.",
-    outcomes: [
-      "Discovery interviews & usability research",
-      "Design systems with tokens, components, docs",
-      "High-fidelity prototypes for real validation",
-      "WCAG-AA accessibility from the first frame",
+    stack: [
+      "Figma", "Adobe XD", "Sketch", "FigJam", "Adobe Illustrator", "InVision"
     ],
-    stack: ["Figma", "Adobe XD", "Sketch", "FigJam"],
     icon: <Palette className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Discover", description: "User insights, behavioral analysis, and experience goals" },
@@ -130,16 +128,12 @@ const services: Service[] = [
     slug: "quality-assurance",
     tagline: "Ship with confidence, not surprises",
     accent: "#039BE5",
-    category: "Design",
+    category: "OPS",
     description:
       "Ensuring software quality through thorough testing and defect prevention.",
-    outcomes: [
-      "E2E, integration & visual regression suites",
-      "Performance budgets & Core Web Vitals enforcement",
-      "Pen-tests and OWASP-aligned security review",
-      "CI gates that block bad merges automatically",
+    stack: [
+      "Selenium", "Cypress", "Playwright", "Postman", "JMeter", "TestNG"
     ],
-    stack: ["Cypress", "Playwright", "Postman", "JMeter"],
     icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Establish", description: "Quality standards, test strategy, and validation frameworks" },
@@ -153,43 +147,18 @@ const services: Service[] = [
     slug: "staff-augmentation",
     tagline: "Senior engineers on demand",
     accent: "#0288D1",
-    category: "Grow",
+    category: "OPS",
     description:
       "Providing skilled professionals to seamlessly extend and strengthen your team.",
-    outcomes: [
-      "Senior engineers and tech leads, carefully vetted",
-      "Time-zone overlap with US, EU, and APAC teams",
-      "Month-to-month flex — scale up or down with runway",
+    stack: [
+      "JavaScript", "TypeScript", "Python", "Java", ".NET", "React", "Node.js", "AWS"
     ],
-    stack: ["React", "Node.js", "Python", "AWS", "TypeScript"],
     icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Scope", description: "Skill requirements, workforce planning, and engagement strategy" },
       { name: "Curate", description: "Talent sourcing, evaluation, selection, and onboarding" },
       { name: "Integrate", description: "Team alignment, collaboration, and delivery support" },
       { name: "Expand", description: "Scaling teams, performance management, and long-term growth" },
-    ]
-  },
-  {
-    title: "E-commerce Solutions",
-    slug: "E-commerce",
-    tagline: "Conversion-tuned storefronts",
-    accent: "#0097A7",
-    category: "Grow",
-    description:
-      "Developing secure and optimized online stores that enhance sales and user experience.",
-    outcomes: [
-      "Headless commerce on Shopify or custom stacks",
-      "Checkout optimization & cart-recovery flows",
-      "ERP, OMS & inventory sync with audit trails",
-    ],
-    stack: ["Shopify", "Stripe", "Next.js", "Node.js"],
-    icon: <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Evaluate", description: "Business goals, commerce requirements, and platform selection" },
-      { name: "Structure", description: "Store architecture, user journeys, and conversion design" },
-      { name: "Develop", description: "Storefront development, integrations, automation, and QA" },
-      { name: "Accelerate", description: "Launch, optimization, performance tuning, and growth scaling" },
     ]
   },
   {
@@ -200,13 +169,9 @@ const services: Service[] = [
     category: "Grow",
     description:
       "Driving growth through targeted, data-driven digital campaigns across key channels.",
-    outcomes: [
-      "SEO strategy & technical site audits",
-      "Paid acquisition with attribution modelling",
-      "Content engines for organic and inbound",
-    ],
-    stack: ["Google Analytics", "Google Ads", "Ahrefs", "SEMrush"],
-    icon: <Megaphone className="w-4 h-4 sm:w-5 sm:h-5" />,
+
+    stack: ["Google Analytics", "Google Ads", "Meta Ads Manager", "Ahrefs", "SEMrush", "HubSpot"
+    ], icon: <Megaphone className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Diagnose", description: "Market research, audience analysis, and growth opportunities" },
       { name: "Formulate", description: "Strategy, channel planning, messaging, and campaign design" },
@@ -219,15 +184,12 @@ const services: Service[] = [
     slug: "project-management",
     tagline: "Agile delivery, executive clarity",
     accent: "#01579B",
-    category: "Grow",
+    category: "OPS",
     description:
       "Managing projects efficiently with structured planning and agile execution.",
-    outcomes: [
-      "Discovery sprints, scope shaping, RACI matrices",
-      "Two-week cadence with demo and retro built in",
-      "Live burndowns and stakeholder dashboards",
+    stack: [
+      "Jira", "Trello", "Asana", "ClickUp", "Notion", "Microsoft Project", "Slack"
     ],
-    stack: ["Jira", "Asana", "Notion", "Slack"],
     icon: <ClipboardList className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
       { name: "Align", description: "Stakeholder goals, project scope, and delivery planning" },
