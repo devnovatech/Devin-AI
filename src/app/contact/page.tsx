@@ -289,18 +289,6 @@ export default function ContactPage() {
         <div className="noise-overlay" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <AnimatedSection>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/5 backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-              </span>
-              <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
-                Currently accepting new projects
-              </span>
-            </div>
-          </AnimatedSection>
-
           <AnimatedSection delay={0.1}>
             <h1
               className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
@@ -520,15 +508,6 @@ export default function ContactPage() {
                       className="mt-4 group inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-semibold text-white transition-all duration-200"
                     >
                       Use these details in form
-                      <svg
-                        className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
                     </button>
                   </div>
                 </motion.div>
@@ -586,7 +565,7 @@ export default function ContactPage() {
                       }}
                       className="mt-8 inline-flex items-center gap-2 text-neon-blue hover:text-neon-purple text-sm font-semibold transition-colors"
                     >
-                      ← Send another message
+                      Send another message
                     </button>
                   </motion.div>
                 ) : (
@@ -656,19 +635,6 @@ export default function ContactPage() {
                         className="group w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-xl text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                       >
                         Send message
-                        <svg
-                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2.5}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
                       </motion.button>
 
                       <p className="text-xs text-center text-deep-blue/45">
@@ -776,87 +742,91 @@ export default function ContactPage() {
 
 
       {/* ───────── What happens next ───────── */}
-      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+      <section className="py-20 lg:py-24 bg-white relative overflow-hidden">
+  <div className="absolute inset-0 grid-bg" />
+  <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="eyebrow text-neon-blue">What happens next</p>
-            <h2 className="mt-3 h-section text-white">
-              From message to{" "}
-              <span className="gradient-text">first sprint.</span>
-            </h2>
-            <p className="mt-5 body-base text-gray-400">
-              No black box. Here&apos;s exactly what to expect after you hit
-              send.
-            </p>
-          </div>
+  <div className="relative max-w-7xl mx-auto px-6">
+    <div className="text-center max-w-2xl mx-auto mb-12">
+      <p className="eyebrow text-neon-blue">What happens next</p>
 
-          <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <div className="hidden lg:block absolute top-7 left-[16.5%] right-[16.5%] h-px border-t border-dashed border-white/15" />
+      <h2 className="mt-3 h-section text-gray-900">
+        From message to{" "}
+        <span className="gradient-text-dark">first sprint.</span>
+      </h2>
 
-            {nextSteps.map((step, i) => (
-              <div key={step.number}>
-                <div
-                  className="group relative h-full p-6 lg:p-7 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500 overflow-hidden"
-                  style={
-                    {
-                      "--card-glow": `${step.accent}55`,
-                    } as React.CSSProperties
-                  }
-                >
-                  <div
-                    className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.16] group-hover:opacity-[0.32] transition-opacity duration-500"
-                    style={{ backgroundColor: step.accent }}
-                  />
+      <p className="mt-5 body-base text-gray-600">
+        No black box. Here&apos;s exactly what to expect after you hit send.
+      </p>
+    </div>
 
-                  <div className="relative flex items-center gap-3 mb-5">
-                    <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 z-10"
-                      style={{
-                        backgroundColor: step.accent,
-                        boxShadow: `0 12px 28px -10px ${step.accent}80`,
-                      }}
-                    >
-                      {step.number}
-                    </div>
-                    <span
-                      className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
-                      style={{
-                        color: step.accent,
-                        backgroundColor: `${step.accent}15`,
-                      }}
-                    >
-                      {step.duration}
-                    </span>
-                  </div>
-                  <h3 className="relative h-card text-white mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="relative text-sm text-gray-400 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="hidden lg:block absolute top-7 left-[16.5%] right-[16.5%] h-px border-t border-dashed border-gray-300" />
 
-          {/* Bottom hint */}
-          <div className="mt-12 text-center">
-            <p className="text-sm text-gray-500">
-              Prefer to skip the form?{" "}
-              <a
-                href="mailto:info@devinception.com"
-                className="text-neon-blue hover:underline font-semibold"
+      {nextSteps.map((step) => (
+        <div key={step.number}>
+          <div
+            className="group relative h-full p-6 lg:p-7 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-lg"
+            style={
+              {
+                "--card-glow": `${step.accent}55`,
+              } as React.CSSProperties
+            }
+          >
+            <div
+              className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.12] group-hover:opacity-[0.22] transition-opacity duration-500"
+              style={{ backgroundColor: step.accent }}
+            />
+
+            <div className="relative flex items-center gap-3 mb-5">
+              <div
+                className="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 z-10"
+                style={{
+                  backgroundColor: step.accent,
+                  boxShadow: `0 12px 28px -10px ${step.accent}80`,
+                }}
               >
-                info@devinception.com
-              </a>{" "}
-              — same response time.
+                {step.number}
+              </div>
+
+              <span
+                className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
+                style={{
+                  color: step.accent,
+                  backgroundColor: `${step.accent}15`,
+                }}
+              >
+                {step.duration}
+              </span>
+            </div>
+
+            <h3 className="relative h-card text-gray-900 mb-2">
+              {step.title}
+            </h3>
+
+            <p className="relative text-sm text-gray-600 leading-relaxed">
+              {step.description}
             </p>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* Bottom hint */}
+    <div className="mt-12 text-center">
+      <p className="text-sm text-gray-600">
+        Prefer to skip the form?{" "}
+        <a
+          href="mailto:info@devinception.com"
+          className="text-neon-blue hover:underline font-semibold"
+        >
+          info@devinception.com
+        </a>{" "}
+        — same response time.
+      </p>
+    </div>
+  </div>
+</section>
     </>
   );
 }

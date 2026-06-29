@@ -697,12 +697,6 @@ export default function ServicesPage() {
                     Book a discovery call
                   </Link>
                 </motion.span>
-                <a
-                  href="#catalog"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
-                >
-                  Browse services
-                </a>
               </div>
 
               {/* Trust strip */}
