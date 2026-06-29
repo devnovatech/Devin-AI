@@ -28,6 +28,11 @@ interface Service {
     description: string;
   }[];
 }
+declare global {
+  interface Window {
+    autoRollTimeout?: NodeJS.Timeout;
+  }
+}
 
 const services: Service[] = [
   {
@@ -42,10 +47,10 @@ const services: Service[] = [
     stack: ["OpenAI APIs", "TensorFlow", "PyTorch", "Scikit-learn", "Python", "AWS", "Azure", " Databricks", "MLOps "],
     icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Assess", description: "AI opportunities, business goals, and data readiness" },
-      { name: "Validate", description: "Model selection, prototyping, and feasibility testing" },
-      { name: "Optimize", description: "Training, tuning, evaluation, and performance improvement" },
-      { name: "Operationalize", description: "Deployment, monitoring, governance, and continuous learning" },
+      { name: "Discover", description: "AI strategy and data assessment" },
+      { name: "Prototype", description: "Model selection and validation" },
+      { name: "Train", description: "Model training and optimization" },
+      { name: "Deploy", description: "Integration, monitoring, and improvement" },
     ]
   },
   {
@@ -62,10 +67,10 @@ const services: Service[] = [
     ],
     icon: <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Envision", description: "Product strategy, user needs, and platform planning" },
-      { name: "Design", description: "UX/UI design, prototyping, and interaction systems" },
-      { name: "Engineer", description: "App development, integrations, testing, and QA" },
-      { name: "Advance", description: "Deployment, monitoring, updates, and performance optimization" },
+      { name: "Discover", description: "Product goals and platform strategy" },
+      { name: "Design", description: "UX, UI, and prototyping" },
+      { name: "Build", description: "Development, integration, and testing" },
+      { name: "Launch", description: "Release, monitoring, and updates" },
     ]
   },
   {
@@ -79,10 +84,10 @@ const services: Service[] = [
     stack: ["React", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Tailwind CSS"],
     icon: <Globe className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Strategize", description: "Business objectives, requirements analysis, and technical roadmap" },
-      { name: "Architect", description: "Information architecture, UX frameworks, wireframes, and workflows" },
-      { name: "Engineer", description: "Development, integrations, QA, and security implementation" },
-      { name: "Evolve", description: "Deployment, performance optimization, scalability, and continuous improvement" },
+      { name: "Discover", description: "Requirements, goals, and technical planning" },
+      { name: "Design", description: "Architecture, UX, wireframes, and workflows" },
+      { name: "Build", description: "Development, integrations, testing, and security" },
+      { name: "Launch", description: "Deployment, optimization, and scaling" },
     ]
   },
     {
@@ -98,10 +103,10 @@ const services: Service[] = [
     ],
     icon: <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Evaluate", description: "Business goals, commerce requirements, and platform selection" },
-      { name: "Structure", description: "Store architecture, user journeys, and conversion design" },
-      { name: "Develop", description: "Storefront development, integrations, automation, and QA" },
-      { name: "Accelerate", description: "Launch, optimization, performance tuning, and growth scaling" },
+      { name: "Discover", description: "Commerce strategy and requirements" },
+      { name: "Design", description: "Store architecture and conversion UX" },
+      { name: "Build", description: "Development, integrations, and testing" },
+      { name: "Launch", description: "Deployment, optimization, and scaling" },
     ]
   },
   {
@@ -117,10 +122,10 @@ const services: Service[] = [
     ],
     icon: <Palette className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Discover", description: "User insights, behavioral analysis, and experience goals" },
-      { name: "Define", description: "Information architecture, user journeys, wireframes, and interaction models" },
-      { name: "Design", description: "Visual systems, UI design, prototyping, and usability validation" },
-      { name: "Refine", description: "Optimization, design iteration, and experience enhancement" },
+      { name: "Research", description: "User insights, goals, and requirements" },
+      { name: "Structure", description: "User flows, wireframes, and prototypes" },
+      { name: "Design", description: "Interfaces, design systems, and testing" },
+      { name: "Optimize", description: "Implementation support and improvements" },
     ]
   },
   {
@@ -136,10 +141,10 @@ const services: Service[] = [
     ],
     icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Establish", description: "Quality standards, test strategy, and validation frameworks" },
-      { name: "Assess", description: "Functional, performance, usability, and security testing" },
-      { name: "Verify", description: "Bug fixing, regression testing, and release readiness checks" },
-      { name: "Enhance", description: "Quality monitoring, reporting, and process improvements" },
+      { name: "Plan", description: "Testing strategy and setup" },
+      { name: "Test", description: "Functional, performance, and security testing" },
+      { name: "Validate", description: "Issue resolution and release checks" },
+      { name: "Improve", description: "Monitoring and quality enhancements" },
     ]
   },
   {
@@ -155,10 +160,10 @@ const services: Service[] = [
     ],
     icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Scope", description: "Skill requirements, workforce planning, and engagement strategy" },
-      { name: "Curate", description: "Talent sourcing, evaluation, selection, and onboarding" },
-      { name: "Integrate", description: "Team alignment, collaboration, and delivery support" },
-      { name: "Expand", description: "Scaling teams, performance management, and long-term growth" },
+      { name: "Plan", description: "Requirements and team strategy" },
+      { name: "Select", description: "Talent sourcing and onboarding" },
+      { name: "Integrate", description: "Collaboration and project delivery" },
+      { name: "Scale", description: "Support, reviews, and expansion" },
     ]
   },
   {
@@ -173,10 +178,10 @@ const services: Service[] = [
     stack: ["Google Analytics", "Google Ads", "Meta Ads Manager", "Ahrefs", "SEMrush", "HubSpot"
     ], icon: <Megaphone className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Diagnose", description: "Market research, audience analysis, and growth opportunities" },
-      { name: "Formulate", description: "Strategy, channel planning, messaging, and campaign design" },
-      { name: "Activate", description: "Campaign execution, experimentation, and performance optimization" },
-      { name: "Amplify", description: "Analytics, reporting, insights, and scalable growth systems" },
+      { name: "Audit", description: "Market research and growth opportunities" },
+      { name: "Strategy", description: "Channels, messaging, and planning" },
+      { name: "Execute", description: "Campaigns, testing, and optimization" },
+      { name: "Scale", description: "Reporting, insights, and growth" },
     ]
   },
   {
@@ -192,10 +197,10 @@ const services: Service[] = [
     ],
     icon: <ClipboardList className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
-      { name: "Align", description: "Stakeholder goals, project scope, and delivery planning" },
-      { name: "Govern", description: "Processes, timelines, workflows, and resource management" },
-      { name: "Orchestrate", description: "Execution oversight, communication, reporting, and risk control" },
-      { name: "Optimize", description: "Performance tracking, process improvement, and continuous delivery enhancement" },
+      { name: "Assess", description: "Process review and planning" },
+      { name: "Structure", description: "Frameworks, governance, and workflows" },
+      { name: "Execute", description: "Delivery, reporting, and optimization" },
+      { name: "Improve", description: "Monitoring and continuous refinement" },
     ]
   },
 ];
@@ -275,6 +280,7 @@ function StepLabel({ steps, active }: { steps: string[]; active: number }) {
               key={label}
               initial={{ opacity: 0, x: -4 }}
               animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="font-mono text-[10px] uppercase tracking-widest text-white"
             >
               {label}
@@ -309,9 +315,10 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 {phaseIndex === 0 && (
                   <motion.div
                     key="plan"
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0 p-2"
                   >
                     <p className="text-center font-mono text-[10px] uppercase tracking-widest text-white/60">
@@ -321,9 +328,9 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                       {[0, 1, 2, 3, 4, 5].map((i) => (
                         <motion.div
                           key={i}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: i * 0.08 }}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: i * 0.08, duration: 0.3 }}
                           className="h-4 rounded border border-dashed border-white/30"
                         />
                       ))}
@@ -334,9 +341,10 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 {phaseIndex === 1 && (
                   <motion.div
                     key="wire"
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0 p-2 grid grid-cols-12 gap-2"
                   >
                     <div className="col-span-3 space-y-1.5">
@@ -347,7 +355,7 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
 
                     <div className="col-span-9">
                       <div className="h-12 rounded-md border border-dashed border-white/30" />
-                      <div className="mt-2 grid grid-cols-3 gap-1.5">
+                      <div className="mt-1 grid grid-cols-3 gap-1.5">
                         {[0, 1, 2].map((i) => (
                           <div
                             key={i}
@@ -362,9 +370,10 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 {phaseIndex === 2 && (
                   <motion.div
                     key="design"
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0 p-2 grid grid-cols-12 gap-2"
                   >
                     <div className="col-span-3 space-y-1.5">
@@ -382,23 +391,21 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                       </div>
                     </div>
 
-                    {/* FIXED RIGHT SIDE */}
                     <div className="col-span-9 flex flex-col gap-1.5 min-h-0">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: "70%" }}
-                        transition={{ duration: 0.7 }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
                         className="h-2.5 rounded-full bg-gradient-to-r from-white/80 to-white"
                       />
 
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: "85%" }}
-                        transition={{ duration: 0.7, delay: 0.15 }}
+                        transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
                         className="h-2.5 rounded-full bg-white/30"
                       />
 
-                      {/* grid now controlled */}
                       <div className="grid grid-cols-3 gap-1.5 flex-1">
                         {[
                           "linear-gradient(135deg, #ff6b3d, #f59e0b)",
@@ -409,7 +416,7 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                             key={i}
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.3 + i * 0.08 }}
+                            transition={{ delay: 0.3 + i * 0.08, duration: 0.4, ease: "easeOut" }}
                             className="rounded-md w-full h-full min-h-0"
                             style={{ background: bg }}
                           />
@@ -422,9 +429,10 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 {phaseIndex === 3 && (
                   <motion.div
                     key="ship"
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0 grid place-items-center p-2"
                   >
                     <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-center">
@@ -449,7 +457,14 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
             <div className="absolute inset-x-0 top-1.5 mx-auto h-1 w-8 rounded-full bg-white/20" />
             <AnimatePresence mode="wait">
               {phaseIndex === 0 && (
-                <motion.div key="m-wire" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 mt-7 px-3">
+                <motion.div 
+                  key="m-wire" 
+                  initial={{ opacity: 0, y: 10 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 mt-7 px-3"
+                >
                   <div className="space-y-1.5">
                     <div className="h-2 w-12 rounded-full bg-white/30" />
                     <div className="h-1 w-20 rounded-full bg-white/15" />
@@ -462,18 +477,44 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 </motion.div>
               )}
               {phaseIndex === 1 && (
-                <motion.div key="m-build" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 mt-7 px-3">
-                  <motion.div initial={{ width: 0 }} animate={{ width: "70%" }} transition={{ duration: 0.6 }} className="h-2.5 rounded-full bg-white" />
+                <motion.div 
+                  key="m-build" 
+                  initial={{ opacity: 0, y: 10 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 mt-7 px-3"
+                >
+                  <motion.div 
+                    initial={{ width: 0 }} 
+                    animate={{ width: "70%" }} 
+                    transition={{ duration: 0.6, ease: "easeOut" }} 
+                    className="h-2.5 rounded-full bg-white" 
+                  />
                   <div className="mt-1.5 h-1.5 w-24 rounded-full bg-white/25" />
                   <div className="mt-3 grid grid-cols-2 gap-1.5">
                     {["#ff6b3d", "#2486c5", "#10b981", "#f59e0b"].map((c, i) => (
-                      <motion.div key={i} initial={{ opacity: 0, scale: 0.85 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.1 }} className="aspect-square rounded-lg" style={{ background: c }} />
+                      <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, scale: 0.85 }} 
+                        animate={{ opacity: 1, scale: 1 }} 
+                        transition={{ delay: i * 0.1, duration: 0.3, ease: "easeOut" }} 
+                        className="aspect-square rounded-lg" 
+                        style={{ background: c }} 
+                      />
                     ))}
                   </div>
                 </motion.div>
               )}
               {phaseIndex === 2 && (
-                <motion.div key="m-test" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 mt-7 grid place-items-center px-3 text-center">
+                <motion.div 
+                  key="m-test" 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 mt-7 grid place-items-center px-3 text-center"
+                >
                   <div>
                     <span className="grid h-12 w-12 place-items-center rounded-full bg-green-500/25 text-2xl">✓</span>
                     <p className="mt-2 font-mono text-[8px] uppercase tracking-widest text-white/70">TestFlight #14</p>
@@ -481,7 +522,14 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 </motion.div>
               )}
               {phaseIndex === 3 && (
-                <motion.div key="m-live" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 mt-7 grid place-items-center px-3 text-center">
+                <motion.div 
+                  key="m-live" 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 mt-7 grid place-items-center px-3 text-center"
+                >
                   <div>
                     <p className="text-3xl font-bold text-white">#3</p>
                     <p className="mt-1 font-mono text-[8px] uppercase tracking-widest text-white/70">App Store</p>
@@ -497,14 +545,28 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
           <div className="relative h-48 w-48">
             <AnimatePresence mode="wait">
               {phaseIndex === 0 && (
-                <motion.div key="d-research" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 grid place-items-center">
+                <motion.div 
+                  key="d-research" 
+                  initial={{ opacity: 0, y: 10 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 grid place-items-center"
+                >
                   <div className="space-y-2">
                     {[
                       { x: "User: 'I need…'", c: "rgba(255,255,255,0.15)" },
                       { x: "Goal: speed", c: "rgba(36,134,197,0.4)" },
                       { x: "Pain: forms", c: "rgba(255,255,255,0.15)" },
                     ].map((it, i) => (
-                      <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.18 }} className="rounded-md px-3 py-1.5 font-mono text-[10px] text-white" style={{ background: it.c }}>
+                      <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, x: -10 }} 
+                        animate={{ opacity: 1, x: 0 }} 
+                        transition={{ delay: i * 0.18, duration: 0.3, ease: "easeOut" }} 
+                        className="rounded-md px-3 py-1.5 font-mono text-[10px] text-white" 
+                        style={{ background: it.c }}
+                      >
                         {it.x}
                       </motion.div>
                     ))}
@@ -512,7 +574,14 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 </motion.div>
               )}
               {phaseIndex === 1 && (
-                <motion.div key="d-wires" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 grid place-items-center">
+                <motion.div 
+                  key="d-wires" 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 grid place-items-center"
+                >
                   <div className="grid grid-cols-2 gap-2">
                     <div className="h-20 w-20 rounded-2xl border-2 border-dashed border-white/30" />
                     <div className="h-20 w-20 rounded-full border-2 border-dashed border-white/30" />
@@ -521,15 +590,47 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 </motion.div>
               )}
               {phaseIndex === 2 && (
-                <motion.div key="d-hifi" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0">
-                  <motion.div initial={{ rotate: 0 }} animate={{ rotate: 6 }} transition={{ duration: 0.7 }} className="absolute left-2 top-2 h-24 w-24 rounded-2xl" style={{ background: "#ff6b3d" }} />
-                  <motion.div initial={{ rotate: 0 }} animate={{ rotate: -8 }} transition={{ duration: 0.7, delay: 0.15 }} className="absolute right-0 top-8 h-20 w-20 rounded-full" style={{ background: "#2486c5" }} />
-                  <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ duration: 0.7, delay: 0.3 }} className="absolute bottom-2 left-1/2 h-16 w-28 -translate-x-1/2 rounded-2xl" style={{ background: "#10b981" }} />
+                <motion.div 
+                  key="d-hifi" 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0"
+                >
+                  <motion.div 
+                    initial={{ rotate: 0 }} 
+                    animate={{ rotate: 6 }} 
+                    transition={{ duration: 0.7, ease: "easeOut" }} 
+                    className="absolute left-2 top-2 h-24 w-24 rounded-2xl" 
+                    style={{ background: "#ff6b3d" }} 
+                  />
+                  <motion.div 
+                    initial={{ rotate: 0 }} 
+                    animate={{ rotate: -8 }} 
+                    transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }} 
+                    className="absolute right-0 top-8 h-20 w-20 rounded-full" 
+                    style={{ background: "#2486c5" }} 
+                  />
+                  <motion.div 
+                    initial={{ scale: 0.8 }} 
+                    animate={{ scale: 1 }} 
+                    transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }} 
+                    className="absolute bottom-2 left-1/2 h-16 w-28 -translate-x-1/2 rounded-2xl" 
+                    style={{ background: "#10b981" }} 
+                  />
                   <span className="absolute inset-0 grid place-items-center font-bold text-4xl text-white tracking-tight mix-blend-difference">Aa</span>
                 </motion.div>
               )}
               {phaseIndex === 3 && (
-                <motion.div key="d-handoff" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 grid place-items-center">
+                <motion.div 
+                  key="d-handoff" 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 grid place-items-center"
+                >
                   <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-center backdrop-blur-sm">
                     <p className="font-mono text-[10px] uppercase tracking-widest text-green-400">✓ tokens.json</p>
                     <p className="mt-1 text-xs text-white/80">Design → Code</p>
@@ -549,19 +650,56 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
             <svg viewBox="0 0 200 140" className="h-32 w-full max-w-md">
               {inputs.map((y1) =>
                 hidden.map((y2, j) => (
-                  <motion.line key={`a-${y1}-${j}`} x1={38} y1={y1} x2={94} y2={y2 / 1.4 + 18} stroke="rgba(255,255,255,0.5)" strokeWidth="0.7" animate={{ pathLength: phaseIndex >= 1 ? 1 : 0 }} transition={{ duration: 0.6, delay: j * 0.05 }} />
+                  <motion.line 
+                    key={`a-${y1}-${j}`} 
+                    x1={38} y1={y1} x2={94} y2={y2 / 1.4 + 18} 
+                    stroke="rgba(255,255,255,0.5)" 
+                    strokeWidth="0.7" 
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: phaseIndex >= 1 ? 1 : 0 }} 
+                    transition={{ duration: 0.8, delay: j * 0.05, ease: "easeInOut" }} 
+                  />
                 ))
               )}
               {hidden.map((y1, j) => (
-                <motion.line key={`b-${j}`} x1={106} y1={y1 / 1.4 + 18} x2={158} y2={70} stroke="rgba(255,255,255,0.55)" strokeWidth="0.7" animate={{ pathLength: phaseIndex >= 2 ? 1 : 0 }} transition={{ duration: 0.6, delay: j * 0.05 }} />
+                <motion.line 
+                  key={`b-${j}`} 
+                  x1={106} y1={y1 / 1.4 + 18} x2={158} y2={70} 
+                  stroke="rgba(255,255,255,0.55)" 
+                  strokeWidth="0.7" 
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: phaseIndex >= 2 ? 1 : 0 }} 
+                  transition={{ duration: 0.8, delay: j * 0.05, ease: "easeInOut" }} 
+                />
               ))}
               {inputs.map((cy, i) => (
-                <motion.circle key={`l-${i}`} cx={32} cy={cy} r={6} fill="rgba(255,255,255,0.7)" animate={{ scale: phaseIndex === 0 ? [1, 1.3, 1] : 1 }} transition={{ duration: 1.4, delay: i * 0.1, repeat: phaseIndex === 0 ? Infinity : 0 }} />
+                <motion.circle 
+                  key={`l-${i}`} 
+                  cx={32} cy={cy} r={6} 
+                  fill="rgba(255,255,255,0.7)" 
+                  animate={{ scale: phaseIndex === 0 ? [1, 1.3, 1] : 1 }} 
+                  transition={{ duration: 1.4, delay: i * 0.1, repeat: phaseIndex === 0 ? Infinity : 0, ease: "easeInOut" }} 
+                />
               ))}
               {hidden.map((cy, i) => (
-                <motion.circle key={`h-${i}`} cx={100} cy={cy / 1.4 + 18} r={6} animate={{ fill: phaseIndex >= 2 ? "rgba(255,255,255,0.8)" : phaseIndex >= 1 ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", scale: phaseIndex === 2 ? [1, 1.3, 1] : 1 }} transition={{ duration: 1.4, delay: i * 0.1, repeat: phaseIndex === 2 ? Infinity : 0 }} />
+                <motion.circle 
+                  key={`h-${i}`} 
+                  cx={100} cy={cy / 1.4 + 18} r={6} 
+                  animate={{ 
+                    fill: phaseIndex >= 2 ? "rgba(255,255,255,0.8)" : phaseIndex >= 1 ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", 
+                    scale: phaseIndex === 2 ? [1, 1.3, 1] : 1 
+                  }} 
+                  transition={{ duration: 1.4, delay: i * 0.1, repeat: phaseIndex === 2 ? Infinity : 0, ease: "easeInOut" }} 
+                />
               ))}
-              <motion.circle cx={168} cy={70} r={10} animate={{ fill: phaseIndex >= 3 ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.15)", scale: phaseIndex === 3 ? [1, 1.3, 1] : 1 }} transition={{ duration: 1.4, repeat: phaseIndex === 3 ? Infinity : 0 }} />
+              <motion.circle 
+                cx={168} cy={70} r={10} 
+                animate={{ 
+                  fill: phaseIndex >= 3 ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.15)", 
+                  scale: phaseIndex === 3 ? [1, 1.3, 1] : 1 
+                }} 
+                transition={{ duration: 1.4, repeat: phaseIndex === 3 ? Infinity : 0, ease: "easeInOut" }} 
+              />
             </svg>
           </div>
         );
@@ -571,9 +709,17 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
           <div className="w-full max-w-md">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-widest text-white/60">Conversion · 90 days</span>
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {phaseIndex === 3 && (
-                  <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} className="rounded-md bg-green-500/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-green-400">↑ +162%</motion.span>
+                  <motion.span 
+                    initial={{ scale: 0 }} 
+                    animate={{ scale: 1 }} 
+                    exit={{ scale: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="rounded-md bg-green-500/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-green-400"
+                  >
+                    ↑ +162%
+                  </motion.span>
                 )}
               </AnimatePresence>
             </div>
@@ -584,9 +730,28 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                   <stop offset="100%" stopColor="rgba(255,255,255,0)" stopOpacity="0" />
                 </linearGradient>
               </defs>
-              <motion.path d="M0 90 L40 80 L80 88 L120 60 L160 65 L200 35 L240 48 L280 22 L320 10" stroke="rgba(255,255,255,0.8)" strokeWidth="2.5" fill="none" strokeLinecap="round" animate={{ pathLength: phaseIndex >= 1 ? 1 : 0 }} transition={{ duration: 1.4 }} />
-              <motion.path d="M0 90 L40 80 L80 88 L120 60 L160 65 L200 35 L240 48 L280 22 L320 10 L320 110 L0 110 Z" fill="url(#mkfill-multi)" animate={{ opacity: phaseIndex >= 2 ? 0.8 : 0 }} />
-              <motion.circle cx={320} cy={10} r={5} fill="rgba(255,255,255,0.9)" animate={{ scale: phaseIndex >= 3 ? 1 : 0 }} />
+              <motion.path 
+                d="M0 90 L40 80 L80 88 L120 60 L160 65 L200 35 L240 48 L280 22 L320 10" 
+                stroke="rgba(255,255,255,0.8)" 
+                strokeWidth="2.5" 
+                fill="none" 
+                strokeLinecap="round" 
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: phaseIndex >= 1 ? 1 : 0 }} 
+                transition={{ duration: 1.2, ease: "easeInOut" }} 
+              />
+              <motion.path 
+                d="M0 90 L40 80 L80 88 L120 60 L160 65 L200 35 L240 48 L280 22 L320 10 L320 110 L0 110 Z" 
+                fill="url(#mkfill-multi)" 
+                animate={{ opacity: phaseIndex >= 2 ? 0.8 : 0 }} 
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              />
+              <motion.circle 
+                cx={320} cy={10} r={5} 
+                fill="rgba(255,255,255,0.9)" 
+                animate={{ scale: phaseIndex >= 3 ? 1 : 0 }} 
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              />
             </svg>
             <div className="mt-3 grid grid-cols-3 gap-2">
               {[
@@ -594,7 +759,15 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 { v: "4.2x", l: "ROAS" },
                 { v: "47%", l: "D7 ret." },
               ].map((s, i) => (
-                <motion.div key={s.l} animate={{ opacity: phaseIndex >= 2 ? 1 : 0.3, y: phaseIndex >= 2 ? 0 : 4 }} transition={{ delay: i * 0.08 }} className="rounded-lg border border-white/10 bg-white/5 p-2 text-white">
+                <motion.div 
+                  key={s.l} 
+                  animate={{ 
+                    opacity: phaseIndex >= 2 ? 1 : 0.3, 
+                    y: phaseIndex >= 2 ? 0 : 4 
+                  }} 
+                  transition={{ delay: i * 0.08, duration: 0.4, ease: "easeOut" }} 
+                  className="rounded-lg border border-white/10 bg-white/5 p-2 text-white"
+                >
                   <p className="text-sm font-bold">{s.v}</p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-white/55">{s.l}</p>
                 </motion.div>
@@ -608,15 +781,36 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
           <div className="rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-widest text-white/60">Squad / Atlas</span>
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {phaseIndex === 3 && (
-                  <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="rounded-md bg-green-500/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-green-400">Online</motion.span>
+                  <motion.span 
+                    initial={{ scale: 0 }} 
+                    animate={{ scale: 1 }} 
+                    exit={{ scale: 0 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="rounded-md bg-green-500/20 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-green-400"
+                  >
+                    Online
+                  </motion.span>
                 )}
               </AnimatePresence>
             </div>
             <div className="mt-4 grid grid-cols-3 gap-3">
               {[20, 21, 22, 23, 24, 25].map((id, k) => (
-                <motion.div key={id} animate={{ opacity: phaseIndex === 0 ? 0.15 : phaseIndex === 1 ? (k < 3 ? 1 : 0.3) : 1, scale: phaseIndex >= 2 ? 1 : 0.9, y: phaseIndex === 3 ? [0, -3, 0] : 0 }} transition={{ duration: 0.6, y: { duration: 2, delay: k * 0.15, repeat: phaseIndex === 3 ? Infinity : 0 } }} className="flex flex-col items-center gap-2">
+                <motion.div 
+                  key={id} 
+                  animate={{ 
+                    opacity: phaseIndex === 0 ? 0.15 : phaseIndex === 1 ? (k < 3 ? 1 : 0.3) : 1, 
+                    scale: phaseIndex >= 2 ? 1 : 0.9, 
+                    y: phaseIndex === 3 ? [0, -3, 0] : 0 
+                  }} 
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: "easeOut",
+                    y: { duration: 2, delay: k * 0.15, repeat: phaseIndex === 3 ? Infinity : 0, ease: "easeInOut" } 
+                  }} 
+                  className="flex flex-col items-center gap-2"
+                >
                   <div className="relative">
                     <span className="h-12 w-12 rounded-full bg-cover ring-2 ring-white/15" style={{ backgroundImage: `url(https://i.pravatar.cc/80?img=${id})` }} />
                     {phaseIndex >= 2 && <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-black bg-green-500" />}
@@ -633,9 +827,22 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
           <div className="w-full max-w-md">
             <AnimatePresence mode="wait">
               {phaseIndex === 0 && (
-                <motion.div key="e-cat" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="grid grid-cols-3 gap-3">
+                <motion.div 
+                  key="e-cat" 
+                  initial={{ opacity: 0, y: 10 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="grid grid-cols-3 gap-3"
+                >
                   {[{ c: "#ff6b3d", price: "$48" }, { c: "#2486c5", price: "$129" }, { c: "#10b981", price: "$32" }].map((p, i) => (
-                    <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }} className="rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur-sm">
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, y: 10 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      transition={{ delay: i * 0.12, duration: 0.4, ease: "easeOut" }} 
+                      className="rounded-xl border border-white/10 bg-white/5 p-3 backdrop-blur-sm"
+                    >
                       <div className="aspect-square w-full rounded-md" style={{ background: p.c }} />
                       <p className="mt-2 text-sm font-bold text-white">{p.price}</p>
                     </motion.div>
@@ -643,7 +850,14 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 </motion.div>
               )}
               {phaseIndex === 1 && (
-                <motion.div key="e-cart" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+                <motion.div 
+                  key="e-cart" 
+                  initial={{ opacity: 0, y: 10 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+                >
                   <p className="font-mono text-[10px] uppercase tracking-widest text-white/60">Cart · 3 items</p>
                   <div className="mt-2 space-y-1.5">
                     {["#ff6b3d", "#2486c5", "#10b981"].map((c, i) => (
@@ -661,16 +875,35 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                 </motion.div>
               )}
               {phaseIndex === 2 && (
-                <motion.div key="e-pay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="rounded-xl border border-white/10 bg-white/5 p-5 text-center backdrop-blur-sm">
+                <motion.div 
+                  key="e-pay" 
+                  initial={{ opacity: 0, scale: 0.95 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="rounded-xl border border-white/10 bg-white/5 p-5 text-center backdrop-blur-sm"
+                >
                   <span className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-white/20 text-2xl">💳</span>
                   <p className="mt-3 text-base font-bold text-white">Processing…</p>
                   <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                    <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1.4 }} className="h-full bg-white" />
+                    <motion.div 
+                      initial={{ width: 0 }} 
+                      animate={{ width: "100%" }} 
+                      transition={{ duration: 1.4, ease: "easeInOut" }} 
+                      className="h-full bg-white" 
+                    />
                   </div>
                 </motion.div>
               )}
               {phaseIndex === 3 && (
-                <motion.div key="e-conv" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="rounded-xl border border-green-500/30 bg-green-500/10 p-5 text-center backdrop-blur-sm">
+                <motion.div 
+                  key="e-conv" 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="rounded-xl border border-green-500/30 bg-green-500/10 p-5 text-center backdrop-blur-sm"
+                >
                   <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-green-500 text-2xl text-white">✓</span>
                   <p className="mt-3 text-2xl font-bold text-white">+28%</p>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-green-400">Conversion uplift</p>
@@ -692,7 +925,12 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
             </div>
             <div className="mt-3 space-y-1.5">
               {tests.map((t, i) => (
-                <motion.div key={t} animate={{ opacity: phaseIndex >= 1 ? 1 : 0.3 }} className="flex items-center gap-2 rounded-md bg-white/5 px-2.5 py-1.5">
+                <motion.div 
+                  key={t} 
+                  animate={{ opacity: phaseIndex >= 1 ? 1 : 0.3 }} 
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="flex items-center gap-2 rounded-md bg-white/5 px-2.5 py-1.5"
+                >
                   <span className={`grid h-4 w-4 place-items-center rounded-full text-[10px] font-bold text-white ${phaseIndex === 0 ? "bg-white/20" : phaseIndex === 1 && i < 2 ? "bg-green-500" : phaseIndex === 1 ? "bg-white/20" : phaseIndex === 2 && i === 2 ? "bg-red-500" : "bg-green-500"}`}>
                     {phaseIndex === 2 && i === 2 ? "✕" : "✓"}
                   </span>
@@ -715,7 +953,12 @@ function PhaseContent({ service, phaseIndex }: { service: Service; phaseIndex: n
                     const cardCol = phaseIndex <= 1 ? 0 : phaseIndex === 2 ? 1 : 2;
                     const showHere = i === cardCol && k === 0;
                     return showHere ? (
-                      <motion.div key="active-card" layoutId="active-card" className="rounded-md border border-white bg-white/30 p-2" transition={{ type: "spring", damping: 22, stiffness: 220 }}>
+                      <motion.div 
+                        key="active-card" 
+                        layoutId="active-card" 
+                        className="rounded-md border border-white bg-white/30 p-2" 
+                        transition={{ type: "spring", damping: 22, stiffness: 220 }}
+                      >
                         <div className="h-1 w-8 rounded-full bg-white" />
                         <div className="mt-1.5 h-1 w-12 rounded-full bg-white/40" />
                         <div className="mt-1 h-1 w-9 rounded-full bg-white/25" />
@@ -769,35 +1012,67 @@ export default function Services() {
   const count = services.length;
   const totalPhases = active?.phases?.length || 4;
 
-  const go = (dir: number) => setActiveIdx((prev) => (prev + dir + count) % count);
-  const goPhase = (dir: number) => setPhaseIdx((prev) => (prev + dir + totalPhases) % totalPhases);
-
-  // Auto-roll phases
+  // Auto-roll phases - runs every 2.5 seconds
   useEffect(() => {
     if (!isAutoRolling) return;
 
     const interval = setInterval(() => {
       setPhaseIdx((prev) => (prev + 1) % totalPhases);
-    }, 3000);
+    }, 2500); // ← 2.5 seconds between phases
 
     return () => clearInterval(interval);
   }, [isAutoRolling, totalPhases]);
 
-  // Reset phase when service changes
+  // Reset phase and stop auto-roll when service changes
   useEffect(() => {
+    // Reset phase to 0
     setPhaseIdx(0);
+    
+    // Stop auto-roll immediately
+    setIsAutoRolling(false);
+    
+    // Clear any existing timeout
+    if (window.autoRollTimeout) {
+      clearTimeout(window.autoRollTimeout);
+    }
+    
+    // Resume auto-roll after 1 second (so user sees phase 0 briefly)
+    window.autoRollTimeout = setTimeout(() => {
+      setIsAutoRolling(true);
+    }, 1000); // ← 1 second delay before auto-roll starts
+    
+    return () => {
+      if (window.autoRollTimeout) {
+        clearTimeout(window.autoRollTimeout);
+      }
+    };
   }, [activeIdx]);
 
-  // Pause auto-roll on user interaction
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (window.autoRollTimeout) {
+        clearTimeout(window.autoRollTimeout);
+      }
+    };
+  }, []);
+
   const handlePhaseChange = (newPhase: number) => {
     setIsAutoRolling(false);
     setPhaseIdx(newPhase);
-    // Resume after 5 seconds of inactivity
-    setTimeout(() => setIsAutoRolling(true), 5000);
+    
+    if (window.autoRollTimeout) {
+      clearTimeout(window.autoRollTimeout);
+    }
+    
+    // Resume auto-roll after 2 seconds when user manually clicks
+    window.autoRollTimeout = setTimeout(() => {
+      setIsAutoRolling(true);
+    }, 2000);
   };
 
   return (
-    <section id="services" className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-section-services  from-slate-50 to-white overflow-hidden">
+    <section id="services" className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-section-services from-slate-50 to-white overflow-hidden">
       <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-blue-400/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-purple-400/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -840,11 +1115,9 @@ export default function Services() {
             ))}
           </div>
 
-          {/* CENTER SLIDER AREA — Fixed height card matching mobile/web services */}
-          {/* CENTER SLIDER AREA — Reduced and responsive */}
+          {/* CENTER SLIDER AREA */}
           <div className="lg:col-span-6 lg:order-2 order-first lg:px-2 lg:h-full flex">
             <div className="relative w-full overflow-hidden rounded-2xl shadow-2xl shadow-deep-blue/20 h-[320px] sm:h-[360px] lg:h-[380px]">
-              {/* Gradient background with glass effect */}
               <div
                 className="relative overflow-hidden rounded-2xl h-full"
                 style={{
@@ -879,7 +1152,7 @@ export default function Services() {
                 />
 
                 <div className="relative flex flex-col h-full p-5 sm:p-6">
-                  {/* Top bar with category and counter - more compact */}
+                  {/* Top bar with category and counter */}
                   <div className="flex items-center justify-between flex-shrink-0">
                     <div className="flex items-center gap-2">
                       <div className="relative flex size-2">
@@ -891,7 +1164,6 @@ export default function Services() {
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      {/* Phase indicator pill - smaller */}
                       <div className="rounded-full border border-white/15 bg-white/10 px-2.5 py-0.5 backdrop-blur-md">
                         <span className="text-[9px] font-medium tabular-nums text-white/80">
                           Phase {String(phaseIdx + 1).padStart(2, "0")}
@@ -903,36 +1175,46 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Phase visualization area - reduced height */}
+                  {/* Phase visualization area - SINGLE INSTANCE */}
                   <div className="relative flex-1 flex items-center justify-center py-1" style={{ minHeight: '160px', height: '160px' }}>
                     <div className="w-full overflow-hidden px-2 h-full">
-                      <motion.div
-                        className="flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] h-full"
-                        animate={{ transform: `translateX(-${phaseIdx * 100}%)` }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                      >
-                        {active.phases.map((phase, i) => (
-                          <div key={phase.name} className="flex w-full shrink-0 flex-col items-center justify-center gap-1 h-full">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={`${activeIdx}-${phaseIdx}`}
+                          className="flex w-full h-full items-center justify-center"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ 
+                            duration: 0.4,
+                            ease: [0.22, 1, 0.36, 1]
+                          }}
+                        >
+                          <div className="flex w-full shrink-0 flex-col items-center justify-center gap-1 h-full">
                             <motion.div
-                              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                              animate={{ opacity: 1, scale: 1, y: 0 }}
-                              exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                              transition={{ duration: 0.4, ease: "easeOut" }}
                               className="flex w-full justify-center items-center h-full"
+                              key={`content-${activeIdx}-${phaseIdx}`}
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.95 }}
+                              transition={{ 
+                                duration: 0.35,
+                                delay: 0.05,
+                                ease: "easeOut"
+                              }}
                             >
                               <div className="flex items-center justify-center h-full w-full">
-                                <PhaseContent service={active} phaseIndex={i} />
+                                <PhaseContent service={active} phaseIndex={phaseIdx} />
                               </div>
                             </motion.div>
                           </div>
-                        ))}
-                      </motion.div>
+                        </motion.div>
+                      </AnimatePresence>
                     </div>
                   </div>
 
-                  {/* Bottom: Service title and phase controls - more compact */}
+                  {/* Bottom: Phase controls */}
                   <div className="space-y-2 flex-shrink-0">
-                    {/* Phase progress dots with "Phases" heading */}
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70">
                         Phases
@@ -978,14 +1260,14 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Bottom detail panel with refined aesthetics */}
+        {/* Bottom detail panel */}
         <AnimatePresence mode="wait">
           <motion.div
             key={`detail-${active.title}`}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="mt-4 lg:mt-5 relative rounded-2xl bg-white/80 backdrop-blur-sm border border-deep-blue/[0.06] shadow-xl shadow-deep-blue/8 overflow-hidden"
           >
             <div className="absolute top-0 left-0 bottom-0 w-1" style={{ background: `linear-gradient(180deg, ${active.accent} 0%, ${active.accent}66 100%)` }} />
@@ -1007,7 +1289,7 @@ export default function Services() {
                       key={s}
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.1 + i * 0.04 }}
+                      transition={{ duration: 0.4, delay: 0.1 + i * 0.04, ease: "easeOut" }}
                       className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-[10px] sm:text-[11px] font-semibold rounded-full tracking-wide border transition-all duration-200 hover:scale-105 hover:shadow-md"
                       style={{ color: active.accent, backgroundColor: `${active.accent}0d`, borderColor: `${active.accent}26` }}
                     >
@@ -1021,19 +1303,6 @@ export default function Services() {
           </motion.div>
         </AnimatePresence>
       </div>
-
-      <style jsx>{`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .touch-manipulation {
-          touch-action: manipulation;
-        }
-      `}</style>
     </section>
   );
 }

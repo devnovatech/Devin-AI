@@ -18,14 +18,14 @@ interface CTABannerProps {
 }
 
 export default function CTABanner({
-  eyebrow = "Available for new projects",
+  eyebrow = "Build With Confidence",
   heading = (
     <>
-      Ready to build the next{" "}
-      <span className="gradient-text">version of your product?</span>
+     Technology That Moves {" "}
+      <span className="gradient-text">Your Business Forward.</span>
     </>
   ),
-  description = "Tell us what you have in mind — your goals, timeline, and must-haves. We'll get back to you quickly with a clear proposal and a plan to get started.",
+  description = "From custom software and mobile apps to AI systems, cloud infrastructure, and digital growth, we help ambitious businesses build technology that's designed to perform today and evolve tomorrow.",
   primaryLabel = "Start your project",
   primaryHref = "/contact",
   secondaryLabel = "Explore services",
@@ -82,7 +82,7 @@ export default function CTABanner({
                     className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-neon-blue rounded-full text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300 w-full sm:w-auto touch-manipulation"
                   >
                     {primaryLabel}
-                    <svg
+                    {/* <svg
                       className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -90,7 +90,7 @@ export default function CTABanner({
                       strokeWidth={2.5}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    </svg> */}
                   </Link>
                 </motion.span>
                 {secondaryLabel && secondaryHref && (

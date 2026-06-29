@@ -306,7 +306,7 @@ const processSteps: ProcessStepData[] = [
       "Team Enablement",
       "Ongoing Optimization",
     ],
-    accent: "#1565C0",
+    accent: "#90CAF9",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -669,16 +669,6 @@ export default function ServicesPage() {
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* LEFT — Copy + CTAs + Trust */}
             <AnimatedSection className="lg:col-span-7">
-              <div className="surface-pill inline-flex items-center gap-2 px-3 py-1.5 rounded-full border backdrop-blur-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                </span>
-                <span className="text-[11px] font-semibold text-neon-blue tracking-wider uppercase">
-                  Now booking · 9 capabilities
-                </span>
-              </div>
-
               <h1
                 className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
                 style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 4.75rem)" }}
@@ -705,19 +695,6 @@ export default function ServicesPage() {
                     className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                   >
                     Book a discovery call
-                    <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
                   </Link>
                 </motion.span>
                 <a
@@ -725,19 +702,6 @@ export default function ServicesPage() {
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/15 text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
                 >
                   Browse services
-                  <svg
-                    className="w-3.5 h-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    />
-                  </svg>
                 </a>
               </div>
 
@@ -826,12 +790,6 @@ export default function ServicesPage() {
                 End-to-End {" "}
                 <span className="gradient-text">Digital Services</span>
               </h2>
-            </div>
-
-            <div className="lg:col-span-5">
-              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                A unified portfolio of technology, product, and operational services engineered to help organizations innovate, optimize performance, and achieve measurable business results.
-              </p>
             </div>
           </div>
 
@@ -986,9 +944,6 @@ export default function ServicesPage() {
                           className="group/btn inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#063A3F] shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl"
                         >
                           Learn More
-                          <span className="transition-transform duration-300 group-hover/btn:translate-x-1">
-                            →
-                          </span>
                         </Link>
                       </motion.div>
                     </AnimatePresence>
@@ -1414,19 +1369,7 @@ export default function ServicesPage() {
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-neon-blue/10 border border-neon-blue/30 text-neon-blue font-semibold text-sm hover:bg-neon-blue/20 hover:border-neon-blue/50 transition-all duration-300"
             >
               <span>See More FAQs</span>
-              <svg
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+       
             </Link>
           </div>
         </div>

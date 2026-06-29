@@ -608,3 +608,13 @@ html.light::-webkit-scrollbar-thumb {
     scroll-behavior: auto !important;
   }
 }
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.touch-manipulation {
+  touch-action: manipulation;
+}
