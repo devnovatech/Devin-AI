@@ -799,7 +799,7 @@ export default function Hero() {
         {/* LEFT — text */}
         <div className="lg:col-span-7">
           <h1
-            className="mt-6 font-bold tracking-[-0.025em] leading-[1.15] text-white"
+            className="mt-6 font-bold tracking-[-0.025em] leading-[1.1] text-white"
             style={{ fontSize: "clamp(2.5rem, 5.5vw + 0.25rem, 5.5rem)" }}
           >
             <motion.span
