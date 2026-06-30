@@ -8,7 +8,7 @@ import AnimatedSection from "./AnimatedSection";
 interface CTABannerProps {
   eyebrow?: string;
   heading?: ReactNode;
-  description?: string;
+  description?: ReactNode;
   primaryLabel?: string;
   primaryHref?: string;
   secondaryLabel?: string;
@@ -21,19 +21,25 @@ export default function CTABanner({
   eyebrow = "Build With Confidence",
   heading = (
     <>
-     Technology That Moves {" "}
+      Technology That Moves{" "}
       <span className="gradient-text">Your Business Forward.</span>
     </>
   ),
   description = "From custom software and mobile apps to AI systems, cloud infrastructure, and digital growth, we help ambitious businesses build technology that's designed to perform today and evolve tomorrow.",
   primaryLabel = "Start your project",
   primaryHref = "/contact",
-  secondaryLabel = "Explore services",
-  secondaryHref = "/services",
+
+  // Make these optional by removing their default values
+  secondaryLabel,
+  secondaryHref,
+
   withPadding = true,
 }: CTABannerProps) {
   return (
-    <section className={`${withPadding ? "py-12 sm:py-16 lg:py-20" : ""} bg-section-cta overflow-hidden relative`}>
+    <section
+      className={`${withPadding ? "py-12 sm:py-16 lg:py-20" : ""
+        } bg-section-cta overflow-hidden relative`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div>
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-deep-blue/20 bg-deep-blue">
@@ -64,7 +70,7 @@ export default function CTABanner({
               <h2 className="mt-4 sm:mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold text-white max-w-3xl mx-auto leading-tight">
                 {heading}
               </h2>
-              
+
               {description && (
                 <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
                   {description}
@@ -82,17 +88,10 @@ export default function CTABanner({
                     className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-neon-blue rounded-full text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300 w-full sm:w-auto touch-manipulation"
                   >
                     {primaryLabel}
-                    {/* <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2.5}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg> */}
                   </Link>
                 </motion.span>
+
+                {/* Secondary button only renders if both props are provided */}
                 {secondaryLabel && secondaryHref && (
                   <Link
                     href={secondaryHref}
