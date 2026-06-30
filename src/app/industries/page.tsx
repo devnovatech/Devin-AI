@@ -285,60 +285,102 @@ export default function IndustriesPage() {
   return (
     <>
       {/* ───────── Hero ───────── */}
-      <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
-        <div className="noise-overlay" />
+<section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
+  <div className="absolute inset-0 grid-bg" />
+  <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
+  <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+  <div className="noise-overlay" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <AnimatedSection>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-neon-blue opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-blue" />
-              </span>
-              <span className="text-[11px] font-semibold text-neon-blue tracking-wider uppercase">
-                7 industries · 250+ projects shipped
-              </span>
-            </div>
-          </AnimatedSection>
+  <div className="relative z-10 max-w-7xl mx-auto px-6">
+    <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      {/* ── LEFT: Text Content ── */}
+      <div className="lg:col-span-7 text-center lg:text-left">
+        <AnimatedSection delay={0.1}>
+          <h1
+            className="mt-6 font-bold tracking-[-0.025em] leading-[0.98] text-white"
+            style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
+          >
+            Built Around Your Constraints
+            <br />
+            <span className="gradient-text glow-text"> Not Just Your Requirements.</span>
+          </h1>
+        </AnimatedSection>
 
-          <AnimatedSection delay={0.1}>
-            <h1
-              className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white"
-              style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
-            >
-              Built Around Your Constraints
-              <br />
-              <span className="gradient-text glow-text"> Not Just Your Requirements.</span>
-            </h1>
-          </AnimatedSection>
+        <AnimatedSection delay={0.2}>
+          <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto lg:mx-0">
+            Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
+          </p>
+        </AnimatedSection>
 
-          <AnimatedSection delay={0.2}>
-            <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto">
-              Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
-            </p>
-          </AnimatedSection>
+        <AnimatedSection delay={0.3}>
+          <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="inline-flex">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+              >
+                Talk to a sector expert
+              </Link>
+            </motion.span>
+          </div>
+        </AnimatedSection>
+      </div>
 
-          <AnimatedSection delay={0.3}>
-            <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-              <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="inline-flex">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
-                >
-                  Talk to a sector expert
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      {/* ── RIGHT: Stats Card ── */}
+      <div className="lg:col-span-5">
+        <AnimatedSection delay={0.2}>
+          <div className="relative">
+            {/* Background glows */}
+            <div className="absolute -top-10 -right-10 w-60 h-60 bg-neon-purple/20 rounded-full blur-[100px]" />
+            <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-neon-blue/20 rounded-full blur-[100px]" />
+            
+            {/* Card */}
+            <div className="relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 lg:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-neon-blue/20 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-neon-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                </Link>
-              </motion.span>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+                </div>
+                <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Industry Expertise</span>
+              </div>
 
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
+                  <div className="text-2xl font-bold text-white">250+</div>
+                  <div className="text-xs text-gray-400 mt-1">Builds Delivered</div>
+                </div>
+                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
+                  <div className="text-2xl font-bold text-neon-blue">14</div>
+                  <div className="text-xs text-gray-400 mt-1">Hospitals Onboarded</div>
+                </div>
+                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
+                  <div className="text-2xl font-bold text-neon-purple">100+</div>
+                  <div className="text-xs text-gray-400 mt-1">FinTech Initiatives</div>
+                </div>
+                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
+                  <div className="text-2xl font-bold text-emerald-400">+24%</div>
+                  <div className="text-xs text-gray-400 mt-1">Avg. Conversion Lift</div>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div className="mt-6 flex flex-wrap gap-2 justify-center">
+                {["Healthcare", "FinTech", "E-commerce", "SaaS", "EdTech"].map((tag) => (
+                  <span key={tag} className="px-3 py-1 text-xs font-medium text-gray-300 bg-white/[0.04] rounded-full border border-white/[0.06]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+    </div>
+  </div>
+</section>
       {/* ───────── Industries grid ───────── */}
       <section
         id="industries-grid"

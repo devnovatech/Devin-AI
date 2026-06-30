@@ -46,7 +46,7 @@ interface ServiceData {
   industryTitle: string;
   industryDescription: string;
   industries: IndustryItem[];
-   processHeading:string,
+  processHeading: string,
   processSteps: {
     number: string;
     title: string;
@@ -62,7 +62,7 @@ const servicesData: Record<string, ServiceData> = {
   "digital-marketing": {
     title: "Digital Marketing Services",
     subtitle: "Performance-Led Marketing for Measurable ROI",
-    description:"We help organizations attract qualified audiences, generate demand, and drive revenue growth through data-driven marketing. From SEO and paid acquisition to content and conversion optimization, we build scalable systems for sustainable lifecycle growth.",
+    description: "We help organizations attract qualified audiences, generate demand, and drive revenue growth through data-driven marketing. From SEO and paid acquisition to content and conversion optimization, we build scalable systems for sustainable lifecycle growth.",
     painIntro: "What\u2019s Holding Your Marketing Back?",
     offeringsTitle: "Revenue Growth & Demand Generation Capabilities",
     offeringsDescription: "A performance-driven marketing framework focused on increasing visibility, attracting qualified prospects, improving conversion rates, and maximizing customer lifetime value.",
@@ -157,7 +157,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Help Grow",
     industryDescription: "We support organizations across diverse industries through strategic digital marketing initiatives",
-     processHeading:"From Market Visibility to Revenue Growth Through Four Strategic Phases",
+    processHeading: "From Market Visibility to Revenue Growth Through Four Strategic Phases",
     processSteps: [
       {
         number: "01",
@@ -287,7 +287,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We deliver mobile solutions for organizations across multiple industries",
-     processHeading:"From kickoff to launch in four clear steps.",
+    processHeading: "From kickoff to launch in four clear steps.",
     processSteps: [
       {
         number: "01",
@@ -321,7 +321,7 @@ const servicesData: Record<string, ServiceData> = {
   "web-development": {
     title: "Web Development Services",
     subtitle: "Full-Stack Web Development For High-performance",
-    description:"High-performance web platforms designed to streamline operations, enhance user experience, and accelerate digital growth through full-cycle engineering built for scalability, security, and maintainability.",
+    description: "High-performance web platforms designed to streamline operations, enhance user experience, and accelerate digital growth through full-cycle engineering built for scalability, security, and maintainability.",
     painIntro: "What\u2019s Holding Your Website Back?",
     offeringsTitle: "Full-Spectrum Web Development",
     offeringsDescription: "A comprehensive delivery framework covering product strategy, architecture, engineering, quality assurance, infrastructure, and optimization—aligned to support modern web platforms and enterprise digital initiatives.",
@@ -416,7 +416,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We deliver web platforms and digital systems for organizations across multiple industries:",
-    processHeading:"From Strategy to Production in Four Engineered Stages",
+    processHeading: "From Strategy to Production in Four Engineered Stages",
     processSteps: [
       {
         number: "01",
@@ -546,7 +546,7 @@ const servicesData: Record<string, ServiceData> = {
     industryTitle: "Industries We Serve",
     industryDescription: "We design digital experiences for organizations across a wide range of industries",
     ctaHeading: "Let\u2019s Design Something People Love to Use",
-     processHeading:"Discovered. Defined. Designed. Delivered.",
+    processHeading: "Discovered. Defined. Designed. Delivered.",
     processSteps: [
       {
         number: "01",
@@ -674,7 +674,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We help organizations build and scale ecommerce operations across multiple sectors:",
-     processHeading:"Full-Funnel Commerce. End-to-End.",
+    processHeading: "Full-Funnel Commerce. End-to-End.",
     processSteps: [
       {
         number: "01",
@@ -709,7 +709,7 @@ const servicesData: Record<string, ServiceData> = {
     title: "Machine Learning & AI Services",
     subtitle: "Future-Ready AI/ML Solutions",
     description: "We design and deploy AI-powered solutions that automate processes, improve decision-making, and turn enterprise data into actionable intelligence. Our services span machine learning, predictive analytics, generative AI, and intelligent automation, built for scalable, accurate, and governed business outcomes.",
-       painIntro: "What\u2019s Holding You Back from Adopting AI?",
+    painIntro: "What\u2019s Holding You Back from Adopting AI?",
     offeringsTitle: "AI engineering and data intelligence capabilities ",
     offeringsDescription: "A comprehensive AI delivery framework covering strategy, data engineering, model development, deployment, governance, and continuous optimization—designed to support long-term business value.",
     offerings: [
@@ -803,7 +803,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We help organizations implement AI and machine learning solutions across multiple sectors:",
-     processHeading:"Ingested. Modeled. Trained. Deployed",
+    processHeading: "Ingested. Modeled. Trained. Deployed",
     processSteps: [
       {
         number: "01",
@@ -837,7 +837,7 @@ const servicesData: Record<string, ServiceData> = {
   "quality-assurance": {
     title: "Quality Assurance Services",
     subtitle: "SQA Engineering for Reliable, Secure Software Systems",
-    description:"Improves software reliability, reduces release risk, and ensures product quality through structured QA. From test strategy and automation to performance and continuous validation, enabling faster, more predictable delivery.",
+    description: "Improves software reliability, reduces release risk, and ensures product quality through structured QA. From test strategy and automation to performance and continuous validation, enabling faster, more predictable delivery.",
     painIntro: "What\u2019s Holding Your Product Back from Peak Performance?",
     offeringsTitle: "Software Quality Engineering Capabilities",
     offeringsDescription: "A comprehensive quality framework focused on risk reduction, release confidence, application stability, and continuous improvement across the software delivery lifecycle.",
@@ -932,7 +932,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We provide software quality assurance services across a wide range of industries:",
-     processHeading:"Four Checkpoints. Zero Compromises.",
+    processHeading: "Four Checkpoints. Zero Compromises.",
     processSteps: [
       {
         number: "01",
@@ -966,7 +966,7 @@ const servicesData: Record<string, ServiceData> = {
   "project-management": {
     title: "Project Management Services",
     subtitle: "The Ultimate End-to-End Project Management System",
-    description:"We streamline project planning, stakeholder alignment, and delivery oversight to keep projects on track and teams focused.",
+    description: "We streamline project planning, stakeholder alignment, and delivery oversight to keep projects on track and teams focused.",
     painIntro: "What\u2019s Holding Your Projects Back?",
     offeringsTitle: "Delivery Governance & Execution Management Capabilities",
     offeringsDescription: "A structured delivery framework focused on planning, coordination, visibility, accountability, and continuous improvement across projects, teams, and business initiatives.",
@@ -1063,7 +1063,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Industries We Serve",
     industryDescription: "We support organizations managing complex initiatives across multiple sectors:",
-     processHeading:"From Project Initiation to Operational Excellence Through Four Delivery Phases",
+    processHeading: "From Project Initiation to Operational Excellence Through Four Delivery Phases",
     processSteps: [
       {
         number: "01",
@@ -1192,7 +1192,7 @@ const servicesData: Record<string, ServiceData> = {
     ],
     industryTitle: "Talent Areas We Support",
     industryDescription: "We provide specialized professionals across multiple disciplines and sectors",
-     processHeading:"Vetted Talent. Zero Ramp-Up.",
+    processHeading: "Vetted Talent. Zero Ramp-Up.",
     processSteps: [
       {
         number: "01",
@@ -1600,19 +1600,7 @@ export default function ServicePage() {
                       }}
                     >
                       Book a discovery call
-                      <svg
-                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
+
                     </Link>
                   </motion.span>
                   <Link
@@ -1854,7 +1842,7 @@ export default function ServicePage() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Header */}
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-10 lg:mb-12">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-6">
             <div className="lg:col-span-7">
               <div
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full border backdrop-blur-sm"
@@ -1876,7 +1864,7 @@ export default function ServicePage() {
                 </span>
               </div>
 
-              <h2 className="mt-4 h-section text-deep-blue max-w-2xl">
+              <h2 className="mt-2 h-section text-deep-blue max-w-2xl">
                 {service.offeringsTitle}
               </h2>
             </div>
@@ -1891,197 +1879,197 @@ export default function ServicePage() {
           </div>
 
           {/* Main Content */}
-         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-  {/* LEFT SIDEBAR */}
-  <div className="lg:col-span-5">
-    <div className="sticky top-24 flex flex-col gap-2.5">
-      {service.offerings.map((offering, i) => {
-        const isActive = activeOffering === i;
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            {/* LEFT SIDEBAR */}
+            <div className="lg:col-span-5">
+              <div className="sticky top-24 flex flex-col gap-2.5">
+                {service.offerings.map((offering, i) => {
+                  const isActive = activeOffering === i;
 
-        return (
-          <motion.button
-            key={offering.category}
-            onClick={() => setActiveOffering(i)}
-            whileHover={{ x: 4 }}
-            whileTap={{ scale: 0.99 }}
-            className="group relative overflow-hidden w-full text-left rounded-2xl transition-all duration-300"
-            style={{
-              backgroundColor: isActive
-                ? "white"
-                : "rgba(255,255,255,0.65)",
-              border: `1px solid ${isActive ? `${accent}25` : "rgba(15,23,42,0.06)"
-                }`,
-              boxShadow: isActive
-                ? `0 22px 45px -18px ${accent}40`
-                : "0 2px 10px rgba(0,0,0,0.02)",
-            }}
-          >
-            <div className="relative flex items-center gap-4 px-5 py-4">
-              {/* Number */}
-              <div
-                className="relative w-10 h-10 rounded-xl flex items-center justify-center text-[12px] font-bold tabular-nums shrink-0"
-                style={{
-                  backgroundColor: isActive
-                    ? accent
-                    : `${accent}12`,
-                  color: isActive ? "white" : accent,
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
+                  return (
+                    <motion.button
+                      key={offering.category}
+                      onClick={() => setActiveOffering(i)}
+                      whileHover={{ x: 4 }}
+                      whileTap={{ scale: 0.99 }}
+                      className="group relative overflow-hidden w-full text-left rounded-2xl transition-all duration-300"
+                      style={{
+                        backgroundColor: isActive
+                          ? "white"
+                          : "rgba(255,255,255,0.65)",
+                        border: `1px solid ${isActive ? `${accent}25` : "rgba(15,23,42,0.06)"
+                          }`,
+                        boxShadow: isActive
+                          ? `0 22px 45px -18px ${accent}40`
+                          : "0 2px 10px rgba(0,0,0,0.02)",
+                      }}
+                    >
+                      <div className="relative flex items-center gap-4 px-5 py-4">
+                        {/* Number */}
+                        <div
+                          className="relative w-10 h-10 rounded-xl flex items-center justify-center text-[12px] font-bold tabular-nums shrink-0"
+                          style={{
+                            backgroundColor: isActive
+                              ? accent
+                              : `${accent}12`,
+                            color: isActive ? "white" : accent,
+                          }}
+                        >
+                          {String(i + 1).padStart(2, "0")}
 
-                {isActive && (
-                  <motion.div
-                    className="absolute inset-0 rounded-xl"
-                    animate={{
-                      opacity: [0.3, 0.7, 0.3],
-                      scale: [1, 1.08, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                    style={{
-                      border: `1px solid ${accent}`,
-                    }}
-                  />
-                )}
+                          {isActive && (
+                            <motion.div
+                              className="absolute inset-0 rounded-xl"
+                              animate={{
+                                opacity: [0.3, 0.7, 0.3],
+                                scale: [1, 1.08, 1],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                              }}
+                              style={{
+                                border: `1px solid ${accent}`,
+                              }}
+                            />
+                          )}
+                        </div>
+
+                        {/* Text */}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-deep-blue tracking-tight">
+                            {offering.category}
+                          </p>
+
+                          <p className="mt-0.5 text-xs text-deep-blue/50">
+                            {offering.items.length} deliverables included
+                          </p>
+                        </div>
+
+                        {/* Arrow */}
+                        <motion.div
+                          animate={{
+                            x: isActive ? 0 : -3,
+                            opacity: isActive ? 1 : 0.4,
+                          }}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke={accent}
+                            strokeWidth={2.5}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </motion.div>
+                      </div>
+                    </motion.button>
+                  );
+                })}
               </div>
-
-              {/* Text */}
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-deep-blue tracking-tight">
-                  {offering.category}
-                </p>
-
-                <p className="mt-0.5 text-xs text-deep-blue/50">
-                  {offering.items.length} deliverables included
-                </p>
-              </div>
-
-              {/* Arrow */}
-              <motion.div
-                animate={{
-                  x: isActive ? 0 : -3,
-                  opacity: isActive ? 1 : 0.4,
-                }}
-                transition={{ duration: 0.25 }}
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke={accent}
-                  strokeWidth={2.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </motion.div>
             </div>
-          </motion.button>
-        );
-      })}
-    </div>
-  </div>
 
-  {/* RIGHT PANEL - Single Card Version */}
-  <div className="lg:col-span-7">
-    <div className="relative rounded-3xl bg-white border border-deep-blue/[0.07] overflow-hidden shadow-2xl shadow-deep-blue/[0.06]">
-      {/* Top Glow */}
-      <div
-        className="absolute inset-x-0 top-0 h-[3px]"
-        style={{
-          background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
-        }}
-      />
-
-      <div className="relative p-6 lg:p-8">
-        {/* Badge */}
-        <div
-          className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] px-3 py-1 rounded-full"
-          style={{
-            color: accent,
-            backgroundColor: `${accent}10`,
-          }}
-        >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: accent }}
-          />
-          Capabilities Overview
-        </div>
-
-        {/* Animated Content Area */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeOffering}
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{
-              duration: 0.35,
-              ease: [0.4, 0, 0.2, 1],
-            }}
-          >
-            {/* Heading */}
-            <h3 className="mt-5 text-2xl lg:text-3xl font-bold tracking-tight text-deep-blue leading-tight">
-              {service.offerings[activeOffering].category}
-            </h3>
-
-            <p className="mt-3 text-sm lg:text-base text-deep-blue/55 max-w-2xl leading-relaxed">
-              {service.offerings[activeOffering].description}
-            </p>
-
-            {/* Deliverables */}
-            <div className="mt-8 grid sm:grid-cols-2 gap-3">
-              {service.offerings[activeOffering].items.map((item, idx) => (
-                <motion.div
-                  key={item}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: idx * 0.04,
+            {/* RIGHT PANEL - Single Card Version */}
+            <div className="lg:col-span-7">
+              <div className="relative rounded-3xl bg-white border border-deep-blue/[0.07] overflow-hidden shadow-2xl shadow-deep-blue/[0.06]">
+                {/* Top Glow */}
+                <div
+                  className="absolute inset-x-0 top-0 h-[3px]"
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
                   }}
-                  className="group relative flex items-start gap-3 rounded-2xl border border-deep-blue/[0.06] bg-light-accent/60 hover:bg-white hover:border-deep-blue/[0.1] transition-all duration-300 p-4"
-                >
+                />
+
+                <div className="relative p-6 lg:p-8">
+                  {/* Badge */}
                   <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                    className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] px-3 py-1 rounded-full"
                     style={{
-                      backgroundColor: `${accent}12`,
+                      color: accent,
+                      backgroundColor: `${accent}10`,
                     }}
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke={accent}
-                      strokeWidth={2.4}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+                    <span
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ backgroundColor: accent }}
+                    />
+                    Capabilities Overview
                   </div>
 
-                  <div>
-                    <p className="text-sm font-medium text-deep-blue leading-relaxed">
-                      {item}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                  {/* Animated Content Area */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeOffering}
+                      initial={{ opacity: 0, y: 14 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{
+                        duration: 0.35,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                    >
+                      {/* Heading */}
+                      <h3 className="mt-5 text-2xl lg:text-3xl font-bold tracking-tight text-deep-blue leading-tight">
+                        {service.offerings[activeOffering].category}
+                      </h3>
+
+                      <p className="mt-3 text-sm lg:text-base text-deep-blue/55 max-w-2xl leading-relaxed">
+                        {service.offerings[activeOffering].description}
+                      </p>
+
+                      {/* Deliverables */}
+                      <div className="mt-8 grid sm:grid-cols-2 gap-3">
+                        {service.offerings[activeOffering].items.map((item, idx) => (
+                          <motion.div
+                            key={item}
+                            initial={{ opacity: 0, y: 6 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                              delay: idx * 0.04,
+                            }}
+                            className="group relative flex items-start gap-3 rounded-2xl border border-deep-blue/[0.06] bg-light-accent/60 hover:bg-white hover:border-deep-blue/[0.1] transition-all duration-300 p-4"
+                          >
+                            <div
+                              className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                              style={{
+                                backgroundColor: `${accent}12`,
+                              }}
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke={accent}
+                                strokeWidth={2.4}
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5 13l4 4L19 7"
+                                />
+                              </svg>
+                            </div>
+
+                            <div>
+                              <p className="text-sm font-medium text-deep-blue leading-relaxed">
+                                {item}
+                              </p>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
-  </div>
-</div>
+          </div>
         </div>
       </section>
 
@@ -2098,7 +2086,7 @@ export default function ServicePage() {
             <div className="lg:col-span-7">
               <p className="eyebrow text-neon-blue">How we work</p>
               <h2 className="mt-3 h-section text-white">
-               {service.processHeading}
+                {service.processHeading}
               </h2>
             </div>
             <div className="lg:col-span-5">
@@ -2117,10 +2105,11 @@ export default function ServicePage() {
                 <div className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500">
                   <div className="flex items-center gap-3 mb-5">
                     <div
-                      className="relative w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 z-10"
+                      className="relative w-14 h-14 rounded-full flex items-center justify-center font-bold text-base shrink-0 z-10"
                       style={{
                         backgroundColor: accent,
                         boxShadow: `0 12px 28px -10px ${accent}80`,
+                        color: '#ffffff', // Explicitly set white
                       }}
                     >
                       {step.number}
@@ -2147,75 +2136,75 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── Why us for THIS service ───────── */}
-     <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
-  <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
-  <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
+      <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
 
-  <div className="relative max-w-7xl mx-auto px-6">
-    
-    {/* Header */}
-    <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-12 lg:mb-14">
-      <div className="lg:col-span-7">
-        <p className="eyebrow" style={{ color: accent }}>
-          Why teams pick us
-        </p>
+        <div className="relative max-w-7xl mx-auto px-6">
 
-        <h2 className="mt-3 h-section text-deep-blue">
-          {service.whyTitle}
-        </h2>
-      </div>
+          {/* Header */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-12 lg:mb-14">
+            <div className="lg:col-span-7">
+              <p className="eyebrow" style={{ color: accent }}>
+                Why teams pick us
+              </p>
 
-      <div className="lg:col-span-5">
-        <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-          {service.whyTagline}
-        </p>
-      </div>
-    </div>
-
-    {/* Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {service.whyChoose.slice(0, 6).map((item, i) => {
-        const itemAccent = ACCENTS[i % ACCENTS.length];
-        const numLabel = String(i + 1).padStart(2, "0");
-
-        return (
-          <div
-            key={item.title}
-            className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[210px]"
-          >
-            {/* Soft number background */}
-            <div
-              className="absolute top-3 right-4 text-[68px] font-bold leading-none select-none pointer-events-none"
-              style={{ color: `${itemAccent}10` }}
-            >
-              {numLabel}
+              <h2 className="mt-3 h-section text-deep-blue">
+                {service.whyTitle}
+              </h2>
             </div>
 
-            {/* Content */}
-            <div className="relative z-10 flex flex-col h-full">
-              
-              {/* Accent line (left) */}
-              <div
-                className="mb-5 h-1 w-10 rounded-full transition-all duration-300 group-hover:w-16"
-                style={{ backgroundColor: itemAccent }}
-              />
-
-              {/* Title */}
-              <h3 className="text-xl font-bold leading-tight tracking-tight text-deep-blue mb-2">
-                {item.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm leading-relaxed text-deep-blue/60">
-                {item.description}
+            <div className="lg:col-span-5">
+              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+                {service.whyTagline}
               </p>
             </div>
           </div>
-        );
-      })}
-    </div>
-  </div>
-</section>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {service.whyChoose.slice(0, 6).map((item, i) => {
+              const itemAccent = ACCENTS[i % ACCENTS.length];
+              const numLabel = String(i + 1).padStart(2, "0");
+
+              return (
+                <div
+                  key={item.title}
+                  className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[210px]"
+                >
+                  {/* Soft number background */}
+                  <div
+                    className="absolute top-3 right-4 text-[68px] font-bold leading-none select-none pointer-events-none"
+                    style={{ color: `${itemAccent}10` }}
+                  >
+                    {numLabel}
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-10 flex flex-col h-full">
+
+                    {/* Accent line (left) */}
+                    <div
+                      className="mb-5 h-1 w-10 rounded-full transition-all duration-300 group-hover:w-16"
+                      style={{ backgroundColor: itemAccent }}
+                    />
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold leading-tight tracking-tight text-deep-blue mb-2">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm leading-relaxed text-deep-blue/60">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* ───────── Industries we serve (compact) ───────── */}
       <section className="pb-20 bg-light-accent relative overflow-hidden">
@@ -2236,9 +2225,9 @@ export default function ServicePage() {
                 </p>
 
                 <h2 className="mt-3 h-section text-white">
-                 {" "}
-                <span className="gradient-text">Industries</span> We Serve
-              </h2>
+                  {" "}
+                  <span className="gradient-text">Industries</span> We Serve
+                </h2>
 
                 <p className="body-base text-gray-400 mt-4 max-w-md lg:ml-auto">
                   {service.industryDescription}
@@ -2323,10 +2312,11 @@ export default function ServicePage() {
                         <div className="relative">
                           <div className="flex items-center justify-between mb-5">
                             <div
-                              className="w-11 h-11 rounded-xl flex items-center justify-center text-white"
+                              className="w-11 h-11 rounded-xl flex items-center justify-center"
                               style={{
                                 backgroundColor: relMeta.accent,
                                 boxShadow: `0 12px 28px -10px ${relMeta.accent}80`,
+                                color: '#ffffff', // Explicitly set white
                               }}
                             >
                               {relMeta.icon}

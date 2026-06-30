@@ -238,20 +238,18 @@ export default function Industries() {
                         {ind.name}
                       </h3>
                       <p
-                        className={`text-xs mt-0.5 truncate transition-opacity duration-300 ${
-                          isActive ? "text-gray-400" : "text-gray-500"
-                        }`}
+                        className={`text-xs mt-0.5 truncate transition-opacity duration-300 ${isActive ? "text-gray-400" : "text-gray-500"
+                          }`}
                       >
                         {ind.shortLabel} · click to explore
                       </p>
                     </div>
 
                     <svg
-                      className={`relative w-4 h-4 shrink-0 transition-all duration-300 ${
-                        isActive
-                          ? "opacity-100 translate-x-0"
-                          : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
-                      }`}
+                      className={`relative w-4 h-4 shrink-0 transition-all duration-300 ${isActive
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
+                        }`}
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke={ind.accent}
@@ -289,10 +287,11 @@ export default function Industries() {
                   {/* Header */}
                   <div className="flex items-start gap-4">
                     <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shrink-0"
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
                       style={{
                         backgroundColor: active.accent,
                         boxShadow: `0 12px 28px -10px ${active.accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                        color: '#ffffff', // Explicitly set icon/text to white
                       }}
                     >
                       {active.icon}
@@ -302,7 +301,7 @@ export default function Industries() {
                         className="eyebrow"
                         style={{ color: active.accent }}
                       >
-                        Industry · 0{activeIndex + 1} / 0{industries.length}
+                        Industry · {activeIndex + 1} / {industries.length}
                       </p>
                       <h3 className="mt-1 text-2xl lg:text-[1.875rem] font-bold text-white tracking-tight leading-[1.15]">
                         {active.name}
@@ -404,19 +403,7 @@ export default function Industries() {
             className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
           >
             See all industries we serve
-            <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
+
           </Link>
         </div>
       </div>
