@@ -311,18 +311,16 @@ export default function IndustriesPage() {
           <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto lg:mx-0">
             Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
           </p>
-        </AnimatedSection>
 
-        <AnimatedSection delay={0.3}>
           <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-            <motion.span whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="inline-flex">
+            <div className="inline-flex">
               <Link
                 href="/contact"
                 className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
               >
                 Talk to a sector expert
               </Link>
-            </motion.span>
+            </div>
           </div>
         </AnimatedSection>
       </div>
@@ -488,8 +486,6 @@ export default function IndustriesPage() {
         description="Most organizations don’t need more tools — they need their systems to finally align. We help companies move beyond fragmented setups by building integrated digital infrastructure that reflects how they actually operate, scale, and compete."
         primaryLabel="Talk to a sector expert"
         primaryHref="/contact"
-        secondaryLabel="See services"
-        secondaryHref="/services"
       />
     </>
   );

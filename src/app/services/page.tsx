@@ -743,11 +743,6 @@ export default function ServicesPage() {
                       <HeroTile key={s.slug} service={s} index={i} />
                     ))}
                   </div>
-
-                  {/* Bottom hint */}
-                  <p className="mt-4 text-center text-[10.5px] text-white/45 tracking-wide">
-                    Tap any tile below — or scroll for the full catalog.
-                  </p>
                 </div>
               </div>
             </AnimatedSection>
@@ -776,7 +771,7 @@ export default function ServicesPage() {
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
-                  How we work
+                Core Capabilities
                 </p>
               </div>
 
@@ -1381,8 +1376,7 @@ export default function ServicesPage() {
         description="Tell us where you are and what you're trying to ship. We'll come back with a tailored plan within 24 hours."
         primaryLabel="Book a discovery call"
         primaryHref="/contact"
-        secondaryLabel="See industries"
-        secondaryHref="/industries"
+
       />
     </>
   );

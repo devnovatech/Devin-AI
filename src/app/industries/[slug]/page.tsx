@@ -7,6 +7,7 @@ import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
+import React from "react";
 
 const DEEP = "var(--section-deep)";
 const LIGHT = "var(--section-light)";
@@ -22,7 +23,7 @@ interface IndustryData {
   solutions: string[];
   ctaHeading: string;
   ctaDescription: string;
-  ctaButton: string;
+  // ctaButton: string;
 }
 
 const industriesData: Record<string, IndustryData> = {
@@ -52,7 +53,7 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Healthcare Friction Into Connected, Scalable Care",
     ctaDescription: "Healthcare is often slowed by fragmented systems, legacy infrastructure, and disconnected tools that impact efficiency, compliance, and patient experience.\nWe build secure, scalable healthcare ecosystems that unify systems, streamline operations, and improve care delivery.",
-    ctaButton: "Ready to modernize your healthcare ecosystem?",
+    // ctaButton: "Ready to modernize your healthcare ecosystem?",
   },
   fintech: {
     title: "Banking Built for the Digital Economy",
@@ -79,7 +80,7 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Financial Complexity Into Competitive Advantage",
     ctaDescription: "Financial growth is often limited by legacy systems, compliance burdens, fragmented customer experiences, and operational inefficiencies.\nWe build secure, scalable financial ecosystems that modernize operations, strengthen compliance, and accelerate innovation.",
-    ctaButton: "Ready to modernize your financial ecosystem?",
+    // ctaButton: "Ready to modernize your financial ecosystem?",
   },
   "ecommerce-retail": {
     title: "Commerce Without Friction",
@@ -106,7 +107,7 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Retail Complexity Into Sustainable Growth",
     ctaDescription: "Retail growth is often limited by disconnected systems, fragmented customer journeys, operational inefficiencies, and outdated commerce infrastructure.\nWe build scalable ecommerce ecosystems that unify operations, optimize customer experiences, and accelerate business growth across every channel.",
-    ctaButton: "Ready to modernize your commerce ecosystem?",
+    // ctaButton: "Ready to modernize your commerce ecosystem?",
   },
   logistics: {
     title: "Moving Supply Chains Forward",
@@ -125,15 +126,16 @@ const industriesData: Record<string, IndustryData> = {
     solutionDescription: "We don't solve logistics challenges in isolation. We build connected operational ecosystems that improve visibility, automate processes, and enable smarter decision-making across the entire supply chain.",
     solutions: [
       "Real-Time Logistics Visibility: We design centralized platforms that provide live tracking, operational monitoring, and complete visibility across transportation and logistics networks.",
-      "Compliance-Driven Infrastructure: Security, governance, and regulatory readiness are embedded into every solution through ISO 27001-aligned security controls, GDPR-compliant data management, FMCSA-ready operational workflows, ELD integration capabilities, and comprehensive audit trails that support transportation and supply chain compliance requirements.",
       "Connected Supply Chain Architecture: We integrate transportation, warehouse, inventory, ERP, and customer systems into unified ecosystems that eliminate silos and improve coordination.",
       "Intelligent Fleet Optimization: We implement route optimization, fleet monitoring, predictive maintenance, and resource allocation systems that improve efficiency and reduce operational costs.",
       "Data Intelligence & Predictive Operations: We unify operational data to enable forecasting, performance analytics, demand planning, and AI-powered operational insights.",
       "Customer-Centric Logistics Experiences: We create digital experiences that provide real-time shipment updates, communication tools, and self-service capabilities for customers and partners.",
+      "Compliance-Driven Infrastructure: Security, governance, and regulatory readiness are embedded into every solution through ISO 27001-aligned security controls, GDPR-compliant data management, FMCSA-ready operational workflows, ELD integration capabilities, and comprehensive audit trails that support transportation and supply chain compliance requirements.",
+
     ],
     ctaHeading: "Turn Logistics Complexity Into Operational Advantage",
     ctaDescription: "Supply chain performance is often limited by disconnected systems, fragmented data, inefficient processes, and limited operational visibility.\nWe build scalable logistics ecosystems that connect operations, optimize transportation networks, and enable smarter decision-making across the entire supply chain.",
-    ctaButton: "Ready to modernize your logistics ecosystem?",
+    // ctaButton: "Ready to modernize your logistics ecosystem?",
   },
   education: {
     title: "Building the Future of Learning",
@@ -152,15 +154,16 @@ const industriesData: Record<string, IndustryData> = {
     solutionDescription: "We don't view educational challenges as isolated technology problems. We build integrated digital ecosystems that connect learners, educators, and institutions while improving outcomes at every stage of the learning journey.",
     solutions: [
       "Student-Centered Digital Experiences: We design intuitive mobile and web experiences that make learning more engaging, accessible, and effective across every educational touchpoint.",
-      "Privacy-First Education Platforms: Security and compliance are embedded into every solution through FERPA-aligned data governance, GDPR-ready privacy controls, COPPA-compliant workflows, role-based access management, and secure cloud infrastructure.",
+      "Personalized Learning Experiences: Using AI and intelligent automation, we enable adaptive learning pathways, personalized content delivery, and proactive student support.",
       "Unified Academic Operations: We integrate learning management systems, student information systems, communication tools, assessment platforms, and administrative workflows into a connected ecosystem.",
       "Learning Intelligence & Analytics: We transform educational data into actionable insights that help institutions improve student performance, measure outcomes, and optimize operations.",
-      "Personalized Learning Experiences: Using AI and intelligent automation, we enable adaptive learning pathways, personalized content delivery, and proactive student support.",
       "Scalable Digital Education Infrastructure: We build cloud-native platforms capable of supporting hybrid learning models, growing student populations, and evolving institutional needs.",
+      "Privacy-First Education Platforms: Security and compliance are embedded into every solution through FERPA-aligned data governance, GDPR-ready privacy controls, COPPA-compliant workflows, role-based access management, and secure cloud infrastructure.",
+
     ],
     ctaHeading: "Turn Educational Challenges Into Measurable Outcomes",
     ctaDescription: "Education is often constrained by disconnected systems, administrative inefficiencies, fragmented learning experiences, and limited visibility into student success.\nWe build secure, scalable education ecosystems that connect people, processes, and technology to improve engagement, streamline operations, and deliver stronger learning outcomes.",
-    ctaButton: "Ready to transform your learning ecosystem?",
+    // ctaButton: "Ready to transform your learning ecosystem?",
   },
   "travel-hospitality": {
     title: "Experiences That Move People",
@@ -179,15 +182,16 @@ const industriesData: Record<string, IndustryData> = {
     solutionDescription: "We don't treat hospitality and travel challenges as isolated issues. We build connected digital ecosystems that improve guest experiences, streamline operations, and create sustainable business growth.",
     solutions: [
       "Guest-Centric Experience Design: We create intuitive mobile and web experiences that simplify planning, booking, communication, and guest engagement across every touchpoint.",
-      "Compliance-Driven Digital Infrastructure: Security and compliance are embedded into every solution through PCI DSS-aligned payment systems, GDPR-ready privacy controls, secure authentication frameworks, role-based access management, and comprehensive data governance practices.",
       "Connected Hospitality Ecosystems: We integrate booking platforms, property management systems, CRM solutions, loyalty programs, payment gateways, and operational tools into a unified environment.",
       "Personalization & Customer Intelligence: We transform customer data into actionable insights that power personalized recommendations, targeted offers, loyalty initiatives, and improved guest experiences.",
       "Omnichannel Travel Experiences: We connect digital and physical touchpoints to deliver consistent experiences across websites, mobile applications, customer support channels, and on-site interactions.",
+      "Compliance-Driven Digital Infrastructure: Security and compliance are embedded into every solution through PCI DSS-aligned payment systems, GDPR-ready privacy controls, secure authentication frameworks, role-based access management, and comprehensive data governance practices.",
+
       "Scalable Travel Infrastructure: We build cloud-native platforms capable of supporting seasonal demand, expanding operations, global audiences, and future growth initiatives.",
     ],
     ctaHeading: "Turn Travel Complexity Into Memorable Experiences",
     ctaDescription: "Growth in travel and hospitality is often constrained by disconnected systems, fragmented guest journeys, operational inefficiencies, and limited customer visibility.\nWe build secure, scalable travel ecosystems that connect experiences, streamline operations, and create meaningful customer relationships that drive long-term growth.",
-    ctaButton: "Ready to elevate your travel and hospitality ecosystem?",
+    // ctaButton: "Ready to elevate your travel and hospitality ecosystem?",
   },
   "saas-startups": {
     title: "Building Products Ready for Scale",
@@ -207,14 +211,14 @@ const industriesData: Record<string, IndustryData> = {
     solutions: [
       "Product-Led Experience Design: We create intuitive user experiences that improve onboarding, engagement, retention, and overall customer satisfaction.",
       "Scalable Cloud-Native Architecture: We design flexible, high-performance platforms that support growth, evolving business requirements, and increasing user demand.",
-      "Security & Compliance by Design: Security is embedded throughout the development lifecycle through secure architecture, role-based access controls, data protection frameworks, audit capabilities, and readiness for standards such as SOC 2, GDPR, ISO 27001, and enterprise customer requirements.",
       "Accelerated Product Delivery: We leverage agile methodologies, automation, CI/CD pipelines, and modern engineering practices to shorten development cycles and accelerate time-to-market.",
       "Data Intelligence & Product Insights: We build analytics ecosystems that provide visibility into user behavior, product performance, customer health, and growth opportunities.",
+      "Security & Compliance by Design: Security is embedded throughout the development lifecycle through secure architecture, role-based access controls, data protection frameworks, audit capabilities, and readiness for standards such as SOC 2, GDPR, ISO 27001, and enterprise customer requirements.",
       "Future-Ready Technology Foundations: We create modular, API-first systems that enable seamless integrations, continuous innovation, and long-term scalability.",
     ],
     ctaHeading: "Turn Product Ambition Into Sustainable Growth",
     ctaDescription: "Many startups and SaaS businesses are limited not by vision, but by technology foundations that cannot keep pace with growth, customer expectations, and market demands.\nWe build secure, scalable product ecosystems that accelerate innovation, strengthen operational efficiency, and support long-term business growth.",
-    ctaButton: "Ready to scale your product with confidence?",
+    // ctaButton: "Ready to scale your product with confidence?",
   },
 };
 
@@ -1353,40 +1357,6 @@ export default function IndustryPage() {
                 <p className="mt-6 body-lead text-gray-400">
                   {industry.heroDescription}
                 </p>
-
-                <div className="mt-10 flex flex-col sm:flex-row gap-3">
-                  <motion.span
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="inline-flex"
-                  >
-                    <Link
-                      href="/contact"
-                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold tracking-wide text-sm transition-all duration-300"
-                      style={{
-                        backgroundColor: accent,
-                        boxShadow: `0 12px 28px -10px ${accent}80`,
-                      }}
-                    >
-                      {industry.ctaButton}
-                      <svg
-                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </Link>
-                  </motion.span>
-                  <Link
-                    href="/industries"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
-                  >
-                    All industries
-                  </Link>
-                </div>
               </AnimatedSection>
             </div>
 
@@ -1590,7 +1560,7 @@ export default function IndustryPage() {
               </div>
 
               <h2 className="h-section text-white">
-                 Impact Beyond <span className="gradient-text-dark">Technology</span>
+                Impact Beyond <span className="gradient-text-dark">Technology</span>
               </h2>
             </div>
 
@@ -1638,8 +1608,12 @@ export default function IndustryPage() {
       <CTABanner
         eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
         heading={<>{industry.ctaHeading}</>}
-        description={industry.ctaDescription}
-        primaryLabel={industry.ctaButton}
+        description={
+          <span style={{ whiteSpace: 'pre-line' }}>
+            {industry.ctaDescription}
+          </span>
+        }
+        primaryLabel="Let's build it"
         primaryHref="/contact"
         secondaryLabel="See all industries"
         secondaryHref="/industries"
