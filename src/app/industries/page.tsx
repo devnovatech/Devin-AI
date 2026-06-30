@@ -354,7 +354,7 @@ export default function IndustriesPage() {
                 </div>
                 <div className="bg-white/[0.04] rounded-xl p-4 text-center">
                   <div className="text-2xl font-bold text-neon-blue">14</div>
-                  <div className="text-xs text-gray-400 mt-1">Hospitals Onboarded</div>
+                  <div className="text-xs text-gray-400 mt-1">Enterprise Clients</div>
                 </div>
                 <div className="bg-white/[0.04] rounded-xl p-4 text-center">
                   <div className="text-2xl font-bold text-neon-purple">100+</div>
