@@ -130,10 +130,10 @@ export default function WorkingProcess() {
     const checkScreenSize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
-    
+
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
-    
+
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
@@ -141,11 +141,11 @@ export default function WorkingProcess() {
   const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0];
     const startX = touch.clientX;
-    
+
     const handleTouchEnd = (e: TouchEvent) => {
       const endX = e.changedTouches[0].clientX;
       const diff = startX - endX;
-      
+
       if (Math.abs(diff) > 50) {
         if (diff > 0 && activeIdx < stages.length - 1) {
           setActiveIdx(activeIdx + 1);
@@ -155,15 +155,14 @@ export default function WorkingProcess() {
       }
       document.removeEventListener('touchend', handleTouchEnd);
     };
-    
+
     document.addEventListener('touchend', handleTouchEnd);
   };
 
   return (
     <section
       id="process"
-      className="min-h-screen flex flex-col justify-center py-10 sm:py-12 lg:py-16 bg-section-process relative overflow-hidden"
-    >
+      className="min-h-screen flex flex-col justify-center py-10 sm:py-12 lg:py-16 bg-[#0a1628] bg-section-process relative overflow-hidden"  >
       {/* Animated background blooms */}
       <div
         className="absolute top-1/4 -left-32 w-[420px] h-[420px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none"
@@ -194,11 +193,10 @@ export default function WorkingProcess() {
               <button
                 key={stage.number}
                 onClick={() => setActiveIdx(i)}
-                className={`snap-start shrink-0 px-4 py-3 rounded-xl transition-all duration-300 touch-manipulation ${
-                  isActive
+                className={`snap-start shrink-0 px-4 py-3 rounded-xl transition-all duration-300 touch-manipulation ${isActive
                     ? "bg-white/10 border-2"
                     : "bg-white/5 border border-white/5 hover:bg-white/10"
-                }`}
+                  }`}
                 style={{
                   borderColor: isActive ? stage.accent : "transparent",
                 }}
@@ -214,16 +212,14 @@ export default function WorkingProcess() {
                   </span>
                   <div className="text-left">
                     <span
-                      className={`text-[9px] font-mono font-bold tracking-wider block ${
-                        isActive ? "text-white/80" : "text-white/40"
-                      }`}
+                      className={`text-[9px] font-mono font-bold tracking-wider block ${isActive ? "text-white/80" : "text-white/40"
+                        }`}
                     >
                       {stage.number}
                     </span>
                     <span
-                      className={`text-sm font-bold tracking-tight block ${
-                        isActive ? "text-white" : "text-white/60"
-                      }`}
+                      className={`text-sm font-bold tracking-tight block ${isActive ? "text-white" : "text-white/60"
+                        }`}
                     >
                       {stage.name}
                     </span>
@@ -273,28 +269,17 @@ export default function WorkingProcess() {
                     className="group relative flex items-center gap-2.5 h-10 px-3 rounded-md border text-left transition-colors duration-300 touch-manipulation"
                   >
                     <span
-                      className={`font-mono text-[10px] font-bold tracking-wider ${
-                        isActive ? "text-white/80" : "text-white/30"
-                      }`}
+                      className={`font-mono text-[10px] font-bold tracking-wider ${isActive ? "text-white/80" : "text-white/30"
+                        }`}
                     >
                       {stage.number}
                     </span>
                     <span
-                      className={`text-sm font-bold tracking-tight truncate ${
-                        isActive ? "text-white" : "text-white/60"
-                      }`}
+                      className={`text-sm font-bold tracking-tight truncate ${isActive ? "text-white" : "text-white/60"
+                        }`}
                     >
                       {stage.name}
                     </span>
-
-                    {/* Active glow on right edge */}
-                    {isActive && (
-                      <motion.span
-                        layoutId="stage-active-edge"
-                        className="absolute -right-1 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
-                        style={{ backgroundColor: stage.accent, boxShadow: `0 0 12px ${stage.accent}` }}
-                      />
-                    )}
                   </motion.button>
                 );
               })}
@@ -303,7 +288,7 @@ export default function WorkingProcess() {
         </div>
 
         {/* Detail panel — updates on hover/click */}
-        <div 
+        <div
           className="mt-5 sm:mt-6 lg:mt-9 grid lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-7 items-start"
           onTouchStart={handleTouchStart}
         >
@@ -397,9 +382,8 @@ export default function WorkingProcess() {
             <button
               key={i}
               onClick={() => setActiveIdx(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 touch-manipulation ${
-                i === activeIdx ? "w-6" : "w-1.5"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-300 touch-manipulation ${i === activeIdx ? "w-6" : "w-1.5"
+                }`}
               style={{
                 backgroundColor: i === activeIdx ? stages[activeIdx].accent : "rgba(255,255,255,0.2)",
               }}
