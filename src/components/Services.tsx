@@ -243,7 +243,7 @@ function TabButton({
       <span
         className={`grid h-10 w-10 shrink-0 place-items-center bg-[#F2F2F2] rounded-lg transition-colors ${isActive
           ? "bg-white text-[#0a1128]"
-          : "bg-ink-100 text-ink-700 group-hover:bg-white group-hover:text-[#0a1128]"
+          : "bg-gray-100 text-gray-700 group-hover:bg-white group-hover:text-[#0a1128]"
           }`}
       >
         {service.icon}
@@ -251,11 +251,11 @@ function TabButton({
 
       {/* Text content - Desktop */}
       <div className="relative flex-1 min-w-0 hidden lg:block">
-        <h3 className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-ink-700 group-hover:text-white"
+        <h3 className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-gray-700 group-hover:text-white"
           }`}>
           {service.title}
         </h3>
-        <p className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-ink-400 group-hover:text-white/60"
+        <p className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-gray-400 group-hover:text-white/60"
           }`}>
           {service.tagline}
         </p>
@@ -275,7 +275,7 @@ function TabButton({
       </div>
 
       {/* Index number */}
-      <span className={`shrink-0 font-mono text-[10px] transition-colors duration-300 ${isActive ? "text-white/60" : "text-ink-400 group-hover:text-white/60"
+      <span className={`shrink-0 font-mono text-[10px] transition-colors duration-300 ${isActive ? "text-white/60" : "text-gray-400 group-hover:text-white/60"
         }`}>
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -1160,7 +1160,7 @@ export default function Services() {
               <div
                 className="relative overflow-hidden rounded-2xl h-full"
                 style={{
-                  background: "#0a1128",
+                  background: "#0a1628",
                 }}
               >
                 {/* Subtle grid overlay */}
@@ -1348,7 +1348,7 @@ export default function Services() {
                       duration: 0.25,
                       delay: index * 0.05,
                     }}
-                    className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 hover:scale-105 hover:shadow-md sm:px-3 sm:text-[11px]"
+                    className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 hover:scale-105 hover:shadow-md sm:px-3 sm:text-[11px]"
                     style={{
                       color: active.accent,
                       backgroundColor: `${active.accent}0d`,
@@ -1358,7 +1358,7 @@ export default function Services() {
                     }}
                   >
                     <span
-                      className="h-1.5 w-1.5 rounded-full"
+                      className="h-1.5 w-1.5 rounded-xl"
                       style={{ backgroundColor: active.accent }}
                     />
                     {tech}

@@ -49,39 +49,39 @@ const serviceDropdownData = {
 };
 
 const industryDropdownData = {
-  healthcare: { 
-    title: "Healthcare & HealthTech", 
-    tagline: "HIPAA-compliant platforms, telemedicine, and patient management." 
+  healthcare: {
+    title: "Healthcare & HealthTech",
+    tagline: "HIPAA-compliant platforms, telemedicine, and patient management."
   },
-  fintech: { 
-    title: "FinTech", 
-    tagline: "Secure financial platforms with regulatory-ready architecture." 
+  fintech: {
+    title: "FinTech",
+    tagline: "Secure financial platforms with regulatory-ready architecture."
   },
-  "ecommerce-retail": { 
-    title: "E-commerce & Retail", 
-    tagline: "Conversion-tuned storefronts and inventory at scale." 
+  "ecommerce-retail": {
+    title: "E-commerce & Retail",
+    tagline: "Conversion-tuned storefronts and inventory at scale."
   },
-  logistics: { 
-    title: "Logistics & Transportation", 
-    tagline: "Real-time tracking, fleet management, route optimization." 
+  logistics: {
+    title: "Logistics & Transportation",
+    tagline: "Real-time tracking, fleet management, route optimization."
   },
-  education: { 
-    title: "Education & EdTech", 
-    tagline: "Interactive learning platforms and student engagement tools." 
+  education: {
+    title: "Education & EdTech",
+    tagline: "Interactive learning platforms and student engagement tools."
   },
-  "travel-hospitality": { 
-    title: "Travel & Hospitality", 
-    tagline: "Booking platforms and guest portals." 
+  "travel-hospitality": {
+    title: "Travel & Hospitality",
+    tagline: "Booking platforms and guest portals."
   },
-  "saas-startups": { 
-    title: "SaaS & Tech Startups", 
-    tagline: "MVPs to scale-ups, speed without sacrificing architecture." 
+  "saas-startups": {
+    title: "SaaS & Tech Startups",
+    tagline: "MVPs to scale-ups, speed without sacrificing architecture."
   },
 };
 
 const navLinks = [
-  { 
-    label: "Our Services", 
+  {
+    label: "Our Services",
     href: "/services",
     dropdown: true,
     dropdownType: "services",
@@ -92,8 +92,8 @@ const navLinks = [
       tagline: data.tagline,
     }))
   },
-  { 
-    label: "Industries", 
+  {
+    label: "Industries",
     href: "/industries",
     dropdown: true,
     dropdownType: "industries",
@@ -153,7 +153,7 @@ export default function Navbar() {
         const rect = trigger.getBoundingClientRect();
         const dropdownWidth = 600;
         const windowWidth = window.innerWidth;
-        
+
         // Check if dropdown would overflow on the right
         if (rect.right + dropdownWidth > windowWidth - 20) {
           setDropdownPosition("right");
@@ -199,13 +199,12 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? isLight
-              ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
-              : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? isLight
+            ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
+            : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
+          : "bg-transparent"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 py-3 flex items-center justify-between">
           {/* Logo */}
@@ -232,8 +231,8 @@ export default function Navbar() {
                   ? "text-gray-800"
                   : "text-white"
                 : isLight
-                ? "text-gray-700 hover:text-neon-purple"
-                : "text-gray-300 hover:text-neon-blue";
+                  ? "text-gray-700 hover:text-neon-purple"
+                  : "text-gray-300 hover:text-neon-blue";
 
               return (
                 <div
@@ -260,11 +259,10 @@ export default function Navbar() {
                     {active && !hasDropdown && (
                       <motion.span
                         layoutId="nav-pill"
-                        className={`absolute inset-0 rounded-full border ${
-                          isLight
-                            ? "bg-neon-purple/10 border-neon-purple/20"
-                            : "bg-white/10 border-white/15"
-                        }`}
+                        className={`absolute inset-0 rounded-full border ${isLight
+                          ? "bg-neon-purple/10 border-neon-purple/20"
+                          : "bg-white/10 border-white/15"
+                          }`}
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -275,9 +273,8 @@ export default function Navbar() {
                     <span className="relative z-10">{link.label}</span>
                     {hasDropdown && (
                       <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          openDropdown === link.label ? "rotate-180" : ""
-                        }`}
+                        className={`w-4 h-4 transition-transform duration-200 ${openDropdown === link.label ? "rotate-180" : ""
+                          }`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -289,6 +286,7 @@ export default function Navbar() {
                   </Link>
 
                   {/* Dropdown Menu - White Background with 2 Columns */}
+                  {/* Dropdown Menu - White Background with 2 Columns */}
                   {hasDropdown && (
                     <AnimatePresence>
                       {openDropdown === link.label && (
@@ -297,52 +295,46 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
                           transition={{ duration: 0.2 }}
-                          className={`absolute top-full mt-2 w-[600px] rounded-2xl shadow-2xl overflow-hidden bg-white border border-gray-200 ${
-                            isIndustries || dropdownPosition === "right"
-                              ? "right-0"
-                              : "left-0"
-                          }`}
+                          className={`absolute top-full mt-2 w-[600px] rounded-2xl shadow-2xl overflow-hidden bg-white border border-gray-200 ${isIndustries || dropdownPosition === "right" ? "right-0" : "left-0"
+                            }`}
                           style={{
                             boxShadow: "0 20px 60px -20px rgba(0,0,0,0.25)"
                           }}
                         >
                           {/* 2-column grid */}
-                         <div className="grid grid-cols-2 gap-1 p-3">
-  {link.dropdownItems.map((item) => (
-    <Link
-      key={item.href}
-      href={item.href}
-      onClick={() => setOpenDropdown(null)}
-      className={`group flex flex-col px-4 py-3 rounded-xl transition-all duration-200 ${
-        pathname === item.href
-          ? "bg-blue-50 border border-blue-200"
-          : "hover:bg-[#0a1128] border border-transparent hover:border-gray-500"
-      }`}
-    >
-      <div className="flex items-center justify-between">
-        <span
-          className={`text-sm font-semibold transition-colors ${
-            pathname === item.href
-              ? "text-blue-700"
-              : "text-slate-900 group-hover:text-white"
-          }`}
-        >
-          {item.title}
-        </span>
-      </div>
+                          <div className="grid grid-cols-2 gap-1 p-3">
+                            {link.dropdownItems.map((item) => (
+                              <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => setOpenDropdown(null)}
+                                className={`group flex flex-col px-4 py-3 rounded-xl transition-all duration-200 ${pathname === item.href
+                                    ? "bg-slate-800 border border-slate-600" // Dark slate background
+                                    : "hover:bg-slate-900 border border-transparent hover:border-slate-700" // Dark slate on hover
+                                  }`}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span
+                                    className={`text-sm font-semibold transition-colors ${pathname === item.href
+                                        ? "text-white" // White text on dark background
+                                        : "text-slate-900 group-hover:text-white" // Dark text normally, white on hover
+                                      }`}
+                                  >
+                                    {item.title}
+                                  </span>
+                                </div>
 
-      <span
-        className={`text-xs mt-0.5 line-clamp-2 transition-colors ${
-          pathname === item.href
-            ? "text-blue-600"
-            : "text-slate-500 group-hover:text-slate-300"
-        }`}
-      >
-        {item.tagline}
-      </span>
-    </Link>
-  ))}
-</div>
+                                <span
+                                  className={`text-xs mt-0.5 line-clamp-2 transition-colors ${pathname === item.href
+                                      ? "text-slate-300" // Light text on dark background
+                                      : "text-slate-500 group-hover:text-slate-300" // Gray normally, lighter on hover
+                                    }`}
+                                >
+                                  {item.tagline}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -403,11 +395,10 @@ export default function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${
-                isLight
-                  ? "bg-white/95 border-deep-blue/10"
-                  : "bg-deep-blue/95 border-white/5"
-              }`}
+              className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${isLight
+                ? "bg-white/95 border-deep-blue/10"
+                : "bg-deep-blue/95 border-white/5"
+                }`}
             >
               <div className="px-6 py-5 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
                 {navLinks.map((link) => {
@@ -419,17 +410,15 @@ export default function Navbar() {
                       <div key={link.href} className="flex flex-col">
                         <button
                           onClick={() => setIsExpanded(!isExpanded)}
-                          className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${
-                            isLight
-                              ? "text-deep-blue/70 hover:bg-deep-blue/[0.04]"
-                              : "text-gray-300 hover:bg-white/5"
-                          }`}
+                          className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${isLight
+                            ? "text-deep-blue/70 hover:bg-deep-blue/[0.04]"
+                            : "text-gray-300 hover:bg-white/5"
+                            }`}
                         >
                           <span className="font-medium">{link.label}</span>
                           <svg
-                            className={`w-5 h-5 transition-transform duration-200 ${
-                              isExpanded ? "rotate-180" : ""
-                            }`}
+                            className={`w-5 h-5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""
+                              }`}
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -445,11 +434,10 @@ export default function Navbar() {
                                 key={item.href}
                                 href={item.href}
                                 onClick={() => setMobileOpen(false)}
-                                className={`block px-4 py-2.5 rounded-lg transition-colors ${
-                                  isLight
-                                    ? "hover:bg-deep-blue/[0.04] text-deep-blue/70"
-                                    : "hover:bg-white/5 text-gray-300"
-                                }`}
+                                className={`block px-4 py-2.5 rounded-lg transition-colors ${isLight
+                                  ? "hover:bg-deep-blue/[0.04] text-deep-blue/70"
+                                  : "hover:bg-white/5 text-gray-300"
+                                  }`}
                               >
                                 <div className="font-medium text-sm">{item.title}</div>
                                 <div className="text-xs opacity-60">{item.tagline}</div>
@@ -466,15 +454,14 @@ export default function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`px-4 py-3 rounded-xl transition-colors ${
-                        isLight
-                          ? isActive(link.href)
-                            ? "bg-deep-blue/[0.06] text-deep-blue"
-                            : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
-                          : isActive(link.href)
-                            ? "bg-white/10 text-white"
-                            : "text-gray-300 hover:bg-white/5 hover:text-white"
-                      }`}
+                      className={`px-4 py-3 rounded-xl transition-colors ${isLight
+                        ? isActive(link.href)
+                          ? "bg-deep-blue/[0.06] text-deep-blue"
+                          : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
+                        : isActive(link.href)
+                          ? "bg-white/10 text-white"
+                          : "text-gray-300 hover:bg-white/5 hover:text-white"
+                        }`}
                     >
                       {link.label}
                     </Link>

@@ -162,7 +162,8 @@ export default function WorkingProcess() {
   return (
     <section
       id="process"
-      className="min-h-screen flex flex-col justify-center py-10 sm:py-12 lg:py-16 bg-[#0a1628] bg-section-process relative overflow-hidden"  >
+      className="min-h-screen flex flex-col justify-center py-9 sm:py-10 lg:py-14 bg-[#0a1628] relative overflow-hidden"
+    >
       {/* Animated background blooms */}
       <div
         className="absolute top-1/4 -left-32 w-[420px] h-[420px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none"
@@ -174,19 +175,27 @@ export default function WorkingProcess() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
         {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-start mb-6 sm:mb-8 lg:mb-10">
+        <div className="grid lg:grid-cols-12 gap-4 lg:gap-10 items-start mb-5 sm:mb-7 lg:mb-9">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
+            <div className="inline-flex items-center gap-2 mb-1 sm:mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
               <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase text-neon-blue">
                 How we work
               </span>
             </div>
+            <h2 className="h-section text-white">
+              Six stages. <span className="gradient-text-dark">Zero Gaps. Complete Delivery.</span>
+            </h2>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="body-base mt-8 text-gray-300">
+              From strategic planning to post-launch support — every phase is intentional, every handoff is seamless, and nothing ships until it's right.
+            </p>
           </div>
         </div>
 
         {/* Mobile: Horizontal scrollable stage selector */}
-        <div className="lg:hidden flex gap-2 overflow-x-auto pb-4 mb-4 scrollbar-hide -mx-4 px-4 snap-x snap-mandatory">
+        <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-3 scrollbar-hide -mx-4 px-4 snap-x snap-mandatory">
           {stages.map((stage, i) => {
             const isActive = activeIdx === i;
             return (
@@ -194,8 +203,8 @@ export default function WorkingProcess() {
                 key={stage.number}
                 onClick={() => setActiveIdx(i)}
                 className={`snap-start shrink-0 px-4 py-3 rounded-xl transition-all duration-300 touch-manipulation ${isActive
-                    ? "bg-white/10 border-2"
-                    : "bg-white/5 border border-white/5 hover:bg-white/10"
+                  ? "bg-white/10 border-2"
+                  : "bg-white/5 border border-white/5 hover:bg-white/10"
                   }`}
                 style={{
                   borderColor: isActive ? stage.accent : "transparent",
@@ -232,9 +241,9 @@ export default function WorkingProcess() {
 
         {/* Desktop: Gantt-style timeline */}
         <div className="hidden lg:block">
-          <div className="relative rounded-2xl bg-white/[0.02] border border-white/10 p-5 lg:p-7 backdrop-blur-sm">
+          <div className="relative rounded-xl bg-white/[0.02] border border-white/10 p-4 lg:p-5 backdrop-blur-sm">
             {/* Vertical gridlines */}
-            <div className="absolute inset-x-5 lg:inset-x-7 inset-y-0 grid grid-cols-12 pointer-events-none">
+            <div className="absolute inset-x-4 lg:inset-x-5 inset-y-0 grid grid-cols-12 pointer-events-none">
               {Array.from({ length: 12 }).map((_, i) => (
                 <span
                   key={i}
@@ -244,7 +253,7 @@ export default function WorkingProcess() {
             </div>
 
             {/* Stage bars */}
-            <div className="relative grid grid-cols-12 gap-y-2.5">
+            <div className="relative grid grid-cols-12 gap-y-2">
               {stages.map((stage, i) => {
                 const isActive = activeIdx === i;
                 return (
@@ -261,21 +270,21 @@ export default function WorkingProcess() {
                         ? stage.accent
                         : `${stage.accent}30`,
                       boxShadow: isActive
-                        ? `0 14px 32px -12px ${stage.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`
+                        ? `0 12px 28px -12px ${stage.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`
                         : "none",
                     }}
-                    animate={{ scale: isActive ? 1.02 : 1 }}
+                    animate={{ scale: isActive ? 1.015 : 1 }}
                     transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                    className="group relative flex items-center gap-2.5 h-10 px-3 rounded-md border text-left transition-colors duration-300 touch-manipulation"
+                    className="group relative flex items-center gap-2 h-9 px-2.5 rounded-md border text-left transition-colors duration-300 touch-manipulation"
                   >
                     <span
-                      className={`font-mono text-[10px] font-bold tracking-wider ${isActive ? "text-white/80" : "text-white/30"
+                      className={`font-mono text-[9px] font-bold tracking-wider ${isActive ? "text-white/80" : "text-white/30"
                         }`}
                     >
                       {stage.number}
                     </span>
                     <span
-                      className={`text-sm font-bold tracking-tight truncate ${isActive ? "text-white" : "text-white/60"
+                      className={`text-[13px] font-bold tracking-tight truncate ${isActive ? "text-white" : "text-white/80"
                         }`}
                     >
                       {stage.name}
@@ -288,23 +297,35 @@ export default function WorkingProcess() {
         </div>
 
         {/* Detail panel — updates on hover/click */}
-        <div
-          className="mt-5 sm:mt-6 lg:mt-9 grid lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-7 items-start"
+        <motion.div
+          layout="position"
+          className="mt-4 sm:mt-5 lg:mt-8 grid lg:grid-cols-12 gap-4 sm:gap-4 lg:gap-6 items-start"
           onTouchStart={handleTouchStart}
+          transition={{
+            layout: {
+              type: "spring",
+              stiffness: 140,
+              damping: 22,
+              mass: 0.9,
+            },
+          }}
         >
           {/* LEFT — stage description */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 min-h-[220px] sm:min-h-[240px] lg:min-h-[250px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.number}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{
+                  duration: 0.45,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
               >
                 <div className="flex items-center gap-3 sm:gap-4">
                   <div
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-white shrink-0 transition-all duration-300"
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-white shrink-0"
                     style={{
                       backgroundColor: active.accent,
                       boxShadow: `0 14px 32px -10px ${active.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`,
@@ -312,39 +333,45 @@ export default function WorkingProcess() {
                   >
                     {active.icon}
                   </div>
+
                   <div>
                     <p
                       className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] font-semibold"
-                      style={{ color: `${active.accent}` }}
+                      style={{ color: active.accent }}
                     >
                       Stage {active.number}
                     </p>
+
                     <h3 className="mt-0.5 text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight">
                       {active.name}
                     </h3>
                   </div>
                 </div>
-                <p className="mt-4 sm:mt-5 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl">
+
+                <p className="mt-4 text-sm sm:text-base text-gray-400 leading-relaxed max-w-xl">
                   {active.description}
                 </p>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* RIGHT — "what happens here" card */}
+          {/* RIGHT — what happens here */}
           <div className="lg:col-span-5">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`activities-${active.number}`}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1], delay: 0.05 }}
-                className="relative rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm p-4 sm:p-5 lg:p-6 overflow-hidden"
-                style={{ "--accent": active.accent } as React.CSSProperties}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{
+                  duration: 0.45,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="relative rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm p-4 sm:p-5 overflow-hidden"
               >
-                {/* Soft accent glow */}
-                <div
+                {/* Accent glow */}
+                <motion.div
+                  layout
                   className="pointer-events-none absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-20"
                   style={{ backgroundColor: active.accent }}
                 />
@@ -353,13 +380,18 @@ export default function WorkingProcess() {
                   <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.22em] font-semibold text-gray-500">
                     What happens here
                   </p>
-                  <ul className="mt-3 sm:mt-4 grid grid-cols-2 gap-x-3 sm:gap-x-4 gap-y-2 sm:gap-y-2.5">
-                    {active.activities.map((a, i) => (
+
+                  <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2">
+                    {active.activities.map((a) => (
                       <motion.div
                         key={a}
-                        initial={{ opacity: 0, x: -8 }}
+                        initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+                        exit={{ opacity: 0 }}
+                        transition={{
+                          duration: 0.35,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
                         className="flex items-center gap-2 text-xs sm:text-sm text-gray-300"
                       >
                         <span
@@ -369,15 +401,15 @@ export default function WorkingProcess() {
                         <span className="truncate">{a}</span>
                       </motion.div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
 
         {/* Mobile: Stage progress indicator */}
-        <div className="lg:hidden flex justify-center gap-1.5 mt-4 sm:mt-5">
+        <div className="lg:hidden flex justify-center gap-1.5 mt-4 sm:mt-4">
           {stages.map((_, i) => (
             <button
               key={i}
@@ -393,17 +425,17 @@ export default function WorkingProcess() {
       </div>
 
       <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .touch-manipulation {
-          touch-action: manipulation;
-        }
-      `}</style>
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .touch-manipulation {
+      touch-action: manipulation;
+    }
+  `}</style>
     </section>
   );
 }

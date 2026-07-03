@@ -2,115 +2,151 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
-import AnimatedSection from "./AnimatedSection";
-
-interface CTABannerProps {
-  eyebrow?: string;
-  heading?: ReactNode;
-  description?: ReactNode;
-  primaryLabel?: string;
-  primaryHref?: string;
-  secondaryLabel?: string;
-  secondaryHref?: string;
-  /** When false, removes the outer section padding so it can be embedded inline. */
-  withPadding?: boolean;
-}
+import { ArrowRight, Calendar, MessageSquare, Calculator as CalcIcon } from "lucide-react";
 
 export default function CTABanner({
   eyebrow = "Build With Confidence",
   heading = (
     <>
       Technology That Moves{" "}
-      <span className="gradient-text">Your Business Forward.</span>
+      <span className="text-neon-blue">Your Business Forward.</span>
     </>
   ),
   description = "From custom software and mobile apps to AI systems, cloud infrastructure, and digital growth, we help ambitious businesses build technology that's designed to perform today and evolve tomorrow.",
   primaryLabel = "Start your project",
   primaryHref = "/contact",
-
-  // Make these optional by removing their default values
-  secondaryLabel,
-  secondaryHref,
-
+  // secondaryLabel = "Book intro call",
+  // secondaryHref = "/contact",
   withPadding = true,
-}: CTABannerProps) {
+}: {
+  eyebrow?: string;
+  heading?: React.ReactNode;
+  description?: React.ReactNode;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  withPadding?: boolean;
+}) {
   return (
     <section
       className={`${withPadding ? "py-12 sm:py-16 lg:py-20" : ""
         } bg-section-cta overflow-hidden relative`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div>
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-deep-blue/20 bg-deep-blue">
-            {/* Background */}
-            <div className="absolute inset-0 grid-bg opacity-50" />
-            <div className="absolute -top-40 -right-32 w-[500px] h-[500px] bg-neon-blue/20 rounded-full blur-[140px]" />
-            <div className="absolute -bottom-40 -left-32 w-[500px] h-[500px] bg-neon-purple/15 rounded-full blur-[140px]" />
-            <div className="noise-overlay" />
+        <div
+          className="relative overflow-hidden rounded-3xl text-white shadow-2xl"
+          style={{
+            backgroundColor: "#0a1628", // Permanent deep blue
+          }}
+        >          {/* Background effects */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full opacity-50 blur-3xl"
+            style={{ background: "radial-gradient(circle, #2486c5 0%, transparent 65%)" }}
+          />
+          {/* <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full opacity-40 blur-3xl"
+            style={{ background: "radial-gradient(circle, #ff6b3d 0%, transparent 65%)" }}
+          /> */}
+          <div className="absolute inset-0 grid-bg opacity-30" />
+          <div className="noise-overlay" />
 
-            {/* Content */}
-            <div className="relative z-10 px-5 sm:px-8 lg:px-16 py-10 sm:py-16 lg:py-20 text-center">
-              {/* Eyebrow - hidden on mobile, shown on tablet+ */}
-              <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-5">
+          <div className="relative grid gap-10 p-8 md:grid-cols-12 md:p-12 lg:p-16">
+            {/* Left column */}
+            <div className="md:col-span-7">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
                 <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/80">
                   {eyebrow}
                 </span>
               </div>
 
-              {/* Mobile: Simplified eyebrow */}
-              <div className="sm:hidden inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-                <span className="text-[9px] font-semibold tracking-[0.18em] uppercase text-white/80">
-                  Let's build
-                </span>
-              </div>
-
-              <h2 className="mt-4 sm:mt-6 text-3xl sm:text-4xl lg:text-5xl font-bold text-white max-w-3xl mx-auto leading-tight">
+              <h2 className="mt-5 text-[clamp(2rem,4.5vw,4rem)] font-bold leading-[1.05] tracking-[-0.03em]">
                 {heading}
               </h2>
 
-              {description && (
-                <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-                  {description}
-                </p>
-              )}
+              <p className="mt-5 max-w-xl text-base text-gray-400 md:text-lg">
+                {description}
+              </p>
 
-              <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <div className="mt-8 flex flex-wrap gap-3">
                 <motion.span
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-flex w-full sm:w-auto"
+                  className="inline-flex"
                 >
                   <Link
                     href={primaryHref}
-                    className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-neon-blue rounded-full text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300 w-full sm:w-auto touch-manipulation"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 bg-neon-blue rounded-xl text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                   >
-                    {primaryLabel}
+                    <CalcIcon size={16} /> {primaryLabel} <ArrowRight size={14} />
                   </Link>
                 </motion.span>
 
-                {/* Secondary button only renders if both props are provided */}
-                {secondaryLabel && secondaryHref && (
+                {/* {secondaryLabel && secondaryHref && (
                   <Link
                     href={secondaryHref}
-                    className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300 w-full sm:w-auto touch-manipulation"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 border border-white/15 rounded-xl text-white font-semibold text-sm hover:bg-white/5 hover:border-white/30 transition-all duration-300"
                   >
-                    {secondaryLabel}
+                    <Calendar size={16} /> {secondaryLabel}
                   </Link>
-                )}
+                )} */}
+              </div>
+            </div>
+
+            {/* Right column - Stats cards */}
+            <div className="md:col-span-5">
+              <div className="grid gap-3">
+                <Card
+                  icon={<MessageSquare size={18} />}
+                  label="Avg. response"
+                  value="3h 22m"
+                  sub="First reply, last 90 days"
+                />
+                <Card
+                  icon={<Calendar size={18} />}
+                  label="Typical kick-off"
+                  value="10–14 days"
+                  sub="From signed SOW"
+                />
+                <Card
+                  icon={<CalcIcon size={18} />}
+                  label="Talent shortlist"
+                  value="72 hours"
+                  sub="For staff augmentation"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .touch-manipulation {
-          touch-action: manipulation;
-        }
-      `}</style>
     </section>
+  );
+}
+
+function Card({
+  icon,
+  label,
+  value,
+  sub,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  sub: string;
+}) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+      <div className="flex items-center justify-between">
+        <span className="font-mono text-[11px] uppercase tracking-widest text-gray-400">
+          {label}
+        </span>
+        <span className="text-neon-blue">{icon}</span>
+      </div>
+      <p className="mt-2 text-2xl font-bold tracking-tight text-white md:text-3xl">{value}</p>
+      <p className="mt-1 text-xs text-gray-500">{sub}</p>
+    </div>
   );
 }

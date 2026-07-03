@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
 const linkColumns: {
@@ -22,20 +22,11 @@ const linkColumns: {
     {
       title: "Services",
       links: [
-        {
-          label: "Mobile App Development",
-          href: "/services/mobile-application",
-        },
+        { label: "Mobile App Development", href: "/services/mobile-application" },
         { label: "Web Development", href: "/services/web-development" },
         { label: "UI / UX Design", href: "/services/ui-ux-design" },
-        {
-          label: "ML & AI Solutions",
-          href: "/services/machine-learning-ai",
-        },
-        {
-          label: "Staff Augmentation",
-          href: "/services/staff-augmentation",
-        },
+        { label: "ML & AI Solutions", href: "/services/machine-learning-ai" },
+        { label: "Staff Augmentation", href: "/services/staff-augmentation" },
       ],
     },
     {
@@ -100,189 +91,70 @@ export default function Footer() {
 
   return (
     <footer
-      className={`relative overflow-hidden border-t ${
-        isLight
-          ? "bg-white border-gray-200"
-          : "bg-deep-blue border-white/5"
-      }`}
+      className={`${isLight
+        ? "bg-white border-t border-gray-200"
+        : "bg-deep-blue text-white border-t border-white/5"
+        }`}
     >
-      {/* Decorative orbs */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="relative max-w-7xl mx-auto px-6 pt-16 pb-8">
-        {/* Mobile: Simplified top section */}
-        <div className="md:hidden text-center">
-          <Link href="/" className="inline-flex items-center justify-center gap-2">
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="grid gap-12 md:grid-cols-12">
+          {/* Brand Column */}
+          <div className="md:col-span-5">
+             <Link href="/" className="inline-flex items-center justify-center gap-2">
             <Image
               src={isLight ? "/site_logo2.png" : "/site_logo.png"}
               alt="Dev Inception"
-              width={70}
-              height={70}
+              width={75}
+              height={75}
               className="h-24 w-24 object-contain"
             />
           </Link>
 
-          <p className={`mt-3 text-sm leading-relaxed max-w-xs mx-auto ${
-            isLight ? "text-gray-600" : "text-gray-400"
-          }`}>
-            From strategy to systems — we build robust, scalable digital
-            solutions tailored to your business.
-          </p>
+            {/* FIX: Consistent heading size in both themes */}
+            <h2 className="mt-8 max-w-md text-2xl font-bold tracking-tight md:text-3xl">
+              Have a project in mind? <span className="gradient-text-dark">Let's make it real.</span>
+            </h2>
 
-          {/* Newsletter - full width on mobile */}
-          <form onSubmit={handleSubscribe} className="mt-6 max-w-sm mx-auto">
-            <label
-              htmlFor="footer-email"
-              className={`block text-xs font-semibold uppercase tracking-wider mb-2 text-left ${
-                isLight ? "text-gray-700" : "text-white/80"
-              }`}
+            {/* FIX: Consistent email link size in both themes */}
+            <Link
+              href="mailto:hello@devinception.com"
+              className={`mt-6 inline-flex items-center gap-2 text-xl font-semibold tracking-tight md:text-2xl ${isLight
+                ? "text-gray-900 hover:text-neon-purple"
+                : "text-white hover:text-neon-blue"
+                } transition-colors`}
             >
-              Stay in the loop
-            </label>
-
-            <div
-              className={`flex items-stretch rounded-full overflow-hidden transition-colors ${
-                isLight
-                  ? "bg-gray-100 border border-gray-300 focus-within:border-neon-purple/50"
-                  : "bg-white/[0.04] border border-white/10 focus-within:border-neon-blue/50"
-              }`}
-            >
-              <input
-                id="footer-email"
-                type="email"
-                required
-                placeholder="you@company.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={`flex-1 px-4 py-2.5 bg-transparent text-sm outline-none ${
-                  isLight
-                    ? "text-gray-800 placeholder-gray-400"
-                    : "text-white placeholder-gray-500"
-                }`}
-              />
-
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="px-4 m-1 rounded-full bg-neon-blue text-white text-xs font-semibold hover:bg-neon-purple transition-colors touch-manipulation"
-              >
-                Subscribe
-              </motion.button>
-            </div>
-
-            {subscribed && (
-              <motion.p
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mt-2 text-xs text-emerald-500 text-left"
-              >
-                ✓ Thanks — you&apos;re on the list.
-              </motion.p>
-            )}
-          </form>
-        </div>
-
-        {/* Desktop: Original grid layout */}
-        <div className="hidden md:grid md:grid-cols-12 gap-8">
-          {/* Brand block */}
-          <div className="md:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-2">
-              <Image
-                src={isLight ? "/site_logo2.png" : "/site_logo.png"}
-                alt="Dev Inception"
-                width={70}
-                height={70}
-                className="h-24 w-24 object-contain"
-              />
+              hello@devinception.com <ArrowRight size={18} />
             </Link>
 
+            {/* FIX: Consistent paragraph size in both themes */}
             <p
-              className={`mt-3 text-sm leading-relaxed max-w-xs ${
-                isLight ? "text-gray-600" : "text-gray-400"
-              }`}
+              className={`mt-6 max-w-sm text-sm ${isLight ? "text-gray-600" : "text-gray-400"
+                }`}
             >
               From strategy to systems — we build robust, scalable digital
               solutions tailored to your business.
             </p>
-
-            {/* Newsletter */}
-            <form onSubmit={handleSubscribe} className="mt-6 max-w-sm">
-              <label
-                htmlFor="footer-email"
-                className={`block text-xs font-semibold uppercase tracking-wider mb-2 ${
-                  isLight ? "text-gray-700" : "text-white/80"
-                }`}
-              >
-                Stay in the loop
-              </label>
-
-              <div
-                className={`flex items-stretch rounded-full overflow-hidden transition-colors ${
-                  isLight
-                    ? "bg-gray-100 border border-gray-300 focus-within:border-neon-purple/50"
-                    : "bg-white/[0.04] border border-white/10 focus-within:border-neon-blue/50"
-                }`}
-              >
-                <input
-                  id="footer-email"
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={`flex-1 px-4 py-2.5 bg-transparent text-sm outline-none ${
-                    isLight
-                      ? "text-gray-800 placeholder-gray-400"
-                      : "text-white placeholder-gray-500"
-                  }`}
-                />
-
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="px-4 m-1 rounded-full bg-neon-blue text-white text-xs font-semibold hover:bg-neon-purple transition-colors"
-                >
-                  Subscribe
-                </motion.button>
-              </div>
-
-              {subscribed && (
-                <motion.p
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-2 text-xs text-emerald-500"
-                >
-                  ✓ Thanks — you&apos;re on the list.
-                </motion.p>
-              )}
-            </form>
           </div>
 
-          {/* Link columns */}
-          <div className="md:col-span-8 grid grid-cols-3 gap-8">
+          {/* Link Columns */}
+          <div className="grid grid-cols-2 gap-8 md:col-span-7 md:grid-cols-4">
             {linkColumns.map((col) => (
               <div key={col.title}>
                 <h4
-                  className={`text-sm font-bold tracking-wide ${
-                    isLight ? "text-gray-900" : "text-white"
-                  }`}
+                  className={`text-sm font-bold tracking-wide ${isLight ? "text-gray-900" : "text-white"
+                    }`}
                 >
                   {col.title}
                 </h4>
-
                 <ul className="mt-4 space-y-2.5">
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className={`text-sm transition-colors duration-200 ${
-                          isLight
-                            ? "text-gray-600 hover:text-neon-purple"
-                            : "text-gray-400 hover:text-neon-blue"
-                        }`}
+                        className={`text-sm transition-colors duration-200 ${isLight
+                          ? "text-gray-600 hover:text-neon-purple"
+                          : "text-gray-400 hover:text-neon-blue"
+                          }`}
                       >
                         {link.label}
                       </Link>
@@ -291,105 +163,48 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
 
-        {/* Mobile: Accordion-style link sections */}
-        <div className="md:hidden mt-8 border-t border-white/10 pt-6">
-          {linkColumns.map((col) => (
-            <div key={col.title} className="border-b border-white/5 last:border-0 py-4">
+            {/* Social Column */}
+            <div>
               <h4
-                className={`text-sm font-bold tracking-wide mb-3 ${
-                  isLight ? "text-gray-900" : "text-white"
-                }`}
+                className={`text-sm font-bold tracking-wide ${isLight ? "text-gray-900" : "text-white"
+                  }`}
               >
-                {col.title}
+                Social
               </h4>
-              <ul className="grid grid-cols-2 gap-2">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className={`text-sm transition-colors duration-200 block py-1 ${
-                        isLight
-                          ? "text-gray-600 hover:text-neon-purple"
-                          : "text-gray-400 hover:text-neon-blue"
-                      }`}
+              <ul className="mt-4 space-y-2.5">
+                {socialLinks.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`text-sm transition-colors duration-200 inline-flex items-center gap-2 ${isLight
+                        ? "text-gray-600 hover:text-neon-purple"
+                        : "text-gray-400 hover:text-neon-blue"
+                        }`}
                     >
-                      {link.label}
-                    </Link>
+                      {/* {social.icon} */}
+                      {social.label}
+                    </a>
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom Bar */}
         <div
-          className={`mt-10 pt-6 border-t flex flex-col md:flex-row items-center justify-between gap-4 ${
-            isLight ? "border-gray-200" : "border-white/5"
-          }`}
+          className={`mt-14 flex flex-col items-start justify-between gap-4 border-t pt-6 text-xs ${isLight
+            ? "border-gray-200 text-gray-600"
+            : "border-white/10 text-gray-500"
+            } md:flex-row md:items-center`}
         >
-          <p
-            className={`text-xs order-2 md:order-1 text-center md:text-left ${
-              isLight ? "text-gray-600" : "text-gray-500"
-            }`}
-          >
-            &copy; {new Date().getFullYear()} Dev Inception. All rights
-            reserved.
-          </p>
-
-          <div className="flex items-center gap-4 order-1 md:order-2">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 touch-manipulation ${
-                  isLight
-                    ? "border border-gray-300 text-gray-600 hover:text-neon-purple hover:border-neon-purple/40 hover:bg-neon-purple/10"
-                    : "border border-white/10 text-gray-400 hover:text-white hover:border-neon-blue/40 hover:bg-neon-blue/10"
-                }`}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-6 order-3 text-xs">
-            <Link
-              href="/privacy"
-              className={`transition-colors ${
-                isLight
-                  ? "text-gray-600 hover:text-neon-purple"
-                  : "text-gray-500 hover:text-neon-blue"
-              }`}
-            >
-              Privacy
-            </Link>
-
-            <Link
-              href="/terms"
-              className={`transition-colors ${
-                isLight
-                  ? "text-gray-600 hover:text-neon-purple"
-                  : "text-gray-500 hover:text-neon-blue"
-              }`}
-            >
-              Terms
-            </Link>
-          </div>
+          <p>© {new Date().getFullYear()} Dev Inception. All rights reserved.</p>
+          <p>Remote · with hubs in NYC, Dubai & Karachi</p>
         </div>
       </div>
-
-      <style jsx>{`
-        .touch-manipulation {
-          touch-action: manipulation;
-        }
-      `}</style>
     </footer>
   );
 }

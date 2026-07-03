@@ -400,7 +400,7 @@ export default function Industries() {
         <div className="mt-8 text-center">
           <Link
             href="/industries"
-            className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-xl text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
           >
             See all industries we serve
 

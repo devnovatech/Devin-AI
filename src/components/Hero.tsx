@@ -136,12 +136,12 @@ export default function Hero() {
                 </svg>
               </Link>
             </motion.span>
-            <Link
+            {/* <Link
               href="/services"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 sm:py-4 rounded-xl border border-white/15 text-white font-semibold text-sm sm:text-base hover:bg-white/5 hover:border-white/30 transition-all duration-300 min-h-[52px] sm:min-h-[56px]"
             >
               Explore our services
-            </Link>
+            </Link> */}
           </motion.div>
         </div>
 
