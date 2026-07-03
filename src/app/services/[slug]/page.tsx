@@ -1864,7 +1864,7 @@ export default function ServicePage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="lg:pl-8 lg:border-l border-deep-blue/[0.08]">
+              <div className="lg:pl-8  border-deep-blue/[0.08]">
                 <p className="body-base text-deep-blue/60 max-w-md">
                   {service.offeringsDescription}
                 </p>
@@ -2140,7 +2140,7 @@ export default function ServicePage() {
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-12 lg:mb-14">
             <div className="lg:col-span-7">
               <p className="eyebrow" style={{ color: accent }}>
-                Why teams pick us
+                Why us
               </p>
 
               <h2 className="mt-3 h-section text-deep-blue">

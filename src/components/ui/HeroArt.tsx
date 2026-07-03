@@ -46,7 +46,7 @@ export function HeroArt() {
       {/* Background dot grid (very faint) */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 opacity-40"
+        className="absolute inset-0 -z-10 opacity-40 dark:opacity-60"
         style={{
           backgroundImage:
             "radial-gradient(circle at 1px 1px, rgba(10,10,20,0.1) 1px, transparent 0)",
@@ -55,7 +55,6 @@ export function HeroArt() {
             "radial-gradient(ellipse at center, black 0%, transparent 70%)",
         }}
       />
-
 
       {/* OUTER ring with co-ordinate marks (closest to edge) */}
       <motion.svg
@@ -69,6 +68,10 @@ export function HeroArt() {
             <stop offset="0%" stopColor="#2486c5" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#2486c5" stopOpacity="0" />
           </linearGradient>
+          <linearGradient id="outer-ring-grad-dark" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#6ec1e8" stopOpacity="0.66" />
+            <stop offset="100%" stopColor="#6ec1e8" stopOpacity="0" />
+          </linearGradient>
         </defs>
         <circle
           cx="200"
@@ -78,6 +81,7 @@ export function HeroArt() {
           stroke="url(#outer-ring-grad)"
           strokeWidth="1.6"
           strokeDasharray="4 6"
+          className="dark:stroke-[url(#outer-ring-grad-dark)]"
         />
         {Array.from({ length: 24 }).map((_, i) => {
           const angle = (i * 360) / 24;
@@ -98,6 +102,7 @@ export function HeroArt() {
               y2={y2}
               stroke="rgba(10,10,20,0.18)"
               strokeWidth={i % 6 === 0 ? "1.4" : "1"}
+              className="dark:stroke-[rgba(255,255,255,0.22)]"
             />
           );
         })}
@@ -118,6 +123,7 @@ export function HeroArt() {
           stroke="rgba(10,10,20,0.18)"
           strokeWidth="1"
           strokeDasharray="2 6"
+          className="dark:stroke-[rgba(255,255,255,0.22)]"
         />
       </motion.svg>
 
@@ -136,6 +142,7 @@ export function HeroArt() {
           stroke="rgba(79,70,229,0.45)"
           strokeWidth="1"
           strokeDasharray="3 5"
+          className="dark:stroke-[rgba(79,70,229,0.54)]"
           animate={{ strokeOpacity: [0.45, 0.15, 0.45] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -148,7 +155,7 @@ export function HeroArt() {
         transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
       >
         <span
-          className="absolute h-3.5 w-3.5 rounded-full"
+          className="absolute h-3.5 w-3.5 rounded-full dark:h-4 dark:w-4"
           style={{
             top: "calc(50% - 35% - 7px)",
             left: "calc(50% - 7px)",
@@ -163,7 +170,7 @@ export function HeroArt() {
         transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
       >
         <span
-          className="absolute h-3 w-3 rounded-full"
+          className="absolute h-3 w-3 rounded-full dark:h-4 dark:w-4"
           style={{
             top: "calc(50% - 6px)",
             left: "calc(50% + 35%)",
@@ -211,7 +218,7 @@ export function HeroArt() {
             {/* Surface meridians */}
             <svg
               viewBox="0 0 100 100"
-              className="absolute inset-0 h-full w-full opacity-30"
+              className="absolute inset-0 h-full w-full opacity-30 dark:opacity-40"
               preserveAspectRatio="none"
             >
               <defs>
@@ -299,6 +306,7 @@ export function HeroArt() {
               stroke="rgba(79,70,229,0.12)"
               strokeWidth="1"
               strokeDasharray="2 4"
+              className="dark:stroke-[rgba(79,70,229,0.18)]"
             />
           );
         })}
@@ -361,7 +369,7 @@ function TravellingGlow() {
           background: { duration: 14, repeat: Infinity, ease: "linear" },
           scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
         }}
-        className="absolute h-[55%] w-[55%] rounded-full blur-2xl"
+        className="absolute h-[55%] w-[55%] rounded-full blur-2xl dark:blur-[28px]"
         style={{ top: "12%", left: "22%" }}
       />
     </motion.div>
@@ -404,10 +412,10 @@ function Primitive({
           style={{ width: size, height: size }}
         >
           {type === "cube" ? (
-            <svg viewBox="0 0 100 100" className="h-full w-full drop-shadow-[0_4px_8px_rgba(10,10,20,0.18)]">
-              <polygon points="50,10 85,30 50,50 15,30" fill="#fff" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" />
-              <polygon points="85,30 85,70 50,90 50,50" fill="#dde1ee" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" />
-              <polygon points="15,30 15,70 50,90 50,50" fill="#b8c1ff" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" />
+            <svg viewBox="0 0 100 100" className="h-full w-full drop-shadow-[0_4px_8px_rgba(10,10,20,0.18)] dark:drop-shadow-[0_4px_12px_rgba(255,255,255,0.15)]">
+              <polygon points="50,10 85,30 50,50 15,30" fill="#fff" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" className="dark:stroke-[rgba(255,255,255,0.3)]" />
+              <polygon points="85,30 85,70 50,90 50,50" fill="#dde1ee" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" className="dark:stroke-[rgba(255,255,255,0.3)]" />
+              <polygon points="15,30 15,70 50,90 50,50" fill="#b8c1ff" stroke="rgba(10,10,20,0.2)" strokeWidth="1.2" className="dark:stroke-[rgba(255,255,255,0.3)]" />
             </svg>
           ) : (
             <svg viewBox="0 0 100 100" className="h-full w-full">
@@ -480,4 +488,3 @@ function OrbitRing({
     </motion.div>
   );
 }
-

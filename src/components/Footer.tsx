@@ -100,13 +100,13 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           {/* Brand Column */}
           <div className="md:col-span-5">
-             <Link href="/" className="inline-flex items-center justify-center gap-2">
+             <Link href="/" className=" items-center justify-center">
             <Image
               src={isLight ? "/site_logo2.png" : "/site_logo.png"}
               alt="Dev Inception"
               width={75}
               height={75}
-              className="h-24 w-24 object-contain"
+              className="h-30 w-24 object-contain"
             />
           </Link>
 
@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
 
           {/* Link Columns */}
-          <div className="grid grid-cols-2 gap-8 md:col-span-7 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 mt-3 md:col-span-7 md:grid-cols-4">
             {linkColumns.map((col) => (
               <div key={col.title}>
                 <h4

@@ -105,12 +105,12 @@ const services: Service[] = [
     stack: ["Shopify", "WooCommerce", "Magento", "Stripe"
     ],
     icon: <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Discover", description: "Commerce strategy and requirements" },
-      { name: "Design", description: "Store architecture and conversion UX" },
-      { name: "Build", description: "Development, integrations, and testing" },
-      { name: "Launch", description: "Deployment, optimization, and scaling" },
-    ]
+  phases: [
+  {name: "Catalog", description: "Define products and categories",},
+  {name: "Cart", description: "Build cart and checkout flow",},
+  {name: "Pay", description: "Integrate payments and processing",},
+  {name: "Convert", description: "Launch, optimize, and scale",},
+]
   },
   {
     title: "UI/UX Design",
@@ -1203,7 +1203,7 @@ export default function Services() {
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="rounded-full border border-white/15 bg-white/10 px-2.5 py-0.5 backdrop-blur-md">
+                      <div className="rounded-xl border border-white/15 bg-white/10 px-2.5 py-1.5 items-center flex backdrop-blur-md">
                         <span className="text-[9px] font-medium tabular-nums text-white/80">
                           Phase {String(phaseIdx + 1).padStart(2, "0")}
                         </span>

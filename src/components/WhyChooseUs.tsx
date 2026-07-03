@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
-// import AnimatedSection from "./AnimatedSection";
+import { ArrowRight, X, Check } from "lucide-react";
 
 interface Reason {
   title: string;
@@ -136,101 +136,116 @@ const reasons: Reason[] = [
   },
 ];
 
-function ReasonCard({ reason, index }: { reason: Reason; index: number }) {
-  const numLabel = String(index + 1).padStart(2, "0");
-
-  return (
-    <div className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[220px]">
-      {/* Top accent line */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{ background: `linear-gradient(90deg, ${reason.accent}, ${reason.accent}55, transparent)` }}
-      />
-
-      {/* Corner glow */}
-      <div
-        className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.06] group-hover:opacity-[0.15] transition-opacity duration-500"
-        style={{ backgroundColor: reason.accent }}
-      />
-
-      {/* Background number */}
-      <div className="absolute top-3 right-4 text-[68px] font-bold leading-none select-none pointer-events-none" style={{ color: `${reason.accent}10` }}>
-        {numLabel}
-      </div>
-
-      <div className="relative z-10 flex flex-col h-full">
-        {/* Icon */}
-        <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3"
-          style={{
-            backgroundColor: `${reason.accent}14`,
-            color: reason.accent,
-            boxShadow: `inset 0 0 0 1px ${reason.accent}26`
-          }}
-        >
-          {reason.icon}
-        </div>
-
-        {/* Title */}
-        <h3 className="text-xl font-bold leading-tight tracking-tight text-deep-blue mb-2">
-          {reason.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-sm leading-relaxed text-deep-blue/60">
-          {reason.description}
-        </p>
-
-        {/* Bottom accent line */}
-        <div className="mt-auto pt-4">
-          <div
-            className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
-            style={{ background: `linear-gradient(90deg, ${reason.accent}, ${reason.accent}55)` }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
+const COMPARISONS = [
+  {
+    category: "Team seniority",
+    them: "Junior labour pyramids — account manager shields the seniors after the pitch.",
+    us: "8+ years average. The names on the proposal are the names on the work.",
+  },
+  {
+    category: "Delivery cadence",
+    them: "Quarterly status decks, weekly emails, surprises at handoff.",
+    us: "Working software demoed every Friday — transparent burndowns, preview envs.",
+  },
+  {
+    category: "Scope changes",
+    them: '"Sure, we can add it" → invoice surprises and slipped timelines.',
+    us: "Change-control protocol with impact analysis and client sign-off, every time.",
+  },
+  {
+    category: "Architecture",
+    them: "Built for handoff. Scales for the launch, not for the roadmap.",
+    us: "Architecture and code ready to support 10× — performance budgets enforced.",
+  },
+  {
+    category: "User focus",
+    them: "Stakeholder-driven specs. Build it, ship it, hope it works.",
+    us: "Real user research from day one. Usability-tested before launch.",
+  },
+];
 
 export default function WhyChooseUs() {
   return (
-    <section className="min-h-screen flex flex-col justify-center py-14 lg:py-16 bg-section-why relative overflow-hidden">
-      {/* Animated blooms */}
-      <div
-        className="absolute top-0 right-0 w-[420px] h-[420px] bg-neon-purple/10 rounded-full blur-[120px] pointer-events-none"
-      />
-      <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-neon-blue/8 rounded-full blur-[120px] pointer-events-none"
-      />
-      <div className="absolute inset-0 dotted-grid opacity-25 pointer-events-none" />
-
-      <div className="relative max-w-7xl mx-auto px-6 w-full">
-        {/* Header — compact split */}
-        <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-7 lg:mb-9">
+    <section className="border-y border-deep-blue/10 bg-section-why">
+      <div className="max-w-7xl mx-auto px-6 py-14 md:py-20">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
-                Why teams choose us
-              </span>
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">Why Us</span>
             </div>
-            <h2 className="h-section text-deep-blue">
-              Built on  More Than{" "}
-              <span className="gradient-text-dark">Just Partnerships</span>
+            <h2 className="text-[clamp(1.75rem,3.5vw,3rem)] font-bold leading-[1.08] tracking-[-0.025em] text-deep-blue">
+              Why Businesses Choose <span className="gradient-text-dark">Dev Inception.</span>
             </h2>
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              We focus on doing great work and building relationships that
-              last — the kind of team you come back to.
+              What you typically get from an agency engagement vs. what you actually get from us. Built into every contract, baked into how we hire.
             </p>
           </div>
         </div>
 
-        {/* 3×2 grid of reason cards - now with cleaner ValuesSection style */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-          {reasons.map((reason, i) => (
-            <ReasonCard key={reason.title} reason={reason} index={i} />
+        {/* Comparison table */}
+        <div className="mt-10 overflow-hidden rounded-2xl border border-deep-blue/10">
+          {/* Header row */}
+          <div className="grid grid-cols-12 items-center bg-deep-blue/5">
+            <div className="col-span-12 hidden border-r border-deep-blue/10 px-5 py-4 md:col-span-3 md:block">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-deep-blue/50">
+                Category
+              </p>
+            </div>
+            <div className="col-span-6 border-r border-deep-blue/10 px-5 py-4 md:col-span-4">
+              <div className="flex items-center gap-2.5">
+                <span className="grid h-7 w-7 place-items-center rounded-md bg-deep-blue/10 text-deep-blue/60">
+                  <X size={14} strokeWidth={2.5} />
+                </span>
+                <p className="text-[0.95rem] font-bold text-deep-blue/70">Typical agency</p>
+              </div>
+            </div>
+            <div className="col-span-6 px-5 py-4 md:col-span-5">
+              <div className="flex items-center gap-2.5">
+                <span className="grid h-7 w-7 place-items-center rounded-md bg-[#0A1628] text-white">
+                  <Check size={14} strokeWidth={2.5} />
+                </span>
+                <p className="text-[0.95rem] font-bold text-deep-blue">Dev Inception</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Rows */}
+          {COMPARISONS.map((row, i) => (
+            <div
+              key={row.category}
+              className="grid grid-cols-12 items-stretch border-t border-deep-blue/10"
+            >
+              {/* Category */}
+              <div className="col-span-12 border-b border-deep-blue/10 bg-deep-blue/5 px-5 py-3 md:col-span-3 md:border-b-0 md:border-r">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-deep-blue/50">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-1 text-[0.95rem] font-bold tracking-tight text-deep-blue">
+                  {row.category}
+                </p>
+              </div>
+
+              {/* Them */}
+              <div className="col-span-6 border-r border-deep-blue/10 px-5 py-5 md:col-span-4">
+                <p className="text-[0.95rem] leading-relaxed text-deep-blue/40 line-through decoration-deep-blue/20">
+                  {row.them}
+                </p>
+              </div>
+
+              {/* Us */}
+              <div className="group relative col-span-6 px-5 py-5 transition-colors hover:bg-deep-blue/5 md:col-span-5">
+                <p className="text-[0.95rem] font-medium leading-relaxed text-deep-blue/90">
+                  {row.us}
+                </p>
+                <span
+                  aria-hidden
+                  className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-[#0A1628] transition-transform group-hover:scale-y-100"
+                />
+              </div>
+            </div>
           ))}
         </div>
       </div>

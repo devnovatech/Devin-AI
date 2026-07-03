@@ -343,7 +343,7 @@ export default function Navbar() {
               );
             })}
 
-            <ThemeToggle className="ml-2" />
+            {/* <ThemeToggle className="ml-2" /> */}
 
             <Link
               href="/contact"

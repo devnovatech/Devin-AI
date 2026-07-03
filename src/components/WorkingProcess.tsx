@@ -22,7 +22,7 @@ const stages: Stage[] = [
     number: "01",
     name: "Plan",
     accent: "#4FC3F7",
-    bgMuted: "rgba(79, 195, 247, 0.08)",
+    bgMuted: "rgba(79, 195, 247, 0.18)",
     description:
       "We start by understanding your goals, users, and constraints. Together we agree on scope, success measures, and a clear roadmap before any work begins.",
     activities: ["Stakeholder interviews", "Tech & brand audit", "Success metrics", "Roadmap"],
@@ -39,7 +39,7 @@ const stages: Stage[] = [
     number: "02",
     name: "Design",
     accent: "#A78BFA",
-    bgMuted: "rgba(167, 139, 250, 0.08)",
+    bgMuted: "rgba(167, 139, 250, 0.18)",
     description:
       "We design around real user needs, then turn it into clear, interactive prototypes. Accessible and consistent from the first screen — not just good-looking.",
     activities: ["UX research", "Design system", "Prototypes", "Motion & a11y"],
@@ -57,7 +57,7 @@ const stages: Stage[] = [
     number: "03",
     name: "Develop",
     accent: "#2DD4BF",
-    bgMuted: "rgba(45, 212, 191, 0.08)",
+    bgMuted: "rgba(45, 212, 191, 0.18)",
     description:
       "We build in short, two-week cycles with regular demos. You see working software early and often — clean, tested, and ready for production.",
     activities: ["Bi-weekly demos", "Staging envs", "CI/CD pipeline", "Pair programming"],
@@ -73,7 +73,7 @@ const stages: Stage[] = [
     number: "04",
     name: "Test",
     accent: "#10B981",
-    bgMuted: "rgba(16, 185, 129, 0.08)",
+    bgMuted: "rgba(16, 185, 129, 0.18)",
     description:
       "We test thoroughly for quality, performance, security, and accessibility before anything goes live — so you launch with confidence, not surprises.",
     activities: ["E2E + visual regression", "Performance budgets", "OWASP review", "WCAG-AA audit"],
@@ -89,7 +89,7 @@ const stages: Stage[] = [
     number: "05",
     name: "Deploy",
     accent: "#EF4444",
-    bgMuted: "rgba(239, 68, 68, 0.08)",
+    bgMuted: "rgba(239, 68, 68, 0.18)",
     description:
       "We release to production smoothly, with monitoring in place and a safe way to roll back if needed. Everything is documented and handed over to your team.",
     activities: ["Zero-downtime deploy", "Rollback runbook", "Observability stack", "On-call setup"],
@@ -105,7 +105,7 @@ const stages: Stage[] = [
     number: "06",
     name: "Support",
     accent: "#F59E0B",
-    bgMuted: "rgba(245, 158, 11, 0.08)",
+    bgMuted: "rgba(245, 158, 11, 0.18)",
     description:
       "We stay on after launch — fixing, improving, and adding features over time, with regular reviews to keep your product growing with your business.",
     activities: ["On-call", "A/B program", "Growth", "Quarterly review"],
@@ -214,7 +214,7 @@ export default function WorkingProcess() {
                   <span
                     className="w-8 h-8 rounded-lg flex items-center justify-center text-white shrink-0"
                     style={{
-                      backgroundColor: isActive ? stage.accent : `${stage.accent}30`,
+                      backgroundColor: isActive ? stage.accent : `${stage.accent}40`,
                     }}
                   >
                     {stage.icon}
@@ -268,7 +268,7 @@ export default function WorkingProcess() {
                       backgroundColor: isActive ? stage.accent : stage.bgMuted,
                       borderColor: isActive
                         ? stage.accent
-                        : `${stage.accent}30`,
+                        : `${stage.accent}40`,
                       boxShadow: isActive
                         ? `0 12px 28px -12px ${stage.accent}80, inset 0 1px 0 rgba(255,255,255,0.15)`
                         : "none",

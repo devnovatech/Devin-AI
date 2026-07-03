@@ -41,10 +41,10 @@ export default function Hero() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-section-hero grid-bg pt-28 pb-14 lg:pb-16"
+      className="relative flex flex-col justify-center overflow-hidden bg-section-hero grid-bg pt-28 pb-14 lg:pb-16"
     >
       {/* Aurora background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-1/4 left-1/6 w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[150px]"
 
@@ -57,16 +57,10 @@ export default function Hero() {
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
         />
         <div className="noise-overlay" />
-      </div>
+      </div> */}
 
-      {/* Mouse-follow spotlight */}
-      <motion.div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none mix-blend-screen z-[1]"
-        style={{ background: spotlight }}
-      />
-      {/* 
-      <Particles /> */}
+
+      {/* <Particles /> */}
 
       {/* Main grid - CONTENT ON LEFT, HEROART ON RIGHT */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12  items-center">
@@ -150,14 +144,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.45, ease: [0.4, 0, 0.2, 1] }}
-          className="lg:col-span-5 relative hidden lg:block"
+          className="lg:col-span-6 relative hidden lg:block text-center"
         >
           <HeroArt />
         </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      {/* <motion.div
         className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden lg:block"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
@@ -165,7 +159,7 @@ export default function Hero() {
         <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
           <div className="w-1.5 h-1.5 bg-neon-blue rounded-full" />
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }
