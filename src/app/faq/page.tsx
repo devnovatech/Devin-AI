@@ -269,7 +269,7 @@ export default function FAQPage() {
                         </div>
 
                         {/* Right Column - Statistics Dashboard */}
-                        <div className="relative">
+                        <div className="relative rounded-full force-dark-card">
                             {/* Background glow */}
                             <div className="absolute -top-10 -right-10 w-60 h-60 bg-neon-blue/20 rounded-full blur-[100px]" />
                             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-neon-purple/20 rounded-full blur-[100px]" />
@@ -278,13 +278,13 @@ export default function FAQPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 lg:p-8"
+                                className="relative bg-[#0a1628] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 lg:p-8"
                             >
                                 {/* Header (same as Industry card style) */}
                                 <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-10 h-10 rounded-xl bg-neon-blue/20 flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-xl bg-neon-blue flex items-center justify-center">
                                         <svg
-                                            className="w-5 h-5 text-neon-blue"
+                                            className="w-5 h-5 text-white"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"

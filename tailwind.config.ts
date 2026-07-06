@@ -12,15 +12,17 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+
         // DevInception Logo Palette (solid colors, no gradients)
         "deep-blue": "#0A1628",      // dark navy - main BG
-        "dark-surface": "#0F1E33",    // slightly lighter surface
-        "dark-card": "#162A47",       // card BG on dark sections
-        "neon-blue": "#1E88E5",       // primary brand blue (logo mid-tone)
-        "neon-purple": "#4FC3F7",     // accent - light cyan (logo top)
-        "frosted-blue": "#90CAF9",    // medium light blue
-        "light-accent": "#E3F2FD",    // light section BG (icy blue)
-        // Variant blues used for service / industry tiles to keep visual variety within logo family
+        "dark-surface": "#0F1E33",   // slightly lighter surface
+        "dark-card": "#162A47",      // card BG on dark sections
+        "neon-blue": "#1E88E5",      // primary brand blue (logo mid-tone)
+        "neon-purple": "#4FC3F7",    // accent - light cyan (logo top)
+        "frosted-blue": "#90CAF9",   // medium light blue
+        "light-accent": "#E3F2FD",   // light section BG (icy blue)
+
+        // Variant blues
         "brand-1": "#1E88E5",
         "brand-2": "#0277BD",
         "brand-3": "#01579B",
@@ -31,31 +33,57 @@ const config: Config = {
         "brand-8": "#006064",
         "brand-9": "#1565C0",
       },
+
       fontFamily: {
-        sans: ["var(--font-poppins)", "var(--font-inter)", "system-ui", "sans-serif"],
+        sans: [
+          "var(--font-poppins)",
+          "var(--font-inter)",
+          "system-ui",
+          "sans-serif",
+        ],
       },
+
       animation: {
-        "marquee": "marquee 50s linear infinite",
-        "marquee-reverse": "marquee-reverse 50s linear infinite",
+        // Faster marquee (15s instead of 50s)
+        marquee: "marquee 15s linear infinite",
+        "marquee-reverse": "marquee-reverse 15s linear infinite",
+
         "spin-slow": "spin 20s linear infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
       },
+
       keyframes: {
         marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-50%)" },
+          "0%": {
+            transform: "translateX(0%)",
+          },
+          "100%": {
+            transform: "translateX(-50%)",
+          },
         },
+
         "marquee-reverse": {
-          "0%": { transform: "translateX(-50%)" },
-          "100%": { transform: "translateX(0%)" },
+          "0%": {
+            transform: "translateX(-50%)",
+          },
+          "100%": {
+            transform: "translateX(0%)",
+          },
         },
+
         "pulse-glow": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "1" },
+          "0%, 100%": {
+            opacity: "0.4",
+          },
+          "50%": {
+            opacity: "1",
+          },
         },
       },
     },
   },
+
   plugins: [],
 };
+
 export default config;

@@ -1057,10 +1057,10 @@ export default function Services() {
       clearTimeout(window.autoRollTimeout);
     }
 
-    // Resume auto-roll after 1 second (so user sees phase 0 briefly)
+    // Resume auto-roll after 500ms (shows phase 0 briefly, then auto-roll starts)
     window.autoRollTimeout = setTimeout(() => {
       setIsAutoRolling(true);
-    }, 1000); // ← 1 second delay before auto-roll starts
+    }, 300); // ← 500ms delay before auto-roll starts
 
     return () => {
       if (window.autoRollTimeout) {
@@ -1086,7 +1086,7 @@ export default function Services() {
       clearTimeout(window.autoRollTimeout);
     }
 
-    // Resume auto-roll after 2 seconds when user manually clicks
+    // Resume auto-roll after 2.5 seconds when user manually clicks
     window.autoRollTimeout = setTimeout(() => {
       setIsAutoRolling(true);
     }, 2000);
