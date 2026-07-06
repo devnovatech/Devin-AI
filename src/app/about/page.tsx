@@ -186,7 +186,7 @@ function StatsSection() {
   const cardAccents = ["#1E88E5", "#00ACC1", "#0288D1", "#039BE5"];
 
   return (
-    <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
+    <section className="py-20 lg:py-24 bg-[#0a1628] relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 grid-bg" />
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
@@ -623,7 +623,7 @@ function CareersSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
+    <section className="py-20 lg:py-24 bg-[#0a1628] relative overflow-hidden">
       {/* Background Effects - Enhanced */}
       <div className="absolute inset-0 grid-bg" />
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px] animate-pulse-slow" />
@@ -650,7 +650,7 @@ function CareersSection() {
           </div>
 
           <div className="lg:col-span-5">
-            <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+            <p className="body-base text-white max-w-md lg:ml-auto">
               Whether you're an expert or just starting your career, Dev
               Inception offers an environment built for growth, learning, and
               leadership.

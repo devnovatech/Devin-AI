@@ -1066,16 +1066,15 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
           </div>
         </div>
 
-        {/* TABLE */}
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b-2 border-deep-blue/20">
-                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[45%]">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto  rounded-2xl border border-deep-blue/5 shadow-sm">
+          <table className="w-full   border-collapse">
+            <thead className="bg-[#0a1628] ">
+              <tr className="bg-deep-blue/5 border-b-2  border-deep-blue/20">
+                <th className="text-left py-4 px-6 text-white/80 font-bold text-lg w-1/2">
                   The Challenge
                 </th>
-                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[10%]"></th>
-                <th className="text-left py-4 px-6 text-deep-blue font-bold text-lg w-[45%]">
+                <th className="text-left py-4 px-6 text-white/80 font-bold text-lg w-1/2">
                   Our Solution
                 </th>
               </tr>
@@ -1087,24 +1086,24 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
                 .map((item, idx) => (
                   <tr
                     key={idx}
-                    className={`border-b border-deep-blue/10 hover:bg-white/30 transition-all duration-300 ${idx % 2 === 0 ? "bg-white/10" : ""
-                      }`}
+                    className={`border-b border-deep-blue/5 transition-all duration-300 ${idx % 2 === 0 ? "bg-white" : "bg-deep-blue/[0.02]"
+                      } hover:bg-deep-blue/[0.04]`}
                   >
                     {/* Challenge */}
                     <td className="py-5 px-6 align-top">
-                      <div className="flex gap-3">
-                        <div className="w-8 h-8 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <div className="flex gap-4">
+                        <div className="w-9 h-9 rounded-full bg-rose-50 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-0.5">
                           <svg className="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                           </svg>
                         </div>
 
                         <div>
-                          <h3 className="font-bold text-deep-blue mb-1">
+                          <h4 className="font-semibold text-deep-blue mb-1">
                             {item.challenge.title}
-                          </h3>
+                          </h4>
                           {item.challenge.description && (
-                            <p className="text-sm text-deep-blue/65 leading-relaxed">
+                            <p className="text-sm text-deep-blue/60 leading-relaxed">
                               {item.challenge.description}
                             </p>
                           )}
@@ -1112,15 +1111,11 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
                       </div>
                     </td>
 
-                    {/* Arrow */}
-                    <td className="py-5 px-2 align-middle text-center">
-                    </td>
-
                     {/* Solution */}
                     <td className="py-5 px-6 align-top">
-                      <div className="flex gap-3">
+                      <div className="flex gap-4">
                         <div
-                          className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                           style={{
                             backgroundColor: `${accent}15`,
                             border: `1px solid ${accent}30`,
@@ -1132,11 +1127,11 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
                         </div>
 
                         <div>
-                          <h3 className="font-bold text-deep-blue mb-1">
+                          <h4 className="font-semibold text-deep-blue mb-1">
                             {item.solution.title}
-                          </h3>
+                          </h4>
                           {item.solution.description && (
-                            <p className="text-sm text-deep-blue/65 leading-relaxed">
+                            <p className="text-sm text-deep-blue/60 leading-relaxed">
                               {item.solution.description}
                             </p>
                           )}
@@ -1149,84 +1144,74 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
           </table>
         </div>
 
-        {/* SEE MORE BUTTON */}
-        {pairedData.length > visibleCount && (
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="px-5 py-2 text-sm font-semibold text-deep-blue border border-deep-blue/20 rounded-full hover:bg-white/30 transition"
-            >
-              {showAll ? "Show less" : "See more"}
-            </button>
-          </div>
-        )}
-
-        {/* MOBILE VIEW */}
-        <div className="block lg:hidden mt-8 space-y-6">
+        {/* Mobile Cards */}
+        <div className="md:hidden space-y-6">
           {pairedData
             .slice(0, showAll ? pairedData.length : visibleCount)
             .map((item, idx) => (
-              <div key={idx} className="bg-white/10 rounded-xl p-5 border border-deep-blue/10">
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-6 border border-deep-blue/10 shadow-sm hover:shadow-md transition-shadow"
+              >
                 {/* Challenge */}
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="w-6 h-6 rounded-full bg-rose-100 flex items-center justify-center">
-                      <svg className="w-3 h-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <div className="mb-5">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-8 h-8 rounded-full bg-rose-50 border border-rose-200 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                       </svg>
                     </div>
-                    <span className="text-xs font-semibold text-rose-500 uppercase tracking-wide">
+                    <span className="text-xs font-semibold text-rose-500 uppercase tracking-wider">
                       Challenge
                     </span>
                   </div>
 
-                  <h3 className="font-bold text-deep-blue">
+                  <h4 className="font-semibold text-deep-blue text-lg mb-1">
                     {item.challenge.title}
-                  </h3>
-
+                  </h4>
                   {item.challenge.description && (
-                    <p className="text-sm text-deep-blue/65 mt-1">
+                    <p className="text-sm text-deep-blue/60 leading-relaxed">
                       {item.challenge.description}
                     </p>
                   )}
                 </div>
 
-                {/* Arrow */}
-                <div className="flex justify-center my-3">
-                  <svg className="w-5 h-5 text-deep-blue/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                {/* Divider */}
+                <div className="flex items-center gap-3 my-4">
+                  <div className="flex-1 h-px bg-deep-blue/10" />
+                  <svg className="w-5 h-5 text-deep-blue/30 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                   </svg>
+                  <div className="flex-1 h-px bg-deep-blue/10" />
                 </div>
 
                 {/* Solution */}
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2.5 mb-3">
                     <div
-                      className="w-6 h-6 rounded-full flex items-center justify-center"
+                      className="w-8 h-8 rounded-full flex items-center justify-center"
                       style={{
                         backgroundColor: `${accent}15`,
                         border: `1px solid ${accent}30`,
                       }}
                     >
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-
                     <span
-                      className="text-xs font-semibold uppercase tracking-wide"
+                      className="text-xs font-semibold uppercase tracking-wider"
                       style={{ color: accent }}
                     >
                       Our Solution
                     </span>
                   </div>
 
-                  <h3 className="font-bold text-deep-blue">
+                  <h4 className="font-semibold text-deep-blue text-lg mb-1">
                     {item.solution.title}
-                  </h3>
-
+                  </h4>
                   {item.solution.description && (
-                    <p className="text-sm text-deep-blue/65 mt-1">
+                    <p className="text-sm text-deep-blue/60 leading-relaxed">
                       {item.solution.description}
                     </p>
                   )}
@@ -1235,6 +1220,17 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
             ))}
         </div>
 
+        {/* Show More / Less Button */}
+        {pairedData.length > visibleCount && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="group px-8 py-3 text-sm font-semibold text-deep-blue border-2 border-deep-blue/20 rounded-full hover:bg-deep-blue hover:text-white hover:border-deep-blue transition-all duration-300"
+            >
+              {showAll ? "Show Less" : `See All ${pairedData.length} Solutions`}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -1315,7 +1311,7 @@ export default function IndustryPage() {
         <div className="noise-overlay" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <AnimatedSection>
+          {/* <AnimatedSection>
             <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
               <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
               <span className="text-gray-600">/</span>
@@ -1323,7 +1319,7 @@ export default function IndustryPage() {
               <span className="text-gray-600">/</span>
               <span style={{ color: accent }}>{industry.title}</span>
             </nav>
-          </AnimatedSection>
+          </AnimatedSection> */}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
@@ -1464,6 +1460,76 @@ export default function IndustryPage() {
       {/* ───────── Challenges & Solutions Table ───────── */}
       <ChallengeSolutionSection pairedData={pairedData} accent={accent} />
 
+
+
+      {/* ───────── Impact Beyond Technology ───────── */}
+      {ecareCapabilitiesByIndustry[slug] && (
+        <section className="py-20 bg-[#0a1628] relative overflow-hidden">
+          <div className="absolute inset-0 grid-bg" />
+          <div
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
+            style={{ backgroundColor: `${accent}08` }}
+          />
+          <div
+            className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
+            style={{ backgroundColor: `${accent}06` }}
+          />
+
+          <div className="relative max-w-7xl mx-auto px-6">
+
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse"
+                  style={{ backgroundColor: accent }} />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
+                  CASE STUDY </p>
+              </div>
+
+              <h2 className="h-section text-white">
+                Impact Beyond <span className="gradient-text-dark">Technology</span>
+              </h2>
+            </div>
+
+
+            <div className="grid md:grid-cols-2 gap-6 pt-10 lg:gap-8">
+              {ecareCapabilitiesByIndustry[slug].impact.metrics.map((metricGroup, idx) => (
+                <div
+                  key={idx}
+                  className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.05] transition-all duration-500 overflow-hidden p-6 lg:p-7"
+                >
+                  <div
+                    className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                    style={{ backgroundColor: accent }}
+                  />
+
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-white mb-5 tracking-tight border-b border-white/[0.08] pb-3">
+                    {metricGroup.title}
+                  </h3>
+
+                  {/* Metrics grid */}
+                  <div className="grid grid-cols-2 gap-5">
+                    {metricGroup.metrics.map((metric, mIdx) => (
+                      <div key={mIdx} className="space-y-1">
+                        <div
+                          className="text-2xl lg:text-3xl font-bold tracking-tight"
+                          style={{ color: accent }}
+                        >
+                          {metric.value}
+                        </div>
+                        <div className="text-xs text-gray-400 leading-relaxed">
+                          {metric.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ───────── Recent work in this industry ───────── */}
       {ecareCapabilitiesByIndustry[slug] && (
         <section className="py-20 bg-light-accent relative overflow-hidden">
@@ -1476,9 +1542,13 @@ export default function IndustryPage() {
             <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-14">
               {/* Left column */}
               <div className="lg:col-span-7">
-                <p className="eyebrow text-neon-purple" style={{ color: accent }}>
-                  Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
-                </p>
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse"
+                    style={{ backgroundColor: accent }} />
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
+                    Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
+                  </p>
+                </div>
 
                 <h2 className="mt-3 h-section text-deep-blue">
                   {ecareCapabilitiesByIndustry[slug]?.heading}
@@ -1530,79 +1600,7 @@ export default function IndustryPage() {
         </section>
       )}
 
-      {/* ───────── Impact Beyond Technology ───────── */}
-      {ecareCapabilitiesByIndustry[slug] && (
-        <section className="py-20 bg-section-dark relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg" />
-          <div
-            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
-            style={{ backgroundColor: `${accent}08` }}
-          />
-          <div
-            className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
-            style={{ backgroundColor: `${accent}06` }}
-          />
 
-          <div className="relative max-w-7xl mx-auto px-6">
-
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span
-                  className="w-1.5 h-1.5 rounded-full animate-pulse"
-                  style={{ backgroundColor: accent }}
-                />
-                <p
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold"
-                  style={{ color: accent }}
-                >
-                  Case Study
-                </p>
-              </div>
-
-              <h2 className="h-section text-white">
-                Impact Beyond <span className="gradient-text-dark">Technology</span>
-              </h2>
-            </div>
-
-
-            <div className="grid md:grid-cols-2 gap-6 pt-10 lg:gap-8">
-              {ecareCapabilitiesByIndustry[slug].impact.metrics.map((metricGroup, idx) => (
-                <div
-                  key={idx}
-                  className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.05] transition-all duration-500 overflow-hidden p-6 lg:p-7"
-                >
-                  <div
-                    className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                    style={{ backgroundColor: accent }}
-                  />
-
-                  {/* Title */}
-                  <h3 className="text-lg font-semibold text-white mb-5 tracking-tight border-b border-white/[0.08] pb-3">
-                    {metricGroup.title}
-                  </h3>
-
-                  {/* Metrics grid */}
-                  <div className="grid grid-cols-2 gap-5">
-                    {metricGroup.metrics.map((metric, mIdx) => (
-                      <div key={mIdx} className="space-y-1">
-                        <div
-                          className="text-2xl lg:text-3xl font-bold tracking-tight"
-                          style={{ color: accent }}
-                        >
-                          {metric.value}
-                        </div>
-                        <div className="text-xs text-gray-400 leading-relaxed">
-                          {metric.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* ───────── Final CTA ───────── */}
       <CTABanner
@@ -1613,7 +1611,7 @@ export default function IndustryPage() {
             {industry.ctaDescription}
           </span>
         }
-        primaryLabel="Let's build it"
+        primaryLabel="Let's build it."
         primaryHref="/contact"
         secondaryLabel="See all industries"
         secondaryHref="/industries"
