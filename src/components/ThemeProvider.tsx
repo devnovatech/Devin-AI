@@ -38,11 +38,8 @@ function getInitialTheme(): Theme {
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
-    // Invert OS preference: system light → site dark, system dark → site light.
-    // (Mirrors the pre-paint script in app/layout.tsx — keep both in sync.)
-    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    console.log("-------------------> prefersLight", prefersLight);
-    return prefersLight ? "dark" : "light";
+    // Default to dark regardless of system preference
+    return "dark";
   } catch {
     /* ignore */
   }
@@ -50,10 +47,10 @@ function getInitialTheme(): Theme {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // Render-time default matches the no-FOUC inline script in layout.tsx.
+  // Set dark as default
   const [theme, setThemeState] = useState<Theme>("dark");
 
-  // After mount, sync to actual stored/system preference.
+  // After mount, sync to stored preference or default to dark
   useEffect(() => {
     const next = getInitialTheme();
     setThemeState(next);

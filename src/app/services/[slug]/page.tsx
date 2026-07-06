@@ -1526,7 +1526,7 @@ export default function ServicePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           {/* Breadcrumb */}
-          <AnimatedSection>
+          {/* <AnimatedSection>
             <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
               <Link href="/" className="hover:text-neon-blue transition-colors">
                 Home
@@ -1538,7 +1538,7 @@ export default function ServicePage() {
               <span className="text-gray-600">/</span>
               <span style={{ color: accent }}>{service.title}</span>
             </nav>
-          </AnimatedSection>
+          </AnimatedSection> */}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
@@ -1838,24 +1838,14 @@ export default function ServicePage() {
           {/* Header */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-6">
             <div className="lg:col-span-7">
-              <div
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full border backdrop-blur-sm"
-                style={{
-                  borderColor: `${accent}20`,
-                  backgroundColor: `${accent}08`,
-                }}
-              >
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: accent }}
-                />
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse"
+                  style={{ backgroundColor: accent }} />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                  style={{ color: accent }}>
 
-                <span
-                  className="text-[11px] font-semibold uppercase tracking-[0.18em]"
-                  style={{ color: accent }}
-                >
                   What's included
-                </span>
+                </p>
               </div>
 
               <h2 className="mt-2 h-section text-deep-blue max-w-2xl">
@@ -1864,7 +1854,7 @@ export default function ServicePage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="lg:pl-8 lg:border-l border-deep-blue/[0.08]">
+              <div className="lg:pl-8  border-deep-blue/[0.08]">
                 <p className="body-base text-deep-blue/60 max-w-md">
                   {service.offeringsDescription}
                 </p>
@@ -2068,7 +2058,7 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── How we work (4-step) ───────── */}
-      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-[#0a1628] permanent-dark relative overflow-hidden">
         <div className="absolute inset-0 grid-bg" />
         <div
           className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
@@ -2078,59 +2068,95 @@ export default function ServicePage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
             <div className="lg:col-span-7">
-              <p className="eyebrow text-neon-blue">How we work</p>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse"
+                  style={{ backgroundColor: accent }} />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                  style={{ color: accent }}>
+                  HOW WE WORK
+                </p>
+              </div>
               <h2 className="mt-3 h-section text-white">
                 {service.processHeading}
               </h2>
             </div>
             <div className="lg:col-span-5">
-              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+              <p className="body-base mb-12 text-white/70 max-w-md lg:ml-auto">
                 Transparent timelines, weekly demos, fixed quotes after
                 discovery. No surprises, no scope creep.
               </p>
             </div>
           </div>
 
-          <div className="relative grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px border-t border-dashed border-white/15" />
+          {/* Timeline */}
+          <div className="relative mt-16">
+            {/* Connecting Line */}
+            {/* <div
+              aria-hidden
+              className="absolute left-7 right-7 top-7 bg-white hidden h-px md:block"
 
-            {service.processSteps.map((step, i) => (
-              <div key={step.number} >
-                <div className="group relative h-full p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-500">
-                  <div className="flex items-center gap-3 mb-5">
+            /> */}
+
+            <div className={`grid gap-8 md:grid-cols-${service.processSteps.length}`}>
+              {service.processSteps.map((step, i) => (
+                <div
+                  key={step.number}
+                  className="relative group"
+                >
+                  {/* Node */}
+                  <div className="relative mx-auto h-14 w-14">
+                    {/* Rotating ring */}
                     <div
-                      className="relative w-14 h-14 rounded-full flex items-center justify-center font-bold text-base shrink-0 z-10"
+                      aria-hidden
+                      className="absolute inset-0 rounded-full"
                       style={{
-                        backgroundColor: accent,
-                        boxShadow: `0 12px 28px -10px ${accent}80`,
-                        color: '#ffffff', // Explicitly set white
+                        background: `conic-gradient(from 0deg, transparent 0%, ${accent}80 50%, transparent 100%)`,
+                        mask: "radial-gradient(circle, transparent 60%, black 62%)",
+                        WebkitMask: "radial-gradient(circle, transparent 60%, black 62%)",
+                      }}
+                    />
+
+                    {/* Center circle */}
+                    <div
+                      className="absolute inset-1 grid place-items-center rounded-full bg-white text-gray-900 transition-all duration-500 group-hover:scale-105"
+                      style={{
+                        boxShadow: `0 0 0 4px ${accent}20, 0 10px 30px ${accent}10`,
                       }}
                     >
-                      {step.number}
+                      <span className="text-base font-bold">{i + 1}</span>
                     </div>
-                    <span
-                      className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
-                      style={{
-                        color: accent,
-                        backgroundColor: `${accent}15`,
-                      }}
-                    >
-                      {step.duration}
-                    </span>
                   </div>
-                  <h3 className="h-card text-white mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    {step.description}
-                  </p>
+
+                  {/* Content */}
+                  <div className="mt-5 text-center">
+                    <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">
+                      Phase {String(i + 1).padStart(2, "0")}
+                    </p>
+                    <p className="mt-2 text-lg font-bold tracking-tight text-white">
+                      {step.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/70 max-w-xs mx-auto">
+                      {step.description}
+                    </p>
+
+                    {/* Duration badge */}
+                    <div className="mt-4 inline-block">
+                      <span
+                        className="text-[10px] font-medium uppercase tracking-[0.15em] px-3 py-1 rounded-full border border-white/10 text-white/70"
+                      >
+                        {step.duration}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ───────── Why us for THIS service ───────── */}
-      <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-white relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
         <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
 
@@ -2139,10 +2165,14 @@ export default function ServicePage() {
           {/* Header */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-12 lg:mb-14">
             <div className="lg:col-span-7">
-              <p className="eyebrow" style={{ color: accent }}>
-                Why teams pick us
-              </p>
-
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse"
+                  style={{ backgroundColor: accent }} />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                  style={{ color: accent }}>
+                  WHY US
+                </p>
+              </div>
               <h2 className="mt-3 h-section text-deep-blue">
                 {service.whyTitle}
               </h2>
@@ -2201,7 +2231,7 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── Industries we serve (compact) ───────── */}
-      <section className="pb-20 bg-light-accent relative overflow-hidden">
+      <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
         {/* Optional Background Glow */}
         <div
           className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
@@ -2214,9 +2244,15 @@ export default function ServicePage() {
 
               {/* Left Content */}
               <div className="lg:col-span-4">
-                <p className="eyebrow" style={{ color: accent }}>
-                  Industries
-                </p>
+
+                <div className="inline-flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full animate-pulse"
+                    style={{ backgroundColor: accent }} />
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                    style={{ color: accent }}>
+                    INDUSTRIES
+                  </p>
+                </div>
 
                 <h2 className="mt-3 h-section text-white">
                   {" "}
@@ -2270,16 +2306,29 @@ export default function ServicePage() {
             <div className="absolute inset-0 grid-bg" />
 
             <div className="relative max-w-7xl mx-auto px-6">
-              <div className="text-center max-w-3xl mx-auto mb-12">
-                <p className="eyebrow text-neon-blue">Pair it with</p>
-                <h2 className="mt-3 h-section text-white">
-                  Often combined{" "}
-                  <span className="gradient-text">with this service.</span>
-                </h2>
-                <p className="mt-5 body-base text-gray-400">
-                  Most engagements weave 2–3 capabilities together. Here&apos;s
-                  what teams typically pair with {service.title.toLowerCase()}.
-                </p>
+              <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
+                <div className="lg:col-span-7">
+                  <div className="inline-flex items-center gap-2 mb-3">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full animate-pulse"
+                      style={{ backgroundColor: accent }}
+                    />
+                    <p
+                      className="text-[10px] uppercase tracking-[0.2em] font-bold"
+                      style={{ color: accent }}
+                    >
+                      PAIR WITH IT
+                    </p>
+                  </div>
+                  <h2 className="h-section">
+                    Often combined <span className="gradient-text-dark">with this services.</span>
+                  </h2>
+                </div>
+                <div className="lg:col-span-5">
+                  <p className="body-base max-w-md lg:ml-auto">
+                    Most engagements weave 2–3 capabilities together. Here's what teams typically pair with mobile application development.
+                  </p>
+                </div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-5">

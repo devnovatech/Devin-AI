@@ -7,6 +7,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Industries from "@/components/Industries";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
+import { TechStack } from "@/components/TechStack";
 
 /**
  * Home page — each section has a visually distinct background
@@ -33,7 +34,8 @@ export default function Home() {
       <About />
       <WhyChooseUs />
       <Industries />
-      {/* <Testimonials /> */}
+      <TechStack />
+      <Testimonials />
       <CTABanner />
     </>
   );

@@ -3,7 +3,6 @@
 import { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-// import div from "./div";
 
 interface Industry {
   name: string;
@@ -32,12 +31,10 @@ const industries: Industry[] = [
     challenges: [
       "Speed to market without technical debt",
       "Scalable architecture from day one",
-      // "Lean teams under investor pressure",
     ],
     deliverables: [
       "MVP built and launched quickly",
       "Cloud infrastructure that scales automatically",
-      // "Product analytics and testing built in",
     ],
   },
   {
@@ -117,16 +114,6 @@ export default function Industries() {
 
   return (
     <section className="min-h-screen flex flex-col justify-center py-16 lg:py-20 bg-section-industries relative overflow-hidden">
-      {/* Animated blooms */}
-      <div
-        className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-blue/15 rounded-full blur-[120px] pointer-events-none"
-      />
-      <div
-        className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/12 rounded-full blur-[120px] pointer-events-none"
-      />
-      <div className="absolute inset-0 dotted-grid-light opacity-40 pointer-events-none" />
-      <div className="noise-overlay" />
-
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header — split editorial */}
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
@@ -186,14 +173,14 @@ export default function Industries() {
                   <button
                     key={ind.slug}
                     onClick={() => setActiveIndex(i)}
-                    className="group relative w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 overflow-hidden border"
-                    style={{
-                      backgroundColor: isActive ? "rgba(255,255,255,0.06)" : "transparent",
-                      borderColor: isActive ? "rgba(255,255,255,0.12)" : "transparent",
-                      boxShadow: isActive
-                        ? `0 18px 36px -16px ${ind.accent}90`
-                        : "none",
-                    }}
+                    className="group relative w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 overflow-hidden border border-white/20 "
+                    // style={{
+                    //   backgroundColor: isActive ? "rgba(255,255,255,0.06)" : "transparent",
+                    //   borderColor: isActive ? "rgba(255,255,255,0.12)" : "transparent",
+                    //   boxShadow: isActive
+                    //     ? `0 18px 36px -16px ${ind.accent}90`
+                    //     : "none",
+                    // }}
                   >
                     {/* Left accent bar */}
                     <span
@@ -271,13 +258,14 @@ export default function Industries() {
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               <div
-                className="relative rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden" >
-                {/* Big corner glow */}
+                className="relative rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden"
+              >
+                {/* Big corner glow - KEPT */}
                 <div
                   className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-[0.35]"
                   style={{ backgroundColor: active.accent }}
                 />
-                {/* Hairline accent border */}
+                {/* Hairline accent border - KEPT */}
                 <div
                   className="pointer-events-none absolute inset-0 rounded-2xl border"
                   style={{ borderColor: `${active.accent}50` }}
@@ -291,7 +279,7 @@ export default function Industries() {
                       style={{
                         backgroundColor: active.accent,
                         boxShadow: `0 12px 28px -10px ${active.accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
-                        color: '#ffffff', // Explicitly set icon/text to white
+                        color: '#ffffff',
                       }}
                     >
                       {active.icon}
@@ -363,33 +351,6 @@ export default function Industries() {
                       </ul>
                     </div>
                   </div>
-
-                  {/* Footer CTA */}
-                  {/* <div className="mt-6 pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                    <span className="text-sm text-gray-500">
-                      Working in this industry?
-                    </span>
-                    <Link
-                      href={`/industries/${active.slug}`}
-                      className="group inline-flex items-center gap-2 text-sm font-semibold transition-all"
-                      style={{ color: active.accent }}
-                    >
-                      Explore solutions for {active.shortLabel}
-                      <svg
-                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </Link>
-                  </div> */}
                 </div>
               </div>
             </AnimatePresence>
@@ -400,10 +361,9 @@ export default function Industries() {
         <div className="mt-8 text-center">
           <Link
             href="/industries"
-            className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
+            className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-xl text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
           >
             See all industries we serve
-
           </Link>
         </div>
       </div>
