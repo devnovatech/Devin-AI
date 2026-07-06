@@ -18,7 +18,7 @@ import {
   MongoLogo,
   FigmaLogo,
   GraphQLLogo,
-} from "./techLogos";
+} from "./TechLogos";
 
 // 6 inner-orbit logos (engineering + AI core)
 const INNER_LOGOS = [

@@ -8,7 +8,7 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import Link from "next/link";
-import { HeroArt } from "./ui/heroArt"; // Assuming you extracted HeroArt
+import { HeroArt } from "./ui/HeroArt"; 
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
