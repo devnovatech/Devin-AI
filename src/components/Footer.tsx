@@ -123,7 +123,7 @@ export default function Footer() {
                 : "text-white hover:text-neon-blue"
                 } transition-colors`}
             >
-              hello@devinception.com <ArrowRight size={18} />
+              HR@devinception.com <ArrowRight size={18} />
             </Link>
 
             {/* FIX: Consistent paragraph size in both themes */}
