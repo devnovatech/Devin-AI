@@ -168,9 +168,9 @@ export default function WhyChooseUs() {
   return (
     <section className="border-y border-deep-blue/10 bg-section-why">
       <div className="max-w-7xl mx-auto px-6 py-14 md:py-20">
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-6">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">Why Us</span>
             </div>
@@ -186,7 +186,7 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Comparison table */}
-        <div className="mt-10 overflow-hidden rounded-2xl border border-deep-blue/10">
+        <div className=" overflow-hidden rounded-2xl border border-deep-blue/10">
           {/* Header row */}
           <div className="grid grid-cols-12 items-center bg-deep-blue/5">
             <div className="col-span-12 hidden border-r border-deep-blue/10 px-5 py-4 md:col-span-3 md:block">
@@ -229,14 +229,14 @@ export default function WhyChooseUs() {
               </div>
 
               {/* Them */}
-              <div className="col-span-6 border-r border-deep-blue/10 px-5 py-5 md:col-span-4">
+              <div className="col-span-6 border-r border-deep-blue/10 px-4 py-4 md:col-span-4">
                 <p className="text-[0.95rem] leading-relaxed text-deep-blue/40 line-through decoration-deep-blue/20">
                   {row.them}
                 </p>
               </div>
 
               {/* Us */}
-              <div className="group relative col-span-6 px-5 py-5 transition-colors hover:bg-deep-blue/5 md:col-span-5">
+              <div className="group relative col-span-6 px-4 py-4 transition-colors hover:bg-deep-blue/5 md:col-span-5">
                 <p className="text-[0.95rem] font-medium leading-relaxed text-deep-blue/90">
                   {row.us}
                 </p>
