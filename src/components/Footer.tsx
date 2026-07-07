@@ -32,7 +32,7 @@ const linkColumns: {
     {
       title: "Industries",
       links: [
-        { label: "All Industries", href: "/industries" },
+        { label: "FinTech", href: "/industries/fintech" },
         { label: "SaaS & Tech Startups", href: "/industries/saas-startups" },
         { label: "Healthcare", href: "/industries/healthcare" },
         { label: "E-commerce", href: "/industries/ecommerce-retail" },

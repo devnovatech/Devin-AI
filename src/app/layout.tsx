@@ -7,14 +7,15 @@ import BackToTop from "@/components/BackToTop";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 // Inline script: applies the theme class before paint to avoid FOUC.
-// Policy: a user choice in localStorage always wins. Otherwise default to dark.
+// Policy: a user choice in localStorage always wins. Otherwise we INVERT
+// the OS preference — system light → site dark, system dark → site light.
 const themeInitScript = `
 (function(){
   try {
     var t = localStorage.getItem("devinception.theme");
     if (t !== "light" && t !== "dark") {
-      // Default to dark mode
-      t = "dark";
+      var prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      t = prefersLight ? "dark" : "light";
     }
     var root = document.documentElement;
     root.classList.remove("light","dark");

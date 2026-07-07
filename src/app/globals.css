@@ -51,28 +51,33 @@ html {
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
+
 .h-display {
   font-size: clamp(2.25rem, 4vw + 1rem, 4.25rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-weight: 700;
 }
+
 .h-section {
   font-size: clamp(1.875rem, 2.4vw + 1rem, 3rem);
   line-height: 1.1;
   letter-spacing: -0.015em;
   font-weight: 700;
 }
+
 .h-card {
   font-size: 1.125rem;
   line-height: 1.35;
   letter-spacing: -0.005em;
   font-weight: 700;
 }
+
 .body-lead {
   font-size: 1.125rem;
   line-height: 1.7;
 }
+
 .body-base {
   font-size: 0.95rem;
   line-height: 1.7;
@@ -82,14 +87,17 @@ html {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: #0a1628;
 }
+
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #1e88e5, #0277bd);
   border-radius: 6px;
   border: 2px solid #0a1628;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #4fc3f7;
 }
@@ -100,6 +108,7 @@ html {
     0 0 20px rgba(30, 136, 229, 0.4),
     0 0 60px rgba(30, 136, 229, 0.2);
 }
+
 .glow-text {
   text-shadow: 0 0 40px rgba(79, 195, 247, 0.5);
 }
@@ -110,17 +119,20 @@ html {
   background: none;
   -webkit-text-fill-color: currentColor;
 }
+
 .gradient-text-dark {
   color: #1565c0;
   background: none;
   -webkit-text-fill-color: currentColor;
 }
+
 /* In light mode, #4fc3f7 has poor contrast on white. Shift to the
    deeper logo blue so accent text reads cleanly on any light bg. */
 html.light .gradient-text {
   color: #1565c0;
   -webkit-text-fill-color: currentColor;
 }
+
 /* "neon-purple" is misnamed in the palette — it's actually the same
    light cyan (#4fc3f7). Same readability fix on light bg. */
 html.light .text-neon-purple {
@@ -134,6 +146,7 @@ html.light .text-neon-purple {
     linear-gradient(90deg, rgba(144, 202, 249, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
 }
+
 .grid-bg-light {
   background-image:
     linear-gradient(rgba(10, 22, 40, 0.07) 1px, transparent 1px),
@@ -169,32 +182,39 @@ html.light .text-neon-purple {
   backdrop-filter: blur(8px);
   box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.35);
 }
+
 .surface-tile {
   background-color: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.08);
 }
+
 .surface-pill {
   background-color: rgba(255, 255, 255, 0.04);
   border-color: rgba(255, 255, 255, 0.10);
 }
+
 .surface-divider {
   border-color: rgba(255, 255, 255, 0.08);
 }
+
 html.light .surface-panel {
   background-color: #ffffff;
   border-color: rgba(10, 22, 40, 0.08);
   backdrop-filter: none;
   box-shadow: 0 20px 44px -18px rgba(10, 22, 40, 0.12);
 }
+
 html.light .surface-tile {
   background-color: #ffffff;
   border-color: rgba(10, 22, 40, 0.07);
   box-shadow: 0 2px 8px -2px rgba(10, 22, 40, 0.06);
 }
+
 html.light .surface-pill {
   background-color: rgba(10, 22, 40, 0.035);
   border-color: rgba(10, 22, 40, 0.10);
 }
+
 html.light .surface-divider {
   border-color: rgba(10, 22, 40, 0.08);
 }
@@ -226,44 +246,53 @@ html.light .surface-divider {
 .bg-section-hero {
   background: radial-gradient(ellipse at top, #14223a 0%, #0a1628 55%, #060e1c 100%);
 }
+
 .bg-section-trust {
   background: #ffffff;
 }
+
 .bg-section-services {
   background:
     radial-gradient(ellipse 80% 60% at 20% 0%, rgba(30, 136, 229, 0.08), transparent 60%),
     radial-gradient(ellipse 60% 50% at 100% 100%, rgba(79, 195, 247, 0.08), transparent 60%),
     #eef6fe;
 }
+
 .bg-section-process {
   background:
     radial-gradient(ellipse at top, rgba(30, 136, 229, 0.15) 0%, transparent 50%),
     linear-gradient(180deg, #0f1e33 0%, #0a1628 100%);
 }
+
 .bg-section-about {
   background:
     radial-gradient(circle at 80% 20%, rgba(79, 195, 247, 0.08), transparent 40%),
     #fafdff;
 }
+
 .bg-section-why {
   background:
     radial-gradient(ellipse 70% 50% at 100% 0%, rgba(21, 101, 192, 0.06), transparent 60%),
     #f1f7fd;
 }
+
 .bg-section-industries {
   background:
     radial-gradient(ellipse at bottom right, rgba(2, 119, 189, 0.2) 0%, transparent 50%),
     radial-gradient(ellipse at top left, rgba(79, 195, 247, 0.1) 0%, transparent 50%),
     #0a1628;
 }
+
 .bg-section-testimonials {
   background:
     radial-gradient(ellipse 60% 50% at 50% 0%, rgba(79, 195, 247, 0.1), transparent 60%),
     #e6f1fc;
 }
+
 .bg-section-cta {
   background: #ffffff;
 }
+
 /* Generic "dark hero/section" used by page-level <section>s in /services,
    /about, /contact, /industries, etc. Visually matches the home-page
    .bg-section-hero radial in dark mode and gets a light wash + cascading
@@ -285,27 +314,67 @@ html.light .bg-section-hero {
     radial-gradient(circle at 70% 80%, rgba(79, 195, 247, 0.18) 0%, transparent 70%),
     linear-gradient(180deg, #f5fbff 0%, #d6ecff 100%);
 }
+
 html.light .bg-section-process {
   background:
     radial-gradient(ellipse at top, rgba(79, 195, 247, 0.18) 0%, transparent 55%),
     linear-gradient(180deg, #ffffff 0%, #eef6fe 100%);
 }
+
 html.light .bg-section-industries {
   background:
     radial-gradient(ellipse at bottom right, rgba(2, 119, 189, 0.10) 0%, transparent 50%),
     radial-gradient(ellipse at top left, rgba(79, 195, 247, 0.10) 0%, transparent 50%),
     linear-gradient(180deg, #ffffff 0%, #eaf4fc 100%);
 }
+
 html.light .bg-section-dark {
   background:
     radial-gradient(ellipse at top, rgba(30, 136, 229, 0.10) 0%, transparent 60%),
     linear-gradient(180deg, #ffffff 0%, #eef6fe 100%);
 }
+
 /* Light sections (already light) — gentle tone tweak for consistency */
 html.light .bg-section-testimonials {
   background:
     radial-gradient(ellipse 60% 50% at 50% 0%, rgba(79, 195, 247, 0.10), transparent 60%),
     #f0f7fd;
+}
+
+/* Force dark card to stay dark even in light mode */
+.force-dark-card {
+  background-color: #0a1628 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.force-dark-card .text-white,
+.force-dark-card .force-white-text {
+  color: #ffffff !important;
+}
+
+.force-dark-card .text-gray-300,
+.force-dark-card .force-gray-text {
+  color: rgb(209 213 219) !important;
+  /* Tailwind gray-300 */
+}
+
+.force-dark-card .text-gray-400,
+.force-dark-card .force-gray-text {
+  color: rgb(156 163 175) !important;
+  /* Tailwind gray-400 */
+}
+
+.force-dark-card .force-tag-text {
+  color: rgb(209 213 219) !important;
+  /* Tailwind gray-300 */
+}
+
+.force-dark-card .border-white\/\[0\.08\] {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.force-dark-card .bg-white\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
 }
 
 /* ─── Embedded dark feature cards (About stats, CTABanner inner) flip to white ─── */
@@ -360,6 +429,7 @@ html.light .bg-section-dark [class*="text-white/"],
 html.light .bg-deep-blue [class*="text-white/"] {
   color: rgba(10, 22, 40, 0.7);
 }
+
 html.light .bg-section-hero .text-white\/40,
 html.light .bg-section-hero .text-white\/45,
 html.light .bg-section-hero .text-white\/50,
@@ -377,6 +447,7 @@ html.light .bg-deep-blue .text-white\/45,
 html.light .bg-deep-blue .text-white\/50 {
   color: rgba(10, 22, 40, 0.45);
 }
+
 html.light .bg-section-hero .text-gray-300,
 html.light .bg-section-hero .text-gray-400,
 html.light .bg-section-process .text-gray-300,
@@ -389,6 +460,7 @@ html.light .bg-deep-blue .text-gray-300,
 html.light .bg-deep-blue .text-gray-400 {
   color: rgba(10, 22, 40, 0.62);
 }
+
 html.light .bg-section-hero .text-gray-500,
 html.light .bg-section-hero .text-gray-600,
 html.light .bg-section-process .text-gray-500,
@@ -462,6 +534,7 @@ html.light button.bg-neon-purple,
 html.light .bg-neon-purple.text-white {
   color: #ffffff !important;
 }
+
 /* bg-deep-blue gets flipped to white for embedded cards (CTABanner inner,
    About stats strip). Buttons / links want to KEEP the dark navy fill +
    white text — restore that for interactive elements. */
@@ -471,16 +544,19 @@ html.light a.bg-deep-blue {
   color: #ffffff !important;
   border-color: rgba(10, 22, 40, 0.12);
 }
+
 html.light button.bg-deep-blue .text-white,
 html.light a.bg-deep-blue .text-white,
 html.light button.bg-deep-blue [class*="text-white/"],
 html.light a.bg-deep-blue [class*="text-white/"] {
   color: rgba(255, 255, 255, 0.9) !important;
 }
+
 html.light button.bg-deep-blue [class*="bg-white\/"],
 html.light a.bg-deep-blue [class*="bg-white\/"] {
   background-color: rgba(255, 255, 255, 0.15) !important;
 }
+
 /* Children inside colored buttons keep white */
 html.light [class*="bg-section-"] [class*="bg-neon-blue"] [class*="text-"],
 html.light [class*="bg-section-"] [class*="bg-emerald-"] [class*="text-"],
@@ -498,6 +574,7 @@ html.light .bg-deep-blue [class*="from-white"] {
   --tw-gradient-from: rgba(10, 22, 40, 0.05) var(--tw-gradient-from-position) !important;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
 }
+
 html.light .bg-section-hero [class*="to-white"],
 html.light .bg-section-process [class*="to-white"],
 html.light .bg-section-industries [class*="to-white"],
@@ -517,20 +594,26 @@ html.light footer {
   background: linear-gradient(180deg, #f5f8fc 0%, #e9f1fa 100%);
   color: #0a1628;
 }
+
 html.light footer .text-white,
 html.light footer .text-gray-300,
 html.light footer .text-gray-400 {
   color: rgba(10, 22, 40, 0.7);
 }
+
 html.light footer [class*="border-white"] {
   border-color: rgba(10, 22, 40, 0.08);
 }
+
 html.light footer [class*="bg-white\/"] {
   background-color: rgba(10, 22, 40, 0.04);
 }
 
 /* ─── Scrollbar in light mode ─── */
-html.light::-webkit-scrollbar-track { background: #eef4fb; }
+html.light::-webkit-scrollbar-track {
+  background: #eef4fb;
+}
+
 html.light::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #90caf9, #4fc3f7);
   border: 2px solid #eef4fb;
@@ -546,39 +629,86 @@ html.light::-webkit-scrollbar-thumb {
 }
 
 @keyframes float-y {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-@keyframes float-y-slow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-@keyframes border-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(30, 136, 229, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(79, 195, 247, 0.5); }
-}
-@keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
-.animate-float { animation: float-y 4s ease-in-out infinite; }
-.animate-float-slow { animation: float-y-slow 6s ease-in-out infinite; }
+@keyframes float-y-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes border-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(30, 136, 229, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(79, 195, 247, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-float {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-y-slow 6s ease-in-out infinite;
+}
+
 .animate-gradient-shift {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
 }
-.animate-border-glow { animation: border-glow 3s ease-in-out infinite; }
+
+.animate-border-glow {
+  animation: border-glow 3s ease-in-out infinite;
+}
 
 /* Decorative dotted grid */
 .dotted-grid {
   background-image: radial-gradient(circle, rgba(10, 22, 40, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
 .dotted-grid-light {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
@@ -599,6 +729,7 @@ html.light::-webkit-scrollbar-thumb {
 
 /* Reduced motion safety */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -608,13 +739,16 @@ html.light::-webkit-scrollbar-thumb {
     scroll-behavior: auto !important;
   }
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 .touch-manipulation {
   touch-action: manipulation;
 }

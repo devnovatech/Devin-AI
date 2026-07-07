@@ -1611,7 +1611,7 @@ export default function ServicePage() {
             {meta && (
               <AnimatedSection direction="right" className="lg:col-span-5">
                 <div
-                  className="relative rounded-2xl bg-white/[0.03] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
+                  className="relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden force-dark-card"
                   style={
                     {
                       boxShadow: `0 30px 60px -20px ${accent}30`,
@@ -1626,10 +1626,10 @@ export default function ServicePage() {
 
                   <div className="relative">
                     <p
-                      className="eyebrow"
+                      className="text-[10px] uppercase tracking-[0.2em] font-bold mb-3"
                       style={{ color: accent }}
                     >
-                      At a glance
+                      At a Glance
                     </p>
 
                     {/* Timeline */}
@@ -1653,10 +1653,10 @@ export default function ServicePage() {
                         </svg>
                       </div>
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
                           Timeline
                         </p>
-                        <p className="mt-1 text-white text-base font-semibold">
+                        <p className="mt-1 text-white text-base font-semibold force-white-text">
                           {meta.timeline}
                         </p>
                       </div>
@@ -1683,10 +1683,10 @@ export default function ServicePage() {
                         </svg>
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
-                          Team
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Team Size
                         </p>
-                        <p className="mt-1 text-white text-sm font-semibold">
+                        <p className="mt-1 text-white text-sm font-semibold force-white-text">
                           {meta.teamSize}
                         </p>
                       </div>
@@ -1694,14 +1694,14 @@ export default function ServicePage() {
 
                     {/* Deliverables */}
                     <div className="mt-5 pb-5 border-b border-white/[0.08]">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
                         Key Deliverables
                       </p>
                       <ul className="mt-3 space-y-2">
                         {meta.deliverables.map((d) => (
                           <li
                             key={d}
-                            className="flex gap-2 text-sm text-gray-300 leading-snug"
+                            className="flex gap-2 text-sm text-gray-300 leading-snug force-gray-text"
                           >
                             <svg
                               className="w-3.5 h-3.5 mt-1 shrink-0"
@@ -1724,14 +1724,14 @@ export default function ServicePage() {
 
                     {/* Ideal for */}
                     <div className="mt-5">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-500 font-semibold">
-                        Ideal for
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                        Ideal For
                       </p>
                       <div className="mt-3 flex flex-wrap gap-1.5">
                         {meta.idealFor.map((tag) => (
                           <span
                             key={tag}
-                            className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08]"
+                            className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08] force-tag-text"
                           >
                             {tag}
                           </span>
@@ -2091,11 +2091,11 @@ export default function ServicePage() {
           {/* Timeline */}
           <div className="relative mt-16">
             {/* Connecting Line */}
-            {/* <div
+            <div
               aria-hidden
-              className="absolute left-7 right-7 top-7 bg-white hidden h-px md:block"
+              className="absolute left-7 right-7 top-7 bg-white/10 hidden h-px md:block"
 
-            /> */}
+            />
 
             <div className={`grid gap-8 md:grid-cols-${service.processSteps.length}`}>
               {service.processSteps.map((step, i) => (
