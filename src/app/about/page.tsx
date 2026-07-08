@@ -116,7 +116,7 @@ const jobOpenings = {
 function HeroSection() {
   return (
     <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg" />
+    
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
       <div className="noise-overlay" />
@@ -188,7 +188,7 @@ function StatsSection() {
   return (
     <section className="py-20 lg:py-24 bg-[#0a1628] relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 grid-bg" />
+    
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-neon-blue/[0.05] rounded-full blur-[100px]" />
@@ -625,7 +625,7 @@ function CareersSection() {
   return (
     <section className="py-20 lg:py-24 bg-[#0a1628] relative overflow-hidden">
       {/* Background Effects - Enhanced */}
-      <div className="absolute inset-0 grid-bg" />
+    
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px] animate-pulse-slow" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px] animate-pulse-slow delay-1000" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-neon-blue/5 rounded-full blur-[100px]" />
@@ -788,7 +788,7 @@ function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?:
   return (
     <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 grid-bg" />
+    
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-neon-blue/[0.05] rounded-full blur-[100px]" />

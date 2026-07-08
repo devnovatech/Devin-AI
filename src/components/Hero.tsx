@@ -95,8 +95,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-sm sm:text-lg text-ink-600 max-w-xl leading-tight"
           >
-            We help organizations translate complex business initiatives into production-ready systems — architected for scalability and aligned with strategic objectives to deliver reliable, high-impact solutions across web, mobile and AI. Built with precision engineering and long-term maintainability in mind, every system is designed to scale, adapt and support sustained growth.
-          </motion.p>
+We architect production-ready web, mobile, and AI systems that convert complex business initiatives into scalable digital platforms, engineered for reliability, extensibility, and long-term maintainability to drive sustained business growth.          </motion.p>
 
           {/* CTAs */}
           <motion.div

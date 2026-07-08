@@ -77,11 +77,18 @@ export default function LogoMarquee() {
                 "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
             }}
           >
-            <div className="flex animate-marquee gap-6 whitespace-nowrap">
-              {[...logos, ...logos, ...logos].map((logo, i) => (
-                <div key={i} className="flex-shrink-0">
-                  <LogoItem name={logo.name} src={logo.src} />
-                </div>
+            <div
+              className="flex w-max animate-marquee gap-6 whitespace-nowrap will-change-transform"
+              style={{
+                transform: "translate3d(0,0,0)",
+              }}
+            >
+              {[...logos, ...logos].map((logo, i) => (
+                <LogoItem
+                  key={`${logo.name}-${i}`}
+                  name={logo.name}
+                  src={logo.src}
+                />
               ))}
             </div>
           </div>

@@ -95,7 +95,7 @@ export default function About() {
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-Built by engineers and strategists who refused to settle for surface-level delivery. We embed across your entire operation — from early-stage architecture to enterprise-grade transformation.
+              Built by engineers and strategists who refused to settle for surface-level delivery. We embed across your entire operation — from early-stage architecture to enterprise-grade transformation.
             </p>
           </div>
         </div>

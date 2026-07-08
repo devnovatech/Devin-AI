@@ -44,9 +44,8 @@ const config: Config = {
       },
 
       animation: {
-        // Faster marquee (15s instead of 50s)
-        marquee: "marquee 15s linear infinite",
-        "marquee-reverse": "marquee-reverse 15s linear infinite",
+        marquee: "marquee 30s linear infinite",
+        "marquee-reverse": "marquee-reverse 30s linear infinite",
 
         "spin-slow": "spin 20s linear infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
@@ -55,31 +54,22 @@ const config: Config = {
       keyframes: {
         marquee: {
           "0%": {
-            transform: "translateX(0%)",
+            transform: "translate3d(0,0,0)",
           },
           "100%": {
-            transform: "translateX(-50%)",
+            transform: "translate3d(-50%,0,0)",
           },
         },
 
         "marquee-reverse": {
           "0%": {
-            transform: "translateX(-50%)",
+            transform: "translate3d(-50%,0,0)",
           },
           "100%": {
-            transform: "translateX(0%)",
+            transform: "translate3d(0,0,0)",
           },
         },
-
-        "pulse-glow": {
-          "0%, 100%": {
-            opacity: "0.4",
-          },
-          "50%": {
-            opacity: "1",
-          },
-        },
-      },
+      }
     },
   },
 

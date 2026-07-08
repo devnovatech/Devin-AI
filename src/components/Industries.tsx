@@ -52,12 +52,10 @@ const industries: Industry[] = [
     challenges: [
       "Cart abandonment & checkout friction",
       "PCI-DSS compliance & payment security",
-      "Slow Core Web Vitals on mobile",
     ],
     deliverables: [
       "Conversion-tuned checkout flows",
       "Headless commerce on Shopify / custom",
-      "Real-time inventory & ERP integrations",
     ],
   },
   {
@@ -75,12 +73,10 @@ const industries: Industry[] = [
     challenges: [
       "HIPAA & data-privacy compliance",
       "Fragmented EHR / legacy systems",
-      "Patient engagement & retention",
     ],
     deliverables: [
       "HIPAA-compliant platforms & audit trails",
       "Telemedicine + EHR API integrations",
-      "AI-assisted triage & clinical workflows",
     ],
   },
   {
@@ -169,20 +165,24 @@ export default function Industries() {
             <div className="hidden lg:flex flex-col gap-2">
               {industries.map((ind, i) => {
                 const isActive = activeIndex === i;
+                const onSelect = () => {
+                  setActiveIndex(i);
+                };
+
                 return (
                   <button
                     key={ind.slug}
-                    onClick={() => setActiveIndex(i)}
-                    className="group relative w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 overflow-hidden border border-white/20 "
-                    // style={{
-                    //   backgroundColor: isActive ? "rgba(255,255,255,0.06)" : "transparent",
-                    //   borderColor: isActive ? "rgba(255,255,255,0.12)" : "transparent",
-                    //   boxShadow: isActive
-                    //     ? `0 18px 36px -16px ${ind.accent}90`
-                    //     : "none",
-                    // }}
+                    onClick={onSelect}
+                    onMouseEnter={onSelect}
+                    className={`group relative w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl overflow-hidden transition-all duration-300 border ${isActive
+                        ? "bg-[#0a1628] dark:bg-[#0a1628] border-white/20 shadow-2xl shadow-black/40"
+                        : "bg-white dark:bg-[#0a1628]/60 border-gray-200 dark:border-white/10 hover:!bg-[#0a1628] dark:hover:!bg-[#0a1628] hover:border-[#0a1628] dark:hover:border-white/20 hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black/40"
+                      }`}
+                    style={{
+                      backdropFilter: 'blur(8px)',
+                    }}
                   >
-                    {/* Left accent bar */}
+                    {/* Left Accent Bar */}
                     <span
                       className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-full transition-all duration-500"
                       style={{
@@ -191,27 +191,14 @@ export default function Industries() {
                       }}
                     />
 
-                    {/* Soft accent tint */}
-                    {isActive && (
-                      <motion.span
-                        layoutId="industries-tab-tint"
-                        className="absolute inset-0 rounded-2xl pointer-events-none"
-                        style={{
-                          background: `linear-gradient(90deg, ${ind.accent}25 0%, transparent 70%)`,
-                        }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-
+                    {/* Icon */}
                     <div
-                      className="relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0"
+                      className={`relative w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${isActive
+                          ? "text-white"
+                          : "text-gray-700 dark:text-white/70 group-hover:text-white"
+                        }`}
                       style={{
-                        backgroundColor: isActive ? ind.accent : `${ind.accent}25`,
-                        color: isActive ? "white" : ind.accent,
+                        backgroundColor: isActive ? ind.accent : `${ind.accent}15`,
                         boxShadow: isActive
                           ? `0 12px 28px -10px ${ind.accent}90`
                           : "none",
@@ -220,26 +207,36 @@ export default function Industries() {
                       {ind.icon}
                     </div>
 
+                    {/* Content */}
                     <div className="relative flex-1 min-w-0">
-                      <h3 className="font-bold text-white text-base tracking-tight">
+                      <h3
+                        className={`font-bold text-base tracking-tight transition-colors duration-300 ${isActive
+                          ? "text-[#ffffff]"
+                          : "text-gray-9000 group-hover:text-[#ffffff]"
+                          }`}
+                      >
                         {ind.name}
                       </h3>
+
                       <p
-                        className={`text-xs mt-0.5 truncate transition-opacity duration-300 ${isActive ? "text-gray-400" : "text-gray-500"
+                        className={`text-xs mt-0.5 truncate transition-colors duration-300 ${isActive
+                          ? "text-[#ffffff]/70"
+                          : "text-gray-500 group-hover:text-[#ffffff]/70"
                           }`}
                       >
                         {ind.shortLabel} · click to explore
                       </p>
                     </div>
 
+                    {/* Arrow */}
                     <svg
                       className={`relative w-4 h-4 shrink-0 transition-all duration-300 ${isActive
-                        ? "opacity-100 translate-x-0"
-                        : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
+                          ? "opacity-100 translate-x-0 text-white"
+                          : "opacity-0 -translate-x-2 text-gray-400 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white"
                         }`}
                       fill="none"
                       viewBox="0 0 24 24"
-                      stroke={ind.accent}
+                      stroke="currentColor"
                       strokeWidth={2.5}
                     >
                       <path
@@ -248,6 +245,14 @@ export default function Industries() {
                         d="M17 8l4 4m0 0l-4 4m4-4H3"
                       />
                     </svg>
+
+                    {/* Hairline accent border - matching detail panel */}
+                    {isActive && (
+                      <div
+                        className="pointer-events-none absolute inset-0 rounded-2xl border"
+                        style={{ borderColor: `${ind.accent}50` }}
+                      />
+                    )}
                   </button>
                 );
               })}
@@ -258,13 +263,13 @@ export default function Industries() {
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               <div
-                className="relative rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-md p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden"
+                className="relative rounded-2xl p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden"
+                style={{
+                  backgroundColor: '#0a1628',
+                  borderColor: 'rgba(255, 255, 255, 0.08)',
+                  backdropFilter: 'blur(8px)',
+                }}
               >
-                {/* Big corner glow - KEPT */}
-                <div
-                  className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl opacity-[0.35]"
-                  style={{ backgroundColor: active.accent }}
-                />
                 {/* Hairline accent border - KEPT */}
                 <div
                   className="pointer-events-none absolute inset-0 rounded-2xl border"
@@ -289,15 +294,21 @@ export default function Industries() {
                         className="eyebrow"
                         style={{ color: active.accent }}
                       >
-                        Industry · {activeIndex + 1} / {industries.length}
+                        Industry
                       </p>
-                      <h3 className="mt-1 text-2xl lg:text-[1.875rem] font-bold text-white tracking-tight leading-[1.15]">
+                      <h3
+                        className="mt-1 text-2xl lg:text-[1.875rem] font-bold tracking-tight leading-[1.15]"
+                        style={{ color: '#ffffff' }}
+                      >
                         {active.name}
                       </h3>
                     </div>
                   </div>
 
-                  <p className="mt-5 text-gray-300 leading-relaxed text-[15px]">
+                  <p
+                    className="mt-5 leading-relaxed text-[15px]"
+                    style={{ color: 'rgb(209 213 219)' }} // gray-300
+                  >
                     {active.description}
                   </p>
 
@@ -311,7 +322,8 @@ export default function Industries() {
                         {active.challenges.map((c) => (
                           <li
                             key={c}
-                            className="flex gap-2.5 text-sm text-gray-400 leading-relaxed"
+                            className="flex gap-2.5 text-sm leading-relaxed"
+                            style={{ color: 'rgb(156 163 175)' }} // gray-400
                           >
                             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0" />
                             <span>{c}</span>
@@ -330,7 +342,8 @@ export default function Industries() {
                         {active.deliverables.map((d) => (
                           <li
                             key={d}
-                            className="flex gap-2.5 text-sm text-gray-400 leading-relaxed"
+                            className="flex gap-2.5 text-sm leading-relaxed"
+                            style={{ color: 'rgb(156 163 175)' }} // gray-400
                           >
                             <svg
                               className="w-4 h-4 mt-0.5 shrink-0"
@@ -358,12 +371,12 @@ export default function Industries() {
         </div>
 
         {/* See all link */}
-        <div className="mt-8 text-center">
+        <div className="mt-8 flex justify-center rounded-xl" >
           <Link
             href="/industries"
-            className="group inline-flex items-center gap-2 px-7 py-3.5 border border-white/15 rounded-xl text-white font-semibold text-sm hover:bg-white hover:text-deep-blue hover:border-white transition-all duration-300"
+            className="group inline-flex items-center gap-2 px-7 py-3.5  rounded-xl bg-deep-blue  text-xs font-semibold text-white transition-all duration-200 hover:bg-deep-blue/80 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
           >
-            See all industries we serve
+            <span>See all industry we serve</span>
           </Link>
         </div>
       </div>

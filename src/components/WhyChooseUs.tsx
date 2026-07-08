@@ -220,9 +220,7 @@ export default function WhyChooseUs() {
             >
               {/* Category */}
               <div className="col-span-12 border-b border-deep-blue/10 bg-deep-blue/5 px-5 py-3 md:col-span-3 md:border-b-0 md:border-r">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-deep-blue/50">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
+              
                 <p className="mt-1 text-[0.95rem] font-bold tracking-tight text-deep-blue">
                   {row.category}
                 </p>

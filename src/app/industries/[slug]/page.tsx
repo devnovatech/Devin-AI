@@ -1248,7 +1248,7 @@ export default function IndustryPage() {
   if (!industry) {
     return (
       <div className="pt-32 pb-16 min-h-[70vh] bg-section-dark flex flex-col items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+
         <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="relative max-w-xl mx-auto px-6 text-center">
           <div className="text-7xl font-bold gradient-text">404</div>
@@ -1302,7 +1302,7 @@ export default function IndustryPage() {
     <>
       {/* ───────── Hero with industry spec card ───────── */}
       <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+
         <div
           className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full blur-[120px]"
           style={{ backgroundColor: `${accent}1A` }}
@@ -1325,28 +1325,31 @@ export default function IndustryPage() {
             {/* LEFT — content */}
             <div className="lg:col-span-7">
               <AnimatedSection>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center">
                   {meta && (
                     <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center text-white"
+                      className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full border"
                       style={{
-                        backgroundColor: accent,
-                        boxShadow: `0 12px 28px -10px ${accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                        color: accent,
+                        borderColor: `${accent}40`,
+                        backgroundColor: `${accent}0A`,
                       }}
                     >
-                      {meta.icon}
+                      <div
+                        className="w-6 h-6 rounded-lg flex items-center justify-center text-[#ffffff]"
+                        style={{
+                          backgroundColor: accent,
+                          boxShadow: `0 6px 14px -6px ${accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                        }}
+                      >
+                        {meta.icon}
+                      </div>
+
+                      <span>
+                        Industry · {meta?.shortLabel ?? "Sector"}
+                      </span>
                     </div>
                   )}
-                  <span
-                    className="text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full border"
-                    style={{
-                      color: accent,
-                      borderColor: `${accent}40`,
-                      backgroundColor: `${accent}0A`,
-                    }}
-                  >
-                    Industry · {meta?.shortLabel ?? "Sector"}
-                  </span>
                 </div>
 
                 <h1 className="mt-6 h-display text-white">{industry.title}</h1>
@@ -1357,102 +1360,102 @@ export default function IndustryPage() {
             </div>
 
             {/* RIGHT — spec card */}
-           {meta && (
-  <AnimatedSection direction="right" className="lg:col-span-5">
-    <div
-      className="force-dark-card relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
-      style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
-    >
-      <div
-        className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
-        style={{ backgroundColor: accent }}
-      />
+            {meta && (
+              <AnimatedSection direction="right" className="lg:col-span-5">
+                <div
+                  className="force-dark-card relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
+                  style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
+                >
+                  <div
+                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
+                    style={{ backgroundColor: accent }}
+                  />
 
-      <div className="relative">
-        <p className="eyebrow" style={{ color: accent }}>
-          Sector snapshot
-        </p>
+                  <div className="relative">
+                    <p className="eyebrow" style={{ color: accent }}>
+                      Sector snapshot
+                    </p>
 
-        {/* Compliance */}
-        <div className="mt-6 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${accent}15` }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-              Compliance & standards
-            </p>
-            <p className="mt-1 text-white text-sm font-semibold">
-              {meta.compliance}
-            </p>
-          </div>
-        </div>
+                    {/* Compliance */}
+                    <div className="mt-6 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Compliance & standards
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.compliance}
+                        </p>
+                      </div>
+                    </div>
 
-        {/* Experience */}
-        <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${accent}15` }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-              Our experience
-            </p>
-            <p className="mt-1 text-white text-sm font-semibold">
-              {meta.projectsShipped}
-            </p>
-          </div>
-        </div>
+                    {/* Experience */}
+                    <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Our experience
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.projectsShipped}
+                        </p>
+                      </div>
+                    </div>
 
-        {/* Engagement length */}
-        <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${accent}15` }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-              Typical engagement
-            </p>
-            <p className="mt-1 text-white text-sm font-semibold">
-              {meta.typicalEngagement}
-            </p>
-          </div>
-        </div>
+                    {/* Engagement length */}
+                    <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Typical engagement
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.typicalEngagement}
+                        </p>
+                      </div>
+                    </div>
 
-        {/* Top focus */}
-        <div className="mt-5">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-            Top focus areas
-          </p>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {meta.topFocus.map((tag) => (
-              <span
-                key={tag}
-                className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </AnimatedSection>
-)}
+                    {/* Top focus */}
+                    <div className="mt-5">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                        Top focus areas
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {meta.topFocus.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            )}
           </div>
         </div>
       </section>
@@ -1465,7 +1468,7 @@ export default function IndustryPage() {
       {/* ───────── Impact Beyond Technology ───────── */}
       {ecareCapabilitiesByIndustry[slug] && (
         <section className="py-20 bg-[#0a1628] relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg" />
+
           <div
             className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
             style={{ backgroundColor: `${accent}08` }}
@@ -1513,7 +1516,7 @@ export default function IndustryPage() {
                       <div key={mIdx} className="space-y-1">
                         <div
                           className="text-2xl lg:text-3xl font-bold tracking-tight"
-                          style={{ color: accent }}
+                          style={{ color: "#ffffff" }}
                         >
                           {metric.value}
                         </div>
