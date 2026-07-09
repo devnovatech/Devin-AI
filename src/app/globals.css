@@ -126,6 +126,12 @@ html {
   -webkit-text-fill-color: currentColor;
 }
 
+.gradient-text-fixed {
+  color: #4fc3f7;
+  background: none;
+
+}
+
 /* In light mode, #4fc3f7 has poor contrast on white. Shift to the
    deeper logo blue so accent text reads cleanly on any light bg. */
 html.light .gradient-text {
@@ -168,6 +174,84 @@ html.light .text-neon-purple {
 .section-light {
   background-color: #e3f2fd;
   color: #0a1628;
+}
+
+
+/* ───────── Service Banner (inverts background based on theme) ───────── */
+/* =========================
+   Service Banner Theme
+========================= */
+
+/* Default = Dark */
+.bg-service-banner {
+  --banner-bg: #ffffff;
+  --banner-text: #0a1628;
+  --banner-text-muted: rgba(10, 22, 40, 0.65);
+  --icon-bg: rgba(10, 22, 40, 0.06);
+  --icon-color: #1565c0;
+
+
+
+  background: var(--banner-bg);
+  color: var(--banner-text);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Light Theme */
+html.light .bg-service-banner {
+  --banner-bg: #0a1628;
+  --banner-text: #ffffff;
+
+  --banner-text-muted: rgba(255, 255, 255, 0.65);
+  --icon-bg: rgba(255, 255, 255, 0.08);
+  --icon-color: #4fc3f7;
+
+  border-color: rgba(10, 22, 40, 0.08);
+}
+
+/* Text */
+.bg-service-banner .banner-title {
+  color: var(--banner-text);
+}
+
+.bg-service-banner .banner-label {
+  color: var(--banner-text-muted);
+}
+
+/* Icon */
+.bg-service-banner .icon-container {
+  background: var(--icon-bg);
+  color: var(--icon-color);
+  transition: all 0.3s ease;
+}
+
+.bg-service-banner .stat-card:hover .icon-container {
+  transform: translateY(-2px);
+}
+
+html.light .bg-service-banner .icon-container {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #4fc3f7;
+}
+
+/* Buttons - keep the primary button style consistent */
+.bg-service-banner .btn-primary {
+  background-color: #0a1628;
+  color: #ffffff;
+}
+
+html.light .bg-service-banner .btn-primary {
+  background-color: #ffffff;
+  color: #0a1628;
+}
+
+/* Dividers inside the banner */
+.bg-service-banner .divider {
+  border-color: rgba(10, 22, 40, 0.08);
+}
+
+html.light .bg-service-banner .divider {
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* ─── Surface tokens ─────────────────────────────────────────────
@@ -274,6 +358,10 @@ html.light .surface-divider {
   background:
     radial-gradient(ellipse 70% 50% at 100% 0%, rgba(21, 101, 192, 0.06), transparent 60%),
     #f1f7fd;
+}
+
+.hover-bg-dark:hover:not(.active) {
+  background-color: #0a1628 !important;
 }
 
 .bg-section-industries {

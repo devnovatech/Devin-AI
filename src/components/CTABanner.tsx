@@ -9,7 +9,7 @@ export default function CTABanner({
   heading = (
     <>
       Technology That Moves{" "}
-      <span className="text-neon-blue">Your Business Forward.</span>
+      <span className="gradient-text-fixed">Your Business Forward.</span>
     </>
   ),
   description = "From custom software and mobile apps to AI systems, cloud infrastructure, and digital growth, we help ambitious businesses build technology that's designed to perform today and evolve tomorrow.",
@@ -40,11 +40,11 @@ export default function CTABanner({
             backgroundColor: "#0a1628", // Permanent deep blue
           }}
         >          {/* Background effects */}
-          <div
+          {/* <div
             aria-hidden
             className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full opacity-50 blur-3xl"
             style={{ background: "radial-gradient(circle, #2486c5 0%, transparent 65%)" }}
-          />
+          /> */}
           {/* <div
             aria-hidden
             className="pointer-events-none absolute -bottom-32 -left-20 h-80 w-80 rounded-full opacity-40 blur-3xl"

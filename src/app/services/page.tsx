@@ -658,7 +658,7 @@ export default function ServicesPage() {
     <>
       {/* ───────── Hero — editorial split ───────── */}
       <section className="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+      
         <div
           className="absolute top-1/4 right-0 w-[520px] h-[520px] bg-neon-blue/[0.10] rounded-full blur-[140px]" />
         <div
@@ -996,7 +996,7 @@ export default function ServicesPage() {
 
       {/* ───────── Process (interactive timeline) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+      
 
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.08] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
@@ -1302,7 +1302,7 @@ export default function ServicesPage() {
 
       {/* ───────── FAQ (First 6 items with See More link) ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+      
         <div
           className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none"
 

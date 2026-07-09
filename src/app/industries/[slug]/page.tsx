@@ -1060,8 +1060,8 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
               Challenge → Solution
             </p>
 
-            <h2 className="mt-2 h-section text-deep-blue">
-              From Problem to Progress
+            <h2 className="h-section text-deep-blue">
+              From <span className="gradient-text-dark">Problem</span> to <span className="gradient-text-dark">Progress</span>
             </h2>
           </div>
         </div>
@@ -1236,6 +1236,18 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
   );
 }
 
+function splitTitle(title: string): { firstHalf: string; secondHalf: string } {
+  const mid = Math.floor(title.length / 2);
+  // find nearest space to the midpoint so we don't cut a word in half
+  let splitIndex = title.indexOf(' ', mid);
+  if (splitIndex === -1) splitIndex = title.lastIndexOf(' ', mid);
+  if (splitIndex === -1) splitIndex = mid; // fallback: no spaces at all
+
+  const firstHalf = title.slice(0, splitIndex).trim();
+  const secondHalf = title.slice(splitIndex).trim();
+
+  return { firstHalf, secondHalf };
+}
 /* ───────── Main Component ───────── */
 
 export default function IndustryPage() {
@@ -1248,7 +1260,7 @@ export default function IndustryPage() {
   if (!industry) {
     return (
       <div className="pt-32 pb-16 min-h-[70vh] bg-section-dark flex flex-col items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+
         <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="relative max-w-xl mx-auto px-6 text-center">
           <div className="text-7xl font-bold gradient-text">404</div>
@@ -1302,7 +1314,7 @@ export default function IndustryPage() {
     <>
       {/* ───────── Hero with industry spec card ───────── */}
       <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+
         <div
           className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full blur-[120px]"
           style={{ backgroundColor: `${accent}1A` }}
@@ -1312,147 +1324,159 @@ export default function IndustryPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           {/* <AnimatedSection>
-            <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-              <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
-              <span className="text-gray-600">/</span>
-              <Link href="/industries" className="hover:text-neon-blue transition-colors">Industries</Link>
-              <span className="text-gray-600">/</span>
-              <span style={{ color: accent }}>{industry.title}</span>
-            </nav>
-          </AnimatedSection> */}
+          //   <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
+          //     <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
+          //     <span className="text-gray-600">/</span>
+          //     <Link href="/industries" className="hover:text-neon-blue transition-colors">Industries</Link>
+          //     <span className="text-gray-600">/</span>
+          //     <span style={{ color: accent }}>{industry.title}</span>
+          //   </nav>
+          // </AnimatedSection> */}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
             <div className="lg:col-span-7">
               <AnimatedSection>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center">
                   {meta && (
                     <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center text-white"
+                      className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full border"
                       style={{
-                        backgroundColor: accent,
-                        boxShadow: `0 12px 28px -10px ${accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                        color: accent,
+                        borderColor: `${accent}40`,
+                        backgroundColor: `${accent}0A`,
                       }}
                     >
-                      {meta.icon}
+                      <div
+                        className="w-6 h-6 rounded-lg flex items-center justify-center text-[#ffffff]"
+                        style={{
+                          backgroundColor: accent,
+                          boxShadow: `0 6px 14px -6px ${accent}80, inset 0 1px 0 rgba(255,255,255,0.18)`,
+                        }}
+                      >
+                        {meta.icon}
+                      </div>
+
+                      <span>
+                        Industry · {meta?.shortLabel ?? "Sector"}
+                      </span>
                     </div>
                   )}
-                  <span
-                    className="text-[11px] font-semibold uppercase tracking-[0.18em] px-3 py-1.5 rounded-full border"
-                    style={{
-                      color: accent,
-                      borderColor: `${accent}40`,
-                      backgroundColor: `${accent}0A`,
-                    }}
-                  >
-                    Industry · {meta?.shortLabel ?? "Sector"}
-                  </span>
                 </div>
 
-                <h1 className="mt-6 h-display text-white">{industry.title}</h1>
-                <p className="mt-6 body-lead text-gray-400">
+                <h1 className="mt-6 h-display text-white">
+                  {(() => {
+                    const { firstHalf, secondHalf } = splitTitle(industry.title);
+                    return (
+                      <>
+                        <span className="text-white">{firstHalf}</span>{' '}
+                        <span className="gradient-text">{secondHalf}</span>
+                      </>
+                    );
+                  })()}
+                </h1>                <p className="mt-6 body-lead text-gray-400">
                   {industry.heroDescription}
                 </p>
               </AnimatedSection>
             </div>
 
             {/* RIGHT — spec card */}
-           {meta && (
-  <AnimatedSection direction="right" className="lg:col-span-5">
-    <div
-      className="force-dark-card relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
-      style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
-    >
-      <div
-        className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
-        style={{ backgroundColor: accent }}
-      />
+            {meta && (
+              <AnimatedSection direction="right" className="lg:col-span-5">
+                <div
+                  className="force-dark-card relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
+                  style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
+                >
+                  <div
+                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
+                    style={{ backgroundColor: accent }}
+                  />
 
-      <div className="relative">
-        <p className="eyebrow" style={{ color: accent }}>
-          Sector snapshot
-        </p>
+                  <div className="relative">
+                    <p className="eyebrow gradient-text-dark">
+                      Sector snapshot
+                    </p>
 
-        {/* Compliance */}
-        <div className="mt-6 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${accent}15` }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-              Compliance & standards
-            </p>
-            <p className="mt-1 text-white text-sm font-semibold">
-              {meta.compliance}
-            </p>
-          </div>
-        </div>
+                    {/* Compliance */}
+                    <div className="mt-6 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Compliance & standards
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.compliance}
+                        </p>
+                      </div>
+                    </div>
 
-        {/* Experience */}
-        <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${accent}15` }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-              Our experience
-            </p>
-            <p className="mt-1 text-white text-sm font-semibold">
-              {meta.projectsShipped}
-            </p>
-          </div>
-        </div>
+                    {/* Experience */}
+                    <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Our experience
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.projectsShipped}
+                        </p>
+                      </div>
+                    </div>
 
-        {/* Engagement length */}
-        <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${accent}15` }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-              Typical engagement
-            </p>
-            <p className="mt-1 text-white text-sm font-semibold">
-              {meta.typicalEngagement}
-            </p>
-          </div>
-        </div>
+                    {/* Engagement length */}
+                    <div className="mt-5 flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Typical engagement
+                        </p>
+                        <p className="mt-1 text-white text-sm font-semibold">
+                          {meta.typicalEngagement}
+                        </p>
+                      </div>
+                    </div>
 
-        {/* Top focus */}
-        <div className="mt-5">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-            Top focus areas
-          </p>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {meta.topFocus.map((tag) => (
-              <span
-                key={tag}
-                className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </AnimatedSection>
-)}
+                    {/* Top focus */}
+                    <div className="mt-5">
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                        Top focus areas
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {meta.topFocus.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[11px] px-2.5 py-1 rounded-full text-gray-300 bg-white/[0.04] border border-white/[0.08]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            )}
           </div>
         </div>
       </section>
@@ -1465,7 +1489,7 @@ export default function IndustryPage() {
       {/* ───────── Impact Beyond Technology ───────── */}
       {ecareCapabilitiesByIndustry[slug] && (
         <section className="py-20 bg-[#0a1628] relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg" />
+
           <div
             className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
             style={{ backgroundColor: `${accent}08` }}
@@ -1481,12 +1505,12 @@ export default function IndustryPage() {
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse"
                   style={{ backgroundColor: accent }} />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-fixed">
                   CASE STUDY </p>
               </div>
 
               <h2 className="h-section text-white">
-                Impact Beyond <span className="gradient-text-dark">Technology</span>
+                Impact Beyond <span className="gradient-text-fixed">Technology</span>
               </h2>
             </div>
 
@@ -1513,7 +1537,7 @@ export default function IndustryPage() {
                       <div key={mIdx} className="space-y-1">
                         <div
                           className="text-2xl lg:text-3xl font-bold tracking-tight"
-                          style={{ color: accent }}
+                          style={{ color: "#ffffff" }}
                         >
                           {metric.value}
                         </div>
@@ -1545,13 +1569,22 @@ export default function IndustryPage() {
                 <div className="inline-flex items-center gap-2 mb-3">
                   <span className="w-1.5 h-1.5 rounded-full animate-pulse"
                     style={{ backgroundColor: accent }} />
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-dark">
                     Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
                   </p>
                 </div>
 
                 <h2 className="mt-3 h-section text-deep-blue">
-                  {ecareCapabilitiesByIndustry[slug]?.heading}
+                  {(() => {
+                    const heading = ecareCapabilitiesByIndustry[slug]?.heading || 'Powering Every Stage';
+                    const { firstHalf, secondHalf } = splitTitle(heading);
+                    return (
+                      <>
+                        <span className="text-deep-blue">{firstHalf}</span>{' '}
+                        <span className="gradient-text-dark">{secondHalf}</span>
+                      </>
+                    );
+                  })()}
                 </h2>
               </div>
 
@@ -1583,7 +1616,7 @@ export default function IndustryPage() {
                       border: `1px solid ${accent}30`,
                     }}
                   >
-                    <div className="w-6 h-6" style={{ color: accent }}>
+                    <div className="w-6 h-6 gradient-text-dark" >
                       {capability.icon}
                     </div>
                   </div>
@@ -1600,22 +1633,30 @@ export default function IndustryPage() {
         </section>
       )}
 
-
-
       {/* ───────── Final CTA ───────── */}
       <CTABanner
-        eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
-        heading={<>{industry.ctaHeading}</>}
-        description={
-          <span style={{ whiteSpace: 'pre-line' }}>
-            {industry.ctaDescription}
-          </span>
-        }
-        primaryLabel="Let's build it."
-        primaryHref="/contact"
-        secondaryLabel="See all industries"
-        secondaryHref="/industries"
-      />
+  eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
+  heading={
+    (() => {
+      const { firstHalf, secondHalf } = splitTitle(industry.ctaHeading);
+      return (
+        <>
+          <span className="text-white">{firstHalf}</span>{' '}
+          <span className="gradient-text-fixed">{secondHalf}</span>
+        </>
+      );
+    })()
+  }
+  description={
+    <span style={{ whiteSpace: 'pre-line' }}>
+      {industry.ctaDescription}
+    </span>
+  }
+  primaryLabel="Let's build it."
+  primaryHref="/contact"
+  secondaryLabel="See all industries"
+  secondaryHref="/industries"
+/>
     </>
   );
 }

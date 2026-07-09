@@ -199,13 +199,13 @@ export function TechStack() {
                 }`}
               >
                 {c.label}
-                <span
+                {/* <span
                   className={`rounded-md px-1.5 py-0.5 font-mono text-[10px] ${
                     isActive ? "bg-white/15 text-white/80" : "bg-deep-blue/10 text-deep-blue/50"
                   }`}
                 >
                   {c.tools.length}
-                </span>
+                </span> */}
               </button>
             );
           })}
@@ -248,13 +248,6 @@ export function TechStack() {
             </motion.div>
           </AnimatePresence>
         </div>
-
-        {/* Helper line */}
-        <p className="mt-6 text-xs text-deep-blue/50">
-          We're not married to any single tool — we pick what fits the problem,
-          adopt yours when needed, and avoid hype-driven choices that cost you
-          three years from now.
-        </p>
       </div>
     </section>
   );

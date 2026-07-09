@@ -7,6 +7,7 @@ import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import CTABanner from "@/components/CTABanner";
 import React from "react";
+import { Award, Target, Zap, Users } from "lucide-react";
 
 // ============================================================================
 // CountUp Component
@@ -116,7 +117,7 @@ const jobOpenings = {
 function HeroSection() {
   return (
     <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg" />
+
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
       <div className="noise-overlay" />
@@ -134,8 +135,8 @@ function HeroSection() {
               </span>
             </div> */}
 
-            <h1 className="mt-7 font-bold tracking-[-0.025em] leading-[0.98] text-white" style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}>
-              About  <span className="gradient-text glow-text">Us</span>
+            <h1 className="mt-7 h-display text-white">
+              About  <span className="gradient-text">Us</span>
             </h1>
 
             <p className="mt-7 body-lead text-gray-400 max-w-xl">
@@ -174,106 +175,70 @@ function HeroSection() {
 // ============================================================================
 // Stats Section
 // ============================================================================
+
+
 function StatsSection() {
   const stats = [
-    { label: "Years of experience", value: 25, suffix: "+" },
-    { label: "Success Stories", value: 150, suffix: "+" },
-    { label: "Results Guaranteed", value: 100, suffix: "%" },
-    { label: "employees in all over the world", value: 30, suffix: "+" },
+    {
+      label: "Years of experience",
+      value: 25,
+      suffix: "+",
+      icon: Award,
+    },
+    {
+      label: "Success Stories",
+      value: 150,
+      suffix: "+",
+      icon: Target,
+    },
+    {
+      label: "Results Guaranteed",
+      value: 100,
+      suffix: "%",
+      icon: Zap,
+    },
+    {
+      label: "employees in all over the world",
+      value: 30,
+      suffix: "+",
+      icon: Users,
+    },
   ];
 
-  // Gradient colors copied from OpenPositionsSection roles
-  const cardAccents = ["#1E88E5", "#00ACC1", "#0288D1", "#039BE5"];
+  // Gradient colors for icons
+  const iconColors = [
+    "from-blue-500 to-cyan-400",
+    "from-emerald-500 to-teal-400",
+    "from-purple-500 to-pink-400",
+    "from-orange-500 to-amber-400",
+  ];
 
   return (
-    <section className="py-20 lg:py-24 bg-[#0a1628] relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 grid-bg" />
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-neon-blue/[0.05] rounded-full blur-[100px]" />
-
-      <div className="relative max-w-7xl mx-auto px-6">
-        {/* Top content - copied from OpenPositionsSection */}
-        <div className="grid lg:grid-cols-12 gap-5 lg:gap-12 items-end mb-12 lg:mb-14">
-          <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-sm mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-300">
-                By the numbers
-              </span>
-            </div>
-            <h2 className="h-section text-white">
-              A track record we're{" "}
-              <span className="gradient-text">proud of.</span>
-            </h2>
-          </div>
-
-        </div>
-
-        {/* Cards - with colors from OpenPositionsSection */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {stats.map((stat, i) => {
-            const numLabel = String(i + 1).padStart(2, "0");
-
+    <section className="border-y bg-service-banner">
+      <div className="mx-auto max-w-[1320px] px-6 py-14 md:px-8 lg:px-12">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className="group relative rounded-2xl bg-white/[0.03] border border-white/[0.08] p-5 lg:p-6 overflow-hidden transition-all duration-500 hover:bg-white/[0.06] hover:border-white/[0.12] hover:shadow-xl hover:shadow-black/20"
+                className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5"
               >
-                {/* Top accent line */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: `linear-gradient(90deg, ${cardAccents[i]}, ${cardAccents[i]}55, transparent)`,
-                  }}
-                />
+                  className={`icon-container flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${iconColors[index]} bg-opacity-10`}
+                >
+                  <Icon className="h-6 w-6 gradient-text-fixed" />
+                </div>
 
-                {/* Corner glow */}
-                <div
-                  className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.10] group-hover:opacity-[0.28] transition-opacity duration-500"
-                  style={{ backgroundColor: cardAccents[i] }}
-                />
+                <div className="flex flex-col">
+                  <span className="banner-title text-3xl font-bold leading-none">
+                    {stat.value}
+                    {stat.suffix}
+                  </span>
 
-                <div className="relative flex flex-col h-full">
-                  {/* Top row: number label - similar to OpenPositionsSection */}
-                  <div className="flex items-center justify-end">
-                    <span
-                      className="font-mono text-[10px] font-bold tracking-wider transition-colors duration-300"
-                      style={{ color: `${cardAccents[i]}90` }}
-                    >
-                      {numLabel}
-                    </span>
-                  </div>
-
-                  {/* Stat number with gradient */}
-                  <div
-                    className="relative text-4xl sm:text-5xl font-bold tabular-nums transition-all duration-300 group-hover:scale-105 text-center my-4"
-                    style={{
-                      background: `linear-gradient(135deg, ${cardAccents[i]}, ${cardAccents[i]}80)`,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    <CountUp target={stat.value} suffix={stat.suffix} />
-                  </div>
-
-                  {/* Label */}
-                  <div
-                    className="relative text-center text-sm font-medium transition-colors duration-300 text-gray-400 group-hover:text-[color:var(--accent)]"
-                    style={{ "--accent": cardAccents[i] } as React.CSSProperties}
-                  >
+                  <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
                     {stat.label}
-                  </div>
-
-                  {/* Bottom accent line */}
-                  <div className="mt-4 pt-2 flex justify-center">
-                    <div
-                      className="h-[1px] w-8 rounded-full transition-all duration-500 group-hover:w-16"
-                      style={{ background: `linear-gradient(90deg, ${cardAccents[i]}, ${cardAccents[i]}55)` }}
-                    />
-                  </div>
+                  </span>
                 </div>
               </div>
             );
@@ -284,8 +249,11 @@ function StatsSection() {
   );
 }
 
+
+
+
 // ============================================================================
-// History Section
+// Our Mission Section
 // ============================================================================
 function OurMissionSection() {
   const missionPoints = [
@@ -299,15 +267,20 @@ function OurMissionSection() {
   return (
     <section className="py-20 bg-light-accent relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-12 overflow-hidden relative">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="rounded-2xl bg-[#0a1628] border border-white/[0.07] p-7 lg:p-12 overflow-hidden relative">
+          {/* Inner card glow effects */}
+          <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[120px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-blue-500/[0.05] rounded-full blur-[100px]" />
+
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start relative">
             {/* Left Side */}
             <div className="lg:col-span-4">
-              <p className="eyebrow text-neon-blue">Our Mission</p>
+              <p className="eyebrow gradient-text-fixed">Our Mission</p>
 
               <h2 className="mt-3 h-section text-white">
-                What <br></br>{" "}
-                <span className="gradient-text-dark">Drives Us</span>
+                What <br />{" "}
+                <span className="gradient-text-fixed">Drives Us</span>
               </h2>
             </div>
 
@@ -326,7 +299,7 @@ function OurMissionSection() {
                 ))}
               </div>
 
-              <p className=" mt-8 body-lead text-white">
+              <p className="mt-8 body-lead text-white">
                 We combine strategic thinking with technical excellence to help organizations adapt, grow, and lead in an increasingly digital world.
               </p>
             </div>
@@ -351,7 +324,7 @@ function HistoryVisionSection() {
           {/* Journey/History Card */}
           <div className="rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-8 shadow-lg">
             <div className="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center mb-5">
-              <svg className="w-6 h-6 text-neon-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
+              <svg className="w-6 h-6 gradient-text-fixed" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -366,7 +339,7 @@ function HistoryVisionSection() {
           {/* Vision Card */}
           <div className="rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-8 shadow-lg">
             <div className="w-12 h-12 rounded-xl bg-neon-purple/10 flex items-center justify-center mb-5">
-              <svg className="w-6 h-6 text-neon-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
+              <svg className="w-6 h-6 gradient-text-fixed" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
@@ -454,7 +427,7 @@ function ValuesSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
+    <section className="py-20 lg:py-24 bg-white relative overflow-hidden">
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
 
@@ -463,7 +436,7 @@ function ValuesSection() {
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/[0.1] bg-white/70 backdrop-blur-sm mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase gradient-text-dark">
                 Our edge
               </span>
             </div>
@@ -473,7 +446,7 @@ function ValuesSection() {
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              TWhat sets us apart is a blend of deep expertise, modern engineering, and execution speed that drives real impact.
+              What sets us apart is a blend of deep expertise, modern engineering, and execution speed that drives real impact.
             </p>
           </div>
         </div>
@@ -625,7 +598,7 @@ function CareersSection() {
   return (
     <section className="py-20 lg:py-24 bg-[#0a1628] relative overflow-hidden">
       {/* Background Effects - Enhanced */}
-      <div className="absolute inset-0 grid-bg" />
+
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px] animate-pulse-slow" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px] animate-pulse-slow delay-1000" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-neon-blue/5 rounded-full blur-[100px]" />
@@ -636,14 +609,14 @@ function CareersSection() {
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.1] bg-white/[0.03] backdrop-blur-sm mb-4 group hover:border-white/[0.2] transition-all duration-300">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-gray-300 group-hover:text-white transition-colors duration-300">
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase gradient-text-fixed">
                 Careers
               </span>
             </div>
 
             <h2 className="h-section text-white leading-[1.1]">
               Ready to start your{" "}
-              <span className="gradient-text relative">
+              <span className="gradient-text-fixed relative">
                 career with us?
               </span>
             </h2>
@@ -788,7 +761,7 @@ function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?:
   return (
     <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 grid-bg" />
+
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-neon-blue/[0.05] rounded-full blur-[100px]" />
@@ -799,7 +772,7 @@ function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?:
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/[0.1] bg-white/70 backdrop-blur-sm mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase gradient-text-dark">
                 Current Openings
               </span>
             </div>
@@ -925,10 +898,9 @@ export default function AboutPage() {
   return (
     <>
       <HeroSection />
-
+      <StatsSection />
       <OurMissionSection />
       <HistoryVisionSection />
-      <StatsSection />
       <ValuesSection />
       <CareersSection />
       <OpenPositionsSection />

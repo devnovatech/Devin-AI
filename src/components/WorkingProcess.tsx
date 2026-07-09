@@ -184,7 +184,7 @@ export default function WorkingProcess() {
               </span>
             </div>
             <h2 className="h-section text-white">
-              Six stages. <span className="gradient-text-dark">Zero Gaps. Complete Delivery.</span>
+              Six stages. <span className="gradient-text-fixed">Zero Gaps. Complete Delivery.</span>
             </h2>
           </div>
           <div className="lg:col-span-5">

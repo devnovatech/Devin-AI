@@ -5,6 +5,7 @@ import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
 import CTABanner from "@/components/CTABanner";
+import CardTitle from "@/components/CardTitle";
 
 const DEEP = "var(--section-deep)";
 const LIGHT = "var(--section-light)";
@@ -286,7 +287,7 @@ export default function IndustriesPage() {
     <>
       {/* ───────── Hero ───────── */}
 <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-  <div className="absolute inset-0 grid-bg" />
+
   <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
   <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
   <div className="noise-overlay" />
@@ -420,24 +421,19 @@ export default function IndustriesPage() {
 
       {/* ───────── Why industry expertise ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
+      
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.06] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12 lg:mb-14">
-            <div className="lg:col-span-7">
-              <p className="eyebrow text-neon-blue">Why it matters</p>
-              <h2 className="mt-3 h-section text-white">
-                Built Around How Your Industry {" "}
-                <span className="gradient-text">Actually Operates</span>
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-                Built on Industry Reality, Not Assumptions —- Industry expertise isn’t a claim. It’s how systems avoid failure in the real world.
-              </p>
-            </div>
-          </div>
+
+          <CardTitle 
+          label="Why it matters"
+          title="Built Around How Your Industry"
+          spanTitle="Actually Operates"
+          description="Built on Industry Reality, Not Assumptions —- Industry expertise isn’t a claim. It’s how systems avoid failure in the real world."
+          titleColor="text-white"
+          descriptionColor="text-gray-400"
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {expertisePillars.map((p, i) => (

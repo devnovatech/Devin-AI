@@ -230,7 +230,7 @@ export default function FAQPage() {
             {/* Hero Section - Left Content + Right Statistics */}
             <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
                 {/* Background decorations */}
-                <div className="absolute inset-0 grid-bg" />
+              
                 <div
                     className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-neon-blue/[0.08] rounded-full blur-[140px] pointer-events-none"
                 />
