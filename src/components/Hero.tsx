@@ -8,7 +8,7 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import Link from "next/link";
-import { HeroArt } from "./ui/HeroArt"; 
+import { HeroArt } from "./ui/HeroArt";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -76,7 +76,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-             From Vision to Production — 
+              From Vision to Production —
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
@@ -84,7 +84,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.32, ease: [0.4, 0, 0.2, 1] }}
               className="block"
             >
-         {" "}
+              {" "}
               <span className="gradient-text">Built Right the First Time.</span>
             </motion.span>
           </h1>
@@ -95,7 +95,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-sm sm:text-lg text-ink-600 max-w-xl leading-tight"
           >
-We architect production-ready web, mobile, and AI systems that convert complex business initiatives into scalable digital platforms, engineered for reliability, extensibility, and long-term maintainability to drive sustained business growth.          </motion.p>
+            We architect production-ready web, mobile, and AI systems that convert complex business initiatives into scalable digital platforms, engineered for reliability, extensibility, and long-term maintainability to drive sustained business growth.          </motion.p>
 
           {/* CTAs */}
           <motion.div

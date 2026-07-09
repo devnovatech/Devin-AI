@@ -112,7 +112,7 @@ export default function Footer() {
 
             {/* FIX: Consistent heading size in both themes */}
             <h2 className="mt-8 max-w-md text-2xl font-bold tracking-tight md:text-3xl">
-              Have a project in mind? <span className="gradient-text-dark">Let's make it real.</span>
+              Have a project in mind? <span className="gradient-text">Let's make it real.</span>
             </h2>
 
             {/* FIX: Consistent email link size in both themes */}

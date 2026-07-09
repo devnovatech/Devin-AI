@@ -116,7 +116,7 @@ export default function Industries() {
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
-              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/80">
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase gradient-text">
                 Industries we serve
               </span>
             </div>
@@ -194,7 +194,7 @@ export default function Industries() {
                     {/* Icon */}
                     <div
                       className={`relative w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${isActive
-                          ? "text-white"
+                          ? "text-[#ffffff]"
                           : "text-gray-700 dark:text-white/70 group-hover:text-white"
                         }`}
                       style={{
@@ -374,7 +374,7 @@ export default function Industries() {
         <div className="mt-8 flex justify-center rounded-xl" >
           <Link
             href="/industries"
-            className="group inline-flex items-center gap-2 px-7 py-3.5  rounded-xl bg-deep-blue  text-xs font-semibold text-white transition-all duration-200 hover:bg-deep-blue/80 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+            className="group inline-flex items-center gap-2 px-7 py-3.5  rounded-xl bg-deep-blue  text-xs font-semibold gradient-text-fixed transition-all duration-200 hover:bg-deep-blue/80 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>See all industry we serve</span>
           </Link>

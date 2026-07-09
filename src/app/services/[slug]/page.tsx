@@ -1478,6 +1478,19 @@ const relatedMap: Record<string, string[]> = {
   "project-management": ["staff-augmentation", "quality-assurance", "web-development"],
 };
 
+//  Add this before your component definition
+  function splitTitle(title: string): { firstHalf: string; secondHalf: string } {
+    const mid = Math.floor(title.length / 2);
+    // find nearest space to the midpoint so we don't cut a word in half
+    let splitIndex = title.indexOf(' ', mid);
+    if (splitIndex === -1) splitIndex = title.lastIndexOf(' ', mid);
+    if (splitIndex === -1) splitIndex = mid; // fallback: no spaces at all
+
+    const firstHalf = title.slice(0, splitIndex).trim();
+    const secondHalf = title.slice(splitIndex).trim();
+
+    return { firstHalf, secondHalf };
+  }
 
 
 
@@ -1491,6 +1504,8 @@ export default function ServicePage() {
   const related = (relatedMap[slug] ?? []).slice(0, 3);
 
   const [activeOffering, setActiveOffering] = useState(0);
+
+  // const { firstHalf, secondHalf } = splitTitle(service.title);
 
   if (!service) {
     return (
@@ -1677,7 +1692,7 @@ export default function ServicePage() {
           </div>
 
           {/* Deliverables — FULL WIDTH */}
-          <div className="mt-10 w-full pb-5 border-b border-white/[0.08]">
+          <div className="mt-14 w-full pb-5 border-b border-white/[0.08]">
             <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {meta.deliverables.map((d) => (
                 <div key={d} className="flex items-start gap-3">
@@ -1719,7 +1734,7 @@ export default function ServicePage() {
             {/* Card 1 */}
             <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
               <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Award className="h-6 w-6" />
+                <Award className="h-6 w-6 gradient-text-fixed" />
               </div>
 
               <div className="flex flex-col">
@@ -1736,7 +1751,7 @@ export default function ServicePage() {
             {/* Card 2 */}
             <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
               <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Target className="h-6 w-6" />
+                <Target className="h-6 w-6 gradient-text-fixed" />
               </div>
 
               <div className="flex flex-col">
@@ -1753,7 +1768,7 @@ export default function ServicePage() {
             {/* Card 3 */}
             <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
               <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Zap className="h-6 w-6" />
+                <Zap className="h-6 w-6 gradient-text-fixed" />
               </div>
 
               <div className="flex flex-col">
@@ -1770,7 +1785,7 @@ export default function ServicePage() {
             {/* Card 4 */}
             <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
               <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Users className="h-6 w-6" />
+                <Users className="h-6 w-6 gradient-text-fixed" />
               </div>
 
               <div className="flex flex-col">
@@ -1889,15 +1904,22 @@ export default function ServicePage() {
                   style={{ backgroundColor: accent }}
                 />
                 <p
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold"
-                  style={{ color: accent }}
+                  className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-dark"
                 >
                   What's included
                 </p>
               </div>
 
-              <h2 className="mt-2 h-section text-deep-blue max-w-2xl">
-                {service.offeringsTitle}
+              <h2 className="mt-2 h-section max-w-2xl">
+                {(() => {
+                  const { firstHalf, secondHalf } = splitTitle(service.offeringsTitle);
+                  return (
+                    <>
+                      <span className="text-deep-blue">{firstHalf}</span>{" "}
+                      <span className="gradient-text-dark">{secondHalf}</span>
+                    </>
+                  );
+                })()}
               </h2>
             </div>
 
@@ -2172,13 +2194,20 @@ export default function ServicePage() {
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse"
                   style={{ backgroundColor: accent }} />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold"
-                  style={{ color: accent }}>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-fixed">
                   HOW WE WORK
                 </p>
               </div>
               <h2 className="mt-3 h-section text-white">
-                {service.processHeading}
+                {(() => {
+                  const { firstHalf, secondHalf } = splitTitle(service.processHeading);
+                  return (
+                    <>
+                      <span className="text-white">{firstHalf}</span>{' '}
+                      <span className="gradient-text-fixed">{secondHalf}</span>
+                    </>
+                  );
+                })()}
               </h2>
             </div>
             <div className="lg:col-span-5">
@@ -2269,13 +2298,20 @@ export default function ServicePage() {
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse"
                   style={{ backgroundColor: accent }} />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold"
-                  style={{ color: accent }}>
+                <p className="text-[10px] uppercase tracking-[0.2em] gradient-text-dark font-bold">
                   WHY US
                 </p>
               </div>
               <h2 className="mt-3 h-section text-deep-blue">
-                {service.whyTitle}
+                {(() => {
+                  const { firstHalf, secondHalf } = splitTitle(service.whyTitle);
+                  return (
+                    <>
+                      <span style={{ color: '#0a1628' }}>{firstHalf}</span>{' '}
+                      <span className="gradient-text-dark">{secondHalf}</span>
+                    </>
+                  );
+                })()}
               </h2>
             </div>
 
@@ -2398,9 +2434,22 @@ export default function ServicePage() {
       </section> */}
 
       {/* ───────── Final CTA ───────── */}
+
       <CTABanner
         eyebrow="Let's get started"
-        heading={<>{service.ctaHeading}</>}
+        heading={
+          <>
+            {(() => {
+              const { firstHalf, secondHalf } = splitTitle(service.ctaHeading);
+              return (
+                <>
+                  <span className="white">{firstHalf}</span>{' '}
+                  <span className="gradient-text-fixed" >{secondHalf}</span>
+                </>
+              );
+            })()}
+          </>
+        }
         description={service.ctaDescription}
         primaryLabel={service.ctaButton}
         primaryHref="/contact"

@@ -126,6 +126,12 @@ html {
   -webkit-text-fill-color: currentColor;
 }
 
+.gradient-text-fixed {
+  color: #4fc3f7;
+  background: none;
+
+}
+
 /* In light mode, #4fc3f7 has poor contrast on white. Shift to the
    deeper logo blue so accent text reads cleanly on any light bg. */
 html.light .gradient-text {
@@ -179,8 +185,8 @@ html.light .text-neon-purple {
 /* Default = Dark */
 .bg-service-banner {
   --banner-bg: #ffffff;
-    --banner-text: #0a1628;
-        --banner-text-muted: rgba(10, 22, 40, 0.65);
+  --banner-text: #0a1628;
+  --banner-text-muted: rgba(10, 22, 40, 0.65);
   --icon-bg: rgba(10, 22, 40, 0.06);
   --icon-color: #1565c0;
 

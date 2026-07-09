@@ -1060,8 +1060,8 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
               Challenge → Solution
             </p>
 
-            <h2 className="mt-2 h-section text-deep-blue">
-              From Problem to Progress
+            <h2 className="h-section text-deep-blue">
+              From <span className="gradient-text-dark">Problem</span> to <span className="gradient-text-dark">Progress</span>
             </h2>
           </div>
         </div>
@@ -1236,6 +1236,18 @@ function ChallengeSolutionSection({ pairedData, accent }: ChallengeSolutionSecti
   );
 }
 
+function splitTitle(title: string): { firstHalf: string; secondHalf: string } {
+  const mid = Math.floor(title.length / 2);
+  // find nearest space to the midpoint so we don't cut a word in half
+  let splitIndex = title.indexOf(' ', mid);
+  if (splitIndex === -1) splitIndex = title.lastIndexOf(' ', mid);
+  if (splitIndex === -1) splitIndex = mid; // fallback: no spaces at all
+
+  const firstHalf = title.slice(0, splitIndex).trim();
+  const secondHalf = title.slice(splitIndex).trim();
+
+  return { firstHalf, secondHalf };
+}
 /* ───────── Main Component ───────── */
 
 export default function IndustryPage() {
@@ -1312,14 +1324,14 @@ export default function IndustryPage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           {/* <AnimatedSection>
-            <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-              <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
-              <span className="text-gray-600">/</span>
-              <Link href="/industries" className="hover:text-neon-blue transition-colors">Industries</Link>
-              <span className="text-gray-600">/</span>
-              <span style={{ color: accent }}>{industry.title}</span>
-            </nav>
-          </AnimatedSection> */}
+          //   <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
+          //     <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
+          //     <span className="text-gray-600">/</span>
+          //     <Link href="/industries" className="hover:text-neon-blue transition-colors">Industries</Link>
+          //     <span className="text-gray-600">/</span>
+          //     <span style={{ color: accent }}>{industry.title}</span>
+          //   </nav>
+          // </AnimatedSection> */}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
@@ -1349,127 +1361,20 @@ export default function IndustryPage() {
                         Industry · {meta?.shortLabel ?? "Sector"}
                       </span>
                     </div>
-<<<<<<< Updated upstream
                   )}
-=======
-                  </motion.div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Solutions */}
-      <section className="py-16 relative">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center mb-16">
-            <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">Solutions</p>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white max-w-3xl mx-auto">
-              {industry.solutionsHeading}
-            </h2>
-          </AnimatedSection>
-
-
-
-      {/* ───────── Impact Beyond Technology ───────── */}
-      {ecareCapabilitiesByIndustry[slug] && (
-        <section className="py-20 bg-[#0a1628] relative overflow-hidden">
-          <div className="absolute inset-0 grid-bg" />
-          <div
-            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
-            style={{ backgroundColor: `${accent}08` }}
-          />
-          <div
-            className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
-            style={{ backgroundColor: `${accent}06` }}
-          />
-
-          <div className="relative max-w-7xl mx-auto px-6">
-
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse"
-                  style={{ backgroundColor: accent }} />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
-                  CASE STUDY </p>
-              </div>
-
-              <h2 className="h-section text-white">
-                Impact Beyond <span className="gradient-text-dark">Technology</span>
-              </h2>
-            </div>
-
-
-            <div className="grid md:grid-cols-2 gap-6 pt-10 lg:gap-8">
-              {ecareCapabilitiesByIndustry[slug].impact.metrics.map((metricGroup, idx) => (
-                <div
-                  key={idx}
-                  className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.05] transition-all duration-500 overflow-hidden p-6 lg:p-7"
-                >
-                  <div
-                    className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                    style={{ backgroundColor: accent }}
-                  />
-
-                  {/* Title */}
-                  <h3 className="text-lg font-semibold text-white mb-5 tracking-tight border-b border-white/[0.08] pb-3">
-                    {metricGroup.title}
-                  </h3>
-
-                  {/* Metrics grid */}
-                  <div className="grid grid-cols-2 gap-5">
-                    {metricGroup.metrics.map((metric, mIdx) => (
-                      <div key={mIdx} className="space-y-1">
-                        <div
-                          className="text-2xl lg:text-3xl font-bold tracking-tight"
-                          style={{ color: "#ffffff" }}
-                        >
-                          {metric.value}
-                        </div>
-                        <div className="text-xs text-gray-400 leading-relaxed">
-                          {metric.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      
-
-      {/* CTA */}
-      <section className="py-16 bg-light-accent">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimatedSection>
-            <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-deep-blue" />
-              <div className="absolute inset-0 grid-bg opacity-50" />
-
-              <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
-                <h2 className="text-3xl sm:text-4xl font-bold text-white max-w-3xl mx-auto leading-tight">
-                  {industry.ctaHeading}
-                </h2>
-                <div className="mt-10">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
-                  >
-                    {industry.ctaButton}
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </Link>
->>>>>>> Stashed changes
                 </div>
 
-                <h1 className="mt-6 h-display text-white">{industry.title}</h1>
-                <p className="mt-6 body-lead text-gray-400">
+                <h1 className="mt-6 h-display text-white">
+                  {(() => {
+                    const { firstHalf, secondHalf } = splitTitle(industry.title);
+                    return (
+                      <>
+                        <span className="text-white">{firstHalf}</span>{' '}
+                        <span className="gradient-text">{secondHalf}</span>
+                      </>
+                    );
+                  })()}
+                </h1>                <p className="mt-6 body-lead text-gray-400">
                   {industry.heroDescription}
                 </p>
               </AnimatedSection>
@@ -1488,7 +1393,7 @@ export default function IndustryPage() {
                   />
 
                   <div className="relative">
-                    <p className="eyebrow" style={{ color: accent }}>
+                    <p className="eyebrow gradient-text-dark">
                       Sector snapshot
                     </p>
 
@@ -1600,12 +1505,12 @@ export default function IndustryPage() {
               <div className="inline-flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse"
                   style={{ backgroundColor: accent }} />
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-fixed">
                   CASE STUDY </p>
               </div>
 
               <h2 className="h-section text-white">
-                Impact Beyond <span className="gradient-text-dark">Technology</span>
+                Impact Beyond <span className="gradient-text-fixed">Technology</span>
               </h2>
             </div>
 
@@ -1664,13 +1569,22 @@ export default function IndustryPage() {
                 <div className="inline-flex items-center gap-2 mb-3">
                   <span className="w-1.5 h-1.5 rounded-full animate-pulse"
                     style={{ backgroundColor: accent }} />
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-dark">
                     Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
                   </p>
                 </div>
 
                 <h2 className="mt-3 h-section text-deep-blue">
-                  {ecareCapabilitiesByIndustry[slug]?.heading}
+                  {(() => {
+                    const heading = ecareCapabilitiesByIndustry[slug]?.heading || 'Powering Every Stage';
+                    const { firstHalf, secondHalf } = splitTitle(heading);
+                    return (
+                      <>
+                        <span className="text-deep-blue">{firstHalf}</span>{' '}
+                        <span className="gradient-text-dark">{secondHalf}</span>
+                      </>
+                    );
+                  })()}
                 </h2>
               </div>
 
@@ -1702,7 +1616,7 @@ export default function IndustryPage() {
                       border: `1px solid ${accent}30`,
                     }}
                   >
-                    <div className="w-6 h-6" style={{ color: accent }}>
+                    <div className="w-6 h-6 gradient-text-dark" >
                       {capability.icon}
                     </div>
                   </div>
@@ -1719,22 +1633,30 @@ export default function IndustryPage() {
         </section>
       )}
 
-
-
       {/* ───────── Final CTA ───────── */}
       <CTABanner
-        eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
-        heading={<>{industry.ctaHeading}</>}
-        description={
-          <span style={{ whiteSpace: 'pre-line' }}>
-            {industry.ctaDescription}
-          </span>
-        }
-        primaryLabel="Let's build it."
-        primaryHref="/contact"
-        secondaryLabel="See all industries"
-        secondaryHref="/industries"
-      />
+  eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
+  heading={
+    (() => {
+      const { firstHalf, secondHalf } = splitTitle(industry.ctaHeading);
+      return (
+        <>
+          <span className="text-white">{firstHalf}</span>{' '}
+          <span className="gradient-text-fixed">{secondHalf}</span>
+        </>
+      );
+    })()
+  }
+  description={
+    <span style={{ whiteSpace: 'pre-line' }}>
+      {industry.ctaDescription}
+    </span>
+  }
+  primaryLabel="Let's build it."
+  primaryHref="/contact"
+  secondaryLabel="See all industries"
+  secondaryHref="/industries"
+/>
     </>
   );
 }

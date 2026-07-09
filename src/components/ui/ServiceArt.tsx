@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
     Brain,
     Smartphone,
@@ -202,19 +202,60 @@ const services: Service[] = [
     },
 ];
 
-export function ServiceArt({ slug }: { slug: string }) {
-    const service = services.find(s => s.slug === slug) || services[0];
-    const [phaseIdx, setPhaseIdx] = useState(0);
-    const totalPhases = service.phases.length;
 
+function useStep(
+    steps: number,
+    intervalMs = 2500,
+    resetKey?: string
+) {
+    const [step, setStep] = useState(0);
+    const timer = useRef<NodeJS.Timeout | null>(null);
 
+    const startTimer = useCallback(() => {
+        if (timer.current) clearInterval(timer.current);
+
+        timer.current = setInterval(() => {
+            setStep((prev) => (prev + 1) % steps);
+        }, intervalMs);
+    }, [steps, intervalMs]);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setPhaseIdx((prev) => (prev + 1) % totalPhases);
-        }, 2500);
-        return () => clearInterval(interval);
-    }, [totalPhases]);
+        startTimer();
+
+        return () => {
+            if (timer.current) clearInterval(timer.current);
+        };
+    }, [startTimer]);
+
+    // Reset whenever the service changes
+    useEffect(() => {
+        setStep(0);
+        startTimer();
+    }, [resetKey, startTimer]);
+
+    const goToStep = (index: number) => {
+        setStep(index);
+        startTimer();
+    };
+
+    return {
+        step,
+        setStep: goToStep,
+    };
+}
+
+export function ServiceArt({ slug }: { slug: string }) {
+    const service = services.find((s) => s.slug === slug) || services[0];
+    const {
+        step: phaseIdx,
+        setStep: setPhaseIdx,
+    } = useStep(
+        service.phases.length,
+        2500,
+        slug
+    );
+
+    const step = useStep(5);
 
     return (
         <div
