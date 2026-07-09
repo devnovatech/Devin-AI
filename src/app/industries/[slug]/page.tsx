@@ -1349,7 +1349,123 @@ export default function IndustryPage() {
                         Industry · {meta?.shortLabel ?? "Sector"}
                       </span>
                     </div>
+<<<<<<< Updated upstream
                   )}
+=======
+                  </motion.div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Solutions */}
+      <section className="py-16 relative">
+        <div className="absolute inset-0 grid-bg" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <AnimatedSection className="text-center mb-16">
+            <p className="text-sm font-semibold tracking-widest uppercase text-neon-blue">Solutions</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white max-w-3xl mx-auto">
+              {industry.solutionsHeading}
+            </h2>
+          </AnimatedSection>
+
+
+
+      {/* ───────── Impact Beyond Technology ───────── */}
+      {ecareCapabilitiesByIndustry[slug] && (
+        <section className="py-20 bg-[#0a1628] relative overflow-hidden">
+          <div className="absolute inset-0 grid-bg" />
+          <div
+            className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
+            style={{ backgroundColor: `${accent}08` }}
+          />
+          <div
+            className="absolute top-1/3 right-0 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
+            style={{ backgroundColor: `${accent}06` }}
+          />
+
+          <div className="relative max-w-7xl mx-auto px-6">
+
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse"
+                  style={{ backgroundColor: accent }} />
+                <p className="text-[10px] uppercase tracking-[0.2em] font-bold" style={{ color: accent }}>
+                  CASE STUDY </p>
+              </div>
+
+              <h2 className="h-section text-white">
+                Impact Beyond <span className="gradient-text-dark">Technology</span>
+              </h2>
+            </div>
+
+
+            <div className="grid md:grid-cols-2 gap-6 pt-10 lg:gap-8">
+              {ecareCapabilitiesByIndustry[slug].impact.metrics.map((metricGroup, idx) => (
+                <div
+                  key={idx}
+                  className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.05] transition-all duration-500 overflow-hidden p-6 lg:p-7"
+                >
+                  <div
+                    className="pointer-events-none absolute -top-20 -right-20 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                    style={{ backgroundColor: accent }}
+                  />
+
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-white mb-5 tracking-tight border-b border-white/[0.08] pb-3">
+                    {metricGroup.title}
+                  </h3>
+
+                  {/* Metrics grid */}
+                  <div className="grid grid-cols-2 gap-5">
+                    {metricGroup.metrics.map((metric, mIdx) => (
+                      <div key={mIdx} className="space-y-1">
+                        <div
+                          className="text-2xl lg:text-3xl font-bold tracking-tight"
+                          style={{ color: "#ffffff" }}
+                        >
+                          {metric.value}
+                        </div>
+                        <div className="text-xs text-gray-400 leading-relaxed">
+                          {metric.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      
+
+      {/* CTA */}
+      <section className="py-16 bg-light-accent">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimatedSection>
+            <div className="relative rounded-3xl border border-deep-blue/10 overflow-hidden shadow-xl">
+              <div className="absolute inset-0 bg-deep-blue" />
+              <div className="absolute inset-0 grid-bg opacity-50" />
+
+              <div className="relative z-10 px-8 py-16 sm:px-16 sm:py-20 text-center">
+                <h2 className="text-3xl sm:text-4xl font-bold text-white max-w-3xl mx-auto leading-tight">
+                  {industry.ctaHeading}
+                </h2>
+                <div className="mt-10">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-full text-white font-bold text-sm hover:shadow-xl hover:shadow-neon-blue/30 transition-all duration-300 hover:scale-105"
+                  >
+                    {industry.ctaButton}
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+>>>>>>> Stashed changes
                 </div>
 
                 <h1 className="mt-6 h-display text-white">{industry.title}</h1>

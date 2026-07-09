@@ -103,6 +103,7 @@ const industries = [
   },
 ];
 
+<<<<<<< Updated upstream
 const expertisePillars = [
   {
     title: "Compliance by design",
@@ -151,6 +152,8 @@ const expertisePillars = [
   },
 ];
 
+=======
+>>>>>>> Stashed changes
 function IndustryCard({
   industry,
   index,
@@ -286,6 +289,7 @@ export default function IndustriesPage() {
     <>
       {/* ───────── Hero ───────── */}
 <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
+<<<<<<< Updated upstream
 
   <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
   <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
@@ -307,6 +311,29 @@ export default function IndustriesPage() {
           </h1>
         </AnimatedSection>
 
+=======
+  <div className="absolute inset-0 grid-bg" />
+  <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
+  <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+  <div className="noise-overlay" />
+
+  <div className="relative z-10 max-w-7xl mx-auto px-6">
+    <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      {/* ── LEFT: Text Content ── */}
+      <div className="lg:col-span-7 text-center lg:text-left">
+        <AnimatedSection delay={0.1}>
+          <h1
+            className="mt-6 font-bold tracking-[-0.025em] leading-[0.98] text-white"
+            style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
+          >
+            Built Around Your Constraints
+            <br />
+            <span className="gradient-text glow-text"> Not Just Your Requirements.</span>
+          </h1>
+        </AnimatedSection>
+
+>>>>>>> Stashed changes
         <AnimatedSection delay={0.2}>
           <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto lg:mx-0">
             Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
@@ -417,10 +444,16 @@ export default function IndustriesPage() {
         </div>
       </section>
 
+<<<<<<< Updated upstream
 
       {/* ───────── Why industry expertise ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
       
+=======
+      {/* CTA */}
+      <section className="py-16 relative">
+        <div className="absolute inset-0 grid-bg" />
+>>>>>>> Stashed changes
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.06] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
