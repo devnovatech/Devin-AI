@@ -762,86 +762,243 @@ function DesignVisual({ phaseIndex }: { phaseIndex: number }) {
 
 // AI Visual - All white animations
 function AiVisual({ phaseIndex }: { phaseIndex: number }) {
-    const inputs = [40, 70, 100];
-    const hidden = [25, 50, 75, 100, 125];
+  const inputs = [40, 70, 100];
+  const hidden = [25, 50, 75, 100, 125];
 
-    return (
-        <svg viewBox="0 0 200 140" className="h-32 w-full max-w-md">
-            {/* Input to hidden layer connections */}
-            {inputs.map((y1) =>
-                hidden.map((y2, j) => (
-                    <motion.line
-                        key={`a-${y1}-${j}`}
-                        x1={38} y1={y1} x2={94} y2={y2 / 1.4 + 18}
-                        stroke="rgba(255,255,255,0.5)"
-                        strokeWidth="0.7"
-                        animate={{ pathLength: phaseIndex >= 1 ? 1 : 0 }}
-                        transition={{ duration: 0.6, delay: j * 0.05, ease: "easeInOut" }}
-                    />
-                ))
-            )}
+  return (
+    <svg viewBox="0 0 200 140" className="h-32 w-full max-w-md">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
 
-            {/* Hidden to output layer connections */}
-            {hidden.map((y1, j) => (
-                <motion.line
-                    key={`b-${j}`}
-                    x1={106} y1={y1 / 1.4 + 18} x2={158} y2={70}
-                    stroke="rgba(255,255,255,0.55)"
-                    strokeWidth="0.7"
-                    animate={{ pathLength: phaseIndex >= 2 ? 1 : 0 }}
-                    transition={{ duration: 0.6, delay: j * 0.05, ease: "easeInOut" }}
-                />
-            ))}
+      {/* Connections */}
+      {inputs.map((y1) =>
+        hidden.map((y2, j) => {
+          const x1 = 32;
+          const yStart = y1;
+          const x2 = 100;
+          const yEnd = y2 / 1.4 + 18;
 
-            {/* Input layer nodes - pulsing white */}
-            {inputs.map((cy, i) => (
-                <motion.circle
-                    key={`l-${i}`}
-                    cx={32} cy={cy} r={6}
-                    fill="rgba(255,255,255,0.8)"
-                    animate={{
-                        scale: phaseIndex === 0 ? [1, 1.3, 1] : 1,
-                        fill: phaseIndex === 0 ? ["rgba(255,255,255,0.6)", "rgba(255,255,255,0.9)", "rgba(255,255,255,0.6)"] : "rgba(255,255,255,0.8)"
-                    }}
-                    transition={{ duration: 1.4, delay: i * 0.1, repeat: phaseIndex === 0 ? Infinity : 0, ease: "easeInOut" }}
-                />
-            ))}
-
-            {/* Hidden layer nodes - pulsing white */}
-            {hidden.map((cy, i) => (
-                <motion.circle
-                    key={`h-${i}`}
-                    cx={100} cy={cy / 1.4 + 18} r={6}
-                    animate={{
-                        fill: phaseIndex >= 2
-                            ? ["rgba(255,255,255,0.6)", "rgba(255,255,255,0.9)", "rgba(255,255,255,0.6)"]
-                            : phaseIndex >= 1
-                                ? "rgba(255,255,255,0.5)"
-                                : "rgba(255,255,255,0.2)",
-                        scale: phaseIndex === 2 ? [1, 1.3, 1] : 1
-                    }}
-                    transition={{ duration: 1.4, delay: i * 0.1, repeat: phaseIndex === 2 ? Infinity : 0, ease: "easeInOut" }}
-                />
-            ))}
-
-            {/* Output layer node - pulsing white */}
-            <motion.circle
-                cx={168} cy={70} r={10}
+          return (
+            <g key={`a-${y1}-${j}`}>
+              <motion.line
+                x1={x1}
+                y1={yStart}
+                x2={x2}
+                y2={yEnd}
+                stroke="rgba(255,255,255,.18)"
+                strokeWidth="1"
                 animate={{
-                    fill: phaseIndex >= 3
-                        ? ["rgba(255,255,255,0.6)", "rgba(255,255,255,0.9)", "rgba(255,255,255,0.6)"]
-                        : "rgba(255,255,255,0.15)",
-                    scale: phaseIndex === 3 ? [1, 1.3, 1] : 1
+                  opacity: phaseIndex >= 1 ? [0.25, 0.7, 0.25] : 0.15,
                 }}
-                transition={{ duration: 1.4, repeat: phaseIndex === 3 ? Infinity : 0, ease: "easeInOut" }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: j * 0.1,
+                }}
+              />
+
+              {phaseIndex >= 1 && (
+                <motion.circle
+                  r={2.5}
+                  fill="#67e8f9"
+                  filter="url(#glow)"
+                  initial={{
+                    cx: x1,
+                    cy: yStart,
+                  }}
+                  animate={{
+                    cx: x2,
+                    cy: yEnd,
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Infinity,
+                    delay: j * 0.15,
+                    ease: "linear",
+                  }}
+                />
+              )}
+            </g>
+          );
+        })
+      )}
+
+      {/* Hidden → Output */}
+      {hidden.map((y1, j) => {
+        const startY = y1 / 1.4 + 18;
+
+        return (
+          <g key={j}>
+            <motion.line
+              x1={100}
+              y1={startY}
+              x2={168}
+              y2={70}
+              stroke="rgba(255,255,255,.2)"
+              strokeWidth="1"
+              animate={{
+                opacity: phaseIndex >= 2 ? [0.25, 0.8, 0.25] : 0.15,
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: j * 0.08,
+              }}
             />
 
-            {/* Labels */}
-            <text x="10" y="130" className="font-mono text-[8px] force-white-text opacity-40">Input</text>
-            <text x="85" y="130" className="font-mono text-[8px] force-white-text opacity-40">Hidden</text>
-            <text x="155" y="130" className="font-mono text-[8px] force-white-text opacity-40">Output</text>
-        </svg>
-    );
+            {phaseIndex >= 2 && (
+              <motion.circle
+                r={2.5}
+                fill="#22d3ee"
+                filter="url(#glow)"
+                initial={{
+                  cx: 100,
+                  cy: startY,
+                }}
+                animate={{
+                  cx: 168,
+                  cy: 70,
+                }}
+                transition={{
+                  duration: 0.7,
+                  repeat: Infinity,
+                  delay: j * 0.15,
+                  ease: "linear",
+                }}
+              />
+            )}
+          </g>
+        );
+      })}
+
+      {/* Input Nodes */}
+      {inputs.map((cy, i) => (
+        <motion.g key={i}>
+          <motion.circle
+            cx={32}
+            cy={cy}
+            r={10}
+            fill="#67e8f9"
+            opacity={0.18}
+            filter="url(#glow)"
+            animate={{
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              delay: i * 0.2,
+            }}
+          />
+
+          <motion.circle
+            cx={32}
+            cy={cy}
+            r={5}
+            fill="white"
+            animate={{
+              scale: phaseIndex === 0 ? [1, 1.25, 1] : [1, 1.08, 1],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+            }}
+          />
+        </motion.g>
+      ))}
+
+      {/* Hidden Nodes */}
+      {hidden.map((cy, i) => (
+        <motion.g key={i}>
+          <motion.circle
+            cx={100}
+            cy={cy / 1.4 + 18}
+            r={10}
+            fill="#22d3ee"
+            opacity={phaseIndex >= 1 ? 0.18 : 0}
+            filter="url(#glow)"
+            animate={{
+              scale: phaseIndex >= 2 ? [1, 1.6, 1] : 1,
+            }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              delay: i * 0.15,
+            }}
+          />
+
+          <motion.circle
+            cx={100}
+            cy={cy / 1.4 + 18}
+            r={5}
+            fill="white"
+            animate={{
+              scale: phaseIndex >= 2 ? [1, 1.25, 1] : 1,
+              opacity: phaseIndex >= 1 ? [0.6, 1, 0.6] : 0.3,
+            }}
+            transition={{
+              duration: 1.4,
+              repeat: Infinity,
+              delay: i * 0.1,
+            }}
+          />
+        </motion.g>
+      ))}
+
+      {/* Output */}
+      <motion.g>
+        {phaseIndex >= 3 && (
+          <motion.circle
+            cx={168}
+            cy={70}
+            r={12}
+            fill="#06b6d4"
+            opacity={0.2}
+            filter="url(#glow)"
+            animate={{
+              scale: [1, 2.2],
+              opacity: [0.4, 0],
+            }}
+            transition={{
+              duration: 1.2,
+              repeat: Infinity,
+            }}
+          />
+        )}
+
+        <motion.circle
+          cx={168}
+          cy={70}
+          r={8}
+          fill="white"
+          animate={{
+            scale: phaseIndex >= 3 ? [1, 1.35, 1] : 1,
+          }}
+          transition={{
+            duration: 1.3,
+            repeat: Infinity,
+          }}
+        />
+      </motion.g>
+
+      <text x="10" y="130" className="font-mono text-[8px] force-white-text opacity-40">
+        Input
+      </text>
+      <text x="85" y="130" className="font-mono text-[8px] force-white-text opacity-40">
+        Hidden
+      </text>
+      <text x="155" y="130" className="font-mono text-[8px] force-white-text opacity-40">
+        Output
+      </text>
+    </svg>
+  );
 }
 
 // Marketing Visual

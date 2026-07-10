@@ -1387,10 +1387,10 @@ export default function IndustryPage() {
                   className="force-dark-card relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
                   style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
                 >
-                  <div
+                  {/* <div
                     className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
                     style={{ backgroundColor: accent }}
-                  />
+                  /> */}
 
                   <div className="relative">
                     <p className="eyebrow gradient-text-dark">
@@ -1567,11 +1567,12 @@ export default function IndustryPage() {
               {/* Left column */}
               <div className="lg:col-span-7">
                 <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="w-1.5 h-1.5 rounded-full animate-pulse"
-                    style={{ backgroundColor: accent }} />
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-dark">
-                    Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
-                  </p>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+                    <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                      Powering Every Stage of the {meta?.shortLabel ?? "Digital"} Journey
+                    </span>
+                  </div>
                 </div>
 
                 <h2 className="mt-3 h-section text-deep-blue">
@@ -1635,28 +1636,28 @@ export default function IndustryPage() {
 
       {/* ───────── Final CTA ───────── */}
       <CTABanner
-  eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
-  heading={
-    (() => {
-      const { firstHalf, secondHalf } = splitTitle(industry.ctaHeading);
-      return (
-        <>
-          <span className="text-white">{firstHalf}</span>{' '}
-          <span className="gradient-text-fixed">{secondHalf}</span>
-        </>
-      );
-    })()
-  }
-  description={
-    <span style={{ whiteSpace: 'pre-line' }}>
-      {industry.ctaDescription}
-    </span>
-  }
-  primaryLabel="Let's build it."
-  primaryHref="/contact"
-  secondaryLabel="See all industries"
-  secondaryHref="/industries"
-/>
+        eyebrow={`Built for ${meta?.shortLabel ?? "this sector"}`}
+        heading={
+          (() => {
+            const { firstHalf, secondHalf } = splitTitle(industry.ctaHeading);
+            return (
+              <>
+                <span className="text-white">{firstHalf}</span>{' '}
+                <span className="gradient-text-fixed">{secondHalf}</span>
+              </>
+            );
+          })()
+        }
+        description={
+          <span style={{ whiteSpace: 'pre-line' }}>
+            {industry.ctaDescription}
+          </span>
+        }
+        primaryLabel="Let's build it."
+        primaryHref="/contact"
+        secondaryLabel="See all industries"
+        secondaryHref="/industries"
+      />
     </>
   );
 }

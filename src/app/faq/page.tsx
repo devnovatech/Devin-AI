@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import CTABanner from "@/components/CTABanner";
+import AnimatedSection from "@/components/AnimatedSection";
 
 // FAQ data stored directly in this component
 const faqs = [
@@ -155,7 +156,7 @@ function FaqGridItem({
 }) {
     return (
         <div
-            className={`relative rounded-2xl border border-white/[0.08] transition-all duration-300 ${isOpen
+            className={`relative rounded-2xl shadow-lg border border-gray-300 transition-all duration-300 ${isOpen
                 ? "bg-white/[0.03] border-neon-blue/20 shadow-lg shadow-neon-blue/5"
                 : "bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.15]"
                 }`}
@@ -230,7 +231,7 @@ export default function FAQPage() {
             {/* Hero Section - Left Content + Right Statistics */}
             <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
                 {/* Background decorations */}
-              
+                <div className="absolute inset-0 grid-bg" />
                 <div
                     className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-neon-blue/[0.08] rounded-full blur-[140px] pointer-events-none"
                 />
@@ -242,11 +243,7 @@ export default function FAQPage() {
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         {/* Left Column - Content */}
                         <div>
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6 }}
-                            >
+                           < AnimatedSection direction="right" >
 
                                 <h1 className="text-7xl  font-bold text-white tracking-tight leading-[1.1]">
                                     Everything you need to{" "}
@@ -265,21 +262,16 @@ export default function FAQPage() {
                                         Still have questions? Contact us
                                     </Link>
                                 </div>
-                            </motion.div>
+                           </AnimatedSection> 
                         </div>
 
                         {/* Right Column - Statistics Dashboard */}
-                        <div className="relative rounded-full force-dark-card">
+                        <AnimatedSection direction="left"className="relative rounded-xl force-dark-card">
                             {/* Background glow */}
                             <div className="absolute -top-10 -right-10 w-60 h-60 bg-neon-blue/20 rounded-full blur-[100px]" />
                             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-neon-purple/20 rounded-full blur-[100px]" />
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="relative bg-[#0a1628] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 lg:p-8"
-                            >
+                            <div className="relative bg-[#0a1628] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 lg:p-8">
                                 {/* Header (same as Industry card style) */}
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="w-10 h-10 rounded-xl bg-neon-blue flex items-center justify-center">
@@ -337,10 +329,12 @@ export default function FAQPage() {
                                         </span>
                                     ))}
                                 </div>
-                            </motion.div>
+                                </div>
+                           </AnimatedSection>
+
                         </div>
+                        
                     </div>
-                </div>
             </section>
 
             {/* FAQ List - Grid Layout with 2 per row */}

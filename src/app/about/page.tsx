@@ -214,8 +214,8 @@ function StatsSection() {
   ];
 
   return (
-    <section className="border-y bg-service-banner">
-      <div className="mx-auto max-w-[1320px] px-6 py-14 md:px-8 lg:px-12">
+    <section className="bg-service-banner">
+      <div className="mx-auto max-w-[1320px] px-4 md:px-8 lg:px-6 py-6">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
@@ -459,7 +459,7 @@ function ValuesSection() {
             return (
               <div
                 key={value.title}
-                className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 hover:shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[220px]"
+                className="group relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 transition-all duration-500 shadow-xl hover:shadow-deep-blue/5 hover:border-deep-blue/[0.12] overflow-hidden min-h-[220px]"
               >
                 {/* Top accent line */}
                 <div
@@ -481,7 +481,7 @@ function ValuesSection() {
                 <div className="relative z-10 flex flex-col h-full">
                   {/* Icon */}
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
                     style={{
                       backgroundColor: `${value.accent}14`,
                       color: value.accent,

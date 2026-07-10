@@ -130,16 +130,6 @@ const servicesData: Record<string, ServiceData> = {
           "A/B testing programs",
         ],
       },
-      // {
-      //   category: "Marketing Analytics & Attribution",
-      //   description: "Transform marketing data into actionable insights that improve performance and ROI.",
-      //   items: [
-      //     "Analytics implementation",
-      //     "Attribution reporting",
-      //     "Performance dashboards",
-      //     "Growth recommendations",
-      //   ],
-      // },
     ],
     painPoints: [
       "Are you creating content that never ranks or worse, doesn\u2019t convert?",
@@ -260,16 +250,6 @@ const servicesData: Record<string, ServiceData> = {
           "Security validation",
         ],
       },
-      // {
-      //   category: "Analytics & Optimization",
-      //   description: "Monitor product performance and user behavior to support continuous improvement and growth.",
-      //   items: [
-      //     "Product analytics implementation",
-      //     "Performance monitoring",
-      //     "User behavior insights",
-      //     "Optimization recommendations",
-      //   ],
-      // },
     ],
     painPoints: [
       "Not sure whether to go native or cross-platform?",
@@ -389,16 +369,6 @@ const servicesData: Record<string, ServiceData> = {
           "Automated testing frameworks",
         ],
       },
-      // {
-      //   category: "Cloud Infrastructure & Optimization",
-      //   description: "Deploy and optimize web platforms for performance, scalability, and operational visibility.",
-      //   items: [
-      //     "Cloud infrastructure deployment",
-      //     "CI/CD implementation",
-      //     "Monitoring & observability",
-      //     "Performance optimization",
-      //   ],
-      // },
     ],
     painPoints: [
       "Is your current site slow, clunky, or frustrating to use?",
@@ -518,16 +488,6 @@ const servicesData: Record<string, ServiceData> = {
           "Stakeholder validation sessions",
         ],
       },
-      // {
-      //   category: "Usability Testing & Design Validation",
-      //   description: "Evaluate user interactions and refine experiences based on real-world feedback.",
-      //   items: [
-      //     "Usability testing",
-      //     "User behavior analysis",
-      //     "Experience audits",
-      //     "Design optimization recommendations",
-      //   ],
-      // },
     ],
     painPoints: [
       "Are users dropping off before completing key actions?",
@@ -647,16 +607,6 @@ const servicesData: Record<string, ServiceData> = {
           "Customer behavior analysis",
         ],
       },
-      // {
-      //   category: "Commerce Analytics & Revenue Intelligence",
-      //   description: "Transform commerce data into actionable insights that support growth and operational decision-making.",
-      //   items: [
-      //     "Ecommerce analytics implementation",
-      //     "Revenue performance dashboards",
-      //     "Customer behavior reporting",
-      //     "Growth opportunity analysis",
-      //   ],
-      // },
     ],
     painPoints: [
       "Is your current site slow, clunky, or hard to update?",
@@ -776,16 +726,6 @@ const servicesData: Record<string, ServiceData> = {
           "Continuous model delivery",
         ],
       },
-      // {
-      //   category: "AI Governance & Model Performance",
-      //   description: "Maintain reliability, transparency, compliance, and long-term effectiveness across the AI lifecycle.",
-      //   items: [
-      //     "Model performance monitoring",
-      //     "Bias & risk assessment",
-      //     "Governance frameworks",
-      //     "Continuous model optimization",
-      //   ],
-      // },
     ],
     painPoints: [
       "Do you have data but don\u2019t know how to use it effectively?",
@@ -1728,7 +1668,7 @@ export default function ServicePage() {
 
       {/* ───────── Serivce banner ───────── */}
       <section className="border-y bg-service-banner">
-        <div className="mx-auto max-w-[1320px] px-6 py-14 md:px-8 lg:px-12">
+        <div className="mx-auto max-w-[1320px] px-6 md:px-8 lg:px-6 py-6">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
 
             {/* Card 1 */}
@@ -1899,15 +1839,16 @@ export default function ServicePage() {
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-6">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
-                <span
+                {/* <span
                   className="w-1.5 h-1.5 rounded-full animate-pulse"
                   style={{ backgroundColor: accent }}
-                />
-                <p
-                  className="text-[10px] uppercase tracking-[0.2em] font-bold gradient-text-dark"
-                >
-                  What's included
-                </p>
+                /> */}
+                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                What's Include
+              </span>
+            </div>
               </div>
 
               <h2 className="mt-2 h-section max-w-2xl">
@@ -2296,11 +2237,12 @@ export default function ServicePage() {
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-12 lg:mb-14">
             <div className="lg:col-span-7">
               <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse"
-                  style={{ backgroundColor: accent }} />
-                <p className="text-[10px] uppercase tracking-[0.2em] gradient-text-dark font-bold">
-                  WHY US
-                </p>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                WHY US
+              </span>
+            </div>
               </div>
               <h2 className="mt-3 h-section text-deep-blue">
                 {(() => {

@@ -100,15 +100,18 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           {/* Brand Column */}
           <div className="md:col-span-5">
-             <Link href="/" className=" items-center justify-center">
-            <Image
-              src={isLight ? "/site_logo2.png" : "/site_logo.png"}
-              alt="Dev Inception"
-              width={75}
-              height={75}
-              className="h-30 w-24 object-contain"
-            />
-          </Link>
+            <Link href="/" className="items-center justify-center inline-block">
+              {/* FIX: Fixed container with consistent size */}
+              <div className="w-24 h-24 relative flex-shrink-0">
+                <Image
+                  src={isLight ? "/site_logo2.png" : "/site_logo.png"}
+                  alt="Dev Inception"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </Link>
 
             {/* FIX: Consistent heading size in both themes */}
             <h2 className="mt-8 max-w-md text-2xl font-bold tracking-tight md:text-3xl">
@@ -195,15 +198,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div
-          className={`mt-14 flex flex-col items-start justify-between gap-4 border-t pt-6 text-xs ${isLight
-            ? "border-gray-200 text-gray-600"
-            : "border-white/10 text-gray-500"
-            } md:flex-row md:items-center`}
-        >
-          <p>© {new Date().getFullYear()} Dev Inception. All rights reserved.</p>
-          <p>Remote · with hubs in NYC, Dubai & Karachi</p>
-        </div>
+       <div
+  className={`mt-14 flex flex-col border-t pt-6 text-xs ${
+    isLight
+      ? "border-gray-200 text-gray-600"
+      : "border-white/10 text-gray-500"
+  } md:flex-row md:items-center md:justify-between`}
+>
+  <p>© {new Date().getFullYear()} Dev Inception. All rights reserved.</p>
+
+  <div className="mt-4 flex gap-6 md:mt-0">
+    <Link href="/privacy">Privacy Policy</Link>
+    <Link href="/terms">Terms and Conditions</Link>
+  </div>
+</div>
       </div>
     </footer>
   );

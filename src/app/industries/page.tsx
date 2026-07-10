@@ -304,7 +304,7 @@ export default function IndustriesPage() {
           >
             Built Around Your Constraints
             <br />
-            <span className="gradient-text glow-text"> Not Just Your Requirements.</span>
+            <span className="gradient-text"> Not Just Your Requirements.</span>
           </h1>
         </AnimatedSection>
 
