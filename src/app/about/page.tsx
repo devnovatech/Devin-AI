@@ -827,12 +827,12 @@ function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?:
                         {role.icon}
                       </svg>
                     </span>
-                    <span
+                    {/* <span
                       className="font-mono text-[10px] font-bold tracking-wider transition-colors duration-300"
                       style={{ color: `${role.accent}80` }}
                     >
                       {numLabel}
-                    </span>
+                    </span> */}
                   </div>
 
                   {/* Title */}

@@ -120,7 +120,7 @@ export default function Footer() {
 
             {/* FIX: Consistent email link size in both themes */}
             <Link
-              href="mailto:hello@devinception.com"
+              href="mailto:info@devinception.com"
               className={`mt-6 inline-flex items-center gap-2 text-xl font-semibold tracking-tight md:text-2xl ${isLight
                 ? "text-gray-900 hover:text-neon-purple"
                 : "text-white hover:text-neon-blue"
