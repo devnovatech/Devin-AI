@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
 import SectionDivider from "@/components/ui/SectionDivider";
+import CardTitle from "@/components/CardTitle";
 
 const DEEP = "var(--section-deep)";
 const LIGHT = "var(--section-light)";
@@ -42,11 +43,10 @@ function FloatingField({
   const SharedLabel = (
     <label
       htmlFor={id}
-      className={`absolute left-4 transition-all duration-200 pointer-events-none ${
-        filled
-          ? "top-1.5 text-[11px] text-neon-blue"
-          : "top-4 text-sm text-deep-blue/40"
-      } peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:text-neon-blue`}
+      className={`absolute left-4 transition-all duration-200 pointer-events-none ${filled
+        ? "top-1.5 text-[11px] text-neon-blue"
+        : "top-4 text-sm text-deep-blue/40"
+        } peer-focus:top-1.5 peer-focus:text-[11px] peer-focus:text-neon-blue`}
     >
       {label}
       {required && <span className="text-red-500 ml-0.5">*</span>}
@@ -283,7 +283,7 @@ export default function ContactPage() {
     <>
       {/* ───────── Hero ───────── */}
       <section className="pt-32 pb-16 bg-section-dark relative overflow-hidden">
-      
+
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
         <div className="noise-overlay" />
@@ -295,7 +295,7 @@ export default function ContactPage() {
               style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 4.5rem)" }}
             >
               Let&apos;s build{" "}
-              <span className="gradient-text glow-text">together.</span>
+              <span className="gradient-text">together.</span>
             </h1>
           </AnimatedSection>
 
@@ -349,23 +349,20 @@ export default function ContactPage() {
                           key={t.id}
                           type="button"
                           onClick={() => setProjectType(t.id)}
-                          className={`group flex flex-col items-center gap-1.5 px-2 py-3 rounded-xl border text-center transition-all duration-200 ${
-                            active
-                              ? "border-neon-blue bg-neon-blue/[0.06] shadow-sm shadow-neon-blue/10"
-                              : "border-deep-blue/[0.08] bg-light-accent/30 hover:border-deep-blue/[0.18] hover:bg-white"
-                          }`}
+                          className={`group flex flex-col items-center gap-1.5 px-2 py-3 rounded-xl border text-center transition-all duration-200 ${active
+                            ? "border-neon-blue bg-neon-blue/[0.06] shadow-sm shadow-neon-blue/10"
+                            : "border-deep-blue/[0.08] bg-light-accent/30 hover:border-deep-blue/[0.18] hover:bg-white"
+                            }`}
                         >
                           <span
-                            className={`transition-colors ${
-                              active ? "text-neon-blue" : "text-deep-blue/60 group-hover:text-deep-blue"
-                            }`}
+                            className={`transition-colors ${active ? "text-neon-blue" : "text-deep-blue/60 group-hover:text-deep-blue"
+                              }`}
                           >
                             {t.icon}
                           </span>
                           <span
-                            className={`text-[11px] font-semibold leading-tight ${
-                              active ? "text-deep-blue" : "text-deep-blue/70"
-                            }`}
+                            className={`text-[11px] font-semibold leading-tight ${active ? "text-deep-blue" : "text-deep-blue/70"
+                              }`}
                           >
                             {t.label}
                           </span>
@@ -395,11 +392,10 @@ export default function ContactPage() {
                           key={f.id}
                           type="button"
                           onClick={() => toggleFeature(f.id)}
-                          className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
-                            active
-                              ? "bg-neon-blue text-white border-neon-blue shadow-sm shadow-neon-blue/30"
-                              : "bg-deep-blue/[0.03] text-deep-blue/75 border-deep-blue/[0.08] hover:bg-deep-blue/[0.06] hover:text-deep-blue"
-                          }`}
+                          className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${active
+                            ? "bg-neon-blue text-white border-neon-blue shadow-sm shadow-neon-blue/30"
+                            : "bg-deep-blue/[0.03] text-deep-blue/75 border-deep-blue/[0.08] hover:bg-deep-blue/[0.06] hover:text-deep-blue"
+                            }`}
                         >
                           {active && <span className="mr-1">✓</span>}
                           {f.label}
@@ -422,16 +418,14 @@ export default function ContactPage() {
                           key={c.id}
                           type="button"
                           onClick={() => setComplexity(c.id)}
-                          className={`px-2 py-2.5 rounded-xl border text-left transition-all duration-200 ${
-                            active
-                              ? "border-neon-blue bg-neon-blue/[0.06]"
-                              : "border-deep-blue/[0.08] bg-light-accent/30 hover:border-deep-blue/[0.18] hover:bg-white"
-                          }`}
+                          className={`px-2 py-2.5 rounded-xl border text-left transition-all duration-200 ${active
+                            ? "border-neon-blue bg-neon-blue/[0.06]"
+                            : "border-deep-blue/[0.08] bg-light-accent/30 hover:border-deep-blue/[0.18] hover:bg-white"
+                            }`}
                         >
                           <span
-                            className={`block text-xs font-bold ${
-                              active ? "text-neon-blue" : "text-deep-blue"
-                            }`}
+                            className={`block text-xs font-bold ${active ? "text-neon-blue" : "text-deep-blue"
+                              }`}
                           >
                             {c.label}
                           </span>
@@ -457,16 +451,14 @@ export default function ContactPage() {
                           key={t.id}
                           type="button"
                           onClick={() => setTimeline(t.id)}
-                          className={`px-3 py-2.5 rounded-xl border text-left transition-all duration-200 ${
-                            active
-                              ? "border-neon-blue bg-neon-blue/[0.06]"
-                              : "border-deep-blue/[0.08] bg-light-accent/30 hover:border-deep-blue/[0.18] hover:bg-white"
-                          }`}
+                          className={`px-3 py-2.5 rounded-xl border text-left transition-all duration-200 ${active
+                            ? "border-neon-blue bg-neon-blue/[0.06]"
+                            : "border-deep-blue/[0.08] bg-light-accent/30 hover:border-deep-blue/[0.18] hover:bg-white"
+                            }`}
                         >
                           <span
-                            className={`block text-xs font-bold ${
-                              active ? "text-neon-blue" : "text-deep-blue"
-                            }`}
+                            className={`block text-xs font-bold ${active ? "text-neon-blue" : "text-deep-blue"
+                              }`}
                           >
                             {t.label}
                           </span>
@@ -744,89 +736,96 @@ export default function ContactPage() {
       {/* ───────── What happens next ───────── */}
       <section className="py-20 lg:py-24 bg-white relative overflow-hidden">
 
-  <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+        <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
-  <div className="relative max-w-7xl mx-auto px-6">
-    <div className="text-center max-w-2xl mx-auto mb-12">
-      <p className="eyebrow text-neon-blue">What happens next</p>
-
-      <h2 className="mt-3 h-section text-gray-900">
-        From message to{" "}
-        <span className="gradient-text-dark">first sprint.</span>
-      </h2>
-
-      <p className="mt-5 body-base text-gray-600">
-        No black box. Here&apos;s exactly what to expect after you hit send.
-      </p>
-    </div>
-
-    <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      <div className="hidden lg:block absolute top-7 left-[16.5%] right-[16.5%] h-px border-t border-dashed border-gray-300" />
-
-      {nextSteps.map((step) => (
-        <div key={step.number}>
-          <div
-            className="group relative h-full p-6 lg:p-7 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-lg"
-            style={
-              {
-                "--card-glow": `${step.accent}55`,
-              } as React.CSSProperties
-            }
-          >
-            <div
-              className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.12] group-hover:opacity-[0.22] transition-opacity duration-500"
-              style={{ backgroundColor: step.accent }}
-            />
-
-            <div className="relative flex items-center gap-3 mb-5">
-              <div
-                className="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 z-10"
-                style={{
-                  backgroundColor: step.accent,
-                  boxShadow: `0 12px 28px -10px ${step.accent}80`,
-                }}
-              >
-                {step.number}
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-12 lg:mb-14">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/[0.1] bg-white/70 backdrop-blur-sm mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
+                <span className="text-[11px] font-semibold tracking-[0.18em] uppercase gradient-text-dark">
+                  What happens next
+                </span>
               </div>
-
-              <span
-                className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
-                style={{
-                  color: step.accent,
-                  backgroundColor: `${step.accent}15`,
-                }}
-              >
-                {step.duration}
-              </span>
+              <h2 className="h-section text-deep-blue">
+                From message to{" "}
+                <span className="gradient-text-dark">first sprint.</span>
+              </h2>
             </div>
+            <div className="lg:col-span-5">
+              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
+                No black box. Here&apos;s exactly what to expect after you hit send.
+              </p>
+            </div>
+          </div>
 
-            <h3 className="relative h-card text-gray-900 mb-2">
-              {step.title}
-            </h3>
+          <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="hidden lg:block absolute top-7 left-[16.5%] right-[16.5%] h-px border-t border-dashed border-gray-300" />
 
-            <p className="relative text-sm text-gray-600 leading-relaxed">
-              {step.description}
+            {nextSteps.map((step) => (
+              <div key={step.number}>
+                <div
+                  className="group relative h-full p-6 lg:p-7 rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-lg"
+                  style={
+                    {
+                      "--card-glow": `${step.accent}55`,
+                    } as React.CSSProperties
+                  }
+                >
+                  <div
+                    className="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full blur-2xl opacity-[0.12] group-hover:opacity-[0.22] transition-opacity duration-500"
+                    style={{ backgroundColor: step.accent }}
+                  />
+
+                  <div className="relative flex items-center gap-3 mb-5">
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0 z-10"
+                      style={{
+                        backgroundColor: step.accent,
+                        boxShadow: `0 12px 28px -10px ${step.accent}80`,
+                      }}
+                    >
+                      {step.number}
+                    </div>
+
+                    <span
+                      className="text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
+                      style={{
+                        color: step.accent,
+                        backgroundColor: `${step.accent}15`,
+                      }}
+                    >
+                      {step.duration}
+                    </span>
+                  </div>
+
+                  <h3 className="relative h-card text-gray-900 mb-2">
+                    {step.title}
+                  </h3>
+
+                  <p className="relative text-sm text-gray-600 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom hint */}
+          <div className="mt-12 text-center">
+            <p className="text-sm text-gray-600">
+              Prefer to skip the form?{" "}
+              <a
+                href="mailto:info@devinception.com"
+                className="text-neon-blue hover:underline font-semibold"
+              >
+                info@devinception.com
+              </a>{" "}
+              — same response time.
             </p>
           </div>
         </div>
-      ))}
-    </div>
-
-    {/* Bottom hint */}
-    <div className="mt-12 text-center">
-      <p className="text-sm text-gray-600">
-        Prefer to skip the form?{" "}
-        <a
-          href="mailto:info@devinception.com"
-          className="text-neon-blue hover:underline font-semibold"
-        >
-          info@devinception.com
-        </a>{" "}
-        — same response time.
-      </p>
-    </div>
-  </div>
-</section>
+      </section>
     </>
   );
 }

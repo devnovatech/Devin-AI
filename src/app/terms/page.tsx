@@ -143,7 +143,7 @@ export default function TermsPage() {
               style={{ fontSize: "clamp(2.5rem, 5vw + 0.25rem, 4.5rem)" }}
             >
               Fair, clear, and{" "}
-              <span className="gradient-text glow-text">in plain English.</span>
+              <span className="gradient-text ">in plain English.</span>
             </h1>
           </AnimatedSection>
 

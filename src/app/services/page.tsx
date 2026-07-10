@@ -674,7 +674,7 @@ export default function ServicesPage() {
                 style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 4.75rem)" }}
               >
                 Built around how{" "}
-                <span className="gradient-text glow-text">
+                <span className="gradient-text">
                   modern teams operate.
                 </span>
               </h1>

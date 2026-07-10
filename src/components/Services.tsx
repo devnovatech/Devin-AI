@@ -40,24 +40,6 @@ declare global {
 
 const services: Service[] = [
   {
-    title: "AI & ML Engineering",
-    slug: "machine-learning-ai",
-    tagline: "Production-grade intelligence",
-    accent: "#1E88E5",
-    category: "Build",
-    description:
-      "End-to-end AI and ML development from data engineering and model building to deployment and optimization for production systems.",
-
-    stack: ["OpenAI APIs", "TensorFlow", "PyTorch", "Python"],
-    icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Discover", description: "AI strategy and data assessment" },
-      { name: "Prototype", description: "Model selection and validation" },
-      { name: "Train", description: "Model training and optimization" },
-      { name: "Deploy", description: "Integration, monitoring, and improvement" },
-    ]
-  },
-  {
     title: "Mobile Engineering",
     slug: "mobile-application",
     tagline: "Native and cross-platform apps",
@@ -92,6 +74,24 @@ const services: Service[] = [
       { name: "Design", description: "Architecture, UX, wireframes, and workflows" },
       { name: "Build", description: "Development, integrations, testing, and security" },
       { name: "Launch", description: "Deployment, optimization, and scaling" },
+    ]
+  },
+    {
+    title: "AI & ML Engineering",
+    slug: "machine-learning-ai",
+    tagline: "Production-grade intelligence",
+    accent: "#1E88E5",
+    category: "Build",
+    description:
+      "End-to-end AI and ML development from data engineering and model building to deployment and optimization for production systems.",
+
+    stack: ["OpenAI APIs", "TensorFlow", "PyTorch", "Python"],
+    icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5" />,
+    phases: [
+      { name: "Discover", description: "AI strategy and data assessment" },
+      { name: "Prototype", description: "Model selection and validation" },
+      { name: "Train", description: "Model training and optimization" },
+      { name: "Deploy", description: "Integration, monitoring, and improvement" },
     ]
   },
   {

@@ -125,7 +125,7 @@ export default function PrivacyPage() {
               style={{ fontSize: "clamp(2.5rem, 5vw + 0.25rem, 4.5rem)" }}
             >
               Our commitment to{" "}
-              <span className="gradient-text glow-text">your privacy.</span>
+              <span className="gradient-text">your privacy.</span>
             </h1>
           </AnimatedSection>
 
