@@ -21,20 +21,20 @@ const industries: Industry[] = [
     shortLabel: "SaaS",
     slug: "saas-startups",
     description:
-      "From early MVPs to growing platforms — we build quickly without cutting the corners that cause problems later. Made for fast-moving teams.",
-    accent: "#1E88E5",
+      "From early-stage MVPs to rapidly growing platforms, we deliver scalable digital products with the speed startups need and the engineering discipline required for long-term growth.",
+    accent: "#0277BD",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     ),
     challenges: [
-      "Speed to market without technical debt",
-      "Scalable architecture from day one",
+      "Accelerating time to market without accumulating technical debt",
+      "Establishing scalable architecture from the outset",
     ],
     deliverables: [
-      "MVP built and launched quickly",
-      "Cloud infrastructure that scales automatically",
+      "Production-ready MVPs designed, developed, and launched efficiently",
+      "Cloud-native infrastructure engineered to scale with demand",
     ],
   },
   {
@@ -42,20 +42,20 @@ const industries: Industry[] = [
     shortLabel: "E-commerce",
     slug: "ecommerce-retail",
     description:
-      "Conversion-tuned storefronts, secure checkout, and inventory that scales with you. Performance and trust drive revenue here — we obsess over both.",
-    accent: "#0277BD",
+      "We deliver high-performance commerce platforms with conversion-focused storefronts, secure checkout experiences, and scalable inventory operations—designed to strengthen customer trust and drive revenue growth.",
+    accent: "#4fc3f7",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
       </svg>
     ),
     challenges: [
-      "Cart abandonment & checkout friction",
-      "PCI-DSS compliance & payment security",
+      "Reducing cart abandonment and checkout friction",
+      "Maintaining payment security and PCI DSS compliance",
     ],
     deliverables: [
-      "Conversion-tuned checkout flows",
-      "Headless commerce on Shopify / custom",
+      "Conversion-optimized storefronts and checkout journeys",
+      "Headless commerce solutions built on Shopify or custom platforms",
     ],
   },
   {
@@ -63,7 +63,7 @@ const industries: Industry[] = [
     shortLabel: "Healthcare",
     slug: "healthcare",
     description:
-      "HIPAA-compliant platforms, telemedicine, and patient management systems. Engineered for the regulatory bar — without sacrificing the experience.",
+      "We build secure healthcare platforms, telemedicine solutions, and patient management systems designed around regulatory requirements, clinical workflows, and seamless user experiences.",
     accent: "#00ACC1",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,12 +71,12 @@ const industries: Industry[] = [
       </svg>
     ),
     challenges: [
-      "HIPAA & data-privacy compliance",
-      "Fragmented EHR / legacy systems",
+      "Meeting HIPAA and healthcare data-privacy requirements",
+      "Integrating fragmented EHR platforms and legacy systems",
     ],
     deliverables: [
-      "HIPAA-compliant platforms & audit trails",
-      "Telemedicine + EHR API integrations",
+      "Secure healthcare platforms with access controls, audit trails, and compliance-ready architecture",
+      "Telemedicine solutions and EHR API integrations",
     ],
   },
   {
@@ -84,22 +84,20 @@ const industries: Industry[] = [
     shortLabel: "Education",
     slug: "education",
     description:
-      "Interactive learning platforms, content delivery, and student-engagement tools. Accessible by design and built to scale for large audiences.",
-    accent: "#0288D1",
+      "We build interactive learning platforms, content delivery systems, and student-engagement tools designed for accessibility, measurable learning outcomes, and reliable performance at scale.",
+    accent: "#1E88E5",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
       </svg>
     ),
     challenges: [
-      "Low engagement & completion rates",
-      "Accessibility for diverse learners",
-      "Scaling content for global cohorts",
+      "Improving learner engagement and course-completion rates",
+      "Supporting accessibility across diverse learner needs",
     ],
     deliverables: [
-      "Custom learning platform with analytics",
-      "Accessible, WCAG-compliant design",
-      "Cloud infrastructure built to scale",
+      "Custom learning platforms with analytics, assessments, and progress tracking",
+      "Accessible experiences designed in alignment with WCAG standards",
     ],
   },
 ];
@@ -112,9 +110,9 @@ export default function Industries() {
     <section className="min-h-screen flex flex-col justify-center py-16 lg:py-20 bg-section-industries relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header — split editorial */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-4 lg:mb-10">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-3">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase gradient-text">
                 Industries we serve
@@ -127,8 +125,7 @@ export default function Industries() {
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-gray-400 max-w-md lg:ml-auto">
-              We&apos;ve worked across these industries before. Pick one to see
-              the challenges we often hear about — and how we help solve them.
+              Our experience spans diverse industries, each with distinct operational challenges and growth opportunities. Explore how we address industry-specific needs through scalable, purpose-built digital solutions.
             </p>
           </div>
         </div>
@@ -162,7 +159,7 @@ export default function Industries() {
             </div>
 
             {/* Desktop — vertical tab list */}
-            <div className="hidden lg:flex flex-col gap-2">
+            <div className="hidden lg:flex flex-col gap-3">
               {industries.map((ind, i) => {
                 const isActive = activeIndex === i;
                 const onSelect = () => {
@@ -175,8 +172,8 @@ export default function Industries() {
                     onClick={onSelect}
                     onMouseEnter={onSelect}
                     className={`group relative w-full text-left flex items-center gap-4 px-5 py-4 rounded-2xl overflow-hidden transition-all duration-300 border ${isActive
-                        ? "bg-[#0a1628] dark:bg-[#0a1628] border-white/20 shadow-2xl shadow-black/40"
-                        : "bg-white dark:bg-[#0a1628]/60 border-gray-200 dark:border-white/10 hover:!bg-[#0a1628] dark:hover:!bg-[#0a1628] hover:border-[#0a1628] dark:hover:border-white/20 hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black/40"
+                      ? "bg-[#0a1628] dark:bg-[#0a1628] border-white/20 shadow-2xl shadow-black/40"
+                      : "bg-white dark:bg-[#0a1628]/60 border-gray-200 dark:border-white/10 hover:!bg-[#0a1628] dark:hover:!bg-[#0a1628] hover:border-[#0a1628] dark:hover:border-white/20 hover:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black/40"
                       }`}
                     style={{
                       backdropFilter: 'blur(8px)',
@@ -194,8 +191,8 @@ export default function Industries() {
                     {/* Icon */}
                     <div
                       className={`relative w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${isActive
-                          ? "text-[#ffffff]"
-                          : "text-gray-700 dark:text-white/70 group-hover:text-white"
+                        ? "text-[#ffffff]"
+                        : "text-gray-700 dark:text-white/70 group-hover:text-white"
                         }`}
                       style={{
                         backgroundColor: isActive ? ind.accent : `${ind.accent}15`,
@@ -231,8 +228,8 @@ export default function Industries() {
                     {/* Arrow */}
                     <svg
                       className={`relative w-4 h-4 shrink-0 transition-all duration-300 ${isActive
-                          ? "opacity-100 translate-x-0 text-white"
-                          : "opacity-0 -translate-x-2 text-gray-400 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white"
+                        ? "opacity-100 translate-x-0 text-[#ffffff]"
+                        : "opacity-0 -translate-x-2 text-gray-400 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-white"
                         }`}
                       fill="none"
                       viewBox="0 0 24 24"
@@ -263,7 +260,7 @@ export default function Industries() {
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               <div
-                className="relative rounded-2xl p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden"
+                className="relative rounded-2xl p-6 shadow-2xl shadow-black/40 overflow-hidden"
                 style={{
                   backgroundColor: '#0a1628',
                   borderColor: 'rgba(255, 255, 255, 0.08)',
@@ -326,7 +323,7 @@ export default function Industries() {
                             style={{ color: 'rgb(156 163 175)' }} // gray-400
                           >
                             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0" />
-                            <span>{c}</span>
+                            <span className="line-clamp-2">{c}</span>
                           </li>
                         ))}
                       </ul>
@@ -358,11 +355,31 @@ export default function Industries() {
                                 d="M5 13l4 4L19 7"
                               />
                             </svg>
-                            <span>{d}</span>
+                            <span className="line-clamp-2">{d}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
+                  </div>
+                  <div className="relative mt-4 pt-2 border-t border-deep-blue/[0.07] flex items-center justify-end gap-3">
+                    <Link
+                      href={`/industries/${active.slug}`}
+                      className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 group"
+                      style={{
+                        color: active.accent,
+                      }}
+                    >
+                      <span>Learn more about {active.shortLabel}</span>
+                      <svg
+                        className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -371,7 +388,7 @@ export default function Industries() {
         </div>
 
         {/* See all link */}
-        <div className="mt-8 flex justify-center rounded-xl" >
+        <div className="mt-6 flex justify-center rounded-xl" >
           <Link
             href="/industries"
             className="group inline-flex items-center gap-2 px-7 py-3.5  rounded-xl bg-deep-blue  text-xs font-semibold gradient-text-fixed transition-all duration-200 hover:bg-deep-blue/80 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"

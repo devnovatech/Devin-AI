@@ -85,6 +85,7 @@ const STACK: Category[] = [
       { name: "GitLab CI", abbr: "GL" },
       { name: "Argo CD", abbr: "Ar" },
       { name: "Nginx", abbr: "Nx" },
+      
     ],
   },
   {
@@ -172,14 +173,12 @@ export function TechStack() {
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">Tech Stack</span>
             </div>
             <h2 className="h-section text-deep-blue">
-              Stack agnostic. <span className="gradient-text-dark">Whatever fits the problem.</span>
+              Stack agnostic. <span className="gradient-text-dark">Solution-Focused.</span>
             </h2>
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              Across our {STACK.length} categories we work with {TOTAL}+ tools and
-              adopt new ones constantly. Below: the ones we reach for most. Don't
-              see yours? We've probably shipped with it too.
+              Across eight technology categories, we work with more than {TOTAL}  tools, frameworks, and platforms—selecting each technology according to the product, infrastructure, and business requirements. Explore the technologies we use most frequently, alongside the broader ecosystem our delivery capabilities support.
             </p>
           </div>
         </div>

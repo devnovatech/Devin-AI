@@ -24,7 +24,7 @@ const stages: Stage[] = [
     accent: "#4FC3F7",
     bgMuted: "rgba(79, 195, 247, 0.18)",
     description:
-      "We start by understanding your goals, users, and constraints. Together we agree on scope, success measures, and a clear roadmap before any work begins.",
+      "We begin by understanding business goals, users, operational requirements, and technical constraints. Scope, success measures, priorities, and a clear delivery roadmap are established before design and development begin.",
     activities: ["Stakeholder interviews", "Tech & brand audit", "Success metrics", "Roadmap"],
     colStart: 1,
     colEnd: 4,
@@ -41,7 +41,7 @@ const stages: Stage[] = [
     accent: "#A78BFA",
     bgMuted: "rgba(167, 139, 250, 0.18)",
     description:
-      "We design around real user needs, then turn it into clear, interactive prototypes. Accessible and consistent from the first screen — not just good-looking.",
+      "We design around real user needs and translate business requirements into clear, interactive prototypes. Every experience is built to be intuitive, accessible, consistent, and aligned with the product's objectives.",
     activities: ["UX research", "Design system", "Prototypes", "Motion & a11y"],
     colStart: 3,
     colEnd: 7,
@@ -59,7 +59,7 @@ const stages: Stage[] = [
     accent: "#2DD4BF",
     bgMuted: "rgba(45, 212, 191, 0.18)",
     description:
-      "We build in short, two-week cycles with regular demos. You see working software early and often — clean, tested, and ready for production.",
+      "We develop in focused two-week cycles with regular demonstrations and continuous stakeholder visibility. Each release is clean, tested, maintainable, and engineered for production readiness.",
     activities: ["Bi-weekly demos", "Staging envs", "CI/CD pipeline", "Pair programming"],
     colStart: 5,
     colEnd: 10,
@@ -75,7 +75,7 @@ const stages: Stage[] = [
     accent: "#10B981",
     bgMuted: "rgba(16, 185, 129, 0.18)",
     description:
-      "We test thoroughly for quality, performance, security, and accessibility before anything goes live — so you launch with confidence, not surprises.",
+      "We rigorously validate functionality, quality, performance, security, compatibility, and accessibility before launch—reducing risk and enabling confident production releases.",
     activities: ["E2E + visual regression", "Performance budgets", "OWASP review", "WCAG-AA audit"],
     colStart: 7,
     colEnd: 11,
@@ -91,7 +91,7 @@ const stages: Stage[] = [
     accent: "#EF4444",
     bgMuted: "rgba(239, 68, 68, 0.18)",
     description:
-      "We release to production smoothly, with monitoring in place and a safe way to roll back if needed. Everything is documented and handed over to your team.",
+      "We release to production through a controlled deployment process with monitoring, rollback safeguards, documentation, and operational handover in place.",
     activities: ["Zero-downtime deploy", "Rollback runbook", "Observability stack", "On-call setup"],
     colStart: 9,
     colEnd: 12,
@@ -107,7 +107,7 @@ const stages: Stage[] = [
     accent: "#F59E0B",
     bgMuted: "rgba(245, 158, 11, 0.18)",
     description:
-      "We stay on after launch — fixing, improving, and adding features over time, with regular reviews to keep your product growing with your business.",
+      "We continue supporting the product after launch through issue resolution, performance improvements, ongoing maintenance, regular reviews, and the delivery of new features as business needs evolve.",
     activities: ["On-call", "A/B program", "Growth", "Quarterly review"],
     colStart: 10,
     colEnd: 13,
@@ -175,7 +175,7 @@ export default function WorkingProcess() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
         {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-4 lg:gap-10 items-start mb-5 sm:mb-7 lg:mb-9">
+        <div className="grid lg:grid-cols-12 gap-4 lg:gap-10 items-start mb-4">
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 mb-1 sm:mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse" />
@@ -184,12 +184,12 @@ export default function WorkingProcess() {
               </span>
             </div>
             <h2 className="h-section text-white">
-              Six stages. <span className="gradient-text-fixed">Zero Gaps. Complete Delivery.</span>
+              Six stages. <span className="gradient-text-fixed">One Connected Delivery Process.</span>
             </h2>
           </div>
           <div className="lg:col-span-5">
             <p className="body-base mt-8 text-gray-300">
-              From strategic planning to post-launch support — every phase is intentional, every handoff is seamless, and nothing ships until it's right.
+              From strategy and design to development, launch, and ongoing support, every stage is carefully managed to ensure continuity, quality, and dependable delivery.
             </p>
           </div>
         </div>

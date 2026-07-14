@@ -12,7 +12,7 @@ export default function CTABanner({
       <span className="gradient-text-fixed">Your Business Forward.</span>
     </>
   ),
-  description = "From custom software and mobile apps to AI systems, cloud infrastructure, and digital growth, we help ambitious businesses build technology that's designed to perform today and evolve tomorrow.",
+  description = "We deliver custom software, mobile applications, AI solutions, cloud infrastructure, and digital capabilities designed to improve operations, accelerate growth, and evolve with changing business needs.",
   primaryLabel = "Start your project",
   primaryHref = "/contact",
   // secondaryLabel = "Book intro call",

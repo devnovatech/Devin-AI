@@ -85,7 +85,7 @@ export default function Hero() {
               className="block"
             >
               {" "}
-              <span className="gradient-text">Built Right the First Time.</span>
+              <span className="gradient-text">Engineered to Scale.</span>
             </motion.span>
           </h1>
 
@@ -95,7 +95,8 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.55 }}
             className="mt-5 text-sm sm:text-lg text-ink-600 max-w-xl leading-tight"
           >
-            We architect production-ready web, mobile, and AI systems that convert complex business initiatives into scalable digital platforms, engineered for reliability, extensibility, and long-term maintainability to drive sustained business growth.          </motion.p>
+            We build production-ready web, mobile, and AI systems that transform ambitious business initiatives into reliable, extensible digital platforms designed for long-term performance, maintainability, and growth.
+          </motion.p>
 
           {/* CTAs */}
           <motion.div

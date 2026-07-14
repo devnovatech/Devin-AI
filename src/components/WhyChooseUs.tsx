@@ -140,27 +140,27 @@ const COMPARISONS = [
   {
     category: "Team seniority",
     them: "Junior labour pyramids — account manager shields the seniors after the pitch.",
-    us: "8+ years average. The names on the proposal are the names on the work.",
+    us: "The names on the proposal are the people responsible for delivery.",
   },
   {
     category: "Delivery cadence",
     them: "Quarterly status decks, weekly emails, surprises at handoff.",
-    us: "Working software demoed every Friday — transparent burndowns, preview envs.",
+    us: "See working software every Friday, with clear sprint progress, transparent burndown reporting, and dedicated preview environments.",
   },
   {
     category: "Scope changes",
     them: '"Sure, we can add it" → invoice surprises and slipped timelines.',
-    us: "Change-control protocol with impact analysis and client sign-off, every time.",
+    us: "Structured change control with impact analysis and client sign-off—every change, every time.",
   },
   {
     category: "Architecture",
     them: "Built for handoff. Scales for the launch, not for the roadmap.",
-    us: "Architecture and code ready to support 10× — performance budgets enforced.",
+    us: "Architecture and code engineered for significant growth, with defined performance budgets monitored and enforced throughout delivery.",
   },
   {
     category: "User focus",
     them: "Stakeholder-driven specs. Build it, ship it, hope it works.",
-    us: "Real user research from day one. Usability-tested before launch.",
+    us: "User research from day one. Usability validated before launch.",
   },
 ];
 
@@ -180,7 +180,7 @@ export default function WhyChooseUs() {
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              What you typically get from an agency engagement vs. what you actually get from us. Built into every contract, baked into how we hire.
+              See how a typical agency engagement compares with the delivery standards, accountability, and experienced talent built into every Dev Inception engagement.
             </p>
           </div>
         </div>
@@ -220,7 +220,7 @@ export default function WhyChooseUs() {
             >
               {/* Category */}
               <div className="col-span-12 border-b border-deep-blue/10 bg-deep-blue/5 px-5 py-3 md:col-span-3 md:border-b-0 md:border-r">
-              
+
                 <p className="mt-1 text-[0.95rem] font-bold tracking-tight text-deep-blue">
                   {row.category}
                 </p>

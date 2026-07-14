@@ -41,13 +41,13 @@ interface Pillar {
 const pillars: Pillar[] = [
   {
     title: "Intelligent by default",
-    description: "Every solution we build is backed by AI, machine learning, and automation — engineered to perform, not just function.",
+    description: "Our solutions combine intelligent automation, data-driven capabilities, and modern engineering to deliver measurable performance—not merely basic functionality.",
     accent: "#1E88E5",
     icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
   },
   {
     title: "Architecture that scales",
-    description: "Cloud-native foundations and modern infrastructure designed to grow with your business, not against it.",
+    description: "Cloud-native foundations and modern infrastructure designed to grow with your business—without creating operational or technical constraints.",
     accent: "#0288D1",
     icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
   },
@@ -83,9 +83,9 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
         {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-10 lg:mb-12">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-4">
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">The Company</span>
             </div>
@@ -103,19 +103,20 @@ export default function About() {
         {/* Main two-column layout */}
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* LEFT - Image with badges */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6 lg:translate-x-[2%]">
             <div className="relative">
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-neon-blue/25 to-neon-purple/15" />
+              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-br from-neon-blue/25 to-neon-purple/15" />
 
               <div className="relative rounded-2xl overflow-hidden ring-1 ring-deep-blue/10 shadow-2xl shadow-deep-blue/20 bg-white">
-                <Image
-                  src="/AboutUs.png"
-                  alt="Clients Devinception has shipped alongside"
-                  width={600}
-                  height={428}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="w-full h-auto block"
-                />
+                <div className="relative w-full p-6 h-[500px]">
+                  <Image
+                    src="/AboutUs.png"
+                    alt="Clients Devinception has shipped alongside"
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                  />
+                </div>
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-deep-blue/85 via-deep-blue/40 to-transparent p-5">
                 </div>
               </div>
@@ -125,13 +126,13 @@ export default function About() {
           {/* RIGHT - Quote and principles */}
           <div className="lg:col-span-6">
             <div>
-              <div className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 lg:p-7 shadow-xl overflow-hidden">
+              <div className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-6 shadow-xl overflow-hidden">
                 <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-neon-blue/8 blur-2xl" />
                 <svg className="absolute top-4 right-5 w-10 h-10 text-neon-blue/15" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 12.832 1 20.96 1 26.336 4.288 29.6 8.32 29.6c3.776 0 6.56-3.04 6.56-6.624 0-3.584-2.56-6.176-5.92-6.176-.704 0-1.6.128-1.792.192.384-3.04 3.328-6.752 6.272-8.864L9.352 4zm17.952 0c-4.832 3.456-8.288 8.832-8.288 16.96 0 5.376 3.296 8.64 7.328 8.64 3.712 0 6.56-3.04 6.56-6.624 0-3.584-2.624-6.176-5.984-6.176-.704 0-1.536.128-1.728.192.384-3.04 3.264-6.752 6.208-8.864L27.304 4z" /></svg>
                 <p className="relative text-base lg:text-lg text-deep-blue/85 leading-relaxed font-medium">
-                  &ldquo;Most firms sell presentations. We ship systems. From intelligent automation to cloud-native infrastructure — same team, same standards, from kickoff to go-live.&rdquo;
+                  &ldquo;Technology should deliver measurable results—not remain a presentation. We build and launch production-ready systems, from intelligent automation to cloud-native infrastructure, through one accountable delivery model and one consistent standard—from kickoff to go-live.&rdquo;
                 </p>
-                <div className="relative mt-5 pt-4 border-t border-deep-blue/[0.07] flex items-center gap-3">
+                <div className="relative mt-2 pt-2 border-t border-deep-blue/[0.07] flex items-center gap-3">
                   <div className="w-10 h-10 flex items-center justify-center">
                     <Image
                       src="/site_logo2.png"
@@ -141,7 +142,10 @@ export default function About() {
                       className="h-24 w-24 object-contain"
                     />
                   </div>
-                  <div><p className="text-sm font-bold text-deep-blue">Ali Abbas</p><p className="text-xs text-deep-blue/55">CEO </p></div>
+                  <div>
+                    <p className="text-sm font-bold text-deep-blue">Ali Abbas</p>
+                    <p className="text-xs text-deep-blue/55">CEO </p>
+                  </div>
                 </div>
               </div>
             </div>
