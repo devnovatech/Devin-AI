@@ -49,8 +49,8 @@ export default function LogoMarquee() {
             </div>
 
             <p className="mt-2 text-base font-semibold leading-tight text-gray-900">
-              250+ projects shipped <br />
-              for ambitious teams.
+              250+ Projects Delivered <br />
+              for Businesses Built to Grow.
             </p>
 
             <div className="mt-3 flex items-center gap-1">

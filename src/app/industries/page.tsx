@@ -286,100 +286,110 @@ export default function IndustriesPage() {
   return (
     <>
       {/* ───────── Hero ───────── */}
-<section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
+      <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
 
-  <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
-  <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
-  <div className="noise-overlay" />
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
+        <div className="noise-overlay" />
 
-  <div className="relative z-10 max-w-7xl mx-auto px-6">
-    <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-      
-      {/* ── LEFT: Text Content ── */}
-      <div className="lg:col-span-7 text-center lg:text-left">
-        <AnimatedSection delay={0.1}>
-          <h1
-            className="mt-6 font-bold tracking-[-0.025em] leading-[0.98] text-white"
-            style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
-          >
-            Built Around Your Constraints
-            <br />
-            <span className="gradient-text"> Not Just Your Requirements.</span>
-          </h1>
-        </AnimatedSection>
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-        <AnimatedSection delay={0.2}>
-          <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto lg:mx-0">
-            Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
-          </p>
+            {/* ── LEFT: Text Content ── */}
+            <div className="lg:col-span-7 text-center lg:text-left">
+              <AnimatedSection delay={0.1}>
+                <h1
+                  className="mt-6 font-bold tracking-[-0.025em] leading-[0.98] text-white"
+                  style={{ fontSize: "clamp(2.5rem, 5vw + 0.5rem, 5rem)" }}
+                >
+                  Built Around Your Constraints
+                  <br />
+                  <span className="gradient-text"> Not Just Your Requirements.</span>
+                </h1>
+              </AnimatedSection>
 
-          <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-            <div className="inline-flex">
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
-              >
-                Talk to a sector expert
-              </Link>
+              <AnimatedSection delay={0.2}>
+                <p className="mt-7 body-lead text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                  Most industries are constrained not by technology itself, but by fragmented systems, disconnected data, and operational complexity. We help organizations align technology with how they operate, creating digital ecosystems built for efficiency, scalability, and growth
+                </p>
+
+                <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                  <div className="inline-flex">
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                    >
+                      Talk to a sector expert
+                    </Link>
+                  </div>
+                </div>
+              </AnimatedSection>
+            </div>
+
+            {/* ── RIGHT: Stats Card ── */}
+            <div className="lg:col-span-5 bg-[#0a1628] rounded-2xl border border-[#ffffff]/[0.08] ">
+              <AnimatedSection delay={0.2}>
+                <div className="relative ">
+                  {/* Background glows */}
+                  <div className="absolute -top-10 -right-10 w-60 h-60 bg-neon-purple/20 rounded-full blur-[100px]" />
+                  <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-neon-blue/20 rounded-full blur-[100px]" />
+
+                  {/* Card */}
+                  <div className="relative bg-[#ffffff][0.04] backdrop-blur-sm border border-[#ffffff]/[0.08] rounded-2xl p-6 lg:p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-blue-500"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                          />
+                        </svg>
+                      </div>
+                      <span className="text-xs font-medium text-gray-200 uppercase tracking-wider">Industry Expertise</span>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-[#ffffff]/[0.04] rounded-xl p-4 text-center">
+                        <div className="text-2xl font-bold gradient-text-fixed ">250+</div>
+                        <div className="text-xs text-gray-200 mt-1">Builds Delivered</div>
+                      </div>
+                      <div className="bg-[#ffffff]/[0.04] rounded-xl p-4 text-center">
+                        <div className="text-2xl font-bold text-neon-blue">14</div>
+                        <div className="text-xs text-gray-200 mt-1">Enterprise Clients</div>
+                      </div>
+                      <div className="bg-[#ffffff]/[0.04] rounded-xl p-4 text-center">
+                        <div className="text-2xl font-bold text-neon-purple">100+</div>
+                        <div className="text-xs text-gray-200 mt-1">FinTech Initiatives</div>
+                      </div>
+                      <div className="bg-[#ffffff]/[0.04] rounded-xl p-4 text-center">
+                        <div className="text-2xl font-bold text-emerald-400">+24%</div>
+                        <div className="text-xs text-gray-200 mt-1">Avg. Conversion Lift</div>
+                      </div>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="mt-6 flex flex-wrap gap-2 justify-center">
+                      {["Healthcare", "FinTech", "E-commerce", "SaaS", "EdTech"].map((tag) => (
+                        <span key={tag} className="px-3 py-1 text-xs font-medium text-gray-200 bg-[#ffffff]/[0.04] rounded-full border border-[#ffffff]/[0.06]">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
             </div>
           </div>
-        </AnimatedSection>
-      </div>
-
-      {/* ── RIGHT: Stats Card ── */}
-      <div className="lg:col-span-5">
-        <AnimatedSection delay={0.2}>
-          <div className="relative">
-            {/* Background glows */}
-            <div className="absolute -top-10 -right-10 w-60 h-60 bg-neon-purple/20 rounded-full blur-[100px]" />
-            <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-neon-blue/20 rounded-full blur-[100px]" />
-            
-            {/* Card */}
-            <div className="relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 lg:p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-neon-blue/20 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-neon-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Industry Expertise</span>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-white">250+</div>
-                  <div className="text-xs text-gray-400 mt-1">Builds Delivered</div>
-                </div>
-                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-neon-blue">14</div>
-                  <div className="text-xs text-gray-400 mt-1">Enterprise Clients</div>
-                </div>
-                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-neon-purple">100+</div>
-                  <div className="text-xs text-gray-400 mt-1">FinTech Initiatives</div>
-                </div>
-                <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-emerald-400">+24%</div>
-                  <div className="text-xs text-gray-400 mt-1">Avg. Conversion Lift</div>
-                </div>
-              </div>
-
-              {/* Tags */}
-              <div className="mt-6 flex flex-wrap gap-2 justify-center">
-                {["Healthcare", "FinTech", "E-commerce", "SaaS", "EdTech"].map((tag) => (
-                  <span key={tag} className="px-3 py-1 text-xs font-medium text-gray-300 bg-white/[0.04] rounded-full border border-white/[0.06]">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
       {/* ───────── Industries grid ───────── */}
       <section
         id="industries-grid"
@@ -421,18 +431,18 @@ export default function IndustriesPage() {
 
       {/* ───────── Why industry expertise ───────── */}
       <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
-      
+
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.06] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
 
-          <CardTitle 
-          label="Why it matters"
-          title="Built Around How Your Industry"
-          spanTitle="Actually Operates"
-          description="Built on Industry Reality, Not Assumptions —- Industry expertise isn’t a claim. It’s how systems avoid failure in the real world."
-          titleColor="text-white"
-          descriptionColor="text-gray-400"
+          <CardTitle
+            label="Why it matters"
+            title="Built Around How Your Industry"
+            spanTitle="Actually Operates"
+            description="Built on Industry Reality, Not Assumptions —- Industry expertise isn’t a claim. It’s how systems avoid failure in the real world."
+            titleColor="text-white"
+            descriptionColor="text-gray-400"
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">

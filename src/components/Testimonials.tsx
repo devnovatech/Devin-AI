@@ -77,14 +77,13 @@ export default function Testimonials() {
               </span>
             </div>
             <h2 className="h-section text-deep-blue">
-              What clients{" "}
-              <span className="gradient-text-dark">say about working with us.</span>
+              What Clients Say{" "}
+              <span className="gradient-text-dark"> About Working With Us</span>
             </h2>
           </div>
           <div className="lg:col-span-5">
             <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-              Sourced unedited from our quarterly business reviews and our most recent
-              NPS round. Names are real. So are the projects.
+             Real feedback from real client engagements—collected through quarterly business reviews and our latest NPS survey.
             </p>
           </div>
         </div>

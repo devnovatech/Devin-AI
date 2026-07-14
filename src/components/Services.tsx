@@ -46,7 +46,7 @@ const services: Service[] = [
     accent: "#0097A7",
     category: "Build",
     description:
-      "Creating intuitive, high-performance mobile apps for Android and iOS platforms.",
+      "Designing and developing intuitive, high-performance mobile applications built for reliability, scalability, and seamless user experiences across iOS and Android.",
 
     stack: [
       "Flutter", "React Native", "Swift", "Kotlin"
@@ -66,7 +66,7 @@ const services: Service[] = [
     accent: "#006064",
     category: "Build",
     description:
-      "Building responsive, scalable websites that deliver performance and reliability.",
+      "Creating responsive, scalable web solutions that deliver dependable performance and seamless user experiences.",
     stack: ["React", "Next.js", "Node.js", "Express"],
     icon: <Globe className="w-4 h-4 sm:w-5 sm:h-5" />,
     phases: [
@@ -83,7 +83,7 @@ const services: Service[] = [
     accent: "#1E88E5",
     category: "Build",
     description:
-      "End-to-end AI and ML development from data engineering and model building to deployment and optimization for production systems.",
+      "Delivering end-to-end AI and machine learning solutions—from data engineering and model development to deployment, integration, and production optimization.",
 
     stack: ["OpenAI APIs", "TensorFlow", "PyTorch", "Python"],
     icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5" />,
@@ -101,7 +101,7 @@ const services: Service[] = [
     accent: "#0097A7",
     category: "Build",
     description:
-      "Developing secure and optimized online stores that enhance sales and user experience.",
+      "Developing secure, scalable, and optimized online stores that improve user experience, increase conversions, and support business growth.",
 
     stack: ["Shopify", "WooCommerce", "Magento", "Stripe"
     ],
@@ -120,7 +120,7 @@ const services: Service[] = [
     accent: "#1565C0",
     category: "Design",
     description:
-      "Designing user-focused interfaces that are simple, engaging, and effective.",
+      "Creating intuitive digital experiences that improve usability, strengthen engagement, and support business goals.",
     stack: [
       "Figma", "Adobe XD", "Sketch", "FigJam"
     ],
@@ -139,7 +139,7 @@ const services: Service[] = [
     accent: "#039BE5",
     category: "OPS",
     description:
-      "Ensuring software quality through thorough testing and defect prevention.",
+      "Ensuring reliable, high-quality software through rigorous manual and automated testing, continuous validation, and proactive defect prevention.",
     stack: [
       "Selenium", "Cypress", "Playwright", "Postman"
     ],
@@ -158,7 +158,7 @@ const services: Service[] = [
     accent: "#0288D1",
     category: "OPS",
     description:
-      "Providing skilled professionals to seamlessly extend and strengthen your team.",
+      "Providing skilled software professionals who integrate seamlessly with your team, expand delivery capacity, and accelerate project execution.",
     stack: [
       "Python", "Java", "React", "Node.js"
     ],
@@ -177,7 +177,7 @@ const services: Service[] = [
     accent: "#0277BD",
     category: "Grow",
     description:
-      "Driving growth through targeted, data-driven digital campaigns across key channels.",
+      "Creating data-driven digital strategies that strengthen brand visibility, generate qualified leads, and drive measurable business growth.",
 
     stack: ["Google Ads", "Meta Ads Manager", "Ahrefs", "HubSpot"
     ], icon: <Megaphone className="w-4 h-4 sm:w-5 sm:h-5" />,
@@ -195,7 +195,7 @@ const services: Service[] = [
     accent: "#01579B",
     category: "OPS",
     description:
-      "Managing projects efficiently with structured planning and agile execution.",
+      "Driving successful delivery through structured planning, agile execution, proactive risk management, and clear stakeholder communication.",
     stack: [
       "Jira", "Trello", "Asana", "ClickUp"
     ],
@@ -338,7 +338,7 @@ export default function Services() {
               </span>
             </div>
 
-            <h2 className="h-section mt-3 text-deep-blue">
+            <h2 className="h-section mt-2 text-deep-blue">
               Turning Ideas <span className="gradient-text-dark">into Reality.</span>
             </h2>
           </div>
@@ -410,7 +410,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid gap-5 p-5 md:grid-cols-12 md:items-center md:gap-6 md:p-6 lg:p-7"
+            className="grid gap-5 p-3 md:grid-cols-12 md:items-center md:gap-6 md:p-6 lg:p-7"
           >
             {/* Content Column */}
             <div className="col-span-6">
@@ -427,7 +427,7 @@ export default function Services() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="mt-1.5 text-sm leading-relaxed text-deep-blue/70 md:text-base"
+                className="mt-1.5 text-sm line-clamp-2 leading-relaxed text-deep-blue/70 md:text-base"
               >
                 {active.description}
               </motion.p>
