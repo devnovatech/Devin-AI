@@ -61,6 +61,7 @@ function FloatingField({
       {required && <span className="text-red-500 ml-0.5">*</span>}
     </label>
   );
+  
 
   return (
     <div>
@@ -610,8 +611,6 @@ export default function ContactPage() {
                   transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                   className="mt-7 relative p-5 rounded-2xl bg-gradient-to-br from-deep-blue to-[#0d1f3a] text-white overflow-hidden"
                 >
-                  <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-neon-blue/25 blur-3xl pointer-events-none" />
-                  <div className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full bg-neon-purple/20 blur-3xl pointer-events-none" />
                   <div className="relative">
                     <p className="text-[10px] uppercase tracking-[0.22em] text-white/60 font-semibold">
                       Estimated budget
@@ -744,7 +743,7 @@ export default function ContactPage() {
                         label="Tell us what you're building"
                         required
                         multiline
-                        rows={5}
+                        rows={15}
                         value={formState.message}
                         onChange={(v) =>
                           setFormState({ ...formState, message: v })
@@ -753,7 +752,7 @@ export default function ContactPage() {
                       />
 
                       {/* reCAPTCHA v2 Checkbox */}
-                      <div className="flex justify-center py-2">
+                      <div className="flex py-2">
                         <ReCAPTCHA
                           sitekey={RECAPTCHA_SITE_KEY}
                           onChange={(value) => setRecaptchaValue(value)}
@@ -793,95 +792,7 @@ export default function ContactPage() {
                 )}
               </div>
 
-              {/* Quick channels + trust */}
-              <div className="flex-1 rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-8 shadow-xl shadow-deep-blue/5 flex flex-col">
-                <p className="eyebrow text-neon-purple">Prefer not to wait?</p>
-                <h3 className="mt-2 text-xl lg:text-2xl font-bold text-deep-blue tracking-tight leading-tight">
-                  Reach us{" "}
-                  <span className="gradient-text-dark">directly.</span>
-                </h3>
-
-                <div className="mt-5 space-y-3">
-                  <a
-                    href="mailto:info@devinception.com"
-                    className="group flex items-center gap-4 p-4 rounded-xl border border-deep-blue/[0.07] bg-light-accent/40 hover:bg-white hover:border-deep-blue/[0.14] transition-all duration-300"
-                  >
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[#1E88E5]/10 text-[#1E88E5]">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-deep-blue/45 font-semibold">
-                        Email
-                      </p>
-                      <p className="mt-0.5 text-deep-blue text-sm font-semibold truncate">
-                        info@devinception.com
-                      </p>
-                    </div>
-                    <svg className="w-4 h-4 text-deep-blue/30 group-hover:text-deep-blue/70 group-hover:translate-x-1 transition-all duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.4}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
-
-                  <a
-                    href="#"
-                    className="group flex items-center gap-4 p-4 rounded-xl border border-deep-blue/[0.07] bg-light-accent/40 hover:bg-white hover:border-deep-blue/[0.14] transition-all duration-300"
-                  >
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-[#0288D1]/10 text-[#0288D1]">
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-deep-blue/45 font-semibold">
-                        Schedule a call
-                      </p>
-                      <p className="mt-0.5 text-deep-blue text-sm font-semibold">
-                        Pick a 30-min slot
-                      </p>
-                    </div>
-                    <svg className="w-4 h-4 text-deep-blue/30 group-hover:text-deep-blue/70 group-hover:translate-x-1 transition-all duration-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.4}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
-                </div>
-
-                {/* Trust strip */}
-                <div className="mt-auto pt-6 border-t border-deep-blue/[0.07]">
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="text-center">
-                      <div className="flex items-center justify-center gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            className="w-3 h-3 text-amber-400"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-deep-blue/50 font-semibold">
-                        4.9 rating
-                      </p>
-                    </div>
-                    <div className="text-center border-x border-deep-blue/[0.07]">
-                      <p className="text-base font-bold text-deep-blue">24h</p>
-                      <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-deep-blue/50 font-semibold">
-                        Response
-                      </p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-base font-bold text-deep-blue">NDA</p>
-                      <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-deep-blue/50 font-semibold">
-                        Friendly
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>
