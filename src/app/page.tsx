@@ -13,8 +13,6 @@ import Industries from "@/components/Industries";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
 import { TechStack } from "@/components/TechStack";
-import Head from "next/head";
-
 
 /**
  * Home page — each section has a visually distinct background
@@ -37,10 +35,6 @@ const GTM_ID = "GTM-NNFTCB87";
 export default function Home() {
   return (
     <>
-      <Head>
-        <Script src="https://www.google.com/recaptcha/enterprise.js" async defer></Script>
-      </Head>
-
       {/* Google Tag Manager */}
       <Script
         id="gtm-script"
