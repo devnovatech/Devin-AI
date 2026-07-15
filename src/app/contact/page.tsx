@@ -1,14 +1,23 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import AnimatedSection from "@/components/AnimatedSection";
-import SectionDivider from "@/components/ui/SectionDivider";
-import CardTitle from "@/components/CardTitle";
+import emailjs from "@emailjs/browser";
+import ToastManager from "@/components/ui/ToastManager";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const DEEP = "var(--section-deep)";
 const LIGHT = "var(--section-light)";
+
+// EmailJS Configuration - Using environment variables
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
+
+// reCAPTCHA Configuration
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 interface FloatingFieldProps {
   id: string;
@@ -207,12 +216,47 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isConfigValid, setIsConfigValid] = useState(true);
+  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
 
   // ── Budget estimator state ──
   const [projectType, setProjectType] = useState<string>("web");
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
   const [complexity, setComplexity] = useState<string>("medium");
   const [timeline, setTimeline] = useState<string>("standard");
+
+  // Initialize EmailJS and validate configuration
+  useEffect(() => {
+    const serviceId = EMAILJS_SERVICE_ID;
+    const templateId = EMAILJS_TEMPLATE_ID;
+    const publicKey = EMAILJS_PUBLIC_KEY;
+
+    const missingVars: string[] = [];
+
+    // Check if values exist and aren't empty
+    if (!serviceId || serviceId.trim() === "") missingVars.push("Service ID");
+    if (!templateId || templateId.trim() === "") missingVars.push("Template ID");
+    if (!publicKey || publicKey.trim() === "") missingVars.push("Public Key");
+
+    if (missingVars.length > 0) {
+      console.error("❌ Missing EmailJS configuration:", missingVars.join(", "));
+      setIsConfigValid(false);
+
+      if (typeof window !== 'undefined' && window.showToast) {
+        window.showToast(
+          "Email configuration error. Please contact support.",
+          "error"
+        );
+      }
+    } else {
+      console.log("✅ EmailJS configuration loaded successfully");
+      setIsConfigValid(true);
+
+      // Initialize EmailJS only if config is valid
+      emailjs.init(publicKey);
+    }
+  }, []);
 
   const toggleFeature = (id: string) =>
     setSelectedFeatures((prev) =>
@@ -270,20 +314,107 @@ export default function ContactPage() {
     return errs;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    
+    // Check if config is valid
+    if (!isConfigValid) {
+      if (typeof window !== 'undefined' && window.showToast) {
+        window.showToast(
+          "Email service is not configured. Please contact support.",
+          "error"
+        );
+      }
+      return;
+    }
+
+    // Check if reCAPTCHA is completed
+    if (!recaptchaValue) {
+      if (typeof window !== 'undefined' && window.showToast) {
+        window.showToast(
+          "Please complete the reCAPTCHA verification",
+          "error"
+        );
+      }
+      return;
+    }
+
     const errs = validate();
     setErrors(errs);
-    if (Object.keys(errs).length === 0) {
+
+    if (Object.keys(errs).length > 0) {
+      if (typeof window !== 'undefined' && window.showToast) {
+        window.showToast("Please fix the errors in the form", "error");
+      }
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Prepare email template parameters
+      const templateParams = {
+        title: "New Project Inquiry - DevInception",
+        name: formState.name,
+        email: formState.email,
+        company: formState.company || "Not provided",
+        message: formState.message,
+        project_type: activeType?.label || "Not specified",
+        features: selectedFeatures
+          .map((id) => projectFeatures.find((f) => f.id === id)?.label)
+          .filter(Boolean)
+          .join(", ") || "None",
+        budget_range: `${formatUSD(minBudget)} - ${formatUSD(maxBudget)}`,
+        // Include reCAPTCHA token for verification
+        'g-recaptcha-response': recaptchaValue,
+      };
+
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log("Email sent successfully!", response.status, response.text);
+
+      if (typeof window !== 'undefined' && window.showToast) {
+        window.showToast("Message sent successfully! We'll get back to you within 24 hours.", "success");
+      }
+
       setSubmitted(true);
+
+      // Reset form
+      setFormState({
+        name: "",
+        email: "",
+        company: "",
+        message: "",
+      });
+
+      // Reset reCAPTCHA
+      setRecaptchaValue(null);
+
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      if (typeof window !== 'undefined' && window.showToast) {
+        window.showToast(
+          error instanceof Error ? error.message : "Failed to send message. Please try again.",
+          "error"
+        );
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   return (
     <>
+      {/* Toast Manager */}
+      <ToastManager />
+
       {/* ───────── Hero ───────── */}
       <section className="pt-32 pb-16 bg-section-dark relative overflow-hidden">
-
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
         <div className="noise-overlay" />
@@ -554,6 +685,7 @@ export default function ContactPage() {
                           company: "",
                           message: "",
                         });
+                        setRecaptchaValue(null);
                       }}
                       className="mt-8 inline-flex items-center gap-2 text-neon-blue hover:text-neon-purple text-sm font-semibold transition-colors"
                     >
@@ -620,13 +752,36 @@ export default function ContactPage() {
                         error={errors.message}
                       />
 
+                      {/* reCAPTCHA v2 Checkbox */}
+                      <div className="flex justify-center py-2">
+                        <ReCAPTCHA
+                          sitekey={RECAPTCHA_SITE_KEY}
+                          onChange={(value) => setRecaptchaValue(value)}
+                          onExpired={() => setRecaptchaValue(null)}
+                        />
+                      </div>
+
                       <motion.button
                         type="submit"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="group w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-blue rounded-xl text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                        disabled={isSubmitting || !recaptchaValue}
+                        className={`group w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-white font-bold tracking-wide text-sm transition-all duration-300 ${isSubmitting || !recaptchaValue
+                            ? "bg-gray-400 cursor-not-allowed opacity-60"
+                            : "bg-neon-blue hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40"
+                          }`}
                       >
-                        Send message
+                        {isSubmitting ? (
+                          <>
+                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Sending...
+                          </>
+                        ) : (
+                          "Send message"
+                        )}
                       </motion.button>
 
                       <p className="text-xs text-center text-deep-blue/45">
@@ -732,10 +887,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-
       {/* ───────── What happens next ───────── */}
       <section className="py-20 lg:py-24 bg-white relative overflow-hidden">
-
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">
