@@ -70,44 +70,30 @@ export default function Hero() {
             className="mt-6 font-bold tracking-[-0.025em] leading-[1.1] text-white"
             style={{ fontSize: "clamp(2rem,4vw,3.5rem)" }}
           >
-            <motion.span
-              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
+            <span
               className="block"
             >
               From Vision to Production —
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.8, delay: 0.32, ease: [0.4, 0, 0.2, 1] }}
+            </span>
+            <span
               className="block"
             >
               {" "}
               <span className="gradient-text">Engineered to Scale.</span>
-            </motion.span>
+            </span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.55 }}
+          <p
             className="mt-5 text-sm sm:text-lg text-ink-600 max-w-xl leading-tight"
           >
             We build production-ready web, mobile, and AI systems that transform ambitious business initiatives into reliable, extensible digital platforms designed for long-term performance, maintainability, and growth.
-          </motion.p>
+          </p>
 
           {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
+          <div
             className="mt-7 flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
-            <motion.span
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+            <span
               className="w-full sm:w-auto"
             >
               <Link
@@ -129,25 +115,22 @@ export default function Hero() {
                   />
                 </svg>
               </Link>
-            </motion.span>
+            </span>
             {/* <Link
               href="/services"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 sm:py-4 rounded-xl border border-white/15 text-white font-semibold text-sm sm:text-base hover:bg-white/5 hover:border-white/30 transition-all duration-300 min-h-[52px] sm:min-h-[56px]"
             >
               Explore our services
             </Link> */}
-          </motion.div>
+          </div>
         </div>
 
         {/* RIGHT — HeroArt */}
-        <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: [0.4, 0, 0.2, 1] }}
+        <div
           className="lg:col-span-6 relative hidden lg:block text-center"
         >
           <HeroArt />
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}

@@ -35,26 +35,6 @@ import Head from "next/head";
 const GTM_ID = "GTM-NNFTCB87";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-
-  const MIN_LOADING_TIME = 2000;
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, MIN_LOADING_TIME);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        Loading...
-      </div>
-    );
-  }
-
   return (
     <>
       <Head>
