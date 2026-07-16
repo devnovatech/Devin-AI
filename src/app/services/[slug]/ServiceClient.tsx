@@ -27,22 +27,12 @@ interface ServiceOffering {
   description: string;
 
 }
-interface OutcomeProps {
-  icon: React.ReactNode;
-  value: string;
-  label: string;
-}
-
 
 interface WhyChooseItem {
   title: string;
   description: string;
 }
 
-interface IndustryItem {
-  name: string;
-  description: string;
-}
 
 interface ServiceData {
   title: string;
@@ -51,14 +41,9 @@ interface ServiceData {
   offerings: ServiceOffering[];
   offeringsDescription: string;
   offeringsTitle: string;
-  painPoints: string[];
-  painIntro: string;
   whyChoose: WhyChooseItem[];
   whyTitle: string;
   whyTagline: string;
-  industryTitle: string;
-  industryDescription: string;
-  industries: IndustryItem[];
   processHeading: string,
   processSteps: {
     number: string;
@@ -76,7 +61,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "Digital Marketing Services",
     subtitle: "Performance-Led Marketing for Measurable ROI",
     description: "We help organizations attract qualified audiences, generate demand, and drive revenue growth through data-driven marketing. From SEO and paid acquisition to content and conversion optimization, we build scalable systems for sustainable lifecycle growth.",
-    painIntro: "What\u2019s Holding Your Marketing Back?",
     offeringsTitle: "Revenue Growth & Demand Generation Capabilities",
     offeringsDescription: "A performance-driven marketing framework focused on increasing visibility, attracting qualified prospects, improving conversion rates, and maximizing customer lifetime value.",
     offerings: [
@@ -131,13 +115,6 @@ const servicesData: Record<string, ServiceData> = {
         ],
       },
     ],
-    painPoints: [
-      "Are you creating content that never ranks or worse, doesn\u2019t convert?",
-      "Does your brand feel scattered and inconsistent across platforms?",
-      "Spending on ads but not sure where the ROI is?",
-      "Struggling to track what\u2019s actually working in your campaigns?",
-      "Feeling stuck in a loop of random marketing activities with no clear strategy?",
-    ],
     whyTitle: "Why Businesses Choose Our Growth Team",
     whyTagline: "We don't just run marketing campaigns. We build growth engines that increase visibility, generate demand, and create measurable business outcome.",
     whyChoose: [
@@ -148,18 +125,6 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Integrated Marketing Operations", description: "Our strategists, content creators, analysts, and media buyers collaborate as one unified growth team." },
       { title: "Scalable Acquisition Frameworks", description: "We build marketing systems that grow with your business, not campaigns that end after launch." },
     ],
-    industries: [
-      { name: "Technology & SaaS", description: "Get seen, generate leads, and build brand credibility" },
-      { name: "Ecommerce & Retail", description: "Drive organic traffic, boost conversions, reduce CAC" },
-      { name: "Healthcare & Life Sciences", description: "Build trust, educate audiences, and remain compliant" },
-      { name: "B2B & Professional Services", description: "Engage decision-makers and shorten the sales cycle" },
-      { name: "Financial Services & Fintech", description: "Build authority, generate qualified leads, and drive customer acquisition" },
-      { name: "Education & E-Learning", description: "Attract learners, build community, and scale enrollment" },
-      { name: "Real Estate & PropTech", description: "Generate qualified leads and build market presence" },
-      { name: "Manufacturing & Industrial", description: "Showcase capabilities and connect with enterprise buyers" },
-    ],
-    industryTitle: "Industries We Help Grow",
-    industryDescription: "We support organizations across diverse industries through strategic digital marketing initiatives",
     processHeading: "From Market Visibility to Revenue Growth Through Four Strategic Phases",
     processSteps: [
       {
@@ -196,7 +161,6 @@ const servicesData: Record<string, ServiceData> = {
     subtitle: "Mobile Engineering for Next-Gen Apps",
     description:
       "Custom mobile applications designed to streamline operations, enhance user experience, and drive digital growth from strategy to deployment.",
-    painIntro: "What\u2019s Holding You Back?",
     offeringsTitle: "Mobile Applications built for long-term growth",
     offeringsDescription: "A complete delivery framework covering product strategy, design, engineering, quality assurance, and optimization—aligned to support scalable mobile products and enterprise digital initiatives.",
     offerings: [
@@ -251,13 +215,6 @@ const servicesData: Record<string, ServiceData> = {
         ],
       },
     ],
-    painPoints: [
-      "Not sure whether to go native or cross-platform?",
-      "Have an app idea but don\u2019t know where to start, or who to trust?",
-      "Struggling with crashes, bugs, or poor app store reviews?",
-      "Your current app doesn\u2019t scale with your business needs?",
-      "Tired of missing deadlines and unclear development roadmaps?",
-    ],
     whyTitle: "Why Businesses Partner with Us",
     whyChoose: [
       { title: "Full-Cycle Mobile Engineering Expertise", description: "From product strategy and architecture to deployment and optimization, we deliver end-to-end mobile solutions." },
@@ -268,18 +225,6 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Experience Across Complex Digital Ecosystems", description: "We've delivered mobile solutions for healthcare, fintech, logistics, retail, and enterprise organizations." },
     ],
     whyTagline: "We don't just build mobile apps. We engineer mobile ecosystems designed to support business growth, operational efficiency, and long-term scalability.",
-    industries: [
-      { name: "Healthcare & Life Sciences", description: "HIPAA-compliant apps with secure patient data handling, appointment systems, and telemedicine features" },
-      { name: "Financial Services & Fintech", description: "Secure, intuitive apps for transactions, budgeting, account management, and digital onboarding" },
-      { name: "Retail & Ecommerce", description: "Custom mobile shopping experiences, real-time inventory tracking, and secure in-app payments" },
-      { name: "Logistics & Transportation", description: "Real-time GPS tracking, order management, fleet monitoring, and mobile workforce enablement" },
-      { name: "Education & E-Learning", description: "Interactive mobile learning platforms, video streaming, progress tracking, and user gamification" },
-      { name: "Real Estate & PropTech", description: "Property search, virtual tours, document signing, and agent-client communication tools" },
-      { name: "Manufacturing & Industrial Systems", description: "IoT integration, equipment monitoring, maintenance tracking, and operational dashboards" },
-      { name: "Media & Entertainment", description: "Content streaming, social engagement, personalized recommendations, and interactive experiences" },
-    ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We deliver mobile solutions for organizations across multiple industries",
     processHeading: "From kickoff to launch in four clear steps.",
     processSteps: [
       {
@@ -315,7 +260,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "Web Development Services",
     subtitle: "Full-Stack Web Development For High-performance",
     description: "High-performance web platforms designed to streamline operations, enhance user experience, and accelerate digital growth through full-cycle engineering built for scalability, security, and maintainability.",
-    painIntro: "What\u2019s Holding Your Website Back?",
     offeringsTitle: "Full-Spectrum Web Development",
     offeringsDescription: "A comprehensive delivery framework covering product strategy, architecture, engineering, quality assurance, infrastructure, and optimization—aligned to support modern web platforms and enterprise digital initiatives.",
     offerings: [
@@ -370,13 +314,6 @@ const servicesData: Record<string, ServiceData> = {
         ],
       },
     ],
-    painPoints: [
-      "Is your current site slow, clunky, or frustrating to use?",
-      "Struggling to integrate third-party tools or custom features?",
-      "Is your platform holding you back from scaling your business?",
-      "Can\u2019t manage updates easily or keep content fresh?",
-      "Losing users because your site isn\u2019t mobile-friendly or accessible?",
-    ],
     whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Full-Cycle Web Engineering Expertise", description: "From product discovery and solution architecture to deployment and optimization, we deliver end-to-end web platforms." },
@@ -387,18 +324,6 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Experience Across Complex Digital Ecosystems", description: "We've delivered web platforms for SaaS, healthcare, fintech, ecommerce, and enterprise organizations." },
     ],
     whyTagline: "We don't just build websites. We engineer scalable web platforms designed to support business growth, operational efficiency, and long-term digital transformation.",
-    industries: [
-      { name: "Technology & SaaS", description: "Rapid MVPs, custom platforms, and scalable foundations for growth" },
-      { name: "Ecommerce & Retail", description: "High-converting product experiences, optimized for performance and mobile" },
-      { name: "Healthcare & Life Sciences", description: "Secure, compliant platforms designed for engagement and accessibility" },
-      { name: "B2B Services & Agencies", description: "Lead-generating websites, CRM integrations, and flexible CMS builds" },
-      { name: "Financial Services & Fintech", description: "Secure portals, client dashboards, and regulatory-compliant platforms" },
-      { name: "Education & E-Learning", description: "Learning management systems, course platforms, and student engagement tools" },
-      { name: "Real Estate & PropTech", description: "Property listing platforms, agent portals, and client management systems" },
-      { name: "Logistics & Supply Chain", description: "Operational dashboards, tracking systems, and partner portals" },
-    ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We deliver web platforms and digital systems for organizations across multiple industries:",
     processHeading: "From Strategy to Production in Four Engineered Stages",
     processSteps: [
       {
@@ -434,7 +359,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "UI/UX Design Services",
     subtitle: "Human-Centric UI/UX for Seamless Digital Experiences",
     description: "Research-driven, human-centric UX that simplifies complexity, improves engagement, and drives product adoption. From user research and information architecture to interface design and usability testing, we deliver end-to-end solutions aligned with user needs, business goals, and technical requirements.",
-    painIntro: "What\u2019s Holding Your Product Back?",
     offeringsTitle: "Experience Design Capabilities",
     offeringsDescription: "A comprehensive design framework covering user research, information architecture, interface design, usability validation, and design systems—built to create experiences that users understand, trust, and adopt.",
     offerings: [
@@ -489,13 +413,7 @@ const servicesData: Record<string, ServiceData> = {
         ],
       },
     ],
-    painPoints: [
-      "Are users dropping off before completing key actions?",
-      "Is your design inconsistent or outdated across devices?",
-      "Do you lack clarity on what your users really need?",
-      "Are developers constantly stuck due to missing specs or unclear flows?",
-      "Is your product functional but not delightful or intuitive?",
-    ],
+  
     whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Research-Driven Design Methodology", description: "User interviews, stakeholder workshops, and behavioral analysis inform every design decision we make." },
@@ -506,18 +424,7 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Experience Across Complex Digital Ecosystems", description: "We've designed experiences for SaaS platforms, enterprise applications, healthcare systems, and ecommerce." },
     ],
     whyTagline: "We don't just create interfaces. We design digital experiences that improve usability, strengthen engagement, and support long-term product success.",
-    industries: [
-      { name: "SaaS Platforms", description: "Streamline onboarding, improve retention, and create smooth workflows" },
-      { name: "Ecommerce & Retail", description: "Design to convert with optimized product discovery and checkout" },
-      { name: "Healthcare & Fintech", description: "Build trust through clarity, accessibility, and compliance" },
-      { name: "Startups & Emerging Products", description: "Rapid prototyping and MVP-ready designs with user feedback built in" },
-      { name: "EdTech & E-Learning", description: "Learning-friendly design that's easy to navigate and engaging for all ages" },
-      { name: "Enterprise Applications", description: "Complex workflow simplification and enterprise-grade usability" },
-      { name: "Real Estate & PropTech", description: "Intuitive property search and client engagement experiences" },
-      { name: "Logistics & Supply Chain", description: "Operational dashboards and workforce efficiency tools" },
-    ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We design digital experiences for organizations across a wide range of industries",
+ 
     ctaHeading: "Let\u2019s Design Something People Love to Use",
     processHeading: "Discovered. Defined. Designed. Delivered.",
     processSteps: [
@@ -553,7 +460,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "Ecommerce Development Services",
     subtitle: "eCommerce Platforms for Growth, Conversion, and Scale",
     description: "From direct-to-consumer storefronts and B2B commerce platforms to multi-vendor marketplaces and omnichannel ecosystems, we deliver end-to-end ecommerce engineering services built for performance, scalability, and long-term growth.",
-    painIntro: "What\u2019s Holding Your Store Back?",
     offeringsTitle: "E-Commerce Platform Engineering",
     offeringsDescription: "A comprehensive ecommerce delivery framework covering customer journeys, platform architecture, transaction systems, conversion optimization, and operational scalability.",
     offerings: [
@@ -608,13 +514,6 @@ const servicesData: Record<string, ServiceData> = {
         ],
       },
     ],
-    painPoints: [
-      "Is your current site slow, clunky, or hard to update?",
-      "Are users dropping off before checkout?",
-      "Struggling to integrate inventory, CRM, or shipping systems?",
-      "Is your store missing key features like product recommendations or reviews?",
-      "Losing customers due to confusing navigation or limited payment options?",
-    ],
     whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "Deep Ecommerce Platform Expertise", description: "Shopify, WooCommerce, headless commerce, and custom platform development for every business model." },
@@ -625,18 +524,6 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Data-Driven Growth Optimization", description: "Analytics, revenue dashboards, and continuous CRO to maximize customer lifetime value." },
     ],
     whyTagline: "We don't just build online stores. We engineer ecommerce ecosystems that increase revenue, improve customer experiences, and support long-term business growth.",
-    industries: [
-      { name: "Retail & Consumer Brands", description: "Custom stores that reflect your identity and drive repeat purchases" },
-      { name: "Fashion & Apparel", description: "Visual-first storefronts with size guides, reviews, and social proof" },
-      { name: "Beauty & Personal Care", description: "Subscription models, product recommendations, and loyalty programs" },
-      { name: "Electronics & Technology", description: "Complex product specifications, comparison tools, and technical support" },
-      { name: "Healthcare & Wellness", description: "Build credibility and streamline subscriptions with compliance focus" },
-      { name: "Food & Beverage", description: "Local delivery, subscription boxes, and inventory management" },
-      { name: "B2B Commerce", description: "Complex pricing, customer portals, and large catalogs made easy" },
-      { name: "Multi-Vendor Marketplaces", description: "Seller dashboards, commission management, and marketplace analytics" },
-    ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We help organizations build and scale ecommerce operations across multiple sectors:",
     processHeading: "Full-Funnel Commerce. End-to-End.",
     processSteps: [
       {
@@ -672,7 +559,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "Machine Learning & AI Services",
     subtitle: "Future-Ready AI/ML Solutions",
     description: "We design and deploy AI-powered solutions that automate processes, improve decision-making, and turn enterprise data into actionable intelligence. Our services span machine learning, predictive analytics, generative AI, and intelligent automation, built for scalable, accurate, and governed business outcomes.",
-    painIntro: "What\u2019s Holding You Back from Adopting AI?",
     offeringsTitle: "AI engineering and data intelligence capabilities ",
     offeringsDescription: "A comprehensive AI delivery framework covering strategy, data engineering, model development, deployment, governance, and continuous optimization—designed to support long-term business value.",
     offerings: [
@@ -727,13 +613,6 @@ const servicesData: Record<string, ServiceData> = {
         ],
       },
     ],
-    painPoints: [
-      "Do you have data but don\u2019t know how to use it effectively?",
-      "Tried AI before but didn\u2019t see real ROI or reliability?",
-      "Unsure where AI fits into your business model or operations?",
-      "Is your internal team stretched thin or lacking AI expertise?",
-      "Concerned about scalability, cost, or compliance?",
-    ],
     whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
       { title: "End-to-End AI Engineering Expertise", description: "From opportunity assessment and data engineering to deployment and governance, we deliver complete AI solutions." },
@@ -744,18 +623,7 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Focus on Measurable Business Outcomes", description: "We build AI that solves real problems—automation, efficiency, decision support, and competitive advantage." },
     ],
     whyTagline: "We don't just develop AI models. We engineer intelligent systems that automate operations, augment decision-making, and create sustainable competitive advantages through data-driven innovation.",
-    industries: [
-      { name: "Healthcare & Diagnostics", description: "Predictive analytics, medical imaging, and patient triage automation" },
-      { name: "Finance & Insurance", description: "Fraud detection, credit scoring, and risk modeling" },
-      { name: "Retail & Ecommerce", description: "Personalized recommendations, dynamic pricing, and inventory forecasting" },
-      { name: "SaaS & Startups", description: "Smart features, usage analytics, and AI-as-a-Service integrations" },
-      { name: "Manufacturing & Logistics", description: "Predictive maintenance, quality control, and supply chain optimization" },
-      { name: "Education & E-Learning", description: "Personalized learning paths, content recommendations, and student analytics" },
-      { name: "Real Estate & PropTech", description: "Property valuation, market trend analysis, and lead scoring" },
-      { name: "Energy & Utilities", description: "Demand forecasting, grid optimization, and asset management" },
-    ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We help organizations implement AI and machine learning solutions across multiple sectors:",
+
     processHeading: "Ingested. Modeled. Trained. Deployed",
     processSteps: [
       {
@@ -791,7 +659,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "Quality Assurance Services",
     subtitle: "SQA Engineering for Reliable, Secure Software Systems",
     description: "Improves software reliability, reduces release risk, and ensures product quality through structured QA. From test strategy and automation to performance and continuous validation, enabling faster, more predictable delivery.",
-    painIntro: "What\u2019s Holding Your Product Back from Peak Performance?",
     offeringsTitle: "Software Quality Engineering Capabilities",
     offeringsDescription: "A comprehensive quality framework focused on risk reduction, release confidence, application stability, and continuous improvement across the software delivery lifecycle.",
     offerings: [
@@ -845,24 +712,8 @@ const servicesData: Record<string, ServiceData> = {
           "Compliance readiness reviews",
         ],
       },
-      // {
-      //   category: "Continuous Quality Intelligence",
-      //   description: "Monitor quality metrics, release performance, and testing effectiveness to support continuous improvement.",
-      //   items: [
-      //     "Quality dashboards",
-      //     "Defect trend analysis",
-      //     "Release readiness reporting",
-      //     "Process optimization recommendations",
-      //   ],
-      // },
     ],
-    painPoints: [
-      "Are you shipping fast but skipping critical QA steps?",
-      "Losing users due to bugs, crashes, or inconsistencies?",
-      "Lacking visibility into what\u2019s actually tested (and what\u2019s not)?",
-      "Struggling with flaky automation or slow manual testing cycles?",
-      "Not sure how to scale QA as your product grows?",
-    ],
+ 
     whyTitle: "Why Businesses Choose Our Quality Engineering Team",
     whyChoose: [
       { title: "Dedicated Quality Engineering Expertise", description: "Structured QA frameworks, risk-based testing, and quality governance for reliable software delivery." },
@@ -873,18 +724,7 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Focus on Release Confidence & Product Reliability", description: "We help organizations ship faster with fewer defects and higher user satisfaction." },
     ],
     whyTagline: "We don't just test software. We build quality engineering frameworks that reduce risk, improve release confidence, and help organizations deliver reliable digital products at scale.",
-    industries: [
-      { name: "SaaS & Startups", description: "Continuous delivery with zero tolerance for downtime" },
-      { name: "Fintech & Banking", description: "Security-first testing to ensure trust and compliance" },
-      { name: "Healthcare & EdTech", description: "High stakes, high standards—QA that protects users" },
-      { name: "Ecommerce & Retail", description: "Seamless, bug-free shopping experiences across all platforms" },
-      { name: "Enterprise IT", description: "Scalable QA pipelines integrated into complex ecosystems" },
-      { name: "Logistics & Supply Chain", description: "Mission-critical system validation and reliability testing" },
-      { name: "Media & Entertainment", description: "Cross-platform content delivery and playback validation" },
-      { name: "Government & Public Sector", description: "Compliance-focused testing and accessibility validation" },
-    ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We provide software quality assurance services across a wide range of industries:",
+
     processHeading: "Four Checkpoints. Zero Compromises.",
     processSteps: [
       {
@@ -920,7 +760,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "Project Management Services",
     subtitle: "The Ultimate End-to-End Project Management System",
     description: "We streamline project planning, stakeholder alignment, and delivery oversight to keep projects on track and teams focused.",
-    painIntro: "What\u2019s Holding Your Projects Back?",
     offeringsTitle: "Delivery Governance & Execution Management Capabilities",
     offeringsDescription: "A structured delivery framework focused on planning, coordination, visibility, accountability, and continuous improvement across projects, teams, and business initiatives.",
 
@@ -976,23 +815,6 @@ const servicesData: Record<string, ServiceData> = {
           "KPI tracking frameworks",
         ],
       },
-      // {
-      //   category: "Delivery Optimization & Process Improvement",
-      //   description: "Continuously improve delivery performance through operational analysis and workflow optimization.",
-      //   items: [
-      //     "Process assessments",
-      //     "Delivery performance reviews",
-      //     "Workflow optimization",
-      //     "Continuous improvement initiatives",
-      //   ],
-      // },
-    ],
-    painPoints: [
-      "Are your teams always busy but nothing ever seems to get done?",
-      "Do deadlines keep slipping, without clear reasons why?",
-      "Is everyone on a different page or using different tools?",
-      "Are you unsure what\u2019s really happening inside your projects?",
-      "Do you feel like there\u2019s no structure, only chaos?",
     ],
     whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
@@ -1004,18 +826,6 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Focus on Execution, Accountability & Outcomes", description: "We build delivery systems that improve visibility, strengthen execution, and achieve strategic objectives." },
     ],
     whyTagline: "We don't just manage projects. We build delivery systems that improve visibility, strengthen execution, and enable organizations to consistently achieve strategic objectives.",
-    industries: [
-      { name: "Technology & SaaS", description: "Bring clarity and structure to fast-paced development cycles" },
-      { name: "Healthcare & Fintech", description: "Ensure compliance, coordination, and delivery precision" },
-      { name: "Ecommerce & Retail", description: "Launch campaigns, manage tech upgrades, and streamline ops" },
-      { name: "Enterprise & B2B Services", description: "Manage internal IT, product delivery, or customer implementations without silos" },
-      { name: "Manufacturing & Industrial", description: "Coordinate complex initiatives across distributed teams" },
-      { name: "Education & E-Learning", description: "Platform launches, content delivery, and stakeholder alignment" },
-      { name: "Logistics & Transportation", description: "Multi-team coordination and operational initiative management" },
-      { name: "Professional Services", description: "Client delivery, resource management, and project governance" },
-    ],
-    industryTitle: "Industries We Serve",
-    industryDescription: "We support organizations managing complex initiatives across multiple sectors:",
     processHeading: "From Project Initiation to Operational Excellence Through Four Delivery Phases",
     processSteps: [
       {
@@ -1051,7 +861,6 @@ const servicesData: Record<string, ServiceData> = {
     title: "Staff Augmentation Services",
     subtitle: "Rapidly Deployed IT Teams for On-Demand Delivery",
     description: "Staff augmentation for extending IT teams with vetted specialists and dedicated squads to increase delivery capacity, close skill gaps, and accelerate execution. Resources are seamlessly integrated into your ecosystem, aligned with your workflows, technology stack, and delivery needs for consistent output.",
-    painIntro: "What\u2019s Slowing Down Your Growth?",
     offeringsTitle: "Workforce Scaling & Delivery Enablement Capabilities",
     offeringsDescription: "A structured talent engagement framework designed to help organizations increase delivery capacity, reduce hiring friction, and maintain operational momentum across critical initiatives.",
     offerings: [
@@ -1105,23 +914,6 @@ const servicesData: Record<string, ServiceData> = {
           "Long-term scaling strategies",
         ],
       },
-      // {
-      //   category: "Knowledge Retention & Transition Planning",
-      //   description: "Protect organizational continuity through structured documentation and transition processes.",
-      //   items: [
-      //     "Knowledge transfer planning",
-      //     "Documentation frameworks",
-      //     "Resource transition support",
-      //     "Operational continuity planning",
-      //   ],
-      // },
-    ],
-    painPoints: [
-      "Are projects delayed because you lack the right expertise?",
-      "Is recruitment taking longer than your deadlines allow?",
-      "Are your teams stretched thin with increasing workload?",
-      "Do you need specialized talent without long-term commitments?",
-      "Are hiring costs limiting your ability to scale?",
     ],
     whyTitle: "Why Businesses Partner With Us",
     whyChoose: [
@@ -1133,18 +925,6 @@ const servicesData: Record<string, ServiceData> = {
       { title: "Teams That Operate Within Your Preferred Time Zone", description: "Working hours, communication cadences, and delivery workflows aligned to your schedule." },
     ],
     whyTagline: "We don't just provide resources. We embed high-performing professionals who strengthen delivery capabilities, accelerate execution, and help organizations scale with confidence.",
-    industries: [
-      { name: "Technology & SaaS", description: "Scale engineering without slowing product momentum" },
-      { name: "Healthcare & Fintech", description: "Add compliant, security-aware specialists" },
-      { name: "Ecommerce & Retail", description: "Accelerate releases and optimize digital platforms" },
-      { name: "Enterprise & B2B Services", description: "Extend technical capacity without internal strain" },
-      { name: "Manufacturing & Industrial", description: "Modernize legacy systems and implement new technologies" },
-      { name: "Logistics & Supply Chain", description: "Build operational tools and tracking systems" },
-      { name: "Education & E-Learning", description: "Scale platform development and content delivery teams" },
-      { name: "Media & Entertainment", description: "Streaming platform development and content management" },
-    ],
-    industryTitle: "Talent Areas We Support",
-    industryDescription: "We provide specialized professionals across multiple disciplines and sectors",
     processHeading: "Vetted Talent. Zero Ramp-Up.",
     processSteps: [
       {
@@ -1185,7 +965,6 @@ interface ServiceMeta {
   timeline: string;
   teamSize: string;
   deliverables: string[];
-  idealFor: string[];
   accent: string;
   icon: ReactNode;
 }
@@ -1201,7 +980,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "App Store & Play Store Launch",
       "Analytics & Performance Monitoring",
     ],
-    idealFor: ["Digital Products", "Enterprise Mobility", "SaaS Platforms"],
     accent: "#1E88E5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1221,7 +999,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Cloud Infrastructure Deployment",
       "Analytics & Performance Monitoring",
     ],
-    idealFor: ["SaaS Platforms", "Enterprise Portals", "Digital Products"],
     accent: "#0277BD",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1241,7 +1018,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Conversion Optimization Frameworks",
       "Analytics & Growth Infrastructure",
     ],
-    idealFor: ["Retail Brands", "B2B Commerce", "Digital Marketplaces"],
     accent: "#0288D1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1260,7 +1036,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Design Systems & UI Libraries",
       "Developer-Ready Design Handoff",
     ],
-    idealFor: ["Digital Products", "SaaS Platforms", "Enterprise Applications"],
     accent: "#039BE5",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1279,7 +1054,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Data Pipelines & AI Infrastructure",
       "Model Monitoring & Continuous Optimization",
     ],
-    idealFor: ["Business Automation", "Predictive Analytics", "AI-Powered Products"],
     accent: "#00ACC1",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1299,7 +1073,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Performance Analytics & Attribution",
       "Lead Generation & Conversion Systems",
     ],
-    idealFor: ["B2B Organizations", "B2C Organizations", "E-Commerce Brands"],
     accent: "#1565C0",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1319,7 +1092,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Flexible Scaling Models",
       "Delivery Continuity & Support",
     ],
-    idealFor: ["Growing Engineering Teams", "Enterprise Transformation", "High-Demand Environments"],
     accent: "#01579B",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1338,7 +1110,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Performance & Security Validation",
       "Continuous Quality Monitoring",
     ],
-    idealFor: ["SaaS Platforms", "Enterprise Applications", "Digital Products"],
     accent: "#006064",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1357,7 +1128,6 @@ const serviceMeta: Record<string, ServiceMeta> = {
       "Performance Reporting Systems",
       "Risk & Dependency Management",
     ],
-    idealFor: ["Growing Organizations", "Complex Digital Initiatives", "Multi-Team Environments"],
     accent: "#0097A7",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -1367,56 +1137,8 @@ const serviceMeta: Record<string, ServiceMeta> = {
   },
 };
 
-const allServiceTitles: Record<string, { title: string; tagline: string }> = {
-  "mobile-application": {
-    title: "Mobile App Development",
-    tagline: "Native & cross-platform apps people love using.",
-  },
-  "web-development": {
-    title: "Web Development",
-    tagline: "Fast, accessible, SEO-ready platforms.",
-  },
-  ecommerce: {
-    title: "E-commerce Development",
-    tagline: "Storefronts that convert and scale.",
-  },
-  "ui-ux-design": {
-    title: "UI/UX Design",
-    tagline: "Research-led design that converts.",
-  },
-  "machine-learning-ai": {
-    title: "ML & AI Solutions",
-    tagline: "Custom models, embedded into your stack.",
-  },
-  "digital-marketing": {
-    title: "Digital Marketing",
-    tagline: "Strategy and content built on data.",
-  },
-  "staff-augmentation": {
-    title: "Staff Augmentation",
-    tagline: "Senior engineers, embedded with your team.",
-  },
-  "quality-assurance": {
-    title: "Quality Assurance",
-    tagline: "Ship with confidence, not surprises.",
-  },
-  "project-management": {
-    title: "Project Management",
-    tagline: "Agile delivery without the chaos.",
-  },
-};
 
-const relatedMap: Record<string, string[]> = {
-  "mobile-application": ["web-development", "ui-ux-design", "machine-learning-ai"],
-  "web-development": ["mobile-application", "ui-ux-design", "ecommerce"],
-  ecommerce: ["web-development", "ui-ux-design", "digital-marketing"],
-  "ui-ux-design": ["web-development", "mobile-application", "ecommerce"],
-  "machine-learning-ai": ["web-development", "mobile-application", "digital-marketing"],
-  "digital-marketing": ["ui-ux-design", "ecommerce", "web-development"],
-  "staff-augmentation": ["project-management", "quality-assurance", "web-development"],
-  "quality-assurance": ["web-development", "mobile-application", "project-management"],
-  "project-management": ["staff-augmentation", "quality-assurance", "web-development"],
-};
+
 
 //  Add this before your component definition
   function splitTitle(title: string): { firstHalf: string; secondHalf: string } {
@@ -1441,7 +1163,6 @@ export default function ServicePage() {
   const slug = params.slug as string;
   const service = servicesData[slug];
   const meta = serviceMeta[slug];
-  const related = (relatedMap[slug] ?? []).slice(0, 3);
 
   const [activeOffering, setActiveOffering] = useState(0);
 
@@ -1490,20 +1211,6 @@ export default function ServicePage() {
         <div className="noise-overlay" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          {/* Breadcrumb */}
-          {/* <AnimatedSection>
-            <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-              <Link href="/" className="hover:text-neon-blue transition-colors">
-                Home
-              </Link>
-              <span className="text-gray-600">/</span>
-              <Link href="/services" className="hover:text-neon-blue transition-colors">
-                Services
-              </Link>
-              <span className="text-gray-600">/</span>
-              <span style={{ color: accent }}>{service.title}</span>
-            </nav>
-          </AnimatedSection> */}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
@@ -1744,64 +1451,6 @@ export default function ServicePage() {
       </section>
 
 
-
-
-      {/* ───────── Pain points (cleaner, empathetic) ───────── */}
-      {/* <section className="py-20 bg-light-accent relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
-            <div className="lg:col-span-7">
-              <p className="eyebrow text-rose-500/80">Sound familiar?</p>
-              <h2 className="mt-3 h-section text-deep-blue">
-                {service.painIntro}
-              </h2>
-            </div>
-            <div className="lg:col-span-5">
-              <p className="body-base text-deep-blue/60 max-w-md lg:ml-auto">
-                If any of these are slowing you down, you&apos;re not alone —
-                most teams we talk to are stuck on at least one.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {service.painPoints.map((point, i) => (
-              <div key={i}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.35 }}
-                  className="group relative h-full p-6 rounded-2xl bg-white border border-deep-blue/[0.07] hover:shadow-[0_20px_40px_-16px_rgba(244,63,94,0.25)] transition-all duration-500 overflow-hidden"
-                >
-                  <div className="pointer-events-none absolute -top-10 -right-10 w-28 h-28 rounded-full bg-rose-400/15 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-rose-100 border border-rose-200 flex items-center justify-center flex-shrink-0 mt-1 transition-transform duration-300 group-hover:scale-105">
-                      <svg
-                        className="w-5 h-5 text-rose-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-sm text-deep-blue/75 leading-relaxed pt-1">
-                      {point}
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       {/* ───────── What's included (interactive offerings) ───────── */}
       <section className="relative py-16 lg:py-20 bg-light-accent overflow-hidden">
         {/* Background Effects */}
@@ -1838,11 +1487,7 @@ export default function ServicePage() {
           {/* Header */}
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-6">
             <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 mb-3">
-                {/* <span
-                  className="w-1.5 h-1.5 rounded-full animate-pulse"
-                  style={{ backgroundColor: accent }}
-                /> */}
+              <div className="inline-flex items-center gap-2 ">
                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-1">
               <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
               <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
@@ -2309,71 +1954,7 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* ───────── Industries we serve (compact) ───────── */}
-      {/* <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
-        <div
-          className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-          style={{ backgroundColor: `${accent}0F` }}
-        />
-
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="rounded-2xl bg-section-dark border border-deep-blue/[0.07] p-7 lg:p-9 overflow-hidden relative">
-            <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
-
-              <div className="lg:col-span-4">
-
-                <div className="inline-flex items-center gap-2 mb-3">
-                  <span className="w-1.5 h-1.5 rounded-full animate-pulse"
-                    style={{ backgroundColor: accent }} />
-                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold"
-                    style={{ color: accent }}>
-                    INDUSTRIES
-                  </p>
-                </div>
-
-                <h2 className="mt-3 h-section text-white">
-                  {" "}
-                  <span className="gradient-text">Industries</span> We Serve
-                </h2>
-
-                <p className="body-base text-gray-400 mt-4 max-w-md lg:ml-auto">
-                  {service.industryDescription}
-                </p>
-              </div>
-
-              <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4 mt-6 lg:mt-0">
-                {service.industries.map((industry, i) => (
-                  <div key={industry.name}>
-                    <div
-                      className="group flex items-start gap-3 p-5 rounded-xl 
-                  bg-white/5 hover:bg-white/10 
-                  border border-white/10 hover:border-white/20 
-                  shadow-sm hover:shadow-lg 
-                  transition-all duration-300 hover:scale-[1.03]"
-                    >
-                      <div
-                        className="w-3 h-3 rounded-full mt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-125"
-                        style={{ backgroundColor: accent }}
-                      />
-
-                      <div>
-                        <p className="font-semibold text-white text-sm">
-                          {industry.name}
-                        </p>
-
-                        <p className="text-xs text-white/70 mt-1 leading-snug">
-                          {industry.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section> */}
+     
 
       {/* ───────── Final CTA ───────── */}
 

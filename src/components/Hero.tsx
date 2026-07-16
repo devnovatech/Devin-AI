@@ -43,25 +43,7 @@ export default function Hero() {
       onMouseLeave={handleMouseLeave}
       className="relative flex flex-col justify-center overflow-hidden bg-section-hero grid-bg pt-28 pb-14 lg:pb-16"
     >
-      {/* Aurora background */}
-      {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/6 w-[600px] h-[600px] bg-neon-blue/10 rounded-full blur-[150px]"
-
-          animate={{ scale: [1, 1.12, 1], opacity: [0.85, 1, 0.85] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[150px]"
-          animate={{ scale: [1, 1.18, 1], opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        />
-        <div className="noise-overlay" />
-      </div> */}
-
-
-      {/* <Particles /> */}
-
+      
       {/* Main grid - CONTENT ON LEFT, HEROART ON RIGHT */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12  items-center">
         {/* LEFT — text content */}
@@ -84,7 +66,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="mt-5 text-sm sm:text-lg text-ink-600 max-w-xl leading-tight"
+            className="mt-5 text-sm sm:text-lg max-w-xl leading-tight"
           >
             We build production-ready web, mobile, and AI systems that transform ambitious business initiatives into reliable, extensible digital platforms designed for long-term performance, maintainability, and growth.
           </p>
@@ -116,12 +98,6 @@ export default function Hero() {
                 </svg>
               </Link>
             </span>
-            {/* <Link
-              href="/services"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-4 sm:py-4 rounded-xl border border-white/15 text-white font-semibold text-sm sm:text-base hover:bg-white/5 hover:border-white/30 transition-all duration-300 min-h-[52px] sm:min-h-[56px]"
-            >
-              Explore our services
-            </Link> */}
           </div>
         </div>
 
@@ -132,17 +108,6 @@ export default function Hero() {
           <HeroArt />
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      {/* <motion.div
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 hidden lg:block"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-1.5 bg-neon-blue rounded-full" />
-        </div>
-      </motion.div> */}
     </section>
   );
 }

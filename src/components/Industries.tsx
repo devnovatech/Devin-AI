@@ -138,15 +138,20 @@ export default function Industries() {
             <div className="lg:hidden flex flex-wrap gap-2 mb-2">
               {industries.map((ind, i) => {
                 const isActive = activeIndex === i;
+
                 return (
                   <button
                     key={ind.slug}
                     onClick={() => setActiveIndex(i)}
-                    className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border backdrop-blur-sm"
+                    className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border backdrop-blur-sm ${isActive ? "text-[#ffffff]" : "text-white"
+                      }`}
                     style={{
-                      backgroundColor: isActive ? ind.accent : "rgba(255,255,255,0.05)",
-                      color: isActive ? "white" : "rgba(255,255,255,0.75)",
-                      borderColor: isActive ? "transparent" : "rgba(255,255,255,0.12)",
+                      backgroundColor: isActive
+                        ? ind.accent
+                        : "rgba(255,255,255,0.05)",
+                      borderColor: isActive
+                        ? "transparent"
+                        : "rgba(255,255,255,0.12)",
                       boxShadow: isActive
                         ? `0 8px 22px -8px ${ind.accent}90`
                         : "none",

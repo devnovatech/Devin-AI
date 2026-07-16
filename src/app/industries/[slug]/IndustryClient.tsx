@@ -15,15 +15,10 @@ const LIGHT = "var(--section-light)";
 interface IndustryData {
   title: string;
   heroDescription: string;
-  challengesHeading: string;
-  challengesDescription: string;
   challenges: string[];
-  solutionsHeading: string;
-  solutionDescription: string;
   solutions: string[];
   ctaHeading: string;
   ctaDescription: string;
-  // ctaButton: string;
 }
 
 const industriesData: Record<string, IndustryData> = {
@@ -31,8 +26,6 @@ const industriesData: Record<string, IndustryData> = {
     title: "Healthcare Without Limits",
     heroDescription:
       "Transforming patient experiences, clinical operations, and care delivery through intelligent digital solutions.",
-    challengesHeading: "The Friction Behind Modern Healthcare Systems",
-    challengesDescription: "Healthcare organizations are expected to deliver seamless patient experiences, maintain regulatory compliance, and improve operational efficiency, yet many continue to rely on fragmented technology ecosystems that limit performance and growth.",
     challenges: [
       "Poor Digital Experience: Slow, unintuitive apps and portals reduce engagement across patients and providers, especially in telemedicine and wellness platforms.",
       "Compliance and Security Risks: Strict regulations like HIPAA and GDPR demand strong architecture. Weak systems increase exposure to breaches, penalties, and trust loss.",
@@ -41,8 +34,6 @@ const industriesData: Record<string, IndustryData> = {
       "Fragmented User Journeys: Inconsistent experiences across mobile, web, and internal tools reduce adoption and user satisfaction.",
       "Poor Patient Access: Lack of real-time access to records and updates leads to delays, confusion, and weaker patient engagement.",
     ],
-    solutionsHeading: "Engineering Clarity Into Complex Healthcare Systems",
-    solutionDescription: "We don't treat these challenges as isolated problems. We solve them at the system level through architecture, engineering discipline, and healthcare-grade design principles.",
     solutions: [
       "Experience-Led System Design: We rebuild patient and provider journeys using performance-optimized mobile and web architectures, ensuring fast, intuitive, and accessible digital experiences across every touchpoint.",
       "Compliance-First Engineering: Security and compliance are embedded into the foundation of every system through HIPAA-aligned workflows, GDPR-ready data structures, encrypted communication layers, and role-based access control.",
@@ -53,13 +44,10 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Healthcare Friction Into Connected, Scalable Care",
     ctaDescription: "Healthcare is often slowed by fragmented systems, legacy infrastructure, and disconnected tools that impact efficiency, compliance, and patient experience.\nWe build secure, scalable healthcare ecosystems that unify systems, streamline operations, and improve care delivery.",
-    // ctaButton: "Ready to modernize your healthcare ecosystem?",
   },
   fintech: {
     title: "Banking Built for the Digital Economy",
     heroDescription: "Transforming customer experiences, financial operations, and digital banking ecosystems through secure, intelligent technology solutions.",
-    challengesHeading: "The Complexity Behind Modern Financial Services",
-    challengesDescription: "Financial institutions are under constant pressure to deliver seamless digital experiences, maintain regulatory compliance, strengthen security, and innovate faster. Yet many organizations remain constrained by legacy systems, fragmented infrastructure, and disconnected customer journeys.",
     challenges: [
       "Legacy Banking Infrastructure: Outdated core systems create operational inefficiencies, limit innovation, and increase the cost of maintaining critical financial services.",
       "Regulatory and Compliance Pressure: Financial organizations must continuously adapt to evolving regulations such as PCI DSS, AML, KYC, GDPR, PSD2, and regional banking requirements.",
@@ -68,8 +56,6 @@ const industriesData: Record<string, IndustryData> = {
       "Fragmented Customer Experiences: Customers expect seamless experiences across mobile, web, branch, and digital channels, yet many institutions still operate in silos.",
       "Limited Financial Intelligence: Data trapped across systems prevents organizations from generating actionable insights for risk management, forecasting, and customer growth.",
     ],
-    solutionsHeading: "Engineering Confidence Into Financial Ecosystems",
-    solutionDescription: "We don't treat financial technology challenges as isolated issues. We solve them through scalable architecture, security-first engineering, and enterprise-grade operational design.",
     solutions: [
       "Digital-First Customer Experiences: We create high-performance banking and financial platforms that deliver intuitive experiences across mobile, web, and self-service channels.",
       "Compliance-Driven Architecture: Security, governance, and regulatory alignment are embedded into every layer through PCI DSS-ready infrastructure, KYC workflows, AML controls, audit trails, and role-based access management.",
@@ -80,13 +66,10 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Financial Complexity Into Competitive Advantage",
     ctaDescription: "Financial growth is often limited by legacy systems, compliance burdens, fragmented customer experiences, and operational inefficiencies.\nWe build secure, scalable financial ecosystems that modernize operations, strengthen compliance, and accelerate innovation.",
-    // ctaButton: "Ready to modernize your financial ecosystem?",
   },
   "ecommerce-retail": {
     title: "Commerce Without Friction",
     heroDescription: "Transforming customer experiences, retail operations, and digital commerce ecosystems through intelligent technology solutions designed for growth.",
-    challengesHeading: "The Challenges Behind Modern Commerce",
-    challengesDescription: "Retail and ecommerce organizations are expected to deliver seamless customer experiences, optimize operations, and scale across multiple channels. Yet many continue to struggle with fragmented systems, disconnected data, and increasingly demanding customer expectations.",
     challenges: [
       "Poor Customer Experience: Slow websites, complicated checkout flows, and inconsistent digital experiences reduce engagement, conversions, and customer loyalty.",
       "Disconnected Commerce Systems: Inventory, sales, fulfillment, marketing, and customer data often operate in separate systems, creating inefficiencies and limiting visibility.",
@@ -95,8 +78,6 @@ const industriesData: Record<string, IndustryData> = {
       "Omnichannel Complexity: Maintaining consistency across online stores, mobile applications, marketplaces, and physical retail environments remains a significant challenge.",
       "Scalability Constraints: Legacy platforms and outdated infrastructure struggle to support growing traffic, expanding product catalogs, and seasonal demand spikes.",
     ],
-    solutionsHeading: "Engineering Growth Into Modern Commerce Ecosystems",
-    solutionDescription: "We don't solve ecommerce challenges in isolation. We build connected retail ecosystems that improve customer experiences, streamline operations, and support sustainable growth.",
     solutions: [
       "Experience-Led Commerce Design: We create fast, intuitive, and conversion-focused digital experiences that simplify customer journeys and increase engagement across every touchpoint.",
       "Connected Commerce Infrastructure: We integrate ecommerce, inventory, fulfillment, CRM, ERP, and marketing systems into unified ecosystems that improve visibility and operational efficiency.",
@@ -107,13 +88,10 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Retail Complexity Into Sustainable Growth",
     ctaDescription: "Retail growth is often limited by disconnected systems, fragmented customer journeys, operational inefficiencies, and outdated commerce infrastructure.\nWe build scalable ecommerce ecosystems that unify operations, optimize customer experiences, and accelerate business growth across every channel.",
-    // ctaButton: "Ready to modernize your commerce ecosystem?",
   },
   logistics: {
     title: "Moving Supply Chains Forward",
     heroDescription: "Transforming logistics operations, transportation networks, and supply chain performance through intelligent digital solutions designed for visibility, efficiency, and scale.",
-    challengesHeading: "The Challenges Behind Modern Logistics Operations",
-    challengesDescription: "Logistics and transportation organizations are expected to deliver faster shipments, maintain operational visibility, optimize costs, and meet rising customer expectations. Yet many continue to operate with disconnected systems, limited data transparency, and increasingly complex compliance requirements.",
     challenges: [
       "Limited Operational Visibility: Disconnected systems make it difficult to track shipments, fleet performance, inventory movement, and delivery operations in real time.",
       "Inefficient Route & Fleet Management: Manual planning and outdated systems increase fuel costs, delivery delays, and resource inefficiencies.",
@@ -122,8 +100,6 @@ const industriesData: Record<string, IndustryData> = {
       "Delayed Decision-Making: Lack of centralized data prevents organizations from identifying bottlenecks, forecasting disruptions, and optimizing operations proactively.",
       "Customer Experience Challenges: Limited shipment transparency and communication lead to poor customer satisfaction and reduced trust.",
     ],
-    solutionsHeading: "Engineering Visibility Into Complex Logistics Ecosystems",
-    solutionDescription: "We don't solve logistics challenges in isolation. We build connected operational ecosystems that improve visibility, automate processes, and enable smarter decision-making across the entire supply chain.",
     solutions: [
       "Real-Time Logistics Visibility: We design centralized platforms that provide live tracking, operational monitoring, and complete visibility across transportation and logistics networks.",
       "Connected Supply Chain Architecture: We integrate transportation, warehouse, inventory, ERP, and customer systems into unified ecosystems that eliminate silos and improve coordination.",
@@ -135,13 +111,10 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Logistics Complexity Into Operational Advantage",
     ctaDescription: "Supply chain performance is often limited by disconnected systems, fragmented data, inefficient processes, and limited operational visibility.\nWe build scalable logistics ecosystems that connect operations, optimize transportation networks, and enable smarter decision-making across the entire supply chain.",
-    // ctaButton: "Ready to modernize your logistics ecosystem?",
   },
   education: {
     title: "Building the Future of Learning",
     heroDescription: "Transforming educational experiences, institutional operations, and learner outcomes through intelligent digital solutions designed for accessibility, engagement, and long-term impact.",
-    challengesHeading: "The Barriers Holding Modern Education Back",
-    challengesDescription: "Educational institutions and EdTech organizations face growing pressure to deliver engaging digital experiences, improve learner outcomes, expand access, and operate efficiently. Yet many continue to rely on disconnected technologies, manual processes, and legacy systems that limit innovation and educational effectiveness.",
     challenges: [
       "Disconnected Learning Ecosystems: Students, educators, and administrators often work across multiple platforms that create fragmented experiences and operational inefficiencies.",
       "Low Learner Engagement: Traditional digital learning environments frequently struggle to maintain participation, motivation, and long-term student engagement.",
@@ -150,8 +123,6 @@ const industriesData: Record<string, IndustryData> = {
       "Limited Visibility Into Performance: Scattered academic and operational data makes it difficult to identify learning gaps, track outcomes, and make informed decisions.",
       "Scalability Challenges: As institutions expand programs, online learning initiatives, and student populations, legacy infrastructure often becomes a barrier to growth.",
     ],
-    solutionsHeading: "Engineering Connected Learning Ecosystems",
-    solutionDescription: "We don't view educational challenges as isolated technology problems. We build integrated digital ecosystems that connect learners, educators, and institutions while improving outcomes at every stage of the learning journey.",
     solutions: [
       "Student-Centered Digital Experiences: We design intuitive mobile and web experiences that make learning more engaging, accessible, and effective across every educational touchpoint.",
       "Personalized Learning Experiences: Using AI and intelligent automation, we enable adaptive learning pathways, personalized content delivery, and proactive student support.",
@@ -163,13 +134,10 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Educational Challenges Into Measurable Outcomes",
     ctaDescription: "Education is often constrained by disconnected systems, administrative inefficiencies, fragmented learning experiences, and limited visibility into student success.\nWe build secure, scalable education ecosystems that connect people, processes, and technology to improve engagement, streamline operations, and deliver stronger learning outcomes.",
-    // ctaButton: "Ready to transform your learning ecosystem?",
   },
   "travel-hospitality": {
     title: "Experiences That Move People",
     heroDescription: "Transforming guest experiences, travel operations, and hospitality ecosystems through intelligent digital solutions designed for personalization, efficiency, and growth.",
-    challengesHeading: "The Challenges Behind Modern Travel & Hospitality",
-    challengesDescription: "Travel and hospitality organizations are expected to deliver seamless guest experiences, manage complex operations, and adapt to rapidly evolving customer expectations. Yet many continue to operate with fragmented systems, disconnected customer data, and outdated digital experiences that limit growth and loyalty.",
     challenges: [
       "Fragmented Guest Journeys: Travelers interact across websites, mobile apps, booking engines, loyalty programs, and on-property experiences, yet these touchpoints often remain disconnected.",
       "Rising Customer Expectations: Modern travelers expect personalized recommendations, real-time updates, self-service capabilities, and frictionless experiences at every stage of their journey.",
@@ -178,8 +146,6 @@ const industriesData: Record<string, IndustryData> = {
       "Data Silos & Limited Personalization: Customer information is often scattered across multiple systems, making it difficult to deliver personalized experiences and build long-term loyalty.",
       "Security & Compliance Requirements: Travel and hospitality organizations must protect customer data, payment information, and operational systems while meeting GDPR, PCI DSS, data privacy regulations, and security standards.",
     ],
-    solutionsHeading: "Engineering Exceptional Travel Experiences",
-    solutionDescription: "We don't treat hospitality and travel challenges as isolated issues. We build connected digital ecosystems that improve guest experiences, streamline operations, and create sustainable business growth.",
     solutions: [
       "Guest-Centric Experience Design: We create intuitive mobile and web experiences that simplify planning, booking, communication, and guest engagement across every touchpoint.",
       "Connected Hospitality Ecosystems: We integrate booking platforms, property management systems, CRM solutions, loyalty programs, payment gateways, and operational tools into a unified environment.",
@@ -191,13 +157,10 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Travel Complexity Into Memorable Experiences",
     ctaDescription: "Growth in travel and hospitality is often constrained by disconnected systems, fragmented guest journeys, operational inefficiencies, and limited customer visibility.\nWe build secure, scalable travel ecosystems that connect experiences, streamline operations, and create meaningful customer relationships that drive long-term growth.",
-    // ctaButton: "Ready to elevate your travel and hospitality ecosystem?",
   },
   "saas-startups": {
     title: "Building Products Ready for Scale",
     heroDescription: "Transforming ideas into scalable digital products through intelligent engineering, rapid execution, and growth-focused technology strategies.",
-    challengesHeading: "The Challenges Behind High-Growth Technology Companies",
-    challengesDescription: "SaaS companies and technology startups operate in highly competitive markets where speed, innovation, and scalability determine success. Yet many organizations struggle with technical debt, resource constraints, product complexity, and growing customer expectations that slow momentum and limit growth.",
     challenges: [
       "Pressure to Ship Faster: Startups must continuously release new features and improvements while balancing product quality, stability, and user experience.",
       "Scalability Challenges: Applications built for early-stage growth often struggle under increasing user demand, expanding datasets, and growing operational complexity.",
@@ -206,8 +169,6 @@ const industriesData: Record<string, IndustryData> = {
       "Product Adoption & Retention Issues: Even strong products can struggle with onboarding, engagement, retention, and long-term customer success.",
       "Security & Compliance Expectations: As businesses grow, customers increasingly expect enterprise-grade security, privacy controls, and compliance readiness without compromising agility.",
     ],
-    solutionsHeading: "Engineering Products Built for Growth",
-    solutionDescription: "We don't simply build software. We help SaaS companies and startups establish the technical foundations required to scale products, teams, and operations with confidence.",
     solutions: [
       "Product-Led Experience Design: We create intuitive user experiences that improve onboarding, engagement, retention, and overall customer satisfaction.",
       "Scalable Cloud-Native Architecture: We design flexible, high-performance platforms that support growth, evolving business requirements, and increasing user demand.",
@@ -218,7 +179,6 @@ const industriesData: Record<string, IndustryData> = {
     ],
     ctaHeading: "Turn Product Ambition Into Sustainable Growth",
     ctaDescription: "Many startups and SaaS businesses are limited not by vision, but by technology foundations that cannot keep pace with growth, customer expectations, and market demands.\nWe build secure, scalable product ecosystems that accelerate innovation, strengthen operational efficiency, and support long-term business growth.",
-    // ctaButton: "Ready to scale your product with confidence?",
   },
 };
 
@@ -328,25 +288,7 @@ const industryMeta: Record<string, IndustryMeta> = {
   },
 };
 
-const allIndustryTitles: Record<string, { title: string; tagline: string }> = {
-  healthcare: { title: "Healthcare & HealthTech", tagline: "HIPAA-compliant platforms, telemedicine, and patient management." },
-  fintech: { title: "FinTech", tagline: "Secure financial platforms with regulatory-ready architecture." },
-  "ecommerce-retail": { title: "E-commerce & Retail", tagline: "Conversion-tuned storefronts and inventory at scale." },
-  logistics: { title: "Logistics & Transportation", tagline: "Real-time tracking, fleet management, route optimization." },
-  education: { title: "Education & EdTech", tagline: "Interactive learning platforms and student engagement tools." },
-  "travel-hospitality": { title: "Travel & Hospitality", tagline: "Booking platforms and guest portals." },
-  "saas-startups": { title: "SaaS & Tech Startups", tagline: "MVPs to scale-ups, speed without sacrificing architecture." },
-};
 
-const relatedIndustryMap: Record<string, string[]> = {
-  healthcare: ["fintech", "education", "saas-startups"],
-  fintech: ["healthcare", "ecommerce-retail", "saas-startups"],
-  "ecommerce-retail": ["fintech", "logistics", "travel-hospitality"],
-  logistics: ["ecommerce-retail", "fintech", "saas-startups"],
-  education: ["healthcare", "saas-startups", "ecommerce-retail"],
-  "travel-hospitality": ["ecommerce-retail", "logistics", "saas-startups"],
-  "saas-startups": ["fintech", "ecommerce-retail", "education"],
-};
 
 interface EcareCapability {
   title: string;
@@ -1255,7 +1197,6 @@ export default function IndustryPage() {
   const slug = params.slug as string;
   const industry = industriesData[slug];
   const meta = industryMeta[slug];
-  const related = (relatedIndustryMap[slug] ?? []).slice(0, 3);
 
   if (!industry) {
     return (
@@ -1323,15 +1264,7 @@ export default function IndustryPage() {
         <div className="noise-overlay" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          {/* <AnimatedSection>
-          //   <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-          //     <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
-          //     <span className="text-gray-600">/</span>
-          //     <Link href="/industries" className="hover:text-neon-blue transition-colors">Industries</Link>
-          //     <span className="text-gray-600">/</span>
-          //     <span style={{ color: accent }}>{industry.title}</span>
-          //   </nav>
-          // </AnimatedSection> */}
+      
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
@@ -1387,11 +1320,6 @@ export default function IndustryPage() {
                   className="force-dark-card relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
                   style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
                 >
-                  {/* <div
-                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
-                    style={{ backgroundColor: accent }}
-                  /> */}
-
                   <div className="relative">
                     <p className="eyebrow gradient-text-dark">
                       Sector snapshot

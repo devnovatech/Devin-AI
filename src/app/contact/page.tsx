@@ -241,7 +241,6 @@ export default function ContactPage() {
     if (!publicKey || publicKey.trim() === "") missingVars.push("Public Key");
 
     if (missingVars.length > 0) {
-      console.error("❌ Missing EmailJS configuration:", missingVars.join(", "));
       setIsConfigValid(false);
 
       if (typeof window !== 'undefined' && window.showToast) {
@@ -251,7 +250,6 @@ export default function ContactPage() {
         );
       }
     } else {
-      console.log("✅ EmailJS configuration loaded successfully");
       setIsConfigValid(true);
 
       // Initialize EmailJS only if config is valid
@@ -377,7 +375,6 @@ export default function ContactPage() {
         EMAILJS_PUBLIC_KEY
       );
 
-      console.log("Email sent successfully!", response.status, response.text);
 
       if (typeof window !== 'undefined' && window.showToast) {
         window.showToast("Message sent successfully! We'll get back to you within 24 hours.", "success");
@@ -397,7 +394,6 @@ export default function ContactPage() {
       setRecaptchaValue(null);
 
     } catch (error) {
-      console.error("Failed to send email:", error);
       if (typeof window !== 'undefined' && window.showToast) {
         window.showToast(
           error instanceof Error ? error.message : "Failed to send message. Please try again.",

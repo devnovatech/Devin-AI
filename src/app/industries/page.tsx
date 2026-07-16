@@ -235,47 +235,6 @@ function IndustryCard({
               {industry.tagline}
             </p>
           </div>
-
-          {/* Stat callout + arrow */}
-          {/* <div
-            className={`${
-              featured
-                ? "lg:shrink-0"
-                : "mt-6 pt-5 border-t border-deep-blue/[0.06]"
-            } flex items-center justify-between gap-3`}
-          >
-            <div className="flex items-baseline gap-2">
-              <span
-                className={`font-bold tracking-tight tabular-nums ${
-                  featured ? "text-3xl lg:text-4xl" : "text-xl"
-                }`}
-                style={{ color: industry.accent }}
-              >
-                {industry.stat.value}
-              </span>
-              <span className="text-deep-blue/50 text-xs">
-                {industry.stat.label}
-              </span>
-            </div>
-            <span
-              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 shrink-0"
-              style={{ backgroundColor: `${industry.accent}14` }}
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke={industry.accent}
-                strokeWidth={2.4}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </span>
-          </div> */}
         </div>
       </Link>
     </div>
@@ -401,7 +360,14 @@ export default function IndustriesPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-8 lg:mb-10">
             <div className="lg:col-span-7">
-              <p className="eyebrow text-neon-purple">Sectors we serve</p>
+               <div className="inline-flex items-center gap-2 ">
+                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+              <span className="text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                Sectors we serve
+              </span>
+            </div>
+              </div>
               <h2 className="mt-3 h-section text-deep-blue">
                 Delivering Across {""}
                 <span className="gradient-text-dark">Industries</span>
@@ -486,7 +452,7 @@ export default function IndustriesPage() {
         heading={
           <>
             Systems That Work as One,{" "}
-            <span className="gradient-text"> Not in Pieces</span>
+            <span className="gradient-text-fixed"> Not in Pieces</span>
           </>
         }
         description="Most organizations don’t need more tools — they need their systems to finally align. We help companies move beyond fragmented setups by building integrated digital infrastructure that reflects how they actually operate, scale, and compete."

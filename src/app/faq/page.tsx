@@ -230,15 +230,6 @@ export default function FAQPage() {
         <>
             {/* Hero Section - Left Content + Right Statistics */}
             <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
-                {/* Background decorations */}
-                <div className="absolute inset-0 grid-bg" />
-                <div
-                    className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-neon-blue/[0.08] rounded-full blur-[140px] pointer-events-none"
-                />
-                <div
-                    className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none"
-                />
-
                 <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                         {/* Left Column - Content */}
@@ -407,7 +398,7 @@ export default function FAQPage() {
                 heading={
                     <>
                         Have an idea? Let&apos;s create something{" "}
-                        <span className="gradient-text">extraordinary.</span>
+                        <span className="gradient-text-fixed">extraordinary.</span>
                     </>
                 }
                 description="Need help with your next big idea? Our team is ready to build with you."

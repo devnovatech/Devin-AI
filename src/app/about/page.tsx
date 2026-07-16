@@ -125,16 +125,6 @@ function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <AnimatedSection direction="left" className="lg:col-span-7">
-            {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/5 backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-              </span>
-              <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
-                Founded 2010 · 30+ employees worldwide
-              </span>
-            </div> */}
-
             <h1 className="mt-7 h-display text-white">
               About  <span className="gradient-text">Us</span>
             </h1>

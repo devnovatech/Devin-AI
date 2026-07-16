@@ -27,10 +27,6 @@ interface Service {
   description: string;
   stack: string[];
   icon: ReactNode;
-  phases: {
-    name: string;
-    description: string;
-  }[];
 }
 declare global {
   interface Window {
@@ -52,12 +48,6 @@ const services: Service[] = [
       "Flutter", "React Native", "Swift", "Kotlin"
     ],
     icon: <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Discover", description: "Product goals and platform strategy" },
-      { name: "Design", description: "UX, UI, and prototyping" },
-      { name: "Build", description: "Development, integration, and testing" },
-      { name: "Launch", description: "Release, monitoring, and updates" },
-    ]
   },
   {
     title: "Web Platforms",
@@ -69,12 +59,6 @@ const services: Service[] = [
       "Creating responsive, scalable web solutions that deliver dependable performance and seamless user experiences.",
     stack: ["React", "Next.js", "Node.js", "Express"],
     icon: <Globe className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Discover", description: "Requirements, goals, and technical planning" },
-      { name: "Design", description: "Architecture, UX, wireframes, and workflows" },
-      { name: "Build", description: "Development, integrations, testing, and security" },
-      { name: "Launch", description: "Deployment, optimization, and scaling" },
-    ]
   },
     {
     title: "AI & ML Engineering",
@@ -87,12 +71,6 @@ const services: Service[] = [
 
     stack: ["OpenAI APIs", "TensorFlow", "PyTorch", "Python"],
     icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Discover", description: "AI strategy and data assessment" },
-      { name: "Prototype", description: "Model selection and validation" },
-      { name: "Train", description: "Model training and optimization" },
-      { name: "Deploy", description: "Integration, monitoring, and improvement" },
-    ]
   },
   {
     title: "E-commerce Solutions",
@@ -106,12 +84,6 @@ const services: Service[] = [
     stack: ["Shopify", "WooCommerce", "Magento", "Stripe"
     ],
     icon: <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
-  phases: [
-  {name: "Catalog", description: "Define products and categories",},
-  {name: "Cart", description: "Build cart and checkout flow",},
-  {name: "Pay", description: "Integrate payments and processing",},
-  {name: "Convert", description: "Launch, optimize, and scale",},
-]
   },
   {
     title: "UI/UX Design",
@@ -125,12 +97,6 @@ const services: Service[] = [
       "Figma", "Adobe XD", "Sketch", "FigJam"
     ],
     icon: <Palette className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Research", description: "User insights, goals, and requirements" },
-      { name: "Structure", description: "User flows, wireframes, and prototypes" },
-      { name: "Design", description: "Interfaces, design systems, and testing" },
-      { name: "Optimize", description: "Implementation support and improvements" },
-    ]
   },
   {
     title: "Software Quality Assurance",
@@ -144,12 +110,6 @@ const services: Service[] = [
       "Selenium", "Cypress", "Playwright", "Postman"
     ],
     icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Plan", description: "Testing strategy and setup" },
-      { name: "Test", description: "Functional, performance, and security testing" },
-      { name: "Validate", description: "Issue resolution and release checks" },
-      { name: "Improve", description: "Monitoring and quality enhancements" },
-    ]
   },
   {
     title: "Staff Augmentation",
@@ -163,12 +123,6 @@ const services: Service[] = [
       "Python", "Java", "React", "Node.js"
     ],
     icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Plan", description: "Requirements and team strategy" },
-      { name: "Select", description: "Talent sourcing and onboarding" },
-      { name: "Integrate", description: "Collaboration and project delivery" },
-      { name: "Scale", description: "Support, reviews, and expansion" },
-    ]
   },
   {
     title: "Digital Marketing",
@@ -181,12 +135,6 @@ const services: Service[] = [
 
     stack: ["Google Ads", "Meta Ads Manager", "Ahrefs", "HubSpot"
     ], icon: <Megaphone className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Audit", description: "Market research and growth opportunities" },
-      { name: "Strategy", description: "Channels, messaging, and planning" },
-      { name: "Execute", description: "Campaigns, testing, and optimization" },
-      { name: "Scale", description: "Reporting, insights, and growth" },
-    ]
   },
   {
     title: "Project Management",
@@ -200,12 +148,6 @@ const services: Service[] = [
       "Jira", "Trello", "Asana", "ClickUp"
     ],
     icon: <ClipboardList className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Assess", description: "Process review and planning" },
-      { name: "Structure", description: "Frameworks, governance, and workflows" },
-      { name: "Execute", description: "Delivery, reporting, and optimization" },
-      { name: "Improve", description: "Monitoring and continuous refinement" },
-    ]
   },
 ];
 
@@ -228,7 +170,7 @@ function TabButton({
       onMouseEnter={onSelect}
       className={`group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border p-3 text-left transition-all ${isActive
         ? "border-[#0a1128] bg-[#0a1128] text-white"
-        : "border-ink-200 bg-white hover:border-[#0a1128] hover:bg-[#0a1128] hover:text-white"
+        : "border-[#0a0a14]/20 bg-white hover:border-[#0a1128] hover:bg-[#0a1128] hover:text-white"
         }`}
     >
       {/* Gradient line */}
@@ -265,11 +207,11 @@ function TabButton({
       {/* Text content - Mobile */}
       <div className={`relative flex-1 min-w-0 lg:hidden ${align === "right" ? "text-right" : "text-left"
         }`}>
-        <h3 className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-ink-700 group-hover:text-white"
+        <h3 className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-[#0a0a14]/70 group-hover:text-white"
           }`}>
           {service.title}
         </h3>
-        <p className={`text-[10px] sm:text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-ink-400 group-hover:text-white/60"
+        <p className={`text-[10px] sm:text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-[#0a0a14]/40 group-hover:text-white/60"
           }`}>
           {service.tagline}
         </p>
@@ -281,36 +223,6 @@ function TabButton({
         {String(index + 1).padStart(2, "0")}
       </span>
     </button>
-  );
-}
-// Phase step label component
-function StepLabel({ steps, active }: { steps: string[]; active: number }) {
-  return (
-    <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-      {steps.map((label, i) => (
-        <div key={label} className="flex items-center gap-1.5">
-          <span
-            className={`h-1.5 rounded-full transition-all duration-500 ${i === active
-              ? "w-6 bg-white"
-              : i < active
-                ? "w-1.5 bg-white/60"
-                : "w-1.5 bg-white/15"
-              }`}
-          />
-          {i === active && (
-            <motion.span
-              key={label}
-              initial={{ opacity: 0, x: -4 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="font-mono text-[10px] uppercase tracking-widest text-white"
-            >
-              {label}
-            </motion.span>
-          )}
-        </div>
-      ))}
-    </div>
   );
 }
 
@@ -352,7 +264,7 @@ export default function Services() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 lg:items-stretch">
           {/* Mobile: Horizontal scrollable tabs - scrollbar hidden */}
-          <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-1 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+          {/* <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-1 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
             {services.map((s, i) => (
               <button
                 key={s.title}
@@ -372,7 +284,7 @@ export default function Services() {
                 </span>
               </button>
             ))}
-          </div>
+          </div> */}
 
           {/* LEFT PANEL */}
           <div className="md:col-span-4 grid content-start gap-1.5">

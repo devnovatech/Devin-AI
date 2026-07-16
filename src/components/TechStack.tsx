@@ -198,13 +198,6 @@ export function TechStack() {
                 }`}
               >
                 {c.label}
-                {/* <span
-                  className={`rounded-md px-1.5 py-0.5 font-mono text-[10px] ${
-                    isActive ? "bg-white/15 text-white/80" : "bg-deep-blue/10 text-deep-blue/50"
-                  }`}
-                >
-                  {c.tools.length}
-                </span> */}
               </button>
             );
           })}

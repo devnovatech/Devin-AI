@@ -111,6 +111,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [expandedDropdown, setExpandedDropdown] = useState<string | null>(null); // FIXED: Added this state
   const [dropdownPosition, setDropdownPosition] = useState<"left" | "right">("left");
   const pathname = usePathname();
   const { theme } = useTheme();
@@ -286,7 +287,6 @@ export default function Navbar() {
                   </Link>
 
                   {/* Dropdown Menu - White Background with 2 Columns */}
-                  {/* Dropdown Menu - White Background with 2 Columns */}
                   {hasDropdown && (
                     <AnimatePresence>
                       {openDropdown === link.label && (
@@ -309,15 +309,15 @@ export default function Navbar() {
                                 href={item.href}
                                 onClick={() => setOpenDropdown(null)}
                                 className={`group flex flex-col px-4 py-3 rounded-xl transition-all duration-200 ${pathname === item.href
-                                    ? "bg-slate-800 border border-slate-600" // Dark slate background
-                                    : "hover:bg-slate-900 border border-transparent hover:border-slate-700" // Dark slate on hover
+                                  ? "bg-slate-800 border border-slate-600"
+                                  : "hover:bg-slate-900 border border-transparent hover:border-slate-700"
                                   }`}
                               >
                                 <div className="flex items-center justify-between">
                                   <span
                                     className={`text-sm font-semibold transition-colors ${pathname === item.href
-                                        ? "text-white" // White text on dark background
-                                        : "text-slate-900 group-hover:text-white" // Dark text normally, white on hover
+                                      ? "text-white"
+                                      : "text-slate-900 group-hover:text-white"
                                       }`}
                                   >
                                     {item.title}
@@ -326,8 +326,8 @@ export default function Navbar() {
 
                                 <span
                                   className={`text-xs mt-0.5 line-clamp-2 transition-colors ${pathname === item.href
-                                      ? "text-slate-300" // Light text on dark background
-                                      : "text-slate-500 group-hover:text-slate-300" // Gray normally, lighter on hover
+                                    ? "text-slate-300"
+                                    : "text-slate-500 group-hover:text-slate-300"
                                     }`}
                                 >
                                   {item.tagline}
@@ -396,23 +396,23 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${isLight
-                ? "bg-white/95 border-deep-blue/10"
-                : "bg-deep-blue/95 border-white/5"
+                  ? "bg-white/95 border-deep-blue/10"
+                  : "bg-deep-blue/95 border-white/5"
                 }`}
             >
               <div className="px-6 py-5 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
                 {navLinks.map((link) => {
                   const hasDropdown = link.dropdown && link.dropdownItems && link.dropdownItems.length > 0;
-                  const [isExpanded, setIsExpanded] = useState(false);
+                  const isExpanded = expandedDropdown === link.href;
 
                   if (hasDropdown) {
                     return (
                       <div key={link.href} className="flex flex-col">
                         <button
-                          onClick={() => setIsExpanded(!isExpanded)}
+                          onClick={() => setExpandedDropdown(isExpanded ? null : link.href)}
                           className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${isLight
-                            ? "text-deep-blue/70 hover:bg-deep-blue/[0.04]"
-                            : "text-gray-300 hover:bg-white/5"
+                              ? "text-deep-blue/70 hover:bg-deep-blue/[0.04]"
+                              : "text-gray-300 hover:bg-white/5"
                             }`}
                         >
                           <span className="font-medium">{link.label}</span>
@@ -433,10 +433,13 @@ export default function Navbar() {
                               <Link
                                 key={item.href}
                                 href={item.href}
-                                onClick={() => setMobileOpen(false)}
+                                onClick={() => {
+                                  setMobileOpen(false);
+                                  setExpandedDropdown(null);
+                                }}
                                 className={`block px-4 py-2.5 rounded-lg transition-colors ${isLight
-                                  ? "hover:bg-deep-blue/[0.04] text-deep-blue/70"
-                                  : "hover:bg-white/5 text-gray-300"
+                                    ? "hover:bg-deep-blue/[0.04] text-deep-blue/70"
+                                    : "hover:bg-white/5 text-gray-300"
                                   }`}
                               >
                                 <div className="font-medium text-sm">{item.title}</div>
@@ -453,14 +456,17 @@ export default function Navbar() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => {
+                        setMobileOpen(false);
+                        setExpandedDropdown(null);
+                      }}
                       className={`px-4 py-3 rounded-xl transition-colors ${isLight
-                        ? isActive(link.href)
-                          ? "bg-deep-blue/[0.06] text-deep-blue"
-                          : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
-                        : isActive(link.href)
-                          ? "bg-white/10 text-white"
-                          : "text-gray-300 hover:bg-white/5 hover:text-white"
+                          ? isActive(link.href)
+                            ? "bg-deep-blue/[0.06] text-deep-blue"
+                            : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
+                          : isActive(link.href)
+                            ? "bg-white/10 text-white"
+                            : "text-gray-300 hover:bg-white/5 hover:text-white"
                         }`}
                     >
                       {link.label}
@@ -469,7 +475,10 @@ export default function Navbar() {
                 })}
                 <Link
                   href="/contact"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setExpandedDropdown(null);
+                  }}
                   className="mt-2 px-5 py-3 bg-neon-blue rounded-xl text-sm font-semibold text-white text-center"
                 >
                   Get in Touch

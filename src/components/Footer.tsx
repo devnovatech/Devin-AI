@@ -73,21 +73,10 @@ const socialLinks = [
 
 export default function Footer() {
   const [email, setEmail] = useState("");
-  // const [subscribed, setSubscribed] = useState(false);
 
   const { theme } = useTheme();
   const isLight = theme === "light";
 
-  // function handleSubscribe(e: FormEvent) {
-  //   e.preventDefault();
-
-  //   if (!email.includes("@")) return;
-
-  //   setSubscribed(true);
-  //   setEmail("");
-
-  //   setTimeout(() => setSubscribed(false), 4000);
-  // }
 
   return (
     <footer
