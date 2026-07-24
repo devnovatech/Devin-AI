@@ -2,155 +2,17 @@
 
 import { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Brain,
-  Smartphone,
-  Globe,
-  Palette,
-  Shield,
-  Users,
-  ShoppingBag,
-  Megaphone,
-  ClipboardList,
-  Code2,
-  ArrowRight
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ServiceArt } from "./ui/ServiceArt";
 
-interface Service {
-  title: string;
-  slug: string;
-  tagline: string;
-  accent: string;
-  category: string;
-  description: string;
-  stack: string[];
-  icon: ReactNode;
-}
+import { Service, services } from "@/data/homePageData";
+
 declare global {
   interface Window {
     autoRollTimeout?: NodeJS.Timeout;
   }
 }
-
-const services: Service[] = [
-  {
-    title: "Mobile Engineering",
-    slug: "mobile-application",
-    tagline: "Native and cross-platform apps",
-    accent: "#0097A7",
-    category: "Build",
-    description:
-      "Designing and developing intuitive, high-performance mobile applications built for reliability, scalability, and seamless user experiences across iOS and Android.",
-
-    stack: [
-      "Flutter", "React Native", "Swift", "Kotlin"
-    ],
-    icon: <Smartphone className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-  {
-    title: "Web Platforms",
-    slug: "web-development",
-    tagline: "From marketing sites to full-stack products",
-    accent: "#006064",
-    category: "Build",
-    description:
-      "Creating responsive, scalable web solutions that deliver dependable performance and seamless user experiences.",
-    stack: ["React", "Next.js", "Node.js", "Express"],
-    icon: <Globe className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-    {
-    title: "AI & ML Engineering",
-    slug: "machine-learning-ai",
-    tagline: "Production-grade intelligence",
-    accent: "#1E88E5",
-    category: "Build",
-    description:
-      "Delivering end-to-end AI and machine learning solutions—from data engineering and model development to deployment, integration, and production optimization.",
-
-    stack: ["OpenAI APIs", "TensorFlow", "PyTorch", "Python"],
-    icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-  {
-    title: "E-commerce Solutions",
-    slug: "E-commerce",
-    tagline: "Conversion-tuned storefronts",
-    accent: "#0097A7",
-    category: "Build",
-    description:
-      "Developing secure, scalable, and optimized online stores that improve user experience, increase conversions, and support business growth.",
-
-    stack: ["Shopify", "WooCommerce", "Magento", "Stripe"
-    ],
-    icon: <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-  {
-    title: "UI/UX Design",
-    slug: "ui-ux-design",
-    tagline: "Research-led UI/UX that converts",
-    accent: "#1565C0",
-    category: "Design",
-    description:
-      "Creating intuitive digital experiences that improve usability, strengthen engagement, and support business goals.",
-    stack: [
-      "Figma", "Adobe XD", "Sketch", "FigJam"
-    ],
-    icon: <Palette className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-  {
-    title: "Software Quality Assurance",
-    slug: "quality-assurance",
-    tagline: "Ship with confidence, not surprises",
-    accent: "#039BE5",
-    category: "OPS",
-    description:
-      "Ensuring reliable, high-quality software through rigorous manual and automated testing, continuous validation, and proactive defect prevention.",
-    stack: [
-      "Selenium", "Cypress", "Playwright", "Postman"
-    ],
-    icon: <Shield className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-  {
-    title: "Staff Augmentation",
-    slug: "staff-augmentation",
-    tagline: "Senior engineers on demand",
-    accent: "#0288D1",
-    category: "OPS",
-    description:
-      "Providing skilled software professionals who integrate seamlessly with your team, expand delivery capacity, and accelerate project execution.",
-    stack: [
-      "Python", "Java", "React", "Node.js"
-    ],
-    icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-  {
-    title: "Digital Marketing",
-    slug: "digital-marketing",
-    tagline: "Measurable growth, not vanity",
-    accent: "#0277BD",
-    category: "Grow",
-    description:
-      "Creating data-driven digital strategies that strengthen brand visibility, generate qualified leads, and drive measurable business growth.",
-
-    stack: ["Google Ads", "Meta Ads Manager", "Ahrefs", "HubSpot"
-    ], icon: <Megaphone className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-  {
-    title: "Project Management",
-    slug: "project-management",
-    tagline: "Agile delivery, executive clarity",
-    accent: "#01579B",
-    category: "OPS",
-    description:
-      "Driving successful delivery through structured planning, agile execution, proactive risk management, and clear stakeholder communication.",
-    stack: [
-      "Jira", "Trello", "Asana", "ClickUp"
-    ],
-    icon: <ClipboardList className="w-4 h-4 sm:w-5 sm:h-5" />,
-  },
-];
-
 function TabButton({
   service,
   index,
@@ -264,27 +126,6 @@ export default function Services() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 lg:items-stretch">
           {/* Mobile: Horizontal scrollable tabs - scrollbar hidden */}
-          {/* <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-1 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
-            {services.map((s, i) => (
-              <button
-                key={s.title}
-                onClick={() => setActiveIdx(i)}
-                className={`snap-start shrink-0 px-4 py-2.5 rounded-xl transition-all duration-300 whitespace-nowrap touch-manipulation ${activeIdx === i
-                  ? "bg-white shadow-lg shadow-deep-blue/10 border border-deep-blue/[0.06]"
-                  : "bg-white/50 hover:bg-white/80"
-                  }`}
-                style={{
-                  borderColor: activeIdx === i ? s.accent : "transparent",
-                  borderWidth: activeIdx === i ? "2px" : "1px"
-                }}
-              >
-                <span className={`text-xs font-semibold transition-colors duration-300 ${activeIdx === i ? "text-deep-blue" : "text-deep-blue/60"
-                  }`}>
-                  {s.title}
-                </span>
-              </button>
-            ))}
-          </div> */}
 
           {/* LEFT PANEL */}
           <div className="md:col-span-4 grid content-start gap-1.5">

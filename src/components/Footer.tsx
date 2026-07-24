@@ -13,7 +13,6 @@ const linkColumns: {
     {
       title: "Company",
       links: [
-        { label: "Home", href: "/" },
         { label: "About Us", href: "/about" },
         { label: "Contact", href: "/contact" },
         { label: "FAQ", href: "/faq" },

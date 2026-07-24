@@ -820,7 +820,7 @@ export default function ContactPage() {
           </div>
 
           <div className="relative grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <div className="hidden lg:block absolute top-7 left-[16.5%] right-[16.5%] h-px border-t border-dashed border-gray-300" />
+            {/* <div className="hidden lg:block absolute top-7 left-[16.5%] right-[16.5%] h-px border-t border-dashed border-gray-300" /> */}
 
             {nextSteps.map((step) => (
               <div key={step.number}>

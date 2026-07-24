@@ -4,34 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { ArrowRight, X, Check } from "lucide-react";
-
-const COMPARISONS = [
-  {
-    category: "Team seniority",
-    them: "Junior labour pyramids — account manager shields the seniors after the pitch.",
-    us: "The names on the proposal are the people responsible for delivery.",
-  },
-  {
-    category: "Delivery cadence",
-    them: "Quarterly status decks, weekly emails, surprises at handoff.",
-    us: "See working software every Friday, with clear sprint progress, transparent burndown reporting, and dedicated preview environments.",
-  },
-  {
-    category: "Scope changes",
-    them: '"Sure, we can add it" → invoice surprises and slipped timelines.',
-    us: "Structured change control with impact analysis and client sign-off—every change, every time.",
-  },
-  {
-    category: "Architecture",
-    them: "Built for handoff. Scales for the launch, not for the roadmap.",
-    us: "Architecture and code engineered for significant growth, with defined performance budgets monitored and enforced throughout delivery.",
-  },
-  {
-    category: "User focus",
-    them: "Stakeholder-driven specs. Build it, ship it, hope it works.",
-    us: "User research from day one. Usability validated before launch.",
-  },
-];
+import  { COMPARISONS } from "@/data/homePageData";
 
 export default function WhyChooseUs() {
   return (

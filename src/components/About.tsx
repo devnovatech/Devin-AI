@@ -5,67 +5,8 @@ import { useInView, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 // import AnimatedSection from "./AnimatedSection";
+import { pillars } from "@/data/homePageData";
 
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const duration = 1800;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
-
-interface Pillar {
-  title: string;
-  description: string;
-  accent: string;
-  icon: ReactNode;
-}
-
-const pillars: Pillar[] = [
-  {
-    title: "Intelligent by default",
-    description: "Our solutions combine intelligent automation, data-driven capabilities, and modern engineering to deliver measurable performance—not merely basic functionality.",
-    accent: "#1E88E5",
-    icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
-  },
-  {
-    title: "Architecture that scales",
-    description: "Cloud-native foundations and modern infrastructure designed to grow with your business—without creating operational or technical constraints.",
-    accent: "#0288D1",
-    icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.7}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
-  },
-];
-
-const stats = [
-  { value: 250, suffix: "+", label: "Projects shipped" },
-  { value: 50, suffix: "+", label: "Senior engineers" },
-  { value: 15, suffix: "+", label: "Countries served" },
-  { value: 98, suffix: "%", label: "Repeat-client rate" },
-];
-
-const FloatingBadge = ({ children, className, delay, rotate }: any) => (
-  <div className={className}
-  >
-    {children}
-  </div>
-);
 
 export default function About() {
   return (
@@ -145,7 +86,7 @@ export default function About() {
             </div>
 
             <div className="mt-6 space-y-2.5">
-              {pillars.map((p, i) => (
+              {pillars.map((p) => (
                 <div key={p.title}>
                   <div className="group relative flex items-start gap-3.5 rounded-xl bg-white/60 border border-deep-blue/[0.06] hover:bg-white hover:border-deep-blue/10 hover:shadow-md transition-all duration-300 p-4" style={{ "--accent": p.accent } as React.CSSProperties}>
                     <span className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300" style={{ backgroundColor: `${p.accent}15`, color: p.accent }}>{p.icon}</span>

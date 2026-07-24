@@ -111,7 +111,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [expandedDropdown, setExpandedDropdown] = useState<string | null>(null); // FIXED: Added this state
+  const [expandedDropdown, setExpandedDropdown] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false); // Add this state
   const [dropdownPosition, setDropdownPosition] = useState<"left" | "right">("left");
   const pathname = usePathname();
   const { theme } = useTheme();
@@ -120,7 +121,11 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const triggerRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Smooth scroll-progress bar at the very top of the viewport
+  // Set mounted state after client-side hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll();
   const progressX = useSpring(scrollYProgress, {
     stiffness: 150,
@@ -135,7 +140,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -146,7 +150,6 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Calculate dropdown position based on available space
   useEffect(() => {
     if (openDropdown && triggerRefs.current[openDropdown]) {
       const trigger = triggerRefs.current[openDropdown];
@@ -154,8 +157,6 @@ export default function Navbar() {
         const rect = trigger.getBoundingClientRect();
         const dropdownWidth = 600;
         const windowWidth = window.innerWidth;
-
-        // Check if dropdown would overflow on the right
         if (rect.right + dropdownWidth > windowWidth - 20) {
           setDropdownPosition("right");
         } else {
@@ -188,6 +189,40 @@ export default function Navbar() {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
+  // Don't render theme-dependent styles until mounted
+  // This prevents the flash of incorrect colors
+  if (!mounted) {
+    return (
+      <>
+        {/* Scroll progress bar - always visible */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-[2px] origin-left bg-neon-blue z-[60]"
+          style={{ scaleX: progressX }}
+        />
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-deep-blue/85 border-b border-white/10 backdrop-blur-xl">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 py-3 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-3 shrink-0 group">
+              <Image
+                src="/site_logo.png"
+                alt="Dev Inception Logo"
+                width={72}
+                height={72}
+                priority
+                className="h-14 w-14 sm:h-16 sm:w-16 object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </Link>
+            {/* Placeholder for desktop links - will be replaced after mount */}
+            <div className="hidden md:flex items-center gap-1 lg:gap-2">
+              <div className="h-9 w-20 rounded-full bg-white/10 animate-pulse"></div>
+              <div className="h-9 w-20 rounded-full bg-white/10 animate-pulse"></div>
+              <div className="h-9 w-20 rounded-full bg-white/10 animate-pulse"></div>
+            </div>
+          </div>
+        </nav>
+      </>
+    );
+  }
+
   return (
     <>
       {/* Scroll progress bar */}
@@ -196,19 +231,21 @@ export default function Navbar() {
         style={{ scaleX: progressX }}
       />
 
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? isLight
-            ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
-            : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
-          : "bg-transparent"
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50
+         border-b
+         backdrop-blur-xl
+         transition-[background-color,border-color,box-shadow]
+         duration-300
+       ${scrolled
+            ? isLight
+              ? "bg-white/85 border-deep-blue/10 shadow-lg shadow-deep-blue/5"
+              : "bg-deep-blue/85 border-white/10 shadow-lg shadow-black/20"
+            : "bg-transparent border-transparent shadow-none"
           }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 py-3 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - use correct logo based on theme */}
           <Link href="/" className="flex items-center gap-3 shrink-0 group">
             <Image
               src={isLight ? "/site_logo2.png" : "/site_logo.png"}
@@ -220,7 +257,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Links */}
+          {/* Desktop Links - only render after mount */}
           <div className="hidden md:flex items-center gap-1 lg:gap-2" ref={dropdownRef}>
             {navLinks.map((link) => {
               const active = isActive(link.href);
@@ -286,8 +323,8 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* Dropdown Menu - White Background with 2 Columns */}
-                  {hasDropdown && (
+                  {/* Dropdown Menu */}
+                  {hasDropdown && mounted && (
                     <AnimatePresence>
                       {openDropdown === link.label && (
                         <motion.div
@@ -301,7 +338,6 @@ export default function Navbar() {
                             boxShadow: "0 20px 60px -20px rgba(0,0,0,0.25)"
                           }}
                         >
-                          {/* 2-column grid */}
                           <div className="grid grid-cols-2 gap-1 p-3">
                             {link.dropdownItems.map((item) => (
                               <Link
@@ -323,7 +359,6 @@ export default function Navbar() {
                                     {item.title}
                                   </span>
                                 </div>
-
                                 <span
                                   className={`text-xs mt-0.5 line-clamp-2 transition-colors ${pathname === item.href
                                     ? "text-slate-300"
@@ -390,14 +425,14 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <AnimatePresence>
-          {mobileOpen && (
+          {mobileOpen && mounted && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${isLight
-                  ? "bg-white/95 border-deep-blue/10"
-                  : "bg-deep-blue/95 border-white/5"
+                ? "bg-white/95 border-deep-blue/10"
+                : "bg-deep-blue/95 border-white/5"
                 }`}
             >
               <div className="px-6 py-5 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
@@ -411,8 +446,8 @@ export default function Navbar() {
                         <button
                           onClick={() => setExpandedDropdown(isExpanded ? null : link.href)}
                           className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${isLight
-                              ? "text-deep-blue/70 hover:bg-deep-blue/[0.04]"
-                              : "text-gray-300 hover:bg-white/5"
+                            ? "text-deep-blue/70 hover:bg-deep-blue/[0.04]"
+                            : "text-gray-300 hover:bg-white/5"
                             }`}
                         >
                           <span className="font-medium">{link.label}</span>
@@ -438,8 +473,8 @@ export default function Navbar() {
                                   setExpandedDropdown(null);
                                 }}
                                 className={`block px-4 py-2.5 rounded-lg transition-colors ${isLight
-                                    ? "hover:bg-deep-blue/[0.04] text-deep-blue/70"
-                                    : "hover:bg-white/5 text-gray-300"
+                                  ? "hover:bg-deep-blue/[0.04] text-deep-blue/70"
+                                  : "hover:bg-white/5 text-gray-300"
                                   }`}
                               >
                                 <div className="font-medium text-sm">{item.title}</div>
@@ -461,12 +496,12 @@ export default function Navbar() {
                         setExpandedDropdown(null);
                       }}
                       className={`px-4 py-3 rounded-xl transition-colors ${isLight
-                          ? isActive(link.href)
-                            ? "bg-deep-blue/[0.06] text-deep-blue"
-                            : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
-                          : isActive(link.href)
-                            ? "bg-white/10 text-white"
-                            : "text-gray-300 hover:bg-white/5 hover:text-white"
+                        ? isActive(link.href)
+                          ? "bg-deep-blue/[0.06] text-deep-blue"
+                          : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
+                        : isActive(link.href)
+                          ? "bg-white/10 text-white"
+                          : "text-gray-300 hover:bg-white/5 hover:text-white"
                         }`}
                     >
                       {link.label}
@@ -487,7 +522,7 @@ export default function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.nav>
+      </nav>
     </>
   );
 }

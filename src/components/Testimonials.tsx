@@ -2,53 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-
-const MESSAGES = [
-  {
-    person: "Sarah Chen",
-    role: "CTO",
-    company: "FinFlow Technologies",
-    avatar: "https://i.pravatar.cc/120?img=47",
-    color: "#1E88E5",
-    body: "Devinception turned our outdated platform into a modern, scalable product. Their team felt like an extension of ours — same goals and the same focus from week one.",
-    reactions: ["🔥", "🚀"],
-    metric: "Platform rebuild",
-    time: "11:24 AM",
-  },
-  {
-    person: "Marcus Rivera",
-    role: "Founder & CEO",
-    company: "HealthBridge",
-    avatar: "https://i.pravatar.cc/120?img=12",
-    color: "#0288D1",
-    body: "From the first idea to launch, they delivered our mobile app on schedule, and the quality went beyond what we expected.",
-    reactions: ["💯"],
-    metric: "Mobile app launch",
-    time: "11:31 AM",
-  },
-  {
-    person: "Emily Larsson",
-    role: "VP of Product",
-    company: "ShopSphere",
-    avatar: "https://i.pravatar.cc/120?img=44",
-    color: "#0097A7",
-    body: "Their AI team built a recommendation engine that made a real difference to our product. Genuinely excellent work.",
-    reactions: ["👏", "✨"],
-    metric: "AI recommendations",
-    time: "11:42 AM",
-  },
-  {
-    person: "David Park",
-    role: "Engineering Manager",
-    company: "CloudNine SaaS",
-    avatar: "https://i.pravatar.cc/120?img=15",
-    color: "#039BE5",
-    body: "Team augmentation was exactly what we needed — skilled engineers who fit into our team and started contributing right away.",
-    reactions: ["🎯"],
-    metric: "Embedded engineers",
-    time: "11:55 AM",
-  },
-];
+import { MESSAGES } from "@/data/homePageData";
 
 export default function Testimonials() {
   return (
