@@ -1,48 +1,7 @@
 // app/industries/[slug]/data.ts
-import { ReactNode } from "react";
+import { EcareIndustryData, IndustryData, IndustryMeta } from "@/app/industries/[slug]/IndustryClient";
 
-// Types
-export interface IndustryData {
-  title: string;
-  heroDescription: string;
-  challenges: string[];
-  solutions: string[];
-  ctaHeading: string;
-  ctaDescription: string;
-}
 
-export interface IndustryMeta {
-  shortLabel: string;
-  compliance: string;
-  projectsShipped: string;
-  typicalEngagement: string;
-  topFocus: string[];
-  accent: string;
-  icon: ReactNode;
-}
-
-export interface EcareCapability {
-  title: string;
-  description: string;
-  icon: ReactNode;
-}
-
-export interface EcareIndustryData {
-  heading: string;
-  subHeading: string;
-  capabilities: EcareCapability[];
-  impact: {
-    heading: string;
-    subheading: string;
-    metrics: {
-      title: string;
-      metrics: {
-        value: string;
-        label: string;
-      }[];
-    }[];
-  };
-}
 
 // ───────── INDUSTRY DATA ─────────
 export const industriesData: Record<string, IndustryData> = {

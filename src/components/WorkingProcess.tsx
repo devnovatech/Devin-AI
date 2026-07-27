@@ -2,9 +2,22 @@
 
 import { useState, ReactNode, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
 import { stages } from "@/data/homePageData"; 
 
+
+
+export interface Stage {
+  number: string;
+  name: string;
+  accent: string;
+  bgMuted: string;
+  description: string;
+  activities: string[];
+  /** Grid column placement (12-col grid). */
+  colStart: number;
+  colEnd: number;
+  icon: ReactNode;
+}
 
 export default function WorkingProcess() {
   const [activeIdx, setActiveIdx] = useState(0);

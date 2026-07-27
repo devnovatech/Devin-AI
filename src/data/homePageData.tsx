@@ -1,57 +1,13 @@
 // data/homePage.ts
+import { Pillar } from "@/components/About";
+import { Industry } from "@/components/Industries";
+import { Service } from "@/components/Services";
+import { Category } from "@/components/TechStack";
+import { Stage } from "@/components/WorkingProcess";
 import { Brain, ClipboardList, Globe, Megaphone, Palette, Shield, ShoppingBag, Smartphone, Users } from "lucide-react";
 import { ReactNode, Key } from "react";
 
-// ───────── TYPES ─────────
-export interface Pillar {
-  slug?: Key | null | undefined;
-  shortLabel?: ReactNode;
-  name?: ReactNode;
-  challenges?: any;
-  deliverables?: any;
-  title: string;
-  description: string;
-  accent: string;
-  icon: ReactNode;
-}
-
-export interface Industry {
-  name: string;
-  shortLabel: string;
-  slug: string;
-  description: string;
-  accent: string;
-  icon: ReactNode;
-  challenges: string[];
-  deliverables: string[];
-}
-
-export interface Service {
-  title: string;
-  slug: string;
-  tagline: string;
-  accent: string;
-  category: string;
-  description: string;
-  stack: string[];
-  icon: ReactNode;
-}
-
-
-export interface Stage {
-  number: string;
-  name: string;
-  accent: string;
-  bgMuted: string;
-  description: string;
-  activities: string[];
-  /** Grid column placement (12-col grid). */
-  colStart: number;
-  colEnd: number;
-  icon: ReactNode;
-}
-
-// ───────── PILLARS DATA ─────────
+// ───────── About US DATA ─────────
 export const pillars: Pillar[] = [
   {
     title: "Intelligent by default",
@@ -138,9 +94,6 @@ export const industries: Industry[] = [
 
 
 // ───────── SERVICES DATA ─────────
-
-
-
 export const services: Service[] = [
   {
     title: "Mobile Engineering",
@@ -259,11 +212,6 @@ export const services: Service[] = [
 ];
 
 // ───────── TECH STACK DATA ─────────
-
-
-type Tech = { name: string; abbr: string };
-type Category = { id: string; label: string; tools: Tech[] };
-
 export const STACK: Category[] = [
   {
     id: "frontend",
@@ -411,8 +359,6 @@ export const STACK: Category[] = [
 
 
 // ───────── Testimonials DATA ─────────
-
-
 export const MESSAGES = [
   {
     person: "Sarah Chen",
@@ -462,8 +408,6 @@ export const MESSAGES = [
 
 
 // ───────── Why Us DATA ─────────
-
-
 export const COMPARISONS = [
   {
     category: "Team seniority",
@@ -494,7 +438,6 @@ export const COMPARISONS = [
 
 
 // ───────── Working process DATA ─────────
-
 export const stages: Stage[] = [
   {
     number: "01",
@@ -593,6 +536,143 @@ export const stages: Stage[] = [
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         <path strokeLinecap="round" strokeLinejoin="round" d="M14 4l1.5 1.5L17 4M19 6l1 1" />
+      </svg>
+    ),
+  },
+];
+
+
+
+
+
+
+// ───────── faqs  DATA ─────────
+export const faqs = [
+  {
+    question: "How long does it take to build a custom mobile app?",
+    answer:
+      "A custom mobile app typically takes 3\u20136 months depending on complexity, features, & platform (iOS, Android, or cross-platform). We provide clear timelines after the discovery phase.",
+  },
+  {
+    question: "Can Dev Inception handle end-to-end mobile app development?",
+    answer:
+      "Yes. From UI/UX design & prototyping to development, testing, deployment, & post-launch support, we offer full-cycle mobile app services.",
+  },
+  {
+    question: "How can small businesses use AI in real-world applications?",
+    answer:
+      "Small businesses can use AI for automation (e.g. chatbots), predictive analytics, fraud detection, recommendation engines, & data-driven personalization.",
+  },
+  {
+    question: "Does Dev Inception build custom ML models from scratch?",
+    answer:
+      "Yes, we develop custom machine learning models based on your use case\u2014whether it\u2019s computer vision, NLP, or recommendation systems\u2014and integrate them into your existing ecosystem.",
+  },
+  {
+    question: "Can Dev Inception integrate third-party tools with my store?",
+    answer:
+      "Yes. We integrate payment gateways, inventory systems, CRMs, email marketing tools, & analytics platforms to streamline your ecommerce operations.",
+  },
+  {
+    question: "Does Dev Inception build custom websites or use templates?",
+    answer:
+      "We build fully custom, scalable websites\u2014no off-the-shelf templates\u2014ensuring your site reflects your brand & technical requirements.",
+  },
+  {
+    question: "Can you migrate or modernize an outdated website?",
+    answer:
+      "Yes. We specialize in legacy system overhauls, CMS migrations & full-stack rebuilds using modern frameworks & performance-first practices.",
+  },
+  {
+    question: "How do you ensure the design works for both web & mobile?",
+    answer:
+      "We design responsively using adaptive layouts & scalable components, ensuring a seamless experience across all devices & screen sizes.",
+  },
+  {
+    question: "What QA tools do you use?",
+    answer:
+      "We use tools like Selenium, JMeter, BrowserStack, Appium, & Postman depending on the tech stack & testing needs.",
+  },
+  {
+    question: "Can you test apps built by other developers?",
+    answer:
+      "Yes. We offer independent QA services for products built elsewhere & provide detailed reports with reproducible bug logs & recommendations.",
+  },
+  {
+    question: "What project management methodologies do you follow?",
+    answer:
+      "We follow Agile, Scrum, or Kanban frameworks depending on project size & structure\u2014ensuring flexibility & transparency throughout delivery.",
+  },
+  {
+    question: "How do you handle scope changes during development?",
+    answer:
+      "We use change control processes to assess impact, re-estimate timelines, & get client approval before any scope shift is implemented.",
+  },
+];
+
+
+
+
+// ─────────footer DATA ─────────
+export const linkColumns: {
+  title: string;
+  links: { label: string; href: string }[];
+}[] = [
+    {
+      title: "Company",
+      links: [
+        { label: "About Us", href: "/about" },
+        { label: "Contact", href: "/contact" },
+        { label: "FAQ", href: "/faq" },
+      ],
+    },
+    {
+      title: "Services",
+      links: [
+        { label: "Mobile App Development", href: "/services/mobile-application" },
+        { label: "Web Development", href: "/services/web-development" },
+        { label: "UI / UX Design", href: "/services/ui-ux-design" },
+        { label: "ML & AI Solutions", href: "/services/machine-learning-ai" },
+        { label: "Staff Augmentation", href: "/services/staff-augmentation" },
+      ],
+    },
+    {
+      title: "Industries",
+      links: [
+        { label: "FinTech", href: "/industries/fintech" },
+        { label: "SaaS & Tech Startups", href: "/industries/saas-startups" },
+        { label: "Healthcare", href: "/industries/healthcare" },
+        { label: "E-commerce", href: "/industries/ecommerce-retail" },
+        { label: "Logistics & Transportation", href: "/industries/logistics" },
+      ],
+    },
+  ];
+
+export const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/dev-inception/",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/dev_inception/",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+      </svg>
+    ),
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/devinceptionlimited?rdid=FwGQkJSJktRO3yRB&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1QQSpPJGXP%2F#",
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
       </svg>
     ),
   },

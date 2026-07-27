@@ -1,9 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { ReactNode } from "react";
-import { ArrowRight, X, Check } from "lucide-react";
+import { X, Check } from "lucide-react";
 import  { COMPARISONS } from "@/data/homePageData";
 
 export default function WhyChooseUs() {

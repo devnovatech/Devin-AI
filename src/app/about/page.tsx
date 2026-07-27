@@ -19,6 +19,43 @@ import {
 import ReusableFeatureCard from "@/components/ui/cardLayout";
 
 
+
+export interface Stat {
+  label: string;
+  value: number;
+  suffix: string;
+  icon: React.ElementType;
+}
+
+export interface Value {
+  title: string;
+  description: string;
+  accent: string;
+  icon: React.ReactNode;
+}
+
+export interface CulturePoint {
+  title: string;
+  description: string;
+  accent: string;
+  icon: React.ReactNode;
+}
+
+export interface Role {
+  title: string;
+  key: keyof JobOpenings;
+  icon: React.ReactNode;
+  accent: string;
+}
+
+export interface JobOpenings {
+  development: string[];
+  marketing: string[];
+  humanResources: string[];
+  designers: string[];
+}
+
+
 // ============================================================================
 // Main Page Component
 // ============================================================================

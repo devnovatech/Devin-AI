@@ -1,12 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState, ReactNode } from "react";
+import { useEffect, useRef, useState, ReactNode, Key } from "react";
 import { useInView, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 // import AnimatedSection from "./AnimatedSection";
 import { pillars } from "@/data/homePageData";
 
+export interface Pillar {
+  slug?: Key | null | undefined;
+  shortLabel?: ReactNode;
+  name?: ReactNode;
+  challenges?: any;
+  deliverables?: any;
+  title: string;
+  description: string;
+  accent: string;
+  icon: ReactNode;
+}
 
 export default function About() {
   return (

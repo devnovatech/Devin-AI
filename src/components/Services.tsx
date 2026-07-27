@@ -6,8 +6,20 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ServiceArt } from "./ui/ServiceArt";
 
-import { Service, services } from "@/data/homePageData";
+import { services } from "@/data/homePageData";
 
+
+
+export interface Service {
+  title: string;
+  slug: string;
+  tagline: string;
+  accent: string;
+  category: string;
+  description: string;
+  stack: string[];
+  icon: ReactNode;
+}
 declare global {
   interface Window {
     autoRollTimeout?: NodeJS.Timeout;

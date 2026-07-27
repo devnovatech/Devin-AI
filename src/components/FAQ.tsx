@@ -4,68 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
-const faqs = [
-  {
-    question: "How long does it take to build a custom mobile app?",
-    answer:
-      "A custom mobile app typically takes 3\u20136 months depending on complexity, features, & platform (iOS, Android, or cross-platform). We provide clear timelines after the discovery phase.",
-  },
-  {
-    question: "Can Dev Inception handle end-to-end mobile app development?",
-    answer:
-      "Yes. From UI/UX design & prototyping to development, testing, deployment, & post-launch support, we offer full-cycle mobile app services.",
-  },
-  {
-    question: "How can small businesses use AI in real-world applications?",
-    answer:
-      "Small businesses can use AI for automation (e.g. chatbots), predictive analytics, fraud detection, recommendation engines, & data-driven personalization.",
-  },
-  {
-    question: "Does Dev Inception build custom ML models from scratch?",
-    answer:
-      "Yes, we develop custom machine learning models based on your use case\u2014whether it\u2019s computer vision, NLP, or recommendation systems\u2014and integrate them into your existing ecosystem.",
-  },
-  {
-    question: "Can Dev Inception integrate third-party tools with my store?",
-    answer:
-      "Yes. We integrate payment gateways, inventory systems, CRMs, email marketing tools, & analytics platforms to streamline your ecommerce operations.",
-  },
-  {
-    question: "Does Dev Inception build custom websites or use templates?",
-    answer:
-      "We build fully custom, scalable websites\u2014no off-the-shelf templates\u2014ensuring your site reflects your brand & technical requirements.",
-  },
-  {
-    question: "Can you migrate or modernize an outdated website?",
-    answer:
-      "Yes. We specialize in legacy system overhauls, CMS migrations & full-stack rebuilds using modern frameworks & performance-first practices.",
-  },
-  {
-    question: "How do you ensure the design works for both web & mobile?",
-    answer:
-      "We design responsively using adaptive layouts & scalable components, ensuring a seamless experience across all devices & screen sizes.",
-  },
-  {
-    question: "What QA tools do you use?",
-    answer:
-      "We use tools like Selenium, JMeter, BrowserStack, Appium, & Postman depending on the tech stack & testing needs.",
-  },
-  {
-    question: "Can you test apps built by other developers?",
-    answer:
-      "Yes. We offer independent QA services for products built elsewhere & provide detailed reports with reproducible bug logs & recommendations.",
-  },
-  {
-    question: "What project management methodologies do you follow?",
-    answer:
-      "We follow Agile, Scrum, or Kanban frameworks depending on project size & structure\u2014ensuring flexibility & transparency throughout delivery.",
-  },
-  {
-    question: "How do you handle scope changes during development?",
-    answer:
-      "We use change control processes to assess impact, re-estimate timelines, & get client approval before any scope shift is implemented.",
-  },
-];
+import { faqs} from "@/data/homePageData"; 
+
 
 const INITIAL_FAQ_COUNT = 5;
 

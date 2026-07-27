@@ -1,37 +1,6 @@
-import { ReactNode } from "react";interface ServiceOffering {
-  category: string;
-  items: string[];
-  description: string;
-
-}
-
-interface WhyChooseItem {
-  title: string;
-  description: string;
-}
+import { ServiceData, ServiceMeta } from "@/app/services/[slug]/ServiceClient";
 
 
-interface ServiceData {
-  title: string;
-  subtitle: string;
-  description: string;
-  offerings: ServiceOffering[];
-  offeringsDescription: string;
-  offeringsTitle: string;
-  whyChoose: WhyChooseItem[];
-  whyTitle: string;
-  whyTagline: string;
-  processHeading: string,
-  processSteps: {
-    number: string;
-    title: string;
-    duration: string;
-    description: string;
-  }[];
-  ctaHeading: string;
-  ctaDescription: string;
-  ctaButton: string;
-}
 
 export const servicesData: Record<string, ServiceData> = {
   "digital-marketing": {
@@ -937,14 +906,7 @@ export const servicesData: Record<string, ServiceData> = {
 
 /* ───────── Meta map (timeline / team / deliverables / ideal-for) ───────── */
 
-interface ServiceMeta {
-  category: string;
-  timeline: string;
-  teamSize: string;
-  deliverables: string[];
-  accent: string;
-  icon: ReactNode;
-}
+
 
 export const serviceMeta: Record<string, ServiceMeta> = {
   "mobile-application": {

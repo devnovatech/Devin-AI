@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Fragment, ReactNode } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -16,8 +16,50 @@ import {
 } from "lucide-react";
 import ReusableFeatureCard from "@/components/ui/cardLayout";
 import { servicesData, serviceMeta } from "@/data/servicesData";
+import { ReactNode } from "react";interface ServiceOffering {
+  category: string;
+  items: string[];
+  description: string;
+
+}
 
 
+
+export interface WhyChooseItem {
+  title: string;
+  description: string;
+}
+
+export interface ServiceMeta {
+  category: string;
+  timeline: string;
+  teamSize: string;
+  deliverables: string[];
+  accent: string;
+  icon: ReactNode;
+}
+
+export interface ServiceData {
+  title: string;
+  subtitle: string;
+  description: string;
+  offerings: ServiceOffering[];
+  offeringsDescription: string;
+  offeringsTitle: string;
+  whyChoose: WhyChooseItem[];
+  whyTitle: string;
+  whyTagline: string;
+  processHeading: string,
+  processSteps: {
+    number: string;
+    title: string;
+    duration: string;
+    description: string;
+  }[];
+  ctaHeading: string;
+  ctaDescription: string;
+  ctaButton: string;
+}
 /* ───────── Component ───────── */
 
 export default function ServicePage() {

@@ -4,7 +4,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { STACK } from "@/data/homePageData";
 
+
+
+export type Tech = { name: string; abbr: string };
+export type Category = { id: string; label: string; tools: Tech[] };
+
 const TOTAL = STACK.reduce((acc, c) => acc + c.tools.length, 0);
+
+
+
 
 export function TechStack() {
   const [active, setActive] = useState("frontend");

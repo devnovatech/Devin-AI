@@ -6,6 +6,18 @@ import Link from "next/link";
 import { industries } from "@/data/homePageData";
 
 
+export interface Industry {
+  name: string;
+  shortLabel: string;
+  slug: string;
+  description: string;
+  accent: string;
+  icon: ReactNode;
+  challenges: string[];
+  deliverables: string[];
+}
+
+
 export default function Industries() {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = industries[activeIndex];

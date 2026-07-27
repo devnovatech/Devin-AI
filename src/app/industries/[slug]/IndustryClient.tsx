@@ -11,6 +11,48 @@ import ReusableFeatureCard from "@/components/ui/cardLayout";
 import { ecareCapabilitiesByIndustry, industriesData, industryMeta } from "@/data/industryData";
 
 
+// Types
+export interface IndustryData {
+  title: string;
+  heroDescription: string;
+  challenges: string[];
+  solutions: string[];
+  ctaHeading: string;
+  ctaDescription: string;
+}
+
+export interface IndustryMeta {
+  shortLabel: string;
+  compliance: string;
+  projectsShipped: string;
+  typicalEngagement: string;
+  topFocus: string[];
+  accent: string;
+  icon: ReactNode;
+}
+
+export interface EcareCapability {
+  title: string;
+  description: string;
+  icon: ReactNode;
+}
+
+export interface EcareIndustryData {
+  heading: string;
+  subHeading: string;
+  capabilities: EcareCapability[];
+  impact: {
+    heading: string;
+    subheading: string;
+    metrics: {
+      title: string;
+      metrics: {
+        value: string;
+        label: string;
+      }[];
+    }[];
+  };
+}
 
 // ChallengeSolutionSection component defined outside IndustryPage
 interface ChallengeSolutionSectionProps {
