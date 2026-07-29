@@ -276,7 +276,7 @@ export default function IndustriesPage() {
                   <div className="inline-flex">
                     <Link
                       href="/contact"
-                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                     >
                       Talk to a sector expert
                     </Link>

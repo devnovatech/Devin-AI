@@ -46,7 +46,7 @@ export default function FAQ() {
                     id={`faq-question-${i}`}
                   >
                     <span className="text-deep-blue font-semibold pr-4">
-                      {faq.question}
+                      {faq.q}
                     </span>
                     <motion.svg
                       animate={{ rotate: isOpen ? 180 : 0 }}
@@ -78,7 +78,7 @@ export default function FAQ() {
                         className="overflow-hidden"
                       >
                         <p className="px-6 pb-6 text-deep-blue/60 leading-relaxed">
-                          {faq.answer}
+                          {faq.a}
                         </p>
                       </motion.div>
                     )}

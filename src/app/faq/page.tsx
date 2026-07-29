@@ -5,58 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import CTABanner from "@/components/CTABanner";
 import AnimatedSection from "@/components/AnimatedSection";
-
-// FAQ data stored directly in this component
-const faqs = [
-    {
-        q: "What types of projects does Dev Inception typically deliver?",
-        a: "We partner with organizations to design, build, optimize, and scale digital products, platforms, and operational systems. Our capabilities span software engineering, AI solutions, web platforms, ecommerce, UI/UX design, quality engineering, project management, and staff augmentation."
-    },
-    {
-        q: "Do you work with startups, mid-sized businesses, or enterprises?",
-        a: "We support organizations at every stage of growth. Whether you're launching a new product, modernizing legacy systems, or scaling enterprise operations, our engagement model adapts to your business objectives, technical requirements, and delivery needs."
-    },
-    {
-        q: "How do you ensure project transparency and accountability?",
-        a: "Every engagement follows a structured delivery framework with clearly defined milestones, documented requirements, regular stakeholder reviews, progress reporting, and measurable success criteria. Clients maintain visibility throughout the entire delivery lifecycle."
-    },
-    {
-        q: "Can you integrate with our existing team and technology stack?",
-        a: "Yes. Our teams regularly work within existing engineering environments, product workflows, cloud infrastructures, and operational processes. We prioritize seamless collaboration and alignment with your established tools and standards."
-    },
-    {
-        q: "Do you provide dedicated resources through staff augmentation?",
-        a: "Yes. We provide experienced engineers, designers, QA specialists, project managers, and technical consultants who integrate directly into your team, workflows, and delivery processes while maintaining full alignment with your objectives."
-    },
-    {
-        q: "How do you handle different time zones?",
-        a: "We operate on our clients' schedules. Our teams align working hours, communication cadences, and delivery workflows with your preferred time zone to ensure efficient collaboration, faster decision-making, and seamless project execution regardless of location."
-    },
-    {
-        q: "How do you approach quality assurance and testing?",
-        a: "Quality is embedded throughout the development lifecycle. We combine manual testing, automated testing, performance validation, security reviews, and continuous quality monitoring to ensure reliable and production-ready outcomes."
-    },
-    {
-        q: "Can you support AI and automation initiatives?",
-        a: "Yes. We design and implement AI-powered solutions ranging from workflow automation and intelligent assistants to predictive analytics, machine learning systems, and custom AI integrations tailored to business objectives."
-    },
-    {
-        q: "What happens after a project is launched?",
-        a: "Our engagement does not end at deployment. We provide post-launch support, monitoring, optimization, performance analysis, knowledge transfer, and continuous improvement services to help maximize long-term value."
-    },
-    {
-        q: "How are project costs and timelines determined?",
-        a: "Following discovery, we establish a detailed scope, technical approach, delivery roadmap, and investment estimate. This process ensures alignment on expectations, milestones, timelines, and outcomes before development begins."
-    },
-    {
-        q: "Do you sign NDAs and follow security best practices?",
-        a: "Absolutely. We routinely work with confidential business information, proprietary systems, and sensitive data. Non-disclosure agreements, secure development practices, access controls, and compliance requirements are incorporated into our engagement process."
-    },
-    {
-        q: "What makes Dev Inception different from a traditional development agency?",
-        a: "We operate as a strategic technology partner rather than a delivery vendor. By combining engineering, AI, design, quality, delivery management, and operational expertise under one engagement model, we help organizations achieve measurable business outcomes—not just completed projects."
-    }
-];
+import { faqs } from "@/data/homePageData";
 
 /* ───────── FAQ accordion item ───────── */
 function FaqRow({
