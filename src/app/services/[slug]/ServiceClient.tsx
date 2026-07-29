@@ -1803,7 +1803,7 @@ export default function ServicePage() {
       </section> */}
 
       {/* ───────── What's included (interactive offerings) ───────── */}
-      <section className="relative py-16 lg:py-20 bg-light-accent overflow-hidden">
+      <section className="relative layout-section  bg-light-accent overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 dotted-grid opacity-[0.04] pointer-events-none" />
 
@@ -2122,7 +2122,7 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── How we work (4-step) ───────── */}
-      <section className="py-20 lg:py-24 bg-[#0a1628] permanent-dark relative overflow-hidden">
+      <section className="layout-section  bg-[#0a1628] permanent-dark relative overflow-hidden">
 
         <div
           className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"
@@ -2227,7 +2227,7 @@ export default function ServicePage() {
       </section>
 
       {/* ───────── Why us for THIS service ───────── */}
-      <section className="py-20 lg:py-24 bg-light-accent relative overflow-hidden">
+      <section className="layout-section  bg-light-accent relative overflow-hidden">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px]" />
         <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-neon-blue/[0.04] rounded-full blur-[120px]" />
 

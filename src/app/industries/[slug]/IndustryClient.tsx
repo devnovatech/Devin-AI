@@ -1488,7 +1488,7 @@ export default function IndustryPage() {
 
       {/* ───────── Impact Beyond Technology ───────── */}
       {ecareCapabilitiesByIndustry[slug] && (
-        <section className="py-20 bg-[#0a1628] relative overflow-hidden">
+        <section className="layout-section  bg-[#0a1628] relative overflow-hidden">
 
           <div
             className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none"
@@ -1556,7 +1556,7 @@ export default function IndustryPage() {
 
       {/* ───────── Recent work in this industry ───────── */}
       {ecareCapabilitiesByIndustry[slug] && (
-        <section className="py-20 bg-light-accent relative overflow-hidden">
+        <section className=" layout-section  bg-light-accent relative overflow-hidden">
           <div
             className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
             style={{ backgroundColor: `${accent}0A` }}

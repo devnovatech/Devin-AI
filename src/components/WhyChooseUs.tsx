@@ -166,8 +166,8 @@ const COMPARISONS = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="border-y border-deep-blue/10 bg-section-why">
-      <div className="max-w-7xl mx-auto px-6 py-14 md:py-20">
+    <section className="border-y  border-deep-blue/10 bg-section-why">
+      <div className="max-w-7xl mx-auto px-6 layout-section">
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-6">
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm mb-2">

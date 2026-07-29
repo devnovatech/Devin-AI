@@ -5,8 +5,8 @@
 :root {
   --background: #0a1628;
   --foreground: #e3f2fd;
-  --section-pad-y: 6rem;
-  --section-pad-y-sm: 4rem;
+  --section-pad-y: 4rem;
+  --section-pad-y-sm: 2rem;
   --radius-card: 1.25rem;
   /* Theme-aware divider colors so SectionDivider blends in both themes. */
   --section-deep: #0a1628;
@@ -57,6 +57,11 @@ html {
   line-height: 1.05;
   letter-spacing: -0.02em;
   font-weight: 700;
+}
+
+.layout-section {
+  padding-top: 5rem;  
+  padding-bottom: 5rem; 
 }
 
 .h-section {

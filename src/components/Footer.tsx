@@ -6,6 +6,9 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
+
+
+// ─────────footer DATA ─────────
 const linkColumns: {
   title: string;
   links: { label: string; href: string }[];
@@ -13,7 +16,6 @@ const linkColumns: {
     {
       title: "Company",
       links: [
-        { label: "Home", href: "/" },
         { label: "About Us", href: "/about" },
         { label: "Contact", href: "/contact" },
         { label: "FAQ", href: "/faq" },
@@ -41,7 +43,7 @@ const linkColumns: {
     },
   ];
 
-const socialLinks = [
+ const socialLinks = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/dev-inception/",
@@ -70,24 +72,12 @@ const socialLinks = [
     ),
   },
 ];
-
 export default function Footer() {
   const [email, setEmail] = useState("");
-  // const [subscribed, setSubscribed] = useState(false);
 
   const { theme } = useTheme();
   const isLight = theme === "light";
 
-  // function handleSubscribe(e: FormEvent) {
-  //   e.preventDefault();
-
-  //   if (!email.includes("@")) return;
-
-  //   setSubscribed(true);
-  //   setEmail("");
-
-  //   setTimeout(() => setSubscribed(false), 4000);
-  // }
 
   return (
     <footer

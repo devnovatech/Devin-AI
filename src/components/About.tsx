@@ -75,7 +75,7 @@ const FloatingBadge = ({ children, className, delay, rotate }: any) => (
 
 export default function About() {
   return (
-    <section id="about" className="min-h-screen flex items-center py-16 lg:py-20 relative overflow-hidden bg-section-about">
+    <section id="about" className="layout-section flex items-center relative overflow-hidden bg-section-about">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-blue/8 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/8 rounded-full blur-[140px] pointer-events-none" />

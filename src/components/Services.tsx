@@ -324,7 +324,7 @@ export default function Services() {
   const count = services.length;
 
   return (
-    <section id="services" className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-section-services from-slate-50 to-white overflow-hidden">
+    <section id="services" className=" flex flex-col justify-center layout-section relative bg-section-services from-slate-50 to-white overflow-hidden">
       <div className="absolute top-0 right-0 w-[420px] h-[420px] bg-blue-400/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-purple-400/5 rounded-full blur-[120px] pointer-events-none" />
 

@@ -162,7 +162,7 @@ export default function WorkingProcess() {
   return (
     <section
       id="process"
-      className="min-h-screen flex flex-col justify-center py-9 sm:py-10 lg:py-14 bg-[#0a1628] relative overflow-hidden"
+      className="flex flex-col justify-center py-20 bg-[#0a1628] relative overflow-hidden"
     >
       {/* Animated background blooms */}
       <div

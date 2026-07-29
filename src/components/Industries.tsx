@@ -107,7 +107,7 @@ export default function Industries() {
   const active = industries[activeIndex];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center py-16 lg:py-20 bg-section-industries relative overflow-hidden">
+    <section className="layout-section flex flex-col justify-center  bg-section-industries relative overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6 w-full">
         {/* Header — split editorial */}
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-4 lg:mb-10">

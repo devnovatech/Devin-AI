@@ -799,7 +799,7 @@ export default function ContactPage() {
       </section>
 
       {/* ───────── What happens next ───────── */}
-      <section className="py-20 lg:py-24 bg-white relative overflow-hidden">
+      <section className="layout-section bg-white relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6">

@@ -52,7 +52,7 @@ const MESSAGES = [
 
 export default function Testimonials() {
   return (
-    <section className="min-h-screen flex flex-col justify-center py-14 lg:py-16 relative overflow-hidden bg-section-testimonials">
+    <section className="layout-section flex flex-col justify-center relative overflow-hidden bg-section-testimonials">
       {/* Animated blooms */}
       <motion.div
         className="absolute top-0 left-1/2 w-[500px] h-[500px] bg-neon-purple/8 rounded-full blur-[120px] -translate-x-1/2 pointer-events-none"

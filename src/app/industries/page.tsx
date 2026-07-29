@@ -317,7 +317,7 @@ export default function IndustriesPage() {
                   <div className="inline-flex">
                     <Link
                       href="/contact"
-                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                     >
                       Talk to a sector expert
                     </Link>
@@ -393,7 +393,7 @@ export default function IndustriesPage() {
       {/* ───────── Industries grid ───────── */}
       <section
         id="industries-grid"
-        className="py-20 lg:py-24 bg-light-accent relative overflow-hidden"
+        className="layout-section  bg-light-accent relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-neon-blue/[0.04] rounded-full blur-[120px] pointer-events-none" />
@@ -430,7 +430,7 @@ export default function IndustriesPage() {
 
 
       {/* ───────── Why industry expertise ───────── */}
-      <section className="py-20 lg:py-24 bg-section-dark relative overflow-hidden">
+      <section className="layout-section  bg-section-dark relative overflow-hidden">
 
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.06] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 

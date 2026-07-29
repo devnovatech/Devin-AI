@@ -158,7 +158,7 @@ export function TechStack() {
   const cat = STACK.find((c) => c.id === active) ?? STACK[0];
 
   return (
-    <section id="tech-stack" className="flex items-center py-10 lg:py-20 relative overflow-hidden bg-white">
+    <section id="tech-stack" className="flex items-center layout-section  relative overflow-hidden bg-white">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-neon-blue/8 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-neon-purple/8 rounded-full blur-[140px] pointer-events-none" />
