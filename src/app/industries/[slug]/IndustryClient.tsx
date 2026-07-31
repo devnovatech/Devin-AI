@@ -1323,15 +1323,6 @@ export default function IndustryPage() {
         <div className="noise-overlay" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          {/* <AnimatedSection>
-          //   <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-          //     <Link href="/" className="hover:text-neon-blue transition-colors">Home</Link>
-          //     <span className="text-gray-600">/</span>
-          //     <Link href="/industries" className="hover:text-neon-blue transition-colors">Industries</Link>
-          //     <span className="text-gray-600">/</span>
-          //     <span style={{ color: accent }}>{industry.title}</span>
-          //   </nav>
-          // </AnimatedSection> */}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
@@ -1387,11 +1378,6 @@ export default function IndustryPage() {
                   className="force-dark-card relative rounded-2xl bg-[#0a1628] backdrop-blur-md border border-white/10 p-7 lg:p-8 overflow-hidden"
                   style={{ boxShadow: `0 30px 60px -20px ${accent}30` }}
                 >
-                  {/* <div
-                    className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-[0.18] pointer-events-none"
-                    style={{ backgroundColor: accent }}
-                  /> */}
-
                   <div className="relative">
                     <p className="eyebrow gradient-text-dark">
                       Sector snapshot

@@ -257,7 +257,7 @@ export default function FAQPage() {
                                 <div className="mt-8 flex flex-wrap gap-4">
                                     <Link
                                         href="/contact"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-neon-blue text-white font-semibold text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-neon-blue text-white font-semibold text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                                     >
                                         Still have questions? Contact us
                                     </Link>

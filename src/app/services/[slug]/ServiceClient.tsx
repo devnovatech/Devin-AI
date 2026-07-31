@@ -1490,20 +1490,6 @@ export default function ServicePage() {
         <div className="noise-overlay" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          {/* Breadcrumb */}
-          {/* <AnimatedSection>
-            <nav className="flex items-center gap-2 text-sm text-gray-400 mb-8">
-              <Link href="/" className="hover:text-neon-blue transition-colors">
-                Home
-              </Link>
-              <span className="text-gray-600">/</span>
-              <Link href="/services" className="hover:text-neon-blue transition-colors">
-                Services
-              </Link>
-              <span className="text-gray-600">/</span>
-              <span style={{ color: accent }}>{service.title}</span>
-            </nav>
-          </AnimatedSection> */}
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* LEFT — content */}
@@ -1544,7 +1530,7 @@ export default function ServicePage() {
                   >
                     <Link
                       href="/contact"
-                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold tracking-wide text-sm transition-all duration-300"
+                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl text-white font-bold tracking-wide text-sm transition-all duration-300"
                       style={{
                         backgroundColor: accent,
                         boxShadow: `0 12px 28px -10px ${accent}80`,

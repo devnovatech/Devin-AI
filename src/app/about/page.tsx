@@ -8,6 +8,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import CTABanner from "@/components/CTABanner";
 import React from "react";
 import { Award, Target, Zap, Users } from "lucide-react";
+import { TimelineCard } from "@/components/ui/TimelineCard";
 
 // ============================================================================
 // CountUp Component
@@ -116,55 +117,58 @@ const jobOpenings = {
 // ============================================================================
 function HeroSection() {
   return (
-    <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
+    <section className="relative overflow-hidden bg-section-dark border-b border-white/10 pt-32 pb-20">
+      {/* Background */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[80vh] opacity-60"
+        style={{
+          background:
+            "radial-gradient(ellipse at top, rgba(0,212,255,0.15) 0%, transparent 65%)",
+        }}
+      />
 
       <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
       <div className="noise-overlay" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <AnimatedSection direction="left" className="lg:col-span-7">
-            {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/5 backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-              </span>
-              <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
-                Founded 2010 · 30+ employees worldwide
-              </span>
-            </div> */}
+        <div className="grid gap-14 lg:grid-cols-12 lg:items-end">
+          {/* Left Content */}
+          <AnimatedSection
+            direction="left"
+            className="lg:col-span-7"
+          >
 
             <h1 className="mt-7 h-display text-white">
-              About  <span className="gradient-text">Us</span>
+              About <span className="gradient-text">Us</span>
             </h1>
 
             <p className="mt-7 body-lead text-gray-400 max-w-xl">
-              At Dev Inception, we pride ourselves on offering dynamic IT services to suit your specific requirements. Our flexible approach means we can adjust our offerings to accommodate your evolving needs, whether you require comprehensive IT infrastructure support, strategic consultancy or software development.
+              At Dev Inception, we pride ourselves on offering dynamic IT
+              services to suit your specific requirements. Our flexible
+              approach means we can adjust our offerings to accommodate your
+              evolving needs, whether you require comprehensive IT
+              infrastructure support, strategic consultancy or software
+              development.
             </p>
 
-            <div className="mt-9 flex flex-col sm:flex-row gap-3">
-              <Link href="/contact" className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-neon-blue text-white font-bold tracking-wide text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300">
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-xl bg-neon-blue px-8 py-4 text-sm font-bold tracking-wide text-white transition-all duration-300 hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40"
+              >
                 Work with us
               </Link>
             </div>
           </AnimatedSection>
 
-          <AnimatedSection direction="right" className="lg:col-span-5">
-            <div className="relative">
-              <div className="absolute inset-0 rounded-2xl bg-neon-blue/20 translate-x-3 translate-y-3" aria-hidden="true" />
-              <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-black/40">
-                <Image
-                  src="/AboutUs4.png"
-                  alt="Dev Inception — together we build"
-                  width={1379}
-                  height={1141}
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="w-full h-auto block"
-                  priority
-                />
-              </div>
-            </div>
+          {/* Right Stats */}
+          <AnimatedSection
+            direction="right"
+            className="lg:col-span-5 h-[370px]"
+          >
+            <TimelineCard />
           </AnimatedSection>
         </div>
       </div>
