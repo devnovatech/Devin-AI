@@ -10,107 +10,7 @@ import React from "react";
 import { Award, Target, Zap, Users } from "lucide-react";
 import { TimelineCard } from "@/components/ui/TimelineCard";
 
-// ============================================================================
-// CountUp Component
-// ============================================================================
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [isInView, target]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-}
-
-// ============================================================================
-// Data
-// ============================================================================
-const stats = [
-  { value: 15, suffix: "+", label: "Years of experience" },
-  { value: 250, suffix: "+", label: "Success Stories" },
-  { value: 50, suffix: "+", label: "Companies Trust Us" },
-  { value: 98, suffix: "%", label: "Results Guaranteed" },
-];
-
-const values = [
-  {
-    title: "People-first Tech.",
-    description:
-      "We design solutions around real human needs — your users, your team, and your business goals. Tech is the means, not the end.",
-    accent: "#1E88E5",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-    ),
-  },
-  {
-    title: "Agility meets Expertise.",
-    description: "Iterative delivery backed by deep technical experience — we move fast without breaking things.",
-    accent: "#0277BD",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-    ),
-  },
-  {
-    title: "Partners, not just Providers.",
-    description: "We succeed only when you do. Long-term relationships built on trust, transparency, and shared goals.",
-    accent: "#0288D1",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-    ),
-  },
-  {
-    title: "On-time Delivery.",
-    description: "We ship what we promise, when we promise it — every single time.",
-    accent: "#039BE5",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-    ),
-  },
-  {
-    title: "Exceptionally Talented Teams.",
-    description: "Senior-only roster with 8+ years of experience. No juniors on production code.",
-    accent: "#00ACC1",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
-    ),
-  },
-  {
-    title: "Resource-efficient.",
-    description: "Optimized workflows and lean processes that maximize output without burning out teams.",
-    accent: "#1565C0",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-    ),
-  },
-];
-
-const jobOpenings = {
-  development: [] as string[],
-  marketing: [] as string[],
-  humanResources: [] as string[],
-  designers: [] as string[],
-};
 
 // ============================================================================
 // Hero Section
@@ -795,7 +695,6 @@ function OpenPositionsSection({ jobOpenings: propsJobOpenings }: { jobOpenings?:
         {/* Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {roles.map((role, idx) => {
-            const numLabel = String(idx + 1).padStart(2, "0");
 
             return (
               <div

@@ -407,35 +407,7 @@ export default function WorkingProcess() {
             </AnimatePresence>
           </div>
         </motion.div>
-
-        {/* Mobile: Stage progress indicator */}
-        <div className="lg:hidden flex justify-center gap-1.5 mt-4 sm:mt-4">
-          {stages.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveIdx(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 touch-manipulation ${i === activeIdx ? "w-6" : "w-1.5"
-                }`}
-              style={{
-                backgroundColor: i === activeIdx ? stages[activeIdx].accent : "rgba(255,255,255,0.2)",
-              }}
-            />
-          ))}
-        </div>
       </div>
-
-      <style jsx>{`
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .touch-manipulation {
-      touch-action: manipulation;
-    }
-  `}</style>
     </section>
   );
 }

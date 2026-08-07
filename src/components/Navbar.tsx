@@ -105,13 +105,15 @@ const navLinks = [
     }))
   },
   { label: "About Us", href: "/about" },
+  { label: "Resources", href: "/resources" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [dropdownPosition, setDropdownPosition] = useState<"left" | "right">("left");
+  const [dropdownPosition, setDropdownPosition] = useState<"left" | "right" | "center">("left");
+  const [expandedMobileItems, setExpandedMobileItems] = useState<Set<string>>(new Set());
   const pathname = usePathname();
   const { theme } = useTheme();
   const isLight = theme === "light";
@@ -119,7 +121,6 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const triggerRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Smooth scroll-progress bar at the very top of the viewport
   const { scrollYProgress } = useScroll();
   const progressX = useSpring(scrollYProgress, {
     stiffness: 150,
@@ -134,7 +135,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -145,7 +145,7 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Calculate dropdown position based on available space
+  // Enhanced dropdown positioning logic
   useEffect(() => {
     if (openDropdown && triggerRefs.current[openDropdown]) {
       const trigger = triggerRefs.current[openDropdown];
@@ -153,16 +153,63 @@ export default function Navbar() {
         const rect = trigger.getBoundingClientRect();
         const dropdownWidth = 600;
         const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate available space on each side
+        const spaceLeft = rect.left;
+        const spaceRight = windowWidth - rect.right;
+        const spaceBelow = windowHeight - rect.bottom;
+        const spaceAbove = rect.top;
 
-        // Check if dropdown would overflow on the right
-        if (rect.right + dropdownWidth > windowWidth - 20) {
-          setDropdownPosition("right");
-        } else {
-          setDropdownPosition("left");
+        // Check if dropdown would fit below
+        const dropdownHeight = 400; // Approximate height of dropdown
+        let shouldPositionAbove = spaceBelow < dropdownHeight && spaceAbove > spaceBelow;
+
+        // Horizontal positioning
+        let horizontalPosition: "left" | "right" | "center" = "left";
+        
+        // Check if there's enough space on the right
+        if (spaceRight < dropdownWidth && spaceLeft >= dropdownWidth) {
+          horizontalPosition = "right";
+        } else if (spaceRight < dropdownWidth / 2 && spaceLeft < dropdownWidth / 2) {
+          // Not enough space on either side, center it
+          horizontalPosition = "center";
+        } else if (spaceRight < dropdownWidth) {
+          horizontalPosition = "right";
+        }
+
+        setDropdownPosition(horizontalPosition);
+        
+        // Update dropdown style for vertical positioning
+        const dropdown = document.querySelector(`[data-dropdown="${openDropdown}"]`) as HTMLElement;
+        if (dropdown) {
+          if (shouldPositionAbove) {
+            dropdown.style.top = 'auto';
+            dropdown.style.bottom = '100%';
+            dropdown.style.marginTop = '0';
+            dropdown.style.marginBottom = '8px';
+          } else {
+            dropdown.style.top = '100%';
+            dropdown.style.bottom = 'auto';
+            dropdown.style.marginTop = '8px';
+            dropdown.style.marginBottom = '0';
+          }
         }
       }
     }
   }, [openDropdown]);
+
+  const toggleMobileItem = (label: string) => {
+    setExpandedMobileItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(label)) {
+        newSet.delete(label);
+      } else {
+        newSet.add(label);
+      }
+      return newSet;
+    });
+  };
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
@@ -187,24 +234,40 @@ export default function Navbar() {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
+  // Function to get dropdown position classes
+  const getDropdownPositionClasses = () => {
+    switch (dropdownPosition) {
+      case "right":
+        return "right-0 left-auto";
+      case "center":
+        return "left-1/2 -translate-x-1/2";
+      default:
+        return "left-0 right-auto";
+    }
+  };
+
   return (
     <>
       {/* Scroll progress bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[2px] origin-left bg-neon-blue z-[60]"
-        style={{ scaleX: progressX }}
+        className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[60]"
+        style={{ 
+          scaleX: progressX,
+          backgroundColor: isLight ? "#1565c0" : "#4fc3f7"
+        }}
       />
 
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? isLight
-            ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
-            : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
-          : "bg-transparent"
-          }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? isLight
+              ? "bg-white/85 backdrop-blur-xl border-b border-deep-blue/10 shadow-lg shadow-deep-blue/5"
+              : "bg-deep-blue/85 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20"
+            : "bg-transparent"
+        }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 py-3 flex items-center justify-between">
           {/* Logo */}
@@ -224,7 +287,6 @@ export default function Navbar() {
             {navLinks.map((link) => {
               const active = isActive(link.href);
               const hasDropdown = link.dropdown && link.dropdownItems && link.dropdownItems.length > 0;
-              const isIndustries = link.label === "Industries";
 
               const baseText = active
                 ? isLight
@@ -259,10 +321,11 @@ export default function Navbar() {
                     {active && !hasDropdown && (
                       <motion.span
                         layoutId="nav-pill"
-                        className={`absolute inset-0 rounded-full border ${isLight
-                          ? "bg-neon-purple/10 border-neon-purple/20"
-                          : "bg-white/10 border-white/15"
-                          }`}
+                        className={`absolute inset-0 rounded-full border ${
+                          isLight
+                            ? "bg-neon-purple/10 border-neon-purple/20"
+                            : "bg-white/10 border-white/15"
+                        }`}
                         transition={{
                           type: "spring",
                           stiffness: 380,
@@ -273,8 +336,9 @@ export default function Navbar() {
                     <span className="relative z-10">{link.label}</span>
                     {hasDropdown && (
                       <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${openDropdown === link.label ? "rotate-180" : ""
-                          }`}
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          openDropdown === link.label ? "rotate-180" : ""
+                        }`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -285,55 +349,59 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* Dropdown Menu - White Background with 2 Columns */}
-                  {/* Dropdown Menu - White Background with 2 Columns */}
+                  {/* Dropdown Menu - Enhanced with better positioning */}
                   {hasDropdown && (
                     <AnimatePresence>
                       {openDropdown === link.label && (
                         <motion.div
+                          data-dropdown={link.label}
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
                           transition={{ duration: 0.2 }}
-                          className={`absolute top-full mt-2 w-[600px] rounded-2xl shadow-2xl overflow-hidden bg-white border border-gray-200 ${isIndustries || dropdownPosition === "right" ? "right-0" : "left-0"
-                            }`}
+                          className={`absolute top-full mt-2 w-[600px] max-w-[calc(100vw-40px)] rounded-2xl shadow-2xl overflow-hidden bg-white border border-gray-200 ${getDropdownPositionClasses()}`}
                           style={{
-                            boxShadow: "0 20px 60px -20px rgba(0,0,0,0.25)"
+                            boxShadow: "0 20px 60px -20px rgba(0,0,0,0.25)",
+                            maxHeight: 'calc(100vh - 120px)',
+                            overflowY: 'auto'
                           }}
                         >
-                          {/* 2-column grid */}
-                          <div className="grid grid-cols-2 gap-1 p-3">
-                            {link.dropdownItems.map((item) => (
-                              <Link
-                                key={item.href}
-                                href={item.href}
-                                onClick={() => setOpenDropdown(null)}
-                                className={`group flex flex-col px-4 py-3 rounded-xl transition-all duration-200 ${pathname === item.href
-                                    ? "bg-slate-800 border border-slate-600" // Dark slate background
-                                    : "hover:bg-slate-900 border border-transparent hover:border-slate-700" // Dark slate on hover
+                          <div className="surface-panel">
+                            <div className="grid grid-cols-2 gap-1 p-3">
+                              {link.dropdownItems.map((item) => (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  onClick={() => setOpenDropdown(null)}
+                                  className={`group flex flex-col px-4 py-3 rounded-xl transition-all duration-200 ${
+                                    pathname === item.href
+                                      ? "bg-slate-800 border border-slate-600"
+                                      : "hover:bg-slate-900 border border-transparent hover:border-slate-700"
                                   }`}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <span
-                                    className={`text-sm font-semibold transition-colors ${pathname === item.href
-                                        ? "text-white" // White text on dark background
-                                        : "text-slate-900 group-hover:text-white" // Dark text normally, white on hover
-                                      }`}
-                                  >
-                                    {item.title}
-                                  </span>
-                                </div>
-
-                                <span
-                                  className={`text-xs mt-0.5 line-clamp-2 transition-colors ${pathname === item.href
-                                      ? "text-slate-300" // Light text on dark background
-                                      : "text-slate-500 group-hover:text-slate-300" // Gray normally, lighter on hover
-                                    }`}
                                 >
-                                  {item.tagline}
-                                </span>
-                              </Link>
-                            ))}
+                                  <div className="flex items-center justify-between">
+                                    <span
+                                      className={`text-sm font-semibold transition-colors ${
+                                        pathname === item.href
+                                          ? "text-white"
+                                          : "text-slate-900 group-hover:text-white"
+                                      }`}
+                                    >
+                                      {item.title}
+                                    </span>
+                                  </div>
+                                  <span
+                                    className={`text-xs mt-0.5 line-clamp-2 transition-colors ${
+                                      pathname === item.href
+                                        ? "text-slate-300"
+                                        : "text-slate-500 group-hover:text-slate-300"
+                                    }`}
+                                  >
+                                    {item.tagline}
+                                  </span>
+                                </Link>
+                              ))}
+                            </div>
                           </div>
                         </motion.div>
                       )}
@@ -388,37 +456,41 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Now matching desktop dropdown style */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${isLight
-                ? "bg-white/95 border-deep-blue/10"
-                : "bg-deep-blue/95 border-white/5"
-                }`}
+              className={`md:hidden backdrop-blur-xl border-b overflow-hidden ${
+                isLight
+                  ? "bg-white/95 border-deep-blue/10"
+                  : "bg-deep-blue/95 border-white/5"
+              }`}
             >
-              <div className="px-6 py-5 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
+              <div className="px-4 py-4 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
                 {navLinks.map((link) => {
                   const hasDropdown = link.dropdown && link.dropdownItems && link.dropdownItems.length > 0;
-                  const [isExpanded, setIsExpanded] = useState(false);
+                  const isExpanded = expandedMobileItems.has(link.label);
+                  const isActiveLink = isActive(link.href);
 
                   if (hasDropdown) {
                     return (
                       <div key={link.href} className="flex flex-col">
                         <button
-                          onClick={() => setIsExpanded(!isExpanded)}
-                          className={`flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${isLight
-                            ? "text-deep-blue/70 hover:bg-deep-blue/[0.04]"
-                            : "text-gray-300 hover:bg-white/5"
-                            }`}
+                          onClick={() => toggleMobileItem(link.label)}
+                          className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 ${
+                            isLight
+                              ? "text-deep-blue/80 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
+                              : "text-gray-300 hover:bg-white/5 hover:text-white"
+                          }`}
                         >
-                          <span className="font-medium">{link.label}</span>
+                          <span className="font-medium text-base">{link.label}</span>
                           <svg
-                            className={`w-5 h-5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""
-                              }`}
+                            className={`w-5 h-5 transition-transform duration-200 ${
+                              isExpanded ? "rotate-180" : ""
+                            }`}
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -427,24 +499,74 @@ export default function Navbar() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                           </svg>
                         </button>
-                        {isExpanded && (
-                          <div className="ml-4 pl-2 border-l-2 border-neon-blue/30 space-y-1 mt-1">
-                            {link.dropdownItems.map((item) => (
-                              <Link
-                                key={item.href}
-                                href={item.href}
-                                onClick={() => setMobileOpen(false)}
-                                className={`block px-4 py-2.5 rounded-lg transition-colors ${isLight
-                                  ? "hover:bg-deep-blue/[0.04] text-deep-blue/70"
-                                  : "hover:bg-white/5 text-gray-300"
-                                  }`}
-                              >
-                                <div className="font-medium text-sm">{item.title}</div>
-                                <div className="text-xs opacity-60">{item.tagline}</div>
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+                        
+                        {/* Mobile Dropdown - Matching desktop style with 2 columns */}
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="mt-1 overflow-hidden"
+                            >
+                              <div className={`rounded-xl overflow-hidden ${
+                                isLight
+                                  ? "bg-white/50 border border-deep-blue/10"
+                                  : "bg-white/5 border border-white/10"
+                              }`}>
+                                <div className="grid grid-cols-1 gap-1 p-2">
+                                  {link.dropdownItems.map((item) => (
+                                    <Link
+                                      key={item.href}
+                                      href={item.href}
+                                      onClick={() => {
+                                        setMobileOpen(false);
+                                        setExpandedMobileItems(new Set());
+                                      }}
+                                      className={`group flex flex-col px-3 py-2.5 rounded-lg transition-all duration-200 ${
+                                        pathname === item.href
+                                          ? isLight
+                                            ? "bg-deep-blue/[0.06] border border-deep-blue/20"
+                                            : "bg-slate-800 border border-slate-600"
+                                          : isLight
+                                            ? "hover:bg-deep-blue/[0.04] border border-transparent hover:border-deep-blue/20"
+                                            : "hover:bg-slate-900 border border-transparent hover:border-slate-700"
+                                      }`}
+                                    >
+                                      <span
+                                        className={`text-sm font-semibold transition-colors ${
+                                          pathname === item.href
+                                            ? isLight
+                                              ? "text-deep-blue"
+                                              : "text-white"
+                                            : isLight
+                                              ? "text-slate-900 group-hover:text-deep-blue"
+                                              : "text-slate-200 group-hover:text-white"
+                                        }`}
+                                      >
+                                        {item.title}
+                                      </span>
+                                      <span
+                                        className={`text-xs mt-0.5 line-clamp-2 transition-colors ${
+                                          pathname === item.href
+                                            ? isLight
+                                              ? "text-deep-blue/60"
+                                              : "text-slate-300"
+                                            : isLight
+                                              ? "text-slate-500 group-hover:text-deep-blue/60"
+                                              : "text-slate-400 group-hover:text-slate-300"
+                                        }`}
+                                      >
+                                        {item.tagline}
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     );
                   }
@@ -454,23 +576,26 @@ export default function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className={`px-4 py-3 rounded-xl transition-colors ${isLight
-                        ? isActive(link.href)
-                          ? "bg-deep-blue/[0.06] text-deep-blue"
-                          : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
-                        : isActive(link.href)
-                          ? "bg-white/10 text-white"
-                          : "text-gray-300 hover:bg-white/5 hover:text-white"
-                        }`}
+                      className={`px-4 py-3 rounded-xl transition-colors ${
+                        isLight
+                          ? isActiveLink
+                            ? "bg-deep-blue/[0.06] text-deep-blue"
+                            : "text-deep-blue/70 hover:bg-deep-blue/[0.04] hover:text-deep-blue"
+                          : isActiveLink
+                            ? "bg-white/10 text-white"
+                            : "text-gray-300 hover:bg-white/5 hover:text-white"
+                      }`}
                     >
                       {link.label}
                     </Link>
                   );
                 })}
+                
+                {/* Contact button in mobile menu - styled like desktop */}
                 <Link
                   href="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 px-5 py-3 bg-neon-blue rounded-xl text-sm font-semibold text-white text-center"
+                  className="mt-2 px-5 py-3 bg-neon-blue rounded-xl text-sm font-semibold text-white text-center hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
                 >
                   Get in Touch
                 </Link>

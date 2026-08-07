@@ -58,87 +58,6 @@ const faqs = [
     }
 ];
 
-/* ───────── FAQ accordion item ───────── */
-function FaqRow({
-    q,
-    a,
-    isOpen,
-    onToggle,
-    index,
-}: {
-    q: string;
-    a: string;
-    isOpen: boolean;
-    onToggle: () => void;
-    index: number;
-}) {
-    return (
-        <div
-            className={`relative border-b border-white/[0.08] transition-colors duration-300 ${isOpen ? "bg-white/[0.02]" : ""
-                }`}
-        >
-            {/* Accent left bar when open */}
-            <motion.span
-                className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-r-full bg-neon-blue"
-                initial={false}
-                animate={{ height: isOpen ? 32 : 0, opacity: isOpen ? 1 : 0 }}
-                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            />
-
-            <button
-                type="button"
-                onClick={onToggle}
-                className="w-full text-left py-5 pl-5 pr-5 flex items-start justify-between gap-4 group"
-            >
-                <div className="flex items-start gap-4">
-                    <span className="font-mono text-[11px] font-bold text-deep-blue/55 group-hover:text-neon-blue/80 transition-colors pt-1.5 tabular-nums">
-                        {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span
-                        className="text-base sm:text-lg font-semibold transition-colors text-deep-blue"
-                    >
-                        {q}
-                    </span>
-                </div>
-                <span
-                    className={`shrink-0 mt-1 w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 ${isOpen
-                        ? "rotate-45 bg-neon-blue border-transparent text-white shadow-lg shadow-neon-blue/40"
-                        : "border-white/15 text-deep-blue/55 group-hover:border-neon-blue/40 group-hover:text-neon-blue"
-                        }`}
-                >
-                    <svg
-                        className="w-3.5 h-3.5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                    </svg>
-                </span>
-            </button>
-            <AnimatePresence initial={false}>
-                {isOpen && (
-                    <motion.div
-                        key="content"
-                        initial="collapsed"
-                        animate="open"
-                        exit="collapsed"
-                        variants={{
-                            open: { opacity: 1, height: "auto" },
-                            collapsed: { opacity: 0, height: 0 },
-                        }}
-                        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                    >
-                        <p className="pb-6 pl-[3.25rem] pr-12 body-base text-deep-blue/55 leading-relaxed">
-                            {a}
-                        </p>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
-    );
-}
 
 /* ───────── FAQ Grid Item ───────── */
 function FaqGridItem({
@@ -156,7 +75,7 @@ function FaqGridItem({
 }) {
     return (
         <div
-            className={`relative rounded-2xl shadow-lg border border-gray-300 transition-all duration-300 ${isOpen
+            className={`relative rounded-xl sm:rounded-2xl shadow-lg border border-gray-300 transition-all duration-300 ${isOpen
                 ? "bg-white/[0.03] border-neon-blue/20 shadow-lg shadow-neon-blue/5"
                 : "bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.15]"
                 }`}
@@ -164,25 +83,25 @@ function FaqGridItem({
             <button
                 type="button"
                 onClick={onToggle}
-                className="w-full text-left p-5 md:p-6 flex flex-col gap-3 group"
+                className="w-full text-left p-4 sm:p-5 md:p-6 flex flex-col gap-3 group"
             >
                 <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-start gap-3 flex-1">
+                    <div className="flex items-start gap-2 sm:gap-3 flex-1">
                         <span className="font-mono text-[10px] font-bold text-neon-blue/60 group-hover:text-neon-blue/80 transition-colors pt-1 tabular-nums shrink-0">
                             {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="text-sm md:text-base font-semibold transition-colors text-deep-blue group-hover:text-neon-blue/90">
+                        <span className="text-xs sm:text-sm md:text-base font-semibold transition-colors text-deep-blue group-hover:text-neon-blue/90">
                             {q}
                         </span>
                     </div>
                     <span
-                        className={`shrink-0 mt-0.5 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${isOpen
+                        className={`shrink-0 mt-0.5 w-6 h-6 sm:w-7 sm:h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${isOpen
                             ? "rotate-45 bg-neon-blue border-transparent text-white shadow-lg shadow-neon-blue/30"
                             : "border-white/15 text-deep-blue/40 group-hover:border-neon-blue/40 group-hover:text-neon-blue"
                             }`}
                     >
                         <svg
-                            className="w-3.5 h-3.5"
+                            className="w-3 h-3 sm:w-3.5 sm:h-3.5"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -206,7 +125,7 @@ function FaqGridItem({
                             }}
                             transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                         >
-                            <p className="pt-2 text-sm text-deep-blue/55 leading-relaxed">
+                            <p className="pt-2 text-xs sm:text-sm text-deep-blue/55 leading-relaxed">
                                 {a}
                             </p>
                         </motion.div>
@@ -229,54 +148,53 @@ export default function FAQPage() {
     return (
         <>
             {/* Hero Section - Left Content + Right Statistics */}
-            <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
+            <section className="pt-28 sm:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
                 {/* Background decorations */}
                 <div className="absolute inset-0 grid-bg" />
                 <div
-                    className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-neon-blue/[0.08] rounded-full blur-[140px] pointer-events-none"
+                    className="absolute top-1/4 left-0 w-[300px] sm:w-[400px] lg:w-[500px] h-[300px] sm:h-[400px] lg:h-[500px] bg-neon-blue/[0.08] rounded-full blur-[140px] pointer-events-none"
                 />
                 <div
-                    className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none"
+                    className="absolute bottom-0 right-0 w-[250px] sm:w-[350px] lg:w-[400px] h-[250px] sm:h-[350px] lg:h-[400px] bg-neon-purple/[0.06] rounded-full blur-[120px] pointer-events-none"
                 />
 
-                <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
                         {/* Left Column - Content */}
                         <div>
-                           < AnimatedSection direction="right" >
-
-                                <h1 className="text-7xl  font-bold text-white tracking-tight leading-[1.1]">
+                            <AnimatedSection direction="right">
+                                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white tracking-tight leading-[1.1]">
                                     Everything you need to{" "}
                                     <span className="gradient-text">know.</span>
                                 </h1>
 
-                                <p className="mt-5 text-gray-400 text-lg max-w-lg">
+                                <p className="mt-4 sm:mt-5 text-gray-400 text-sm sm:text-base lg:text-lg max-w-lg">
                                     From pricing and timelines to NDAs and ongoing support — we've answered the most common questions to help you move forward with confidence.
                                 </p>
 
-                                <div className="mt-8 flex flex-wrap gap-4">
+                                <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
                                     <Link
                                         href="/contact"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-neon-blue text-white font-semibold text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
+                                        className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-neon-blue text-white font-semibold text-xs sm:text-sm hover:bg-neon-purple hover:shadow-xl hover:shadow-neon-blue/40 transition-all duration-300"
                                     >
                                         Still have questions? Contact us
                                     </Link>
                                 </div>
-                           </AnimatedSection> 
+                            </AnimatedSection>
                         </div>
 
                         {/* Right Column - Statistics Dashboard */}
-                        <AnimatedSection direction="left"className="relative rounded-xl force-dark-card">
+                        <AnimatedSection direction="left" className="relative rounded-xl force-dark-card">
                             {/* Background glow */}
-                            <div className="absolute -top-10 -right-10 w-60 h-60 bg-neon-blue/20 rounded-full blur-[100px]" />
-                            <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-neon-purple/20 rounded-full blur-[100px]" />
+                            <div className="absolute -top-10 -right-10 w-40 sm:w-60 h-40 sm:h-60 bg-neon-blue/20 rounded-full blur-[100px]" />
+                            <div className="absolute -bottom-10 -left-10 w-40 sm:w-60 h-40 sm:h-60 bg-neon-purple/20 rounded-full blur-[100px]" />
 
-                            <div className="relative bg-[#0a1628] backdrop-blur-sm border border-white/[0.08] rounded-2xl p-6 lg:p-8">
+                            <div className="relative bg-[#0a1628] backdrop-blur-sm border border-white/[0.08] rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8">
                                 {/* Header (same as Industry card style) */}
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-10 h-10 rounded-xl bg-neon-blue flex items-center justify-center">
+                                <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-neon-blue flex items-center justify-center">
                                         <svg
-                                            className="w-5 h-5 text-white"
+                                            className="w-4 h-4 sm:w-5 sm:h-5 text-white"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -290,78 +208,76 @@ export default function FAQPage() {
                                         </svg>
                                     </div>
 
-                                    <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
+                                    <span className="text-[10px] sm:text-xs font-medium text-gray-400 uppercase tracking-wider">
                                         Performance Overview
                                     </span>
                                 </div>
 
                                 {/* Stats grid (industry style) */}
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                                        <div className="text-2xl font-bold text-white">200+</div>
-                                        <div className="text-xs text-gray-400 mt-1">Projects</div>
+                                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                                    <div className="bg-white/[0.04] rounded-lg sm:rounded-xl p-3 sm:p-4 text-center">
+                                        <div className="text-xl sm:text-2xl font-bold text-white">200+</div>
+                                        <div className="text-[10px] sm:text-xs text-gray-400 mt-1">Projects</div>
                                     </div>
 
-                                    <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                                        <div className="text-2xl font-bold text-neon-blue">50+</div>
-                                        <div className="text-xs text-gray-400 mt-1">Experts</div>
+                                    <div className="bg-white/[0.04] rounded-lg sm:rounded-xl p-3 sm:p-4 text-center">
+                                        <div className="text-xl sm:text-2xl font-bold text-neon-blue">50+</div>
+                                        <div className="text-[10px] sm:text-xs text-gray-400 mt-1">Experts</div>
                                     </div>
 
-                                    <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                                        <div className="text-2xl font-bold text-neon-purple">100%</div>
-                                        <div className="text-xs text-gray-400 mt-1">Client Satisfaction</div>
+                                    <div className="bg-white/[0.04] rounded-lg sm:rounded-xl p-3 sm:p-4 text-center">
+                                        <div className="text-xl sm:text-2xl font-bold text-neon-purple">100%</div>
+                                        <div className="text-[10px] sm:text-xs text-gray-400 mt-1">Satisfaction</div>
                                     </div>
 
-                                    <div className="bg-white/[0.04] rounded-xl p-4 text-center">
-                                        <div className="text-2xl font-bold text-emerald-400">24/7</div>
-                                        <div className="text-xs text-gray-400 mt-1">Support</div>
+                                    <div className="bg-white/[0.04] rounded-lg sm:rounded-xl p-3 sm:p-4 text-center">
+                                        <div className="text-xl sm:text-2xl font-bold text-emerald-400">24/7</div>
+                                        <div className="text-[10px] sm:text-xs text-gray-400 mt-1">Support</div>
                                     </div>
                                 </div>
 
                                 {/* Tags (like industry card) */}
-                                <div className="mt-6 flex flex-wrap gap-2 justify-center">
+                                <div className="mt-4 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2 justify-center">
                                     {["Growth", "Scale", "Performance", "Reliability"].map((tag) => (
                                         <span
                                             key={tag}
-                                            className="px-3 py-1 text-xs font-medium text-gray-300 bg-white/[0.04] rounded-full border border-white/[0.06]"
+                                            className="px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-medium text-gray-300 bg-white/[0.04] rounded-full border border-white/[0.06]"
                                         >
                                             {tag}
                                         </span>
                                     ))}
                                 </div>
-                                </div>
-                           </AnimatedSection>
-
-                        </div>
-                        
+                            </div>
+                        </AnimatedSection>
                     </div>
+                </div>
             </section>
 
             {/* FAQ List - Grid Layout with 2 per row */}
             <section
                 id="faq"
-                className="min-h-screen flex flex-col justify-center py-16 lg:py-20 relative bg-section-services overflow-hidden"
+                className="min-h-screen flex flex-col justify-center py-12 sm:py-16 lg:py-20 relative bg-section-services overflow-hidden"
             >
                 {/* background */}
                 <div className="absolute inset-0 grid-bg opacity-40" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent" />
 
-                <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-12 gap-6 lg:gap-12 items-end mb-12">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-12 items-end mb-8 sm:mb-12">
                         <div className="lg:col-span-7">
-                            <div className="inline-flex items-center gap-2 mb-3">
+                            <div className="inline-flex items-center gap-2 mb-2 sm:mb-3">
                                 <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
                                 <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-neon-blue">
                                     FAQ
                                 </p>
                             </div>
-                            <h2 className="h-section text-deep-blue">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-deep-blue">
                                 Questions,{" "}
                                 <span className="gradient-text-dark">Answered</span>
                             </h2>
                         </div>
                         <div className="lg:col-span-5">
-                            <p className="body-base text-gray-400 max-w-md lg:ml-auto">
+                            <p className="text-sm sm:text-base text-gray-400 max-w-md lg:ml-auto">
                                 Quick answers to what most teams ask before kickoff. Don&apos;t
                                 see your question?{" "}
                                 <Link
@@ -374,10 +290,10 @@ export default function FAQPage() {
                         </div>
                     </div>
 
-                    {/* FAQ Grid - 2 columns */}
-                    <div className="space-y-4">
+                    {/* FAQ Grid - 2 columns on tablet/desktop, 1 on mobile */}
+                    <div className="space-y-3 sm:space-y-4">
                         {faqPairs.map((pair, pairIndex) => (
-                            <div key={pairIndex} className="grid md:grid-cols-2 gap-4">
+                            <div key={pairIndex} className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                                 {pair.map((faq, index) => {
                                     const globalIndex = pairIndex * 2 + index;
                                     return (

@@ -283,38 +283,6 @@ function TabButton({
     </button>
   );
 }
-// Phase step label component
-function StepLabel({ steps, active }: { steps: string[]; active: number }) {
-  return (
-    <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-      {steps.map((label, i) => (
-        <div key={label} className="flex items-center gap-1.5">
-          <span
-            className={`h-1.5 rounded-full transition-all duration-500 ${i === active
-              ? "w-6 bg-white"
-              : i < active
-                ? "w-1.5 bg-white/60"
-                : "w-1.5 bg-white/15"
-              }`}
-          />
-          {i === active && (
-            <motion.span
-              key={label}
-              initial={{ opacity: 0, x: -4 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="font-mono text-[10px] uppercase tracking-widest text-white"
-            >
-              {label}
-            </motion.span>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-
 
 export default function Services() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -350,9 +318,9 @@ export default function Services() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 lg:items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:items-stretch gap-0">
           {/* Mobile: Horizontal scrollable tabs - scrollbar hidden */}
-          <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-1 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
+          <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-4 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
             {services.map((s, i) => (
               <button
                 key={s.title}
@@ -375,80 +343,60 @@ export default function Services() {
           </div>
 
           {/* LEFT PANEL */}
-          <div className="md:col-span-4 grid content-start gap-1.5">
-            {leftServices.map((s, i) => (
-              <TabButton key={s.title} service={s} index={i} isActive={activeIdx === i} onSelect={() => setActiveIdx(i)} align="left" />
-            ))}
-            {/* Spacer to fill remaining height */}
-            <div className="flex-1"></div>
+          <div className="hidden lg:block lg:col-span-4 pr-2">
+            <div className="grid content-start gap-1.5 h-full">
+              {leftServices.map((s, i) => (
+                <TabButton key={s.title} service={s} index={i} isActive={activeIdx === i} onSelect={() => setActiveIdx(i)} align="left" />
+              ))}
+              <div className="flex-1"></div>
+            </div>
           </div>
 
-          {/* CENTER SLIDER AREA */}
-          <div className="md:col-span-4 justify-center flex">
-            <div className="relative w-full max-w-sm overflow-hidden rounded-2xl shadow-2xl shadow-deep-blue/20 h-full">
-            <ServiceArt slug={active.slug} />
+          {/* CENTER CARD */}
+          <div className="lg:col-span-4 flex justify-center mt-2 lg:mt-0 px-2">
+            <div className="relative w-full h-[400px] sm:h-[500px] lg:h-full overflow-hidden rounded-2xl shadow-2xl shadow-deep-blue/20">
+              <ServiceArt slug={active.slug} />
             </div>
           </div>
 
           {/* RIGHT PANEL */}
-          <div className="md:col-span-4 grid content-start gap-1.5">
-            {rightServices.map((s, i) => {
-              const realIdx = i + leftServices.length;
-              return <TabButton key={s.title} service={s} index={realIdx} isActive={activeIdx === realIdx} onSelect={() => setActiveIdx(realIdx)} align="right" />;
-            })}
-            {/* Spacer to fill remaining height */}
-            <div className="flex-1"></div>
+          <div className="hidden lg:block lg:col-span-4 pl-2">
+            <div className="grid content-start gap-1.5 h-full">
+              {rightServices.map((s, i) => {
+                const realIdx = i + leftServices.length;
+                return <TabButton key={s.title} service={s} index={realIdx} isActive={activeIdx === realIdx} onSelect={() => setActiveIdx(realIdx)} align="right" />;
+              })}
+              <div className="flex-1"></div>
+            </div>
           </div>
         </div>
 
         {/* Bottom detail panel */}
-
-        <div className=" lg:mt-5 overflow-hidden rounded-2xl border border-deep-blue/[0.06] bg-white/80 backdrop-blur-sm shadow-xl shadow-deep-blue/8">
-          <motion.div
+        <div className="mt-6 lg:mt-5 overflow-hidden rounded-2xl border border-deep-blue/[0.06] bg-white/80 backdrop-blur-sm shadow-xl shadow-deep-blue/8">
+          <div
             key={active.slug}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid gap-5 p-3 md:grid-cols-12 md:items-center md:gap-6 md:p-6 lg:p-7"
+            className="grid gap-4 p-4 md:grid-cols-12 md:items-center md:gap-6 md:p-6 lg:p-7"
           >
             {/* Content Column */}
-            <div className="col-span-6">
-              <motion.h3
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 }}
-                className="text-xl font-semibold tracking-tight text-deep-blue md:text-2xl lg:text-3xl"
+            <div className="md:col-span-6">
+              <h3 className="text-xl font-semibold tracking-tight text-deep-blue md:text-2xl lg:text-3xl"
               >
                 {active.title}
-              </motion.h3>
+              </h3>
 
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="mt-1.5 text-sm line-clamp-2 leading-relaxed text-deep-blue/70 md:text-base"
-              >
+              <p className="mt-1.5 text-sm line-clamp-2 leading-relaxed text-deep-blue/70 md:text-base">
                 {active.description}
-              </motion.p>
+              </p>
             </div>
 
             {/* Actions Column */}
             <div className="flex flex-col items-start gap-3 md:col-span-6 md:flex-row md:items-center md:justify-end">
-              {/* Stack Tags */}
-              <div className="flex flex-wrap items-center gap-1.5">
-
+              {/* Stack Tags - 2 per row on mobile */}
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-1.5 w-full sm:w-auto">
                 {active.stack.slice(0, 4).map((tech, index) => (
-                  <motion.span
+                  <span
                     key={`${active.slug}-${tech}`}
-                    initial={{ opacity: 0, scale: 0.9, y: 6 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: -6 }}
-                    transition={{
-                      duration: 0.25,
-                      delay: index * 0.05,
-                    }}
-                    className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 hover:scale-105 hover:shadow-md sm:px-3 sm:text-[11px]"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-xl px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition-all duration-200 hover:scale-105 hover:shadow-md sm:px-3 sm:text-[11px]"
                     style={{
                       color: active.accent,
                       backgroundColor: `${active.accent}0d`,
@@ -458,33 +406,32 @@ export default function Services() {
                     }}
                   >
                     <span
-                      className="h-1.5 w-1.5 rounded-xl"
+                      className="h-1.5 w-1.5 rounded-xl shrink-0"
                       style={{ backgroundColor: active.accent }}
                     />
                     {tech}
-                  </motion.span>
+                  </span>
                 ))}
 
-
                 {active.stack.length > 4 && (
-                  <span className="text-[10px] font-medium text-deep-blue/40 sm:text-[11px]">
+                  <span className="text-[10px] font-medium text-deep-blue/40 sm:text-[11px] col-span-2 sm:col-span-1 text-center sm:text-left">
                     +{active.stack.length - 4}
                   </span>
                 )}
               </div>
 
               {/* CTA Button */}
-              <div >
+              <div className="w-full sm:w-auto">
                 <Link
                   href={`/services/${active.slug}`}
-                  className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-deep-blue px-4 py-2.5 text-xs font-semibold text-white transition-all duration-200 hover:bg-deep-blue/80 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] md:px-3.5 md:py-2"
+                  className="inline-flex w-full sm:w-auto shrink-0 items-center justify-center gap-2 rounded-lg bg-deep-blue px-4 py-2.5 text-xs font-semibold text-white transition-all duration-200 hover:bg-deep-blue/80 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] md:px-3.5 md:py-2"
                 >
                   <span>Explore</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
