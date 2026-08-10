@@ -235,7 +235,6 @@ export default function ContactPage() {
 
     const missingVars: string[] = [];
 
-    // Check if values exist and aren't empty
     if (!serviceId || serviceId.trim() === "") missingVars.push("Service ID");
     if (!templateId || templateId.trim() === "") missingVars.push("Template ID");
     if (!publicKey || publicKey.trim() === "") missingVars.push("Public Key");
@@ -253,9 +252,50 @@ export default function ContactPage() {
     } else {
       console.log("✅ EmailJS configuration loaded successfully");
       setIsConfigValid(true);
-
-      // Initialize EmailJS only if config is valid
       emailjs.init(publicKey);
+    }
+  }, []);
+
+  // Read URL parameters when component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      
+      const positions = params.get('positions');
+      const commitment = params.get('commitment');
+      const roles = params.get('roles');
+      const tech = params.get('tech');
+      const from = params.get('from');
+      
+      // Only pre-fill if coming from the hire-talent page
+      if (from === 'hire-talent') {
+        let message = '📋 Hiring Requirements:\n';
+        message += '═══════════════════════\n\n';
+        
+        if (positions) {
+          message += `📊 Positions Needed: ${positions}\n`;
+        }
+        
+        if (commitment) {
+          message += `⏰ Time Commitment: ${commitment}\n`;
+        }
+        
+        if (roles) {
+          message += `👥 Required Roles: ${roles}\n`;
+        }
+        
+        if (tech) {
+          message += `💻 Technologies: ${tech}\n`;
+        }
+        
+        message += '\n═══════════════════════\n';
+        message += 'Additional details about my project:\n\n';
+        
+        setFormState(prev => ({
+          ...prev,
+          message: message
+        }));
+      }
     }
   }, []);
 
@@ -318,7 +358,6 @@ export default function ContactPage() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     
-    // Check if config is valid
     if (!isConfigValid) {
       if (typeof window !== 'undefined' && window.showToast) {
         window.showToast(
@@ -329,7 +368,6 @@ export default function ContactPage() {
       return;
     }
 
-    // Check if reCAPTCHA is completed
     if (!recaptchaValue) {
       if (typeof window !== 'undefined' && window.showToast) {
         window.showToast(
@@ -353,7 +391,6 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      // Prepare email template parameters
       const templateParams = {
         title: "New Project Inquiry - DevInception",
         name: formState.name,
@@ -366,7 +403,6 @@ export default function ContactPage() {
           .filter(Boolean)
           .join(", ") || "None",
         budget_range: `${formatUSD(minBudget)} - ${formatUSD(maxBudget)}`,
-        // Include reCAPTCHA token for verification
         'g-recaptcha-response': recaptchaValue,
       };
 
@@ -384,16 +420,12 @@ export default function ContactPage() {
       }
 
       setSubmitted(true);
-
-      // Reset form
       setFormState({
         name: "",
         email: "",
         company: "",
         message: "",
       });
-
-      // Reset reCAPTCHA
       setRecaptchaValue(null);
 
     } catch (error) {
@@ -411,10 +443,9 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Toast Manager */}
       <ToastManager />
 
-      {/* ───────── Hero ───────── */}
+      {/* Hero */}
       <section className="pt-32 pb-16 bg-section-dark relative overflow-hidden">
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
@@ -441,7 +472,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ───────── Form + Contact info (split) ───────── */}
+      {/* Form + Contact info (split) */}
       <section className="py-16 lg:py-20 bg-light-accent relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -636,7 +667,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* RIGHT — Form + Contact info */}
+            {/* RIGHT — Form */}
             <div className="lg:col-span-6 flex flex-col gap-5">
               <div className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 shadow-xl shadow-deep-blue/5 overflow-hidden">
                 {submitted ? (
@@ -751,7 +782,6 @@ export default function ContactPage() {
                         error={errors.message}
                       />
 
-                      {/* reCAPTCHA v2 Checkbox */}
                       <div className="flex py-2">
                         <ReCAPTCHA
                           sitekey={RECAPTCHA_SITE_KEY}
@@ -791,14 +821,12 @@ export default function ContactPage() {
                   </>
                 )}
               </div>
-
-            
             </div>
           </div>
         </div>
       </section>
 
-      {/* ───────── What happens next ───────── */}
+      {/* What happens next */}
       <section className="layout-section bg-white relative overflow-hidden">
         <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-neon-blue/[0.05] rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
@@ -875,7 +903,6 @@ export default function ContactPage() {
             ))}
           </div>
 
-          {/* Bottom hint */}
           <div className="mt-12 text-center">
             <p className="text-sm text-gray-600">
               Prefer to skip the form?{" "}
