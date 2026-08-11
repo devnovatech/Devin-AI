@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import {
   Users,
   Clock,
@@ -24,10 +24,18 @@ import {
   Code2,
   GitBranch,
   MessageCircle,
-  Zap
+  Zap,
+  Award
 } from "lucide-react";
 import CTABanner from "@/components/CTABanner";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import AnimatedSection from "@/components/AnimatedSection";
+import { ServiceArt } from "@/components/ui/ServiceArt";
+
+// ============================================================================
+// CONSTANTS & DATA
+// ============================================================================
 
 const roleOptions = [
   { id: "developer", label: "Developer", icon: <Code className="w-4 h-4 sm:w-5 sm:h-5" /> },
@@ -37,81 +45,26 @@ const roleOptions = [
   { id: "finance", label: "Finance", icon: <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" /> }
 ];
 
-const benefits = [
-  {
-    icon: <GitBranch className="w-5 h-5 sm:w-6 sm:h-6" />,
-    title: "Seamless Team Integration",
-    description: "Our professionals adapt to your tools, workflows, and processes for smooth collaboration and faster productivity."
-  },
-  {
-    icon: <ArrowUpDown className="w-5 h-5 sm:w-6 sm:h-6" />,
-    title: "Flexible Scaling Models",
-    description: "Scale resources up or down based on your project needs without long-term hiring commitments."
-  },
-  {
-    icon: <Clock className="w-5 h-5 sm:w-6 sm:h-6" />,
-    title: "Time-Zone Aligned Availability",
-    description: "Work with teams aligned to your hours for responsive communication and uninterrupted progress."
-  },
-  {
-    icon: <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />,
-    title: "Communication-Ready Professionals",
-    description: "Get experts who provide clear updates, structured communication, and seamless team collaboration."
-  },
-  {
-    icon: <Code2 className="w-5 h-5 sm:w-6 sm:h-6" />,
-    title: "Access to Specialized Expertise",
-    description: "Access skilled professionals across software, AI/ML, QA, UI/UX, and other technical domains."
-  },
-  {
-    icon: <Zap className="w-5 h-5 sm:w-6 sm:h-6" />,
-    title: "Reduced Hiring Complexity",
-    description: "Skip lengthy hiring cycles and access proven talent faster while focusing on business growth."
-  }
-];
-
-const stats = [
-  { value: "20+", label: "Successful Projects" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "5-10 days", label: "Average Matching Time" },
-  { value: "10+", label: "Countries Served" }
-];
-
 const INITIAL_TECH_OPTIONS = [
-  // Frontend
   "Next.js", "React", "TypeScript", "Tailwind CSS", "Vue", "Svelte",
   "Astro", "Remix", "Vite", "Storybook", "Tanstack Query", "tRPC",
-
-  // Backend
   "Node.js", "Python", "Go", "Rust", "Java", "Kotlin",
   "Ruby on Rails", ".NET", "Elixir", "GraphQL", "REST APIs",
   "FastAPI", "Express", "NestJS", "Django",
-
-  // Databases
   "PostgreSQL", "MySQL", "MongoDB", "Redis", "DynamoDB",
   "Cassandra", "Elasticsearch", "ClickHouse", "Snowflake",
   "BigQuery", "Supabase", "Firebase", "Neo4j", "DuckDB",
   "SQLite", "Cosmos DB",
-
-  // Cloud & Infra
   "AWS", "GCP", "Azure", "Vercel", "Cloudflare",
   "Kubernetes", "Docker", "Terraform", "Pulumi",
   "GitHub Actions", "GitLab CI", "Argo CD", "Nginx",
-
-  // AI / ML
   "Anthropic", "OpenAI", "Llama", "LangGraph", "LangChain",
   "LlamaIndex", "Pinecone", "Weaviate", "Chroma",
   "PyTorch", "TensorFlow", "Hugging Face", "Modal", "Replicate",
-
-  // Mobile
   "Swift", "Kotlin", "React Native", "Expo", "Flutter",
   "Ionic", "Capacitor",
-
-  // Design
   "Figma", "Framer", "Rive", "After Effects", "Lottie",
   "Principle", "Spline",
-
-  // Observability
   "Datadog", "Sentry", "Grafana", "OpenTelemetry",
   "Prometheus", "New Relic", "PostHog", "Mixpanel", "Amplitude"
 ];
@@ -156,6 +109,118 @@ const comparisonData = {
   ]
 };
 
+const benefits = [
+  {
+    icon: <GitBranch className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: "Seamless Team Integration",
+    description: "Our professionals adapt to your tools, workflows, and processes for smooth collaboration and faster productivity."
+  },
+  {
+    icon: <ArrowUpDown className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: "Flexible Scaling Models",
+    description: "Scale resources up or down based on your project needs without long-term hiring commitments."
+  },
+  {
+    icon: <Clock className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: "Time-Zone Aligned Availability",
+    description: "Work with teams aligned to your hours for responsive communication and uninterrupted progress."
+  },
+  {
+    icon: <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: "Communication-Ready Professionals",
+    description: "Get experts who provide clear updates, structured communication, and seamless team collaboration."
+  },
+  {
+    icon: <Code2 className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: "Access to Specialized Expertise",
+    description: "Access skilled professionals across software, AI/ML, QA, UI/UX, and other technical domains."
+  },
+  {
+    icon: <Zap className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: "Reduced Hiring Complexity",
+    description: "Skip lengthy hiring cycles and access proven talent faster while focusing on business growth."
+  }
+];
+
+const statsData = [
+  { value: "20+", label: "Successful Projects" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "5-10 days", label: "Average Matching Time" },
+  { value: "10+", label: "Countries Served" }
+];
+
+const service = {
+  offerings: [
+    {
+      category: "Workforce Planning & Capability Assessment",
+      description: "Identify skill gaps, project requirements, and team capacity needs to determine the optimal augmentation strategy.",
+      items: [
+        "Resource requirement analysis",
+        "Skills gap assessment",
+        "Team capacity planning",
+        "Engagement model recommendations",
+      ],
+    },
+    {
+      category: "Talent Sourcing & Technical Vetting",
+      description: "Source and evaluate professionals based on technical expertise, industry experience, and organizational fit.",
+      items: [
+        "Technical screening",
+        "Skills assessments",
+        "Interview coordination",
+        "Candidate shortlisting",
+      ],
+    },
+    {
+      category: "Team Integration & Operational Alignment",
+      description: "Ensure augmented resources integrate effectively into existing teams, workflows, and delivery environments.",
+      items: [
+        "Onboarding support",
+        "Workflow integration",
+        "Tooling and access coordination",
+        "Team alignment workshops",
+      ],
+    },
+    {
+      category: "Delivery Support & Performance Management",
+      description: "Maintain productivity, accountability, and delivery quality throughout the engagement lifecycle.",
+      items: [
+        "Performance monitoring",
+        "Resource management",
+        "Delivery oversight",
+        "Engagement reviews",
+      ],
+    },
+    {
+      category: "Flexible Team Scaling",
+      description: "Adapt team structures and resource allocation as project demands evolve.",
+      items: [
+        "Team expansion support",
+        "Resource reallocation",
+        "Multi-disciplinary team formation",
+        "Long-term scaling strategies",
+      ],
+    },
+  ],
+};
+
+// Fixed: Properly defined meta and slug variables
+const slug = "staff-augmentation";
+
+const meta = {
+  deliverables: [
+    "Vetted Technical Talent",
+    "Rapid Team Integration",
+    "Flexible Scaling Models",
+    "Delivery Continuity & Support",
+  ],
+  idealFor: ["Growing Engineering Teams", "Enterprise Transformation", "High-Demand Environments"],
+};
+
+// ============================================================================
+// MAIN COMPONENT
+// ============================================================================
+
 export default function HireTalent() {
   const [techOptions, setTechOptions] = useState(INITIAL_TECH_OPTIONS);
   const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
@@ -164,41 +229,62 @@ export default function HireTalent() {
   const [selectedTimeCommitment, setSelectedTimeCommitment] = useState("");
   const [showCustomTech, setShowCustomTech] = useState(false);
   const [customTech, setCustomTech] = useState("");
+  const [activeOffering, setActiveOffering] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleAddCustomTech = () => {
+  const accent = "#1565c0";
+
+  const handleRoleToggle = useCallback((roleId: string) => {
+    setSelectedRoles(prev =>
+      prev.includes(roleId)
+        ? prev.filter(id => id !== roleId)
+        : [...prev, roleId]
+    );
+  }, []);
+
+  const handleTechToggle = useCallback((tech: string) => {
+    setSelectedTech(prev => {
+      if (prev.includes(tech)) {
+        return prev.filter(t => t !== tech);
+      }
+      return [...prev, tech];
+    });
+  }, []);
+
+  const handleAddCustomTech = useCallback(() => {
     const tech = customTech.trim();
-    if (!tech) return;
-    const exists = techOptions.some((t) => t.toLowerCase() === tech.toLowerCase());
-    if (!exists) {
-      setTechOptions((prev) => [...prev, tech]);
+    if (!tech) {
+      setError("Please enter a technology name");
+      return;
     }
-    setSelectedTech((prev) => prev.includes(tech) ? prev : [...prev, tech]);
+
+    const exists = techOptions.some(
+      t => t.toLowerCase() === tech.toLowerCase()
+    );
+
+    if (exists) {
+      setError("This technology is already in the list");
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+
+    setTechOptions(prev => [...prev, tech]);
+    setSelectedTech(prev => [...prev, tech]);
     setCustomTech("");
     setShowCustomTech(false);
-  };
+    setError(null);
+  }, [customTech, techOptions]);
 
-  const handleTechToggle = (tech: string) => {
-    const isSelected = selectedTech.includes(tech);
-    if (isSelected) {
-      setSelectedTech((prev) => prev.filter((t) => t !== tech));
-      if (!INITIAL_TECH_OPTIONS.includes(tech)) {
-        setTechOptions((prev) => prev.filter((t) => t !== tech));
-      }
-    } else {
-      setSelectedTech((prev) => [...prev, tech]);
-    }
-  };
-
-  const getSelectedCount = () => {
+  const getSelectedCount = useCallback(() => {
     let count = 0;
     if (selectedRoles.length > 0) count++;
     if (selectedTech.length > 0) count++;
     if (selectedRoleCount) count++;
     if (selectedTimeCommitment) count++;
     return count;
-  };
+  }, [selectedRoles, selectedTech, selectedRoleCount, selectedTimeCommitment]);
 
-  const buildContactUrl = () => {
+  const buildContactUrl = useCallback(() => {
     const params = new URLSearchParams();
 
     if (selectedRoleCount && selectedRoleCount !== "Custom") {
@@ -223,52 +309,245 @@ export default function HireTalent() {
     params.append('from', 'hire-talent');
 
     return `/contact?${params.toString()}`;
-  };
+  }, [selectedRoleCount, selectedTimeCommitment, selectedRoles, selectedTech]);
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && showCustomTech) {
+      handleAddCustomTech();
+    }
+    if (e.key === 'Escape') {
+      setShowCustomTech(false);
+      setCustomTech("");
+      setError(null);
+    }
+  }, [showCustomTech, handleAddCustomTech]);
 
   return (
     <>
-      {/* Dark Hero Section */}
-      <section className="relative overflow-hidden bg-deep-blue border-b border-white/10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-10 sm:pb-12 md:pb-16 lg:pb-20">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[80vh] opacity-60"
-          style={{
-            background:
-              "radial-gradient(ellipse at top, rgba(79,195,247,0.15) 0%, transparent 65%)",
-          }}
-        />
-        <div className="absolute top-1/3 right-0 w-[200px] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-neon-purple/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[200px] sm:w-[300px] md:w-[400px] lg:w-[500px] h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] bg-neon-blue/10 rounded-full blur-[120px]" />
+      {/* ===== HERO SECTION ===== */}
+      <section className="pt-32 pb-16 lg:pb-20 bg-section-dark relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-blue/10 rounded-full blur-[120px]" />
         <div className="noise-overlay" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid gap-6 sm:gap-8 md:gap-10 lg:gap-14 lg:grid-cols-12 lg:items-start mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-            <div className="lg:col-span-6">
-              <h1 className="mt-3 sm:mt-4 md:mt-5 lg:mt-7 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-                Your Perfect Team – <span className="text-neon-blue">Just a click away</span>
-              </h1>
-              <p className="mt-3 sm:mt-4 md:mt-5 lg:mt-7 text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-xl">
-                Whether you're filling a critical talent gap, scaling for a demanding project, or strengthening your existing team with specialized expertise, we provide the resource you need to keep work moving.
-              </p>
-            </div>
-            <div className="lg:col-span-6">
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-3 sm:mt-4 md:mt-5 lg:mt-7">
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="bg-[#0a1628] rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 border border-white/10 backdrop-blur-sm hover:border-neon-blue/30 transition-all duration-300 text-center"
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* LEFT — content */}
+            <div className="lg:col-span-7">
+              <AnimatedSection>
+                <h1 className="mt-6 h-display text-white">Staff Augmentation</h1>
+                <p className="mt-6 body-lead text-gray-400">
+                  Staff augmentation for extending IT teams with vetted specialists and dedicated squads to increase delivery capacity, close skill gaps, and accelerate execution. Resources are seamlessly integrated into your ecosystem, aligned with your workflows, technology stack, and delivery needs for consistent output.
+                </p>
+
+                <div className="mt-10 flex flex-col sm:flex-row gap-3">
+                  <motion.span
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex"
                   >
-                    <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-neon-blue">{stat.value}</div>
-                    <div className="text-[10px] sm:text-xs md:text-sm text-gray-200 mt-0.5 sm:mt-1">{stat.label}</div>
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl text-white font-bold tracking-wide text-sm transition-all duration-300"
+                      style={{
+                        backgroundColor: accent,
+                        boxShadow: `0 12px 28px -10px ${accent}80`,
+                      }}
+                    >
+                      Book a discovery call
+                    </Link>
+                  </motion.span>
+                </div>
+
+                {/* Meta row */}
+                <div className="mt-10">
+                  <div className="flex items-start gap-4 pb-5 border-b border-white/[0.08]">
+                    <div
+                      className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ backgroundColor: `${accent}15` }}
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke={accent}
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                        Timeline
+                      </p>
+                      <p className="mt-1 text-white/90 text-base font-semibold">
+                        1-4 weeks to onboard
+                      </p>
+                    </div>
+                    {/* Team */}
+                    <div className="flex items-start gap-4 border-white/[0.08]">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke={accent}
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Team Size
+                        </p>
+                        <p className="mt-1 text-white/90 text-sm font-semibold ">
+                          Dedicated Specialists · Delivery Leads · Cross-Functional Teams
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                ))}
+                </div>
+              </AnimatedSection>
+            </div>
+
+            {/* RIGHT — spec card */}
+            <AnimatedSection direction="right" className="lg:col-span-5 mt-6">
+              <div
+                className="relative w-full overflow-hidden rounded-2xl h-[450px] min-h-[300px]"
+                style={{
+                  boxShadow: "0 20px 60px rgba(0, 0, 0, 0.45)",
+                }}
+              >
+                <ServiceArt slug={slug} />
               </div>
+            </AnimatedSection>
+          </div>
+
+          {/* Deliverables — FULL WIDTH */}
+          <div className="mt-14 w-full pb-5 border-b border-white/[0.08]">
+            <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {meta.deliverables.map((d) => (
+                <div key={d} className="flex items-start gap-3">
+                  <span
+                    className="grid h-6 w-6 shrink-0 place-items-center rounded-full"
+                    style={{ backgroundColor: accent }}
+                  >
+                    <svg
+                      className="h-3 w-3 text-[#ffffff]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </span>
+                  <span className="text-sm leading-relaxed text-gray-300 force-gray-text">
+                    {d}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Hiring Form Section */}
-      <section className="relative overflow-hidden bg-light-accent py-12 sm:py-16 md:py-20 lg:py-28">
+
+
+      {/* ───────── Serivce banner ───────── */}
+      <section className="border-y bg-service-banner">
+        <div className="mx-auto max-w-[1320px] px-6 md:px-8 lg:px-6 py-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+
+            {/* Card 1 */}
+            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
+                <Award className="h-6 w-6 gradient-text-fixed" />
+              </div>
+
+              <div className="flex flex-col">
+                <span className="banner-title text-3xl font-bold leading-none">
+                  Top 1%
+                </span>
+
+                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                  Senior Engineers
+                </span>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
+                <Target className="h-6 w-6 gradient-text-fixed" />
+              </div>
+
+              <div className="flex flex-col">
+                <span className="banner-title text-3xl font-bold leading-none">
+                  9 / 10
+                </span>
+
+                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                  On-Time Delivery
+                </span>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
+                <Zap className="h-6 w-6 gradient-text-fixed" />
+              </div>
+
+              <div className="flex flex-col">
+                <span className="banner-title text-3xl font-bold leading-none">
+                  48h
+                </span>
+
+                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                  Discovery → SOW
+                </span>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
+                <Users className="h-6 w-6 gradient-text-fixed" />
+              </div>
+
+              <div className="flex flex-col">
+                <span className="banner-title text-3xl font-bold leading-none">
+                  96%
+                </span>
+
+                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                  Client Retention
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ===== HIRING FORM SECTION ===== */}
+      <section className="h-section layout-section relative overflow-hidden bg-light-accent">
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] sm:w-[600px] md:w-[800px] h-[300px] sm:h-[400px] bg-neon-blue/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 right-0 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-neon-purple/5 rounded-full blur-[150px]" />
@@ -311,11 +590,12 @@ export default function HireTalent() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="px-2 sm:px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                    <span className="text-[10px] sm:text-xs text-gray-400">
-                      <span className="text-neon-blue font-medium">{getSelectedCount()}</span> selections made
-                    </span>
-                  </div>
+                  <span className="text-[10px] text-gray-400 sm:text-xs ">
+                    <span className="font-medium  text-neon-blue">
+                      {getSelectedCount()}
+                    </span>{" "}
+                    selections made
+                  </span>
                 </div>
               </div>
             </div>
@@ -329,17 +609,18 @@ export default function HireTalent() {
                   </div>
                   <h3 className="text-xs sm:text-sm font-semibold text-white">How many positions are you looking to fill?</h3>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3" role="radiogroup" aria-label="Number of positions">
                   {["1 Position", "2-4 Positions"].map((option) => (
                     <button
                       key={option}
                       type="button"
+                      role="radio"
+                      aria-checked={selectedRoleCount === option}
                       onClick={() => setSelectedRoleCount(option)}
-                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${
-                        selectedRoleCount === option
-                          ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
-                          : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
-                      }`}
+                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedRoleCount === option
+                        ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
+                        : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
+                        }`}
                     >
                       {option}
                     </button>
@@ -348,6 +629,8 @@ export default function HireTalent() {
                   {selectedRoleCount !== "Custom" && !selectedRoleCount?.includes("Positions") ? (
                     <button
                       type="button"
+                      role="radio"
+                      aria-checked={selectedRoleCount === "Custom"}
                       onClick={() => {
                         setSelectedRoleCount("Custom");
                         setTimeout(() => {
@@ -355,11 +638,10 @@ export default function HireTalent() {
                           if (input) (input as HTMLInputElement).focus();
                         }, 10);
                       }}
-                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${
-                        selectedRoleCount === "Custom"
-                          ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
-                          : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
-                      }`}
+                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedRoleCount === "Custom"
+                        ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
+                        : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
+                        }`}
                     >
                       Custom
                     </button>
@@ -398,6 +680,7 @@ export default function HireTalent() {
                             setSelectedRoleCount("");
                           }
                         }}
+                        aria-label="Custom number of positions"
                       />
                     </div>
                   )}
@@ -420,17 +703,18 @@ export default function HireTalent() {
                   </div>
                   <h3 className="text-xs sm:text-sm font-semibold text-white">What time commitment do you need?</h3>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3" role="radiogroup" aria-label="Time commitment">
                   {["Full-Time", "Part-Time", "Internship", "Contract"].map((option) => (
                     <button
                       key={option}
                       type="button"
+                      role="radio"
+                      aria-checked={selectedTimeCommitment === option}
                       onClick={() => setSelectedTimeCommitment(option)}
-                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${
-                        selectedTimeCommitment === option
-                          ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
-                          : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
-                      }`}
+                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedTimeCommitment === option
+                        ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
+                        : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
+                        }`}
                     >
                       {option}
                     </button>
@@ -452,18 +736,13 @@ export default function HireTalent() {
                     {roleOptions.map((role) => (
                       <button
                         key={role.id}
-                        onClick={() => {
-                          setSelectedRoles(prev =>
-                            prev.includes(role.id)
-                              ? prev.filter(id => id !== role.id)
-                              : [...prev, role.id]
-                          );
-                        }}
-                        className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${
-                          selectedRoles.includes(role.id)
-                            ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
-                            : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
-                        }`}
+                        type="button"
+                        aria-pressed={selectedRoles.includes(role.id)}
+                        onClick={() => handleRoleToggle(role.id)}
+                        className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedRoles.includes(role.id)
+                          ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
+                          : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
+                          }`}
                       >
                         {role.icon}
                         {role.label}
@@ -493,6 +772,7 @@ export default function HireTalent() {
                       type="button"
                       onClick={() => setShowCustomTech((prev) => !prev)}
                       className="flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/10 hover:border-neon-blue/30 text-[10px] sm:text-xs text-gray-400 hover:text-neon-blue transition-all"
+                      aria-expanded={showCustomTech}
                     >
                       <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       Add Custom
@@ -500,13 +780,15 @@ export default function HireTalent() {
                   </div>
 
                   {showCustomTech && (
-                    <div className="flex flex-col sm:flex-row gap-2 mb-3 sm:mb-4">
+                    <div className="flex flex-col sm:flex-row gap-2 mb-3 sm:mb-4" onKeyDown={handleKeyDown}>
                       <input
                         type="text"
                         value={customTech}
                         onChange={(e) => setCustomTech(e.target.value)}
                         placeholder="Enter technology name"
                         className="flex-1 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue text-xs sm:text-sm"
+                        aria-label="Custom technology name"
+                        aria-invalid={!!error}
                       />
                       <button
                         type="button"
@@ -518,19 +800,30 @@ export default function HireTalent() {
                     </div>
                   )}
 
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2 max-h-40 sm:max-h-48 overflow-y-auto custom-scrollbar pr-1">
+                  {error && (
+                    <p className="text-red-400 text-xs sm:text-sm mb-2" role="alert">
+                      {error}
+                    </p>
+                  )}
+
+                  <div
+                    className="flex flex-wrap gap-1.5 sm:gap-2 max-h-40 sm:max-h-48 overflow-y-auto custom-scrollbar pr-1"
+                    role="list"
+                    aria-label="Selected technologies"
+                  >
                     {techOptions.map((tech) => {
                       const selected = selectedTech.includes(tech);
                       return (
                         <button
                           key={tech}
                           type="button"
+                          role="listitem"
+                          aria-pressed={selected}
                           onClick={() => handleTechToggle(tech)}
-                          className={`flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 rounded-lg border transition-all duration-300 text-[10px] sm:text-sm ${
-                            selected
-                              ? "border-neon-blue bg-neon-blue/10 text-neon-blue"
-                              : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
-                          }`}
+                          className={`flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 rounded-lg border transition-all duration-300 text-[10px] sm:text-sm ${selected
+                            ? "border-neon-blue bg-neon-blue/10 text-neon-blue"
+                            : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
+                            }`}
                         >
                           {tech}
                           {selected && <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3" />}
@@ -563,7 +856,10 @@ export default function HireTalent() {
                     </div>
                   </div>
                   <Link href={buildContactUrl()} className="w-full sm:w-auto">
-                    <button className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 bg-neon-blue rounded-xl text-xs sm:text-sm font-semibold text-white hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300">
+                    <button
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 bg-neon-blue rounded-xl text-xs sm:text-sm font-semibold text-white hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+                      aria-label="Submit hiring request"
+                    >
                       Submit
                       <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
@@ -575,8 +871,233 @@ export default function HireTalent() {
         </div>
       </section>
 
-      {/* Comparison Table Section */}
-      <section className="relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-28 border-t bg-section-dark">
+      {/* ===== WHAT'S INCLUDED (INTERACTIVE OFFERINGS) ===== */}
+      <section className="relative bg-white overflow-hidden layout-section">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8">
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                    What's Included
+                  </span>
+                </div>
+              </div>
+
+              <h2 className="mt-2 h-section max-w-2xl text-balance text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-deep-blue">
+                Talent & <span className="gradient-text-dark">Delivery Solutions</span>
+              </h2>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="lg:pl-8">
+                <p className="body-base text-deep-blue/60 max-w-md text-sm sm:text-base">
+                  A structured talent engagement framework designed to help organizations increase delivery capacity, reduce hiring friction, and maintain operational momentum across critical initiatives.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+            <div className="lg:col-span-5">
+              <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-5 scrollbar-hide">
+                {service.offerings.map((offering, i) => {
+                  const isActive = activeOffering === i;
+                  return (
+                    <button
+                      key={offering.category}
+                      onClick={() => setActiveOffering(i)}
+                      className={`shrink-0 px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border
+                  ${isActive
+                          ? "text-white border-transparent"
+                          : "text-deep-blue/70 bg-white/70 border-deep-blue/10"
+                        }
+                `}
+                      style={{
+                        backgroundColor: isActive ? accent : undefined,
+                        boxShadow: isActive ? `0 8px 22px -8px ${accent}90` : "none"
+                      }}
+                    >
+                      {offering.category}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="hidden lg:flex flex-col gap-3">
+                {service.offerings.map((offering, i) => {
+                  const isActive = activeOffering === i;
+                  return (
+                    <button
+                      key={offering.category}
+                      onMouseEnter={() => setActiveOffering(i)}
+                      className={`group relative w-full text-left flex items-center gap-3 xl:gap-4 px-4 xl:px-5 py-3 xl:py-4 rounded-2xl overflow-hidden transition-all duration-300 border
+                  ${isActive
+                          ? "bg-[#0a1628] border-[#0a1628] shadow-lg"
+                          : `bg-white/65 border-gray-200 lg:hover:bg-[#0a1628] lg:hover:border-[#0a1628] lg:hover:shadow-lg`
+                        }
+                `}
+                      style={{ backdropFilter: "blur(8px)" }}
+                    >
+                      <span
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-full transition-all duration-500"
+                        style={{
+                          height: isActive ? "60%" : "0%",
+                          backgroundColor: accent
+                        }}
+                      />
+
+                      <div
+                        className={`relative w-10 h-10 xl:w-11 xl:h-11 rounded-xl flex items-center justify-center text-[12px] font-bold shrink-0
+                    ${isActive
+                            ? "text-white"
+                            : `text-gray-700 lg:group-hover:text-white`
+                          }
+                  `}
+                        style={{
+                          backgroundColor: isActive ? accent : `${accent}15`
+                        }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+
+                      <div className="relative flex-1 min-w-0">
+                        <p
+                          className={`font-bold text-sm xl:text-base tracking-tight transition-colors duration-300
+                      ${isActive
+                              ? "text-white"
+                              : `text-gray-900 lg:group-hover:text-white`
+                            }
+                    `}
+                        >
+                          {offering.category}
+                        </p>
+                        <p
+                          className={`text-xs mt-0.5 truncate transition-colors duration-300
+                      ${isActive
+                              ? "text-white/70"
+                              : `text-gray-500 lg:group-hover:text-white/70`
+                            }
+                    `}
+                        >
+                          {offering.items.length} deliverables included
+                        </p>
+                      </div>
+
+                      <svg
+                        className={`relative w-4 h-4 shrink-0 transition-all duration-300
+                    ${isActive
+                            ? "opacity-100 translate-x-0 text-white"
+                            : `opacity-0 -translate-x-2 lg:group-hover:opacity-100 lg:group-hover:translate-x-0 text-gray-400 lg:group-hover:text-white`
+                          }
+                  `}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+
+                      {isActive && (
+                        <div
+                          className="pointer-events-none absolute inset-0 rounded-2xl border"
+                          style={{ borderColor: `${accent}50` }}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div key={activeOffering} className="relative rounded-2xl p-5 sm:p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden h-full"
+                style={{
+                  backgroundColor: "#0a1628",
+                  borderColor: "rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(8px)"
+                }}
+              >
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-2xl border"
+                  style={{ borderColor: `${accent}50` }}
+                />
+
+                <div className="relative h-full flex flex-col">
+                  <div className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] shrink-0">
+                    <span
+                      className="px-3 py-1 rounded-full"
+                      style={{
+                        color: accent,
+                        backgroundColor: `${accent}15`,
+                      }}
+                    >
+                      <span
+                        className="inline-block w-1.5 h-1.5 rounded-full mr-2"
+                        style={{ backgroundColor: accent }}
+                      />
+                      Capabilities Overview
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 text-xl sm:text-2xl lg:text-[1.875rem] font-bold tracking-tight leading-[1.15] text-white">
+                    {service.offerings[activeOffering].category}
+                  </h3>
+
+                  <p className="mt-3 leading-relaxed text-sm sm:text-[15px] text-gray-300">
+                    {service.offerings[activeOffering].description}
+                  </p>
+
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 content-start">
+                    {service.offerings[activeOffering].items.map((item, idx) => (
+                      <motion.div
+                        key={item}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.04 }}
+                        className="group relative flex items-start gap-3 rounded-2xl border border-white/[0.06] bg-white/5 lg:hover:bg-white/10 lg:hover:border-white/[0.15] transition-all duration-300 p-4"
+                      >
+                        <div
+                          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+                          style={{ backgroundColor: `${accent}20` }}
+                        >
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke={accent}
+                            strokeWidth={2.4}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-white/80 leading-relaxed lg:group-hover:text-white transition-colors duration-300">
+                            {item}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== COMPARISON TABLE SECTION ===== */}
+      <section className="relative overflow-hidden layout-section border-t bg-section-dark">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-4 sm:gap-5 md:gap-8 lg:gap-12 items-end mb-6 sm:mb-8 md:mb-10 lg:mb-12">
             <div className="lg:col-span-7">
@@ -597,7 +1118,6 @@ export default function HireTalent() {
             </div>
           </div>
 
-          {/* Comparison Table */}
           <div className="relative surface-panel rounded-2xl sm:rounded-3xl border overflow-hidden">
             <div className="relative overflow-x-auto">
               <table className="w-full text-left min-w-[640px] sm:min-w-full">
@@ -675,8 +1195,141 @@ export default function HireTalent() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="bg-light-accent py-10 sm:py-12 md:py-16 lg:py-20">
+      {/* ===== TALENT AREAS SECTION ===== */}
+      <section className="relative overflow-hidden layout-section bg-white border-t border-b border-white/10 flex items-center">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-30"
+          style={{
+            background:
+              "radial-gradient(ellipse at 30% 50%, rgba(79,195,247,0.08) 0%, transparent 60%)",
+          }}
+        />
+        <div className="absolute top-1/3 left-1/4 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] bg-neon-purple/5 rounded-full blur-[120px]" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+          {/* Header - Compact */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-6 sm:mb-8 lg:mb-10">
+            <div>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-deep-blue/10 bg-white/70 backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
+                  <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase text-deep-blue/70">
+                    Talent Area
+                  </span>
+                </div>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-deep-blue leading-tight">
+                Talent Areas {" "}
+                <span className="gradient-text-dark">We Support</span>
+              </h2>
+            </div>
+            <div className="lg:max-w-md">
+              <p className="text-sm sm:text-base text-deep-blue/60">
+                We provide specialized professionals across multiple disciplines
+              </p>
+            </div>
+          </div>
+
+          {/* Talent Grid - No Cards, Clean Minimal Design */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6">
+            {/* Software Engineering */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <Code className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" />
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">Software Engineering</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                Backend, frontend, full-stack, and systems engineering
+              </p>
+            </div>
+
+            {/* Mobile Development */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">Mobile Development</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                Native iOS, Android, React Native, and Flutter
+              </p>
+            </div>
+
+            {/* AI & Machine Learning */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" />
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">AI & Machine Learning</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                ML engineering, LLMs, NLP, and computer vision
+              </p>
+            </div>
+
+            {/* Cloud & DevOps */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                </svg>
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">Cloud & DevOps</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                AWS, GCP, Azure, Kubernetes, and CI/CD
+              </p>
+            </div>
+
+            {/* UI/UX Design */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" />
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">UI/UX Design</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                Product design, user research, and design systems
+              </p>
+            </div>
+
+            {/* Software Quality Assurance */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" />
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">Quality Assurance</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                Automated testing, manual QA, and performance testing
+              </p>
+            </div>
+
+            {/* Project Management */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" />
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">Project Management</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                Agile, Scrum, Kanban, and hybrid delivery
+              </p>
+            </div>
+
+            {/* Business Analysis */}
+            <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                <Target className="w-4 h-4 sm:w-5 sm:h-5 text-neon-blue group-hover:scale-110 transition-transform" />
+                <span className="text-deep-blue font-semibold text-xs sm:text-sm md:text-base">Business Analysis</span>
+              </div>
+              <p className="text-deep-blue/60 text-[10px] sm:text-xs leading-relaxed">
+                Requirements, process mapping, and strategic analysis
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== BENEFITS SECTION ===== */}
+      <section className="bg-light-accent layout-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-4 sm:gap-5 md:gap-8 lg:gap-12 items-end mb-6 sm:mb-8 md:mb-10 lg:mb-14">
             <div className="lg:col-span-7">
@@ -718,7 +1371,7 @@ export default function HireTalent() {
         </div>
       </section>
 
-      {/* CTA Banner */}
+      {/* ===== CTA BANNER ===== */}
       <CTABanner
         eyebrow="Start building your team"
         heading={
