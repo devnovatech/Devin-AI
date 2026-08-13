@@ -217,6 +217,9 @@ const meta = {
   idealFor: ["Growing Engineering Teams", "Enterprise Transformation", "High-Demand Environments"],
 };
 
+// Options for "how many positions" - removed "5+ Positions"
+const positionCountOptions = ["1 Position", "2-4 Positions", "Custom"];
+
 // ============================================================================
 // MAIN COMPONENT
 // ============================================================================
@@ -226,6 +229,7 @@ export default function HireTalent() {
   const [selectedRoles, setSelectedRoles] = useState<string[]>([]);
   const [selectedTech, setSelectedTech] = useState<string[]>([]);
   const [selectedRoleCount, setSelectedRoleCount] = useState("");
+  const [customRoleCount, setCustomRoleCount] = useState("");
   const [selectedTimeCommitment, setSelectedTimeCommitment] = useState("");
   const [showCustomTech, setShowCustomTech] = useState(false);
   const [customTech, setCustomTech] = useState("");
@@ -275,20 +279,32 @@ export default function HireTalent() {
     setError(null);
   }, [customTech, techOptions]);
 
+  // Resolves the current "position count" value to a final string, accounting for the Custom input.
+  const resolvedRoleCount = selectedRoleCount === "Custom"
+    ? (customRoleCount.trim() ? `${customRoleCount.trim()} Positions` : "")
+    : selectedRoleCount;
+
   const getSelectedCount = useCallback(() => {
     let count = 0;
     if (selectedRoles.length > 0) count++;
     if (selectedTech.length > 0) count++;
-    if (selectedRoleCount) count++;
+    if (resolvedRoleCount) count++;
     if (selectedTimeCommitment) count++;
     return count;
-  }, [selectedRoles, selectedTech, selectedRoleCount, selectedTimeCommitment]);
+  }, [selectedRoles, selectedTech, resolvedRoleCount, selectedTimeCommitment]);
+
+  // Form is only "complete" once every step has a real value — this gates the Submit button.
+  const isFormComplete =
+    resolvedRoleCount !== "" &&
+    selectedTimeCommitment !== "" &&
+    selectedRoles.length > 0 &&
+    selectedTech.length > 0;
 
   const buildContactUrl = useCallback(() => {
     const params = new URLSearchParams();
 
-    if (selectedRoleCount && selectedRoleCount !== "Custom") {
-      params.append('positions', selectedRoleCount);
+    if (resolvedRoleCount) {
+      params.append('positions', resolvedRoleCount);
     }
 
     if (selectedTimeCommitment) {
@@ -309,7 +325,7 @@ export default function HireTalent() {
     params.append('from', 'hire-talent');
 
     return `/contact?${params.toString()}`;
-  }, [selectedRoleCount, selectedTimeCommitment, selectedRoles, selectedTech]);
+  }, [resolvedRoleCount, selectedTimeCommitment, selectedRoles, selectedTech]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && showCustomTech) {
@@ -360,35 +376,39 @@ export default function HireTalent() {
 
                 {/* Meta row */}
                 <div className="mt-10">
-                  <div className="flex items-start gap-4 pb-5 border-b border-white/[0.08]">
-                    <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: `${accent}15` }}
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke={accent}
-                        strokeWidth={2}
+                  <div className="flex flex-col sm:flex-row gap-5 sm:gap-8 pb-5 border-b border-white/[0.08]">
+                    {/* Timeline */}
+                    <div className="flex items-start gap-4">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                        style={{ backgroundColor: `${accent}15` }}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke={accent}
+                          strokeWidth={2}
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
+                          Timeline
+                        </p>
+                        <p className="mt-1 text-white/90 text-base font-semibold">
+                          1-4 weeks to onboard
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-gray-400 font-semibold">
-                        Timeline
-                      </p>
-                      <p className="mt-1 text-white/90 text-base font-semibold">
-                        1-4 weeks to onboard
-                      </p>
-                    </div>
+
                     {/* Team */}
-                    <div className="flex items-start gap-4 border-white/[0.08]">
+                    <div className="flex items-start gap-4">
                       <div
                         className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                         style={{ backgroundColor: `${accent}15` }}
@@ -424,7 +444,7 @@ export default function HireTalent() {
             {/* RIGHT — spec card */}
             <AnimatedSection direction="right" className="lg:col-span-5 mt-6">
               <div
-                className="relative w-full overflow-hidden rounded-2xl h-[450px] min-h-[300px]"
+                className="relative w-full overflow-hidden rounded-2xl h-[300px] sm:h-[380px] lg:h-[450px] min-h-[260px]"
                 style={{
                   boxShadow: "0 20px 60px rgba(0, 0, 0, 0.45)",
                 }}
@@ -471,72 +491,72 @@ export default function HireTalent() {
 
       {/* ───────── Serivce banner ───────── */}
       <section className="border-y bg-service-banner">
-        <div className="mx-auto max-w-[1320px] px-6 md:px-8 lg:px-6 py-6">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 md:px-8 lg:px-6 py-5 sm:py-6">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-4">
 
             {/* Card 1 */}
-            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
-              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Award className="h-6 w-6 gradient-text-fixed" />
+            <div className="stat-card flex items-center gap-3 sm:gap-4 rounded-xl p-3 sm:p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-xl shrink-0">
+                <Award className="h-5 w-5 sm:h-6 sm:w-6 gradient-text-fixed" />
               </div>
 
-              <div className="flex flex-col">
-                <span className="banner-title text-3xl font-bold leading-none">
+              <div className="flex flex-col min-w-0">
+                <span className="banner-title text-xl sm:text-3xl font-bold leading-none">
                   Top 1%
                 </span>
 
-                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                <span className="banner-label mt-1 text-[9px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.25em] leading-tight">
                   Senior Engineers
                 </span>
               </div>
             </div>
 
             {/* Card 2 */}
-            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
-              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Target className="h-6 w-6 gradient-text-fixed" />
+            <div className="stat-card flex items-center gap-3 sm:gap-4 rounded-xl p-3 sm:p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-xl shrink-0">
+                <Target className="h-5 w-5 sm:h-6 sm:w-6 gradient-text-fixed" />
               </div>
 
-              <div className="flex flex-col">
-                <span className="banner-title text-3xl font-bold leading-none">
+              <div className="flex flex-col min-w-0">
+                <span className="banner-title text-xl sm:text-3xl font-bold leading-none">
                   9 / 10
                 </span>
 
-                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                <span className="banner-label mt-1 text-[9px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.25em] leading-tight">
                   On-Time Delivery
                 </span>
               </div>
             </div>
 
             {/* Card 3 */}
-            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
-              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Zap className="h-6 w-6 gradient-text-fixed" />
+            <div className="stat-card flex items-center gap-3 sm:gap-4 rounded-xl p-3 sm:p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-xl shrink-0">
+                <Zap className="h-5 w-5 sm:h-6 sm:w-6 gradient-text-fixed" />
               </div>
 
-              <div className="flex flex-col">
-                <span className="banner-title text-3xl font-bold leading-none">
+              <div className="flex flex-col min-w-0">
+                <span className="banner-title text-xl sm:text-3xl font-bold leading-none">
                   48h
                 </span>
 
-                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                <span className="banner-label mt-1 text-[9px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.25em] leading-tight">
                   Discovery → SOW
                 </span>
               </div>
             </div>
 
             {/* Card 4 */}
-            <div className="stat-card flex items-center gap-4 rounded-xl p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
-              <div className="icon-container flex h-12 w-12 items-center justify-center rounded-xl">
-                <Users className="h-6 w-6 gradient-text-fixed" />
+            <div className="stat-card flex items-center gap-3 sm:gap-4 rounded-xl p-3 sm:p-6 transition-all duration-300 hover:bg-black/5 dark:hover:bg-white/5">
+              <div className="icon-container flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-xl shrink-0">
+                <Users className="h-5 w-5 sm:h-6 sm:w-6 gradient-text-fixed" />
               </div>
 
-              <div className="flex flex-col">
-                <span className="banner-title text-3xl font-bold leading-none">
+              <div className="flex flex-col min-w-0">
+                <span className="banner-title text-xl sm:text-3xl font-bold leading-none">
                   96%
                 </span>
 
-                <span className="banner-label mt-1 text-[11px] font-medium uppercase tracking-[0.25em]">
+                <span className="banner-label mt-1 text-[9px] sm:text-[11px] font-medium uppercase tracking-[0.18em] sm:tracking-[0.25em] leading-tight">
                   Client Retention
                 </span>
               </div>
@@ -589,19 +609,19 @@ export default function HireTalent() {
                     <p className="text-gray-400 text-[10px] sm:text-xs">Complete all steps to get matched</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 self-start sm:self-auto">
                   <span className="text-[10px] text-gray-400 sm:text-xs ">
                     <span className="font-medium  text-neon-blue">
                       {getSelectedCount()}
                     </span>{" "}
-                    selections made
+                    of 4 selections made
                   </span>
                 </div>
               </div>
             </div>
 
             <div className="space-y-6 sm:space-y-7 md:space-y-8">
-              {/* Step 1: Role Count */}
+              {/* Step 1: Role Count — 3 options with Custom inline */}
               <div className="group">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-neon-blue/10 flex items-center justify-center text-neon-blue">
@@ -609,88 +629,92 @@ export default function HireTalent() {
                   </div>
                   <h3 className="text-xs sm:text-sm font-semibold text-white">How many positions are you looking to fill?</h3>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3" role="radiogroup" aria-label="Number of positions">
-                  {["1 Position", "2-4 Positions"].map((option) => (
-                    <button
-                      key={option}
-                      type="button"
-                      role="radio"
-                      aria-checked={selectedRoleCount === option}
-                      onClick={() => setSelectedRoleCount(option)}
-                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedRoleCount === option
-                        ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
-                        : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
-                        }`}
-                    >
-                      {option}
-                    </button>
-                  ))}
+                <div className="grid grid-cols-3 gap-2 sm:gap-3" role="radiogroup" aria-label="Number of positions">
+                  {positionCountOptions.map((option) => {
+                    // Check if this is the Custom option and if it's selected
+                    const isCustomSelected = option === "Custom" && selectedRoleCount === "Custom";
 
-                  {selectedRoleCount !== "Custom" && !selectedRoleCount?.includes("Positions") ? (
-                    <button
-                      type="button"
-                      role="radio"
-                      aria-checked={selectedRoleCount === "Custom"}
-                      onClick={() => {
-                        setSelectedRoleCount("Custom");
-                        setTimeout(() => {
-                          const input = document.querySelector('input[type="number"]');
-                          if (input) (input as HTMLInputElement).focus();
-                        }, 10);
-                      }}
-                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedRoleCount === "Custom"
-                        ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
-                        : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
-                        }`}
-                    >
-                      Custom
-                    </button>
-                  ) : (
-                    <div className="relative col-span-2 sm:col-span-1">
-                      <input
-                        type="number"
-                        min={1}
-                        placeholder="Enter number"
-                        className="w-full rounded-xl border border-neon-blue bg-neon-blue/10 px-3 sm:px-4 py-2.5 sm:py-3 text-white placeholder-gray-400 focus:outline-none text-xs sm:text-sm transition-all"
-                        autoFocus
-                        value={selectedRoleCount !== "Custom" ? parseInt(selectedRoleCount) || "" : ""}
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (value) {
-                            setSelectedRoleCount(`${value} Positions`);
+                    return (
+                      <button
+                        key={option}
+                        type="button"
+                        role="radio"
+                        aria-checked={selectedRoleCount === option}
+                        onClick={() => {
+                          // If clicking the same Custom button that's already selected, deselect it
+                          if (option === "Custom" && selectedRoleCount === "Custom") {
+                            setSelectedRoleCount("");
+                            setCustomRoleCount("");
+                            return;
+                          }
+
+                          setSelectedRoleCount(option);
+                          if (option === "Custom") {
+                            // Focus the input after it appears
+                            setTimeout(() => {
+                              const input = document.getElementById("custom-position-count");
+                              if (input) (input as HTMLInputElement).focus();
+                            }, 10);
                           } else {
-                            setSelectedRoleCount("Custom");
+                            setCustomRoleCount("");
                           }
                         }}
-                        onBlur={(e) => {
-                          if (!e.target.value) {
-                            setSelectedRoleCount("");
-                          }
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            const input = e.target as HTMLInputElement;
-                            if (input.value) {
-                              setSelectedRoleCount(`${input.value} Positions`);
-                            } else {
-                              setSelectedRoleCount("");
-                            }
-                          }
-                          if (e.key === "Escape") {
-                            setSelectedRoleCount("");
-                          }
-                        }}
-                        aria-label="Custom number of positions"
-                      />
-                    </div>
-                  )}
+                        className={`min-h-[44px] px-2 sm:px-4 py-3 rounded-xl border transition-all duration-300 text-[11px] sm:text-sm leading-tight ${selectedRoleCount === option
+                          ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
+                          : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
+                          } ${isCustomSelected ? "relative" : ""}`}
+                      >
+                        {isCustomSelected ? (
+                          <div className="flex items-center justify-center w-full">
+                            <input
+                              id="custom-position-count"
+                              type="number"
+                              min={1}
+                              placeholder="#"
+                              className="w-full bg-transparent text-center text-neon-blue focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                              autoFocus
+                              value={customRoleCount}
+                              onChange={(e) => setCustomRoleCount(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === "Escape") {
+                                  setSelectedRoleCount("");
+                                  setCustomRoleCount("");
+                                }
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  // Move focus to next field or submit
+                                  const nextField = document.querySelector('[role="radiogroup"]');
+                                  if (nextField) {
+                                    // Find the next focusable element
+                                    const focusable = nextField.parentElement?.querySelector('button:not([aria-checked="true"])');
+                                    if (focusable && focusable instanceof HTMLElement) {
+                                      focusable.focus();
+                                    }
+                                  }
+                                }
+                              }}
+                              onClick={(e) => e.stopPropagation()}
+                              aria-label="Custom number of positions"
+                              style={{ width: customRoleCount ? `${Math.max(2, customRoleCount.length + 1)}ch` : '2ch' }}
+                            />
+                          </div>
+                        ) : (
+                          option
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
 
-                {selectedRoleCount && (
+                {selectedRoleCount === "Custom" && !customRoleCount && (
+                  <p className="mt-1.5 sm:mt-2 text-[10px] sm:text-xs text-neon-blue/70">
+                    Type a number...
+                  </p>
+                )}
+
+                {resolvedRoleCount && selectedRoleCount !== "Custom" && (
                   <p className="mt-1.5 sm:mt-2 text-[10px] sm:text-xs text-neon-blue">
-                    {selectedRoleCount === "Custom"
-                      ? "Custom option selected - enter a number above"
-                      : `${selectedRoleCount} selected`}
+                    {resolvedRoleCount} selected
                   </p>
                 )}
               </div>
@@ -711,7 +735,7 @@ export default function HireTalent() {
                       role="radio"
                       aria-checked={selectedTimeCommitment === option}
                       onClick={() => setSelectedTimeCommitment(option)}
-                      className={`px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedTimeCommitment === option
+                      className={`min-h-[44px] px-3 sm:px-4 py-3 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedTimeCommitment === option
                         ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
                         : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
                         }`}
@@ -739,7 +763,7 @@ export default function HireTalent() {
                         type="button"
                         aria-pressed={selectedRoles.includes(role.id)}
                         onClick={() => handleRoleToggle(role.id)}
-                        className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedRoles.includes(role.id)
+                        className={`min-h-[40px] flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border transition-all duration-300 text-xs sm:text-sm ${selectedRoles.includes(role.id)
                           ? "border-neon-blue bg-neon-blue/10 text-neon-blue shadow-lg shadow-neon-blue/10"
                           : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
                           }`}
@@ -771,7 +795,7 @@ export default function HireTalent() {
                     <button
                       type="button"
                       onClick={() => setShowCustomTech((prev) => !prev)}
-                      className="flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/10 hover:border-neon-blue/30 text-[10px] sm:text-xs text-gray-400 hover:text-neon-blue transition-all"
+                      className="min-h-[36px] flex items-center gap-1 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/10 hover:border-neon-blue/30 text-[10px] sm:text-xs text-gray-400 hover:text-neon-blue transition-all"
                       aria-expanded={showCustomTech}
                     >
                       <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -786,14 +810,14 @@ export default function HireTalent() {
                         value={customTech}
                         onChange={(e) => setCustomTech(e.target.value)}
                         placeholder="Enter technology name"
-                        className="flex-1 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue text-xs sm:text-sm"
+                        className="flex-1 rounded-lg bg-white/5 border border-white/10 px-3 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue text-sm"
                         aria-label="Custom technology name"
                         aria-invalid={!!error}
                       />
                       <button
                         type="button"
                         onClick={handleAddCustomTech}
-                        className="px-3 sm:px-4 py-2 rounded-lg bg-neon-blue text-white font-medium hover:bg-neon-purple transition-all text-xs sm:text-sm"
+                        className="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-lg bg-neon-blue text-white font-medium hover:bg-neon-purple transition-all text-sm"
                       >
                         Add
                       </button>
@@ -810,6 +834,7 @@ export default function HireTalent() {
                     className="flex flex-wrap gap-1.5 sm:gap-2 max-h-40 sm:max-h-48 overflow-y-auto custom-scrollbar pr-1"
                     role="list"
                     aria-label="Selected technologies"
+                    style={{ WebkitOverflowScrolling: 'touch' }}
                   >
                     {techOptions.map((tech) => {
                       const selected = selectedTech.includes(tech);
@@ -820,7 +845,7 @@ export default function HireTalent() {
                           role="listitem"
                           aria-pressed={selected}
                           onClick={() => handleTechToggle(tech)}
-                          className={`flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 rounded-lg border transition-all duration-300 text-[10px] sm:text-sm ${selected
+                          className={`min-h-[36px] flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 rounded-lg border transition-all duration-300 text-[11px] sm:text-sm ${selected
                             ? "border-neon-blue bg-neon-blue/10 text-neon-blue"
                             : "border-white/10 bg-white/5 text-gray-300 hover:border-white/20 hover:bg-white/10"
                             }`}
@@ -849,21 +874,35 @@ export default function HireTalent() {
                     <div>
                       <p className="text-white font-semibold text-xs sm:text-sm">Your Dream Team is Waiting</p>
                       <p className="text-gray-400 text-[10px] sm:text-xs">
-                        {getSelectedCount() > 0
-                          ? `${getSelectedCount()} selections made • We'll find the best talent for you`
-                          : "Start by making your selections above"}
+                        {isFormComplete
+                          ? "All set — we'll find the best talent for you"
+                          : `Complete all 4 steps to continue (${getSelectedCount()}/4)`}
                       </p>
                     </div>
                   </div>
-                  <Link href={buildContactUrl()} className="w-full sm:w-auto">
+                  {isFormComplete ? (
+                    <Link href={buildContactUrl()} className="w-full sm:w-auto">
+                      <button
+                        type="button"
+                        className="min-h-[44px] w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 bg-neon-blue rounded-xl text-xs sm:text-sm font-semibold text-white hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
+                        aria-label="Submit hiring request"
+                      >
+                        Submit
+                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      </button>
+                    </Link>
+                  ) : (
                     <button
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 bg-neon-blue rounded-xl text-xs sm:text-sm font-semibold text-white hover:bg-neon-purple hover:shadow-lg hover:shadow-neon-blue/30 transition-all duration-300"
-                      aria-label="Submit hiring request"
+                      type="button"
+                      disabled
+                      aria-disabled="true"
+                      title="Complete all steps above to submit"
+                      className="min-h-[44px] w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 bg-white/10 rounded-xl text-xs sm:text-sm font-semibold text-gray-500 cursor-not-allowed"
                     >
                       Submit
                       <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </button>
-                  </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -901,14 +940,17 @@ export default function HireTalent() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             <div className="lg:col-span-5">
-              <div className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-5 scrollbar-hide">
+              <div
+                className="lg:hidden flex gap-2 overflow-x-auto pb-3 mb-5 scrollbar-hide"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
                 {service.offerings.map((offering, i) => {
                   const isActive = activeOffering === i;
                   return (
                     <button
                       key={offering.category}
                       onClick={() => setActiveOffering(i)}
-                      className={`shrink-0 px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border
+                      className={`shrink-0 min-h-[44px] px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border
                   ${isActive
                           ? "text-white border-transparent"
                           : "text-deep-blue/70 bg-white/70 border-deep-blue/10"
@@ -1017,7 +1059,10 @@ export default function HireTalent() {
             </div>
 
             <div className="lg:col-span-7">
-              <div key={activeOffering} className="relative rounded-2xl p-5 sm:p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden h-full"
+              <div
+                key={activeOffering}
+                className="relative rounded-2xl p-5 sm:p-6 lg:p-8 shadow-2xl shadow-black/40 overflow-hidden
+               min-h-[420px] sm:h-[400px] lg:h-[400px]"
                 style={{
                   backgroundColor: "#0a1628",
                   borderColor: "rgba(255,255,255,0.08)",
@@ -1033,10 +1078,7 @@ export default function HireTalent() {
                   <div className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] shrink-0">
                     <span
                       className="px-3 py-1 rounded-full"
-                      style={{
-                        color: accent,
-                        backgroundColor: `${accent}15`,
-                      }}
+                      style={{ color: accent, backgroundColor: `${accent}15` }}
                     >
                       <span
                         className="inline-block w-1.5 h-1.5 rounded-full mr-2"
@@ -1046,15 +1088,19 @@ export default function HireTalent() {
                     </span>
                   </div>
 
-                  <h3 className="mt-5 text-xl sm:text-2xl lg:text-[1.875rem] font-bold tracking-tight leading-[1.15] text-white">
+                  <h3 className="mt-5 text-xl sm:text-2xl lg:text-[1.875rem] font-bold tracking-tight leading-[1.15] text-white shrink-0">
                     {service.offerings[activeOffering].category}
                   </h3>
 
-                  <p className="mt-3 leading-relaxed text-sm sm:text-[15px] text-gray-300">
+                  <p className="mt-3 leading-relaxed text-sm sm:text-[15px] text-gray-300 shrink-0">
                     {service.offerings[activeOffering].description}
                   </p>
 
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 content-start">
+                  {/* scrollable items area so extra items don't push the card taller */}
+                  <div
+                    className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 content-start overflow-y-auto pr-1 scrollbar-hide"
+                    style={{ WebkitOverflowScrolling: 'touch' }}
+                  >
                     {service.offerings[activeOffering].items.map((item, idx) => (
                       <motion.div
                         key={item}
@@ -1067,18 +1113,8 @@ export default function HireTalent() {
                           className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
                           style={{ backgroundColor: `${accent}20` }}
                         >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke={accent}
-                            strokeWidth={2.4}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M5 13l4 4L19 7"
-                            />
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke={accent} strokeWidth={2.4}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
                         <div>
@@ -1119,8 +1155,60 @@ export default function HireTalent() {
           </div>
 
           <div className="relative surface-panel rounded-2xl sm:rounded-3xl border overflow-hidden">
-            <div className="relative overflow-x-auto">
-              <table className="w-full text-left min-w-[640px] sm:min-w-full">
+            {/* Mobile & small tablet: stacked comparison cards (no sideways scroll needed to compare) */}
+            <div className="md:hidden divide-y divide-white/5">
+              {comparisonData.metrics.map((item, index) => (
+                <div key={index} className="p-4 sm:p-5">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-7 h-7 rounded-lg bg-neon-blue/10 flex items-center justify-center text-neon-blue flex-shrink-0">
+                      {item.icon}
+                    </div>
+                    <span className="text-white font-semibold text-sm">
+                      {item.metric}
+                    </span>
+                  </div>
+                  <div className="space-y-2 pl-0.5">
+                    <div className="rounded-xl bg-neon-blue/5 border border-neon-blue/20 p-3">
+                      <p className="text-[9px] uppercase tracking-wider text-neon-blue font-semibold mb-1">
+                        Staff Augmentation
+                      </p>
+                      <div className="flex items-start gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-neon-blue flex-shrink-0 mt-0.5" />
+                        <span className="text-white text-xs leading-relaxed">
+                          {item.augmentation}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="rounded-xl p-3">
+                      <p className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold mb-1">
+                        Outsourcing
+                      </p>
+                      <div className="flex items-start gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-white/60 flex-shrink-0 mt-0.5" />
+                        <span className="text-white/80 text-xs leading-relaxed">
+                          {item.outsourcing}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="rounded-xl p-3">
+                      <p className="text-[9px] uppercase tracking-wider text-gray-400 font-semibold mb-1">
+                        Traditional Hiring
+                      </p>
+                      <div className="flex items-start gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-white/60 flex-shrink-0 mt-0.5" />
+                        <span className="text-white/80 text-xs leading-relaxed">
+                          {item.hiring}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Tablet & up: full comparison table */}
+            <div className="hidden md:block relative overflow-x-auto">
+              <table className="w-full text-left min-w-full">
                 <thead>
                   <tr className="surface-divider">
                     <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-white bg-white/5">
@@ -1232,7 +1320,7 @@ export default function HireTalent() {
           </div>
 
           {/* Talent Grid - No Cards, Clean Minimal Design */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6">
+          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6">
             {/* Software Engineering */}
             <div className="group border-b-2 border-white/5 pb-3 sm:pb-4 hover:border-neon-blue/50 transition-all duration-300">
               <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
