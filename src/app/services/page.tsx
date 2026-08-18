@@ -762,7 +762,7 @@ export default function ServicesPage() {
         </div>
 
         {/* noise overlay */}
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none" />
+        <div className="noise-overlay" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* ───────── HEADER ───────── */}

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -138,7 +137,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script src="https://www.google.com/recaptcha/enterprise.js" strategy="afterInteractive" />
       </head>
       <body className={`${inter.variable} ${poppins.variable} font-sans antialiased`}>
         <ThemeProvider>

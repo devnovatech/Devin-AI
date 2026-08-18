@@ -96,7 +96,7 @@ const services: Service[] = [
   },
   {
     title: "E-commerce Solutions",
-    slug: "E-commerce",
+    slug: "ecommerce",
     tagline: "Conversion-tuned storefronts",
     accent: "#0097A7",
     category: "Build",

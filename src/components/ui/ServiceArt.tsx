@@ -89,7 +89,7 @@ const services: Service[] = [
     },
     {
         title: "E-commerce Solutions",
-        slug: "E-commerce",
+        slug: "ecommerce",
         tagline: "Conversion-tuned storefronts",
         accent: "#0097A7",
         category: "Build",
@@ -412,7 +412,7 @@ function PhaseVisual({ service, phaseIndex }: { service: Service; phaseIndex: nu
             return <MarketingVisual phaseIndex={phaseIndex} />;
         case "staff-augmentation":
             return <StaffVisual phaseIndex={phaseIndex} />;
-        case "E-commerce":
+        case "ecommerce":
             return <EcommerceVisual phaseIndex={phaseIndex} />;
         case "quality-assurance":
             return <QaVisual phaseIndex={phaseIndex} />;

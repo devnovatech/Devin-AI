@@ -568,7 +568,7 @@ export default function HireTalent() {
 
       {/* ===== HIRING FORM SECTION ===== */}
       <section className="h-section layout-section relative overflow-hidden bg-light-accent">
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
+        <div className="absolute inset-0 grid-bg opacity-30" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] sm:w-[600px] md:w-[800px] h-[300px] sm:h-[400px] bg-neon-blue/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-0 right-0 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-neon-purple/5 rounded-full blur-[150px]" />
 
