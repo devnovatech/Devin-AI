@@ -76,7 +76,7 @@ const services: Service[] = [
       { name: "Launch", description: "Deployment, optimization, and scaling" },
     ]
   },
-    {
+  {
     title: "AI & ML Engineering",
     slug: "machine-learning-ai",
     tagline: "Production-grade intelligence",
@@ -106,12 +106,12 @@ const services: Service[] = [
     stack: ["Shopify", "WooCommerce", "Magento", "Stripe"
     ],
     icon: <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />,
-  phases: [
-  {name: "Catalog", description: "Define products and categories",},
-  {name: "Cart", description: "Build cart and checkout flow",},
-  {name: "Pay", description: "Integrate payments and processing",},
-  {name: "Convert", description: "Launch, optimize, and scale",},
-]
+    phases: [
+      { name: "Catalog", description: "Define products and categories", },
+      { name: "Cart", description: "Build cart and checkout flow", },
+      { name: "Pay", description: "Integrate payments and processing", },
+      { name: "Convert", description: "Launch, optimize, and scale", },
+    ]
   },
   {
     title: "UI/UX Design",
@@ -149,25 +149,6 @@ const services: Service[] = [
       { name: "Test", description: "Functional, performance, and security testing" },
       { name: "Validate", description: "Issue resolution and release checks" },
       { name: "Improve", description: "Monitoring and quality enhancements" },
-    ]
-  },
-  {
-    title: "Staff Augmentation",
-    slug: "staff-augmentation",
-    tagline: "Senior engineers on demand",
-    accent: "#0288D1",
-    category: "OPS",
-    description:
-      "Providing skilled software professionals who integrate seamlessly with your team, expand delivery capacity, and accelerate project execution.",
-    stack: [
-      "Python", "Java", "React", "Node.js"
-    ],
-    icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />,
-    phases: [
-      { name: "Plan", description: "Requirements and team strategy" },
-      { name: "Select", description: "Talent sourcing and onboarding" },
-      { name: "Integrate", description: "Collaboration and project delivery" },
-      { name: "Scale", description: "Support, reviews, and expansion" },
     ]
   },
   {
@@ -226,7 +207,7 @@ function TabButton({
     <button
       onClick={onSelect}
       onMouseEnter={onSelect}
-      className={`group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border p-3 text-left transition-all ${isActive
+      className={`group relative flex w-full items-center gap-3 overflow-hidden rounded-xl border p-5 text-left transition-all ${isActive
         ? "border-[#0a1128] bg-[#0a1128] text-white"
         : "border-ink-200 bg-white hover:border-[#0a1128] hover:bg-[#0a1128] hover:text-white"
         }`}
@@ -251,25 +232,27 @@ function TabButton({
       </span>
 
       {/* Text content - Desktop */}
+      {/* Text content - Desktop */}
       <div className="relative flex-1 min-w-0 hidden lg:block">
-        <h3 className={`text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-gray-700 group-hover:text-white"
+        <h3 className={`text-base font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-gray-700 group-hover:text-white"
           }`}>
           {service.title}
         </h3>
-        <p className={`text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-gray-400 group-hover:text-white/60"
+        <p className={`text-xs mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-gray-400 group-hover:text-white/60"
           }`}>
           {service.tagline}
         </p>
       </div>
 
       {/* Text content - Mobile */}
+      {/* Text content - Mobile */}
       <div className={`relative flex-1 min-w-0 lg:hidden ${align === "right" ? "text-right" : "text-left"
         }`}>
-        <h3 className={`text-xs sm:text-sm font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-ink-700 group-hover:text-white"
+        <h3 className={`text-sm sm:text-base font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-white" : "text-ink-700 group-hover:text-white"
           }`}>
           {service.title}
         </h3>
-        <p className={`text-[10px] sm:text-[11px] mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-ink-400 group-hover:text-white/60"
+        <p className={`text-xs sm:text-sm mt-0.5 truncate transition-colors duration-300 ${isActive ? "text-white/60" : "text-ink-400 group-hover:text-white/60"
           }`}>
           {service.tagline}
         </p>
@@ -286,8 +269,8 @@ function TabButton({
 
 export default function Services() {
   const [activeIdx, setActiveIdx] = useState(0);
-  const leftServices = services.slice(0, 5);
-  const rightServices = services.slice(5);
+  const leftServices = services.slice(0, 4);
+  const rightServices = services.slice(4);
   const active = services[activeIdx];
   const count = services.length;
 
@@ -344,7 +327,7 @@ export default function Services() {
 
           {/* LEFT PANEL */}
           <div className="hidden lg:block lg:col-span-4 pr-2">
-            <div className="grid content-start gap-1.5 h-full">
+            <div className="grid content-start gap-3 h-full">
               {leftServices.map((s, i) => (
                 <TabButton key={s.title} service={s} index={i} isActive={activeIdx === i} onSelect={() => setActiveIdx(i)} align="left" />
               ))}
@@ -361,7 +344,7 @@ export default function Services() {
 
           {/* RIGHT PANEL */}
           <div className="hidden lg:block lg:col-span-4 pl-2">
-            <div className="grid content-start gap-1.5 h-full">
+            <div className="grid content-start gap-3 h-full">
               {rightServices.map((s, i) => {
                 const realIdx = i + leftServices.length;
                 return <TabButton key={s.title} service={s} index={realIdx} isActive={activeIdx === realIdx} onSelect={() => setActiveIdx(realIdx)} align="right" />;

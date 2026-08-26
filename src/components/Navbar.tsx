@@ -34,10 +34,6 @@ const serviceDropdownData = {
     title: "Digital Marketing",
     tagline: "Strategy and content built on data.",
   },
-  "staff-augmentation": {
-    title: "Staff Augmentation",
-    tagline: "Senior engineers, embedded with your team.",
-  },
   "quality-assurance": {
     title: "Quality Assurance",
     tagline: "Ship with confidence, not surprises.",
@@ -105,7 +101,7 @@ const navLinks = [
     }))
   },
   { label: "About Us", href: "/about" },
-  { label: "Resources", href: "/resources" },
+  { label: "Talent Solutions", href: "/resources" },
 ];
 
 export default function Navbar() {
@@ -327,6 +323,8 @@ export default function Navbar() {
               const active = isActive(link.href);
               const hasDropdown = link.dropdown && link.dropdownItems && link.dropdownItems.length > 0;
 
+              // Same base text treatment for every link, dropdown or not,
+              // so the styling logic is identical across the whole navbar.
               const baseText = active
                 ? isLight
                   ? "text-gray-800"
@@ -357,7 +355,10 @@ export default function Navbar() {
                       }
                     }}
                   >
-                    {active && !hasDropdown && (
+                    {/* Active pill now renders for every active link, whether or
+                        not it has a dropdown attached — opening/closing the
+                        dropdown no longer changes how the link itself looks. */}
+                    {active && (
                       <motion.span
                         layoutId="nav-pill"
                         className={`absolute inset-0 rounded-full border ${isLight
@@ -374,7 +375,7 @@ export default function Navbar() {
                     <span className="relative z-10">{link.label}</span>
                     {hasDropdown && (
                       <svg
-                        className={`w-4 h-4 transition-transform duration-200 ${openDropdown === link.label ? "rotate-180" : ""
+                        className={`relative z-10 w-4 h-4 transition-transform duration-200 ${openDropdown === link.label ? "rotate-180" : ""
                           }`}
                         fill="none"
                         viewBox="0 0 24 24"
@@ -414,7 +415,7 @@ export default function Navbar() {
                                   onClick={() => setOpenDropdown(null)}
                                   className={`group flex flex-col px-4 py-3 rounded-xl transition-all duration-200 ${pathname === item.href
                                       ? "bg-slate-800 border border-slate-600"
-                                      : "hover:bg-slate-900 border border-transparent hover:border-slate-700"
+                                        : "hover:bg-slate-900 border border-transparent hover:border-slate-700"
                                     }`}
                                 >
                                   <div className="flex items-center justify-between">
