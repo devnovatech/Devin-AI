@@ -397,7 +397,10 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
                           transition={{ duration: 0.2 }}
-                          className={`absolute top-full mt-2 rounded-2xl shadow-2xl overflow-hidden bg-white border border-gray-200 ${getDropdownPositionClasses()}`}
+                          className={`absolute top-full mt-2 rounded-2xl shadow-2xl overflow-hidden border ${getDropdownPositionClasses()} ${isLight
+                              ? "bg-white border-gray-200"
+                              : "bg-deep-blue border-white/10"
+                            }`}
                           style={{
                             width: dropdownWidth,
                             maxWidth: 'calc(100vw - 40px)',
@@ -414,15 +417,23 @@ export default function Navbar() {
                                   href={item.href}
                                   onClick={() => setOpenDropdown(null)}
                                   className={`group flex flex-col px-4 py-3 rounded-xl transition-all duration-200 ${pathname === item.href
-                                      ? "bg-slate-800 border border-slate-600"
+                                      ? isLight
+                                        ? "bg-deep-blue/[0.06] border border-deep-blue/20"
+                                        : "bg-slate-800 border border-slate-600"
+                                      : isLight
+                                        ? "hover:bg-deep-blue/[0.04] border border-transparent hover:border-deep-blue/20"
                                         : "hover:bg-slate-900 border border-transparent hover:border-slate-700"
                                     }`}
                                 >
                                   <div className="flex items-center justify-between">
                                     <span
                                       className={`text-sm font-semibold transition-colors ${pathname === item.href
-                                          ? "text-white"
-                                          : "text-slate-900 group-hover:text-white"
+                                          ? isLight
+                                            ? "text-deep-blue"
+                                            : "text-white"
+                                          : isLight
+                                            ? "text-slate-900 group-hover:text-deep-blue"
+                                            : "text-slate-200 group-hover:text-white"
                                         }`}
                                     >
                                       {item.title}
@@ -430,8 +441,12 @@ export default function Navbar() {
                                   </div>
                                   <span
                                     className={`text-xs mt-0.5 line-clamp-2 transition-colors ${pathname === item.href
-                                        ? "text-slate-300"
-                                        : "text-slate-500 group-hover:text-slate-300"
+                                        ? isLight
+                                          ? "text-deep-blue/60"
+                                          : "text-slate-300"
+                                        : isLight
+                                          ? "text-slate-500 group-hover:text-deep-blue/60"
+                                          : "text-slate-400 group-hover:text-slate-300"
                                       }`}
                                   >
                                     {item.tagline}

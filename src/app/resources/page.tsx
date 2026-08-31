@@ -350,7 +350,9 @@ export default function HireTalent() {
             {/* LEFT — content */}
             <div className="lg:col-span-7">
               <AnimatedSection>
-                <h1 className="mt-6 h-display text-white">Staff Augmentation</h1>
+                <h1 className="mt-6 h-display text-white">
+                    Staff <span className="gradient-text">Augmentation</span>
+                  </h1>
                 <p className="mt-6 body-lead text-gray-400">
                   Staff augmentation for extending IT teams with vetted specialists and dedicated squads to increase delivery capacity, close skill gaps, and accelerate execution. Resources are seamlessly integrated into your ecosystem, aligned with your workflows, technology stack, and delivery needs for consistent output.
                 </p>
@@ -911,7 +913,7 @@ export default function HireTalent() {
       </section>
 
       {/* ===== WHAT'S INCLUDED (INTERACTIVE OFFERINGS) ===== */}
-      <section className="relative bg-white overflow-hidden layout-section">
+      <section className="relative bg-white overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8">
             <div className="lg:col-span-7">
