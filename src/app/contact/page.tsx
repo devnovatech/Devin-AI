@@ -8,7 +8,6 @@ import emailjs from "@emailjs/browser";
 import ToastManager from "@/components/ui/ToastManager";
 import ReCAPTCHA from "react-google-recaptcha";
 
-
 // EmailJS Configuration - Using environment variables
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
 const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
@@ -27,6 +26,7 @@ interface FloatingFieldProps {
   required?: boolean;
   multiline?: boolean;
   rows?: number;
+  autoComplete?: string;
 }
 
 function FloatingField({
@@ -39,6 +39,7 @@ function FloatingField({
   required,
   multiline,
   rows = 4,
+  autoComplete,
 }: FloatingFieldProps) {
   const filled = value.length > 0;
   const baseInput =
@@ -59,7 +60,6 @@ function FloatingField({
       {required && <span className="text-red-500 ml-0.5">*</span>}
     </label>
   );
-  
 
   return (
     <div>
@@ -67,25 +67,37 @@ function FloatingField({
         {multiline ? (
           <textarea
             id={id}
+            name={id}
             placeholder=" "
             rows={rows}
             value={value}
             onChange={(e) => onChange(e.target.value)}
+            autoComplete={autoComplete}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? `${id}-error` : undefined}
             className={`${baseInput} ${errorClass} resize-none`}
           />
         ) : (
           <input
             id={id}
+            name={id}
             type={type}
             placeholder=" "
             value={value}
             onChange={(e) => onChange(e.target.value)}
+            autoComplete={autoComplete}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? `${id}-error` : undefined}
             className={`${baseInput} ${errorClass}`}
           />
         )}
         {SharedLabel}
       </div>
-      {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+      {error && (
+        <p id={`${id}-error`} className="mt-1 text-xs text-red-500">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
@@ -206,6 +218,17 @@ const nextSteps = [
   },
 ];
 
+// EmailJS rejects with an EmailJSResponseStatus ({ status, text }), which is not
+// an Error — reading `.message` would always miss the real reason for the failure.
+function emailErrorMessage(error: unknown): string {
+  if (typeof error === "object" && error !== null && "text" in error) {
+    const text = (error as { text?: unknown }).text;
+    if (typeof text === "string" && text.trim()) return text;
+  }
+  if (error instanceof Error && error.message) return error.message;
+  return "Failed to send message. Please try again.";
+}
+
 export default function ContactPage() {
   const [formState, setFormState] = useState({
     name: "",
@@ -218,6 +241,12 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isConfigValid, setIsConfigValid] = useState(true);
   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
+  const [recaptchaExpired, setRecaptchaExpired] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  // The last estimate summary written into the message, so re-applying replaces
+  // it instead of stacking another copy on top.
+  const lastEstimateRef = useRef("");
 
   // ── Budget estimator state ──
   const [projectType, setProjectType] = useState<string>("web");
@@ -233,7 +262,6 @@ export default function ContactPage() {
 
     const missingVars: string[] = [];
 
-    // Check if values exist and aren't empty
     if (!serviceId || serviceId.trim() === "") missingVars.push("Service ID");
     if (!templateId || templateId.trim() === "") missingVars.push("Template ID");
     if (!publicKey || publicKey.trim() === "") missingVars.push("Public Key");
@@ -251,8 +279,6 @@ export default function ContactPage() {
     } else {
       console.log("✅ EmailJS configuration loaded successfully");
       setIsConfigValid(true);
-
-      // Initialize EmailJS only if config is valid
       emailjs.init(publicKey);
     }
   }, []);
@@ -300,7 +326,25 @@ export default function ContactPage() {
     }
   }, []);
 
+  // Updating a field also clears its error, so validation messages disappear as
+  // soon as the user starts fixing them rather than lingering until the next submit.
+  const updateField = (field: keyof typeof formState) => (value: string) => {
+    setFormState((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
 
+  // reCAPTCHA tokens are single-use, so the widget itself has to be reset —
+  // clearing our state alone would leave a consumed token in the box.
+  function resetRecaptcha() {
+    recaptchaRef.current?.reset();
+    setRecaptchaValue(null);
+    setRecaptchaExpired(false);
+  }
 
   const toggleFeature = (id: string) =>
     setSelectedFeatures((prev) =>
@@ -342,10 +386,25 @@ export default function ContactPage() {
     ]
       .filter(Boolean)
       .join("\n");
-    setFormState((prev) => ({
-      ...prev,
-      message: summary + (prev.message ? "\n" + prev.message : "\n"),
-    }));
+
+    const prior = lastEstimateRef.current;
+    lastEstimateRef.current = summary;
+
+    setFormState((prev) => {
+      // Strip the previously applied summary so repeated clicks replace it
+      // rather than prepending a second block.
+      const rest =
+        prior && prev.message.startsWith(prior)
+          ? prev.message.slice(prior.length).replace(/^\n+/, "")
+          : prev.message;
+      return { ...prev, message: rest ? `${summary}\n${rest}` : `${summary}\n` };
+    });
+    setErrors((prev) => {
+      if (!prev.message) return prev;
+      const next = { ...prev };
+      delete next.message;
+      return next;
+    });
   }
 
   function validate() {
@@ -361,22 +420,10 @@ export default function ContactPage() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     
-    // Check if config is valid
     if (!isConfigValid) {
       if (typeof window !== 'undefined' && window.showToast) {
         window.showToast(
           "Email service is not configured. Please contact support.",
-          "error"
-        );
-      }
-      return;
-    }
-
-    // Check if reCAPTCHA is completed
-    if (!recaptchaValue) {
-      if (typeof window !== 'undefined' && window.showToast) {
-        window.showToast(
-          "Please complete the reCAPTCHA verification",
           "error"
         );
       }
@@ -393,10 +440,20 @@ export default function ContactPage() {
       return;
     }
 
+    // Safety net: the token can expire between the click and this handler running.
+    if (!recaptchaValue) {
+      if (typeof window !== 'undefined' && window.showToast) {
+        window.showToast(
+          "Please complete the reCAPTCHA verification",
+          "error"
+        );
+      }
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Prepare email template parameters
       const templateParams = {
         title: "New Project Inquiry - DevInception",
         name: formState.name,
@@ -409,7 +466,6 @@ export default function ContactPage() {
           .filter(Boolean)
           .join(", ") || "None",
         budget_range: `${formatUSD(minBudget)} - ${formatUSD(maxBudget)}`,
-        // Include reCAPTCHA token for verification
         'g-recaptcha-response': recaptchaValue,
       };
 
@@ -427,25 +483,21 @@ export default function ContactPage() {
       }
 
       setSubmitted(true);
-
-      // Reset form
       setFormState({
         name: "",
         email: "",
         company: "",
         message: "",
       });
-
-      // Reset reCAPTCHA
-      setRecaptchaValue(null);
+      lastEstimateRef.current = "";
+      resetRecaptcha();
 
     } catch (error) {
       console.error("Failed to send email:", error);
+      // The token was consumed by the failed attempt — force a fresh one before retrying.
+      resetRecaptcha();
       if (typeof window !== 'undefined' && window.showToast) {
-        window.showToast(
-          error instanceof Error ? error.message : "Failed to send message. Please try again.",
-          "error"
-        );
+        window.showToast(emailErrorMessage(error), "error");
       }
     } finally {
       setIsSubmitting(false);
@@ -454,7 +506,6 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Toast Manager */}
       <ToastManager />
 
       {/* ───────── Hero ───────── */}
@@ -675,11 +726,11 @@ export default function ContactPage() {
                       Use these details in form
                     </button>
                   </div>
-                </motion.div>  
+                </motion.div>
               </div>
             </div>
 
-            {/* RIGHT — Form + Contact info */}
+            {/* RIGHT — Form */}
             <div className="lg:col-span-6 flex flex-col gap-5">
               <div className="relative rounded-2xl bg-white border border-deep-blue/[0.07] p-7 lg:p-9 shadow-xl shadow-deep-blue/5 overflow-hidden">
                 {submitted ? (
@@ -727,7 +778,9 @@ export default function ContactPage() {
                           company: "",
                           message: "",
                         });
-                        setRecaptchaValue(null);
+                        setErrors({});
+                        lastEstimateRef.current = "";
+                        resetRecaptcha();
                       }}
                       className="mt-8 inline-flex items-center gap-2 text-neon-blue hover:text-neon-purple text-sm font-semibold transition-colors"
                     >
@@ -753,10 +806,9 @@ export default function ContactPage() {
                           id="name"
                           label="Your name"
                           required
+                          autoComplete="name"
                           value={formState.name}
-                          onChange={(v) =>
-                            setFormState({ ...formState, name: v })
-                          }
+                          onChange={updateField("name")}
                           error={errors.name}
                         />
                         <FloatingField
@@ -764,10 +816,9 @@ export default function ContactPage() {
                           label="Work email"
                           type="email"
                           required
+                          autoComplete="email"
                           value={formState.email}
-                          onChange={(v) =>
-                            setFormState({ ...formState, email: v })
-                          }
+                          onChange={updateField("email")}
                           error={errors.email}
                         />
                       </div>
@@ -775,10 +826,9 @@ export default function ContactPage() {
                       <FloatingField
                         id="company"
                         label="Company"
+                        autoComplete="organization"
                         value={formState.company}
-                        onChange={(v) =>
-                          setFormState({ ...formState, company: v })
-                        }
+                        onChange={updateField("company")}
                       />
 
                       <FloatingField
@@ -788,19 +838,32 @@ export default function ContactPage() {
                         multiline
                         rows={15}
                         value={formState.message}
-                        onChange={(v) =>
-                          setFormState({ ...formState, message: v })
-                        }
+                        onChange={updateField("message")}
                         error={errors.message}
                       />
 
-                      {/* reCAPTCHA v2 Checkbox */}
-                      <div className="flex py-2">
+                      <div className="py-2">
                         <ReCAPTCHA
+                          ref={recaptchaRef}
                           sitekey={RECAPTCHA_SITE_KEY}
-                          onChange={(value) => setRecaptchaValue(value)}
-                          onExpired={() => setRecaptchaValue(null)}
+                          onChange={(value) => {
+                            setRecaptchaValue(value);
+                            setRecaptchaExpired(false);
+                          }}
+                          onExpired={() => {
+                            setRecaptchaValue(null);
+                            setRecaptchaExpired(true);
+                          }}
+                          onErrored={() => {
+                            setRecaptchaValue(null);
+                            setRecaptchaExpired(false);
+                          }}
                         />
+                        {recaptchaExpired && (
+                          <p className="mt-2 text-xs text-red-500">
+                            Verification expired — tick the box again to send.
+                          </p>
+                        )}
                       </div>
 
                       <motion.button
@@ -826,6 +889,12 @@ export default function ContactPage() {
                         )}
                       </motion.button>
 
+                      {!recaptchaValue && !isSubmitting && (
+                        <p className="text-xs text-center text-deep-blue/60">
+                          Complete the verification above to enable sending.
+                        </p>
+                      )}
+
                       <p className="text-xs text-center text-deep-blue/45">
                         By submitting, you agree to our reply within 24h. We
                         won&apos;t share your info or hassle you.
@@ -834,8 +903,6 @@ export default function ContactPage() {
                   </>
                 )}
               </div>
-
-            
             </div>
           </div>
         </div>
@@ -918,7 +985,6 @@ export default function ContactPage() {
             ))}
           </div>
 
-          {/* Bottom hint */}
           <div className="mt-12 text-center">
             <p className="text-sm text-gray-600">
               Prefer to skip the form?{" "}
